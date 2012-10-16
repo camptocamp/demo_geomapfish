@@ -1,0 +1,38 @@
+LAYER
+    NAME 'aire_jeux'
+    TYPE POLYGON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 620000 218000 690000 278000
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geometrie) AND ${mapserver_join_where} 'airedejeux') AS foo USING UNIQUE gid USING srid=2154"
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo) AS foo USING UNIQUE gid USING srid=-1"
+    METADATA
+        "wms_title" "aire_jeux" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" "all"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://www.example.com/bar" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+    DUMP TRUE # For GetFeatureInfo
+    STATUS ON
+    PROJECTION
+      "init=epsg:900913"
+    END
+    CLASS
+        NAME "countries"
+        OUTLINECOLOR 0 0 0
+    END
+END
