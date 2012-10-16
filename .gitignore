@@ -14,7 +14,8 @@ deploy/deploy.cfg
 development.ini
 production.ini
 config.cfg
-mapserver/c2cgeoportal.map
+config.yaml                                                                                                                                                                                                     
+mapserver/*.map
 *.egg-info/
 demo/static/build/*.js
 demo/static/build/*.css
