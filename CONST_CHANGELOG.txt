@@ -1,5 +1,347 @@
 This file includes migration steps for each release of c2cgeoportal.
 
+
+Version 1.2
+===========
+
+1. A new ``Settings`` view has been added to the mobile application as well as a
+   ``custom.scss`` stylesheet file. Both are intended to be customized by the
+   integrator.
+   Check out documentation to find information about how to upgrade an existing
+   c2cgeoportail project or how the settings view can be customized.
+
+   As minimal you should get the new files:
+
+        ./buildout/bin/pcreate -s c2cgeoportal_create \
+                /tmp/demo package=demo
+        cp -r /tmp/demo/demo/static/mobile/custom.scss demo/static/mobile/
+        cp -r /tmp/demo/demo/static/mobile/app/ demo/static/mobile/
+        rm -rf /tmp/demo
+
+2. CGXP plugin WFSGetFeature now requires that the themes are explicitly passed
+   in its configuration in demo/templates/viewer.js using the following
+   parameter:
+
+    themes: THEMES
+
+3. In the mobile application, the buttons' text in the picker for the layer
+   switcher (on phones) can now be translated.
+
+   Add the following in the OpenLayers.Lang.xx section of your `config.js` file:
+
+    // picker
+    'layer_switcher.cancel': 'Annuler',
+    'layer_switcher.done': 'OK'
+
+4. A new caching system has been introduced and it has to be configured in the
+   config.yaml file. So you have to edit ``config.yaml.in`` and
+   ``config_child.yaml.in`` files to add the following configuration:
+
+    # The dogpile.cache configuration.
+    #
+    # Do not touch if unsure.
+    #
+    # The cache section below takes three properties:
+    #
+    # - backend: the name of the cache backend (ex: dogpile.cache.memory,
+    #   dogpile.cache.memcached, etc.). Mandatory.
+    # - expiration_time: the cache expiration time. Optional (infinite if not
+    #   specified).
+    # - arguments: backend-specific arguments. Optional.
+    #
+    # Here is a dogpile.cache configuration example for the memcached backend
+    # (equivalent of http://dogpilecache.readthedocs.org/en/latest/api.html#dogpile.cache.backends.memcached.MemcachedBackend)
+    # cache:
+    #   backend: dogpile.cache.memcached
+    #   expiration_time: 3600
+    #   arguments:
+    #     url: 127.0.0.1:11211
+    cache:
+      backend: dogpile.cache.memory
+
+   The caching system also refactored the way errors are handled: all errors
+   are now stored in ``serverError``, while ``themesError`` is not used
+   anymore.  So you have to edit all template files (``templates/viewer.js``,
+   ``templates/edit.js``, ``templates/apiviewer.js``) to remove the following
+   line:
+
+    /* errors (if any): ${themesError | n} */
+
+5. Some updates will be do in the `edit.js` and in the `viewer.js`, the actual code
+   will still work, it your interested in have a look at:
+   https://github.com/camptocamp/c2cgeoportal/pull/354
+
+6. CGXP now uses the GeOrchestra styler, which includes its own en, fr,
+   and de translations. Edit jsbuild/app.cfg, and in the [lang-en.js],
+   [lang-fr.js], and [lang-de.js] sections replace
+
+   - Styler/resources/lang/en.js by Styler/lang/en.js
+   - Styler/resources/lang/fr.js by Styler/lang/fr.js
+   - Styler/resources/lang/de.js by Styler/lang/de.js
+
+   The Styler/resources/lang/en.js, Styler/resources/lang/fr.js, and
+   Styler/resources/lang/de.js files no longer exist, so you will get
+   an error during the execution of the jsbuild part if you do not
+   do these replacements.
+
+7. It is now possible to disable the administration interface, for example on
+   productive instances of the application. To do so:
+
+   a. Edit the main() function in demo/__init__.py and use
+
+       from pyramid.settings import asbool
+       if asbool(config.get_settings().get('enable_admin_interface')):
+           config.formalchemy_admin('admin', package='demo',
+                   view='fa.jquery.pyramid.ModelView', factory=FAModels)
+
+      instead of
+
+       config.formalchemy_admin('admin', package='demo',
+               view='fa.jquery.pyramid.ModelView', factory=FAModels)
+
+   b. Add the following parameter in the ``[app:app]`` section of
+      production.ini.in/developement.ini.in:
+
+       enable_admin_interface = ${vars:enable_admin_interface}
+
+   c. Add the following parameter in the ``[vars]`` section of buildout.cfg:
+
+       enable_admin_interface = true
+
+   d. Adapt the latter parameter value in the buildout_*.cfg files.
+
+8. CGXP's FullTextSearch's plugin now allows to group results by their
+   corresponding type.
+
+   a. We recommend you add the following to the root list in the app.js section
+      of ``app.cfg``:
+
+       demo/static/lib/cgxp/ext.ux/GroupComboBox
+
+   b. If you want the results to be grouped, add a ``grouping`` option to the
+      FullTextSearch plugin in ``viewer.js`` as well as the following line in
+      the include list in the app.js section of ``app.cfg``:
+
+       Ext/ux/form/GroupComboBox.js
+
+9. A new parameter, layerManagerUrl, has been added to the cgxp_redlining plugin,
+   to fix a problem with the base url used to access various resources used in
+   the related layerManager widget:
+
+        {
+            ptype: "cgxp_redlining",
+            toggleGroup: "maptools",
+            actionTarget: "center.tbar",
+            layerManagerUrl: "${request.static_url('demo:static/lib/cgxp/sandbox/LayerManager/ux/')}"
+        },
+
+10. The ``functionality`` variable available in Mako templates (e.g. ``viewer.js``)
+    used to be a string. It is now a dict.
+    See https://github.com/camptocamp/c2cgeoportal/pull/400. To accomodate
+    this change in your project you need to
+
+    - Remove the FUNCTIONALITY JavaScript variable from viewer.js and
+      edit.js. This line:
+
+          var FUNCTIONALITY = ${functionality | n};
+
+    - Change the value for the ``defaultBaseLayerRef`` config option of the
+      MapOpacitySlider plugin from ``FUNCTIONALITY.default_basemap[0]`` to:
+
+          defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}"
+
+    Also, if you used ``c2cgeoportal.lib.functionality.get_functionality``
+    in your templates you no longer need to, use ``functionality`` directly.
+
+11. checker_pdf requires that the central coordinates and scale of the map to
+    print when checking the printing service are provided in ``config.yaml.in``.
+    Add the following after the ``tilecache_url``:
+
+        # Checker configuration
+        checker:
+            print_template: 1 A4 portrait
+            print_center_lon: to be defined
+            print_center_lat: to be defined
+            print_scale: 10000
+            fulltextsearch: text to search
+
+12. c2cgeoportal applications created with the c2cgeoportal 1.2 scaffolds
+    include two JavaScript APIs : Simple API and Extended API. This has
+    a few implications on existing applications, whether you want your
+    applications to expose the JavaScript APIs or not.
+
+    Project Lang Files (demo/static/js/Lang)
+
+        You need to split each lang file into two files. For example,
+        demo/static/js/Proj/Lang/fr.js should be splitted into
+        demo/static/js/Proj/Lang/fr.js and
+        demo/static/js/Proj/Lang/GeoExt-fr.js. The former should include
+        OpenLayers-based translations only, and the latter should include
+        GeoExt-based translations only. If your application does not have
+        GeoExt-based translations (which is a good thing), you will need to
+        create an empty demo/static/js/Proj/Lang/GeoExt-fr.js file. And you
+        obviously need to repeat this GeoExt-en.js and GeoExt-de.js.
+
+    JavaScript Build Config (jsbuild/app.cfg)
+
+        The demo/static/js/Proj/Lang/GeoExt-<code>.js files should now be
+        listed in the ``include`` list of ``[lang-<code>.js]`` sections. For
+        example:
+
+            [lang-fr.js]
+            root =
+                ...
+            first =
+                OpenLayers/Lang/fr.js
+            include =
+                Ext/src/locale/ext-lang-fr.js
+                GeoExt/locale/GeoExt-fr.js
+            # FeatureEditing/resources/lang/en.js
+                FeatureEditing/resources/lang/fr.js
+                Styler/lang/fr.js
+                locale/fr.js
+                CGXP/locale/fr.js
+                Proj/Lang/fr.js
+                Proj/Lang/GeoExt-fr.js
+            exclude =
+                OpenLayers/Lang.js
+
+        And if you do want your application to expose the APIs you need to edit
+        jsbuild/app.cfg, remove the previous ``[api.js]`` section and add new
+        sections ``[api.js]``, ``[api-lang-en.js]``, ``[api-lang-fr.js]``,
+        ``[api-lang-de.js]``, and ``[xapi.js]``. See
+        https://github.com/camptocamp/c2cgeoportal/blob/master/c2cgeoportal/scaffolds/create/jsbuild/app.cfg_tmpl
+        for the actual content of these new sections.
+
+    Application-level CSS
+
+        The demo/static/css/proj.css include the application-level CSS.
+        This file should be splitted into three files:
+
+        - demo/static/css/proj.css
+        - demo/static/css/proj-map.css
+        - demo/static/css/proj-widgets.css
+
+        proj-map.css is used by the main application viewers (viewer.js and
+        edit.js), the Simple API, and the Extended API. It shouldn't include
+        any Ext-related CSS.
+
+        proj-widgets.css is used by the main application viewers and the Extended
+        API. It should include CSS that for the CGXP plugins.
+
+        proj.css is used by the main application viewers only. It should there
+        include CSS that is relative to the application layout.
+
+        If you don't care about the APIs and do not want to split your proj.css
+        file into three files as explained above you will still need to create
+        empty files for proj-map.css and proj-widgets.css, otherwise the cssmin
+        buildout part will fail, and your application pages will cause 404s
+        in debug mode.
+
+    Make index.html and edit.html load the new CSS files in debug mode.
+
+        You need to edit index.html and edit.html to make these pages load
+        the new proj-map.css and proj-widgets.css files when in debug mode.
+        This is done by adding the following <link> tags below that for
+        proj.css:
+
+            <link rel="stylesheet" type="text/css" href="${request.static_url('demo:static/css/proj-map.css')}" />
+            <link rel="stylesheet" type="text/css" href="${request.static_url('demo:static/css/proj-widgets.css')}" />
+
+    Adding the APIs to your application
+
+        The easiest is to apply the ``c2cgeoportal_create`` template to
+        create a temporary project and copy the API files from this
+        temporary project to yours::
+
+        $ cd demo
+        $ ./buildout/bin/pcreate -s c2cgeoportal_create \
+                /tmp/demo package=demo
+        $ cp -r /tmp/demo/demo/templates/api demo/templates/
+        $ cp -r /tmp/demo/demo/static/apihelp demo/static/
+        $ rm -rf /tmp/demo
+
+    Clean up (remove old API-related files)
+
+        $ cd demo
+        $ rm -f demo/static/js/api/Map.js
+        $ rm -f demo/templates/apihelp.html
+        $ rm -f demo/templates/apiloader.js
+        $ rm -f demo/templates/apiviewer.js
+
+    Add RewriteRule's to Apache config
+
+        The apache/wsgi.conf.in file defines RewriteRule's for shorter
+        URLs to the application's entry points.
+
+        Add the following API-related RewriteRule's:
+
+        RewriteRule ^${vars:apache-entry-point}api.js$ /${vars:instanceid}/wsgi/api.js [PT]
+        RewriteRule ^${vars:apache-entry-point}xapi.js$ /${vars:instanceid}/wsgi/xapi.js [PT]
+        RewriteRule ^${vars:apache-entry-point}xapihelp.html$ /${vars:instanceid}/wsgi/xapihelp.html [PT]
+
+        And remove this one:
+
+        RewriteRule ^${vars:apache-entry-point}apiloader.js$ /${vars:instanceid}/wsgi/apiloader.js [PT]
+
+
+13. Add the following lines in `apache/wsgi.conf.in` to enable short URLs
+    for the editing, mobile and admin pages:
+
+    RewriteRule ^${vars:apache-entry-point}edit/?$ /${vars:instanceid}/wsgi/edit/ [PT]
+    RewriteRule ^${vars:apache-entry-point}mobile/?$ /${vars:instanceid}/wsgi/mobile/ [PT]
+    RewriteRule ^${vars:apache-entry-point}admin/?$ /${vars:instanceid}/wsgi/admin/ [PT]
+
+14. Redlining is now supported in CGXP's Permalink.
+    The following path should be added in all root sections
+    of `jsbuild/app.cfg`:
+
+    demo/static/lib/cgxp/openlayers.addins/URLCompressed/lib
+
+15. CGXP's Redlining plugin (drawing tools) has been enhanced. It requires the
+    following updates:
+
+    - In ``app.cfg`` you need to replace the lines with:
+
+        CGXP/widgets/RedliningColorPicker.js
+
+    by:
+
+        CGXP/plugins/Redlining.js
+
+    - In the ``index.html`` template, in the section where the css files are
+      loaded in debug mode, you'll have to add the following code right above
+      the one for ``proj.css``:
+
+        <link rel="stylesheet" type="text/css" href="${request.static_url('demo:static/lib/cgxp/ext/Ext/examples/ux/css/Spinner.css')}" />
+
+16. Update the checker for the new api, in the section `check_collector` the
+    `checker_apiloader` doesn't exists anymore,
+    it's replaced by `checker_api`, and `checker_xapi`.
+
+17. The fulltextsearch web service supports a new parameter in the query
+    string, "partitionlimit". If "partitionlimit" is set to a positive number
+    the fulltextsearch web service limits the search results by layer
+    (layer_name field in the tsearch table). For example, if "partitionlimit"
+    is set to 10 and "limit" is set to 40, the response will include at most
+    10 results per layer, and at 40 results total. For this to take effect
+    in the viewer CGXP commit [*] or more recent should be used.
+
+    [*] https://github.com/camptocamp/cgxp/commit/b620dd154b55c6f14eee8fdc09abb5583615d78b
+    
+18. In the file `jsbuild/app.cfg`, for file `[lang-en.js]`, in section `include`:
+    remove the line `CGXP/locale/en.js`, and add the localisation in the files:
+
+    `demo/static/js/Proj/Lang/en.js`:
+    "layertree": "Themes"
+
+    `demo/static/js/Proj/Lang/fr.js`:
+    "layertree": "Thèmes"
+
+    `demo/static/js/Proj/Lang/de.js`:
+    "layertree": "Themen"
+
+
 Version 1.1
 ===========
 
@@ -42,6 +384,7 @@ Version 1.1
                 settings.get('authtkt_secret'),
                 callback=defaultgroupsfinder,
                 cookie_name=settings.get('authtkt_cookie_name'))
+
 
 Version 1.0
 ===========
@@ -798,6 +1141,7 @@ Other changes
    was changed in the create template, that should help you fix your
    application's app.cfg. The note explaining why OpenLayers/Lang.js should be
    included in the main build may be of interest.
+
 
 Version 0.5 (and before)
 ========================
