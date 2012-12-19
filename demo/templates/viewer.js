@@ -38,7 +38,7 @@ Ext.onReady(function() {
 
     var RESTRICTED_EXTENT = [420000, 30000, 900000, 350000];
 
-    var FUNCTIONALITY = ${functionality | n};
+    //To Be Removed for c2cgp1.2: var FUNCTIONALITY = ${functionality | n};
 
     // Used to transmit event throw the application
     var EVENTS = new Ext.util.Observable();
@@ -194,7 +194,7 @@ Ext.onReady(function() {
         }, 
         {
             ptype: "cgxp_mapopacityslider",
-            defaultBaseLayerRef: FUNCTIONALITY.default_basemap[0]
+            defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}" //FUNCTIONALITY.default_basemap[0]
         },
         {
             ptype: "gxp_zoomtoextent",
@@ -284,6 +284,9 @@ Ext.onReady(function() {
         sources: {
             "olsource": {
                 ptype: "gxp_olsource"
+            },
+            osm: {
+                ptype: "gxp_osmsource"
             }
         },
 
@@ -294,11 +297,12 @@ Ext.onReady(function() {
             projection: "EPSG:900913",
             extent: INITIAL_EXTENT,
             maxExtent: RESTRICTED_EXTENT,
-            restrictedExtent: RESTRICTED_EXTENT,
+            //restrictedExtent: RESTRICTED_EXTENT,
             stateId: "map",
             projection: new OpenLayers.Projection("EPSG:900913"),
             units: "m",
-            resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
+            maxResolution: 156543.0339,
+            //resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
             controls: [
                 new OpenLayers.Control.Navigation(),
                 new OpenLayers.Control.KeyboardDefaults(),
@@ -351,38 +355,8 @@ Ext.onReady(function() {
                 })
             ],
             layers: [{
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('ortho'),
-                    mapserverLayers: 'ortho',
-                    ref: 'ortho',
-                    layer: 'ortho',
-                    formatSuffix: 'jpeg',
-                    opacity: 0
-                }, WMTS_OPTIONS)]
-            },
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                group: 'background',
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('plan'),
-                    mapserverLayers: 'plan',
-                    ref: 'plan',
-                    layer: 'plan',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            }, 
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer",
-                group: 'background',
-                args: [OpenLayers.i18n('blank'), {
-                    displayInLayerSwitcher: false,
-                    ref: 'blank',
-                    group: 'background'
-                }]
+		source: "osm",
+		name: "mapnik"
             }],
             items: []
         }
