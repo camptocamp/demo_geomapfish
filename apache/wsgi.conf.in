@@ -23,6 +23,10 @@ RewriteRule ^${vars:apache-entry-point}apihelp.html$ /${vars:instanceid}/wsgi/ap
 RewriteRule ^${vars:apache-entry-point}apiloader.js$ /${vars:instanceid}/wsgi/apiloader.js [PT]
 RewriteRule ^${vars:apache-entry-point}theme/(.+)$ /${vars:instanceid}/wsgi/theme/$1 [PT]
 
+RewriteRule ^${vars:apache-entry-point}edit/?$ /${vars:instanceid}/wsgi/edit/ [PT]
+RewriteRule ^${vars:apache-entry-point}mobile/?$ /${vars:instanceid}/wsgi/mobile/ [PT]
+RewriteRule ^${vars:apache-entry-point}admin/?$ /${vars:instanceid}/wsgi/admin/ [PT]
+
 # define a process group
 # WSGIDaemonProcess must be commented/removed when running the project on windows
 WSGIDaemonProcess c2cgeoportal:${vars:instanceid} display-name=%{GROUP} user=${vars:modwsgi_user}
