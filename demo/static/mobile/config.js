@@ -17,7 +17,10 @@ OpenLayers.Lang.fr = {
     "summits": "Sommets",
     "huts": "Cabanes",
     "sites": "Sites",
-    "users": "Utilisateurs"
+    "users": "Utilisateurs",
+    // picker
+    'layer_switcher.cancel': 'Annuler',
+    'layer_switcher.done': 'OK'
 };
 OpenLayers.Lang.setCode("${lang}");
 
