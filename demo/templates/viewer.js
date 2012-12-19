@@ -32,12 +32,10 @@ Ext.onReady(function() {
     % if user and user.role.extent:
     var INITIAL_EXTENT = ${user.role.json_extent};
     % else:
-    var INITIAL_EXTENT = [420000, 30000, 900000, 350000];
+    var INITIAL_EXTENT = [-466375.77628413,5379611.8001185,1035458.955194,6573252.433606];
     % endif
 
-    var RESTRICTED_EXTENT = [420000, 30000, 900000, 350000];
-
-    //To Be Removed for c2cgp1.2: var FUNCTIONALITY = ${functionality | n};
+    //var RESTRICTED_EXTENT = [27686, 1689072, 1056032, 2691018];
 
     // Used to transmit event throw the application
     var EVENTS = new Ext.util.Observable();
@@ -297,7 +295,7 @@ Ext.onReady(function() {
             xtype: 'cgxp_mappanel',
             projection: "EPSG:900913",
             extent: INITIAL_EXTENT,
-            maxExtent: RESTRICTED_EXTENT,
+            maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
             //restrictedExtent: RESTRICTED_EXTENT,
             stateId: "map",
             projection: new OpenLayers.Projection("EPSG:900913"),
@@ -357,7 +355,41 @@ Ext.onReady(function() {
             ],
             layers: [{
 		source: "osm",
-		name: "mapnik"
+		name: "name"
+            },
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('ortho'),
+                    mapserverLayers: 'ortho',
+                    ref: 'ortho',
+                    layer: 'ortho',
+                    formatSuffix: 'jpeg',
+                    opacity: 0
+                }, WMTS_OPTIONS)]
+            },
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                group: 'background',
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('plan'),
+                    mapserverLayers: 'plan',
+                    ref: 'plan',
+                    layer: 'plan',
+                    group: 'background'
+                }, WMTS_OPTIONS)]
+            }, 
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer",
+                group: 'background',
+                args: [OpenLayers.i18n('blank'), {
+                    displayInLayerSwitcher: false,
+                    ref: 'blank',
+                    group: 'background'
+                }]
             }],
             items: []
         }
