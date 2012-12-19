@@ -245,7 +245,8 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_redlining",
             toggleGroup: "maptools",
-            actionTarget: "center.tbar"
+            actionTarget: "center.tbar",
+            layerManagerUrl: "${request.static_url('demo:static/lib/cgxp/sandbox/LayerManager/ux/')}"
         },
         {
             ptype: "cgxp_legend",
