@@ -16,6 +16,8 @@
 @include sencha-form;
 //@include sencha-msgbox;
 
+@import '../../../../custom';
+
 // Your custom code goes here...
 
 @include pictos-iconmask('add');
@@ -28,6 +30,10 @@
 
 table.detail {
     width: 100%;
+}
+
+table.detail a {
+    word-break: break-all;
 }
 
 table.detail th {

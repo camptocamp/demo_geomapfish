@@ -8,13 +8,13 @@ Ext.define('App.controller.Query', {
                 selector: 'queryview',
                 xtype: 'queryview',
                 autoCreate: true
+            },
+            queryViewList: {
+                selector: 'queryview list'
             }
         },
         control: {
-            queryView: {
-                select: function(list, record) {
-                    this.getApplication().getController('Main').recenterMap(record.raw);
-                },
+            queryViewList: {
                 disclose: function(list, record) {
                     this.getApplication().getController('Main').recenterMap(record.raw);
                 }

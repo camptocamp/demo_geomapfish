@@ -4,7 +4,12 @@ Ext.define('App.controller.Main', {
     config: {
         refs: {
             mainView: 'mainview',
-            layersView: 'layersview'
+            layersView: 'layersview',
+            settingsView: {
+                selector: 'settingsview',
+                xtype: 'settingsview',
+                autoCreate: true
+            }
         },
         control: {
             'button[action=home]': {
@@ -17,6 +22,11 @@ Ext.define('App.controller.Main', {
                     this.redirectTo('layers');
                 }
             },
+            'button[action=settings]': {
+                tap: function() {
+                    this.redirectTo('settings');
+                }
+            },
             mainView: {
                 longpress: function(view, bounds, map) {
                     this.queryMap(view, bounds, map);
@@ -26,7 +36,8 @@ Ext.define('App.controller.Main', {
         routes: {
             '': 'showHome',
             'home': 'showHome',
-            'layers': 'showLayers'
+            'layers': 'showLayers',
+            'settings': 'showSettings'
         }
     },
     
@@ -52,6 +63,11 @@ Ext.define('App.controller.Main', {
         Ext.Viewport.setActiveItem(view);
     },
 
+    showSettings: function() {
+        var view = this.getSettingsView();
+        Ext.Viewport.setActiveItem(view);
+    },
+
     recenterMap: function(f) {
         this.getMainView().recenterOnFeature(f);
         this.redirectTo('home');
@@ -67,7 +83,7 @@ Ext.define('App.controller.Main', {
                 layer.CLASS_NAME != 'OpenLayers.Layer.Vector') {
                 var layersParam = layer.params.LAYERS;
                 for (var j=0; j<layersParam.length; j++) {
-                    if (layer.WFSTypes.indexOf(layersParam[j])) {
+                    if (layer.WFSTypes.indexOf(layersParam[j]) != -1) {
                         layers.push(layersParam[j]);
                     }
                 }

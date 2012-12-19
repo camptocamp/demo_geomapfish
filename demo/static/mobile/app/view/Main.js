@@ -34,11 +34,11 @@ Ext.define("App.view.Main", {
                 iconCls: 'layers',
                 action: 'layers',
                 iconMask: true
-            //}, {
-                //xtype: 'button',
-                //iconCls: 'settings',
-                //action: 'settings',
-                //iconMask: true
+            }, {
+                xtype: 'button',
+                iconCls: 'settings',
+                action: 'settings',
+                iconMask: true
             }]
         }, {
             id: 'map-container'
@@ -77,7 +77,11 @@ Ext.define("App.view.Main", {
             top: 10,
             right: 10,
             displayField: 'name',
-            valueField: 'id'
+            valueField: 'id',
+            defaultPhonePickerConfig: {
+                cancelButton: OpenLayers.i18n('layer_switcher.cancel'),
+                doneButton: OpenLayers.i18n('layer_switcher.done')
+            }
         }]
     },
 

@@ -230,7 +230,8 @@ Ext.onReady(function() {
             ptype: "cgxp_fulltextsearch",
             url: "${request.route_url('fulltextsearch', path='')}",
             layerTreeId: "layertree",
-            actionTarget: "center.tbar"
+            actionTarget: "center.tbar",
+            grouping: true
         },
         {
             ptype: "cgxp_contextualdata",
