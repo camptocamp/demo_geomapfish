@@ -1,38 +1,198 @@
 LAYER
-    NAME 'aire_jeux'
-    TYPE POLYGON
+    NAME 'airedejeux'
+    TYPE POINT
+    STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
-    EXTENT 620000 218000 690000 278000
+    EXTENT 420107 5398192 442381 5412352
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geometrie) AND ${mapserver_join_where} 'airedejeux') AS foo USING UNIQUE gid USING srid=2154"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, nom_aire, toboggan_label, tourniquet_label FROM geodata.airedejeux AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'airedejeux') AS foo USING UNIQUE gid USING srid=900913"
+
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
     # Example data for public layer
-    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo) AS foo USING UNIQUE gid USING srid=-1"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+    TOLERANCE 10 
+    CLASS
+        NAME "Aire de jeux"
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 30 0 0
+          COLOR 230 0 0
+        END
+    END
+
     METADATA
-        "wms_title" "aire_jeux" # For WMS
+        "wms_title" "airedejeux" # For WMS
         "wms_srs" "epsg:900913" # For WMS
 
-        "gml_include_items" "all"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
-        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "gml_include_items" "nom_aire,toboggan_label,tourniquet_label"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
         "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
 
-        "wms_metadataurl_href" "http://www.example.com/bar" # For metadata URL
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Aires-de-jeux-par-type" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
         "wms_metadataurl_type" "TC211" # For metadata URL
 
         ${mapserver_layer_metadata} # For secured layers
     END
-    DUMP TRUE # For GetFeatureInfo
+END
+
+LAYER
+    NAME 'camera'
+    TYPE POINT
     STATUS ON
+    #DEBUG 4
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.camera AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'camera') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
     PROJECTION
       "init=epsg:900913"
     END
+
     CLASS
-        NAME "countries"
-        OUTLINECOLOR 0 0 0
+        NAME "Camera"
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 30 30 30
+          COLOR 100 100 100
+        END
+    END
+
+    METADATA
+        "wms_title" "camera" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        #"wms_metadataurl_href" "http://www.example.com/bar" # For metadata URL
+        #"wms_metadataurl_format" "text/html" # For metadata URL
+        #"wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+
+LAYER
+    NAME 'eclairage'
+    TYPE POINT
+    STATUS ON
+    #DEBUG 4
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid, materiau, geo.type FROM geodata.eclairage AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'eclairage') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+
+    CLASS
+        NAME "Eclairage"
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 88 88 16
+          COLOR 255 255 192
+        END
+    END
+
+    METADATA
+        "wms_title" "eclairage" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" "materiau,type"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        #"wms_metadataurl_href" "http://www.example.com/bar" # For metadata URL
+        #"wms_metadataurl_format" "text/html" # For metadata URL
+        #"wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+
+LAYER
+    NAME 'recyclage'
+    TYPE POINT
+    STATUS ON
+    #DEBUG 4
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.eclairage AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'recyclage') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+    TOLERANCE 10
+    CLASS
+        NAME "Recyclage"
+        STYLE
+          SYMBOL "recyclage"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 0 64 0
+          COLOR 192 255 192
+        END
+    END
+
+    METADATA
+        "wms_title" "recyclage" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        #"wms_metadataurl_href" "http://www.example.com/bar" # For metadata URL
+        #"wms_metadataurl_format" "text/html" # For metadata URL
+        #"wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
     END
 END

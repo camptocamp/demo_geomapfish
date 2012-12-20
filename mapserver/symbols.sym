@@ -1,0 +1,16 @@
+SYMBOLSET
+
+  SYMBOL
+    NAME "circle"
+    TYPE ellipse 
+    POINTS
+      1 1
+    END # end of POINTS
+    FILLED true
+    #ANCHORPOINT 0.5 0.5
+  END
+  SYMBOL
+    NAME "recyclage"
+    TYPE SVG
+    IMAGE "symbols/Green_dot_logo.svg"
+END

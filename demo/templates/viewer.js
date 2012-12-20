@@ -32,10 +32,10 @@ Ext.onReady(function() {
     % if user and user.role.extent:
     var INITIAL_EXTENT = ${user.role.json_extent};
     % else:
-    var INITIAL_EXTENT = [-466375.77628413,5379611.8001185,1035458.955194,6573252.433606];
+    var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
     % endif
 
-    //var RESTRICTED_EXTENT = [27686, 1689072, 1056032, 2691018];
+    var RESTRICTED_EXTENT = [-666375.77628413, 3379611.8001185, 1235458.955194, 7573252.433606];
 
     // Used to transmit event throw the application
     var EVENTS = new Ext.util.Observable();
@@ -57,7 +57,7 @@ Ext.onReady(function() {
             'time': '2011'
         },
         matrixSet: 'swissgrid',
-        maxExtent: new OpenLayers.Bounds(420000, 30000, 900000, 350000),
+        //maxExtent: new OpenLayers.Bounds(420000, 30000, 900000, 350000),
         projection: new OpenLayers.Projection("EPSG:900913"),
         units: "m",
         formatSuffix: 'png',
@@ -283,9 +283,6 @@ Ext.onReady(function() {
         sources: {
             "olsource": {
                 ptype: "gxp_olsource"
-            },
-            osm: {
-                ptype: "gxp_osmsource"
             }
         },
 
@@ -313,24 +310,6 @@ Ext.onReady(function() {
                     bottomOutUnits: false
                 }),
                 new OpenLayers.Control.MousePosition({numDigits: 0}),
-                // Static image version
-                /*
-                return new OpenLayers.Control.OverviewMap({
-                    size: new OpenLayers.Size(200, 100),
-                    mapOptions: {
-                        theme: null
-                    },
-                    layers: [new OpenLayers.Layer.Image(
-                        "Overview Map",
-                        "${request.static_url('demo:static/images/overviewmap.png')}",
-                        OpenLayers.Bounds.fromArray([420000, 30000, 900000, 350000]),
-                        new OpenLayers.Size([200, 100]),
-                        {isBaseLayer: true}
-                    )],
-                    mapOptions: {
-                        numZoomLevels: 1
-                    }
-                })*/
                 // OSM version
                 new OpenLayers.Control.OverviewMap({
                     size: new OpenLayers.Size(200, 100),
@@ -354,8 +333,24 @@ Ext.onReady(function() {
                 })
             ],
             layers: [{
-		source: "osm",
-		name: "name"
+		source: "olsource",
+                type: "OpenLayers.Layer.OSM",
+                args: [
+                    OpenLayers.i18n('Fond de plan'), 
+                    [
+                       'http://a.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
+                       'http://b.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
+                       'http://c.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png'
+                   ], {
+                       transitionEffect: 'resize',
+                       attribution: [
+                           "(c) <a href='http://openstreetmap.org/'>OSM</a>",
+                           "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
+                       ].join(' '),
+                       group: 'background',
+                       ref: 'plan'
+                    }
+                ]
             },
             {
                 source: "olsource",
@@ -369,7 +364,7 @@ Ext.onReady(function() {
                     opacity: 0
                 }, WMTS_OPTIONS)]
             },
-            {
+            /*{
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
                 group: 'background',
@@ -380,7 +375,7 @@ Ext.onReady(function() {
                     layer: 'plan',
                     group: 'background'
                 }, WMTS_OPTIONS)]
-            }, 
+            }, */
             {
                 source: "olsource",
                 type: "OpenLayers.Layer",
