@@ -15,6 +15,20 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "POTEAU BETON": "Poteau béton",
   "LANTERNE FACADE": "Lanterne façade",
   "MAT AMBIANCE": "Mat ambiance",
-  "MAT ECLAIRAGE": "Mat éclairage"
+  "MAT ECLAIRAGE": "Mat éclairage",
+  "blank": "Pas de fond de plan",
+  "Orthophoto": "OpenStreetMap",
+  "arbres_align": "Alignement des arbres",
+  "nom_commun": "Nom commun",
+  "nom_latin": "Nom latin",
+  "libarchite": "Archite",
+  "librevetem": "Revêtement",
+  "arbres_remarq": "Arbres remarquables",
+  "nom_latin": "Nom latin",
+  "nom_usuel": "Nom usuel",
+  "age": "Age",
+  "descriptio": "Description",
+  "pistescyclables": "Mobilité douce",
+  "espaces_verts": "Parc et jardin"
 });
 

@@ -67,6 +67,8 @@ Ext.onReady(function() {
         }
     };
 
+    cgxp.MapOpacitySlider.prototype.orthoText = "OpenStreetMap";
+
     app = new gxp.Viewer({
         portalConfig: {
             layout: "border",
@@ -347,12 +349,13 @@ Ext.onReady(function() {
                            "(c) <a href='http://openstreetmap.org/'>OSM</a>",
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
-                       group: 'background',
-                       ref: 'plan'
+                       group: 'ortho',
+                       ref: 'ortho',
+                       opactiy: 20
                     }
                 ]
             },
-            {
+            /*{
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
                 args: [Ext.applyIf({
@@ -363,7 +366,7 @@ Ext.onReady(function() {
                     formatSuffix: 'jpeg',
                     opacity: 0
                 }, WMTS_OPTIONS)]
-            },
+            },*/
             /*{
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
@@ -383,7 +386,8 @@ Ext.onReady(function() {
                 args: [OpenLayers.i18n('blank'), {
                     displayInLayerSwitcher: false,
                     ref: 'blank',
-                    group: 'background'
+                    group: 'background',
+                    opacity: 0.2
                 }]
             }],
             items: []

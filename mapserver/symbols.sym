@@ -9,8 +9,14 @@ SYMBOLSET
     FILLED true
     #ANCHORPOINT 0.5 0.5
   END
+  #SYMBOL
+  #  NAME "recyclage"
+  #  TYPE SVG
+  #  IMAGE "symbols/Green_dot_logo.svg"
+  #END
   SYMBOL
-    NAME "recyclage"
-    TYPE SVG
-    IMAGE "symbols/Green_dot_logo.svg"
+    NAME "recyclage-png"
+    TYPE PIXMAP
+    IMAGE "symbols/Green_dot_logo.png"
+ END
 END

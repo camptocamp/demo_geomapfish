@@ -119,7 +119,7 @@ LAYER
     PROJECTION
       "init=epsg:900913"
     END
-
+    MAXSCALEDENOM 3600
     CLASS
         NAME "Eclairage"
         STYLE
@@ -158,7 +158,7 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.eclairage AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'recyclage') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.recyclage AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'recyclage') AS foo USING UNIQUE gid USING srid=900913"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
@@ -172,9 +172,17 @@ LAYER
     TOLERANCE 10
     CLASS
         NAME "Recyclage"
+
+        #STYLE
+        #  SYMBOL "circle"
+        #  SIZE 14
+        #  WIDTH 1
+        #  OUTLINECOLOR 0 64 0
+        #  COLOR 192 255 192
+        #END
         STYLE
-          SYMBOL "recyclage"
-          SIZE 8
+          SYMBOL "recyclage-png"
+          SIZE 20
           WIDTH 1
           OUTLINECOLOR 0 64 0
           COLOR 192 255 192
