@@ -350,8 +350,7 @@ Ext.onReady(function() {
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
                        group: 'ortho',
-                       ref: 'ortho',
-                       opactiy: 20
+                       ref: 'ortho'
                     }
                 ]
             },
@@ -387,7 +386,7 @@ Ext.onReady(function() {
                     displayInLayerSwitcher: false,
                     ref: 'blank',
                     group: 'background',
-                    opacity: 0.2
+                    opacity: 0.8
                 }]
             }],
             items: []

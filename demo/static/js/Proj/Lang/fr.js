@@ -29,6 +29,13 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "age": "Age",
   "descriptio": "Description",
   "pistescyclables": "Mobilité douce",
-  "espaces_verts": "Parc et jardin"
+  "espaces_verts": "Parc et jardin",
+  "courseau": "Cours d'eau",
+  "bassinsversants": "Bassins versants",
+  "monuments": "Monuments",
+  "nom": "Nom",
+  "fontaines": "Fontaines",
+  "sitesclasses": "Sites classées et inscrits",
+  "zonepietonne": "Zone piétonne"
 });
 

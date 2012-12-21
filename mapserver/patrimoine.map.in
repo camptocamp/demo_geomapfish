@@ -1,0 +1,205 @@
+LAYER
+    NAME 'monuments'
+    TYPE POINT
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid, nom FROM geodata.monuments AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'monuments') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+    #MAXSCALEDENOM 3500
+    TOLERANCE 10 
+    CLASS
+        NAME "Monuments"
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 50 50 50
+          COLOR 100 100 100
+        END
+    END
+
+    METADATA
+        "wms_title" "Monuments" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" "nom"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Monuments" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+LAYER
+    NAME 'fontaines'
+    TYPE POINT
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid, nom FROM geodata.fontaines AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'fontaines') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+    #MAXSCALEDENOM 3500
+    TOLERANCE 10 
+    CLASS
+        NAME "Fontaines"
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 0 0 80
+          COLOR 0 0 200
+        END
+    END
+
+    METADATA
+        "wms_title" "Fontaines" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" "nom"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Bornes-fontaines" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+LAYER
+    NAME 'sitesclasses'
+    TYPE POLYGON
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.sitesclasses AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sitesclasses') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+    #MAXSCALEDENOM 3500
+    TOLERANCE 10 
+    CLASS
+        NAME "Sites Classés et inscrits"
+        STYLE
+          SYMBOL "hatch"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 0 0 80
+          COLOR 0 0 200
+          ANGLE 45
+          #PATTERN 10 5 END
+        END
+    END
+
+    METADATA
+        "wms_title" "Sites classés" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Sites-classes-et-inscrits" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+LAYER
+    NAME 'zonepietonne'
+    TYPE POLYGON
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.zonepietonne AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'zonepietonne') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+    #MAXSCALEDENOM 3500
+    TOLERANCE 10 
+    CLASS
+        NAME "Zone piétonne"
+        STYLE
+          SYMBOL "hatch"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 0 0 80
+          COLOR 200 0 0
+          ANGLE 135
+          #PATTERN 10 5 END
+        END
+    END
+
+    METADATA
+        "wms_title" "Zones piétonne" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Zones-pietonnes" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+

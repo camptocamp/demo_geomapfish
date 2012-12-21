@@ -1,0 +1,102 @@
+LAYER
+    NAME 'courseau'
+    TYPE POLYGON
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.courseau AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'courseau') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+    #MAXSCALEDENOM 3500
+    TOLERANCE 10 
+    CLASS
+        NAME "Cours d'eau"
+        STYLE
+          #SYMBOL "circle"
+          #SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 0 0 64
+          COLOR 0 0 232
+        END
+    END
+
+    METADATA
+        "wms_title" "Cours d'eau" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Cours-d-eau" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+
+LAYER
+    NAME 'bassinsversants'
+    TYPE POLYGON
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.bassinsversants AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'bassinsversants') AS foo USING UNIQUE gid USING srid=900913"
+
+    # Example data for secured layer by role (without any area)
+    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
+    # Example data for public layer
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:900913"
+    END
+    #MAXSCALEDENOM 3500
+    TOLERANCE 10 
+    CLASS
+        NAME "Bassins versants"
+        STYLE
+          #SYMBOL "circle"
+          #SIZE 8
+          WIDTH 2
+          OUTLINECOLOR 0 0 64
+          OPACITY 50
+          COLOR 0 0 232
+        END
+    END
+
+    METADATA
+        "wms_title" "Bassins versants" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Bassins-Versants" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
