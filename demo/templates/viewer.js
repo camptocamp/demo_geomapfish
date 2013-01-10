@@ -56,18 +56,19 @@ Ext.onReady(function() {
         params: {
             'time': '2011'
         },
-        matrixSet: 'swissgrid',
+        matrixSet: 'c2cgp',
         //maxExtent: new OpenLayers.Bounds(420000, 30000, 900000, 350000),
         projection: new OpenLayers.Projection("EPSG:900913"),
         units: "m",
         formatSuffix: 'png',
-        serverResolutions: [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05],
+        //serverResolutions: [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05],
+        serverResolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
         getMatrix: function() {
             return { identifier: OpenLayers.Util.indexOf(this.serverResolutions, this.map.getResolution()) };
         }
     };
 
-    cgxp.MapOpacitySlider.prototype.orthoText = "OpenStreetMap";
+    //cgxp.MapOpacitySlider.prototype.orthoText = "OpenStreetMap";
 
     app = new gxp.Viewer({
         portalConfig: {
@@ -165,7 +166,7 @@ Ext.onReady(function() {
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
             srsName: 'EPSG:900913',
-            featureTypes: ["query_layer"],
+            featureTypes: ["planville", "monuments", "arbres_remarq"],
         }, 
     % endif
         {
@@ -229,6 +230,7 @@ Ext.onReady(function() {
             ptype: "cgxp_fulltextsearch",
             url: "${request.route_url('fulltextsearch', path='')}",
             layerTreeId: "layertree",
+            pointRecenterZoom: 20,
             actionTarget: "center.tbar",
             grouping: true
         },
@@ -299,8 +301,9 @@ Ext.onReady(function() {
             stateId: "map",
             projection: new OpenLayers.Projection("EPSG:900913"),
             units: "m",
-            maxResolution: 156543.0339,
+            //maxResolution: 156543.0339,
             //resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
+            resolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
             controls: [
                 new OpenLayers.Control.Navigation(),
                 new OpenLayers.Control.KeyboardDefaults(),
@@ -337,24 +340,29 @@ Ext.onReady(function() {
             layers: [{
 		source: "olsource",
                 type: "OpenLayers.Layer.OSM",
+                group: 'background',
                 args: [
-                    OpenLayers.i18n('Fond de plan'), 
+                    OpenLayers.i18n('Fond OSM MapQuest'), 
                     [
-                       'http://a.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
+                       'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                       'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                       'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
+                       /*'http://a.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
                        'http://b.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
-                       'http://c.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png'
+                       'http://c.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png'*/
                    ], {
                        transitionEffect: 'resize',
                        attribution: [
                            "(c) <a href='http://openstreetmap.org/'>OSM</a>",
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
-                       group: 'ortho',
-                       ref: 'ortho'
+                       group: 'background',
+                       ref: 'osmmapquest'
+                       /*ref: 'ortho'*/
                     }
                 ]
             },
-            /*{
+            {
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
                 args: [Ext.applyIf({
@@ -365,8 +373,8 @@ Ext.onReady(function() {
                     formatSuffix: 'jpeg',
                     opacity: 0
                 }, WMTS_OPTIONS)]
-            },*/
-            /*{
+            },
+            {
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
                 group: 'background',
@@ -377,7 +385,7 @@ Ext.onReady(function() {
                     layer: 'plan',
                     group: 'background'
                 }, WMTS_OPTIONS)]
-            }, */
+            }, 
             {
                 source: "olsource",
                 type: "OpenLayers.Layer",
