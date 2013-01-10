@@ -73,7 +73,7 @@ MAP
             "wms_srs" "epsg:900913"
             "wms_encoding" "UTF-8"
             "wms_enable_request" "*"
-            "wfs_enable_request" "!*"
+            "wfs_enable_request" "*"
             "wfs_encoding" "UTF-8"
         END
     END
@@ -92,6 +92,7 @@ MAP
     INCLUDE "paysage.map"
     INCLUDE "environnement.map"
     INCLUDE "patrimoine.map"
+    INCLUDE "administration.map"
 
 
     # raster layer (with a tile index)
@@ -105,4 +106,57 @@ MAP
    #     TILEITEM "LOCATION"
    #     MINSCALEDENOM 25000
    # END
+
+  LAYER
+    NAME 'planville'
+    GROUP 'plan'
+    TYPE POLYGON
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.planville AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    
+    PROJECTION
+      "init=epsg:900913"
+    END
+    CLASS   
+        STYLE
+          WIDTH 0.5
+          OUTLINECOLOR 50 50 50
+          COLOR 200 200 200
+        END 
+    END 
+    
+    METADATA
+        "wms_title" "Fond de plan Montpellier" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+        
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Planville" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+    
+    END
+  END 
+    
+  LAYER
+       NAME 'ortho_montpellier'
+       GROUP 'ortho'
+       TYPE RASTER
+       #DEBUG 5
+       PROJECTION
+         "+init=epsg:2154"
+       END
+       STATUS ON
+       DATA /var/sig/demo/c2cgeoportal/Ortho/VilleMTP_MTP_OrthoPhoto_2011.ecw
+       METADATA
+         "wms_title" "Ortho montpellier" # For WMS
+         "wms_group_title" "ortho"
+         "wms_srs" "epsg:900913" # For WMS
+
+       END
+  END
 END

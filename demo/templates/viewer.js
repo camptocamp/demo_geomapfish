@@ -150,7 +150,7 @@ Ext.onReady(function() {
                 % if permalink_themes:
                   defaultThemes: ${permalink_themes | n},
                 % else:
-                  defaultThemes: ["lieu_interet_thm"],
+                  defaultThemes: ["Equipement"],
                 % endif
                 wmsURL: "${request.route_url('mapserverproxy', path='')}"
             },
@@ -338,11 +338,23 @@ Ext.onReady(function() {
                 })
             ],
             layers: [{
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                group: 'background',
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('plan'),
+                    mapserverLayers: 'plan',
+                    ref: 'plan',
+                    layer: 'plan',
+                    group: 'background'
+                }, WMTS_OPTIONS)]
+            },
+	    {
 		source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
-                    OpenLayers.i18n('Fond OSM MapQuest'), 
+                    OpenLayers.i18n('OSM_MapQuest'), 
                     [
                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
@@ -358,7 +370,6 @@ Ext.onReady(function() {
                        ].join(' '),
                        group: 'background',
                        ref: 'osmmapquest'
-                       /*ref: 'ortho'*/
                     }
                 ]
             },
@@ -374,18 +385,6 @@ Ext.onReady(function() {
                     opacity: 0
                 }, WMTS_OPTIONS)]
             },
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                group: 'background',
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('plan'),
-                    mapserverLayers: 'plan',
-                    ref: 'plan',
-                    layer: 'plan',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            }, 
             {
                 source: "olsource",
                 type: "OpenLayers.Layer",
