@@ -166,7 +166,7 @@ Ext.onReady(function() {
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
             srsName: 'EPSG:900913',
-            featureTypes: ["planville", "monuments", "arbres_remarq"],
+            featureTypes: ["MTP_adresse", "monuments", "arbres_remarq"],
         }, 
     % endif
         {
