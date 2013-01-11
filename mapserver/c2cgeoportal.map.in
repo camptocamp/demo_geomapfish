@@ -137,9 +137,11 @@ MAP
        END
     END
     METADATA
-      "wms_title" "MTP_adresse"
+      "wms_title" "Numéro adresse"
+      "wms_abstract" "Numéro d'adresse de Montpellier."
       "wms_group_title" "plan"
       "wms_srs" "epsg:900913"
+      "gml_include_items" "num_voi"
     END
   END
 
