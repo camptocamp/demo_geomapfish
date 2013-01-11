@@ -108,7 +108,43 @@ MAP
    # END
 
   LAYER
-    NAME 'planville'
+    NAME 'MTP_adresse'
+   GROUP 'plan'
+   TYPE POINT
+   STATUS ON
+   EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, num_voi FROM geodata.adresse AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    PROJECTION
+      "init=epsg:900913"
+    END
+    LABELITEM "num_voi"
+    LABELMAXSCALEDENOM 5000
+    CLASS
+       STYLE
+       END
+       LABEL
+         COLOR  150 150 150
+         OUTLINECOLOR 255 255 255
+         FONT "arial"
+         TYPE truetype
+         SIZE 6
+         POSITION AUTO
+         PARTIALS FALSE
+       END
+    END
+    METADATA
+      "wms_title" "MTP_adresse"
+      "wms_group_title" "plan"
+      "wms_srs" "epsg:900913"
+    END
+  END
+
+  LAYER
+    NAME 'MTP_planville'
     GROUP 'plan'
     TYPE POLYGON
     STATUS ON
@@ -118,16 +154,58 @@ MAP
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.planville AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, class FROM geodata.planville AS geo) AS foo USING UNIQUE gid USING srid=900913"
     
     PROJECTION
       "init=epsg:900913"
     END
+    CLASSITEM "class"
     CLASS   
+        EXPRESSION "VOIE"
         STYLE
-          WIDTH 0.5
-          OUTLINECOLOR 50 50 50
-          COLOR 200 200 200
+          COLOR 255 255 255
+          WIDTH 0.3
+          OUTLINECOLOR -1 -1 -1
+        END
+    END
+     CLASS
+        EXPRESSION "PIET"
+        STYLE
+          WIDTH 1
+          OUTLINECOLOR 100 100 100
+          COLOR 220 220 220
+        END
+    END
+    CLASS
+        EXPRESSION "CYCL"
+        STYLE
+          WIDTH 1
+          OUTLINECOLOR 100 100 100
+          COLOR 100 100 100
+        END
+    END 
+    CLASS
+        EXPRESSION "AUTR"
+        STYLE
+          WIDTH 1
+          OUTLINECOLOR 100 100 100
+          COLOR 0 0 200
+        END
+    END
+    CLASS
+        EXPRESSION "AUTJ"
+        STYLE
+          WIDTH 1
+          OUTLINECOLOR 100 100 100
+          COLOR 0 200 0
+        END
+    END 
+    CLASS
+        EXPRESSION "ILOT"
+        STYLE
+          WIDTH 1
+          OUTLINECOLOR 100 100 100
+          COLOR 220 220 220
         END 
     END 
     
