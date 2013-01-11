@@ -7,17 +7,17 @@
 
     #-------------------------------------------------------------------------
     mainPage:
-      pageSize: A3
-      backgroundPdf: '<%text>$</%text>{configDir}/tpl_puidoux_A3_landscape.pdf'
+      pageSize: A4
+      backgroundPdf: '<%text>$</%text>{configDir}/tpl_puidoux_A4_landscape.pdf'
       landscape: true
       rotation: true
       items:
         - !map
           condition: showMap
-          width: 1105
-          height: 580
-          absoluteX: 51
-          absoluteY: 694
+          width: 813
+          height: 415
+          absoluteX: 15
+          absoluteY: 500
         - !columns
           condition: showAttr
           absoluteX: 61
@@ -161,8 +161,8 @@
                         backgroundColor: #ffffff
         - !columns
           condition: showNorth
-          absoluteX: 1077
-          absoluteY: 682
+          absoluteX: 715
+          absoluteY: 452
           width: 100
           items:
             - !image
@@ -170,9 +170,10 @@
               maxWidth: 49
               url: '<%text>$</%text>{configDir}/north.png'
               rotation: '<%text>$</%text>{rotation}'
+        # update label
         - !columns
-          absoluteX: 1088
-          absoluteY: 750
+          absoluteX: 760
+          absoluteY: 520
           width: 106
           config:
             borderWidthTop: 0
@@ -185,8 +186,8 @@
               fontSize: 6
         # Date
         #- !columns
-        #  absoluteX: 1119
-        #  absoluteY: 750
+        #  absoluteX: 785
+        #  absoluteY: 520
         #  width: 51
         #  config:
         #    borderWidthTop: 0
@@ -200,7 +201,7 @@
         # Title
         - !columns
           absoluteX: 43
-          absoluteY: 770
+          absoluteY: 520
           width: 618
           config:
             cells:
@@ -212,7 +213,7 @@
         # Comment
         - !columns
           absoluteX: 43
-          absoluteY: 755
+          absoluteY: 505
           width: 618
           config:
             cells:
@@ -224,8 +225,8 @@
         # Scale
         - !columns
           condition: showScalevalue
-          absoluteX: 1075
-          absoluteY: 830
+          absoluteX: 750
+          absoluteY: 600
           width: 118
           config:
             cells:
@@ -235,42 +236,118 @@
             - !text
               text: 'Echelle 1:<%text>$</%text>{scale}'
               fontSize: 10
+        ## Border
+        #- !columns
+        #  absoluteX: 51
+        #  absoluteY: 116
+        #  width: 511
+        #  config:
+        #    borderWidth: 0.8
+        #    borderWidthTop: 0
+        #    cells:
+        #      - padding: 39
+        #  items:
+        #    - !text
+        #      text: ' '
     lastPage:
       pageSize: A4
       items:
-        - !columns
-          condition: legends
-          absoluteX: 51
-          absoluteY: 700
-          width: 511
-          backgroundColor: #FF0000
-          items:
-            - !text
-              align:left
-              text: 'Légende'
-              spacingAfter: 10
-        - !columns
-          condition: legends
-          absoluteX: 51
-          absoluteY: 680
-          width: 400
-          backgroundColor: #FF0000
-          items:
-            - !legends
-              inline: false
-              defaultScale: 0.5
-              maxHeight: 550
-              maxWidth: 50
-              scale: 0.8
-              maxIconHeight: 0
-              maxIconWidth: 0
-              columnMargin: 5
-              classIndentation: 3
-              classSpace: 5
-              layerSpace: 5
-              backgroundColor: white
+          - !columns
+            condition: legends
+            absoluteX: 51
+            absoluteY: 808
+            width: 511
+            backgroundColor: #FF0000
+            items:
+              - !text
+                align:left
+                text: 'Légende'
+                spacingAfter: 10
+          - !columns 
+            condition: legends
+            absoluteX: 51
+            absoluteY: 780
+            width: 400
+            backgroundColor: #FF0000
+            items:
+              - !legends
+                inline: false
+                defaultScale: 0.5
+                maxHeight: 550
+                maxWidth: 50
+                maxIconHeight: 0
+                maxIconWidth: 0
+                columnMargin: 5
+                classIndentation: 3
+                classSpace: 5
+                layerSpace: 5
+                backgroundColor: white
+
+#    lastPage:
+#      pageSize: A4
+##      backgroundPdf: '<%text>$</%text>{configDir}/tpl_puidoux.pdf'
+#      marginTop: 150
+#      items:
+#        - !text
+#          align:left
+#          text: 'LEGENDE'
+#          spacingAfter: 10
+#        - !legends
+##         backgroundColor is needed because the yaml parser needs at least one parameter otherwise it causes an error
+#          backgroundColor: white
+#        - !table
+#          absoluteY: 84
+#          absoluteX: 188
+#          width: 365
+#          nbColumns: 2
+#          widths: [325,40]
+#          config:
+#            borderWidth: 0.5
+#            borderColor: black
+#            cells:
+#              - col: 1
+#                paddingTop: 25
+#                paddingBottom: 25
+#                align: center
+#                borderWidthLeft: 0.5
+#          items:
+#            - !table
+#              nbColumns: 1
+#              config:
+#                cells:
+#                  - padding: 4
+#                  - row: 0
+#                    align: center
+#                    borderWidthBottom: 0.5
+#              items:
+#                - !text
+##                  condition: mapTitleOn
+#                  fontSize: 10
+#                  text: '<%text>$</%text>{title}'
+##                - !text
+##                  condition: !mapTitleOn
+##                  text: ''
+#                - !text
+##                  condition: comment
+#                  fontSize: 10
+#                  text: '<%text>$</%text>{comment}'
+#            - !text
+#              fontSize: 10
+#              text: 'Page <%text>$</%text>{pageNum}'
 
 ## the backslash tell mako To Not write a new line at the end
 <%def name="title()">\
-4 A3 landscape\
+3 A4 landscape\
+</%def>
+
+<%def name="block_logo()">
+            - !text
+              text: 'Put your logo here'
+              fontSize: 6
+</%def>
+
+<%def name="block_text_misc()">
+            - !text
+              text: 'Here some miscellaneous text'
+              fontSize: 6
 </%def>

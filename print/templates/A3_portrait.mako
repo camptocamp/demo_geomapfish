@@ -8,16 +8,15 @@
     #-------------------------------------------------------------------------
     mainPage:
       pageSize: A3
-      backgroundPdf: '<%text>$</%text>{configDir}/tpl_puidoux_A3_landscape.pdf'
-      landscape: true
+      ${self.backgroundPdf()} 
       rotation: true
       items:
         - !map
           condition: showMap
-          width: 1105
-          height: 580
-          absoluteX: 51
-          absoluteY: 694
+          width: 810
+          height: 990
+          absoluteX: 15
+          absoluteY: 1085
         - !columns
           condition: showAttr
           absoluteX: 61
@@ -161,8 +160,8 @@
                         backgroundColor: #ffffff
         - !columns
           condition: showNorth
-          absoluteX: 1077
-          absoluteY: 682
+          absoluteX: 715
+          absoluteY: 1052
           width: 100
           items:
             - !image
@@ -171,8 +170,8 @@
               url: '<%text>$</%text>{configDir}/north.png'
               rotation: '<%text>$</%text>{rotation}'
         - !columns
-          absoluteX: 1088
-          absoluteY: 750
+          absoluteX: 760
+          absoluteY: 1120
           width: 106
           config:
             borderWidthTop: 0
@@ -184,23 +183,23 @@
               text: 'Puidoux, le <%text>$</%text>{now dd.MM.yyyy}'
               fontSize: 6
         # Date
-        #- !columns
-        #  absoluteX: 1119
-        #  absoluteY: 750
-        #  width: 51
-        #  config:
-        #    borderWidthTop: 0
-        #    cells:
-        #      - padding: 5
-        #        paddingTop: 9
-        #  items:
-        #    - !text
-        #      text: '<%text>$</%text>{now dd.MM.yyyy}'
-        #      fontSize: 6
+        - !columns
+          absoluteX: 720
+          absoluteY: 1100
+          width: 51
+          config:
+            borderWidthTop: 0
+            cells:
+              - padding: 5
+                paddingTop: 9
+          items:
+            - !text
+              text: '<%text>$</%text>{now dd.MM.yyyy}'
+              fontSize: 6
         # Title
         - !columns
           absoluteX: 43
-          absoluteY: 770
+          absoluteY: 720
           width: 618
           config:
             cells:
@@ -212,7 +211,7 @@
         # Comment
         - !columns
           absoluteX: 43
-          absoluteY: 755
+          absoluteY: 705
           width: 618
           config:
             cells:
@@ -224,8 +223,8 @@
         # Scale
         - !columns
           condition: showScalevalue
-          absoluteX: 1075
-          absoluteY: 830
+          absoluteX: 755
+          absoluteY: 1200
           width: 118
           config:
             cells:
@@ -261,7 +260,6 @@
               defaultScale: 0.5
               maxHeight: 550
               maxWidth: 50
-              scale: 0.8
               maxIconHeight: 0
               maxIconWidth: 0
               columnMargin: 5
@@ -272,5 +270,5 @@
 
 ## the backslash tell mako To Not write a new line at the end
 <%def name="title()">\
-4 A3 landscape\
+2 A3 portrait\
 </%def>

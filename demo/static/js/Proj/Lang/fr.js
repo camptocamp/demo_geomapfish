@@ -1,5 +1,19 @@
 OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "layertree": "Thèmes",
+  "1 A4 portrait demo": "A4 Portrait",
+  "2 A3 portrait demo": "A3 Portrait",
+  "3 A4 landscape demo": "A4 Paysage",
+  "4 A3 landscape demo": "A3 Paysage",
+  "ortophoto":"Vue aérienne",
+  "OSM_MapQuest": "Plan OSM",
+  "plan":"Plan local",
+  "eclairage": "Éclairage",
+  "recyclage": "Recyclage",
+  "camera": "Caméra",
+  "bureaux_vote": "Bureaux de vote",
+  "sous_quartiers": "Sous-quartiers",
+  "quartiers": "Quartiers",
+  "circonscription": "Circonscription",
   "nom_aire": "Nom de l'aire de jeux",
   "toboggan_label": "Présence de toboggan",
   "tourniquet_label": "Présence de tourniquet",
@@ -36,6 +50,8 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "nom": "Nom",
   "fontaines": "Fontaines",
   "sitesclasses": "Sites classées et inscrits",
-  "zonepietonne": "Zone piétonne"
+  "zonepietonne": "Zone piétonne",
+  "MTP_adresse": "Adresse de Montpellier",
+  "Coordonnées suisse": "Coordonnées Mercator"
 });
 
