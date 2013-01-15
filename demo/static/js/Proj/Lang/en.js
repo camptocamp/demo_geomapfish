@@ -7,6 +7,8 @@ OpenLayers.Util.extend(OpenLayers.Lang.en, {
   "Orthophoto":"Arial photo",
   "OSM_MapQuest": "OSM Map",
   "plan":"Local Map",
+  "adresse": "Address",
+  "shortcut": "Shortcut",
   "eclairage": "Illumination",
   "recyclage": "Recycling",
   "camera": "Camera",
