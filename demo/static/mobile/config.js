@@ -8,16 +8,34 @@
  */
 
 OpenLayers.Lang.en = {
-    "summits": "Summits",
-    "huts": "Huts",
-    "sites": "Sites",
-    "users": "Users"
+    "airedejeux": "Game area",
+    "nom_aire": "Name",
+    "toboggan_label": "Presence of slide",
+    "tourniquet_label": "Presence of Tourniquet",
+    "quartiers": "Districts",
+    "camera": "Camera",
+    // picker
+    'layer_switcher.cancel': 'Cancel',
+    'layer_switcher.done': 'OK'
+};
+OpenLayers.Lang.de = {
+    "airedejeux": "Spielplatz",
+    "nom_aire": "Name des Spielplatzes",
+    "toboggan_label": "Rutschbahnen vorhanden",
+    "tourniquet_label": "Karusell vorhanden",
+    "quartiers": "Distrikte",
+    "camera": "Kamera",
+    // picker
+    'layer_switcher.cancel': 'Cancel',
+    'layer_switcher.done': 'OK'
 };
 OpenLayers.Lang.fr = {
-    "summits": "Sommets",
-    "huts": "Cabanes",
-    "sites": "Sites",
-    "users": "Utilisateurs",
+    "airedejeux": "Aire de jeux",
+    "nom_aire": "Nom",
+    "toboggan_label": "Toboggan",
+    "tourniquet_label": "Tourniquet",
+    "quartiers": "Quartiers",
+    "camera": "Caméra",
     // picker
     'layer_switcher.cancel': 'Annuler',
     'layer_switcher.done': 'OK'
@@ -28,6 +46,7 @@ OpenLayers.Lang.setCode("${lang}");
 App.map = new OpenLayers.Map({
     theme: null,
     projection: 'EPSG:900913',
+    extent: [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606],
     controls: [
         new OpenLayers.Control.TouchNavigation({
             dragPanOptions: {
@@ -39,9 +58,16 @@ App.map = new OpenLayers.Map({
         new OpenLayers.Control.ScaleLine()
     ],
     layers: [
-        new OpenLayers.Layer.OSM("OpenStreetMap", null, {
-            transitionEffect: 'resize'
-        }),
+        new OpenLayers.Layer.OSM("OpenStreetMap", 
+            [
+                'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
+            ], 
+            {
+                transitionEffect: 'resize'
+            }
+        ),
         new OpenLayers.Layer.OSM(
             "Cycle Map",
             [
@@ -66,14 +92,15 @@ App.map = new OpenLayers.Map({
 
         ),
         new OpenLayers.Layer.WMS(
-            "Summits",
-            "http://www.camptocamp.org/cgi-bin/c2corg_wms",
+            "overlay",
+            "${request.route_url('mapserverproxy', path='')}",
             {
-                layers: ['summits'],
+                layers: ['quartiers'],
                 transparent: true
             },
             {
-                allLayers: ['summits', "huts", "sites", "users"],
+                allLayers: ['quartiers', "camera", "airedejeux"],
+                WFSTypes: ['airedejeux'],
                 singleTile: true,
                 ratio: 1
             }

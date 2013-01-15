@@ -22,7 +22,7 @@ Ext.define("App.view.Settings", {
                 html: 
                     '<h1 class="title">Copyright</h1>' +
                     'Base Layer: Data CC-By-SA by <a href="http://openstreetmap.org/">OpenStreetMap</a><br />' +
-                    'Overlay Layers: Courtesy of <a href="http://camptocamp.org/">Camptocamp.org</a>'
+                    'Overlay Layers: Open Data licence <a href="http://opendata.montpelliernumerique.fr">Montpellier</a>'
             }]
         }]
     }
