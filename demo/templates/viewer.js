@@ -246,7 +246,11 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_contextualdata",
             actionTarget: "center.tbar",
-            toggleGroup: "maptools"
+            toggleGroup: "maptools",
+            tpls: {
+               allTpl: OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
+                       OpenLayers.i18n("Wsg Coord. Label") + " : {wsg_x} {wsg_y}<br /> etc."
+            }
         },
         {
             ptype: "cgxp_menushortcut",
@@ -293,7 +297,15 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_scalechooser",
             actionTarget: "center.bbar"
-        }
+        }, {
+            ptype: "cgxp_menushortcut",
+            actionTarget: "map.bbar",
+            type: '->'
+        }, {
+            ptype: "gxp_tool",
+            actionTarget: "map.bbar",
+            actions: 'Développé par <a href="http://camptocamp.com">Camptocamp</a>.'
+        },
         ],
 
         // layer sources

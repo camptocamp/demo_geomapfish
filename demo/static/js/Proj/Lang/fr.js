@@ -52,6 +52,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "sitesclasses": "Sites classées et inscrits",
   "zonepietonne": "Zone piétonne",
   "MTP_adresse": "Adresse de Montpellier",
-  "Coordonnées suisse": "Coordonnées Mercator"
+  "Wsg Coord. Label": "Coordonnées géographiques",
+  "Local Coord. Label": "Coordonnées Mercator"
 });
 

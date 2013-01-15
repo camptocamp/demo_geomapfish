@@ -56,6 +56,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.en, {
   "sitesclasses": "Classified and registered Sites",
   "zonepietonne": "Pedestrian zone",
   "MTP_adresse": "Address point in Montpellier",
-  "Coordonnées suisse": "Mercator coordinates"
+   "Wsg Coord. Label": "Geographical Coordinates",
+  "Local Coord. Label": "Mercator coordinates"
 });
 
