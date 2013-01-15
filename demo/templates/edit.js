@@ -16,7 +16,7 @@ Ext.onReady(function() {
     % if user:
     var initialExtent = ${user.role.json_extent};
     % else:
-    var initialExtent = [420000, 30000, 900000, 350000];
+    var initialExtent = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
     % endif
 
     var themes = {
@@ -25,6 +25,33 @@ Ext.onReady(function() {
         , "external": ${external_themes | n}
     % endif
     };
+
+    var WMTS_OPTIONS = {
+    % if not tilecache_url:
+        url: "${request.route_url('tilecache', path='')}",
+    % else:
+        url: '${tilecache_url}',
+    % endif
+        displayInLayerSwitcher: false,
+        requestEncoding: 'REST',
+        buffer: 0,
+        transitionEffect: "resize",
+        visibility: false,
+        style: 'default',
+        dimensions: ['TIME'],
+        params: {
+            'time': '2011'
+        },
+        matrixSet: 'c2cgp',
+        projection: new OpenLayers.Projection("EPSG:900913"),
+        units: "m",
+        formatSuffix: 'png',
+        serverResolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
+        getMatrix: function() {
+            return { identifier: OpenLayers.Util.indexOf(this.serverResolutions, this.map.getResolution()) };
+        }
+    };
+
 
     app = new gxp.Viewer({
 
@@ -45,7 +72,12 @@ Ext.onReady(function() {
             ptype: 'cgxp_editing',
             layerTreeId: 'layertree',
             layersURL: "${request.route_url('layers_root')}"
-        }, {
+        },
+        {
+            ptype: "cgxp_mapopacityslider",
+            defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}" //FUNCTIONALITY.default_basemap[0]
+        },
+        {
             ptype: 'cgxp_themeselector',
             outputTarget: 'left-panel',
             outputConfig: {
@@ -84,12 +116,13 @@ Ext.onReady(function() {
             id: "app-map", // id needed to reference map in portalConfig above
             stateId: "map",
             xtype: 'cgxp_mappanel',
-            projection: "EPSG:21781",
+            projection: new OpenLayers.Projection("EPSG:900913"),
             extent: initialExtent,
-            maxExtent: [420000, 30000, 900000, 350000],
-            restrictedExtent: [420000, 30000, 900000, 350000],
+            maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
+            //restrictedExtent: [420000, 30000, 900000, 350000],
             units: "m",
-            resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
+            //resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
+            resolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
             controls: [
                 new OpenLayers.Control.Navigation(),
                 new OpenLayers.Control.KeyboardDefaults(),
@@ -104,6 +137,52 @@ Ext.onReady(function() {
             ],
             layers: [{
                 // base layers go here
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                group: 'background',
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('plan'),
+                    mapserverLayers: 'plan',
+                    ref: 'plan',
+                    layer: 'plan',
+                    group: 'background'
+                }, WMTS_OPTIONS)]
+            },
+	    {
+		source: "olsource",
+                type: "OpenLayers.Layer.OSM",
+                group: 'background',
+                args: [
+                    OpenLayers.i18n('OSM_MapQuest'), 
+                    [
+                       'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                       'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                       'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
+                       /*'http://a.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
+                       'http://b.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
+                       'http://c.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png'*/
+                   ], {
+                       transitionEffect: 'resize',
+                       attribution: [
+                           "(c) <a href='http://openstreetmap.org/'>OSM</a>",
+                           "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
+                       ].join(' '),
+                       group: 'background',
+                       ref: 'osmmapquest'
+                    }
+                ]
+            },
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('ortho'),
+                    mapserverLayers: 'ortho',
+                    ref: 'ortho',
+                    layer: 'ortho',
+                    formatSuffix: 'jpeg',
+                    opacity: 0
+                }, WMTS_OPTIONS)]
             }],
             items: []
         }
