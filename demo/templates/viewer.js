@@ -68,8 +68,6 @@ Ext.onReady(function() {
         }
     };
 
-    cgxp.MapOpacitySlider.prototype.orthoText = OpenLayers.i18n("Orthophoto");
-
     app = new gxp.Viewer({
         portalConfig: {
             layout: "border",
@@ -241,7 +239,7 @@ Ext.onReady(function() {
             ptype: "cgxp_fulltextsearch",
             url: "${request.route_url('fulltextsearch', path='')}",
             layerTreeId: "layertree",
-            //pointRecenterZoom: 20,
+            pointRecenterZoom: 20,
             actionTarget: "center.tbar",
             grouping: true
         },
