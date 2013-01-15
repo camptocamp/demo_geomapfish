@@ -68,7 +68,7 @@ Ext.onReady(function() {
         }
     };
 
-    //cgxp.MapOpacitySlider.prototype.orthoText = "OpenStreetMap";
+    cgxp.MapOpacitySlider.prototype.orthoText = OpenLayers.i18n("Orthophoto");
 
     app = new gxp.Viewer({
         portalConfig: {
@@ -219,18 +219,29 @@ Ext.onReady(function() {
             ptype: "cgxp_measure",
             actionTarget: "center.tbar",
             toggleGroup: "maptools"
-        }, 
+        },
         {
+            ptype: "cgxp_wfsgetfeature",
+            WFSURL: "${request.route_url('mapserverproxy', path='')}",
+            actionTarget: "center.tbar",
+            events: EVENTS,
+            themes: THEMES,
+            WFSTypes: ${WFSTypes | n},
+            externalWFSTypes: ${externalWFSTypes | n},
+            enableWMTSLayers: true,
+            toggleGroup: "maptools"
+        }, 
+        /*{
             ptype: "cgxp_wmsgetfeatureinfo",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
             events: EVENTS
-        }, 
+        },*/ 
         {
             ptype: "cgxp_fulltextsearch",
             url: "${request.route_url('fulltextsearch', path='')}",
             layerTreeId: "layertree",
-            pointRecenterZoom: 20,
+            //pointRecenterZoom: 20,
             actionTarget: "center.tbar",
             grouping: true
         },
@@ -280,6 +291,10 @@ Ext.onReady(function() {
             ptype: "cgxp_help",
             url: "#help-url",
             actionTarget: "center.tbar"
+        },
+        {
+            ptype: "cgxp_scalechooser",
+            actionTarget: "center.bbar"
         }
         ],
 
