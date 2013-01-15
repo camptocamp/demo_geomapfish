@@ -4,7 +4,6 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "2 A3 portrait demo": "A3 Hochformat",
   "3 A4 landscape demo": "A4 Querformat",
   "4 A3 landscape demo": "A3 Querformat",
-  "Orthophoto":"Luftbild",
   "OSM_MapQuest": "OSM-Karte",
   "plan":"Lokale Karte",
   "adresse": "Addresspunkt",

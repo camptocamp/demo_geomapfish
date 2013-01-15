@@ -4,7 +4,6 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "2 A3 portrait demo": "A3 Portrait",
   "3 A4 landscape demo": "A4 Paysage",
   "4 A3 landscape demo": "A3 Paysage",
-  "Orthophoto":"Vue aérienne",
   "OSM_MapQuest": "Plan OSM",
   "plan":"Plan local",
   "blank": "Pas de fond de plan",
