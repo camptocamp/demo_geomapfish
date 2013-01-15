@@ -372,9 +372,6 @@ Ext.onReady(function() {
                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
-                       /*'http://a.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
-                       'http://b.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
-                       'http://c.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png'*/
                    ], {
                        transitionEffect: 'resize',
                        attribution: [
