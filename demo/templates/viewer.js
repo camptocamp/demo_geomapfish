@@ -299,11 +299,11 @@ Ext.onReady(function() {
             actionTarget: "center.bbar"
         }, {
             ptype: "cgxp_menushortcut",
-            actionTarget: "map.bbar",
+            actionTarget: "center.bbar",
             type: '->'
         }, {
             ptype: "gxp_tool",
-            actionTarget: "map.bbar",
+            actionTarget: "center.bbar",
             actions: 'Développé par <a href="http://camptocamp.com">Camptocamp</a>.'
         },
         ],
