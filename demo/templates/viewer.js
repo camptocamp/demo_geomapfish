@@ -304,7 +304,7 @@ Ext.onReady(function() {
         }, {
             ptype: "gxp_tool",
             actionTarget: "center.bbar",
-            actions: 'Développé par <a href="http://camptocamp.com">Camptocamp</a>.'
+            actions: '<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://camptocamp.com">Camptocamp</a>.'
         },
         ],
 
