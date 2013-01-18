@@ -51,6 +51,13 @@ external_mapserv_url:
 # The "raster web services" configuration. See the "raster"
 # chapter in the integrator documentation.
 raster:
+  mnt:
+    file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
+    round: 1
+  mns:
+    file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
+    round: 1
+
 
 # For mapserver proxy
 mapserv_url: http://${vars:host}/${vars:instanceid}/mapserv

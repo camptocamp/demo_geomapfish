@@ -181,15 +181,19 @@ Ext.onReady(function() {
                 },
                 autoFit: true
             }
+        }, {
+             ptype: "cgxp_featureswindow",
+             themes: THEMES,
+             events: EVENTS
         }, 
-        {
-            ptype: "cgxp_featuregrid",
-            id: "featureGrid",
-            csvURL: "${request.route_url('csvecho')}",
-            maxFeatures: 200,
-            outputTarget: "featuregrid-container",
-            events: EVENTS
-        }, 
+//        {
+//            ptype: "cgxp_featuregrid",
+//            id: "featureGrid",
+//            csvURL: "${request.route_url('csvecho')}",
+//            maxFeatures: 200,
+//            outputTarget: "featuregrid-container",
+//            events: EVENTS
+//        }, 
         {
             ptype: "cgxp_mapopacityslider",
             defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}" //FUNCTIONALITY.default_basemap[0]
@@ -242,8 +246,34 @@ Ext.onReady(function() {
             pointRecenterZoom: 20,
             actionTarget: "center.tbar",
             grouping: true
-        },
-        {
+        }, {
+             ptype: 'cgxp_wmsbrowser',
+             actionTarget: "center.tbar",
+             layerTreeId: "layertree",
+             defaultUrls: [
+                'http://wms.geo.admin.ch',
+                'http://ids.pigma.org/geoserver/wms',
+                'http://geobretagne.fr/geoserver/wms'
+             ]
+        }, {
+             ptype: 'cgxp_googleearthview',
+             actionTarget: 'center.tbar',
+             outputTarget: 'center',
+             toggleGroup: 'maptools'
+        }, {
+             ptype: 'cgxp_streetview',
+             actionTarget: 'center.tbar',
+             outputTarget: 'center',
+             toggleGroup: 'maptools',
+             baseURL: "${request.static_url('demo:static/lib/cgxp/geoext.ux/ux/StreetViewPanel/')}"
+        }, {
+             ptype: 'cgxp_profile',
+             actionTarget: 'center.tbar',
+             toggleGroup: 'maptools',
+             serviceUrl: "${request.route_url('profile.json')}",
+             csvServiceUrl: "${request.route_url('profile.csv')}",
+             rasterLayers: ['mnt', 'mns']
+        }, {
             ptype: "cgxp_contextualdata",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
@@ -349,9 +379,9 @@ Ext.onReady(function() {
                     minRatio: 64, 
                     maxRatio: 64, 
                     layers: [new OpenLayers.Layer.OSM("OSM", [
-                            'http://a.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
-                            'http://b.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png',
-                            'http://c.tile.openstreetmap.org/${"${z}/${x}/${y}"}.png'
+                           'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                           'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                           'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                         ], {
                             transitionEffect: 'resize',
                             attribution: [
