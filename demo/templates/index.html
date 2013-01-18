@@ -1,6 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="${lang}">
     <head>
+        <script>
+            if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                window.location = "${request.route_url('mobile_index_prod')}";
+            }
+        </script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Content-Language" content="${lang}" />
         <meta name="keywords" content="demo, geoportal">
@@ -67,7 +72,7 @@
         <div id="header-out">
             <div class="linkplaceholdercontainer">
                 <a href="http://camptocamp.com">
-                    <div class="linkplaceholder"><a href="${request.route_url('home')}${lang}/admin">Admin</a> - <a href="${request.route_url('home')}${lang}/edit">Édition</a> - <a href="${request.route_url('home')}${lang}/mobile">Mobile</a></div>
+                    <div class="linkplaceholder"></div>
                 </a>
             </div>
             <div id="header-in"></div>

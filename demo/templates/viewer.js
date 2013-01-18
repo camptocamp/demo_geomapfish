@@ -323,8 +323,28 @@ Ext.onReady(function() {
             ptype: "cgxp_help",
             url: "#help-url",
             actionTarget: "center.tbar"
-        },
-        {
+        }, {
+            ptype: "gxp_tool",
+            actionTarget: "center.tbar",
+            actions: [{
+               xtype: 'button',
+               icon: '${request.static_url('demo:static/img/icons/application_form.png')}',
+               handler: function() {
+                   window.location = '${request.route_url('home')}${lang}/admin';
+               }
+            }]
+        }, {
+            ptype: "gxp_tool",
+            actionTarget: "center.tbar",
+            actions: [{
+                xtype: 'button',
+                icon: '${request.static_url('demo:static/img/icons/application_edit.png')}',
+                handler: function() {
+                   window.location = '${request.route_url('home')}${lang}/edit';
+               }
+
+            }]
+        }, {
             ptype: "cgxp_scalechooser",
             actionTarget: "center.bbar"
         }, {
@@ -335,7 +355,7 @@ Ext.onReady(function() {
             ptype: "gxp_tool",
             actionTarget: "center.bbar",
             actions: '<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://camptocamp.com">Camptocamp</a>.'
-        },
+        }
         ],
 
         // layer sources
