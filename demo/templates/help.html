@@ -1,0 +1,960 @@
+<!DOCTYPE HTML>
+<html lang="${lang}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="Content-Language" content="${lang}" />
+        <meta name="keywords" content="sitn, geoportail">
+        <meta name="description" content="Géoportail du SITN">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+% if request.registry.settings['is_intranet']:
+        <title>Géoportail Intranet du SITN</title>
+% else:
+        <title>Géoportail du SITN</title>
+%endif
+        <link rel="shortcut icon" type="image/x-icon" href="${request.static_url('sitn:static/images/favico.ico')}">
+        <link rel="stylesheet" type="text/css" href="${request.static_url('sitn:static/build/app.css')}" />
+        <link rel="stylesheet" type="text/css" href="${request.static_url('sitn:static/css/help.css')}">
+        
+        <script type="text/javascript" src="${request.static_url('sitn:static/build/app.js')}"></script>
+
+        <script type="text/javascript">
+        
+var currentTab;
+var init = function() {
+    var content_div = document.getElementById('content').childNodes;
+    for (var i=0;i<content_div.length;i++) {
+        var child = content_div[i];
+        if (child.nodeType == 1) {
+            child.style.display='none';
+        }
+    }
+    document.getElementById('accueil').style.display='block';
+    currentTab = "accueil";
+};
+
+var changeTab = function(tab_id) {
+    document.getElementById(currentTab).style.display='none';
+    document.getElementById(tab_id).style.display="block"
+    currentTab = tab_id;
+}
+
+var formValidator = function (x,y) {
+    if (isNaN(x)) {
+        alert("Tapez une valeur pour le champ Y");
+        return (false);
+    } else if (x < 515000 || x > 580000) {
+        alert("La valeur de Y doit être comprise entre 515000 et 580000");
+        return (false);
+    }
+    if (isNaN(y)) {
+        alert("Tapez une valeur pour le champ X");
+        return (false);
+    }
+    else if (y < 180000 || y> 230000) {
+        alert("La valeur de X doit être comprise entre 180000 et 230000");
+        return (false);
+    }
+    return (true);
+}
+    
+var getRaster = function() {
+    var x_coordinate = parseFloat(document.getElementById('map_x').value);
+    var y_coordinate = parseFloat(document.getElementById('map_y').value);
+    
+    var validity = formValidator(x_coordinate, y_coordinate);
+    
+    if (validity == false) {
+        return;
+    }
+    Ext.Ajax.request({
+        url: '${request.route_url('raster')}',
+        method: 'GET',
+        params: {
+            lon: x_coordinate,
+            lat: y_coordinate
+        },
+        success: function(response) {
+            var values = Ext.decode(response.responseText);
+            if (values.slope < 0){
+                values.slope = 0;
+            }
+            document.getElementById("pente").firstChild.nodeValue=values.slope;
+            document.getElementById("altmns").firstChild.nodeValue=values.mns;
+            document.getElementById("altmnt").firstChild.nodeValue=values.mnt;
+            document.getElementById("diff").firstChild.nodeValue=Math.round((values.mns-values.mnt)*10)/10
+        },
+        failure: function() {
+            alert("ProblÃ¨me serveur, veuillez contacter l\'adminitrateur");
+        }
+    });
+
+};
+Ext.onReady(function() {
+    init();
+});
+</script>
+
+    </head>
+
+    <body class="${lang}">
+    
+    <div id="header-out">
+        <table width="100%">
+                <tr>
+                  <td align="left" valign="top" style="height: 37px;">
+% if request.registry.settings['is_intranet']:
+                      <img src="${request.static_url('sitn:static/images/banner_intranet_left.png')}" alt="" align="top" /></td>
+% else:
+                      <img src="${request.static_url('sitn:static/images/banner_internet_left.png')}" alt="" align="top" /></td>
+ %endif
+                  <td rowspan="2" valign="top" align="right">
+                      <img src="${request.static_url('sitn:static/images/banner_right.png')}" alt="" /></td>
+                </tr>
+                <tr valign="top">
+                    <td align="left" valign="top">
+                        <span class="banner1">&nbsp;
+                            <a class="banner2" href="http://www.ne.ch/sitn" target="_blank">Accueil</a> -
+                            <a class="banner2" href="http://www.ne.ch/sitn/themes" target="_blank">Thèmes</a> -
+                            <a class="banner2" href="http://www.ne.ch/sitn/donnees" target="_blank">Géodonnées</a> -
+                            <a class="banner2" href="http://www.ne.ch/neat/site/jsp/rubrique/rubrique.jsp?StyleType=bleu&CatId=12523" target="_blank">Géoservices</a> -
+                            <a class="banner2" href="http://sitn.ne.ch/mobile" target="_blank">Version mobile</a> -
+                            <a class="banner2" href="http://sitn.ne.ch/sitn_dev/wsgi/help" target="_blank">Aide</a> -
+                            <a class="banner2" href="http://sitn.ne.ch/sitn_php/divers/liens_cartographiques.html" target="_blank">Liens</a> -
+                            <a class="banner2" OnClick="javascript:sitn.feedbackWindow('http://sitn.ne.ch/sitn_dev/wsgi/feedback');" style="cursor: pointer;">Contact</a>
+                        </span>
+                    </td>
+            </tr>
+          </table>
+        </div>
+    <table><tr>
+    <td class="nav">
+    <div id="nav">
+    <ul class="top-level">
+        <li><a href="#" onclick="changeTab('accueil');">Aide</a>
+        <li><a href="#" onclick="changeTab('faq');">FAQ</a>
+        <li><a href="#" onclick="changeTab('extract');">Extraction altimétrique ponctuelle</a>
+        <li><a href="#" onclick="changeTab('transform');">Transformation de coordonnées</a>
+        <li><a href="#" onclick="changeTab('webservices');">WebServices</a>
+        <li><a href="#">>> API SITN</a>
+            <ul class="sub-level">
+                <li><a href="#" onclick="changeTab('api_introduction');">Introduction</a></li>
+                <li><a href="#" onclick="changeTab('api_tutorial');">Tutoriel</a></li>
+                <li><a href="#" onclick="changeTab('api_documentation');">Documentation</a></li>
+                <li><a href="#" onclick="changeTab('api_examples');">Exemples</a></li>
+                <li><a href="#" onclick="changeTab('api_conditions');">Conditions d'utilisation</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</td>
+<td class="content">
+<div id="content">
+
+<div id="accueil">
+<h1>Aide</h1>
+<p>Vous pouvez aussi consulter notre foire aux questions fréquentes (FAQ) en cliquant sur l'onglet correspondant à gauche.</p>
+<h2>Gestion des thèmes:</h2>
+<ul>
+<li>Choix du thème:<br/>
+Le géoportail comporte plusieurs thèmes. Dans chaque thème, il y a des groupes de couches. La séléction du thème se fait en cliquant sur le rectangle nommé "Thème: ...". En passant d'un thème à l'autre, le niveau de zoom et le périmètre affiché sont conservés.
+</li>
+<li>Ouverture / fermeture des groupes:<br/>
+Les groupes s'ouvrent et se ferment en cliquant sur le petit triangle (blanc ou noir) à gauche de la dénomination du groupe.
+</li>
+<li>Gestion d'une couche:<br/>
+<ul>
+<li>Ajustement de l'échelle <img width="16" height="16" src="${request.static_url('sitn:static/images/magnifier--arrow.png')}" alt="Ajustement de l'échelle"/> : suivant la couche, l'affichage de celle-ci peut être limité à certaine échelle. Si la couche n'est pas visible à une échelle, cela aura pour effet de grisé le nom de la couche. Pour atteindre l'échelle d'affichage, il suffit de cliquer sur le bouton de loupe </li>
+<li>Consultation de la métadonnée <img width="16" height="16" src="${request.static_url('sitn:static/images/page_world.gif')}" alt="Consultation de la métadonnée"/> : la métadonnée permet de consulter la définition de la couche ainsi que la légende complexe. Elle n'est pas forcément définie pour toutes les couches. Un lien vers une description plus complète est propsé (si existant).</li>
+<li>Affichage de la légende <img width="16" height="16" src="${request.static_url('sitn:static/images/legend.png')}" alt="Affichage de la légende"/> : si la couche est représentée de manière thématique, alors ce bouton permet de consulter la légende. En cliquant de nouveau dessus, cela aura pour effet de fermer la légende.</li>
+<li>Options supplémentaires <img width="16" height="16" src="${request.static_url('sitn:static/images/cog.gif')}" alt="Options supplémentaires"/> : permet d'afficher des options supplémentaires. En cliquant de nouveau dessus, cela aura pour effet de fermer les options supplémentaires.
+<ul>
+<li>Opacité : l'opacité (transparence) de certaines couches de type surfacique peut être modifiée en utilisant ce curseur.</li>
+<li>3D : les couches qui ont cette option peuvent être affichées en 3D dans le moduel Google Earth. Ce module doit au préalable être téléchargé et installé</li>
+</ul>
+</li>	
+</ul>
+</li>
+</ul>
+
+<h2>Fonctionnalités disponibles:</h2>
+<ul>
+    <li>Clique-droit dans la carte:<br/>
+    En cliquant dans la carte en utilisant le bouton de droite de la souris ([ctrl]+clique sur Mac), il est possible de faire une interrogation ponctuelle de diverses données, notamment:
+    <ul>
+        <li>Coordonnées (CH-1903): coordonnées suisses du point cliqué dans le cadre de référence MN03</li>
+        <li>WGS 84: coordonnées longitude / latitude (WGS84) du point cliqué (calculé à partir des coordonnées suisses)</li>
+        <li>Altitude (Terrain): altitude du terrain provenant des données LIDAR du Canton (précision altimétrique 20cm)</li>
+        <li>Altitude (Surface): altitude de la surface (arbres, toit, etc.) provenant des données LIDAR du Canton (précision altimétrique 20cm)</li>
+        <li>Hauteur (Surface-Terrain): différence entre la valeur de surface et de terrain. Cela permet de connaître la hauteur des objets</li>
+        <li>Pente du terrain: pente du terrain calculée à partir de l'altitude du terrain. Les valeurs sont données en degrés décimaux et en pourcents</li>
+        <li>Lien vers cet endroit: permet d'enregistrer une URL vers le point cliqué<br/>
+        A noter qu'il est possible d'extraire les valeurs altimétriques à partir d'une paire de coordonnées en utilisant les services complémentaires du SITN (cf. onglet "Extraction altimétrique ponctuelle").
+        </li>
+    </ul>
+    </li>
+</ul>
+<ul>
+    <li>Navigation sur la carte:<br/>
+    Utiliser les 4 premiers boutons de la barre d'outils au dessus de la carte.
+    <ul>
+        <li>Les deux premiers boutons <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_zoomin.gif')}" alt="Zoomin"/> et <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_zoomout.gif')}" alt="Zoomout"/> permettent de zoomer et dézoomer. Si vous avez une molette sur votre souris, celle-ci peut aussi être utilisée à cet effet.</li>
+        <li> Le bouton main <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_pan.gif')}" alt="Navigation"/> permet de naviguer sur la carte. Pour ce faire, gardez le bouton de souris appuyé, et bougez la souris</li>
+        <li> Le bouton information <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_querybypoint.gif')}" alt="Navigation"/> permet d'interroger des objets cartographiques. Pour ce faire, il est nécessaire d'activer une couche dans le sélecteur de couche. A noter que dans le thème "cadastre", l'interrogation des parcelles est automatiquement active.<br/><br/>
+Une fois l'outil et une couche activée, vous pouvez interroger les objets soit en cliquant dessus, soit en dessinant un rectangle autour.<br/><br/>
+Le résultat de l'interrogation est présenté dans une nouvelle fenêtre. Si vous avez sélectionné plusieurs objets (par exemple en dessinant un rectangle) ou que plusieurs couches interrogeables se superposent, le résultat sera multiple. Pour naviguer dans les résultats, il faut utiliser les flèches de défilement (cadre n°2, figure ci-dessous). De plus, le nom de la couche à laquelle appartient l'objet est écrit dans l'en-tête de la fenêtre des résultats (cadre n°1, figure ci-dessous).<br/><br/>
+L'objet pour lequel les informations sont inscrites dans la fenêtre est colorié en rouge sur la carte. Le reste des objets compris dans le résultat en bleu.<br/><br/>
+<img width="506" src="${request.static_url('sitn:static/images/interrogation.png')}" alt="Interrogation"/>
+        </li>
+        <li> Les deux boutons flèche <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_previous.gif')}" alt="Vue précédente"/> et <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_next.gif')}" alt="Vue suivante"/> permettent de consulter l'historique de navigation. C'est-à-dire aller sur une vue précédente et ensuite revenir à la dernière vue.</li>
+    </ul>
+    </li>
+    <li>Mesures:<br/>
+    <ul>
+        <li>Le bouton <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_distance.gif')}" alt="Mesure de longueur"/> permet de mesurer des distances. Effectuez plusieurs cliques sur la carte pour créer un chemin. Pour terminer la mesure, faites un double-clique.</li>
+        <li>Le bouton <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_surface.gif')}" alt="Mesure de surface"/> permet de mesurer des surfaces. Effectuez plusieurs cliques sur la carte pour créer un polygone. Pour terminer la mesure, faites un double-clique.</li></li>
+    </ul>
+    </li>
+<li>Profil d'altitude:<br/>
+        Le bouton <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_profile.gif')}" alt="Profil altimétrique"/> permet de faire un profil d'altitude. Cliquez plusieurs fois sur la carte pour créer un chemin. Pour le dernier point, faites un double-clique. Une fois le graphique affiché, vous pouvez cliquer sur la courbe pour voir la position d'un point du graphique sur la carte. Dans la fenêtre du profil, le bouton "Exporter CSV" permet d'exporter les valeurs XY du profil dans un fichier texte CSV (comma separated values).
+    </li>
+    <li>3D:<br/>
+        Le bouton <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_3D.gif')}" alt="3D Google Earth"/> permet d'ouvrir le module 3D Google Earth. Celui-ci doit être installé sur votre machine (sinon l'application vous demandera de le faire). L'activation de ce module aura pour effet d'inclure une ligne rouge sur la carte. Le point rouge illustre le point qui est regardé, alors que l'oeil montre depuis où le point est regardé. Vous pouvez bouger le point et naviguez autour de ce dernier en bougeant l'oeil.
+    </li>
+    <li>Streetview:<br/>
+        Le bouton <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_streetview.gif')}" alt="Google Streetview"/> permet d'ouvrir le module Streetview de Google. Une fois le module ouvert, cliquez encore à un endroit sur la carte pour indiquer une position à explorer. Si la position n'a pas été relevée par Google, cela vous sera indiqué. Sinon, une icône composée de flèches noires et d'une flèche blanche au centre paraîtra dans le carte. Les flèches noires vous indiquent les sens de navigation possible. En cliquant dessus vous pouvez vous déplacer. La flèche blanche vous indique dans quelle direction est orientée l'image dans Google Streetview.
+    </li>
+    <li>Consultation des coordonnées XYZ, pente, rayonnement:<br/>
+        Le bouton <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_coordinates.gif')}" alt="Coordonnées YXZ"/> permet d'activer la boîte des consultation des coordonnées XYZ, pente, rayonnement. Les coordonnées YX sont aussi affichées en bas à droite dans la barre de statuts. Cette fenêtre contient des informations relativement à la position de la souris, notamment:<br/><br/>
+    <ul>
+        <li>La postion: celle-ci est donnée en coordonnées suisses (CH-1903) et en latitude-longitude (WGS84) compatible GPS.</li>
+        <li>L'altitude (terrain): l'altitude correspond à l'altitude du terrain, donc sans prise en compte de la végétation ou des infrastructures tels que des bâtiments, pylônes ou lignes électriques.</li>
+        <li>L'altitude (terrain): l'altitude correspond à l'altitude comprenant la végétation ou les infrastructures tels que les bâtiments, pylônes ou lignes électriques.</li>
+        <li>Hauteur (Surface-Terrain): la hauteur est la différence entre l'altitude de surface et de terrain. Cela repésente la hauteur des objets</li>
+        <li>Pente du terrain: cela représente la pente du terrain. Celle-ci est donnée en degrés et en %</li>
+        <li>Rayonnement global: cela correspond au rayonnement solaire auquel chaque mètre carré est soumis annuellement. Le rayonnement global est issu de la combinaison des rayonnements diffus et direct.</li>
+    </ul>
+    <br/>
+    <img width="229" src="${request.static_url('sitn:static/images/YXZwindow.png')}" alt="Consultation de données"/>
+    </li>
+    <li>Recherche d'adresses:<br/>
+        Le bouton <img width="26" height="26" src="${request.static_url('sitn:static/images/normal/icon_reversegeocoding.gif')}" alt="Rechercher une adresse dans un rayon de 100m"/> permet d'activer une boîte contenant l'adresse la plus proche du point cliqué, pour autant qu'il y ait une adresse dans les 100m autour de ce dernier. La fenêtre se recentre sur l'adresse en question.
+    </li>
+    </ul>
+<h2> Autres fonctionnalités:</h2>
+    <ul>
+        <li>Lien:<br/>
+        Le bouton lien <img width="16" height="16" src="${request.static_url('sitn:static/lib/cgxp/core/src/theme/img/permalink.png')}" alt="Lien"/> permet d'ouvrir une option contenant un lien sur la carte telle qu'elle est affichée dans votre navigateur (avec les même couches, le même niveau de zoom et au même endroit). Vous pouvez copier-coller ce lien dans un mail pour transmettre votre carte.
+        </li>
+        <li>Impression:<br/>
+        Le bouton d'impression <img width="16" height="16" src="${request.static_url('sitn:static/images/printer.gif')}" alt="Impression"/> permet d'imprimer les couches visible sur la carte (y compris les objets dessinés) dans un fichier PDF. En cliquant sur le bouton, le panneau de configuration de l'impression s'ouvre. Dans ce dernier vous pouvez définir la taille de la page, la résolution d'impression, le titre, un commentaire, l'échelle et l'orientation de l'impression. A noter que vous pouvez aussi modifier l'échelle directement en modifiant le cadre jaune dans la carte. Ce cadre peut aussi être déplacé en maintenant le bouton de votre souris enfoncé et en déplaçant celle-ci.<br /> Vous pouvez aussi définir plusieurs page à imprimer pour notamment imprimer des cartes à plusieurs échelles ou sur plusieurs étendues (bouton "Ajouter une page" dans le paneau de configuration de l'impression).
+        </li>
+        <li>Dessin:<br/>
+        Le bouton de dessin <img width="16" height="16" src="${request.static_url('sitn:static/images/paintbrush.gif')}" alt="Dessin"/> permet d'ouvrir la palette des outils de dessin:
+        <ul>
+            <li>Créer un point <img width="16" height="16" src="${request.static_url('sitn:static/lib/cgxp/sandbox/FeatureEditing/resources/images/silk/bullet_red_add.png')}"> : cliquez sur ce bouton pour dessiner un point dans la carte. Suite au dessin, une fenêtre s'ouvre. Celle-ci vous permet pour l'instant de seulement modifier la couleur du point.</li>
+            <li>Créer une ligne <img width="16" height="16" src="${request.static_url('sitn:static/lib/cgxp/sandbox/FeatureEditing/resources/images/geosilk/line_red_add.png')}"> : cliquez sur ce bouton pour dessiner une ligne dans la carte. Cliquez plusieurs fois sur la carte pour dessiner une ligne. Pour le dernier point, faites un double-clique. Suite au dessin, une fenêtre s'ouvre. Celle-ci vous permet pour l'instant de seulement modifier la couleur de la ligne.</li>
+            <li>Créer un polygone <img width="16" height="16" src="${request.static_url('sitn:static/lib/cgxp/sandbox/FeatureEditing/resources/images/geosilk/shape_square_red_add.png')}"> : cliquez sur ce bouton pour dessiner un polygone dans la carte. Cliquez plusieurs fois sur la carte pour dessiner un polygone. Pour le dernier point, faites un double-clique. Suite au dessin, une fenêtre s'ouvre. Celle-ci vous permet pour l'instant de seulement modifier la couleur du polygone.</li>
+            <li>Créer une étiquette <img width="16" height="16" src="${request.static_url('sitn:static/lib/cgxp/sandbox/FeatureEditing/resources/images/silk/tag_blue_add.png')}"> : cliquez sur ce bouton pour créer une étiquette à quelque part dans la carte. Cliquez dans la carte pour positionner votre étiquette. Suite au dessin, une fenêtre s'ouvre. Celle-ci vous permet pour l'instant de seulement modifier le texte de l'étiquette (pas de choix de taille, ni de police).</li>
+            <li>Editer un objet existant <img width="16" height="16" src="${request.static_url('sitn:static/lib/cgxp/sandbox/FeatureEditing/resources/images/silk/pencil.png')}"> : cliquez sur ce bouton pour modifier un élément déjà dessiner que vous aimeriez modifier. Cliquez sur l'objet en question dans la carte, puis effectuer vos modifications. Pour les lignes et les polygones, tous les cliques que vous avez effectué lors du dessin apparaissent sous forme de points rouges. Vous pouvez rajouter des segments supplémentaire en cliquant sur les points rouges qui sont un peu plus transparents et affiner ainsi votre dessin.</li>
+            <li>Effacer tous les objets <img width="16" height="16" src="${request.static_url('sitn:static/lib/cgxp/sandbox/FeatureEditing/resources/images/silk/delete.png')}"> : cliquez sur ce bouton pour effacer tous les objets que vous avez dessiné (attention, ces dessins seront définitvement effacés).</li>
+        </ul>
+        Les objets dessinés ne peuvent actuellement <b>pas être exportés</b>. Ils sont cependant pris en compte lors de l'impression.
+        </li>
+        <li>Edition:
+        Le bouton d'édition <img width="16" height="16" src="${request.static_url('sitn:static/images/icon_login.gif')}" alt="Login"/> ouvre la page d'édition. Celle-ci est protégée. <b>Seuls les membres de l'administration cantonale et des administrations communales y ont accès</b>.
+        </li>
+    </ul>
+    <p>Pour tout renseignement supplémentaire, question ou remarque, merci de contacter le SITN par:<br><br>
+    <ul>
+        <li>Téléphone: 032 889 67 50</li>
+        <li>Email: <a href="mailto:sitn@ne.ch">sitn@ne.ch</a></li>
+    </ul>
+</div>
+
+<div id="faq">
+<h1>Questions fréquentes</h1>
+<h2>Listes des questions fréquentes</h2>
+<ul>
+    <li><a class=content href="#Q1">Comment se localiser sur une adresse, sur un bien-fonds, autre…?</a></li>
+    <li><a href="#Q2">Comment changer de thème?</a></li>
+    <li><a href="#Q3">Comment obtenir le propriétaire du bien-fonds dans le thème "cadastre"?</a></li>
+    <li><a href="#Q4">Comment obtenir le propriétaire d'un bien-fonds dans le thème "aménagement" ou "orthophoto"?</a></li>
+    <li><a href="#Q5">Comment imprimer une carte?</a></li>
+    <li><a href="#Q6">Comment garantir une impression à l'échelle?</a></li>
+    <li><a href="#Q7">Comment consulter le plan d'aménagement d'une commune?</a></li>
+    <li><a href="#Q8">Comment consulter une photographie aérienne?</a></li>
+    <li><a href="#Q9">Comment obtenir plus d'information sur une donnée affichée dans le guichet (gestionnaire, mise à jour, précision, ...) ?</a></li>
+    <li><a href="#Q10">Quelle est la fréquence de mise à jour des données ? </a></li>
+    <li><a href="#Q11">Comment faire pour commander des données numériques ? </a></li>
+    <li><a href="#Q12">Y-a-t il des sites analogues pour d'autres cantons ? </a></li>
+    <li><a href="#Q13">Le guichet cartographique ne fonctionne pas, qui puis-je contacter ?</a></li>
+</ul>
+    <div id="Q1">
+<h2>Comment se localiser sur une adresse, sur un bien-fonds, autre…?</h2>
+
+<ol>
+<li>Dans la rubrique "Recherche et localisation", située à gauche de la carte</li>
+<li>Taper votre requête partiellement (au moins 3 caractères) ou entièrement</li>
+<li>Le résultat de la recherche s'affiche en dessous dans un menu déroulant</li>
+<li>Cliquer sur l'adresse recherchée, le bien-fonds recherché ou autre recherché</li>
+<li>La carte se met à jour et se localise</li>
+</ol>
+</div>
+
+<div id="Q2">
+<h2>Comment changer de thème?</h2>
+
+<ol>
+<li>Dans la rubrique "Choix des données", située à gauche de la carte</li>
+<li>Cliquer sur "Thème : plan de ville" (exemple)</li>
+<li>Sélectionner le thème voulu dans la nouvelle fenêtre</li>
+<li>Le thème choisi est affiché</li>
+</ol>
+</div>
+
+<div id="Q3">
+<h2>Comment obtenir le propriétaire du bien-fonds dans le thème "cadastre"?</h2>
+
+<p> <a href="rechercheproprio.html" target="_blank">Cliquer ici pour obtenir une aide détaillée sur cette question</a></p>
+
+<ol>
+<li>Se localiser sur le bien-fonds concerné</li>
+<li>Cliquer sur le bouton <strong>"Info" </strong>(I) situé en dessus de la carte</li>
+<li>Cliquer sur le bien-fonds, le résultat de l'interrogation s'affiche dans une nouvelle fenêtre</li>
+<li>Un lien permet d'obtenir le propriétaire dans une nouvelle page</li>
+</ol>
+</div>
+
+<div id="Q4">
+<h2>Comment obtenir le propriétaire d'un bien-fonds dans le thème "aménagement" ou "orthophoto"?</h2>
+
+<ol>
+<li>Se localiser sur le bien-fonds concerné, dans un thème permettant l'affichage des biens-fonds ("aménagement", "orthophoto", mais pas dans le thème par défaut "plan de ville")</li>
+<li>Double-cliquer sur "Données cadastrales" pour afficher en dessous les couches disponibles, double-cliquer sur "Biens-fonds", cocher "Biens-fonds officiels" ou Biens-fonds provisoires" selon le secteur où se situe le bien-fonds </li>
+<li>Cliquer sur le bouton <strong>"Info" </strong>(I) situé en dessus de la carte</li>
+<li>Cliquer sur le bien-fonds ou dessiner un rectangle pour interroger plusieurs biens-fonds, le résultat de l'interrogation s'affiche dans une nouvelle fenêtre, naviguer sur les différents biens-fonds avec les flèches situées en bas de cette nouvelle fenêtre</li>
+<li>Un lien permet d'obtenir le propriétaire dans une nouvelle page</li>
+</ol>
+</div>
+
+<div id="Q5">
+<h2>Comment imprimer une carte?</h2>
+
+<ol>
+<li>Il est nécessaire d'avoir <strong>Acrobat Reader</strong> installé pour effectuer une impression !</li>
+<li>Cliquer sur le bouton <strong>"Impression"</strong> situé en dessus de la carte</li>
+<li>Choisir les différents paramètres de l'impression (<strong>"Layout"</strong>, <strong>"Résolution"</strong>, <strong>"Titre"</strong>, <strong>"Commentaire"</strong>, <strong>"Échelle"</strong>,<strong> "Rotation"</strong>), possibilité d'ajouter une page et modifier la mise en page.</li>
+<li>Cliquer sur le bouton <strong>"Imprimer"</strong>. Une nouvelle page contenant un fichier PDF s'ouvre.</li>
+<li>Cliquer sur l'imprimante pour lancer l'impression</li>
+</ol>
+</div>
+
+<div id="Q6">
+<h2>Comment garantir une impression à l'échelle?</h2>
+
+<p> <a href="http://sitn.ne.ch/sitn_php/divers/impression.html" target="_blank">Cliquer ici pour obtenir une aide détaillée sur cette question</a></p>
+
+<ol>
+<li>Lors de l'impression, désactiver les options d'Acrobat permettant d'ajuster la page. Ces options dépendent de la version d'Acrobat :</li>
+<ol>
+<li>Version 5 : désactiver <strong>"Ajuster les grandes pages"</strong> et <strong>"Ajuster les petites pages" </strong></li>
+<li>Version 7 : choisir <strong>"Aucune" </strong> dans <strong>"Mise à l'échelle" </strong></li>
+</ol>
+</ol>
+</div>
+<div id="Q7">
+<h2>Comment consulter le plan d'aménagement d'une commune?</h2>
+
+<ol>
+<li>Choisir "Thème: aménagement" dans la rubrique "Choix des données" à gauche de la carte.</li>
+<li>Se localiser sur la zone voulue et cocher les couches désirées</li>
+<li>Pour plus de détail sur la zone, cliquer sur le bouton <strong>"Info"</strong> (I) puis sur la carte ou dessiner un rectangle pour interroger plusieurs zones, le résultat de l'interrogation s'affiche dans une nouvelle fenêtre, naviguer sur les différentes zones avec les flèches situées en bas de cette nouvelle fenêtre</li>
+</ol>
+</div>
+
+<div id="Q8">
+<h2>Comment consulter une photographie aérienne?</h2>
+
+<p>Les photographies aériennes peuvent être consultées de deux manières différentes : </p>
+<ol>
+<li>Depuis n'importe quel thème spécifique ("Plan de ville", "Cadastre". Etc.)</li>
+<ol type="a">
+<li>Double-cliquer sur "Fonds de plan" pour afficher en dessous les fonds disponibles </li>
+<li>Cocher le fonds de plan souhaité </li>
+</ol>
+</ol>
+<ol>
+<li>2. Depuis le thème "orthophoto"</li>
+<ol type="a">
+<li>L'orthophoto 2008 est activée par défaut</li>
+<li>Cocher l'orthophoto souhaitée</li>
+<li>Possibilité d'afficher en transparence l'orthophoto avec le bouton "Options" de l'orthophoto cochée et modifier l'Opacité</li>
+</ol>
+</ol>
+</div>
+
+<div id="Q9">
+<h2>Comment obtenir plus d'information sur une donnée affichée dans le guichet (gestionnaire, mise à jour, précision, ...) ? </h2>
+
+<p> <a href="http://www.ne.ch/neat/site/jsp/rubrique/rubrique.jsp?CatId=4600" target="_blank">Cliquer ici pour accéder au catalogue des données du SITN. </a></p>
+
+</div>
+<div id="Q10">
+<h2>Quelle est la fréquence de mise à jour des données ? </h2>
+<p>
+La fréquence de mise à jour dépend de chaque donnée. Elle peut être hebdomadaire pour certaines et pluriannuelle pour d'autres (par ex. photos aériennes : 1ère couverture réalisée en 1998, 2ème en 2005 et dernière en 2008). La fiche de description peut donner des informations complémentaires ou sinon il faut contacter le producteur de la donnée.
+</p>
+</div>
+
+<div id="Q11">
+<h2>Comment faire pour commander des données numériques ? </h2>
+
+<p> <a href="http://www.ne.ch/neat/documents/environnement/MensurationsCadastrales_4483/CommandeDonnees.pdf" target="_blank">Utiliser le formulaire de commande de données du SITN. </a></p>
+
+</div>
+
+<div id="Q12">
+<h2>Y-a-t il des sites analogues pour d'autres cantons ? </h2>
+<p>Oui, les guichets cartographiques des cantons voisins sont référencés dans l’onglet ‘Liens cartographiques’ de notre guichet au-dessus de la carte. Vous pouvez également vous référer au site suivant : <a href="http://www.kkgeo.ch/geodatenportale.html" target="_blank">http://www.kkgeo.ch/geodatenportale.html</a>
+ou à la page des <a href="http://www.ne.ch/neat/site/jsp/rubrique/rubrique.jsp?StyleType=bleu&CatId=6" target="_blank">liens du SITN</a>.</p>
+</div>
+
+<div id="Q13">
+<h2>Le guichet cartographique ne fonctionne pas, qui puis-je contacter ? </h2>
+<p><a href="http://www.ne.ch/neat/site/jsp/rubrique/rubrique.jsp?StyleType=bleu&DocId=42927" target="_blank">Cliquer ici</a> pour afficher la page des contacts. </p>
+</div>
+
+    
+</div>
+
+<div id="extract">
+<h1>Extraction Altimétrique ponctuelle</h1>
+
+<form id=form1 name=form1>
+<h2>Coordonnées nationales</h2>
+
+<table><tr>
+<td align=right>Y [m] :</td>
+<td align=left><input id="map_x" NAME="lon" SIZE="10" MAXLENGTH="8" VALUE=""></td>
+<td align=right>X [m] :</td>
+<td align=left><input id="map_y" NAME="lat" SIZE="10" MAXLENGTH="8" VALUE=""></td>
+</tr><tr>
+<td align=right>&nbsp;</td>
+<td align=left><font size="1">(515000.0-580000.0)</font></td>
+<td align=right>&nbsp;</td>
+<td align=left><font size="1">(180000.0-230000.0)</font></td></tr><tr>
+<td colSpan=4 align=right><INPUT id=BChoixCoord language=javascript name=button1 onclick="getRaster();" type=button value=OK></td>
+</tr><tr>
+<td colSpan=3 align=right>Pente [°]</td>
+<td id=pente style="padding-left:10px;">-</td></tr><tr>
+<td colSpan=3 align=right>Altitude MNS [m]</td>
+<td id=altmns style="padding-left:10px;">-</td></tr><tr>
+<td colSpan=3 align=right>Altitude MNT [m]</td>
+<td id=altmnt style="padding-left:10px;">-</td></tr><tr>
+<td colSpan=3 align=right>Différence MNS-MNT [m]</td>
+<td id=diff style="padding-left:10px;">-</td>
+</tr>
+</table>
+</form>
+
+</div>
+
+<div id="transform">
+<h1>Transformation de coordonnées</h1>
+<p>Pour transformer des coordonnées CH03 en coordonnées CH03+, merci de passer par le service Swisstopo.</p>
+<p>Ce <a href='http://www.swisstopo.admin.ch/internet/swisstopo/fr/home/apps/calc/reframe.html' target='_blank'>lien</a> vous permet d'y accéder.</p>
+</div>
+
+<div id="webservices">
+<h1>URL Webservices</h1>
+<p>Les webservices permettent de recentrer le guichet sur un objet ou des coordonnées, de choisir un niveau de zoom et un thème, et de sélectionner les couches qui doivent apparaître par défaut.</p>
+<p>L'URL de base (http://sitn.ne.ch) peut être suivi du nom du thème désiré, séparé par un slash (/). Pour trouver le nom du thème en question, faites des tests avec le permalien. Ensuite, il nécessaire d'inscrire un point d'interrogation (?). Les paramètres viennent ensuite. Ils sont séparés par une esperluette (&).</p>
+<p>Il existe trois méthodes pour définir de tels liens:</p>
+<ol>
+<li>Permalien</li>
+<li>Recentrage sur des coordonnées</li>
+<li>Recentrage sur des objets</li>
+</ol>
+<h2>Permalien</h2>
+
+<p>En utilisant le bouton permalien <img src=\"lib/wiki/img/permalink.jpg\" /> dans le guichet, il est possible de récupérer toutes les options (niveau de zoom, position et couches actives) de la carte. Le lien se compose ainsi généralement des options suivantes:</p>
+<ul>
+<li><b>map_x</b> = coordonnées CH-1903 Y (515000.0-580000.0) du centre de la carte.</li>
+<li><b>map_y</b> = coordonnées CH-1903 X (180000.0-230000.0) du centre de la carte.</li>
+<li><b>map_zoom</b> = niveau de zoom. Le guichet comprend 13 niveaux de zoo, du plus large (0) au plus fin (13).</li>
+</ul>
+<p>Ces trois premiers paramètres peuvent aussi être définis autrement en utilisant directement des valeurs Y, X et echelle (voir ci-dessous).
+<p>Ensuite, ce sont les couches qui vont être définies. Toutes les fonds de plan sont définies lorsque le bouton permalien est utilisé, mais lorsque vous voulez vous-même créer un permalien (sans passer par le bouton), il suffit de spécifier lequel doit être visible. Pour retrouver le nom du fond de plan désiré, testez votre configuration avec le bouton permalien.</p>
+<ul>
+<li><b>map_visibility_<i>Nom_du_fonds_de_plan</i>=true</b>, si le fond doit être actif.</li>
+<li><b>map_opacity_<i>Nom_du_fonds_de_plan</i>=1</b>(niveau d'opacité, varie entre 0 (transparent) et 1 (opaque).</li>
+</ul>
+<p>Ensuite, ce sont les couches spécifiques (les couches à cocher) qui peuvent être spécifiées</p>
+<ul>
+<li><b>map_visibility__shared_wms_</i>=true</b> si des couches spécifiques doivent être activées.</li>
+<li><b>map_opacity__shared_wms_</i>=1</b> (niveau d'opacité, varie entre 0 (transparent) et 1 (opaque).</li>
+<li><b>map_layers__shared_wms_=<i>nom_couche1,nom_couche2</i></b>, pour trouver le nom des couches, il faut faire des tests avec le bouton permalien.</li>
+</ul>
+<h3>Exemple:</h3>
+<p><a href=\"http://sitn.ne.ch/amenagement?map_x=547500&map_y=212000&map_zoom=10&map_visibility_Orthophoto%202008%20gris=true&map_opacity_Orthophoto%202008%20gris=1&map_visibility__shared_wms_=true&map_opacity__shared_wms_=1&map_layers__shared_wms_=at14_zones_communales\" target=\"blank_\">http://sitn.ne.ch/amenagement?map_x=547500&map_y=212000&map_zoom=10&map_visibility_Orthophoto%202008%20gris=true&map_opacity_Orthophoto%202008%20gris=1&map_visibility__shared_wms_=true&map_opacity__shared_wms_=1&map_layers__shared_wms_=at14_zones_communales</a>
+<p>Cette adresse va ouvrir le guichet dans le thème aménagement, avec comme fond de plan l'orthophoto grise, centré sur les coordonnées 547'500/212'000, au niveau de zoom 10 et avec la couches des zones communales activée.</p>
+<h2>Recentrage sur des coordonnées</h2>
+<p>Pour centrer la carte, il est aussi possible d'utiliser des paramètres plus usuels au système de coordonnées suisses (à la place de map_x, map_y et map_zoom):</p>
+<ul>
+<li><b>Y</b> = coordonnées CH-1903 Y (515000.0-580000.0) du centre de la carte.</li>
+<li><b>X</b> = coordonnées CH-1903 X (180000.0-230000.0) du centre de la carte.</li>
+<li><b>echelle</b> = échelle telle que définie sur le guichet (voir possibilités dans la case en bas à droite sur le guichet).</li>
+</ul>
+<h3>Exemple:</h3>
+<p><a href=\"http://sitn.ne.ch/altimetrie?Y=552000&X=203000&echelle=20000\" target=\"blank_\">http://sitn.ne.ch/altimetrie?Y=552000&X=203000&echelle=20000</a>
+<p>Cette adresse va ouvrir le guichet dans le thème altimétrie, avec comme fond de plan l'orthophoto grise, centré sur les coordonnées 552'000/203'000, au niveau de zoom 10 et avec la couches des zones communales activée.</p>
+
+<h2>Recentrage sur des objets</h2>
+
+<p>Actuellement, il est possible de se recentrer sur les objets de trois couches:</p>
+
+<h3>Les biens-fonds (parcelles)</b> - les paramètres à utiliser sont:</h3>
+<ul>
+<li><b>cadastre</b>: thème qui doit être visible lors de l'appelle du guichet (pour le thème plan de ville utiliser \"main\" par exemple).</li>
+<li><b>map_recenter_layer=parcelles</b> indique que nous voulons utiliser la couche des parcelles pour nous recentrer sur la carte.</li>
+<li><b>map_recenter_id=60_DP164</b> est une combinaison entre le numéro de la commune (La Chaux-De-Fonds) et le numéro de la parcelle (DP164), car il se peut qu'un numéro de parcelle se retrouve dans plusieurs communes. Ne pas oublier le \"_\". Une liste des communes avec leur numéro se trouve à la fin de cette page.</li>
+</ul>
+<h3>Exemple:</h3>
+<p><a href=\"http://sitn.ne.ch/cadastre?map_recenter_layer=parcelles&map_recenter_id=60_DP164\" target=\"blank_\">http://sitn.ne.ch/cadastre?map_recenter_layer=parcelles&map_recenter_id=60_DP164</a>
+<p>Cette adresse va ouvrir le guichet dans le thème cadastre avec un recentrage et un zoom adapté à la parcelle DP164 de la communes de La Chaux-De-Fonds.</p>
+<br><br>
+<ul>
+<h3>Les autorisations de construire (SATAC)</b> - les paramètres à utiliser sont:</h3>
+<ul>
+<li><b>amenagement</b>: thème qui doit être visible lors de l'appelle du guichet (pour le thème plan de ville utiliser \"main\" par exemple).</li>
+<li><b>map_recenter_layer=satacs</b> indique que nous voulons utiliser la couche des autorisations de construire pour nous recentrer sur la carte.</li>
+<li><b>map_recenter_id=2291</b> est le numéro de l'identification de la demande SATAC.</li>
+<li><b>map_layers_shared_wms_ =at00_autorisations_construire1</b> indique que la couche des autorisations de construire doit être visible.</li>
+</ul>
+<h3>Exemple:</h3>
+<p><a href=\"http://sitn.ne.ch/amenagement?map_recenter_layer=satacs&map_recenter_id=2291&map_layers__shared_wms_=at00_autorisation_construire1\" target=\"blank_\">http://sitn.ne.ch/amenagement?map_recenter_layer=satacs&map_recenter_id=2291&map_layers__shared_wms_=at00_autorisation_construire1</a>
+<p>Cette adresse va ouvrir le guichet dans le thème aménagement avec la demande de construire 2291 sélectionnée.</p>
+<br><br>
+<h3>Les bâtiments suivant leur numéro EGID</b> - les paramètres à utiliser sont:</h3>
+<ul>
+<li><b>cadastre</b>: thème qui doit être visible lors de l'appelle du guichet (pour le thème plan de ville utiliser \"main\" par exemple).</li>
+<li><b>map_recenter_layer= batiments_ofs</b> indique à mapfish que nous voulons utiliser la couche des bâtiments EGID pour nous recentrer sur la carte.</li>
+<li><b>map_recenter_id=2248181</b> est le numéro de l'identification EGID.</li>
+<li><b>map_layers_shared_wms_ = batiments_ofs</b> indique que la couche des bâtiments EGID doit être visible.</li>
+</ul>
+<h3>Exemple:</h3>
+<p><a href=\"http://sitn.ne.ch/cadastre?map_recenter_layer=batiments_ofs&map_recenter_id=2248181&map_layers__shared_wms_=batiments_ofs\" target=\"blank_\">http://sitn.ne.ch/cadastre?map_recenter_layer=batiments_ofs&map_recenter_id=2248181&map_layers__shared_wms_=batiments_ofs</a>
+<p>Cette adresse va ouvrir le guichet dans le thème cadastre avec le bâtiment ayant comme numéro EGID 2248181 sélectionné et la couche des bâtiments active.</p>
+
+</ul>
+</div>
+<div id="api_introduction">
+<h1>Bienvenue sur la page de documentation de l'API du SITN</h1>
+<p>L'API du SITN permet d'inclure dans n'importe quelle page de l'information spatiale provenant du SITN. Ces pages sont destinées aux développeurs intéressés à inclure l'API du SITN dans leur site web.</p>
+<h2>API</h2>
+<ul>
+<li><a class="reference internal" href="api/SITNapitutorial.html">API Tutoriel</a></li>
+<li><a class="reference internal" href="api/SITNapidocumentation.html">API Documentation</a></li>
+<li><a class="reference internal" href="api/SITNapiexemples.html">API Exemples</a></li>
+<li><a class="reference internal" href="api/apidocs/layer.html">API Liste des couches SITN disponibles</a></li>
+<li><a class="reference internal" href="api/SITNlicensing.html">Conditions d'utilisation</a></li>
+</ul>
+<p>Code:</p>
+<pre><code>
+&lt;script type="text/javascript"&gt;
+function init(){
+     var map = new Sitn.Map({
+         div: 'map0'
+        });
+}
+&lt;/script&gt;
+&lt;body onload="init();"&gt;
+&lt;div id="map0" style="width:500px;height:340px;border:1px solid grey;padding: 0 0 0 0;margin:10px !important;"&gt;&lt;/div&gt;
+&lt;script type="text/javascript" src="http://sitn.ne.ch/apiloader.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+</div>
+<div id="api_tutorial">
+<h1>SITN tutoriel API</h1>
+        <p>
+            Ce tutoriel vous montre comment insérer dans
+            votre site web une carte provenant du SITN en 2 minutes
+        </p>
+        <h2>1. Créer une page HTML vide</h2>
+        <p>Créer une page web vide <code>carte.html</code> et placer la dans le dossier de votre environnement de développement. Vérifier que vous pouvez l'appeller en passant par
+<a href="http://localhost/carte.html>">http://localhost/carte.html</a>.
+        </p>
+        <pre>
+<code>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
+        &lt;title&gt;Ma premi&amp;egrave;re carte SITN&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Ceci est ma premi&amp;egrave;re carte&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+   </code>
+</pre>
+<h2>2. Ajouter le chargement de l'API du SITN</h2>
+<p>Ajouter une balise script pour charger l'API. Ce script va charger tout le code Javascript et CSS nécessaire pour créer la carte.
+
+</p>
+<pre><code>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
+        &lt;title&gt;Ma premi&amp;egrave;re carte SITN&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Ceci est ma premi&amp;egrave;re carte&lt;/h1&gt;
+&lt;script type="text/javascript" src="http://sitn.ne.ch/mapfish/apiloader.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;	
+</code></pre>
+<h2>3. Créer une fonction Javascript qui initialise la carte</h2>
+<p>Dans l'en-t&ecirc;te (<code>&lt;head&gt;</code>) de votre page HTML, insérer une fonction Javascript qui va créer une carte.</p>
+<pre><code>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
+        &lt;title&gt;Ma premi&amp;egrave;re carte SITN&lt;/title&gt;
+&lt;script type="text/javascript"&gt;
+function init(){
+var map = new Sitn.Map({
+div: 'map0'
+                });
+            }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Ceci est ma premi&amp;egrave;re carte&lt;/h1&gt;
+&lt;script type="text/javascript" src="http://sitn.ne.ch/mapfish/apiloader.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;	
+</code></pre>
+<h2>4. Ajouter une balise <code>&lt;div&gt;</code> o&ugrave; la carte doit s'afficher.</h2>
+<p>Dans la partie <code>&lt;body&gt;</code> dans votre page, ajouter une balise <code>&lt;div&gt;</code> avec <code>id="map0"</code>. Le rendu de la carte se fera ainsi à l'intérieur de cette balise.</p>
+<pre><code>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
+        &lt;title&gt;Ma premi&amp;egrave;re carte SITN&lt;/title&gt;
+&lt;script type="text/javascript"&gt;
+function init(){
+var map = new Sitn.Map({
+div: 'map0'
+                });
+            }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Ceci est ma premi&amp;egrave;re carte&lt;/h1&gt;
+&lt;div id="map0" style="width:500px;height:340px;border:1px solid grey;padding: 0 0 0 0;margin:10px !important;"&gt;&lt;/div&gt;
+&lt;script type="text/javascript" src="http://sitn.ne.ch/mapfish/apiloader.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;	
+</code></pre>
+<h2>5. Initialiser la carte</h2>
+<p>Finalement, ajouter <code>onload="init();"</code> à l'intérieur de votre balise <code>&lt;body&gt;</code> afin d'exécuter le Javascript lors du chargement de votre page.</p>
+<pre><code>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
+        &lt;title&gt;Ma premi&amp;egrave;re carte SITN&lt;/title&gt;
+&lt;script type="text/javascript"&gt;
+function init(){
+var map = new Sitn.Map({
+div: 'map0'
+                });
+            }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body onload="init();"&gt;
+        &lt;h1&gt;Ceci est ma premi&amp;egrave;re carte&lt;/h1&gt;
+&lt;div id="map0" style="width:500px;height:340px;border:1px solid grey;padding: 0 0 0 0;margin:10px !important;"&gt;&lt;/div&gt;
+&lt;script type="text/javascript" src="http://sitn.ne.ch/mapfish/apiloader.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;	
+</code></pre>
+<h2>6. Tester votre carte</h2>
+<p>Dans votre navigateur: <a href="http://localhost/carte.html>">http://localhost/carte.html</a></p>
+<h2>7. Exemple et documentation de l'API SITN</h2>
+<p>Pour plus d'information, référez-vous aux <a href="SITNapiexemples.html">exemples</a> et à la <a href="SITNapidocumentation.html">documentation de l'API</a></p>
+</div>
+
+<div id="api_documentation">
+<h1>SITN API Documentation</h1>
+<ul>
+    <li><a href="#D1"><span class="preElem">Sitn.Map</span></a></li>
+    <li><a href="#D2"><span class="preElem">Sitn.SearchBox</span></a></li>
+</ul>
+<div id="D1">
+<h2><pre>Sitn.Map({<em>options</em>})</pre></h2>
+<p class="classe">
+<em>class</em>
+<code class="classedef">Sitn.Map</code>({<em>options</em>})
+</p>
+<div id="options">
+<table class="docTable">
+<tr>
+<td class="tablehead">
+paramètres <em>options</em>
+</td>
+<td class="docTable">
+Object options
+</td>
+</tr>
+</table>
+<p>Paramètres obligatoires :</p>
+<ul>
+<li>
+<code class="parametres">div</code>: défini la balise <code>&lt;div&gt;</code> par son attribut <code>id</code> qui va accueillir l'objet <code class="classedef">Sitn.Map</code>.
+</li>
+</ul>
+<p>Paramètres optionels :</p>
+<ul>
+<li>
+<code class="parametres">displayCoords</code>: valeurs <code>true</code> ou <code>false</code> (valeur par défaut). Permet d'afficher les coordonnées CH03 dans la carte en bas à droite (si valeur <code>true</code>).
+</li>
+<li>
+<code class="parametres">easting</code>: coordonnée X définissant le centre de la carte.
+</li>
+<li>
+<code class="parametres">layers[<em>options</em>]</code>: liste des couches visibles dans la classe <code class="classedef">Sitn.Map</code>. La première couche de la liste est celle qui est affichée par défaut, les couches commençant par <code class="parametres">v_poi</code> ne sont pas prises en compte. <a href="layer.html">Voir la liste des couches</a>
+</li>
+<ul>
+<li><code class="parametres"><em>options</em></code>: liste des couche séparées par une virgule (exemple: <code class="parametres">couche1,couche2,couche3</code>)</li>
+</ul>
+<li>
+<code class="parametres">northing</code>: coordonnée Y définissant le centre de la carte.
+</li>
+<li>
+<code class="parametres">recenterObjects[<em>options</em>]</code>: recentrage de la carte par rapport à des objets invisibles.
+</li>
+<ul>
+<li><code class="parametres"><em>options</em></code>: nom de la couche contenant les objets suivi des idenifiants des objets entre crochets (exemple: <code class="parametres">'couche1', [id1, id2]</code>).</li>
+</ul>
+<li>
+<code class="parametres">zoom</code>: niveau de zoom afficher (par défaut <code>0</code>). Les niveaux actuellement disponibles sont <code>0, 1, 2 ,3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13</code>.
+</li>
+<li>
+<code class="parametres">layerSwitcher</code>: permet d'afficher l'arbre des couches dans un nouvel onglet (par défaut <code>false</code>, <code>layerSwitcher: true</code> pour l'activer).
+</li>	
+<li>
+<code class="parametres">poiInterrogation</code>: permet d'interroger les couches des points d'intérêt. Au moins une de ces couches doit être active (par défaut <code>false</code>, <code>poiInterrogation: true</code> pour l'activer).
+</li>	
+<li>
+<code class="parametres">overviewExpanded</code>: permet d'ouvrir / de fermer l'aperçu lors du chargement de la carte (par défaut <code>'on'</code>, <code>overviewExpanded: 'off'</code> pour que l'aperçu soit fermé lors du chargement de la carte).
+</li>	
+<li>
+<code class="parametres">layerSwitcherExpanded</code>: permet d'ouvrir / de fermer l'aperçu lors du chargement de la carte (par défaut <code>'off'</code>, <code>layerSwitcherExpanded: 'on'</code> pour que l'arbre des couche soit ouvert lors du chargement de la carte). Attention, n'est pris en compte que si <code>layerSwitcher: true</code>.
+</li>	
+</ul>
+<table class="docTable">
+<tr>
+<td class="tablehead">Renvoi</td>
+<td><code class="classedef">Sitn.Map</code></td>
+</tr>
+</table>
+</div>
+<br>
+<div id="methods">
+<table class="docTable">
+<tr>
+<td class="tablehead">Méthodes</td>
+</tr>
+</table>
+<ul>
+<li><code class="parametres">addCustomLayer(<em>LayerType,LayerName,LayerURL,options</em>)</code>: permet d'ajouter une couche personnel sur la carte. </li>
+<ul>
+<li><code class="parametres"><em>LayerType</em></code>: défini le type de fichier à charger. Actuellement, deux types de fichiers peuvent être utilisé: GPX (<code>gpx</code>) ou texte (<code>text</code>). Deux fichiers exemples sont disponibles <a href="../exemples/data/ExempleGPX.gpx">ExempleGPX.gpx</a> et <a href="../exemples/data/MonFichier.txt">MonFichier.txt</a>.</li>
+<li><code class="parametres"><em>LayerName</em></code>: défini le nom de la couche (sous forme de texte).</li>
+<li><code class="parametres"><em>LayerURL</em></code>: défini le chemin d'accès au fichier (soit URL, soit chemin d'accès sur le serveur).</li>
+<li><code class="parametres"><em>options</em></code>: (optionnel, seulement utilisé si <code>LayerType="text"</code>) défini le style des lignes GPS.</li>
+<ul>
+<li>
+<code class="parametres"><em>StrokeColor</em></code>: optionel , couleur du trait donné en valeur hex ou en <a href="http://www.w3schools.com/html/html_colornames.asp" target=new>couleur html</a>.
+</li>
+<li><code class="parametres"><em>StrokeWidth</em></code>: optionel , épaisseur du trait donné en entier.</li>
+<li><code class="parametres"><em>StrokeOpacity</em></code>: optionel , opacité du trait.</li>
+</ul>
+</ul>
+<li><code class="parametres">addmarker(<em>options</em>)</code>: permet d'ajouter un point sur la carte. </li>
+<ul>
+<li><code class="parametres"><em>options</em></code>: <code class="parametres">{easting: <em>X</em>, northing: <em>Y</em>, icon: '<em>fichier</em>', iconWidth: <em>largeurImage</em>, iconHeight: <em>hauteurImage</em>}</code></li>
+<ul>
+<li><code class="parametres"><em>X</em></code>: optionel (sinon placé au centre de la carte), coordonnée X définissant l'emplacement du point.</li>
+<li><code class="parametres"><em>Y</em></code>: optionel (sinon placé au centre de la carte), coordonnée Y définissant l'emplacement du point.</li>
+<li><code class="parametres"><em>fichier</em></code>: optionel (sinon marqeur par défaut), chemin au répertoire du fichier image (png) utilisé comme icône.</li>
+<li><code class="parametres"><em>largeurImage</em></code>: optionel, largeur de l'image en pixels.</li>
+<li><code class="parametres"><em>hauteurImage</em></code>: optionel, hauteur de l'image en pixels.</li>
+</ul>
+</ul>
+<li><code class="parametres">addmarkers(<em>options</em>)</code>: permet d'ajouter des points sur la carte. </li>
+<ul>
+<li><code class="parametres"><em>options</em></code>: <code class="parametres">[{easting: <em>X</em>, northing: <em>Y</em>, icon: '<em>fichier</em>', iconWidth: <em>largeurImage</em>, iconHeight: <em>hauteurImage</em>},{...}]</code></li>
+<ul>
+<li><code class="parametres"><em>X</em></code>: optionel (sinon placé au centre de la carte), coordonnée X définissant l'emplacement du point.</li>
+<li><code class="parametres"><em>Y</em></code>: optionel (sinon placé au centre de la carte), coordonnée Y définissant l'emplacement du point.</li>
+<li><code class="parametres"><em>fichier</em></code>: optionel (sinon marqeur par défaut), chemin au répertoire du fichier image (png) utilisé comme icône.</li>
+<li><code class="parametres"><em>largeurImage</em></code>: optionel, largeur de l'image en pixels.</li>
+<li><code class="parametres"><em>hauteurImage</em></code>: optionel, hauteur de l'image en pixels.</li>
+</ul>
+</ul>
+<li><code class="parametres">recenter(<em>X</em>, <em>Y</em>, <em>zoom</em>)</code>: recentrage de la carte en utilisant des coordonnées et un niveau de zoom</li>
+<ul>
+<li><code class="parametres"><em>X</em></code>: coordonnée X du recentrage.</li>
+<li><code class="parametres"><em>X</em></code>: coordonnée Y du recentrage.</li>
+<li><code class="parametres"><em>X</em></code>: niveau de zoom du recentrage (<code>0, 1, 2 ,3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13</code>).</li>
+</ul>
+<li><code class="parametres">recenterOnObjects('<em>couche</em>', [<em>listeID</em>])</code>: recentrage de la carte par rapport à des objets d'une couche.</li>
+<ul>
+<li><code class="parametres"><em>couche</em></code>: nom de la couche sur lequel faire le recentrage.</li>
+<li><code class="parametres"><em>listeID</em></code>: liste identifiants (séparés par une virgule) des objets surlesquels faire le recentrage.</li>
+</ul>
+<li><code class="parametres">showObjects('<em>couche</em>', [<em>listeID</em>])</code>: affichage des objets particuliers d'une couche.</li>
+<ul>
+<li><code class="parametres"><em>couche</em></code>: nom de la couche sur lequel faire le recentrage.</li>
+<li><code class="parametres"><em>listeID</em></code>: liste identifiants (séparés par une virgule) des objets surlesquels faire le recentrage.</li>
+</ul>	
+</ul>
+</div>
+<div id="exemples">
+<table class="docTable">
+<tr>
+<td class="tablehead">Exemple</td>
+</tr>
+</table>
+<pre><code>
+var map = new Sitn.Map({
+div: 'map3',
+displayCoords: true,
+layers: ['plan_ensemble_gris'],
+easting: 549000,
+northing: 204000,
+zoom: 4
+});
+
+map.addMarkers([
+{
+easting: 549500,
+northing: 203500,
+icon: 'images/info.png',
+iconWidth: 14,
+iconHeight: 14
+},{
+easting: 549700,
+northing: 203500,
+}
+]);
+</code></pre>
+</div>
+</div>
+
+<div id="D2">
+<h2><pre>SearchBox.Map({<em>options</em>})</pre></h2>
+<p class="classe">
+<em>class</em>
+<code class="classedef">SearchBox.Map</code>({<em>options</em>})
+</p>
+<div id="options">
+<table class="docTable">
+<tr>
+<td class="tablehead">paramètres <em>options</em></td>
+<td>Object options</td>
+</tr>
+</table>
+<p>Paramètres obligatoires :</p>
+<ul>
+<li>
+<code class="parametres">div</code>: défini la balise <code>&lt;div&gt;</code> par son attribut <code>id</code> qui va accueillir l'objet <code class="classedef">SearchBox.Map</code>.
+</li>
+</ul>
+<p>Paramètres optionels :</p>
+<ul>
+<li>
+<code class="parametres">map</code>: renvoi sur un objet de classe <a href="#D1"><code class="classedef">Sitn.Map</code></a> sur lequel va s'effectuer le zoom et le centrage par rapport à la localisation entrée.
+</li>
+<li><code class="parametres">communeId</code>: permet de limiter la recherche à une commune (suivant son identifiant).</li>
+<li>
+<code class="parametres">callback</code>: : fonction JavaScript définie par l'utilisateur de l'API à laquelle est passé le résultat de recherche sélectionné par le visiteur. Cette fonction reçoit en paramètre un objet OpenLayers.Feature.Vector décrivant la géométrie et les attributs du résultat (geojson).
+</li>
+</ul>
+<table class="docTable">
+<tr>
+<td class="tablehead">Renvoi</td>
+<td><code class="classedef">SearchBox.Map</code></td>
+</tr>
+</table>
+</div>
+<br>
+<div id="exemples">
+<table class="docTable">
+<tr>
+<td class="tablehead">Exemple</td>
+</tr>
+</table>
+<pre><code>
+var test = new Sitn.SearchBox({
+div: 'search1',
+callback: function(geojson) {
+alert(geojson.attributes.searchfield);
+}
+});
+</code></pre>
+</div>
+</div>
+</div>
+
+<div id="api_examples">
+<h1>SITN API Exemples</h1>
+<ul>
+<li><a href="#cartesimple">Carte simple</a></li>
+<li><a href="#cartesrecherche">Carte avec fonction de recherche</a></li>
+<li><a href="#affichagexy">Affichage XY</a></li>
+<li><a href="#recherche">Recherche simple</a></li>
+<li><a href="#marqueur">Marqueur</a></li>
+<li><a href="#marqueurcustomise">Marqueur customisé</a></li>
+<li><a href="#superpositioncouches">Superposition de couches</a></li>
+<li><a href="#arbrecomplet">Arbre complet des couches</a></li>
+<li><a href="#insertiongpx">Insertion GPX</a></li>
+<li><a href="#insertiontexte">Insertion de fichiers texte et interrogation</a></li>
+<li><a href="#overview">Fenêtre d'aperçu fermée par défaut</a></li>
+<li><a href="#expandedtree">Arbre des couches ouvert par défaut</a></li>
+<li><a href="#poiinterrogation">Interrogation des couches de points d'intérêt</a></li>
+</ul>
+</div>
+
+<div id="api_conditions">
+<h1>Condition d'utilisation API SITN</h1>
+<p>L'interface de programmation (API) permet l'insertion de cartes dans vos propres sites web. Les conditions ci-dessous sont valables pour tous les sites web.</p>
+<p>Les points suivants concernant les conditions d'utilisation sont à observer particulièrement:</p>
+<ul>
+<li>Cette API est mis à disposition par le SITN dans le cadre de l'infrastructure cantonale des données géographiques.</li><br>
+<li>L'utilisation de l'API du SITN à des fins non-commerciale est gratuite. Une annonce en cas d'utilisation est obligatoire/recommandée à des fins de communication.</li><br>
+<li>L'utilisation commerciale de l'API peut être payante et nécessite une autorisation écrite du SITN réglant également les conditions d'utilisation.</li><br>
+<li>[En utilisant l'API vous reconnaissez avoir lu et accepté les conditions d'utilisation décrites sur cette page ainsi que les <a href="http://sitn.ne.ch/web/conditions_utilisation/contrat_SITN_MO.htm" target=_blank>conditions d'utilisation générales du Géoportail</a> qui font partie intégrante des présentes dispositions.] </li><br>
+<li>Les logos ou identifications de la source figurant sur les cartes ne doivent en aucun cas être modifiés ou être rendus méconnaissables. [Les droits sur la propriété intellectuelle s'appliquent.]</li><br>
+<li>Veuillez observer que nous nous réservons le droit, à tout moment, de suspendre ou mettre fin à votre utilisation de ce service.</li><br>
+<li>[Dans aucun cas nous garantissons la disponibilité ininterrompue du service ainsi que l’exactitude, l’exhaustivité, la fiabilité et l’actualité des données mises à disposition. Le service de la géomatique et du registre foncier décline toute responsabilité en cas de dégâts ou problèmes résultant directement ou indirectement de l’utilisation de l'API et des données y figurant.]</li><br>
+<li>L'API du SITN sera actualisée à intervalles réguliers. Par conséquent vous devez mettre à jour votre propre site web, afin de pouvoir utiliser la nouvelle version de l'API. Le SITN communique les mises à jour sur le site web de l'API et via la liste de distribution, merci de vous y inscrire. A priori, nous ne procédons pas à des mises à jour qui ne soient pas compatibles avec la version précédente. Si nous le faisons, nous garantisons une période de transition d'un mois. Les utilisateurs seront avisés un mois à l'avance au travers de la liste de distribution.</li><br>
+<li>Les mises à jour techniques seront annoncées au moyen de la liste d'utilisateurs. Pour vous y inscrire, merci d'envoyer un mail au <a href="mailto:sitn@ne.ch">SITN</a> dans ce sens.</li><br>
+<li>Conditions d'utilisation générales: Lien vers <a href="http://sitn.ne.ch/web/conditions_utilisation/contrat_SITN_MO.htm" target=_blank>Disclaimer du SITN</a></li><br>
+<li>[Le SITN se résèrve le droit de changer ces conditions d'utilisation à tout moment. En cas de changement affectant la portée des dispositions nous avertirons les utilisateurs enregistrés par mail.]</li>
+</ul>
+</div>
+
+</div>
+</td>
+</tr></table>
+
+    </body>
+</html>

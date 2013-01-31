@@ -19,6 +19,7 @@ RewriteEngine on
 WSGIPassAuthorization On
 
 RewriteRule ^${vars:apache-entry-point}([a-z]{2})$ /${vars:instanceid}/wsgi/?lang=$1 [PT]
+RewriteRule ^${vars:apache-entry-point}proj/help/([a-z]{2})$ /${vars:instanceid}/wsgi/proj/help/help_$1.html [PT]
 RewriteRule ^${vars:apache-entry-point}api.js$ /${vars:instanceid}/wsgi/api.js [PT]
 RewriteRule ^${vars:apache-entry-point}xapi.js$ /${vars:instanceid}/wsgi/xapi.js [PT]
 RewriteRule ^${vars:apache-entry-point}apihelp.html$ /${vars:instanceid}/wsgi/apihelp.html [PT]
