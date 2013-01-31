@@ -136,6 +136,19 @@ Ext.onReady(function() {
                 style: "padding: 3px 0 3px 3px;"
             }
         }, 
+    % if user:
+        {
+            ptype: "cgxp_querier",
+            outputTarget: "left-panel",
+            events: EVENTS,
+            mapserverproxyURL: "${request.route_url('mapserverproxy', path='')}",
+            // don't work with actual version of mapserver, the proxy will limit to 200
+            // it is intended to be reactivated this once mapserver is fixed
+            //maxFeatures: 200,
+            srsName: 'EPSG:900913',
+            featureTypes: ["MTP_adresse", "monuments", "arbres_remarq"],
+        }, 
+    % endif
         {
             ptype: "cgxp_layertree",
             id: "layertree",
@@ -154,37 +167,11 @@ Ext.onReady(function() {
             },
             outputTarget: "layerpanel"
         }, 
-    % if user:
         {
-            ptype: "cgxp_querier",
-            outputTarget: "left-panel",
-            events: EVENTS,
-            mapserverproxyURL: "${request.route_url('mapserverproxy', path='')}",
-            // don't work with actual version of mapserver, the proxy will limit to 200
-            // it is intended to be reactivated this once mapserver is fixed
-            //maxFeatures: 200,
-            srsName: 'EPSG:900913',
-            featureTypes: ["MTP_adresse", "monuments", "arbres_remarq"],
-        }, 
-    % endif
-        {
-            ptype: "cgxp_print",
-            legendPanelId: "legendPanel",
-            featureProvider: "featureGrid",
-            outputTarget: "left-panel",
-            printURL: "${request.route_url('printproxy', path='')}",
-            mapserverURL: "${request.route_url('mapserverproxy', path='')}", 
-            options: {
-                labelAlign: 'top',
-                defaults: {
-                    anchor:'100%'
-                },
-                autoFit: true
-            }
-        }, {
              ptype: "cgxp_featureswindow",
              themes: THEMES,
-             events: EVENTS
+             events: EVENTS,
+             id: "featuresWindow"
         }, 
 //        {
 //            ptype: "cgxp_featuregrid",
@@ -223,9 +210,9 @@ Ext.onReady(function() {
             toggleGroup: "maptools"
         },
         {
-            ptype: "cgxp_wfsgetfeature",
+            ptype: "cgxp_getfeature",
             WFSURL: "${request.route_url('mapserverproxy', path='')}",
-            actionTarget: "center.tbar",
+            actionTarget: null, //"center.tbar",
             events: EVENTS,
             themes: THEMES,
             actionTooltip: OpenLayers.i18n('Query the map'),
@@ -241,12 +228,6 @@ Ext.onReady(function() {
              csvServiceUrl: "${request.route_url('profile.csv')}",
              rasterLayers: ['mnt']
         }, 
-        /*{
-            ptype: "cgxp_wmsgetfeatureinfo",
-            actionTarget: "center.tbar",
-            toggleGroup: "maptools",
-            events: EVENTS
-        },*/ 
         {
              ptype: 'cgxp_wmsbrowser',
              actionTarget: "center.tbar",
@@ -293,7 +274,22 @@ Ext.onReady(function() {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
             type: '->'
-        },
+        }, {
+            ptype: "cgxp_print",
+            legendPanelId: "legendPanel",
+            featureProvider: "featuresWindow",
+            //outputTarget: "left-panel",
+            actionTarget: "center.tbar",
+            printURL: "${request.route_url('printproxy', path='')}",
+            mapserverURL: "${request.route_url('mapserverproxy', path='')}", 
+            options: {
+                labelAlign: 'top',
+                defaults: {
+                    anchor:'100%'
+                },
+                autoFit: true
+            }
+        }, 
         {
             ptype: "cgxp_redlining",
             toggleGroup: "maptools",
@@ -335,7 +331,7 @@ Ext.onReady(function() {
         }, 
         {
             ptype: "cgxp_help",
-            url: "#help-url",
+            url: "${request.static_url('demo:static/help')}/${lang}",
             actionTarget: "center.tbar"
         }, {
             ptype: "cgxp_scalechooser",
@@ -434,7 +430,7 @@ Ext.onReady(function() {
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
                        group: 'background',
-                       ref: 'osmmapquest'
+                       ref: 'OSM_MapQuest'
                     }
                 ]
             },
