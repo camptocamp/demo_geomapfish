@@ -17,3 +17,31 @@
 	background: url("../img/icons/paintbrush.gif") no-repeat scroll left top transparent;
 }
 
+#toolbar {
+  float:right;
+  background-color:#DDDDDD;border:1px solid #EEEEEE;
+  width:100%;height:10px;
+  text-align:right;
+  padding:5px;
+  color: #333333;
+  font: 11px arial,tahoma,verdana,helvetica;
+}
+
+a {
+  color: #333333;
+  font: 11px arial,tahoma,verdana,helvetica;
+}
+#toolbar .icon-admin {
+  background: url("../img/icons/application_form.png");
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  height: 16px;
+  padding-left: 18px;
+}
+#toolbar .icon-edit {
+  background: url("../img/icons/application_edit.png");
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  height: 16px;
+  padding-left: 18px;
+}

@@ -228,6 +228,7 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             events: EVENTS,
             themes: THEMES,
+            actionTooltip: OpenLayers.i18n('Query the map'),
             WFSTypes: ${WFSTypes | n},
             externalWFSTypes: ${externalWFSTypes | n},
             enableWMTSLayers: true,
@@ -271,6 +272,7 @@ Ext.onReady(function() {
              actionTarget: 'center.tbar',
              outputTarget: 'center',
              toggleGroup: 'maptools',
+             tooltipText: OpenLayers.i18n('StreetView'),
              baseURL: "${request.static_url('demo:static/lib/cgxp/geoext.ux/ux/StreetViewPanel/')}"
         }, {
             ptype: "cgxp_fulltextsearch",
@@ -298,10 +300,9 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             redliningText: OpenLayers.i18n('Dessin'),
             layerManagerUrl: "${request.static_url('demo:static/lib/cgxp/sandbox/LayerManager/ux/')}",
-            text: "Dessin",
-            tooltips: "test",
             actionConfig: {
-                iconCls: 'cgxp-icon-redline'
+                iconCls: 'cgxp-icon-redline',
+                tooltip: OpenLayers.i18n("Draw geometries on the map")
             }
         },
         {
@@ -317,28 +318,6 @@ Ext.onReady(function() {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
             type: '-'
-        }, {
-            ptype: "gxp_tool",
-            actionTarget: "center.tbar",
-            actions: [{
-               xtype: 'button',
-               icon: '${request.static_url('demo:static/img/icons/application_form.png')}',
-               text: 'Admin',
-               handler: function() {
-                   window.location = '${request.route_url('home')}${lang}/admin';
-               }
-            }]
-        }, {
-            ptype: "gxp_tool",
-            actionTarget: "center.tbar",
-            actions: [{
-                xtype: 'button',
-                icon: '${request.static_url('demo:static/img/icons/application_edit.png')}',
-                text: 'Édition',
-                handler: function() {
-                   window.location = '${request.route_url('home')}${lang}/edit';
-               }
-            }]
         }, {
             ptype: "cgxp_login",
             actionTarget: "center.tbar",
