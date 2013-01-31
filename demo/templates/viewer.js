@@ -232,6 +232,13 @@ Ext.onReady(function() {
             externalWFSTypes: ${externalWFSTypes | n},
             enableWMTSLayers: true,
             toggleGroup: "maptools"
+        }, {
+             ptype: 'cgxp_profile',
+             actionTarget: 'center.tbar',
+             toggleGroup: 'maptools',
+             serviceUrl: "${request.route_url('profile.json')}",
+             csvServiceUrl: "${request.route_url('profile.csv')}",
+             rasterLayers: ['mnt']
         }, 
         /*{
             ptype: "cgxp_wmsgetfeatureinfo",
@@ -240,16 +247,12 @@ Ext.onReady(function() {
             events: EVENTS
         },*/ 
         {
-            ptype: "cgxp_fulltextsearch",
-            url: "${request.route_url('fulltextsearch', path='')}",
-            layerTreeId: "layertree",
-            pointRecenterZoom: 20,
-            actionTarget: "center.tbar",
-            grouping: true
-        }, {
              ptype: 'cgxp_wmsbrowser',
              actionTarget: "center.tbar",
              layerTreeId: "layertree",
+             actionConfig: {
+                tooltip: OpenLayers.i18n('Add a WMS layer on the map')
+             },
              defaultUrls: [
                 'http://wms.geo.admin.ch',
                 'http://ids.pigma.org/geoserver/wms',
@@ -259,7 +262,10 @@ Ext.onReady(function() {
              ptype: 'cgxp_googleearthview',
              actionTarget: 'center.tbar',
              outputTarget: 'center',
-             toggleGroup: 'maptools'
+             toggleGroup: 'maptools',
+             actionConfig: {
+                tooltip: OpenLayers.i18n('Open Google Earth Panel')
+             }
         }, {
              ptype: 'cgxp_streetview',
              actionTarget: 'center.tbar',
@@ -267,12 +273,12 @@ Ext.onReady(function() {
              toggleGroup: 'maptools',
              baseURL: "${request.static_url('demo:static/lib/cgxp/geoext.ux/ux/StreetViewPanel/')}"
         }, {
-             ptype: 'cgxp_profile',
-             actionTarget: 'center.tbar',
-             toggleGroup: 'maptools',
-             serviceUrl: "${request.route_url('profile.json')}",
-             csvServiceUrl: "${request.route_url('profile.csv')}",
-             rasterLayers: ['mnt', 'mns']
+            ptype: "cgxp_fulltextsearch",
+            url: "${request.route_url('fulltextsearch', path='')}",
+            layerTreeId: "layertree",
+            pointRecenterZoom: 20,
+            actionTarget: "center.tbar",
+            grouping: true
         }, {
             ptype: "cgxp_contextualdata",
             actionTarget: "center.tbar",
@@ -281,8 +287,7 @@ Ext.onReady(function() {
                allTpl: OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
                        OpenLayers.i18n("Wsg Coord. Label") + " : {wsg_x} {wsg_y}<br /> etc."
             }
-        },
-        {
+        }, {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
             type: '->'
@@ -291,20 +296,50 @@ Ext.onReady(function() {
             ptype: "cgxp_redlining",
             toggleGroup: "maptools",
             actionTarget: "center.tbar",
-            layerManagerUrl: "${request.static_url('demo:static/lib/cgxp/sandbox/LayerManager/ux/')}"
+            redliningText: OpenLayers.i18n('Dessin'),
+            layerManagerUrl: "${request.static_url('demo:static/lib/cgxp/sandbox/LayerManager/ux/')}",
+            text: "Dessin",
+            tooltips: "test",
+            actionConfig: {
+                iconCls: 'cgxp-icon-redline'
+            }
         },
         {
             ptype: "cgxp_legend",
             id: "legendPanel",
             toggleGroup: "maptools",
-            actionTarget: "center.tbar"
+            actionTarget: "center.tbar",
+            actionConfig: {
+                iconCls: 'cgxp-icon-legend'
+            }
         },
         {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
             type: '-'
-        }, 
-        {
+        }, {
+            ptype: "gxp_tool",
+            actionTarget: "center.tbar",
+            actions: [{
+               xtype: 'button',
+               icon: '${request.static_url('demo:static/img/icons/application_form.png')}',
+               text: 'Admin',
+               handler: function() {
+                   window.location = '${request.route_url('home')}${lang}/admin';
+               }
+            }]
+        }, {
+            ptype: "gxp_tool",
+            actionTarget: "center.tbar",
+            actions: [{
+                xtype: 'button',
+                icon: '${request.static_url('demo:static/img/icons/application_edit.png')}',
+                text: 'Édition',
+                handler: function() {
+                   window.location = '${request.route_url('home')}${lang}/edit';
+               }
+            }]
+        }, {
             ptype: "cgxp_login",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
@@ -324,27 +359,6 @@ Ext.onReady(function() {
             url: "#help-url",
             actionTarget: "center.tbar"
         }, {
-            ptype: "gxp_tool",
-            actionTarget: "center.tbar",
-            actions: [{
-               xtype: 'button',
-               icon: '${request.static_url('demo:static/img/icons/application_form.png')}',
-               handler: function() {
-                   window.location = '${request.route_url('home')}${lang}/admin';
-               }
-            }]
-        }, {
-            ptype: "gxp_tool",
-            actionTarget: "center.tbar",
-            actions: [{
-                xtype: 'button',
-                icon: '${request.static_url('demo:static/img/icons/application_edit.png')}',
-                handler: function() {
-                   window.location = '${request.route_url('home')}${lang}/edit';
-               }
-
-            }]
-        }, {
             ptype: "cgxp_scalechooser",
             actionTarget: "center.bbar"
         }, {
@@ -354,7 +368,7 @@ Ext.onReady(function() {
         }, {
             ptype: "gxp_tool",
             actionTarget: "center.bbar",
-            actions: '<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://camptocamp.com">Camptocamp</a>.'
+            actions: '<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://www.camptocamp.com" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a>.'
         }
         ],
 
