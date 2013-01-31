@@ -53,6 +53,8 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "zonepietonne": "Zone piétonne",
   "MTP_adresse": "Adresse de Montpellier",
   "Wsg Coord. Label": "Coordonnées géographiques",
-  "Local Coord. Label": "Coordonnées Mercator"
+  "Local Coord. Label": "Coordonnées Mercator",
+  "Add a WMS layer on the map": "Ajouter une couche WMS à la carte",
+  "Open Google Earth Panel": "Ouvrir le panneau Google Earth"
 });
 
