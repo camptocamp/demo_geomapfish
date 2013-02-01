@@ -242,6 +242,10 @@ Ext.onReady(function() {
                 'http://geobretagne.fr/geoserver/wms'
              ]
         }, {
+            ptype: "cgxp_addkmlfile",
+            echoUrl: "${request.route_url('echo', path='')}",
+            actionTarget: "layerpanel.bbar"
+        }, {
              ptype: 'cgxp_googleearthview',
              actionTarget: 'center.tbar',
              outputTarget: 'center',
@@ -336,7 +340,9 @@ Ext.onReady(function() {
             actionTarget: "center.tbar"
         }, {
             ptype: "cgxp_scalechooser",
-            actionTarget: "center.bbar"
+            actionTarget: "center.bbar",
+            roundValues: [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10],
+            power10: true
         }, {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.bbar",
