@@ -113,6 +113,7 @@ Ext.onReady(function() {
                     title: OpenLayers.i18n("layertree"),
                     id: 'layerpanel',
                     layout: "vbox",
+                    bbar: [],
                     layoutConfig: {
                         align: "stretch"
                     }
@@ -230,7 +231,7 @@ Ext.onReady(function() {
         }, 
         {
              ptype: 'cgxp_wmsbrowser',
-             actionTarget: "center.tbar",
+             actionTarget: "layerpanel.bbar",
              layerTreeId: "layertree",
              actionConfig: {
                 tooltip: OpenLayers.i18n('Add a WMS layer on the map')
