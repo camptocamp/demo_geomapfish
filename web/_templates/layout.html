@@ -97,11 +97,11 @@
 {%- block extrahead %} {% endblock %}
   </head>
   <body class="page page-id-362 page-child parent-pageid-4 page-template-default">
-<div id="page">
-{%- block document %}
+  <div id="page">
+    {%- block document %}
 
-<div id="header-out">
-    <div id="header">
+    <div id="header-out">
+      <div id="header">
          <!-- Logo -->
          <h1 id="logo"><a href="{{ pathto(master_doc) }}"><img src="{{ pathto('_static/logo_c2c.png',1) }}" alt="logotype"></a></h1>
 
@@ -121,42 +121,107 @@
          <div class="menu-main-container">
               <div>
                   <ul class="menu"><li class="page_item page-item-4"><a href="{{ pathto(master_doc) }}">Présentation</a></li>
-		    <li class="page_item page-item-6"><a href="{{ pathto('video.html',1) }}">Vidéos</a></li>
-		    <li class="page_item page-item-8"><a href="{{ pathto('aide.html',1) }}">Aide</a></li>
-		    <li class="page_item page-item-10"><a href="{{ pathto('faq.html',1) }}">F.A.Q.</a></li>
+		    <li class="page_item page-item-6"><a href="{{ pathto('videos.html',1) }}">Vidéos</a></li>
+		    <li class="page_item page-item-10"><a href="{{ pathto('../../../',1) }}">L'application</a></li> 
+		    <li class="page_item page-item-17"><a href="{{ pathto('api.html',1) }}">API simple</a></li>
+		    <li class="page_item page-item-19"><a href="{{ pathto('xapi.html',1) }}">API avancée</a></li>
+		    <li class="page_item page-item-21"><a href="{{ pathto('aide.html',1) }}">Aide</a></li>
+		    <li class="page_item page-item-23"><a href="{{ pathto('faq.html',1) }}">F.A.Q.</a></li>
 <!--		    <li class="page_item page-item-17"><a href="http://www.camptocamp.com/references/">Références</a></li>
 		    <li class="page_item page-item-19"><a href="http://www.camptocamp.com/medias/">Médias</a></li>
 		    <li class="page_item page-item-21"><a href="http://www.camptocamp.com/carrieres/">Carrières</a></li>
 		    <li class="page_item page-item-23"><a href="http://www.camptocamp.com/contact/">Contact</a></li>-->
 		</ul>
                 <form action="http://www.camptocamp.com/" id="searchform" method="get">
-             <div>
-             <input type="text" id="s" name="s" value="Recherche…">
-             <input type="submit" value="OK" id="searchsubmit">
-        </div>
-        <input type="hidden" name="lang" value="fr"></form>
-        <div class="clear"></div>
-    </div>
-    </div>
-    </div>
-    <div id="container" class="content">
-
-	    {% block body %} {% endblock %}
-</div>
-
-{%- endblock %}
-
-
-      <div class="clearer"></div>
-    </div>
-</div>
+                 <div>
+                  <input type="text" id="s" name="s" value="Recherche…">
+                  <input type="submit" value="OK" id="searchsubmit">
+                 </div>
+                 <input type="hidden" name="lang" value="fr"></form>
+                 <div class="clear"></div>
+             </div>
+         </div>
+      </div>
+   </div>
+   <div id="container" class="content">
+      {% block body %} {% endblock %}
+   </div>
+   {%- endblock %}
+   <div class="clearer"></div>
+<!--    </div>
+</div>-->
 {%- block footer %}
-    <div class="footer">
-	<div class="footer_right">
-	    <ul class="menu">
-		<li class="item60"><a class="externe" href="http://www.camptocamp.com/fr/societe/contacts-camptocamp"><span>Contact</span></a></li>
-	    </ul>
+    <div id="footer" class="footer">
+		<div id="footer_col_1" class="col left">
+			<h5><a href="http://www.camptocamp.com/solutions/geospatial/">Geospatial</a></h5>
+			<h6>Solutions</h6>
+			<ul>									<li><a href="http://www.camptocamp.com/solution/idg-georchestra/">IDG geOrchestra</a></li>
+									<li><a href="http://www.camptocamp.com/solution/webmapping/">Webmapping</a></li>
+									<li><a href="http://www.camptocamp.com/solution/mobile-webmapping-applications/">Applications mobiles</a></li>
+									<li><a href="http://www.camptocamp.com/solution/virtual-globe-3d/">Globe virtuel 3D</a></li>
+									<li><a href="http://www.camptocamp.com/solution/openerp_geoengine/">OpenERP GeoEngine</a></li>
+									<li><a href="http://www.camptocamp.com/solution/webgis/">WebSIG métier</a></li>
+							</ul>
+		</div>		<div id="footer_col_2" class="col left">
+			<h5><a href="http://www.camptocamp.com/solutions/business/">Business</a></h5>
+			<h6>Solutions</h6>
+			<ul>									<li><a href="http://www.camptocamp.com/solution/openerp/">OpenERP</a></li>
+									<li><a href="http://www.camptocamp.com/solution/expertise-metier/">Expertise métier</a></li>
+									<li><a href="http://www.camptocamp.com/solution/contributions-et-co-creation/">Contributions et co-création</a></li>
+									<li><a href="http://www.camptocamp.com/solution/connecteur-magentoopenerp/">Connecteur OpenERP et Magento</a></li>
+									<li><a href="http://www.camptocamp.com/solution/openerp_geoengine/">OpenERP GeoEngine</a></li>
+							</ul>
+		</div>		<div id="footer_col_3" class="col left">
+			<h5><a href="http://www.camptocamp.com/solutions/infrastructure/">Infrastructure</a></h5>
+			<h6>Solutions</h6>
+			<ul>									<li><a href="http://www.camptocamp.com/solution/amazon-web-services/">Provisioning&nbsp;: Cloud Computing</a></li>
+									<li><a href="http://www.camptocamp.com/solution/automatisation/">Automatisation</a></li>
+									<li><a href="http://www.camptocamp.com/solution/linux/">Surveillance et contrôle</a></li>
+									<li><a href="http://www.camptocamp.com/solution/disponibilite-et-montee-en-charge/">Disponibilité et montée en charge</a></li>
+							</ul>
+		</div>	<div id="footer_col_4" class="col left">
+	   	<div class="menu-footer-container"><ul id="menu-footer" class="menu"><li id="menu-item-627" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-627"><a href="http://www.camptocamp.com/formations/">Formations</a></li>
+<li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="http://www.camptocamp.com/references/">Références</a></li>
+<li id="menu-item-368" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-368"><a href="http://www.camptocamp.com/societe/portrait/">Portrait</a>
+<ul class="sub-menu">
+	<li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="http://www.camptocamp.com/carrieres/">Carrières</a></li>
+	<li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25"><a href="http://www.camptocamp.com/contact/">Contact</a></li>
+	<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="http://www.camptocamp.com/medias/">Médias</a></li>
+</ul>
+</li>
+</ul></div>	   	<ul>
+	   		<li><a href="#">Suivez-nous</a>
+	   			<ul>
+	   				<li class="ln"><a target="_blank" href="http://www.linkedin.com/company/camptocamp-sa">linkedin</a></li>
+					<li class="fb"><a target="_blank" href="https://www.facebook.com/pages/Camptocamp/207324185960679">facebook</a></li>
+					<li class="tw"><a target="_blank" href="https://twitter.com/camptocamp">twitter</a></li>
+					<li class="yt"><a target="_blank" href="http://www.youtube.com/user/CamptocampOnline">youtube</a></li>
+					<li class="ss"><a target="_blank" href="http://fr.slideshare.net/search/slideshow?searchfrom=header&amp;q=CAMPTOCAMP">Slideshare</a></li>
+					<li class="gh"><a target="_blank" href="https://github.com/camptocamp">github</a></li>
+	   			</ul>
+	   		</li>
+	   	</ul>
 	</div>
+	<div id="footer_col_5" class="col left">
+	   	<img alt="logo camptocamp" src="http://www.camptocamp.com/wp-content/themes/camptocamp/images/logo_footer.png">
+	   			
+		  <h6><a href="javascript:DeCryptX('jogpAdbnqupdbnq/dpn')">info@camptocamp.com</a></h6>
+<h6>Suisse</h6>
+<p>Camptocamp SA, Lausanne<br>
+Tel + 41 21 619 10 10</p>
+<h6>France</h6>
+<p>Camptocamp France SAS, Chambéry<br>
+Tél : +33 4 79 44 44 94</p>
+<h6>Autriche</h6>
+<p>Camptocamp Austria, Vienne<br>
+Tél : +43 1 712 21 94 0</p>
+	</div>
+	
+
+
+<!--
+
+
 	{%- if hasdoc('copyright') %}
 	    {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}
 	{%- else %}
@@ -168,9 +233,8 @@
 	{%- if show_sphinx %}
 	    {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}
 	{%- endif %}
-      </div>
+-->
     </div>
 {%- endblock %}
-</div>
   </body>
 </html>

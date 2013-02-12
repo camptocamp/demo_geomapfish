@@ -134,7 +134,7 @@ Les outils de mesures sont disponibles à partir du menu d'outils de mesure :
   cliques sur la carte pour créer un polygone. Pour terminer la mesure, 
   faites un double-clique.
 
-.. |coordPoint| image:: _staitc/icones/bullet_orange.png
+.. |coordPoint| image:: _static/icones/bullet_orange.png
    :alt: coordonnées point
 
 .. |ruler| image:: _static/icones/ruler.png
