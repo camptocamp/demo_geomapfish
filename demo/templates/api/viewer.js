@@ -6,7 +6,8 @@ This file defines the GXP viewer and its plugins for the Extended API.
                 renderTo: config.div,
                 height: Ext.get(config.div).getHeight(),
                 layout: "fit",
-                items: [config.id]
+                items: [config.id],
+                ctCls: 'x-map'
             },
             tools: [
             {
