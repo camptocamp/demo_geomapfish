@@ -1,0 +1,176 @@
+{%- block doctype -%}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{%- endblock %}
+{%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
+{%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {{ metatags }}
+    {%- if builder != 'htmlhelp' %}
+      {%- set titlesuffix = " &mdash; " + docstitle|e %}
+    {%- endif %}
+    <title>{{ title|striptags }}{{ titlesuffix }}</title>
+    {%- if builder == 'web' %}
+    <link rel="stylesheet" href="{{ pathto('index') }}?do=stylesheet{%
+      if in_admin_panel %}&admin=yes{% endif %}" type="text/css" />
+    {%- for link, type, title in page_links %}
+    <link rel="alternate" type="{{ type|e(true) }}" title="{{ title|e(true) }}" href="{{ link|e(true) }}" />
+    {%- endfor %}
+    {%- else %}
+    <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+    {%- endif %}
+    {%- if builder != 'htmlhelp' %}
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '{{ pathto("", 1) }}',
+        VERSION:     '{{ release|e }}',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '{{ file_suffix }}',
+        HAS_SOURCE:  {{ has_source|lower }}
+      };
+    </script>
+    {%- for scriptfile in script_files %}
+    <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+    {%- endfor %}
+    {%- if use_opensearch %}
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
+          href="{{ pathto('_static/opensearch.xml', 1) }}"/>
+    {%- endif %}
+    {%- if favicon %}
+    <link rel="shortcut icon" href="{{ pathto('_static/' + favicon, 1) }}"/>
+    {%- endif %}
+    {%- endif %}
+{%- block linktags %}
+    {%- if hasdoc('about') %}
+    <link rel="author" title="{{ _('About these documents') }}" href="{{ pathto('about') }}" />
+    {%- endif %}
+    {%- if hasdoc('genindex') %}
+    <link rel="index" title="{{ _('Index') }}" href="{{ pathto('genindex') }}" />
+    {%- endif %}
+    {%- if hasdoc('search') %}
+    <link rel="search" title="{{ _('Search') }}" href="{{ pathto('search') }}" />
+    {%- endif %}
+    {%- if hasdoc('copyright') %}
+    <link rel="copyright" title="{{ _('Copyright') }}" href="{{ pathto('copyright') }}" />
+    {%- endif %}
+    <link rel="top" title="{{ docstitle|e }}" href="{{ pathto('index') }}" />
+    {%- if parents %}
+    <link rel="up" title="{{ parents[-1].title|striptags }}" href="{{ parents[-1].link|e }}" />
+    {%- endif %}
+    {%- if next %}
+    <link rel="next" title="{{ next.title|striptags }}" href="{{ next.link|e }}" />
+    {%- endif %}
+    {%- if prev %}
+    <link rel="prev" title="{{ prev.title|striptags }}" href="{{ prev.link|e }}" />
+    {%- endif %}
+{%- endblock %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="Content-Language" content="fr" />
+        <meta name="keywords" content="camptocamp, openlayers, geoext, innovative, solutions, expert, open source, openstreetmap, profile, mnt, open data, montpellier, geoportail">
+        <meta name="description" content="Géoportail du SITN">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+        <title>Site de Démo de Geoportail de Camptocamp</title>
+
+        <link href="{{ pathto('_static/style.css', 1) }}" media="screen" type="text/css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,600,700">
+        <link href="http://www.camptocamp.com/wp-content/themes/camptocamp/images/favicon.ico?" type="image/x-icon" rel="shortcut icon">
+        <link href="http://www.camptocamp.com/wp-content/themes/camptocamp/images/favicon.ico" type="image/jpeg" rel="icon">
+       <link media="all" type="text/css" href="http://www.camptocamp.com/wp-content/plugins/sitepress-multilingual-cms/res/css/language-selector.css?v=2.5.2" rel="stylesheet">
+       <style type="text/css">
+	.ombrage {
+	  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+	  margin-bottom: 10px;
+	}
+	.content a:hover {
+	  text-decoration:underline;
+	}
+	.center {
+	   text-align:center;
+	}
+      </style>
+      
+{%- block extrahead %} {% endblock %}
+  </head>
+  <body class="page page-id-362 page-child parent-pageid-4 page-template-default">
+<div id="page">
+{%- block document %}
+
+<div id="header-out">
+    <div id="header">
+         <!-- Logo -->
+         <h1 id="logo"><a href="{{ pathto(master_doc) }}"><img src="{{ pathto('_static/logo_c2c.png',1) }}" alt="logotype"></a></h1>
+
+         <!-- Social -->
+         <ul id="social">
+              <li class="ln"><a href="http://www.linkedin.com/company/camptocamp-sa" target="_blank"></a></li>
+              <li class="fb"><a href="https://www.facebook.com/pages/Camptocamp/207324185960679" target="_blank"></a></li>
+              <li class="tw"><a href="https://twitter.com/camptocamp" target="_blank"></a></li>
+              <li class="yt"><a href="http://www.youtube.com/user/CamptocampOnline" target="_blank"></a></li>
+              <li class="ss"><a href="http://fr.slideshare.net/search/slideshow?searchfrom=header&amp;q=CAMPTOCAMP" target="_blank"></a></li>
+              <li class="gh"><a href="https://github.com/camptocamp" target="_blank"></a></li>
+         </ul>
+
+         <div id="lang"><a href="http://www.camptocamp.com/de/"><span>de</span> / </a><a href="http://www.camptocamp.com/en/"><span>en</span> / </a><span>fr</span></div>
+         <div class="clear"></div>
+         <!-- Main menu & Search Form -->
+         <div class="menu-main-container">
+              <div>
+                  <ul class="menu"><li class="page_item page-item-4"><a href="{{ pathto(master_doc) }}">Présentation</a></li>
+		    <li class="page_item page-item-6"><a href="{{ pathto('video.html',1) }}">Vidéos</a></li>
+		    <li class="page_item page-item-8"><a href="{{ pathto('aide.html',1) }}">Aide</a></li>
+		    <li class="page_item page-item-10"><a href="{{ pathto('faq.html',1) }}">F.A.Q.</a></li>
+<!--		    <li class="page_item page-item-17"><a href="http://www.camptocamp.com/references/">Références</a></li>
+		    <li class="page_item page-item-19"><a href="http://www.camptocamp.com/medias/">Médias</a></li>
+		    <li class="page_item page-item-21"><a href="http://www.camptocamp.com/carrieres/">Carrières</a></li>
+		    <li class="page_item page-item-23"><a href="http://www.camptocamp.com/contact/">Contact</a></li>-->
+		</ul>
+                <form action="http://www.camptocamp.com/" id="searchform" method="get">
+             <div>
+             <input type="text" id="s" name="s" value="Recherche…">
+             <input type="submit" value="OK" id="searchsubmit">
+        </div>
+        <input type="hidden" name="lang" value="fr"></form>
+        <div class="clear"></div>
+    </div>
+    </div>
+    </div>
+    <div id="container" class="content">
+
+	    {% block body %} {% endblock %}
+</div>
+
+{%- endblock %}
+
+
+      <div class="clearer"></div>
+    </div>
+</div>
+{%- block footer %}
+    <div class="footer">
+	<div class="footer_right">
+	    <ul class="menu">
+		<li class="item60"><a class="externe" href="http://www.camptocamp.com/fr/societe/contacts-camptocamp"><span>Contact</span></a></li>
+	    </ul>
+	</div>
+	{%- if hasdoc('copyright') %}
+	    {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}
+	{%- else %}
+	      {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}.{% endtrans %}
+	{%- endif %}
+	{%- if last_updated %}
+	    {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
+	{%- endif %}
+	{%- if show_sphinx %}
+	    {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}
+	{%- endif %}
+      </div>
+    </div>
+{%- endblock %}
+</div>
+  </body>
+</html>

@@ -1,0 +1,1800 @@
+/*
+Theme Name: CamptoCamp
+Theme URI: http://www.camptocamp.com/
+Description: The 2012 theme for CamptoCamp
+Author: Audrey Devantay, Ergopix
+Version: 1.0
+*/
+
+
+/************************************************************************************************************
+*
+* Wordpress Structure
+*
+*/
+img.size-auto, img.size-full, img.size-large, img.size-medium, .attachment img { max-width: 100%;  height: auto; }
+.alignleft, img.alignleft { display: inline; float: left; margin-right: 24px; margin-top: 4px; }
+.alignright, img.alignright { display: inline; float: right; margin-left: 24px; margin-top: 4px; }
+.aligncenter, img.aligncenter { clear: both; display: block; margin-left: auto; margin-right: auto; }
+img.alignleft, img.alignright, img.aligncenter { margin-bottom: 12px;max-width: 100%; }
+.wp-caption {line-height: 18px; margin-bottom: 20px; max-width: 632px !important; padding: 4px; text-align: center; }
+.wp-caption img { margin: 5px 5px 0; }
+.wp-caption p.wp-caption-text { color: #000; font-size: 13px;margin-bottom: 20px;}
+h1, h2, h3, h4, h5, h6 { clear: both; font-weight: normal; }
+
+/***********************************************************************************************
+* Reset
+* http://meyerweb.com/eric/tools/css/reset/ 
+* v2.0 | 20110126
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, 
+code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, 
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, 
+figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, 
+audio, video{ background: transparent; margin: 0; padding: 0;	border: 0; font-size: 100%; font: inherit;	vertical-align: baseline; }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+body { line-height: 1; overflow-y: scroll;}
+ol, ul { list-style: none; }
+blockquote, q{	quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after{	content: ''; content: none; }
+table{ border-collapse: collapse; border-spacing: 0; font-weight: normal; }
+
+/************************************************************************************************************
+*
+* General Structure
+*
+*/
+body{
+	background-color: #f5f5f5;
+}
+
+#page{
+	width: 960px;
+	margin: auto auto;
+	font-family: 'Open Sans', sans-serif;
+	position: relative;
+	background-color: white;
+}
+
+#header{
+	position: relative;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#header, #container{
+	width: 920px;
+	margin: auto auto;
+}
+
+#container{
+	width: 920px;
+	min-height: 400px;
+}
+
+.container_header{
+	padding: 20px 0;
+	border-bottom: 1px solid #707172;
+	margin-bottom: 10px;
+}
+
+#sidebar{
+	float: right;
+	width: 348px;
+}
+/*
+
+.sidebar_normal{
+	padding-top: 180px;
+}
+*/
+
+#col_1{
+	float: left;
+	width: 550px;
+	padding-bottom: 10px;
+}
+
+.content{
+	padding-bottom: 30px;
+	min-height: 350px
+}
+
+.empty{
+	height: 79px;
+	overflow: hidden;
+}
+
+
+/***********************************************************************************************
+* Header
+*/
+#social{
+	float: right;
+	padding-top: 15px;
+}
+
+#social li{
+	display: inline-block;
+}
+
+#social img{
+	font-size: 0;
+	line-height: 0;
+	padding:0;
+}
+
+#social a{
+	display: inline-block;
+	width: 19px;
+	height: 19px;
+	padding: 0 2px;
+}
+
+#logo{
+	float: left;
+	margin-top: 17px;
+}
+
+#social .ln a{
+	background: url(images/ln.png) no-repeat;
+}
+
+#social .fb a{
+	background: url(images/fb.png) no-repeat;
+}
+
+#social .tw a{
+	background: url(images/tw.png) no-repeat;
+}
+
+#social .gh a{
+	background: url(images/gh.png) no-repeat;
+}
+
+#social .ss a{
+	background: url(images/ss.png) no-repeat;
+}
+
+#social .yt a{
+	background: url(images/yt.png) no-repeat;
+}
+
+/* hover */
+#social .ln a:hover{
+	background: url(images/ln_hover.png) no-repeat;
+}
+
+#social .fb a:hover{
+	background: url(images/fb_hover.png) no-repeat;
+}
+
+#social .tw a:hover{
+	background: url(images/tw_hover.png) no-repeat;
+}
+
+#social .gh a:hover{
+	background: url(images/gh_hover.png) no-repeat;
+}
+
+#social .ss a:hover{
+	background: url(images/ss_hover.png) no-repeat;
+}
+
+#social .yt a:hover{
+	background: url(images/yt_hover.png) no-repeat;
+}
+
+
+/***********************************************************************************************
+* Lang
+*/
+#lang{
+	position: absolute;
+	right: 0;
+	top: 60px;
+	text-transform: uppercase;
+	font-size: 10px;
+}
+
+#lang span{
+	color: #fb7047;
+}
+
+#lang a{
+	text-decoration: none;
+	color: #707172;
+}
+
+#lang a span{
+	color: #707172;
+}
+
+#lang a:hover span{
+	color: #fb7047;
+}
+
+/************************************************************************************************************
+*
+* Navigation
+*
+*/
+
+/* wp-list */
+.menu-main-container{
+	border-top: 1px solid #b1b2b4;
+	border-bottom: 1px solid #b1b2b4;
+	position: relative;
+}
+
+.menu{
+	float: left;
+}
+
+.page_item{
+	float: left;
+	padding: 10px 0px;
+	font-size: 11px;
+	position: relative;
+	margin: 0;
+} 
+
+.highlight, .highlight:hover, .highlight a{
+	background-color: #4B4B4D !important;
+	color: #A0A0A0 !important;
+} 
+
+.page_item:hover, .current_page_item{
+	background-color: #F0F1F1;
+}
+
+.page_item:first-child, .page_item:first-child a{
+	border-left: none;
+	padding-left: 0;
+}
+
+.page_item a{
+	text-decoration: none;
+	color: #707172;
+	text-transform: uppercase;
+	display: block;
+	border-left: 1px solid #b1b2b4; 
+	padding: 0px 8px;
+}
+
+.page_item:hover .children{
+	display: block;
+}
+
+.page_item .children{
+	position: absolute;
+	top: 100%;
+	left: 0;
+	display: none;
+	background-color: white;
+}
+
+.page_item .children .page_item{
+	border-left: none;
+	padding-left: 0;
+
+}
+
+.page_item .children .page_item a{
+
+}
+
+.page_item .children .page_item a:hover{
+
+}
+
+/***********************************************************************************************
+* Searchform
+*/
+
+#searchform{
+	float: right;
+	margin-top: 6px;
+}
+
+#searchform input{
+	background-color: #f0f1f1;
+	border: none;
+	height: 18px;
+	line-height: 18px;
+	padding-left: 3px;
+	color: #707172;
+}
+
+#searchform #s{
+	width: 140px !important;
+	max-width: 140px !important;
+}
+
+#searchform #searchsubmit{
+	display: none;
+	width: 10px;
+}
+
+/************************************************************************************************************
+*
+* Texte
+*
+*/
+a{
+	color: black;
+	text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, .title_h6, .title_h3{
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1{
+	font-size: 40px;
+	margin-top: 30px;
+	color: #4B4B4D;
+}
+
+h2{
+	font-size: 20px;
+	margin-bottom: 10px;
+	color: #4B4B4D;
+}
+
+.slogan{
+	font-size: 15px;
+	line-height: 130%;
+	font-weight: 400;
+	border-bottom: 1px solid #707172;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+
+h2, h6, .title_h6{
+	font-weight: 700;
+}
+
+h6{
+	border-bottom: 1px solid #707172;
+	text-transform: uppercase;
+	padding-bottom: 5px;
+}
+
+.title_h6{
+	display: block;
+	text-transform: uppercase;
+}
+
+.meta{
+	display: block;
+	font-size: 9px;
+	margin-top: 3px;
+}
+
+.home .meta{
+	margin-bottom: 10px;
+}
+
+.single .meta{
+	margin-bottom: 20px;
+}
+
+
+.page-template-page-listing-php .meta{
+	margin-top: 10px;
+}
+
+.meta .title_h6{
+	display: inline;
+}
+
+#sidebar{
+	font-size: 11px;
+	line-height: 140%;
+}
+
+#sidebar a:hover{
+	color: #FB7047;
+}
+
+.more_orange{
+	position: absolute;
+	bottom: 5px;
+	right: 10px;
+	text-align: right;
+}
+
+.more_orange a{
+	color: #FB7047;
+	text-transform: uppercase;
+	font-size: 9px;
+	margin-top: 3px;
+}
+
+#sidebar .more_orange a:hover{
+	color: black;
+}
+
+#sidebar .sol .slogan{
+	font-size: 11px;
+	border: none;
+}
+
+#sidebar .sol .title_h2{
+	font-size: 18px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight:700;
+}
+
+#sidebar .sol .title_h3{
+	color: black !important;
+}
+
+.block .sol span{
+	display: block;
+}
+
+.container_header h2, .container_header h3{
+	padding-top: 0;
+	margin: 0;
+}
+
+.container_header h2{
+	/* font-size: 30px; */
+	width: 60%;
+	color: #4B4B4D;
+}
+
+#footer #footer_col_5{
+	width: 19%;
+}
+
+#footer #footer_col_5 h6{
+	font-weight: 700;
+}
+/***********************************************************************************************
+* Texte content
+*/
+p, ul, ol, td, .post .paragraph, .post p, pre{
+	font-size: 13px;
+	line-height: 150%;
+	margin-bottom: 20px;
+	text-align: justify;
+}
+
+pre{
+	font-family: Courier, sans-serif;
+	border: 1px solid #ddd;
+	padding: 5px;
+}
+
+table{
+	margin-bottom: 20px;
+}
+
+.thead{
+	font-size: 11px;
+	border-top: 1px solid #707172;
+	border-bottom: 1px solid #707172;
+	background-color: #f2f2f2;
+	vertical-align: middle;
+	padding: 10px 10px 10px 10px;
+}
+
+td{
+	text-align: left;
+	padding: 5px 10px 5px 10px;
+	border-top: 1px solid #707172;
+	border-bottom: 1px solid #707172;
+}
+
+.border{
+	border-left: 1px solid #707172;
+	border-right: 1px solid #707172;
+}
+
+td:first{
+	border: none !important;
+}
+
+a{
+	text-decoration: none;
+	color: #fb7047;
+}
+
+h2, h3, h4, h5, .title_h3{
+	font-weight: 400;
+}
+
+h2{
+	text-transform: uppercase;
+	margin-top: 30px;
+}
+
+h3, h4, .title_h3{
+	text-transform: uppercase;
+	margin-bottom: 5px;
+	font-size: 16px;
+	line-height: 120%;
+}
+
+h4{
+	border-bottom: 1px solid black;
+	padding-bottom: 3px;
+}
+
+h5{
+	border: none;
+	text-transform: none;
+	font-size: 13px;
+	margin-top: 10px;
+}
+
+ul li{
+	list-style: disc outside;
+	margin-left: 16px;
+    padding-left: 0px;
+	list-style-image: url(images/dot_1.png);
+}
+
+ol li{
+	list-style:	decimal;
+	margin-left: 17px;
+    padding-left: 0px;
+	font-family: 'Open Sans', sans-serif;
+/* 	display: block */
+}
+
+
+/*
+ol{ 
+	counter-reset: item 
+}
+
+ol li:before { 
+	content: counter(item) ". "; 
+	counter-increment: item;
+	color: #FB7047; 
+}
+*/
+
+ul li li{
+	list-style-image: url(images/dot_2.png);
+}
+
+ul li li li{
+	list-style-image: url(images/dot_3.png);
+}
+
+ul ul{
+	margin-bottom: 0;
+	margin-left: 20px;
+}
+
+.legend, .legend{
+	text-align: right;
+	padding-left: 50%;
+}
+
+.slogan{
+	border: none;
+	font-size: 15px;
+	padding-bottom: 0;
+}
+
+/***********************************************************************************************
+* Listing
+*/
+.post{
+	border-bottom: 1px solid #707172;
+	padding: 20px 0;
+}
+
+.post, .post span{
+	display: block;
+}
+
+.post .paragraph, .post p{
+	margin-bottom: 0;
+	text-align: left;
+}
+
+.post img{
+	margin-right: 15px;
+}
+
+.post_content{
+	width: 70%;
+}
+/***********************************************************************************************
+* sidebar
+*/
+
+.white{
+	height: 180px;
+}
+
+.block{
+	margin-bottom: 10px;
+	padding: 3% 3% 6% 3%;
+	position: relative;
+}
+
+#thumnail{
+	padding: 0;
+	margin: 0;
+}
+
+.block img{
+	margin-bottom: 5px;
+}
+
+#tool_ref{
+	overflow: hidden;
+}
+
+/*
+#tool{
+	height: 100%;
+	min-height: 100%;
+}
+*/
+
+#tool, #reference, #formation, #sub_menu, #tag_menu, #contact_block, #rss{
+	background-color: #eee;
+}
+
+#tool, #reference{
+	width: 43%;
+	/* min-height: 312px; */
+}
+
+#sidebar ul{
+	padding-top: 10px;
+}
+
+#tool li, #formation li, .thead{
+	margin-left: 13px;
+	list-style: disc outside;
+	line-height: 140%;
+	font-weight: 700;
+}
+
+#formation li, .thead{
+	text-transform: uppercase;
+}
+
+#reference li, #news li{
+	margin-bottom: 25px;
+}
+
+#reference h5, #news h5{
+	color: #FB7047;
+	border-bottom: 1px solid #FB7047;
+}
+
+
+#contact_block h5{
+	margin-bottom: 10px; 
+}
+
+.sol{
+	border-bottom: 1px solid #707172;
+	display: block;
+	padding-top: 16px;
+}
+
+.wp-tag-cloud li{
+	display: inline-block;
+	padding-right: 5px;
+}
+
+#rss li{
+	display: inline;
+	margin-right: 60px;
+}
+
+/************************************************************************************************************
+*
+* Footer / menu_solution
+*
+*/
+#footer{
+	background-color: #4b4b4d;
+	clear: both;
+	overflow: hidden;
+	padding: 10px 20px 10px 0;
+	line-height: 140%;
+	font-weight: 700;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+
+#menu_solution{
+	/* background-color: #F0F1F1 ;*/
+	background-color: #4B4B4D;
+	width: 100%;
+	clear: both;
+	font-weight: 700;
+	font-size: 11px;
+	font-family: 'Open Sans',sans-serif;
+	display: none;
+	position: absolute;
+	top:31px;
+	z-index: 100;
+	left: 0;
+	min-height: 349px;
+}
+
+#footer .col, #menu_solution .col{
+	width: 15%;
+	padding: 2%;
+	border-left: 1px solid #707172;
+	min-height:205px;
+}
+
+#menu_solution .col{
+	border-left: 1px solid #B1B2B4;
+	min-height: 312px;
+	width: 29%
+}
+
+#menu_solution #header_col_4{
+	width: 355px;
+}
+
+.all_link{
+	margin-bottom: 15px;
+
+}
+
+.all_link a{
+	color: #000 !important;
+	text-transform: uppercase;
+	font-size: 9px;
+}
+
+#menu_solution .more_orange{
+	position: relative;
+	right: 0;
+	bottom: 0;
+	margin-bottom: 10px;
+}
+
+#menu_solution .more_orange a{
+	color: #FB7047 !important;
+	font-weight: 400;
+}
+
+#footer .col:first-child, #menu_solution .col:first-child{
+	border: none;
+}
+
+#footer h5, #menu_solution h5{
+	font-size: 18px;
+	text-transform: none;
+	color: #DBDBDB;
+}
+
+#menu_solution h4{
+	margin-bottom: 15px;
+}
+
+#footer ul, #menu_solution ul{
+	margin-top: 15px;
+}
+
+#menu_solution li{
+	line-height: 140%;
+	font-size: 12px;
+}
+
+#footer h5, #menu_solution h5, #sidebar .sol .title_h3{
+	font-size: 11px;
+	color: #DBDBDB;
+	border-bottom: none;
+	text-transform: none;
+	font-weight: 400;
+	padding-bottom: 0;
+	font-family: 'Open Sans',sans-serif;
+}
+
+
+#menu_solution h5, #menu_solution td a{
+	color: #333;
+	text-transform: uppercase;
+	font-weight: 700;
+	padding: 5px 0;
+}
+
+#menu_solution h5, #menu_solution a:hover{
+	color: #A0A0A0;
+}
+
+#menu_solution h5{
+	font-family: 'Montserrat', sans-serif;
+}
+
+#menu_solution table td:hover{
+	background-color: #ccc;
+}
+
+#menu_solution td a{
+	color: white;
+}
+
+#menu_solution table table td a{
+	color: #707172;
+}
+
+#menu_solution table, #menu_solution table table{
+	width: 100%;
+}
+
+#menu_solution table td{
+	height: 50px;
+	vertical-align: middle;
+	text-align: center;
+	width: 33.3%;
+	border: 3px solid #F0F1F1;
+}
+
+#menu_solution table td table td{
+	border: none;
+	padding: 10px;
+}
+
+#menu_solution table table{
+	border: 1px solid #ccc;
+}
+
+#menu_solution table span{
+	border: 2px solid #999;
+	height: 20px;
+	line-height: 20px;
+	margin-bottom: 5px;
+	display: block;
+}
+
+#menu_solution td a:hover span{
+	color: #999;
+}
+
+#menu_solution .td_link td{
+	height: 10px;
+	color: #ccc;
+}
+
+#footer p, #menu_solution p{
+	font-weight: 400;
+	text-transform: none;
+	color: #A0A0A0;
+	padding: 0 3px;
+}
+
+#menu_solution p{
+	line-height: 140%;
+	margin-bottom: 10px;
+	font-size:14px;
+}
+
+#footer_col_4 .menu{
+	float: none;
+}
+
+#footer_col_4 ul, #menu_solution ul{
+	margin-top: 0;
+}
+
+#footer_col_4 a, #menu_solution a{
+	color: #DBDBDB;
+}
+
+#footer_col_4 ul ul li a, #footer_col_5 a{
+	color: #A0A0A0;
+}
+
+#footer .col a:hover{
+	color: #f2f2f2;
+}
+
+#footer img{
+	margin-bottom: 15px;
+}
+
+/***********************************************************************************************
+* HOME
+*/
+#next, #back{
+	background: url(images/arrow.jpg) no-repeat;
+	position: absolute;
+	top: 280px;
+	width: 20px;
+	height: 30px;
+	cursor: pointer;
+}
+
+#next{
+	right: 0px;
+	background-position: -20px 0;
+}
+
+#back{
+	left: 0px;
+	background-position: 0px 0;
+}
+
+#slider{
+	overflow: hidden;
+	height: 348px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#slider img{
+	height: 348px;
+	line-height: 0;
+	font-size: 0;
+	padding: 0;
+	margin: 0;
+}
+
+#slider .img{
+	float: left;
+	height: 348px;
+	position: relative;
+	display: block;
+}
+
+
+#img_wrapper{
+	width: 1000000px;
+}
+
+.home .slogan{
+	color: #707172;
+}
+
+.home .slogan a{
+	color: #FB7047;
+}
+
+.img_legend{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	padding: 10px;
+	background-color: white;
+	font-size: 11px;
+	line-height: 120%;
+}
+
+#level_1 .col{
+	width: 31%;
+}
+
+#level_1 a:hover .title_h2,
+#level_1 a:hover .title_h3,
+#level_1 a:hover .paragraph{
+	color: #707172;
+}
+
+#level_2{
+	border-bottom: 0;
+	margin-bottom: 40px;
+}
+
+#level_2 .col{
+	width: 21.5%;
+	font-size: 11px;
+	line-height: 140%;
+	position: relative;
+	min-height: 215px;
+}
+
+#level_2 h1, #level_2 h2, #level_2 .title_h3{
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+#level_2 h2 a:hover{
+	color: #707172;
+}
+
+#level_2 h2, #level_2 .title_h3{
+	text-transform: uppercase;
+}
+
+#actu{
+	width: 80%;
+}
+
+#ref{
+	width: 20%;
+}
+
+#actu .col{
+	background-color: #eee;
+	padding: 10px 10px 25px 10px;
+}
+
+#actu .col_1{
+	margin-right: 10px;
+}
+
+#actu .col_3{
+	border-left: 1px solid #B1B2B4;
+	border-right: 1px solid #B1B2B4;
+}
+
+#ref .col{
+	width: 83%;
+	padding: 10px 0 25px 0;
+}
+
+.col a:hover span{
+	color: #707172 !important;
+}
+
+#home_col_2{
+	padding: 0 3%;
+}
+
+.level .slogan{
+	border-bottom: none;
+}
+
+.home .level{
+	margin-bottom: 20px;
+	border-bottom: 1px solid #707172;
+	overflow: hidden;
+}
+
+.level span{
+	display: block;
+}
+
+.level .title_h2{
+	font-size: 23px;
+	margin-top: 0;
+	font-weight: 700;
+	line-height: 130%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.level .title_h3{
+	font-size: 11px;
+	font-family: 'Montserrat', sans-serif;
+	margin-bottom: 10px;
+}
+
+.col_header{
+	min-height: 136px;
+	border-bottom: 1px solid #707172;
+	margin-bottom: 3px;
+    padding-bottom: 15px;
+}
+
+/*
+.single-contact-acces .col_header{
+	margin-bottom: 0px;
+	border-bottom: none;
+}
+*/
+
+.col_header .slogan{
+	border: 0;
+	margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.col_footer{
+	border-top: 1px solid #bbb;
+    padding-top: 3px;
+}
+
+.col_footer a{
+	color: #bbb;
+}
+
+.col_footer a:hover{
+	color: #FB7047;
+}
+
+.col_footer li{
+	display: inline-block;
+	padding-right: 5px;
+	font-size: 11px;
+}
+
+.col_footer h3{
+	color: #bbb;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-family	'Montserrat',sans-serif;
+}
+
+/************************************************************************************************************
+*
+* Couleur
+*
+*/
+
+.blue, #footer_col_2 a, #header_col_2 a,
+ #home_col_2 .title_h2, #home_col_2 .slogan , 
+.business .container_header h2,
+.business .col_header h2, 
+#sol_2 .title_h2, #sol_2 .slogan{
+	color: #708bac;
+}
+
+.td_2{
+	background-color: #708bac;
+}
+
+.green, #footer_col_1 a, #header_col_1 a,
+#home_col_1 .title_h2, #home_col_1 .slogan, 
+.geospatial .container_header h2,
+.geospatial .col_header h2, 
+#sol_1 .title_h2, #sol_1 .slogan{
+	color: #879f83;
+}
+
+.td_1{
+	background-color: #879f83;
+}
+
+.brown, #footer_col_3 a, #header_col_3 a,
+#home_col_3 .title_h2, #home_col_3 .slogan, 
+.infrastructure .container_header h2,
+.infrastructure .col_header h2, 
+#sol_3 .title_h2, #sol_3 .slogan{
+	color: #9a8981;
+}
+
+.td_3{
+	background-color: #9a8981;
+}
+
+/************************************************************************************************************
+*
+* General Class
+*
+*/
+
+.bold, strong{
+	font-weight: 700;
+}
+
+em{
+	font-style: italic;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.clear{
+	clear: both;
+}
+
+/***********************************************************************************************
+* WP paginate
+*/
+#col_1 .navigation{
+	padding-top: 30px;
+	font-size: 13px;
+}
+
+#col_1 .navigation, #col_1 .wp-paginate{
+	min-height: 50px;
+}
+
+#col_1 .wp-paginate .current {
+    background: none repeat scroll 0 0 #4B4B4D;
+    border: none;
+    color: #FFFFFF;
+    margin-right: 4px;
+    padding: 0px 6px;
+}
+
+#col_1 .wp-paginate{
+    border: none;
+}
+
+#col_1 .wp-paginate a {
+    background: none repeat scroll 0 0 #DDDDDD;
+    border: none;
+    color: #666666;
+    margin-right: 4px;
+    padding: 0px 6px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#col_1 .wp-paginate a:hover {
+    background: none repeat scroll 0 0 #ccc;
+    border: none;
+    color: #333;
+}
+
+/***********************************************************************************************
+* Comments
+*/
+.commentlist li{
+	list-style: none !important;
+	margin-left: 0 !important
+}
+
+.comment{
+	margin-top: 20px;
+	background-color: #f2f2f2;
+	padding: 15px !important;
+}
+
+#commentform textarea, #commentform input{
+    border: 1px solid #AAAAAA;
+}
+
+#commentform textarea{
+	width: 305px;
+
+}
+
+#commentform input{
+	width: 298px;
+    color: #888888;
+    font: 0.9em Trebuchet MS,sans-serif;
+    padding: 3px;
+    vertical-align: top;
+}
+
+#commentform label {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 150%;
+    margin: 4px 10px 0 0;
+    text-align: left;
+    vertical-align: top;
+    width: 140px;
+}
+
+#commentform .form-submit input{
+    background-color: #4B4B4D;
+    border: medium none;
+    color: #DBDBDB;
+    font-size: 13px;
+    margin: 0;
+    min-width: 150px;
+    padding: 5px 1em;
+    width: auto;
+}
+
+#commentform p{
+	position: relative;
+}
+
+#commentform .required{
+	position: absolute;
+	right: 75px;
+	top: 0;
+	color: #AAAAAA;
+    font-size: 0.7em;
+    line-height: 1.2em;
+    margin: 0 5px 7px;
+    vertical-align: top;
+}
+
+#commentform .comment-notes .required{
+	position: static;
+	color: black;
+}
+
+#commentform .form-submit{
+	padding-left: 286px;
+}
+/***********************************************************************************************
+* ColorBox
+*/
+
+
+/*
+    ColorBox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of ColorBox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:#fff;}
+#colorbox{}
+    #cboxContent{margin-top:32px; overflow:visible;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{background:#000; padding:0;}
+        #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
+        #cboxLoadingOverlay{background:#000;}
+        #cboxTitle{position:absolute; top:-22px; left:0; color:#000;}
+        #cboxCurrent{position:absolute; top:-22px; right:205px; text-indent:-9999px;}
+        #cboxSlideshow, #cboxPrevious, #cboxNext, #cboxClose{text-indent:-9999px; width:20px; height:20px; position:absolute; top:-20px; background:url(images/controls.png) no-repeat 0 0;}
+        #cboxPrevious{background-position:0px 0px; right:44px;}
+        #cboxPrevious:hover{background-position:0px -25px;}
+        #cboxNext{background-position:-25px 0px; right:22px;}
+        #cboxNext:hover{background-position:-25px -25px;}
+        #cboxClose{background-position:-50px 0px; right:0;}
+        #cboxClose:hover{background-position:-50px -25px;}
+        .cboxSlideshow_on #cboxPrevious, .cboxSlideshow_off #cboxPrevious{right:66px;}
+        .cboxSlideshow_on #cboxSlideshow{background-position:-75px -25px; right:44px;}
+        .cboxSlideshow_on #cboxSlideshow:hover{background-position:-100px -25px;}
+        .cboxSlideshow_off #cboxSlideshow{background-position:-100px 0px; right:44px;}
+        .cboxSlideshow_off #cboxSlideshow:hover{background-position:-75px -25px;}
+
+/***********************************************************************************************
+* Cform
+*/
+/*                                                    */
+/*  main 'top-level' form elements                    */
+/*                                                    */
+@import "calendar.css";
+
+.cform { 
+}
+
+.cform fieldset	{ 
+	margin-top:10px; 
+	padding:5px 0 5px 0; 
+	border:none;
+}
+
+.cform .cf_hidden {
+	display:none; 
+	border:none!important;
+	background:none!important;
+	padding:0!important;
+	margin:0!important;
+}
+
+.cform legend { 
+	margin:0;
+	padding:0; 
+	font:normal 18px Helvetica; 
+	color: #aaa;
+	letter-spacing:3px;
+}
+
+ol.cf-ol { 
+	margin:0!important; 
+	padding:15px 0 0 0!important; 
+	border-top:1px solid #f2f2f2;
+}
+ol.cf-ol li	{
+	background:none!important; 
+	padding:0; 
+	list-style:none!important; 
+	text-align:left;
+	line-height:1.1em;
+	padding:5px 0!important;
+	margin:5px 0!important;
+}
+
+
+/*                                                    */
+/* just for text-only fields (no input)               */
+/*                                                    */
+
+ol.cf-ol li.textonly {
+	color:#888888;
+	font-size:1em;
+	margin:12px 0pt !important;
+	padding:0pt 0pt 0pt 100px;
+}
+
+
+/*                                                    */
+/* global definitions for field labels                */
+/*                                                    */
+
+.cform label {
+	font-size: 13px;
+	line-height: 150%;
+	width:90px; 
+	margin:4px 10px 0 0; 
+	display:-moz-inline-box; /*for mozilla*/
+	display:inline-block; /*for Opera & IE*/
+	text-align:left;
+	vertical-align:top;
+}
+.cform label span {
+	width:90px; /* must be the same as above!*/
+	display:block; 
+}
+
+label.cf-before {
+	margin:4px 10px 0 0; 
+}
+
+label.cf-after 	{
+	margin:4px 2px 0pt 6px;
+	text-align:left;
+	width:75px;
+}
+
+label.cf-after span {
+	width:75px;
+	display:block;
+}
+
+label.cf-group-after {
+	margin:4px 0 0 2px;
+	width:60px;
+	text-align:left;
+}
+label.cf-group-after span {
+	width:60px;
+	display:block;
+}
+
+/*                                                    */
+/*   FORM FIELDS general formatting                   */
+/*                                                    */
+
+.cform input,
+.cform textarea,
+.cform select { 
+	padding:3px;
+	border:1px solid #aaa; 
+	font:0.9em Trebuchet MS,sans-serif;
+	color:#888;
+	vertical-align:top;
+}
+.cform input:hover,
+.cform textarea:hover,
+.cform select:hover	{
+	border: 1px solid #4B4B4D;
+}
+
+.cform input:focus,
+.cform textarea:focus,
+.cform select:focus	{ 
+	color:#666;
+}
+
+.cform textarea,
+.cform input {
+	width:298px; 
+}
+.cform select {
+	width:306px; /* attempt to have equal length */
+}  
+
+.cform select.cfselectmulti	{ 
+	height:7.5em; 
+}
+
+.cform textarea {
+	font-family: arial;
+	font-size: 0.9em;
+	overflow:auto;
+}
+
+/*                                                    */
+/* formatting for text:  "(required)"  & other        */
+/*                                                    */
+
+span.reqtxt,
+span.emailreqtxt { 
+	margin:0px 5px 7px 5px;
+	display: inline; 
+	vertical-align:top;
+	color: #aaa;
+	font-size:0.7em;
+	line-height:1.2em;
+}
+
+
+/*                                                    */
+/*   radio button title                               */
+/*                                                    */
+
+ol.cf-ol li.cf-box-title {
+	color:#888888;
+	font-size:1em;
+	letter-spacing:2px;
+	margin:12px 0pt 0 !important;
+	padding:0pt 0pt 0pt 100px;
+}
+
+/*                                                    */
+/*   check boxes                                      */
+/*                                                    */
+
+input.cf-box-a,
+input.cf-box-b 	{ 
+	margin:1px 0 0 0; 
+	width:16px; 
+	height:22px;
+	border:none!important;
+	background:none!important;
+}
+
+input.cf-box-a 	{ 
+	margin-left:100px; /* check with label 'width' incl. */
+} 
+
+
+/*                                                    */
+/* check box groups                                   */
+/*                                                    */
+
+ol.cf-ol li.cf-box-group {
+	padding: 0 0 5px 100px; 
+} 
+
+
+/*                                                    */
+/*   FORM submit button                               */
+/*                                                    */
+
+p.cf-sb {
+	margin: 0;
+	padding:0pt 3px 0pt 0pt !important;
+	text-align:right;
+	width: 406px;
+	margin-top: 10px;
+}
+.cform input.backbutton,
+.cform input.resetbutton,
+.cform input.sendbutton	{ 
+	width:auto;  
+	min-width: 150px;
+	padding:5px 1em; 
+	margin: 0;
+	font-size: 13px;
+	background-color: #4B4B4D;
+	color: #DBDBDB;
+	border: none;
+}
+.cform input.resetbutton {
+	margin: 0 5px 0 0;
+}
+.cform input.backbutton {
+	margin: 0 5px 0 0;
+}
+
+/*                                                    */
+/*   FORM FIELDS enhanced error display               */
+/*                                                    */
+ol.cf-ol li.cf_li_err {
+	padding:5px 0!important;
+	margin:5px 0!important;
+}
+
+ol.cf-ol li ul.cf_li_text_err {
+	margin:0 0 0 10px;
+	padding:0;
+	color:#333;
+}
+
+ol.cf-ol ul.cf_li_text_err li {
+	list-style:none!important;
+	font-weight:bold;
+	text-indent:0;
+	margin:0 0 2px!important;
+	padding-left:15px;
+}
+ol.cf-ol ul.cf_li_text_err li:before {
+	content:'';
+}
+
+/*                                                    */
+/* 'visitor verification' related styles              */
+/*                                                    */
+label.secq,
+label.seccap {
+	vertical-align:text-bottom;
+	margin-bottom:4px;
+}
+
+input.secinput {
+	vertical-align:text-bottom;
+}
+
+#cforms_captcha6,
+#cforms_captcha5,
+#cforms_captcha4,
+#cforms_captcha3,
+#cforms_captcha2,
+#cforms_captcha {
+	height:15px;
+	width:100px;
+	padding: 4px 4px;
+	margin: 0;
+	vertical-align:text-bottom;
+}
+
+img.captcha	{
+	vertical-align:text-bottom;
+	margin:0 0 0 10px!important;
+	padding:0!important;
+	border:none!important;
+	float:none!important;
+}
+
+img.captcha-reset {
+	vertical-align:text-bottom;
+	background:	url(captcha_reset_white.gif) no-repeat;
+	margin:0 0 2px 3px;
+	width:21px;
+	height:21px;
+	border:none;
+}
+
+img.imgcalendar {
+	border:none;
+}
+
+/*                                                    */
+/* change formatting of response msgs here            */
+/*                                                    */
+
+div.cf_info {
+	font-size: 13px;
+	line-height: 150%;
+	display:none;
+	width:380px;
+	margin-top:10px;
+}
+div.cf_info ol {
+	margin:0;
+	padding:5px 15px 0 30px;
+}
+div.cf_info ol li {
+	padding:1px 0;
+	margin:2px 0;
+}
+div.cf_info a	{
+	color:red!important;
+	text-decoration:underline!important;
+}
+div.success {
+	display:block;
+}
+div.failure {
+	display:block;
+}
+div.waiting {
+	display:block;
+}
+/*                                                    */
+/*   formatting for invalid user inputs               */
+/*                                                    */
+.cform .cf_error { 
+	color:red; 
+	border:1px solid #FF0000; 
+}
+div.mailerr {
+	display:block;
+}
+.mailerr,
+.cform .cf_errortxt {
+	color:red; 
+}
+
+/*                                                    */
+/* change formatting of response msgs here            */
+/*                                                    */
+
+p.cf_info 		{
+	margin:10px 0;
+	text-align:center;
+}
+p.success 	{
+	color:green;
+}
+p.failure 	{
+	color:red;
+}
+
+/*                                                    */
+/* disabled fields [disabled] does not work on IE!    */
+/*                                                    */
+
+[disabled] {
+	color:#dddddd;
+	border-color:#dddddd!important;
+	background:none!important;
+}
+.disabled {
+	border-color:#dddddd!important;
+}
+
+/*                                                    */
+/* upload box styling                                 */
+/*                                                    */
+
+.cform input.cf_upload  {
+	width:220px;
+	background: #f9f9f9;
+	border:1px solid #888888;
+}
+
+/*                                                    */
+/*  Other: link love                                  */
+/*                                                    */
+.linklove {
+	margin:6px auto 10px !important;
+	padding:0pt 6px 0pt 0pt !important;
+	text-align:right;
+	width:410px;
+	display: none;
+}
+.linklove a,
+.linklove a:visited {
+	font-size: 0.8em;
+	font-family: Tahoma;
+	color:#aaaaaa!important;
+}
+
+
+/*                                                    */
+/*  Other: browser hacks                              */
+/*                                                    */
+*+html ol.cf-ol,
+*+html ol.cf-ol li	{
+	display: inline-block;  /*for ie7*/
+}
+* html ol.cf-ol,
+* html ol.cf-ol li,
+* html span.reqtxt,
+* html span.emailreqtxt { 
+	display: inline-block;
+}
+* html .cform legend { 
+	position:absolute; 
+	left: -8px; 
+	top:0;
+	margin-left:0;
+}
+*+html .cform legend { 
+	position:absolute; 
+	left: -8px;
+	top:0;
+	margin-left:0;
+}
+* html .cform fieldset {
+	position: relative;
+	margin-top:15px;
+	padding-top:25px; 
+}
+*+html .cform fieldset {
+	position: relative;
+	margin-top:15px;
+	padding-top:25px; 
+}
+* html img.captcha	{
+	margin-bottom:1px!important;
+}
+*+html img.captcha	{
+	margin-bottom:1px!important;
+}

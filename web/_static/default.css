@@ -1,0 +1,118 @@
+/*
+ * Camptocamp colors :
+ * - normal text: #444
+ * - orange: #ff680a
+ * - brown: #7d0000
+ * - gray-blue: #758398
+
+/*****************************/
+/*** Core html setup stuff ***/
+/*****************************/
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+input.button { cursor: pointer; }
+
+img { border: 0 none; }
+
+
+/*****************************************/
+/*** Joomla! specific content elements ***/
+/*****************************************/
+
+div.offline {
+	background: #fffebb;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 1.2em;
+	padding: 5px;
+}
+div.related {
+top:110px;
+position:relative;
+left:200px;
+width:800px;
+}
+
+div.related ul {
+background-image:url(navigation.png);
+/* border-bottom:1px solid #DDDDDD; */
+/* border-top:1px solid #DDDDDD; */
+height:2em;
+}
+
+div.related ul {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0;
+padding:0 0 0 10px;
+}
+
+div.related ul li.right {
+float:right;
+margin-right:5px;
+}
+
+div.related ul li {
+/* float:left; */
+height:2em;
+margin:0;
+padding:0;
+}
+
+div.related li {
+display:inline;
+}
+
+img.illustration { border: 1px solid black; }
+
+h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, h4:hover > a.headerlink, h5:hover > a.headerlink, h6:hover > a.headerlink, dt:hover > a.headerlink {
+visibility:visible;
+}
+
+a.headerlink:hover {
+background-color:#CCCCCC;
+color:white !important;
+}
+
+a.headerlink {
+visibility:hidden;
+}
+
+a.headerlink:hover {
+background-color:#CCCCCC;
+color:white !important;
+}
+
+a.headerlink {
+color:#FF680A !important;
+font-size:1em;
+margin-left:6px;
+padding:0 4px;
+text-decoration:none !important;
+}
+
+.middle {
+    min-height:800px;
+}
+
+/**
+** specific version 2 du template c2c
+**/
+
+img.align-center, .figure.align-center, object.align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.align-center {
+    clear: both;
+    text-align: center;
+}
+
