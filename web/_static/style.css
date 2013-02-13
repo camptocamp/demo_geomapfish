@@ -138,52 +138,52 @@ body{
 }
 
 #social .ln a{
-	background: url(images/ln.png) no-repeat;
+	background: url(../../../img/icons/ln.png) no-repeat;
 }
 
 #social .fb a{
-	background: url(images/fb.png) no-repeat;
+	background: url(../../../img/icons/fb.png) no-repeat;
 }
 
 #social .tw a{
-	background: url(images/tw.png) no-repeat;
+	background: url(../../../img/icons/tw.png) no-repeat;
 }
 
 #social .gh a{
-	background: url(images/gh.png) no-repeat;
+	background: url(../../../img/icons/gh.png) no-repeat;
 }
 
 #social .ss a{
-	background: url(images/ss.png) no-repeat;
+	background: url(../../../img/icons/ss.png) no-repeat;
 }
 
 #social .yt a{
-	background: url(images/yt.png) no-repeat;
+	background: url(../../../img/icons/yt.png) no-repeat;
 }
 
 /* hover */
 #social .ln a:hover{
-	background: url(images/ln_hover.png) no-repeat;
+	background: url(../../../img/icons/ln_hover.png) no-repeat;
 }
 
 #social .fb a:hover{
-	background: url(images/fb_hover.png) no-repeat;
+	background: url(../../../img/icons/fb_hover.png) no-repeat;
 }
 
 #social .tw a:hover{
-	background: url(images/tw_hover.png) no-repeat;
+	background: url(../../../img/icons/tw_hover.png) no-repeat;
 }
 
 #social .gh a:hover{
-	background: url(images/gh_hover.png) no-repeat;
+	background: url(../../../img/icons/gh_hover.png) no-repeat;
 }
 
 #social .ss a:hover{
-	background: url(images/ss_hover.png) no-repeat;
+	background: url(../../../img/icons/ss_hover.png) no-repeat;
 }
 
 #social .yt a:hover{
-	background: url(images/yt_hover.png) no-repeat;
+	background: url(../../../img/icons/yt_hover.png) no-repeat;
 }
 
 
@@ -537,7 +537,7 @@ h6{
 	list-style: disc outside;
 	margin-left: 16px;
     padding-left: 0px;
-	list-style-image: url(images/dot_1.png);
+	list-style-image: url(../../../img/icons/dot_1.png);
 }
 
 .section ol li{
@@ -562,11 +562,11 @@ h6{
 */
 
 .section ul li li{
-	list-style-image: url(images/dot_2.png);
+	list-style-image: url(../../../img/icons/dot_2.png);
 }
 
 .section ul li li li{
-	list-style-image: url(images/dot_3.png);
+	list-style-image: url(../../../img/icons/dot_3.png);
 }
 
 .section ul ul{
@@ -909,7 +909,7 @@ h6{
 * HOME
 */
 #next, #back{
-	background: url(images/arrow.jpg) no-repeat;
+	background: url(../../../img/icons/arrow.jpg) no-repeat;
 	position: absolute;
 	top: 280px;
 	width: 20px;
@@ -1334,11 +1334,11 @@ em{
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{background:#000; padding:0;}
-        #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(../../../img/icons/loading.gif) no-repeat center center;}
         #cboxLoadingOverlay{background:#000;}
         #cboxTitle{position:absolute; top:-22px; left:0; color:#000;}
         #cboxCurrent{position:absolute; top:-22px; right:205px; text-indent:-9999px;}
-        #cboxSlideshow, #cboxPrevious, #cboxNext, #cboxClose{text-indent:-9999px; width:20px; height:20px; position:absolute; top:-20px; background:url(images/controls.png) no-repeat 0 0;}
+        #cboxSlideshow, #cboxPrevious, #cboxNext, #cboxClose{text-indent:-9999px; width:20px; height:20px; position:absolute; top:-20px; background:url(../../../img/icons/controls.png) no-repeat 0 0;}
         #cboxPrevious{background-position:0px 0px; right:44px;}
         #cboxPrevious:hover{background-position:0px -25px;}
         #cboxNext{background-position:-25px 0px; right:22px;}

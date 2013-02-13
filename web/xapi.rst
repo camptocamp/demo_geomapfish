@@ -11,6 +11,13 @@
     .content .legend, .legend {
         text-align: left !important;
     }
+    h1, h2 {
+      font-size: 130% !important;
+    }
+    h1 {
+      font-size: 40px !important;
+      margin-top: 30px !important;
+    }
           </style>
     
     <script src="../../../xapi.js"></script>

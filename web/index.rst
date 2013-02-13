@@ -3,9 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. raw:: html
+   
+   <script src="_static/js/jquery.min.js"></script>
+   <script src="_static/js/jquery.easing.1.3.js"></script>
+   <script src="_static/js/slides.min.jquery.js"></script>
+   <link  media="screen" type="text/css" rel="stylesheet" href="_static/css/slides.css">
+
 =========================================
 Site de démonstration de c2cGeoportal
 =========================================
+
+.. raw:: html
+   :file: slides.html
+
+.. raw:: html
+   
+   <script src="_static/js/slides.js"></script>
 
 Bienvenu sur le site de démonstration du c2cGeoportal développé par Camptocamp. Ce projet 
 a pour objectif de permettre l'installation et la configuration d'applications 
