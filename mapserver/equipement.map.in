@@ -20,6 +20,7 @@ LAYER
       "init=epsg:900913"
     END
     TOLERANCE 10 
+    LABELITEM "nom_aire"
     CLASS
         NAME "Aire de jeux"
         STYLE
@@ -28,6 +29,16 @@ LAYER
           WIDTH 1
           OUTLINECOLOR 30 0 0
           COLOR 230 0 0
+        END
+        LABEL
+          COLOR  150 0 0
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION lc
+          PARTIALS FALSE
+          MAXSCALEDENOM 15000
         END
     END
 
@@ -120,8 +131,10 @@ LAYER
       "init=epsg:900913"
     END
     MAXSCALEDENOM 3600
+    CLASSITEM "type"
     CLASS
-        NAME "Eclairage"
+        NAME "Candelabre"
+        EXPRESSION "Candélabre"
         STYLE
           SYMBOL "circle"
           SIZE 8
@@ -130,9 +143,80 @@ LAYER
           COLOR 255 255 192
         END
     END
+    CLASS
+        NAME "Poteaux en bois ou béton"
+        EXPRESSION /^Poteau.*$/
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 88 88 88
+          COLOR 155 155 155
+        END
+   END
+   CLASS
+        NAME "Lanterne façade"
+        EXPRESSION "Lanterne façade"
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 88 16 88
+          COLOR 255 192 255 
+        END
+    END
+    CLASS
+        NAME "Mât d'ambiance ou d'éclairage"
+        EXPRESSION /^Mât.*$/
+        STYLE
+          SYMBOL "circle"
+          SIZE 7
+          WIDTH 2
+          OUTLINECOLOR 88 88 16
+          COLOR 255 255 192
+        END
+   END
+   CLASS
+        NAME "Borne"
+        EXPRESSION "Borne colonne" 
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 16 88 88
+          COLOR 192 255 255
+        END
+   END
+   CLASS
+        NAME "Encastré sol ou mur"
+        EXPRESSION /^Encastré.*$/ 
+        STYLE
+           SYMBOL "cross"
+           SIZE 12
+           WIDTH 2
+           COLOR 0 0 0
+       END
+       STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 88 88 16
+          COLOR 255 255 192
+        END
+   END
+   CLASS
+        NAME "Autre"
+        STYLE
+          SYMBOL "circle"
+          SIZE 8
+          WIDTH 1
+          OUTLINECOLOR 100 100 100
+          COLOR 200 200 200
+        END
+   END
 
     METADATA
-        "wms_title" "eclairage" # For WMS
+        "wms_title" "Eclairage" # For WMS
         "wms_srs" "epsg:900913" # For WMS
 
         "gml_include_items" "materiau,type"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)

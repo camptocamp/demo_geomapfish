@@ -9,7 +9,7 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.bureaux_vote AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'bureaux_vote') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, nom_bureau, gid FROM geodata.bureaux_vote AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'bureaux_vote') AS foo USING UNIQUE gid USING srid=900913"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
@@ -21,13 +21,14 @@ LAYER
       "init=epsg:900913"
     END
     #MAXSCALEDENOM 3500
-    TOLERANCE 10 
+    TOLERANCE 10
+    OPACITY 50 
     CLASS
         NAME "Bureaux de vote"
         STYLE
-          WIDTH 0.5
-          OUTLINECOLOR 192 255 192
-          COLOR -1 -1 -1
+          WIDTH 1
+          OUTLINECOLOR 255 255 192
+          COLOR 92 155 92
         END
     END
 
@@ -35,7 +36,7 @@ LAYER
         "wms_title" "Bureaux de vote" # For WMS
         "wms_srs" "epsg:900913" # For WMS
 
-        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "gml_include_items" "nom_bureau"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
         "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
 
@@ -58,7 +59,7 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.sous_quartiers AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sous_quartiers') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sous_quartiers') AS foo USING UNIQUE gid USING srid=900913"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
@@ -70,16 +71,143 @@ LAYER
       "init=epsg:900913"
     END
     #MAXSCALEDENOM 3500
-    TOLERANCE 10 
+    TOLERANCE 10
+    OPACITY 50
+    LABELITEM "libsquart"
+    CLASSITEM "libquart"
     CLASS
-        NAME "Sous-quartiers"
+        NAME "Montpellier centre"
+        EXPRESSION "MONTPELLIER CENTRE"
         STYLE
           WIDTH 0.7
-          OUTLINECOLOR 0 192 0
-          COLOR -1 -1 -1
+          OUTLINECOLOR 100 20 20
+          COLOR 200 100 100
+        END
+        LABEL
+          COLOR  150 0 0
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 35000
         END
     END
-
+   CLASS
+        NAME "Près d'arènes"
+        EXPRESSION "PRES D ARENES"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 20 100 20
+          COLOR 100 200 100
+        END
+        LABEL
+          COLOR  0 150 0
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 35000
+        END
+    END
+    CLASS
+        NAME "Millenaire"
+        EXPRESSION "MILLENAIRE"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 20 20 100
+          COLOR 100 100 200
+        END
+        LABEL
+          COLOR  0 0 150
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 35000
+        END
+    END
+    CLASS
+        NAME "Les Cévennes"
+        EXPRESSION "LES CEVENNES"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 100 100 20
+          COLOR 200 200 100
+        END
+        LABEL
+          COLOR  150 150 0
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 35000
+        END
+    END
+    CLASS
+        NAME "La Paillade"
+        EXPRESSION "LA PAILLADE"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 100 20 100
+          COLOR 200 100 200
+        END
+        LABEL
+          COLOR  150 0 150
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 35000
+        END
+    END
+    CLASS
+        NAME "Hôpitaux-Facultés "
+        EXPRESSION "HOPITAUX-FACULTES"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 20 100 100
+          COLOR 100 200 200
+        END
+        LABEL
+          COLOR  0 150 150
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 35000
+        END
+    END
+    CLASS
+        NAME "Croix d'argent"
+        EXPRESSION "CROIX D ARGENT"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 20 20 100
+          COLOR 60 60 200
+        END
+        LABEL
+          COLOR  50 50 150 
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 35000
+        END
+    END
     METADATA
         "wms_title" "Sous-quartiers" # For WMS
         "wms_srs" "epsg:900913" # For WMS
@@ -112,20 +240,148 @@ LAYER
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
     # Example data for public layer
-    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.quartiers AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, libquart, gid FROM geodata.quartiers AS geo) AS foo USING UNIQUE gid USING srid=900913"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
       "init=epsg:900913"
     END
     #MAXSCALEDENOM 3500
-    TOLERANCE 10 
+    TOLERANCE 10
+    OPACITY 50
+    LABELITEM "libquart"
+    CLASSITEM "libquart"
     CLASS
-        NAME "Quartiers"
+        NAME "Montpellier centre"
+        EXPRESSION "MONTPELLIER CENTRE"
         STYLE
-          WIDTH 0.9
-          OUTLINECOLOR 0 128 0
-          COLOR -1 -1 -1
+          WIDTH 0.7
+          OUTLINECOLOR 100 20 20
+          COLOR 200 100 100
+        END
+        LABEL
+          COLOR  150 0 0
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 75000
+        END
+    END
+   CLASS
+        NAME "Près d'arènes"
+        EXPRESSION "PRES D'ARENE"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 20 100 20
+          COLOR 100 200 100
+        END
+        LABEL
+          COLOR  0 150 0
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 75000
+        END
+    END
+    CLASS
+        NAME "Port Marianne"
+        EXPRESSION "PORT MARIANNE"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 20 20 100
+          COLOR 100 100 200
+        END
+        LABEL
+          COLOR  0 0 150
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 75000
+        END
+    END
+    CLASS
+        NAME "Les Cévennes"
+        EXPRESSION "LES CEVENNES"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 100 100 20
+          COLOR 200 200 100
+        END
+        LABEL
+          COLOR  150 150 0
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 75000
+        END
+    END
+    CLASS
+        NAME "Mosson"
+        EXPRESSION "MOSSON"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 100 20 100
+          COLOR 200 100 200
+        END
+        LABEL
+          COLOR  150 0 150
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 75000
+        END
+    END
+    CLASS
+        NAME "Hôpitaux-Facultés "
+        EXPRESSION "HOPITAUX-FACULTES"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 20 100 100
+          COLOR 100 200 200
+        END
+        LABEL
+          COLOR  0 150 150
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 75000
+        END
+    END
+    CLASS
+        NAME "Croix d'argent"
+        EXPRESSION "CROIX D'ARGENT"
+        STYLE
+          WIDTH 0.7
+          OUTLINECOLOR 20 20 100
+          COLOR 60 60 200
+        END
+        LABEL
+          COLOR  50 50 150 
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 75000
         END
     END
 
@@ -156,7 +412,7 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.circonscription AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'circonscription') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, circonscri, gid FROM geodata.circonscription AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'circonscription') AS foo USING UNIQUE gid USING srid=900913"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
@@ -169,13 +425,26 @@ LAYER
     END
     #MAXSCALEDENOM 3500
     TOLERANCE 10 
+    LABELITEM "circonscri"
+    OPACITY 50
     CLASS
         NAME "Circonscription"
         STYLE
           WIDTH 0.9
           OUTLINECOLOR 192 0 0
-          COLOR -1 -1 -1
+          COLOR 250 200 200
         END
+        LABEL
+          COLOR  150 0 0
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION auto
+          PARTIALS FALSE
+          MAXSCALEDENOM 35000
+        END
+
     END
 
     METADATA

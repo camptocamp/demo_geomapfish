@@ -1,13 +1,12 @@
 SYMBOLSET
-
   SYMBOL
-    NAME "circle"
-    TYPE ellipse 
-    POINTS
-      1 1
-    END # end of POINTS
-    FILLED true
-    #ANCHORPOINT 0.5 0.5
+     NAME "circle"
+     TYPE ellipse 
+     POINTS
+       1 1
+     END # end of POINTS
+     FILLED true
+     #ANCHORPOINT 0.5 0.5
   END
   #SYMBOL
   #  NAME "recyclage"
@@ -15,12 +14,40 @@ SYMBOLSET
   #  IMAGE "symbols/Green_dot_logo.svg"
   #END
   SYMBOL
-    NAME "recyclage-png"
-    TYPE PIXMAP
-    IMAGE "symbols/Green_dot_logo.png"
- END
- SYMBOL
-   NAME "hatch"
-   TYPE hatch
- END
+     NAME "recyclage-png"
+     TYPE PIXMAP
+     IMAGE "symbols/Green_dot_logo.png"
+  END
+  SYMBOL
+     NAME "hatch"
+     TYPE hatch
+  END
+  
+  SYMBOL
+     NAME "cross"
+     TYPE vector
+     POINTS
+        2.0 0.0
+        2.0 4.0
+        -99 -99
+        0.0 2.0
+        4.0 2.0
+     END
+  END
+  SYMBOL
+    NAME "arrow-start"
+    TYPE vector
+    FILLED true
+    POINTS
+      0 0.4
+      3 0.4
+      3 0
+      5 0.8
+      3 1.6
+      3 1.2
+      0 1.2
+      0 0.4
+    END # POINTS
+    #ANCHORPOINT 0 0.5
+  END # SYMBOL
 END
