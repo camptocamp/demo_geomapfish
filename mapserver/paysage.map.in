@@ -116,6 +116,7 @@ LAYER
       "init=epsg:900913"
     END
     TOLERANCE 10
+#    LABELITEM gid
     CLASS
         NAME "Pistes cyclables"
         STYLE
@@ -125,6 +126,15 @@ LAYER
           OUTLINECOLOR 0 0 64
           COLOR 0 0 220
         END
+#        LABEL
+#          COLOr 150 0 0
+#          FONT "arial"
+#          TYPE truetype
+#          SIZE 6
+#          ANGLE auto
+#          POSITION lc
+#          #OFFSET 5 5
+#        END
     END
 
     METADATA
