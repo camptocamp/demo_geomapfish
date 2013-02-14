@@ -107,8 +107,96 @@ MAP
    #     MINSCALEDENOM 25000
    # END
 
+  LAYER 
+    NAME 'MTP_rue'
+    GROUP 'plan'
+    TYPE LINE
+    STATUS ON
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT geo.geom as geom, len, gid, lib_off FROM geodata.mtp_rue_simple AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    PROJECTION
+      "init=epsg:900913"
+    END
+    LABELITEM "lib_off"
+    LABELMAXSCALEDENOM 7000
+    CLASS
+       EXPRESSION ([len] > 100)
+       STYLE
+       END
+       LABEL
+         COLOR  50 50 50
+         OUTLINECOLOR 255 255 255
+         FONT "arial"
+         TYPE truetype
+         SIZE 7
+         ANGLE follow
+         POSITION AUTO
+         PARTIALS FALSE
+         PRIORITY 10
+         MINDISTANCE 20
+         MINFEATURESIZE 20
+         REPEATDISTANCE 200
+       END
+    END
+    METADATA
+      "wms_title" "Rue de Montpellier"
+      "wms_abstract" "Rue de Montpellier."
+      "wms_group_title" "plan"
+      "wms_srs" "epsg:900913"
+      "gml_include_items" "lib_off"
+    END
+  END
+
   LAYER
-    NAME 'MTP_adresse'
+    NAME 'MTP_rue2'
+    GROUP 'plan'
+    TYPE LINE
+    STATUS ON
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT geo.geom as geom, len, gid, lib_off FROM geodata.mtp_rue_simple AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    PROJECTION
+      "init=epsg:900913"
+    END
+    LABELITEM "lib_off"
+    LABELMAXSCALEDENOM 3000
+    CLASS
+       EXPRESSION ([len] < 101)
+       STYLE
+       END
+       LABEL
+         COLOR  50 50 50
+         OUTLINECOLOR 255 255 255
+         FONT "arial"
+         TYPE truetype
+         SIZE 7
+         ANGLE follow
+         MINDISTANCE 20
+         MINFEATURESIZE 20
+         REPEATDISTANCE 200
+         POSITION AUTO
+         PARTIALS FALSE
+         PRIORITY 10
+       END
+    END
+    METADATA
+      "wms_title" "Rue de Montpellier"
+      "wms_abstract" "Rue de Montpellier."
+      "wms_group_title" "plan"
+      "wms_srs" "epsg:900913"
+      "gml_include_items" "lib_off"
+    END
+  END
+
+  LAYER
+   NAME 'MTP_adresse'
    GROUP 'plan'
    TYPE POINT
    STATUS ON
@@ -122,7 +210,7 @@ MAP
       "init=epsg:900913"
     END
     LABELITEM "num_voi"
-    LABELMAXSCALEDENOM 5000
+    LABELMAXSCALEDENOM 2000
     CLASS
        STYLE
        END
@@ -161,6 +249,7 @@ MAP
     PROJECTION
       "init=epsg:900913"
     END
+    MAXSCALEDENOM 14999
     CLASSITEM "class"
     CLASS   
         EXPRESSION "VOIE"
@@ -222,6 +311,105 @@ MAP
     END
   END 
   
+LAYER
+    NAME 'mtp_sous_quartiers_label'
+    GROUP plan
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    #DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sous_quartiers') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    PROJECTION
+      "init=epsg:900913"
+    END
+    LABELITEM "libsquart"
+    MAXSCALEDENOM 39999
+    MINSCALEDENOM 15000
+    CLASS
+        STYLE
+          COLOR 200 200 200
+          OUTLINECOLOR 0 0 0
+        END
+        LABEL
+          COLOR  50 50 50
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION cc
+          PARTIALS FALSE
+          MAXSCALEDENOM 39999
+          MINSCALEDENOM 15000
+        END
+    END
+    METADATA
+        "wms_title" "Sous-quartiers" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Sous-quartiers" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+    END
+END
+
+LAYER
+    NAME 'mtp_quartiers_label'
+    GROUP plan
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    EXTENT 420107 5398192 442381 5412352
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+
+    DATA "geom FROM (SELECT geo.geom as geom, libquart, gid FROM geodata.quartiers AS geo) AS foo USING UNIQUE gid USING srid=900913"
+
+    PROJECTION
+      "init=epsg:900913"
+    END
+    LABELITEM "libquart"
+    MAXSCALEDENOM 150000
+    MINSCALEDENOM 40000
+    CLASS
+        STYLE
+           COLOR 150 150 150
+           OUTLINECOLOR 0 0 0
+        END
+        LABEL
+          COLOR  50 50 50
+          OUTLINECOLOR 255 255 255
+          FONT "arial"
+          TYPE truetype
+          SIZE 8
+          POSITION cc
+          PARTIALS FALSE
+          MAXSCALEDENOM 150000
+          MINSCALEDENOM 40000
+        END
+    END
+    METADATA
+        "wms_title" "Quartiers" # For WMS
+        "wms_srs" "epsg:900913" # For WMS
+
+        "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Quartiers" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+    END
+END
 
   LAYER
        NAME 'ortho_montpellier'
@@ -244,10 +432,9 @@ MAP
   LAYER
        NAME "ortho_world"  
        GROUP "ortho"
-       DEBUG 5
+       #DEBUG 5
        STATUS ON
        TYPE RASTER
-       #DATA /var/sig/demo/c2cgeoportal/Ortho/mapbox.xml 
        DATA /var/sig/demo/c2cgeoportal/Ortho/mapbox_900913.xml 
        PROCESSING "OVERSAMPLE_RATIO=1"
        PROCESSING "RESAMPLE=BILINEAR"
@@ -262,5 +449,23 @@ MAP
 
   END
 
-
+# LAYER
+#       NAME "ortho_world_bluemarble"
+#       GROUP "ortho"
+#       #DEBUG 5
+#       STATUS ON
+#       TYPE RASTER
+#       DATA /var/sig/demo/c2cgeoportal/Ortho/world.topo.bathy.200407.3x21600x21600.D2.tiff
+#       PROCESSING "OVERSAMPLE_RATIO=1"
+#       PROCESSING "RESAMPLE=BILINEAR"
+#       PROJECTION
+#          "init=epsg:900913"
+#       END
+#       METADATA
+#         "wms_title" "Ortho Blue Marble Next Generation NASA" # For WMS
+#         "wms_group_title" "ortho"
+#         "wms_srs" "epsg:900913" # For WMS
+#       END
+#
+#  END
 END
