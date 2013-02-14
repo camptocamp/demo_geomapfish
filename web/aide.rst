@@ -43,6 +43,11 @@ Gestion d'une couche
 * Consultation de la métadonnée |pageWorld| : la métadonnée permet de consulter la définition de la couche ainsi que la légende complexe. Elle n'est pas forcément définie pour toutes les couches. Un lien vers une description plus complète est propsé (si existant).
 * Affichage de la légende |legend| : si la couche est représentée de manière thématique, alors ce bouton permet de consulter la légende. En cliquant de nouveau dessus, cela aura pour effet de fermer la légende.
 
+.. image:: _static/aide/c2cgp_layer_toolbar.png
+   :class: ombrage center
+   :alt: Gérer la couche
+   :align: center
+
 .. |legend| image:: _static/icones/legend.png
    :alt: Ajustement de l'échelle
 
@@ -153,6 +158,11 @@ courbe pour voir la position d'un point du graphique sur la carte. Dans la
 fenêtre du profil, le bouton "Exporter CSV" permet d'exporter les valeurs XY 
 du profil dans un fichier texte CSV (comma separated values).
 
+.. image:: _static/aide/c2cgp_tool_profil.png
+   :class: ombrage
+   :alt: Outils de profils
+   :align: center
+
 .. |profil| image:: _static/icones/chart_line.png
    :alt: Profil altimétrique
 
@@ -165,6 +175,11 @@ faire). L'activation de ce module aura pour effet d'inclure une ligne rouge sur
 la carte. Le point rouge illustre le point qui est regardé, alors que l'oeil 
 montre depuis où le point est regardé. Vous pouvez bouger le point et naviguez 
 autour de ce dernier en bougeant l'oeil.
+
+.. image:: _static/aide/c2cgp_tools_googleEarth.png
+   :class: ombrage
+   :alt: Outils Google Earth
+   :align: center
 
 .. |googleEarth| image:: _static/icones/google_earth.png
    :alt: 3D Google Earth
@@ -180,6 +195,11 @@ blanche au centre paraîtra dans le carte. Les flèches noires vous indiquent le
 sens de navigation possible. En cliquant dessus vous pouvez vous déplacer. La 
 flèche blanche vous indique dans quelle direction est orientée l'image dans Google 
 Streetview.
+
+.. image:: _static/aide/c2cgp_tools_googleStreetView.png
+   :class: ombrage
+   :alt: Outils Google Earth
+   :align: center
 
 .. |streetView| image:: _static/icones/streetview.png
    :alt: Google Streetview
@@ -209,6 +229,8 @@ carte telle qu'elle est affichée dans votre navigateur (avec les même couches,
 le même niveau de zoom et au même endroit). Vous pouvez copier-coller ce lien 
 dans un mail pour transmettre votre carte.
 
+Voici un `exemple de lien <http://yjacolin.int.lsn.camptocamp.com/yjn_demo/wsgi/theme/Administration?map_x=430866.16317473&map_y=5405525.5559428&map_zoom=18&tree_group_layers_Patrimoine%20Historique=sitesclasses%2Cfontaines%2Cmonuments&tree_group_layers_Paysage=espaces_verts&tree_groups=Patrimoine%20Historique%2CPaysage&baselayer_opacity=100&baselayer_ref=OSM_MapQuest>`_
+
 .. |permalink| image:: _static/icones/permalink.png
    :alt: Lien
 
@@ -224,6 +246,12 @@ l'échelle et l'orientation de l'impression. À noter que vous pouvez aussi
 modifier l'échelle directement en modifiant le cadre jaune dans la carte. 
 Ce cadre peut aussi être déplacé en maintenant le bouton de votre souris 
 enfoncé et en déplaçant celle-ci.
+
+.. image:: _static/aide/c2cgp_tools_print.png
+   :class: ombrage
+   :alt: Édition d'une couche
+   :align: center
+
 
 .. |printer| image:: _static/icones/printer.png
    :alt: Impression
@@ -297,6 +325,11 @@ pris en compte lors de l'impression.
 Le lien d'édition ouvre la page d'édition. Celle-ci est accessible par tout le 
 monde mais seule les personnes authentifiées pourront éditer les couches que 
 l'administrateur des données aura définie comme éditable.
+
+.. image:: _static/aide/c2cgp_app_edit.png
+   :class: ombrage 
+   :alt: Édition d'une couche
+   :align: center
 
 Administration
 *****************
