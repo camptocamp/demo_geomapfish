@@ -336,7 +336,7 @@ Ext.onReady(function() {
         }, 
         {
             ptype: "cgxp_help",
-            url: "${request.static_url('demo:static/html/aide.html')}",
+            url: "${request.static_url('demo:static/_build/html/aide.html')}",
             actionTarget: "center.tbar"
         }, {
             ptype: "cgxp_scalechooser",
