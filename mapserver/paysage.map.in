@@ -8,16 +8,16 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid, nom_latin, nom_usuel, nom_commun, libarchite, librevetem FROM geodata.arbres_align AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'arbres_align') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, nom_latin, nom_usuel, nom_commun, libarchite, librevetem FROM geodata.arbres_align AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'arbres_align') AS foo USING UNIQUE gid USING srid=3857"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
     # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     MAXSCALEDENOM 3500
     TOLERANCE 10 
@@ -57,7 +57,7 @@ LAYER
 
     METADATA
         "wms_title" "Alignement des arbres" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" "nom_latin,nom_commun,libarchite,librevetem"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
@@ -81,16 +81,16 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid, nom_latin, nom_usuel, age, descriptio FROM geodata.arbres_remarq AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'arbres_remarq') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, nom_latin, nom_usuel, age, descriptio FROM geodata.arbres_remarq AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'arbres_remarq') AS foo USING UNIQUE gid USING srid=3857"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
     # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     TOLERANCE 10
     LABELITEM "nom_latin"
@@ -117,7 +117,7 @@ LAYER
 
     METADATA
         "wms_title" "Arbres remarquables" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" "nom_latin,nom_usuel,age,descriptio"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
@@ -142,12 +142,12 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, nom, gid FROM geodata.pistescyclables AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'pistescyclables') AS foo USING UNIQUE gid USING srid=900913"
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.pistescyclables AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, nom, gid FROM geodata.pistescyclables AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'pistescyclables') AS foo USING UNIQUE gid USING srid=3857"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.pistescyclables AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     TOLERANCE 10
     CLASSITEM "nom"
@@ -205,7 +205,7 @@ LAYER
     END
     METADATA
         "wms_title" "Mobilités douces : pistes cyclables" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         #"gml_exclude_items" "all"
         #"gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
@@ -231,12 +231,12 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.espaces_verts AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'espaces_verts') AS foo USING UNIQUE gid USING srid=900913"
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.pistescyclables AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.espaces_verts AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'espaces_verts') AS foo USING UNIQUE gid USING srid=3857"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.pistescyclables AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     TOLERANCE 10
     CLASS
@@ -252,7 +252,7 @@ LAYER
 
     METADATA
         "wms_title" "Parc et jardin" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         #"gml_exclude_items" "all"
         #"gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)

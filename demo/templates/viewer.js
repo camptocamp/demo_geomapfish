@@ -58,7 +58,7 @@ Ext.onReady(function() {
         },
         matrixSet: 'c2cgp',
         //maxExtent: new OpenLayers.Bounds(420000, 30000, 900000, 350000),
-        projection: new OpenLayers.Projection("EPSG:900913"),
+        projection: new OpenLayers.Projection("EPSG:3857"),
         units: "m",
         formatSuffix: 'png',
         //serverResolutions: [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05],
@@ -146,7 +146,7 @@ Ext.onReady(function() {
             // don't work with actual version of mapserver, the proxy will limit to 200
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
-            srsName: 'EPSG:900913',
+            srsName: 'EPSG:3857',
             featureTypes: ["MTP_adresse", "monuments", "arbres_remarq"],
         }, 
     % endif
@@ -365,12 +365,12 @@ Ext.onReady(function() {
         map: {
             id: "app-map", // id needed to reference map in portalConfig above
             xtype: 'cgxp_mappanel',
-            projection: "EPSG:900913",
+            projection: "EPSG:3857",
             extent: INITIAL_EXTENT,
             maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
             //restrictedExtent: RESTRICTED_EXTENT,
             stateId: "map",
-            projection: new OpenLayers.Projection("EPSG:900913"),
+            projection: new OpenLayers.Projection("EPSG:3857"),
             units: "m",
             //maxResolution: 156543.0339,
             //resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],

@@ -45,7 +45,7 @@ OpenLayers.Lang.setCode("${lang}");
 // define the map and layers
 App.map = new OpenLayers.Map({
     theme: null,
-    projection: 'EPSG:900913',
+    projection: 'EPSG:3857',
     extent: [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606],
     controls: [
         new OpenLayers.Control.TouchNavigation({

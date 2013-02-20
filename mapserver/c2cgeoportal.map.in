@@ -37,8 +37,8 @@ MAP
     FONTSET "fonts.conf"
     SYMBOLSET "symbols.sym"
 
-    CONFIG "MS_ERRORFILE" "ms_error.log"
-    DEBUG 5
+    #CONFIG "MS_ERRORFILE" "ms_error.log"
+    #DEBUG 5
 
     OUTPUTFORMAT
         NAME jpeg
@@ -62,7 +62,7 @@ MAP
     END
 
     PROJECTION
-        "init=epsg:900913"
+        "init=epsg:3857"
     END
 
     WEB
@@ -70,7 +70,7 @@ MAP
             "wms_title" "Flux de démo du c2cgeoportal"
             "wms_abstract" "Des exemples de couches à partir de données OpenData de différentes villes françaises et suisse."
             "wms_onlineresource" "http://${vars:host}/${vars:instanceid}/wsgi/mapserv_proxy"
-            "wms_srs" "epsg:900913"
+            "wms_srs" "epsg:3857"
             "wms_encoding" "UTF-8"
             "wms_enable_request" "*"
             "wfs_enable_request" "*"
@@ -87,12 +87,11 @@ MAP
         END
     END
 
-
+    INCLUDE "administration.map"
     INCLUDE "equipement.map"
     INCLUDE "paysage.map"
     INCLUDE "environnement.map"
     INCLUDE "patrimoine.map"
-    INCLUDE "administration.map"
 
 
     # raster layer (with a tile index)
@@ -116,10 +115,10 @@ MAP
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT geo.geom as geom, len, gid, lib_off FROM geodata.mtp_rue_simple AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, len, gid, lib_off FROM geodata.mtp_rue_simple AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     LABELITEM "lib_off"
     LABELMAXSCALEDENOM 7000
@@ -146,7 +145,7 @@ MAP
       "wms_title" "Rue de Montpellier"
       "wms_abstract" "Rue de Montpellier."
       "wms_group_title" "plan"
-      "wms_srs" "epsg:900913"
+      "wms_srs" "epsg:3857"
       "gml_include_items" "lib_off"
     END
   END
@@ -163,7 +162,7 @@ MAP
     DATA "geom FROM (SELECT geo.geom as geom, len, gid, lib_off FROM geodata.mtp_rue_simple AS geo) AS foo USING UNIQUE gid USING srid=900913"
 
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     LABELITEM "lib_off"
     LABELMAXSCALEDENOM 3000
@@ -190,7 +189,7 @@ MAP
       "wms_title" "Rue de Montpellier"
       "wms_abstract" "Rue de Montpellier."
       "wms_group_title" "plan"
-      "wms_srs" "epsg:900913"
+      "wms_srs" "epsg:3857"
       "gml_include_items" "lib_off"
     END
   END
@@ -207,7 +206,7 @@ MAP
     DATA "geom FROM (SELECT geo.geom as geom, gid, num_voi FROM geodata.adresse AS geo) AS foo USING UNIQUE gid USING srid=900913"
 
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     LABELITEM "num_voi"
     LABELMAXSCALEDENOM 2000
@@ -228,7 +227,7 @@ MAP
       "wms_title" "Numéro adresse"
       "wms_abstract" "Numéro d'adresse de Montpellier."
       "wms_group_title" "plan"
-      "wms_srs" "epsg:900913"
+      "wms_srs" "epsg:3857"
       "gml_include_items" "num_voi"
     END
   END
@@ -247,7 +246,7 @@ MAP
     DATA "geom FROM (SELECT geo.geom as geom, gid, class FROM geodata.planville AS geo) AS foo USING UNIQUE gid USING srid=900913"
     
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     MAXSCALEDENOM 14999
     CLASSITEM "class"
@@ -302,7 +301,7 @@ MAP
     
     METADATA
         "wms_title" "Fond de plan Montpellier" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
         
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Planville" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
@@ -324,7 +323,7 @@ LAYER
     #DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sous_quartiers') AS foo USING UNIQUE gid USING srid=900913"
     DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo) AS foo USING UNIQUE gid USING srid=900913"
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     LABELITEM "libsquart"
     MAXSCALEDENOM 39999
@@ -348,7 +347,7 @@ LAYER
     END
     METADATA
         "wms_title" "Sous-quartiers" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
@@ -374,7 +373,7 @@ LAYER
     DATA "geom FROM (SELECT geo.geom as geom, libquart, gid FROM geodata.quartiers AS geo) AS foo USING UNIQUE gid USING srid=900913"
 
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     LABELITEM "libquart"
     MAXSCALEDENOM 150000
@@ -398,7 +397,7 @@ LAYER
     END
     METADATA
         "wms_title" "Quartiers" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
@@ -410,6 +409,13 @@ LAYER
 
     END
 END
+
+#  LAYER
+#    NAME "communes"
+#    GROUP "plan"
+#    STATUS ON
+#    DATA
+#  END
 
   LAYER
        NAME 'ortho_montpellier'
@@ -425,47 +431,48 @@ END
        METADATA
          "wms_title" "Ortho montpellier" # For WMS
          "wms_group_title" "ortho"
-         "wms_srs" "epsg:900913" # For WMS
+         "wms_srs" "epsg:3857" # For WMS
        END
   END
 
-  LAYER
-       NAME "ortho_world"  
-       GROUP "ortho"
-       #DEBUG 5
-       STATUS ON
-       TYPE RASTER
-       DATA /var/sig/demo/c2cgeoportal/Ortho/mapbox_900913.xml 
-       PROCESSING "OVERSAMPLE_RATIO=1"
-       PROCESSING "RESAMPLE=BILINEAR"
-       PROJECTION
-          "init=epsg:900913"
-       END
-       METADATA
-         "wms_title" "Ortho mondial mapbox" # For WMS
-         "wms_group_title" "ortho"
-         "wms_srs" "epsg:900913" # For WMS
-       END
-
-  END
-
-# LAYER
-#       NAME "ortho_world_bluemarble"
+#  LAYER
+#       NAME "ortho_world"  
 #       GROUP "ortho"
 #       #DEBUG 5
 #       STATUS ON
 #       TYPE RASTER
-#       DATA /var/sig/demo/c2cgeoportal/Ortho/world.topo.bathy.200407.3x21600x21600.D2.tiff
+#       DATA /var/sig/demo/c2cgeoportal/Ortho/mapbox_900913.xml 
 #       PROCESSING "OVERSAMPLE_RATIO=1"
 #       PROCESSING "RESAMPLE=BILINEAR"
 #       PROJECTION
-#          "init=epsg:900913"
+#          "init=epsg:3857"
 #       END
 #       METADATA
-#         "wms_title" "Ortho Blue Marble Next Generation NASA" # For WMS
+#         "wms_title" "Ortho mondial mapbox" # For WMS
 #         "wms_group_title" "ortho"
-#         "wms_srs" "epsg:900913" # For WMS
+#         "wms_srs" "epsg:3857" # For WMS
 #       END
 #
 #  END
+
+  LAYER
+        NAME "ortho_world_bluemarble"
+        GROUP "ortho"
+        #DEBUG 5
+        STATUS ON
+        TYPE RASTER
+        TILEINDEX /var/sig/demo/c2cgeoportal/Ortho/bm/tindex.shp
+        #DATA /var/sig/demo/c2cgeoportal/Ortho/world.topo.bathy.200407.3x21600x21600.D2.tiff
+        PROCESSING "OVERSAMPLE_RATIO=1"
+        PROCESSING "RESAMPLE=BILINEAR"
+        PROJECTION
+           "init=epsg:4326"
+        END
+        METADATA
+          "wms_title" "Ortho Blue Marble Next Generation NASA" # For WMS
+          "wms_group_title" "ortho"
+          "wms_srs" "epsg:3857" # For WMS
+        END
+   END
+
 END

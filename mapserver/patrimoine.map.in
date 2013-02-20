@@ -9,16 +9,16 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid, nom FROM geodata.monuments AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'monuments') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, nom FROM geodata.monuments AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'monuments') AS foo USING UNIQUE gid USING srid=3857"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
     # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     #MAXSCALEDENOM 3500
     TOLERANCE 10 
@@ -46,7 +46,7 @@ LAYER
 
     METADATA
         "wms_title" "Monuments" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" "nom"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
@@ -70,16 +70,16 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid, nom, categorie FROM geodata.fontaines AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'fontaines') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, nom, categorie FROM geodata.fontaines AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'fontaines') AS foo USING UNIQUE gid USING srid=3857"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
     # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     #MAXSCALEDENOM 3500
     TOLERANCE 10
@@ -107,7 +107,7 @@ LAYER
 
     METADATA
         "wms_title" "Fontaines" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" "nom,categorie"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
@@ -131,16 +131,16 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, coment, gid FROM geodata.sitesclasses AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sitesclasses') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, coment, gid FROM geodata.sitesclasses AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sitesclasses') AS foo USING UNIQUE gid USING srid=3857"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
     # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     #MAXSCALEDENOM 3500
     TOLERANCE 10
@@ -174,7 +174,7 @@ LAYER
 
     METADATA
         "wms_title" "Sites classés" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
@@ -198,16 +198,16 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.zonepietonne AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'zonepietonne') AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.zonepietonne AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'zonepietonne') AS foo USING UNIQUE gid USING srid=3857"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
     # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:900913"
+      "init=epsg:3857"
     END
     #MAXSCALEDENOM 3500
     TOLERANCE 10 
@@ -226,7 +226,7 @@ LAYER
 
     METADATA
         "wms_title" "Zones piétonne" # For WMS
-        "wms_srs" "epsg:900913" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
