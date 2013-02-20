@@ -417,24 +417,6 @@ END
 #    DATA
 #  END
 
-  LAYER
-       NAME 'ortho_montpellier'
-       GROUP 'ortho'
-       TYPE RASTER
-       #DEBUG 5
-       PROJECTION
-         "init=epsg:4326"
-       END
-       STATUS ON
-       DATA /var/sig/demo/c2cgeoportal/Ortho/VilleMTP_MTP_OrthoPhoto_2011.ecw
-       PROCESSING "RESAMPLE=AVERAGE"
-       METADATA
-         "wms_title" "Ortho montpellier" # For WMS
-         "wms_group_title" "ortho"
-         "wms_srs" "epsg:3857" # For WMS
-       END
-  END
-
 #  LAYER
 #       NAME "ortho_world"  
 #       GROUP "ortho"
@@ -474,5 +456,24 @@ END
           "wms_srs" "epsg:3857" # For WMS
         END
    END
+
+   LAYER
+       NAME 'ortho_montpellier'
+       GROUP 'ortho'
+       TYPE RASTER
+       #DEBUG 5
+       PROJECTION
+         "init=epsg:2154"
+       END
+       STATUS ON
+       DATA /var/sig/demo/c2cgeoportal/Ortho/VilleMTP_MTP_OrthoPhoto_2011.ecw
+       PROCESSING "RESAMPLE=AVERAGE"
+       METADATA
+         "wms_title" "Ortho montpellier" # For WMS
+         "wms_group_title" "ortho"
+         "wms_srs" "epsg:3857" # For WMS
+       END
+  END
+
 
 END
