@@ -1,6 +1,7 @@
 [app:app]
 use = egg:demo
 project = demo
+app.cfg = %(here)s/${appcfg}
 reload_templates = true
 debug_authorization = false
 debug_notfound = false
