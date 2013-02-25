@@ -25,7 +25,7 @@ Bienvenu sur le site de démonstration du c2cGeoportal développé par Camptocam
 a pour objectif de permettre l'installation et la configuration d'applications 
 cartographiques rapidement et simplement.
 
-Publier vos données sur différents média n'a jamais été aussi facile. 
+Publier vos données sur différents médias n'a jamais été aussi facile. 
 
 Présentation des fonctionnalités
 ===================================
@@ -36,10 +36,47 @@ une seule interface de gestion.
 
 Intégrer vos cartes dans une page HTML est possible grâce aux deux API 
 (simple et avancé) et quelques lignes de codes.
-Contents:
+
+Quelques fonctionnalités parmi d'autres :
+
+* Calcul de profil
+* Interaction avec les API Google Earth et Street View
+* Ajout de couches WMS distantes
+* Recherche dynamique attributaire et géométrique par couche
+* Édition de couches
+* Version mobile
+* Impression PDF et png
+* Restriction par zones ou par couches
+* Gestion d'utilisateur et de groupe d'utilisateur
+
+Le développement de cet outil est réalisé en continu et d'autres 
+fonctionnalités sont prévues, `contacter nous <mailto:info+demo@camptocamp.com>`_ 
+pour vous tenir informer.
+
+Quelques références
+=====================
+
+En Suisse
+**********
+
+SIGIP : SIG intercommunal de Pully, Paudex et Belmont
+------------------------------------------------------
+
+SIGIP est le portail cartographique intercommunal de Pully, Paudex et Belmont 
+dans le canton de Vaud en Suisse.
+
+* URL : http://www.sigip.ch
+* Mise en production : début 2013
+
+BL GeoView
+------------
+
+* URL : http://geoview.bl.ch/
+* Mise en production : fin 2012
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    aide
    videos

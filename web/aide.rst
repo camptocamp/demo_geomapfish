@@ -323,8 +323,12 @@ pris en compte lors de l'impression.
 ********
 
 Le lien d'édition ouvre la page d'édition. Celle-ci est accessible par tout le 
-monde mais seule les personnes authentifiées pourront éditer les couches que 
+monde mais **seule les personnes authentifiées pourront éditer les couches** que 
 l'administrateur des données aura définie comme éditable.
+
+Choisissez d'abord un thème puis définissez la couche à éditer via la liste 
+déroulante pour ajouter un nouvel objet ou cliquez sur une géométrie sur la 
+carte pour l'éditer.
 
 .. image:: _static/aide/c2cgp_app_edit.png
    :class: ombrage 
