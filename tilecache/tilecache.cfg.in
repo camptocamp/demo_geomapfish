@@ -16,7 +16,7 @@ resolutions = 156543.03390625,78271.516953125,39135.7584765625,19567.87923828125
 #bbox = 420000, 30000, 900000, 350000
 bbox= -20037508.34, -20037508.34, 20037508.34, 20037508.34
 extension = png
-mime_type = image/png256
+mime_type = image/png
 metadata_dimension = 2011
 #metadata_matrix_set = swissgrid
 metadata_matrix_set = c2cgp
@@ -35,6 +35,13 @@ metaSize = 1,1
 mime_type = image/png
 # get geometries to update
 #metadata_data = "the_geom FROM bfs.adr"
+
+[relief]
+layers = relief
+metaTile = true
+metaBuffer = 40
+metaSize = 1,1
+mime_type = image/png
 
 [ortho]
 layers = ortho

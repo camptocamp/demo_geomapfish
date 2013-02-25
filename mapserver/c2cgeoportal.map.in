@@ -29,7 +29,7 @@ MAP
     # MAXSIZE shouldn't be less than 5000 for MF print on A3
     MAXSIZE 5000
 
-    SHAPEPATH '/var/sig/c2cgeoportal'
+    SHAPEPATH '/var/sig/demo/c2cgeoportal'
 
     IMAGECOLOR 255 255 255
     STATUS ON
@@ -93,18 +93,77 @@ MAP
     INCLUDE "environnement.map"
     INCLUDE "patrimoine.map"
 
+  LAYER
+    NAME "Departements"
+    GROUP "plan"
+    STATUS ON
+    DATA ign/departement_3857.shp
+    TYPE POLYGON 
+    PROJECTION
+      "init=epsg:3857"
+    END
+    SYMBOLSCALEDENOM 450000
+    CLASS
+      NAME "Départements"
+      STYLE
+         OUTLINECOLOR 200 200 200
+         COLOR 100 100 100
+         WIDTH 3
+         MAXWIDTH 3
+         MINWIDTH 1
 
-    # raster layer (with a tile index)
-   # LAYER
-   #     NAME 'topo'
-   #     GROUP 'plan'
-   #     TYPE RASTER
-   #     STATUS ON
-   #     PROCESSING "RESAMPLE=AVERAGE"
-   #     TILEINDEX "raster/topo"
-   #     TILEITEM "LOCATION"
-   #     MINSCALEDENOM 25000
-   # END
+      END
+   END
+    METADATA
+        "wms_title" "Departements" # For WMS
+        "wms_group_title" "plan"
+        "wms_srs" "epsg:3857" # For WMS
+    END
+  END
+
+  LAYER
+    NAME "communes"
+    GROUP "plan"
+    STATUS ON
+    TYPE POLYGON
+    DATA ign/commune_3857.shp
+    PROJECTION
+      "init=epsg:3857"
+    END
+    MAXSCALEDENOM 400001
+    LABELMINSCALEDENOM 30000
+    LABELITEM "NOM_COMM"
+    CLASS
+      NAME "Commune"
+      EXPRESSION ([SUPERFICIE] < 4000)
+      STYLE
+         OUTLINECOLOR 200 200 200
+         COLOR -1 -1 -1
+         WIDTH 0.5
+      END
+    END
+    CLASS
+      EXPRESSION ([SUPERFICIE] >= 4000)
+      STYLE
+         OUTLINECOLOR 200 200 200
+         COLOR -1 -1 -1
+         WIDTH 0.5
+      END
+      LABEL
+        SIZE 8
+        FONT arial
+        TYPE truetype
+        COLOR  150 150 150
+      END
+    END
+
+    METADATA
+        "wms_title" "Communes" # For WMS
+        "wms_group_title" "plan"
+        "wms_srs" "epsg:3857" # For WMS
+    END
+  END
+
 
   LAYER 
     NAME 'MTP_rue'
@@ -159,7 +218,7 @@ MAP
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT geo.geom as geom, len, gid, lib_off FROM geodata.mtp_rue_simple AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, len, gid, lib_off FROM geodata.mtp_rue_simple AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     PROJECTION
       "init=epsg:3857"
@@ -200,37 +259,36 @@ MAP
    TYPE POINT
    STATUS ON
    EXTENT 420107 5398192 442381 5412352
-    CONNECTIONTYPE postgis
-    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT geo.geom as geom, gid, num_voi FROM geodata.adresse AS geo) AS foo USING UNIQUE gid USING srid=900913"
-
-    PROJECTION
-      "init=epsg:3857"
-    END
-    LABELITEM "num_voi"
-    LABELMAXSCALEDENOM 2000
-    CLASS
-       STYLE
-       END
-       LABEL
-         COLOR  150 150 150
-         OUTLINECOLOR 255 255 255
-         FONT "arial"
-         TYPE truetype
-         SIZE 6
-         POSITION AUTO
-         PARTIALS FALSE
-       END
-    END
-    METADATA
-      "wms_title" "Numéro adresse"
-      "wms_abstract" "Numéro d'adresse de Montpellier."
-      "wms_group_title" "plan"
-      "wms_srs" "epsg:3857"
-      "gml_include_items" "num_voi"
-    END
-  END
+   CONNECTIONTYPE postgis
+   PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+   CONNECTION "${mapserver_connection}"
+   DATA "geom FROM (SELECT geo.geom as geom, gid, num_voi FROM geodata.adresse AS geo) AS foo USING UNIQUE gid USING srid=3857"
+   PROJECTION
+     "init=epsg:3857"
+   END
+   LABELITEM "num_voi"
+   LABELMAXSCALEDENOM 2000
+   CLASS
+      STYLE
+      END
+      LABEL
+        COLOR  150 150 150
+        OUTLINECOLOR 255 255 255
+        FONT "arial"
+        TYPE truetype
+        SIZE 6
+        POSITION AUTO
+        PARTIALS FALSE
+      END
+   END
+   METADATA
+     "wms_title" "Numéro adresse"
+     "wms_abstract" "Numéro d'adresse de Montpellier."
+     "wms_group_title" "plan"
+     "wms_srs" "epsg:3857"
+     "gml_include_items" "num_voi"
+   END
+ END
 
   LAYER
     NAME 'MTP_planville'
@@ -243,7 +301,7 @@ MAP
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT geo.geom as geom, gid, class FROM geodata.planville AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, class FROM geodata.planville AS geo) AS foo USING UNIQUE gid USING srid=3857"
     
     PROJECTION
       "init=epsg:3857"
@@ -320,8 +378,8 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    #DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sous_quartiers') AS foo USING UNIQUE gid USING srid=900913"
-    DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo) AS foo USING UNIQUE gid USING srid=900913"
+    #DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'sous_quartiers') AS foo USING UNIQUE gid USING srid=3857"
+    DATA "geom FROM (SELECT geo.geom as geom, libsquart, libquart, gid FROM geodata.sous_quartiers AS geo) AS foo USING UNIQUE gid USING srid=3857"
     PROJECTION
       "init=epsg:3857"
     END
@@ -369,9 +427,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-
-    DATA "geom FROM (SELECT geo.geom as geom, libquart, gid FROM geodata.quartiers AS geo) AS foo USING UNIQUE gid USING srid=900913"
-
+    DATA "geom FROM (SELECT geo.geom as geom, libquart, gid FROM geodata.quartiers AS geo) AS foo USING UNIQUE gid USING srid=3857"
     PROJECTION
       "init=epsg:3857"
     END
@@ -410,12 +466,25 @@ LAYER
     END
 END
 
-#  LAYER
-#    NAME "communes"
-#    GROUP "plan"
-#    STATUS ON
-#    DATA
-#  END
+
+  LAYER
+        NAME "relief_france"
+        GROUP "relief"
+        #DEBUG 5
+        STATUS ON
+        TYPE RASTER
+        DATA /var/sig/demo/c2cgeoportal/ign/mnt_france_relief.tif
+        PROCESSING "OVERSAMPLE_RATIO=1"
+        PROCESSING "RESAMPLE=BILINEAR"
+        PROJECTION
+           "init=epsg:2154"
+        END
+        METADATA
+          "wms_title" "Relief map for local off line service" # For WMS
+          "wms_group_title" "plan"
+          "wms_srs" "epsg:3857" # For WMS
+        END
+   END
 
 #  LAYER
 #       NAME "ortho_world"  
@@ -443,8 +512,7 @@ END
         #DEBUG 5
         STATUS ON
         TYPE RASTER
-        TILEINDEX /var/sig/demo/c2cgeoportal/Ortho/bm/tindex.shp
-        #DATA /var/sig/demo/c2cgeoportal/Ortho/world.topo.bathy.200407.3x21600x21600.D2.tiff
+        TILEINDEX Ortho/bm/tindex.shp
         PROCESSING "OVERSAMPLE_RATIO=1"
         PROCESSING "RESAMPLE=BILINEAR"
         PROJECTION
@@ -466,7 +534,7 @@ END
          "init=epsg:2154"
        END
        STATUS ON
-       DATA /var/sig/demo/c2cgeoportal/Ortho/VilleMTP_MTP_OrthoPhoto_2011.ecw
+       DATA Ortho/VilleMTP_MTP_OrthoPhoto_2011.ecw
        PROCESSING "RESAMPLE=AVERAGE"
        METADATA
          "wms_title" "Ortho montpellier" # For WMS
