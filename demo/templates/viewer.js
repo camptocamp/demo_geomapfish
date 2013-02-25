@@ -1,4 +1,5 @@
 Ext.onReady(function() {
+    alert("${request.registry.settings['offline']}");
     /*
      * Initialize the application.
      */
@@ -420,6 +421,7 @@ Ext.onReady(function() {
                     group: 'background'
                 }, WMTS_OPTIONS)]
             },
+      % if request.registry.settings['offline'] == true:
 	    {
 		source: "olsource",
                 type: "OpenLayers.Layer.OSM",
@@ -440,6 +442,18 @@ Ext.onReady(function() {
                        ref: 'OSM_MapQuest'
                     }
                 ]
+            },
+       % endif
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('relief'),
+                    mapserverLayers: 'relief',
+                    ref: 'relief',
+                    layer: 'relief',
+                    group: 'background'
+                }, WMTS_OPTIONS)]
             },
             {
                 source: "olsource",
