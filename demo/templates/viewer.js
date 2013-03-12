@@ -1,5 +1,4 @@
 Ext.onReady(function() {
-    alert("${request.registry.settings['offline']}");
     /*
      * Initialize the application.
      */
@@ -409,19 +408,8 @@ Ext.onReady(function() {
                     )]
                 })
             ],
-            layers: [{
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                group: 'background',
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('plan'),
-                    mapserverLayers: 'plan',
-                    ref: 'plan',
-                    layer: 'plan',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            },
-      % if request.registry.settings['offline'] == true:
+            layers: [
+      % if request.registry.settings['offline'] == False:
 	    {
 		source: "olsource",
                 type: "OpenLayers.Layer.OSM",
@@ -443,7 +431,19 @@ Ext.onReady(function() {
                     }
                 ]
             },
-       % endif
+       % else:
+           {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                group: 'background',
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('plan'),
+                    mapserverLayers: 'plan',
+                    ref: 'plan',
+                    layer: 'plan',
+                    group: 'background'
+                }, WMTS_OPTIONS)]
+            },
             {
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
@@ -455,6 +455,7 @@ Ext.onReady(function() {
                     group: 'background'
                 }, WMTS_OPTIONS)]
             },
+        % endif
             {
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
@@ -494,6 +495,69 @@ Ext.onReady(function() {
                 html: serverError.join('<br />')
             },OpenLayers.i18n("Error notice"),600, 500);
         }
+// Crumble:
+        jQuery('h1#logo').grumble(
+	    {
+		text: 'Bienvenue sur le site de démo du projet c2cgeoportal', 
+                angle: 200, 
+                distance: 3, 
+		        showAfter: 0,
+                hideAfter: 2000,
+                hideOnClick: true
+	    }
+        );
+        jQuery('table.themes').grumble(
+            {
+                text: 'Choisissez un thème ...',
+                angle: 85,
+                distance: 0,
+                showAfter: 2200,
+                hideOnClick: true,
+                hideAfter: 2000
+            }
+        );
+        jQuery('div.x-tree-root-node').grumble(
+            {
+                text: 'Cochez les couches que vous voulez ajouter, visualiser la légende, allez sur la page des métadonnées, ...',
+                angle: 85,
+                distance: 0,
+                showAfter: 4400,
+                hideOnClick: true,
+                hideAfter: 2000
+            }
+        );
+        jQuery('.gxp-icon-zoomtoextent').grumble(
+            {
+                text: 'Naviguez sur la carte, mesurer des surfaces, distances, localisation, ...',
+                angle: 85,
+                distance: 0,
+                showAfter: 6400,
+                hideOnClick: true,
+                hideAfter: 2000
+            }
+        );
+//c2cgp_stats
+        var tools = {};
+	var toolbar = GeoExt.MapPanel.guess().ownerCt.getTopToolbar();
+	toolbar.items.each(function(tool) {
+	    tool.on('click', function(){
+	        var id = tool.iconCls;
+	        if (!tools[id]) {
+	    	tools[id] = 1;
+	        } else {
+	    	tools[id]++;
+	        }
+	    });
+	});
+	window.onunload = function() {
+	    Ext.Ajax.request({
+	        url: '/stats',
+	        method: 'GET',
+	        params: tools
+	    });
+	};
+// end of c2cgp_stats
 
     }, app);
+
 });

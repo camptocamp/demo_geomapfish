@@ -1,7 +1,6 @@
 [app:app]
 use = egg:demo
 project = demo
-app.cfg = %(here)s/${appcfg}
 reload_templates = true
 debug_authorization = false
 debug_notfound = false
@@ -9,7 +8,7 @@ debug_routematch = false
 debug_templates = true
 mako.directories = demo:templates
     c2cgeoportal:templates
-app.cfg = %(here)s/config.yaml
+app.cfg = %(here)s/${appcfg}
 # Authentication settings
 authtkt_cookie_name = auth_tkt_${instanceid}
 authtkt_secret = ${authtkt_secret}

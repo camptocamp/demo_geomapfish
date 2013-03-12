@@ -31,7 +31,7 @@ functionalities:
         - 2 A3 portrait demo
         - 3 A4 landscape demo
         - 4 A3 landscape demo
-        default_basemap: OSM_MapQuest
+        default_basemap: relief 
 
 # Functionalities that are accessible to authenticated
 # users with no associated functionalities in the
