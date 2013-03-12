@@ -55,6 +55,26 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "Wsg Coord. Label": "Coordonnées géographiques",
   "Local Coord. Label": "Coordonnées Mercator",
   "Add a WMS layer on the map": "Ajouter une couche WMS à la carte",
-  "Open Google Earth Panel": "Ouvrir le panneau Google Earth"
+  "Open Google Earth Panel": "Ouvrir le panneau Google Earth",
+/**CG67 **/
+  "cg67_metier_lip_cdc": "Communauté de Communes",
+  "nom_cdc": "Nom de la Communauté de Communes",
+  "cg67_cadastre": "Cadastre",
+  "cg67_numvoie": "Numéro de voie",
+  "cg67_batiments": "Bâtiments",
+  "cg67_lieudit_label": "Lieu dit",
+  "cg67_parcelles": "Parcelles",
+  "gid": "Identifiant",
+  "tex": "Label",
+  "cg67_transport": "Transport",
+  "cg67_transport_r67_pa": "Point d'arrêt",
+  "cg67_sir_sir_ic_gl": "Ligne de transport",
+  "nom_pa": "nom du point d'arrêt",
+  "cg67_enseignement": "Enseigenement",
+  "cg67_metier_ens_lycees": "Lycées",
+  "cg67_colleges": "Collèges",
+  "denominati": "Dénomination",
+  "adresse_du": "Addrese",
+  "numero_de": "Numéro de téléphone"
 });
 
