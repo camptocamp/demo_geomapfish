@@ -8,21 +8,32 @@ SYMBOLSET
      FILLED true
      #ANCHORPOINT 0.5 0.5
   END
+
   #SYMBOL
   #  NAME "recyclage"
   #  TYPE SVG
   #  IMAGE "symbols/Green_dot_logo.svg"
   #END
+
   SYMBOL
      NAME "recyclage-png"
      TYPE PIXMAP
      IMAGE "symbols/Green_dot_logo.png"
   END
+
   SYMBOL
      NAME "hatch"
      TYPE hatch
   END
-  
+
+  SYMBOL
+   NAME "trait"
+   TYPE vector
+   POINTS
+     0 0
+     1 0
+   END
+  END  
   SYMBOL
      NAME "cross"
      TYPE vector
@@ -34,6 +45,7 @@ SYMBOLSET
         4.0 2.0
      END
   END
+
   SYMBOL
     NAME "arrow-start"
     TYPE vector

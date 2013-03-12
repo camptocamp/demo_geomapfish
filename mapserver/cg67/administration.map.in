@@ -1,0 +1,48 @@
+LAYER
+    NAME 'cg67_metier_lip_cdc'
+    TYPE POLYGON
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, nom_cdc FROM cg67.metier_lip_cdc geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_metier_lip_cdc') AS foo USING UNIQUE gid USING srid=3857"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:3857"
+    END
+    OPACITY 50 
+    #MAXSCALEDENOM 51000
+    CLASS
+        NAME "CDC"
+        STYLE
+          WIDTH 1
+          OUTLINECOLOR 255 255 192
+          COLOR 92 155 92
+        END
+    END
+
+    METADATA
+        "wms_title" "CDC CG67" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
+
+        "gml_include_items" "nom_cdc"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "http://www.bas-rhin.fr/posplu/index.aspx" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+
+# Departement
+
+# Commune
+
+

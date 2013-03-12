@@ -1,0 +1,123 @@
+LAYER
+    NAME 'cg67_transport_r67_pa'
+    TYPE POINT
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, nom_pa FROM cg67.transport_r67_pa geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_transport_r67_pa') AS foo USING UNIQUE gid USING srid=3857"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:3857"
+    END
+    OPACITY 80
+    TOLERANCE 30
+    MAXSCALEDENOM 500000
+    #LABELITEM "ogr_atr_val"
+    CLASS
+        NAME "Arrêt de bus"
+        STYLE
+          SIZE 10
+          SYMBOL "circle"
+          OUTLINECOLOR 0 0 20
+          COLOR 0 0 195
+          OFFSET 0 -5
+        END
+        STYLE
+          WIDTH 20
+          SIZE 2
+          SYMBOL "trait"
+          OUTLINECOLOR 0 0 20
+          COLOR 0 0 195
+        END
+        #LABEL
+        #   ANGLE [ogr_angle]
+        #   COLOR  50 50 50
+        #   OUTLINECOLOR 255 255 255
+        #   FONT "arial"
+        #   TYPE truetype
+        #   SIZE 8
+        #   POSITION lc
+        #   PARTIALS FALSE
+        #   MAXSCALEDENOM 3000
+        #END
+    END
+
+    METADATA
+        "wms_title" "Arrêt de bus CG67 (label)" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
+
+        "gml_include_items" "nom_pa"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+
+LAYER
+    NAME 'cg67_sir_sir_ic_gl'
+    TYPE LINE
+    STATUS ON
+    #DEBUG 5
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    # Example data for secured layer by restriction area
+DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid FROM cg67.sir_sir_ic_gl geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_sir_sir_ic_gl') AS foo USING UNIQUE gid USING srid=3857"
+
+    DUMP TRUE # For GetFeatureInfo
+    PROJECTION
+      "init=epsg:3857"
+    END
+    OPACITY 80
+    TOLERANCE 10
+    MAXSCALEDENOM 800000
+    #LABELITEM "ogr_atr_val"
+    CLASS
+        NAME "Ligne de bus"
+        STYLE
+          SIZE 10
+          WIDTH 3
+         # SYMBOL "circle"
+          OUTLINECOLOR 20 20 20
+          COLOR 95 95 95
+        END
+        #LABEL
+        #   ANGLE [ogr_angle]
+        #   COLOR  50 50 50
+        #   OUTLINECOLOR 255 255 255
+        #   FONT "arial"
+        #   TYPE truetype
+        #   SIZE 8
+        #   POSITION lc
+        #   PARTIALS FALSE
+        #   MAXSCALEDENOM 3000
+        #END
+    END
+
+    METADATA
+        "wms_title" "Ligne de bus CG67 (label)" # For WMS
+        "wms_srs" "epsg:3857" # For WMS
+
+        "gml_include_items" "all"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
+        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+
+        "wms_metadataurl_href" "" # For metadata URL
+        "wms_metadataurl_format" "text/html" # For metadata URL
+        "wms_metadataurl_type" "TC211" # For metadata URL
+
+        ${mapserver_layer_metadata} # For secured layers
+    END
+END
+
