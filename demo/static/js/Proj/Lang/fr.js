@@ -70,7 +70,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "cg67_transport_r67_pa": "Point d'arrêt",
   "cg67_sir_sir_ic_gl": "Ligne de transport",
   "nom_pa": "nom du point d'arrêt",
-  "cg67_enseignement": "Enseigenement",
+  "cg67_enseignement": "Enseignement",
   "cg67_metier_ens_lycees": "Lycées",
   "cg67_colleges": "Collèges",
   "denominati": "Dénomination",
