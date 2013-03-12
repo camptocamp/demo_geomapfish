@@ -11,10 +11,13 @@ Ext.application({
         'Ext.MessageBox',
         'Ext.data.Store',
         'Ext.data.proxy.JsonP',
+        'Ext.TitleBar', // required at least for the Picker
+        'Ext.JSON',
+        'Ext.ActionSheet',
         'Ext.TitleBar' // required at least for the Picker
     ],
 
-    views: ['Main', 'Layers', 'Search', 'Query', 'Settings'],
+    views: ['Main', 'Layers', 'Search', 'Query', 'Settings', 'LoginForm'],
     models: ['Layer', 'Search', 'Query'],
     controllers: ['Main', 'Search', 'Query'],
 
@@ -38,6 +41,11 @@ Ext.application({
 
     launch: function() {
 
+        // decode the information received from the server
+        if (App.info) {
+            App.info = Ext.JSON.decode(App.info, true);
+        }
+
         // create the main view and set the map into it
         var mainView = Ext.create('App.view.Main');
         // App.map should be set in config.js
@@ -48,17 +56,42 @@ Ext.application({
 
         // now add the main view to the viewport
         Ext.Viewport.add(mainView);
+
+        this.handleTablet();
     },
 
     onUpdated: function() {
-        Ext.Msg.confirm(
-            "Application Update",
-            "This application has just successfully been updated to the latest version. Reload now?",
-            function(buttonId) {
-                if (buttonId === 'yes') {
-                    window.location.reload();
+        window.location.reload();
+    },
+
+    handleTablet: function() {
+        if (Ext.os.is.Tablet) {
+            var msg = OpenLayers.String.format(
+                OpenLayers.i18n('redirect_msg'),
+                {
+                    url: App.desktopAppUrl
                 }
-            }
-        );
+            );
+            msg += "<a href='#' class='close' style='float:right'>" +
+                   OpenLayers.i18n('close') + "</a>";
+            var actionSheet = Ext.create('Ext.ActionSheet', {
+                ui: 'redirect',
+                modal: false,
+                html: msg
+            });
+
+            Ext.Viewport.add(actionSheet);
+            actionSheet.show();
+            Ext.Function.defer(function() {
+                actionSheet.hide();
+            }, 15000);
+            actionSheet.element.on({
+                'tap': function(e) {
+                    if (Ext.get(e.target).hasCls('close')) {
+                        actionSheet.hide();
+                    }
+                }
+            });
+        }
     }
 });

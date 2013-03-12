@@ -1,11 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="${lang}">
     <head>
-        <script>
-            if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                window.location = "${request.route_url('mobile_index_prod')}";
-            }
-        </script>
+        % if not no_redirect and mobile_url is not None:                                                        
+            <script>
+                if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                        window.location = "${mobile_url}";                                                      
+                }
+            </script>
+        % endif
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Content-Language" content="${lang}" />
         <meta name="keywords" content="demo, geoportal">
@@ -63,6 +65,9 @@
         <link rel="stylesheet" type="text/css" href="${request.static_url('demo:static/build/app.css')}" />
 % endif
     <script type="text/javascript" src='http://maps.google.com/maps?file=api&v=3&key=AIzaSyB1X095TQ-qQ1UI9ZtwZdt5OUOjdY9bIa4'></script>
+    <link rel="stylesheet" href="${request.static_url('demo:static/css/grumble.min.css')}?v=3">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="${request.static_url('demo:static/js/Proj/jquery.grumble.min.js')}?v=5"></script>
     </head>
     <body class="${lang}">
         <div id="loading-mask" style=""></div>

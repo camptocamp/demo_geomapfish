@@ -27,7 +27,11 @@ OpenLayers.Lang.de = {
     "camera": "Kamera",
     // picker
     'layer_switcher.cancel': 'Cancel',
-    'layer_switcher.done': 'OK'
+    'layer_switcher.done': 'OK',
+    // redirect to standard application                                                                  
+    'redirect_msg': "Vous utilisez la version mobile. Vous pouvez aussi" +                               
+          " consulter la <a href='${'${url}'}'>version standard</a>.",                                     
+    'close': "Fermer"
 };
 OpenLayers.Lang.fr = {
     "airedejeux": "Aire de jeux",
@@ -38,10 +42,15 @@ OpenLayers.Lang.fr = {
     "camera": "Caméra",
     // picker
     'layer_switcher.cancel': 'Annuler',
-    'layer_switcher.done': 'OK'
+    'layer_switcher.done': 'OK',
+    // redirect to standard application                                                                  
+    'redirect_msg': "Vous utilisez la version mobile. Vous pouvez aussi" +                               
+       " consulter la <a href='${'${url}'}'>version standard</a>.",                                     
+    'close': "Fermer"
 };
 OpenLayers.Lang.setCode("${lang}");
 
+App.info = '${info | n}';
 // define the map and layers
 App.map = new OpenLayers.Map({
     theme: null,

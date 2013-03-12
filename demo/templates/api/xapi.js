@@ -177,6 +177,6 @@ demo.Map = function(config) {
     }
 
     this.wmsURL = "${request.route_url('mapserverproxy')}";
-    this.queryableLayers = [];
+    this.queryableLayers = ${queryable_layers|n};
     return cgxp.api.Map.call(this, config);
 };
