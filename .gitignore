@@ -16,6 +16,7 @@ production.ini
 config.cfg
 config.yaml                                                                                                                                                                                                     
 mapserver/*.map
+mapserver/*/*.map
 *.egg-info/
 demo/static/build/*.js
 demo/static/build/*.css
