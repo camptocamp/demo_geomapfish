@@ -16,9 +16,10 @@ production.ini
 config.cfg
 config.yaml
 config_offline.yaml
-config_cg67.yaml 
+config_cg67.yaml
 mapserver/*.map
 mapserver/*/*.map
+mapserver/ms_error.log
 *.egg-info/
 demo/static/build/*.js
 demo/static/build/*.css
