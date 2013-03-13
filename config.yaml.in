@@ -143,3 +143,7 @@ check_collector:
 #     url: 127.0.0.1:11211
 cache:
   backend: dogpile.cache.memory
+
+banner_image: banner_c2c_left.png
+banner_height: 210px
+ortho_opacity: 0

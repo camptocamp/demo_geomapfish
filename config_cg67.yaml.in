@@ -31,7 +31,7 @@ functionalities:
         - 2 A3 portrait demo
         - 3 A4 landscape demo
         - 4 A3 landscape demo
-        default_basemap: relief 
+        default_basemap: blank 
 
 # Functionalities that are accessible to authenticated
 # users with no associated functionalities in the
@@ -144,5 +144,6 @@ check_collector:
 cache:
   backend: dogpile.cache.memory
 
-banner_image: banner_c2c_left.png
+banner_image: cg67/banner_cg67_left.gif
+banner_height: 150px
 ortho_opacity: 100

@@ -14,7 +14,9 @@ deploy/deploy.cfg
 development.ini
 production.ini
 config.cfg
-config.yaml                                                                                                                                                                                                     
+config.yaml
+config_offline.yaml
+config_cg67.yaml 
 mapserver/*.map
 mapserver/*/*.map
 *.egg-info/

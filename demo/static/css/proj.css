@@ -24,16 +24,21 @@
   padding:5px;
   color: #333333;
   font: 11px arial,tahoma,verdana,helvetica;
+  position: absolute;
+  top: 50px;
+  right: 2px;
 }
 
 #logo {
     float: left;
-    margin-top: 17px;
+    /*margin-top: 17px;*/
 }
 
 #social {
     float: right;
-    padding-top: 15px;
+    position: absolute;
+    top: 3px;
+    right: 2px;
 }
 
 #social li {
@@ -95,7 +100,7 @@
     position: absolute;
     right: 0;
     text-transform: uppercase;
-    top: 60px;
+    top: 30px;
 }
 
 a {

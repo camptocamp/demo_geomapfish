@@ -465,7 +465,7 @@ Ext.onReady(function() {
                     ref: 'ortho',
                     layer: 'ortho',
                     formatSuffix: 'jpeg',
-                    opacity: 0
+                    opacity: ${request.registry.settings['ortho_opacity']}
                 }, WMTS_OPTIONS)]
             },
             {
