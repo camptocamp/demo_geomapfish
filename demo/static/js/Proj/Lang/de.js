@@ -62,7 +62,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "cg67_metier_lip_cdc": "Gemeindeverbund",
   "nom_cdc": "Name des Gemeindeverbunds",
   "cg67_cadastre": "Kataster",
-  "cg67_numvoie": "Spurnummer",
+  "cg67_numvoie": "Gebäudenummer (Adresse)",
   "cg67_batiments": "Gebäude",
   "cg67_lieudit_label": "Ortsnamen",
   "cg67_parcelles": "Grundstück",
