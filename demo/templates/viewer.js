@@ -461,7 +461,6 @@ Ext.onReady(function() {
                 type: "OpenLayers.Layer.WMTS",
                 args: [Ext.applyIf({
                     name: OpenLayers.i18n('ortho'),
-                    mapserverLayers: 'ortho',
                     ref: 'ortho',
                     layer: 'ortho',
                     formatSuffix: 'jpeg',
