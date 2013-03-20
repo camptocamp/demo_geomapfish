@@ -495,7 +495,7 @@ Ext.onReady(function() {
             },OpenLayers.i18n("Error notice"),600, 500);
         }
 // Crumble:
-        jQuery('h1#logo').grumble(
+/*        jQuery('h1#logo').grumble(
 	    {
 		text: 'Bienvenue sur le site de démo du projet c2cgeoportal', 
                 angle: 200, 
@@ -535,6 +535,7 @@ Ext.onReady(function() {
                 hideAfter: 2000
             }
         );
+*/
 //c2cgp_stats
         var tools = {};
 	var toolbar = GeoExt.MapPanel.guess().ownerCt.getTopToolbar();
