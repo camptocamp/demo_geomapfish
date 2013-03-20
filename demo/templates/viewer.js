@@ -212,7 +212,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_getfeature",
-            WFSURL: "${request.route_url('mapserverproxy', path='')}",
+            mapserverURL: "${request.route_url('mapserverproxy', path='')}",
             actionTarget: null, //"center.tbar",
             events: EVENTS,
             themes: THEMES,
