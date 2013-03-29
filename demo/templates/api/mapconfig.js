@@ -106,6 +106,7 @@ Extended APIs.
                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                    ], {
                        transitionEffect: 'resize',
+                       projection: new OpenLayers.Projection("EPSG:3857"),
                        attribution: [
                            "(c) <a href='http://openstreetmap.org/'>OSM</a>",
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
