@@ -30,8 +30,11 @@ DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, tex2, tex, coar FR
         "wms_srs" "epsg:3857" # For WMS
 
         "gml_include_items" "gid,tex2,tex,coar"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
-        "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
-        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+	"gml_types" "auto"
+        "gml_featureid" "gid"
+        "gml_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "gml_geometries" "geom" # For returning geometries in GetFeatureInfo
+	"wfs_enable_request" "*"
 
         "wms_metadataurl_href" "http://www.bas-rhin.fr/posplu/index.aspx" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
@@ -72,9 +75,12 @@ DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid FROM cg67.edigeo_cc
         "wms_title" "Bâtiments CG67" # For WMS
         "wms_srs" "epsg:3857" # For WMS
 
-        #"gml_include_items" "*"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
-        #"ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
-        #"ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+        "gml_include_items" "gid"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+	"gml_types" "auto"
+        "gml_featureid" "gid"
+        "gml_geom_type" "polygon" # For returning geometries in GetFeatureInfo
+        "gml_geometries" "geom" # For returning geometries in GetFeatureInfo
+	"wfs_enable_request" "*"
 
         "wms_metadataurl_href" "" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL

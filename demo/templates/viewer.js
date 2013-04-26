@@ -212,7 +212,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_getfeature",
-            WFSURL: "${request.route_url('mapserverproxy', path='')}",
+            mapserverURL: "${request.route_url('mapserverproxy', path='')}",
             actionTarget: null, //"center.tbar",
             events: EVENTS,
             themes: THEMES,
@@ -253,14 +253,14 @@ Ext.onReady(function() {
              actionConfig: {
                 tooltip: OpenLayers.i18n('Open Google Earth Panel')
              }
-        },/* {
+        }, {
              ptype: 'cgxp_streetview',
              actionTarget: 'center.tbar',
              outputTarget: 'center',
              toggleGroup: 'maptools',
              tooltipText: OpenLayers.i18n('StreetView'),
              baseURL: "${request.static_url('demo:static/lib/cgxp/geoext.ux/ux/StreetViewPanel/')}"
-        }, */{
+        }, {
             ptype: "cgxp_fulltextsearch",
             url: "${request.route_url('fulltextsearch', path='')}",
             layerTreeId: "layertree",
@@ -461,7 +461,6 @@ Ext.onReady(function() {
                 type: "OpenLayers.Layer.WMTS",
                 args: [Ext.applyIf({
                     name: OpenLayers.i18n('ortho'),
-                    mapserverLayers: 'ortho',
                     ref: 'ortho',
                     layer: 'ortho',
                     formatSuffix: 'jpeg',

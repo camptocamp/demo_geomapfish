@@ -57,6 +57,26 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "zonepietonne": "Fussgängerzone",
   "MTP_adresse": "Adresspunkt in Montpellier",
   "Wsg Coord. Label": "Geographikal Koordinaten",
-  "Local Coord. Label": "Merkator  Koordinaten"
+  "Local Coord. Label": "Merkator  Koordinaten",
+/**CG67 **/
+  "cg67_metier_lip_cdc": "Gemeindeverbund",
+  "nom_cdc": "Name des Gemeindeverbunds",
+  "cg67_cadastre": "Kataster",
+  "cg67_numvoie": "Gebäudenummer (Adresse)",
+  "cg67_batiments": "Gebäude",
+  "cg67_lieudit_label": "Ortsnamen",
+  "cg67_parcelles": "Grundstück",
+  "gid": "Identifikator",
+  "tex": "Label",
+  "cg67_transport": "Verkehr",
+  "cg67_transport_r67_pa": "Haltestelle",
+  "cg67_sir_sir_ic_gl": "Verkehrslinie",
+  "nom_pa": "Name der Haltestelle",
+  "cg67_enseignement": "Bildung",
+  "cg67_metier_ens_lycees": "Gymnasium",
+  "cg67_colleges": "Hauptschule",
+  "denominati": "Benennung",
+  "adresse_du": "Adresse",
+  "numero_de": "Telefonnummer"
 });
 
