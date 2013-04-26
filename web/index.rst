@@ -11,7 +11,7 @@
    <link  media="screen" type="text/css" rel="stylesheet" href="_static/css/slides.css">
 
 =========================================
-Site de démonstration de c2cGeoportal
+Un géoportail pour vos collectivités
 =========================================
 
 .. raw:: html
@@ -21,11 +21,13 @@ Site de démonstration de c2cGeoportal
    
    <script src="_static/js/slides.js"></script>
 
-Bienvenu sur le site de démonstration du c2cGeoportal développé par Camptocamp. Ce projet 
-a pour objectif de permettre l'installation et la configuration d'applications 
-cartographiques rapidement et simplement.
+Vous souhaitez vous faciliter la mise en place d'un portail cartographique de 
+vos données ? Intégrer des cartes au sein de votre CMS rapidement et 
+facilement ? Gérer des utilisateurs et des zones de visibilités pour chacun 
+d'eux ? Avoir un portail performant et maintenable ?
 
-Publier vos données sur différents médias n'a jamais été aussi facile. 
+Publier vos données facilement et rapidement sur différents médias n'a jamais 
+été aussi facile. 
 
 Présentation des fonctionnalités
 ===================================
@@ -49,30 +51,75 @@ Quelques fonctionnalités parmi d'autres :
 * Restriction par zones ou par couches
 * Gestion d'utilisateur et de groupe d'utilisateur
 
+Des fonctionnalités standards et avancées
+*******************************************
+
+.. image:: _static/screenshot/c2cgp_demo_navigation_toolbar.png
+   :class:  ombrage left
+   :alt: Fonctionnalités de bases
+
+Le Geoportail Mapfish propose les outils de navigations et de calcul standard : déplacer 
+la carte, zoomer, dézoomer, revenir à l'étendue initiale, calcul de surface et de 
+distance.
+
+D'autres outils plus avancés sont disponibles. Afficher une vue Google Earth 3D, 
+calcul de profil en long, export PDF et image de la carte, outils de dessin, toutes 
+ces fonctionnalités sont proposées en option.
+
+.. image:: _static/screenshot/c2cgp_demo_advancedfeature.png
+   :class:  align-center 
+   :alt: Fonctionnalités de bases et avancées
+
+Une interface modulable et personnalisable
+********************************************
+
+.. image:: _static/screenshot/multi_media.png
+   :class:  right
+   :alt: Multimedia
+   :width: 480px
+
+GeoPortal MapFish propose plusieurs interfaces totalement modulable ! Une interface 
+classique proposant un certain nombre de fonctionnalités, certaines par défaut, d'autres 
+ajoutées par l'intégrateur ; deux API permettant une intégration parfaite au sein 
+d'un CMS par exemple ; une interface adaptée aux médias mobiles.
+
+Bien sur d'autres interfaces peuvent être réalisées tout en utilisant les 
+fonctionnalités du moteur (notamment la gestion des utilisateurs et des accès).
+
+Une gestion avancée
+*********************
+
+L'application est gérée via l'application d'administration : ajout de couche, création 
+d'utilisateur, de groupe, définition d'une zone de restriction géographiques et 
+thématiques des données pour un groupe d'utilisateurs.
+
+
+
 Le développement de cet outil est réalisé en continu et d'autres 
 fonctionnalités sont prévues, `contacter nous <mailto:info+demo@camptocamp.com>`_ 
 pour vous tenir informer.
 
-Quelques références
-=====================
-
-En Suisse
-**********
-
-SIGIP : SIG intercommunal de Pully, Paudex et Belmont
-------------------------------------------------------
-
-SIGIP est le portail cartographique intercommunal de Pully, Paudex et Belmont 
-dans le canton de Vaud en Suisse.
-
-* URL : http://www.sigip.ch
-* Mise en production : début 2013
-
-BL GeoView
-------------
-
-* URL : http://geoview.bl.ch/
-* Mise en production : fin 2012
+.. Quelques références
+.. =====================
+.. 
+.. En Suisse
+.. **********
+.. 
+.. SIGIP : SIG intercommunal de Pully, Paudex et Belmont
+.. ------------------------------------------------------
+.. 
+.. SIGIP est le portail cartographique intercommunal de Pully, Paudex et Belmont 
+.. dans le canton de Vaud en Suisse.
+.. 
+.. * URL : http://www.sigip.ch
+.. * Mise en production : début 2013
+.. 
+.. BL GeoView
+.. ------------
+.. 
+.. * URL : http://geoview.bl.ch/
+.. * Mise en production : fin 2012
+.. 
 
 .. toctree::
    :maxdepth: 1
