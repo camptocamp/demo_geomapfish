@@ -496,46 +496,46 @@ Ext.onReady(function() {
             },OpenLayers.i18n("Error notice"),600, 500);
         }
 // Crumble:
-        jQuery('h1#logo').grumble(
-	    {
-		text: 'Bienvenue sur le site de démo du projet c2cgeoportal', 
-                angle: 200, 
-                distance: 3, 
-		        showAfter: 0,
-                hideAfter: 2000,
-                hideOnClick: true
-	    }
-        );
-        jQuery('table.themes').grumble(
-            {
-                text: 'Choisissez un thème ...',
-                angle: 85,
-                distance: 0,
-                showAfter: 2200,
-                hideOnClick: true,
-                hideAfter: 2000
-            }
-        );
-        jQuery('div.x-tree-root-node').grumble(
-            {
-                text: 'Cochez les couches que vous voulez ajouter, visualiser la légende, allez sur la page des métadonnées, ...',
-                angle: 85,
-                distance: 0,
-                showAfter: 4400,
-                hideOnClick: true,
-                hideAfter: 2000
-            }
-        );
-        jQuery('.gxp-icon-zoomtoextent').grumble(
-            {
-                text: 'Naviguez sur la carte, mesurer des surfaces, distances, localisation, ...',
-                angle: 85,
-                distance: 0,
-                showAfter: 6400,
-                hideOnClick: true,
-                hideAfter: 2000
-            }
-        );
+//        jQuery('h1#logo').grumble(
+//        {
+//                text: 'Bienvenue sur le site de démo du projet c2cgeoportal', 
+//                angle: 200, 
+//                distance: 3, 
+//                showAfter: 0,
+//                hideAfter: 2000,
+//                hideOnClick: true
+//        }
+//        );
+//        jQuery('table.themes').grumble(
+//            {
+//                text: 'Choisissez un thème ...',
+//                angle: 85,
+//                distance: 0,
+//                showAfter: 2200,
+//                hideOnClick: true,
+//                hideAfter: 2000
+//            }
+//        );
+//        jQuery('div.x-tree-root-node').grumble(
+//            {
+//                text: 'Cochez les couches que vous voulez ajouter, visualiser la légende, allez sur la page des métadonnées, ...',
+//                angle: 85,
+//                distance: 0,
+//                showAfter: 4400,
+//                hideOnClick: true,
+//                hideAfter: 2000
+//            }
+//        );
+//        jQuery('.gxp-icon-zoomtoextent').grumble(
+//            {
+//                text: 'Naviguez sur la carte, mesurer des surfaces, distances, localisation, ...',
+//                angle: 85,
+//                distance: 0,
+//                showAfter: 6400,
+//                hideOnClick: true,
+//                hideAfter: 2000
+//            }
+//        );
 //c2cgp_stats
         var tools = {};
 	var toolbar = GeoExt.MapPanel.guess().ownerCt.getTopToolbar();
