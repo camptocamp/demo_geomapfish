@@ -41,11 +41,7 @@ Ext.onReady(function() {
     var EVENTS = new Ext.util.Observable();
 
     var WMTS_OPTIONS = {
-    % if not tilecache_url:
-        url: "${request.route_url('tilecache', path='')}",
-    % else:
-        url: '${tilecache_url}',
-    % endif
+        url: '${tiles_url}',
         displayInLayerSwitcher: false,
         requestEncoding: 'REST',
         buffer: 0,
@@ -70,6 +66,7 @@ Ext.onReady(function() {
 
     app = new gxp.Viewer({
         portalConfig: {
+            ctCls: 'x-map',
             layout: "border",
             // by configuring items here, we don't need to configure portalItems
             // and save a wrapping container
@@ -325,9 +322,14 @@ Ext.onReady(function() {
             toggleGroup: "maptools",
     % if user:
             username: "${user.username}",
+            isPasswordChanged: ${"true" if user.is_password_changed else "false"},
     % endif
             loginURL: "${request.route_url('login', path='')}",
-            logoutURL: "${request.route_url('logout', path='')}"
+            loginChangeURL: "${request.route_url('loginchange', path='')}",
+            logoutURL: "${request.route_url('logout', path='')}",
+            enablePasswordChange: true,
+            forcePasswordChange: true,
+            permalinkId: "permalink"
         },
         {
             ptype: "cgxp_menushortcut",

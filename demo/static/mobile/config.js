@@ -53,6 +53,7 @@ OpenLayers.Lang.setCode("${lang}");
 App.info = '${info | n}';
 // define the map and layers
 App.map = new OpenLayers.Map({
+    fallThrough: true, // required for longpress queries
     theme: null,
     projection: 'EPSG:3857',
     extent: [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606],

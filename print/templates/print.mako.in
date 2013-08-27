@@ -45,6 +45,11 @@ hosts:
     host: otile4.mqcdn.com
     port: 80
 
+localHostForward:
+    from:
+        - ${vars:host}
+    https2http: True
+
 #===========================================================================
 # the output filename
 #===========================================================================

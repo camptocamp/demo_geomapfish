@@ -18,11 +18,11 @@ enable_admin_interface = ${vars:enable_admin_interface}
 sqlalchemy.url = postgresql://${dbuser}:${dbpassword}@${dbhost}:${dbport}/${db}
 schema = ${vars:schema}
 parentschema = ${vars:parent_schema}
-# For tilecache controller
-tilecache.cfg = ${buildout:directory}/tilecache/tilecache.cfg
 # For debug mode
 jsbuild_cfg = ${jsbuild:config}
 jsbuild_root_dir = ${buildout:directory}
+auth_replication_enabled = ${vars:enable_auth_replication}
+sqlalchemy_replication.url = postgresql://${dbuser_replication}:${dbpassword_replication}@${dbhost_replication}:${dbport_replication}/${db_replication}
 
 [filter:weberror]
 use = egg:WebError#error_catcher

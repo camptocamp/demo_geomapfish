@@ -32,6 +32,7 @@ functionalities:
         - 3 A4 landscape demo
         - 4 A3 landscape demo
         default_basemap: OSM_MapQuest
+        mobile_default_theme:
 
 # Functionalities that are accessible to authenticated
 # users with no associated functionalities in the
@@ -60,14 +61,14 @@ raster:
 
 
 # For mapserver proxy
-mapserv_url: http://${vars:host}/${vars:instanceid}/mapserv
+mapserv_url: http://localhost/${vars:instanceid}/mapserv
 
 # For print proxy
-print_url: http://${vars:host}:8080/print-c2cgeoportal-${vars:instanceid}/pdf/
+print_url: http://localhost:8080/print-c2cgeoportal-${vars:instanceid}/pdf/
 
 # For base layers
-# Nothing => gets the URL using the pyramid routes
-tilecache_url:
+tiles_url:
+
 offline: False
 # Checker configuration
 checker:

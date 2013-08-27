@@ -1,13 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="${lang}">
     <head>
-        % if not no_redirect and mobile_url is not None:                                                        
-            <script>
-                if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                        window.location = "${mobile_url}";                                                      
-                }
-            </script>
-        % endif
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Content-Language" content="${lang}" />
         <meta name="keywords" content="demo, geoportal">
@@ -15,6 +8,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
         <title>demo Geoportal Application</title>
         <link rel="shortcut icon" type="image/x-icon" href="${request.static_url('demo:static/images/favicon.ico')}">
+        % if not no_redirect and mobile_url is not None:                                                        
+            <script>
+                if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                        window.location = "${mobile_url}";                                                      
+                }
+            </script>
+        % endif
 
         <style>
         html, body {
@@ -97,6 +97,8 @@
         <form method="POST" id="loginForm" style="display: none">
             <input id="login" name="login" type="text" autocomplete="on"/>                                                                                                                                                                                                                                          
             <input id="password" name="password" type="password" autocomplete="on"/>
+            <input id="newPassword" name="newPassword" type="password" />
+            <input id="confirmNewPassword" name="confirmNewPassword" type="password" />
         </form>
         <div style="display:none">
             <div id="search-tip">

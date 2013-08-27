@@ -27,11 +27,7 @@ Ext.onReady(function() {
     };
 
     var WMTS_OPTIONS = {
-    % if not tilecache_url:
-        url: "${request.route_url('tilecache', path='')}",
-    % else:
-        url: '${tilecache_url}',
-    % endif
+        url: '${tiles_url}',
         displayInLayerSwitcher: false,
         requestEncoding: 'REST',
         buffer: 0,
@@ -58,6 +54,7 @@ Ext.onReady(function() {
         // viewer config
         portalConfig: {
             layout: 'border',
+            ctCls: 'x-map',
             items: [
                 'app-map',
             {

@@ -26,18 +26,6 @@ Ext.define("App.view.Layers", {
         return Ext.isArray(value) ? value : value.split(',');
     },
 
-    checkChange: function() {
-        this.getFieldsAsArray().forEach(function(field) {
-            var record = field.getRecord();
-            var map = record.get('map');
-            var checked = field.getChecked();
-            if (record.raw.isBaseLayer && checked) {
-                map.setBaseLayer(record.raw);
-            }
-            record.raw.setVisibility(checked);
-        });
-    },
-
     overlayCheckChange: function(field) {
         var record = field.getRecord();
         var layer = record.raw;
@@ -50,8 +38,8 @@ Ext.define("App.view.Layers", {
         } else {
             OpenLayers.Util.removeItem(layersParam, name);
         }
+        layer.setVisibility(layersParam.length !== 0);
         layer.mergeNewParams({'LAYERS': layersParam});
-        layer.setVisibility(layersParam.length);
     },
 
     updateStore: function(store) {
@@ -62,11 +50,10 @@ Ext.define("App.view.Layers", {
                 var allLayers = this.toArray(layer.allLayers),
                     layersParam = layer.params.LAYERS ?
                         this.toArray(layer.params.LAYERS) : [],
-                    len = allLayers.length,
                     i, l;
-                for (i=0; i<len; i++) {
+                for (i = allLayers.length - 1; i >= 0; --i) {
                     l = allLayers[i];
-                    this.add({
+                    var checkbox = this.add({
                         label: OpenLayers.i18n(l),
                         name: l,
                         checked: layersParam.indexOf(l) != -1,
@@ -75,7 +62,14 @@ Ext.define("App.view.Layers", {
                             uncheck: this.overlayCheckChange,
                             scope: this
                         }
-                    }).setRecord(record);
+                    });
+                    checkbox.on({
+                        element: 'label',
+                        tap: Ext.bind(function(checkbox) {
+                            checkbox.setChecked(!checkbox.isChecked());
+                        }, null, [checkbox])
+                    });
+                    checkbox.setRecord(record);
                 }
             }
         }, this);

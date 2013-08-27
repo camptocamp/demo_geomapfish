@@ -11,8 +11,6 @@ document.write('<script type="text/javascript" src="'
         + "${request.static_url(script.replace('/', ':', 1))}" + '"></script>');
     % endfor
 
-/*document.write('<link rel="stylesheet" type="text/css" href="'
-        + "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/css/ext-all.css')}" + '" />');*/
 document.write('<link rel="stylesheet" type="text/css" href="'
         + "${request.static_url('demo:static/lib/cgxp/core/src/theme/reset.css')}" + '" />');
 document.write('<link rel="stylesheet" type="text/css" href="'
