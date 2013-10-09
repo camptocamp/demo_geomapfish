@@ -260,8 +260,9 @@
               defaultScale: 0.5
               maxHeight: 550
               maxWidth: 50
-              maxIconHeight: 0
-              maxIconWidth: 0
+              iconMaxHeight: 0
+              iconMaxWidth: 0
+              horizontalAlignment: left
               columnMargin: 5
               classIndentation: 3
               classSpace: 5
