@@ -27,7 +27,7 @@ hosts:
   - !localMatch
     dummy: true
   - !dnsMatch
-    host: ${vars:host}
+    host: ${vars:print_host}
     port: 80 
   - !dnsMatch
     host: ${vars:host}

@@ -8,7 +8,7 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
     # Example data for secured layer by restriction area
-    DATA "geom FROM (SELECT geo.geom as geom, gid, nom_latin, nom_usuel, nom_commun, libarchite, librevetem FROM geodata.arbres_align AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'arbres_align') AS foo USING UNIQUE gid USING srid=3857"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, nom_latin, nom_usuel, nom_commun, libarchite, librevetem, releve FROM geodata.arbres_align AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'arbres_align') AS foo USING UNIQUE gid USING srid=3857"
 
     # Example data for secured layer by role (without any area)
     #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
@@ -34,7 +34,7 @@ LAYER
           COLOR 192 255 192
         END
     END
-   CLASS
+    CLASS
         NAME "Arbres"
         STYLE
           SYMBOL "circle"
@@ -59,13 +59,16 @@ LAYER
         "wms_title" "Alignement des arbres" # For WMS
         "wms_srs" "epsg:3857" # For WMS
 
-        "gml_include_items" "nom_latin,nom_commun,libarchite,librevetem"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "gml_include_items" "nom_latin,nom_commun,libarchite,librevetem,releve"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
         "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
 
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Liste-des-arbres-de-la-Ville-de" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
         "wms_metadataurl_type" "TC211" # For metadata URL
+
+        "wms_timeextent" "1982/2011/P1Y"
+        "wms_timeitem" "releve"
 
         ${mapserver_layer_metadata} # For secured layers
     END
