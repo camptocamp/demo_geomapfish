@@ -11,7 +11,8 @@ Version 1.4
    http://docs.camptocamp.net/c2cgeoportal/integrator/tilegeneration.html.
 
    The first things you should do are::
-   * In the `viewer.js`, `api/mapconfig.js`, `edit.js` replace
+   * In `demo/templates/viewer.js`, `demo/templates/api/mapconfig.js`,
+     `demo/templates/edit.js` replace
      `url: '${tilecache_url}',` by `url: ${tiles_url},` (no quotes).
    * In the `config.yaml.in` transform tilecache_url in an array,
      and name it `tiles_url`.
@@ -206,7 +207,7 @@ localHostForward:
 7. Remove all the `[versions]` section from your `buildout.cfg` file,
    from now it's managed in the `versions.cfg` file.
 
-   Add the new `versions.cfg`file to Git:
+   Add the new `versions.cfg` file to Git:
 
        git add versions.cfg
 
@@ -259,7 +260,7 @@ localHostForward:
      ``isPasswordChanged`` is required if you enable ``forcePasswordChange``
      to remind the user he should change his password.
 
-     b) The form in <project>/templates/index.html and <project>/templates/edit.html must be updated:
+     b) The form in demo/templates/index.html and demo/templates/edit.html must be updated:
 
               <form method="POST" id="loginForm" style="display: none">
                   <input id="login" name="login" type="text" autocomplete="on"/>
@@ -270,7 +271,7 @@ localHostForward:
 
      c) The database must also be upgraded to version 10.
 
-     d) You must add the folling line in your production.ini.in and
+     d) You must add the following line in your production.ini.in and
      development.ini.in in the [app:app] section:
 
      auth_replication_enabled = ${vars:enable_auth_replication}
@@ -301,15 +302,232 @@ localHostForward:
    +iconMaxWidth: 0
    +horizontalAlignment: left
 
-14. Version 1.4 adds support for WMSTime layer which requires the isodate library
-    for parsing dates from the mapfile. The isodate version should be added to
-    `versions.cfg`:
+14. In jsbuild/app.cfg add the following line to the "root" sections:
 
-    isodate=0.4.9
+    demo/static/lib/cgxp/openlayers.addins/DynamicMeasure/lib
 
-    Note: The default time value specified in the map file ("wms_timedefault") is
-    not currently taken into account due to a limitation in the OWSLib, see:
-    https://github.com/geopython/OWSLib/pull/92
+15. Add routing panel files:
+
+        ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/prospection_demo_c2cgp package=demo
+        cp /tmp/prospection_demo_c2cgp/demo/templates/routing.{js,html} demo/templates/
+        rm -rf /tmp/prospection_demo_c2cgp/
+        git add demo/templates/routing.{js,html}
+
+    Adding the following entries to all the ``root`` lists in
+    ``jsbuild/app.cfg`` is recommended:
+
+        demo/static/lib/cgxp/openlayers.addins/AddViaPoint/lib
+
+    And add a new routing section (replace <<srid>> by the right value):
+
+        [routing.js]
+        root =
+            demo/static/lib/cgxp/core/src/script
+            demo/static/lib/cgxp/ext
+            demo/static/lib/cgxp/geoext/lib
+            demo/static/lib/cgxp/openlayers/lib
+            demo/static/lib/cgxp/openlayers.addins/GoogleEarthView/lib
+            demo/static/lib/cgxp/openlayers.addins/Spherical/lib
+            demo/static/lib/cgxp/openlayers.addins/URLCompressed/lib
+            demo/static/lib/cgxp/openlayers.addins/AddViaPoint/lib
+            demo/static/lib/cgxp/gxp/src/script
+            demo/static/lib/cgxp/proj4js
+            demo/static/lib/cgxp/geoext.ux/ux/Measure/lib
+            demo/static/lib/cgxp/geoext.ux/ux/SimplePrint/lib
+            demo/static/lib/cgxp/geoext.ux/ux/FeatureEditing/lib
+            demo/static/lib/cgxp/geoext.ux/ux/FeatureSelectionModel/lib
+            demo/static/lib/cgxp/geoext.ux/ux/WMSBrowser/lib
+            demo/static/lib/cgxp/geoext.ux/ux/StreetViewPanel
+            demo/static/lib/cgxp/sandbox
+            demo/static/lib/cgxp/styler/lib
+            demo/static/lib/cgxp/ext.ux/TwinTriggerComboBox
+            demo/static/lib/cgxp/ext.ux/GroupComboBox
+            demo/static/lib/cgxp/ext.ux/ColorPicker
+            demo/static/lib/cgxp/ext.ux/base64
+            demo/static/js
+        first =
+            Ext/adapter/ext/ext-base-debug.js
+            Ext/ext-all-debug.js
+            OpenLayers/SingleFile.js
+            OpenLayers/Console.js
+            OpenLayers/BaseTypes.js
+            OpenLayers/BaseTypes/Class.js
+            OpenLayers/BaseTypes/Pixel.js
+            OpenLayers/BaseTypes/Bounds.js
+            OpenLayers/BaseTypes/LonLat.js
+            OpenLayers/BaseTypes/Element.js
+            OpenLayers/BaseTypes/Size.js
+            OpenLayers/Util.js
+            OpenLayers/Lang.js
+            proj4js/lib/proj4js.js
+            proj4js/lib/projCode/merc.js
+        exclude =
+            GeoExt.js
+            GeoExt/SingleFile.js
+        include =
+            EPSG<<srid>>.js #proj4js
+            util.js #GXP
+            widgets/Viewer.js #GXP
+            plugins/OLSource.js #GXP
+            CGXP/plugins/MapOpacitySlider.js
+            CGXP/plugins/Routing.js
+            CGXP/data/OSRM.js
+            CGXP/widgets/MapPanel.js
+            OpenLayers/Control/Navigation.js
+            OpenLayers/Control/KeyboardDefaults.js
+            OpenLayers/Control/PanZoomBar.js
+            OpenLayers/Control/ArgParser.js
+            OpenLayers/Control/Attribution.js
+            OpenLayers/Control/ScaleLine.js
+            OpenLayers/Control/MousePosition.js
+            OpenLayers/Control/OverviewMap.js
+            OpenLayers/Control/NavigationHistory.js
+            OpenLayers/Layer/WMTS.js
+            OpenLayers/Renderer/SVG.js
+            OpenLayers/Renderer/VML.js
+
+16. Manage all translations in one place. Translations for the mobile
+    application (layer names for example) are managed in the same place as for
+    the desktop application.
+    The following modifications are required.
+    Change the `jsbuild/mobile.cfg` file as follows:
+
+    @@ -8,6 +8,7 @@
+     root =
+         demo/static/lib/cgxp/openlayers/lib
+         demo/static/lib/cgxp/proj4js
+    +    demo/static/js
+     first =
+         OpenLayers/SingleFile.js
+         OpenLayers/Console.js
+    @@ -20,6 +21,9 @@ first =
+         OpenLayers/BaseTypes/Size.js
+         OpenLayers/Util.js
+         OpenLayers/Lang.js
+    +    OpenLayers/Lang/fr.js
+    +    OpenLayers/Lang/en.js
+    +    OpenLayers/Lang/de.js
+         proj4js/lib/proj4js.js
+     exclude =
+     include =
+    @@ -45,3 +49,6 @@ include =
+         OpenLayers/Format/GML.js
+         OpenLayers/Strategy/Fixed.js
+         OpenLayers/Control/Zoom.js
+    +    Proj/Lang/fr.js
+    +    Proj/Lang/en.js
+    +    Proj/Lang/de.js
+
+
+    Also remove any lines for translations in `demo/static/mobile/config.js`, and
+    replace them by the following lines:
+
+    OpenLayers.Util.extend(OpenLayers.Lang.en, {
+        "summits": "Summits",
+        "huts": "Huts",
+        "sites": "Sites",
+
+        // base layer switcher picker (you shouldn't remove this)
+        'layer_switcher.cancel': 'Cancel',
+        'layer_switcher.done': 'Done',
+
+        // login/logout
+        'loginButtonText': 'Log in',
+        'welcomeText': '<p>You are {username}.</p>',
+        'logoutButtonText': 'Log out',
+        'loginLabel': 'Login',
+        'passwordLabel': 'Password',
+        'loginSubmitButtonText': 'Submit',
+        'loginCancelButtonText': 'Cancel',
+
+        // redirect to standard application
+        'redirect_msg': "You're using the mobile version. Check out the" +
+            " <a href='${'${url}'}'>standard version</a>.",
+        'close': "Close"
+    });
+    OpenLayers.Util.extend(OpenLayers.Lang.fr, {
+        "summits": "Sommets",
+        "huts": "Cabanes",
+        "sites": "Sites",
+
+        // base layer switcher picker (you shouldn't remove this)
+        'layer_switcher.cancel': 'Annuler',
+        'layer_switcher.done': 'OK',
+
+        // login/logout
+        'loginButtonText': 'Me connecter',
+        'welcomeText': '<p>Vous êtes {username}.</p>',
+        'logoutButtonText': 'Me déconnecter',
+        'loginLabel': 'Nom',
+        'passwordLabel': 'Mot de passe',
+        'loginSubmitButtonText': 'Me connecter',
+        'loginCancelButtonText': 'Annuler',
+
+        // redirect to standard application
+        'redirect_msg': "Vous utilisez la version pour mobile. Vous pouvez aussi" +
+            " consulter la <a href='${'${url}'}'>version standard</a>.",
+        'close': "Fermer"
+    });
+    OpenLayers.Util.extend(OpenLayers.Lang.de, {
+        "summits": "Gipfel",
+        "huts": "Hütten",
+        "sites": "Sehenswürdigkeiten",
+
+        // base layer switcher picker (you shouldn't remove this)
+        'layer_switcher.cancel': 'Abbrechen',
+        'layer_switcher.done': 'OK',
+
+        // login/logout
+        'loginButtonText': 'Log in',
+        'welcomeText': '<p>Sie sind {username}.</p>',
+        'logoutButtonText': 'Log out',
+        'loginLabel': 'Login',
+        'passwordLabel': 'Passwort',
+        'loginSubmitButtonText': 'OK',
+        'loginCancelButtonText': 'Abbrechen',
+
+        // redirect to standard application
+        'redirect_msg': "Sie benutzen die mobile Version. Sie können auch" +
+            " die <a href='${'${url}'}'>Standardversion</a> benutzen.",
+        'close': "Schliessen"
+    });
+    OpenLayers.Lang.setCode("${lang}");
+
+17. The mobile application now has a built-in theme chooser.
+    Add the following line in the ``demo/static/mobile/config.js`` file:
+
+    App.themes = '${themes | n}';
+
+    Both themes and layers can now be configured to be visible on desktop or
+    mobile, both or none.
+
+18. Public layers can no longer be edited (feature creation/update/deletion) by anonymous users.
+
+19. In the `prospection_demo_c2cgp/templates/*.js` files remove the `getMatrix` method from the `WMTS_OPTIONS`.
+
+20. The LayerTree defaultThemes parameter has been separated in two to allow to handle separately 
+    the default theme and the themes loaded from url.
+
+    In ``viewer.js`` replace:
+
+    % if permalink_themes:
+      defaultThemes: ${permalink_themes | n},
+    % else:
+      defaultThemes: ["lieu_interet_thm"],
+    % endif
+
+    by:
+
+    % if permalink_themes:
+        permalinkThemes: ${permalink_themes | n},
+    % endif
+    defaultThemes: ["to_be_defined"],
+
+21. Add the new configuration to the ``cgxp_querier`` plugin in the
+    ``prospection_demo_c2cgp/templates/viewer.js`` file:
+
+        attributeURLs: ${queryer_attribute_urls | n}
+
 
 Version 1.3.2
 =============

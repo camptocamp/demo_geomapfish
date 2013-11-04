@@ -23,16 +23,16 @@ Ext.onReady(function() {
     // Themes definitions
     var THEMES = {
         "local": ${themes | n}
-    % if external_themes:
+% if external_themes:
         , "external": ${external_themes | n}
-    % endif
+% endif
     };
 
-    % if user and user.role.extent:
+% if user and user.role.extent:
     var INITIAL_EXTENT = ${user.role.json_extent};
-    % else:
+% else:
     var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
-    % endif
+% endif
 
     var RESTRICTED_EXTENT = [-666375.77628413, 3379611.8001185, 1235458.955194, 7573252.433606];
 
@@ -130,7 +130,7 @@ Ext.onReady(function() {
                 style: "padding: 3px 0 3px 3px;"
             }
         }, 
-    % if user:
+% if user:
         {
             ptype: "cgxp_querier",
             outputTarget: "left-panel",
@@ -141,8 +141,9 @@ Ext.onReady(function() {
             //maxFeatures: 200,
             srsName: 'EPSG:3857',
             featureTypes: ["MTP_adresse", "monuments", "arbres_remarq"],
+            attributeURLs: ${queryer_attribute_urls | n}
         }, 
-    % endif
+% endif
         {
             ptype: "cgxp_layertree",
             id: "layertree",
@@ -152,11 +153,10 @@ Ext.onReady(function() {
                 layout: "fit",
                 autoScroll: true,
                 themes: THEMES,
-                % if permalink_themes:
-                  defaultThemes: ${permalink_themes | n},
-                % else:
-                  defaultThemes: ["Equipement"],
-                % endif
+% if permalink_themes:
+                  permalinkThemes: ${permalink_themes | n},
+% endif
+                defaultThemes: ["Equipement"],
                 wmsURL: "${request.route_url('mapserverproxy', path='')}"
             },
             outputTarget: "layerpanel"
@@ -316,10 +316,10 @@ Ext.onReady(function() {
             ptype: "cgxp_login",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
-    % if user:
+% if user:
             username: "${user.username}",
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},
-    % endif
+% endif
             loginURL: "${request.route_url('login', path='')}",
             loginChangeURL: "${request.route_url('loginchange', path='')}",
             logoutURL: "${request.route_url('logout', path='')}",
@@ -408,7 +408,7 @@ Ext.onReady(function() {
                 })
             ],
             layers: [
-      % if request.registry.settings['offline'] == False:
+% if request.registry.settings['offline'] == False:
 	    {
 		source: "olsource",
                 type: "OpenLayers.Layer.OSM",
@@ -431,7 +431,7 @@ Ext.onReady(function() {
                     }
                 ]
             },
-       % else:
+% else:
            {
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
@@ -455,7 +455,7 @@ Ext.onReady(function() {
                     group: 'background'
                 }, WMTS_OPTIONS)]
             },
-        % endif
+% endif
             {
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",

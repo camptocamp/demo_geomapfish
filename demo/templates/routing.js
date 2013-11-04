@@ -5,29 +5,34 @@ Ext.onReady(function() {
 
     // OpenLayers global settings
     OpenLayers.Number.thousandsSeparator = ' ';
-    OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
     OpenLayers.DOTS_PER_INCH = 72;
+    OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
     OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
     OpenLayers.Lang.setCode("${lang}");
 
     // GeoExt global settings
     GeoExt.Lang.set("${lang}");
 
-% if user:
-    var initialExtent = ${user.role.json_extent};
+    <% json_extent = user.role.json_extent if user else None %>
+% if json_extent:
+    var INITIAL_EXTENT = ${json_extent};
 % else:
-    var initialExtent = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
+    var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
 % endif
+    var RESTRICTED_EXTENT = [-666375.77628413, 3379611.8001185, 1235458.955194, 7573252.433606];
 
-    var themes = {
+    var THEMES = {
         "local": ${themes | n}
 % if external_themes:
         , "external": ${external_themes | n}
 % endif
     };
 
+    // Server errors (if any)
+    var serverError = ${serverError | n};
+
     var WMTS_OPTIONS = {
-        url: '${tiles_url}',
+        url: ${tiles_url | n},
         displayInLayerSwitcher: false,
         requestEncoding: 'REST',
         buffer: 0,
@@ -39,71 +44,64 @@ Ext.onReady(function() {
             'time': '2011'
         },
         matrixSet: 'c2cgp',
+        maxExtent: new OpenLayers.Bounds(420000, 30000, 900000, 350000),
         projection: new OpenLayers.Projection("EPSG:3857"),
         units: "m",
         formatSuffix: 'png',
         serverResolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135]
     };
 
-
     app = new gxp.Viewer({
 
         // viewer config
         portalConfig: {
             layout: 'border',
-            ctCls: 'x-map',
             items: [
                 'app-map',
             {
                 id: 'left-panel',
                 region: 'west',
-                width: 300
+                layout: 'fit',
+                width: 370
             }]
         },
 
         // tools
-        tools: [{
-            ptype: 'cgxp_editing',
-            layerTreeId: 'layertree',
-            layersURL: "${request.route_url('layers_root')}"
+        tools: [
+        {
+            ptype: 'cgxp_routing',
+            routingService: { 
+                ENGINE_0: {
+                    type: 'OSRM', 
+                    url: 'http://router.project-osrm.org/',
+                    dynamic: true
+                },
+                engine_car: {
+                    type: 'OSRM', 
+                    url: 'http://mfusrgrp-re2013.demo-camptocamp.com/car',
+                    dynamic: true
+                },
+                engine_bicycle: {
+                    type: 'OSRM', 
+                    url: 'http://mfusrgrp-re2013.demo-camptocamp.com/bicycle',
+                    dynamic: true
+                },
+                foot: {
+                    type: 'OSRM', 
+                    url: 'http://mfusrgrp-re2013.demo-camptocamp.com/foot',
+                    dynamic: true
+                }
+            },
+            searchOptions: {
+                url: "${request.route_url('fulltextsearch', path='')}",
+            }, 
+            outputTarget: 'left-panel'
         },
         {
             ptype: "cgxp_mapopacityslider",
             defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}" //FUNCTIONALITY.default_basemap[0]
-        },
-        {
-            ptype: 'cgxp_themeselector',
-            outputTarget: 'left-panel',
-            outputConfig: {
-                layout: 'fit',
-                style: 'padding: 3px;'
-            },
-            layerTreeId: 'layertree',
-            themes: themes
-        }, {
-            ptype: "cgxp_layertree",
-            id: "layertree",
-            outputConfig: {
-                header: false,
-                flex: 1,
-                layout: 'fit',
-                autoScroll: true,
-                themes: themes,
-                wmsURL: '${request.route_url('mapserverproxy')}'
-            },
-            outputTarget: 'left-panel'
-        }, {
-            ptype: "cgxp_menushortcut",
-            type: '->'
-        }, {
-            ptype: "cgxp_login",
-            actionTarget: "map.tbar",
-% if user:
-            username: "${user.username}",
-% endif
-            loginURL: "${request.route_url('login', path='')}",
-            logoutURL: "${request.route_url('logout', path='')}"
-        }],
+        }
+        ],
 
         // layer sources
         sources: {
@@ -117,11 +115,13 @@ Ext.onReady(function() {
             id: "app-map", // id needed to reference map in portalConfig above
             stateId: "map",
             xtype: 'cgxp_mappanel',
-            projection: new OpenLayers.Projection("EPSG:3857"),
-            extent: initialExtent,
+            projection: "EPSG:3857",
+            extent: INITIAL_EXTENT,
             maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
-            //restrictedExtent: [420000, 30000, 900000, 350000],
+            //restrictedExtent: RESTRICTED_EXTENT,
+            projection: new OpenLayers.Projection("EPSG:3857"),
             units: "m",
+            //maxResolution: 156543.0339,
             //resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
             resolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
             controls: [
@@ -131,24 +131,14 @@ Ext.onReady(function() {
                 new OpenLayers.Control.ArgParser(),
                 new OpenLayers.Control.Attribution(),
                 new OpenLayers.Control.ScaleLine({
+                    geodesic: true,
                     bottomInUnits: false,
                     bottomOutUnits: false
                 }),
                 new OpenLayers.Control.MousePosition({numDigits: 0})
             ],
-            layers: [{
-                // base layers go here
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                group: 'background',
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('plan'),
-                    mapserverLayers: 'plan',
-                    ref: 'plan',
-                    layer: 'plan',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            },
+            layers: [
+% if request.registry.settings['offline'] == False:
 	    {
 		source: "olsource",
                 type: "OpenLayers.Layer.OSM",
@@ -160,27 +150,63 @@ Ext.onReady(function() {
                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                    ], {
+                       projection: new OpenLayers.Projection("EPSG:3857"),
                        transitionEffect: 'resize',
                        attribution: [
                            "(c) <a href='http://openstreetmap.org/'>OSM</a>",
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
                        group: 'background',
-                       ref: 'osmmapquest'
+                       ref: 'OSM_MapQuest'
                     }
                 ]
+            },
+% else:
+           {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                group: 'background',
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('plan'),
+                    mapserverLayers: 'plan',
+                    ref: 'plan',
+                    layer: 'plan',
+                    group: 'background'
+                }, WMTS_OPTIONS)]
             },
             {
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
                 args: [Ext.applyIf({
+                    name: OpenLayers.i18n('relief'),
+                    mapserverLayers: 'relief',
+                    ref: 'relief',
+                    layer: 'relief',
+                    group: 'background'
+                }, WMTS_OPTIONS)]
+            },
+% endif
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
+                args: [Ext.applyIf({
                     name: OpenLayers.i18n('ortho'),
-                    mapserverLayers: 'ortho',
                     ref: 'ortho',
                     layer: 'ortho',
                     formatSuffix: 'jpeg',
-                    opacity: 0
+                    opacity: ${request.registry.settings['ortho_opacity']}
                 }, WMTS_OPTIONS)]
+            },
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer",
+                group: 'background',
+                args: [OpenLayers.i18n('blank'), {
+                    displayInLayerSwitcher: false,
+                    ref: 'blank',
+                    group: 'background',
+                    opacity: 0.8
+                }]
             }],
             items: []
         }
@@ -192,5 +218,11 @@ Ext.onReady(function() {
         Ext.fly('loading-mask').fadeOut({
             remove: true
         });
+
+        if (serverError.length > 0) {
+            cgxp.tools.openWindow({
+                html: serverError.join('<br />')
+            }, OpenLayers.i18n("Error notice"), 600, 500);
+        }
     }, app);
 });
