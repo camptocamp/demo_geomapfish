@@ -323,6 +323,7 @@ Ext.onReady(function() {
             loginURL: "${request.route_url('login', path='')}",
             loginChangeURL: "${request.route_url('loginchange', path='')}",
             logoutURL: "${request.route_url('logout', path='')}",
+            permalinkId: "permalink",
             enablePasswordChange: true,
             forcePasswordChange: true,
             permalinkId: "permalink"
