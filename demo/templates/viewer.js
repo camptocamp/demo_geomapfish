@@ -377,7 +377,10 @@ Ext.onReady(function() {
             controls: [
                 new OpenLayers.Control.Navigation(),
                 new OpenLayers.Control.KeyboardDefaults(),
-                new OpenLayers.Control.PanZoomBar({panIcons: false}),
+                new OpenLayers.Control.PanZoomBar({
+                    panIcons: false,
+                    zoomWorldIcon: true
+                }),
                 new OpenLayers.Control.ArgParser(),
                 new OpenLayers.Control.Attribution(),
                 new OpenLayers.Control.ScaleLine({
