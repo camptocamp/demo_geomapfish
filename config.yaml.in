@@ -59,6 +59,10 @@ raster:
     file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
     round: 1
 
+# uncomment to use unaccent
+#fulltextsearch:
+#    languages:
+#        fr: fr
 
 # For mapserver proxy
 mapserv_url: http://localhost/${vars:instanceid}/mapserv
