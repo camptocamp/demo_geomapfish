@@ -5,16 +5,16 @@
         <meta name="Content-Language" content="${lang}" />
         <meta name="keywords" content="demo, geoportal">
         <meta name="description" content="demo Geoportal Application.">
-        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
-        <title>demo Geoportal Application</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9; IE=EmulateIE10">
+        <title>Geoportal Demo</title>
         <link rel="shortcut icon" type="image/x-icon" href="${request.static_url('demo:static/images/favicon.ico')}">
-        % if not no_redirect and mobile_url is not None:                                                        
-            <script>
-                if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                        window.location = "${mobile_url}";                                                      
-                }
-            </script>
-        % endif
+% if not no_redirect and mobile_url is not None:                                                        
+        <script>
+            if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                    window.location = "${mobile_url}";                                                      
+            }
+        </script>
+% endif
 
         <style>
         html, body {
@@ -86,9 +86,9 @@
 	    </ul>
            <div id="lang"><a href="${request.route_url('home')}de"><span>de</span> / </a><a href="${request.route_url('home')}en"><span>en</span> / </a><span><a href="${request.route_url('home')}fr">fr</a></span></div>
            <div id="toolbar">
-    % if request.user:
-                    <a href="${request.route_url('home')}${lang}/admin" class="icon-admin" title="Open Admin interface" target="_blank">Ouvrir l'interface d'admin</a> - 
-    % endif
+% if request.user:
+                <a href="${request.route_url('home')}${lang}/admin" class="icon-admin" title="Open Admin interface" target="_blank">Ouvrir l'interface d'admin</a> - 
+% endif
                 <a href="${request.route_url('home')}${lang}/edit" target="_blanck" class="icon-edit" title="Open Edit interface">Ouvrir l'application d'édition</a>
 	   </div>
 
@@ -121,6 +121,8 @@
         <script type="text/javascript" src="${request.static_url('demo:static/build/app.js')}"></script>
         <script type="text/javascript" src="${request.static_url('demo:static/build/lang-%s.js' % lang)}"></script>
 % endif
-        <script type="text/javascript" src="${request.route_url('viewer')}${extra_params}"></script>
+<%def name="params(params)">${'&amp;grid' if 'grid' in params else ''}</%def>
+${params(request.params)}
+        <script type="text/javascript" src="${request.route_url('viewer')}${extra_params}${params(request.params)}"></script>
     </body>
 </html>

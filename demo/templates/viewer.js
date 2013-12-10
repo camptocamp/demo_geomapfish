@@ -56,7 +56,7 @@ Ext.onReady(function() {
         projection: new OpenLayers.Projection("EPSG:3857"),
         units: "m",
         formatSuffix: 'png',
-        //serverResolutions: [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05],
+        //serverResolutions: [1000,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05],
         serverResolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135]
     };
 
@@ -90,7 +90,7 @@ Ext.onReady(function() {
                 collapseMode: "mini",
                 hidden: true,
                 bodyStyle: 'background-color: transparent;'
-            }, 
+            },
             {
                 layout: "accordion",
                 id: "left-panel",
@@ -129,7 +129,35 @@ Ext.onReady(function() {
                 layout: "fit",
                 style: "padding: 3px 0 3px 3px;"
             }
-        }, 
+        },
+        {
+            ptype: "cgxp_themefinder",
+            outputTarget: "layerpanel",
+            layerTreeId: "layertree",
+            themes: THEMES,
+            outputConfig: {
+                layout: "fit",
+                style: "padding: 3px;"
+            }
+        },
+        {
+            ptype: "cgxp_layertree",
+            id: "layertree",
+            outputConfig: {
+                header: false,
+                flex: 1,
+                layout: "fit",
+                autoScroll: true,
+                themes: THEMES,
+% if permalink_themes:
+                permalinkThemes: ${permalink_themes | n},
+% endif
+                defaultThemes: ["Equipement"],
+                uniqueTheme: true,
+                wmsURL: "${request.route_url('mapserverproxy', path='')}"
+            },
+            outputTarget: "layerpanel"
+        },
 % if user:
         {
             ptype: "cgxp_querier",
@@ -142,42 +170,29 @@ Ext.onReady(function() {
             srsName: 'EPSG:3857',
             featureTypes: ["MTP_adresse", "monuments", "arbres_remarq"],
             attributeURLs: ${queryer_attribute_urls | n}
-        }, 
+        },
 % endif
+% if 'grid' in request.params:
         {
-            ptype: "cgxp_layertree",
-            id: "layertree",
-            outputConfig: {
-                header: false,
-                flex: 1,
-                layout: "fit",
-                autoScroll: true,
-                themes: THEMES,
-% if permalink_themes:
-                  permalinkThemes: ${permalink_themes | n},
-% endif
-                defaultThemes: ["Equipement"],
-                wmsURL: "${request.route_url('mapserverproxy', path='')}"
-            },
-            outputTarget: "layerpanel"
-        }, 
+            ptype: "cgxp_featuresgrid",
+            id: "featureGrid",
+            csvURL: "${request.route_url('csvecho')}",
+            maxFeatures: 200,
+            outputTarget: "featuregrid-container",
+            events: EVENTS,
+            csvIncludeHeader: true
+        },
+% else:
         {
              ptype: "cgxp_featureswindow",
              themes: THEMES,
              events: EVENTS,
              id: "featuresWindow"
-        }, 
-//        {
-//            ptype: "cgxp_featuregrid",
-//            id: "featureGrid",
-//            csvURL: "${request.route_url('csvecho')}",
-//            maxFeatures: 200,
-//            outputTarget: "featuregrid-container",
-//            events: EVENTS
-//        }, 
+        },
+% endif
         {
             ptype: "cgxp_mapopacityslider",
-            defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}" //FUNCTIONALITY.default_basemap[0]
+            defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}"
         },
         {
             ptype: "gxp_zoomtoextent",
@@ -193,11 +208,13 @@ Ext.onReady(function() {
         {
             ptype: "gxp_navigationhistory",
             actionTarget: "center.tbar"
-        }, 
+        },
         {
             ptype: "cgxp_permalink",
-            actionTarget: "center.tbar"
-        }, 
+            id: "permalink",
+            actionTarget: "center.tbar",
+            shortenerCreateURL: "${request.route_url('shortener_create', path='')}"
+        },
         {
             ptype: "cgxp_measure",
             actionTarget: "center.tbar",
@@ -221,7 +238,7 @@ Ext.onReady(function() {
              serviceUrl: "${request.route_url('profile.json')}",
              csvServiceUrl: "${request.route_url('profile.csv')}",
              rasterLayers: ['mnt']
-        }, 
+        },
         {
              ptype: 'cgxp_wmsbrowser',
              actionTarget: "layerpanel.bbar",
@@ -276,10 +293,9 @@ Ext.onReady(function() {
             ptype: "cgxp_print",
             legendPanelId: "legendPanel",
             featureProvider: "featuresWindow",
-            //outputTarget: "left-panel",
             actionTarget: "center.tbar",
             printURL: "${request.route_url('printproxy', path='')}",
-            mapserverURL: "${request.route_url('mapserverproxy', path='')}", 
+            mapserverURL: "${request.route_url('mapserverproxy', path='')}",
             options: {
                 labelAlign: 'top',
                 defaults: {
@@ -287,7 +303,7 @@ Ext.onReady(function() {
                 },
                 autoFit: true
             }
-        }, 
+        },
         {
             ptype: "cgxp_redlining",
             toggleGroup: "maptools",
@@ -323,7 +339,6 @@ Ext.onReady(function() {
             loginURL: "${request.route_url('login', path='')}",
             loginChangeURL: "${request.route_url('loginchange', path='')}",
             logoutURL: "${request.route_url('logout', path='')}",
-            permalinkId: "permalink",
             enablePasswordChange: true,
             forcePasswordChange: true,
             permalinkId: "permalink"
@@ -332,7 +347,7 @@ Ext.onReady(function() {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
             type: '-'
-        }, 
+        },
         {
             ptype: "cgxp_help",
             url: "${request.static_url('demo:static/_build/html/aide.html')}",
@@ -371,8 +386,7 @@ Ext.onReady(function() {
             stateId: "map",
             projection: new OpenLayers.Projection("EPSG:3857"),
             units: "m",
-            //maxResolution: 156543.0339,
-            //resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
+            //resolutions: [1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
             resolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
             controls: [
                 new OpenLayers.Control.Navigation(),
@@ -394,8 +408,8 @@ Ext.onReady(function() {
                     mapOptions: {
                         theme: null
                     },
-                    minRatio: 64, 
-                    maxRatio: 64, 
+                    minRatio: 64,
+                    maxRatio: 64,
                     layers: [new OpenLayers.Layer.OSM("OSM", [
                            'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                            'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
@@ -418,7 +432,7 @@ Ext.onReady(function() {
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
-                    OpenLayers.i18n('OSM_MapQuest'), 
+                    OpenLayers.i18n('OSM_MapQuest'),
                     [
                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
@@ -498,67 +512,26 @@ Ext.onReady(function() {
                 html: serverError.join('<br />')
             },OpenLayers.i18n("Error notice"),600, 500);
         }
-// Crumble:
-//        jQuery('h1#logo').grumble(
-//        {
-//                text: 'Bienvenue sur le site de démo du projet c2cgeoportal', 
-//                angle: 200, 
-//                distance: 3, 
-//                showAfter: 0,
-//                hideAfter: 2000,
-//                hideOnClick: true
-//        }
-//        );
-//        jQuery('table.themes').grumble(
-//            {
-//                text: 'Choisissez un thème ...',
-//                angle: 85,
-//                distance: 0,
-//                showAfter: 2200,
-//                hideOnClick: true,
-//                hideAfter: 2000
-//            }
-//        );
-//        jQuery('div.x-tree-root-node').grumble(
-//            {
-//                text: 'Cochez les couches que vous voulez ajouter, visualiser la légende, allez sur la page des métadonnées, ...',
-//                angle: 85,
-//                distance: 0,
-//                showAfter: 4400,
-//                hideOnClick: true,
-//                hideAfter: 2000
-//            }
-//        );
-//        jQuery('.gxp-icon-zoomtoextent').grumble(
-//            {
-//                text: 'Naviguez sur la carte, mesurer des surfaces, distances, localisation, ...',
-//                angle: 85,
-//                distance: 0,
-//                showAfter: 6400,
-//                hideOnClick: true,
-//                hideAfter: 2000
-//            }
-//        );
 //c2cgp_stats
         var tools = {};
-	var toolbar = GeoExt.MapPanel.guess().ownerCt.getTopToolbar();
-	toolbar.items.each(function(tool) {
-	    tool.on('click', function(){
-	        var id = tool.iconCls;
-	        if (!tools[id]) {
-	    	tools[id] = 1;
-	        } else {
-	    	tools[id]++;
-	        }
-	    });
-	});
-	window.onunload = function() {
-	    Ext.Ajax.request({
-	        url: '/stats',
-	        method: 'GET',
-	        params: tools
-	    });
-	};
+        var toolbar = GeoExt.MapPanel.guess().ownerCt.getTopToolbar();
+        toolbar.items.each(function(tool) {
+            tool.on('click', function(){
+                var id = tool.iconCls;
+                if (!tools[id]) {
+                    tools[id] = 1;
+                } else {
+                    tools[id]++;
+                }
+            });
+        });
+        window.onunload = function() {
+            Ext.Ajax.request({
+                url: '/stats',
+                method: 'GET',
+                params: tools
+            });
+        };
 // end of c2cgp_stats
 
     }, app);
