@@ -36,7 +36,6 @@ demo.Map = function(config) {
          */
 
         OpenLayers.Number.thousandsSeparator = ' ';
-        OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
         OpenLayers.DOTS_PER_INCH = 72;
         OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
         OpenLayers.Lang.setCode("${lang}");

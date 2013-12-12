@@ -87,9 +87,10 @@
            <div id="lang"><a href="${request.route_url('home')}de"><span>de</span> / </a><a href="${request.route_url('home')}en"><span>en</span> / </a><span><a href="${request.route_url('home')}fr">fr</a></span></div>
            <div id="toolbar">
 % if request.user:
-                <a href="${request.route_url('home')}${lang}/admin" class="icon-admin" title="Open Admin interface" target="_blank">Ouvrir l'interface d'admin</a> - 
+                <a href="${request.route_url('home')}${lang}/admin" target="_blank" class="icon-admin" title="Ouvrir l'interface d'admin">Admin</a> - 
 % endif
-                <a href="${request.route_url('home')}${lang}/edit" target="_blanck" class="icon-edit" title="Open Edit interface">Ouvrir l'application d'édition</a>
+                <a href="${request.route_url('home')}routing" target="_blank" class="icon-routing" title="Ouvrir l'application de calcul d'itinéraire">Calcul d'itinéraire</a> -
+                <a href="${request.route_url('home')}${lang}/edit" target="_blank" class="icon-edit" title="Ouvrir l'application d'édition">Édition</a>
 	   </div>
 
         </div>

@@ -14,12 +14,12 @@ Ext.onReady(function() {
     GeoExt.Lang.set("${lang}");
 
 % if user:
-    var initialExtent = ${user.role.json_extent};
+    var INITIAL_EXTENT = ${user.role.json_extent};
 % else:
-    var initialExtent = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
+    var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
 % endif
 
-    var themes = {
+    var THEMES = {
         "local": ${themes | n}
 % if external_themes:
         , "external": ${external_themes | n}
@@ -27,7 +27,7 @@ Ext.onReady(function() {
     };
 
     var WMTS_OPTIONS = {
-        url: '${tiles_url}',
+        url: ${tiles_url | n},
         displayInLayerSwitcher: false,
         requestEncoding: 'REST',
         buffer: 0,
@@ -79,7 +79,7 @@ Ext.onReady(function() {
                 style: 'padding: 3px;'
             },
             layerTreeId: 'layertree',
-            themes: themes
+            themes: THEMES
         }, {
             ptype: "cgxp_layertree",
             id: "layertree",
@@ -88,7 +88,7 @@ Ext.onReady(function() {
                 flex: 1,
                 layout: 'fit',
                 autoScroll: true,
-                themes: themes,
+                themes: THEMES,
                 wmsURL: '${request.route_url('mapserverproxy')}'
             },
             outputTarget: 'left-panel'
@@ -118,7 +118,7 @@ Ext.onReady(function() {
             stateId: "map",
             xtype: 'cgxp_mappanel',
             projection: new OpenLayers.Projection("EPSG:3857"),
-            extent: initialExtent,
+            extent: INITIAL_EXTENT,
             maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
             //restrictedExtent: [420000, 30000, 900000, 350000],
             units: "m",

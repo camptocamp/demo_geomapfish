@@ -1,3 +1,20 @@
+/**
+ * Copyright (c) 2011-2013 by Camptocamp SA
+ *
+ * CGXP is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * CGXP is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CGXP. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 Ext.define("App.view.Layers", {
     extend: 'Ext.form.Panel',
     xtype: 'layersview',
@@ -21,7 +38,7 @@ Ext.define("App.view.Layers", {
             }]
         }, {
             xtype: 'fieldset',
-            title: 'Fond',
+            title: OpenLayers.i18n('layer_switcher.background'),
             items: [{
                 xtype: 'selectfield',
                 id: 'baselayer_switcher',
@@ -34,13 +51,13 @@ Ext.define("App.view.Layers", {
             }]
         }, {
             xtype: 'fieldset',
-            title: 'Couches de données',
+            title: OpenLayers.i18n('layer_switcher.data_layers'),
             id: 'overlays',
             items: [{
                 xtype: 'button',
                 id: 'theme_switcher',
                 text: ' ',
-                iconCls: "code3",
+                iconCls: "right",
                 iconMask: true,
                 iconAlign: "right"
             }],
@@ -59,18 +76,43 @@ Ext.define("App.view.Layers", {
             model: 'App.model.Theme',
             id: 'themesStore'
         });
-        this.setStore(themesStore);
         themesStore.add(App.themes);
 
-        var queryParams = OpenLayers.Util.getParameters();
-        var currentTheme = themesStore.find('name', queryParams.theme);
+        var store = Ext.create('Ext.data.Store', {
+            model: 'App.model.Layer',
+            listeners: {
+                refresh: this.dataChanged,
+                scope: this
+            }
+        });
+        this.setStore(store);
+
+        var currentTheme = themesStore.find('name', App.theme);
         if (currentTheme == -1) {
             currentTheme = 0;
         }
-        this.down('#theme_switcher').setText(
-            OpenLayers.i18n('theme_switcher.prefix') +
-            OpenLayers.i18n(themesStore.getAt(currentTheme).get('name'))
-        );
+
+        if (App.themes.length > 1) {
+            this.setButtonText(App.theme);
+        }
+        else {
+            this.down('#theme_switcher').hide();
+        }
+
+        var baseLayerSwitcher = this.down('#baselayer_switcher');
+        var baseLayersStore = Ext.create('Ext.data.Store', {
+            model: 'App.model.Layer'
+        });
+        Ext.each(App.map.layers, function(layer) {
+            if (layer.isBaseLayer) {
+                baseLayersStore.add(layer);
+            }
+        });
+        baseLayerSwitcher.setStore(baseLayersStore);
+        if (baseLayersStore.getAllCount() <= 1) {
+            baseLayerSwitcher.parent.hide();
+        }
+        baseLayerSwitcher.setValue(App.map.baseLayer.id);
     },
 
     toArray: function(value) {
@@ -93,18 +135,31 @@ Ext.define("App.view.Layers", {
         layer.mergeNewParams({'LAYERS': layersParam});
     },
 
-    updateStore: function(store) {
+    setButtonText: function(theme) {
+        this.down('#theme_switcher').setText(
+            OpenLayers.i18n('theme_switcher.prefix') +
+            OpenLayers.i18n(theme)
+        );
+    },
+
+    dataChanged: function(store) {
+        // set theme switcher name
+        this.setButtonText(App.theme);
         var overlaysContainer = this.down('#overlays');
+        // remove previous layers from list
+        while (overlaysContainer.getAt(1)) {
+            overlaysContainer.removeAt(1);
+        }
         store.each(function(record) {
             var layer = record.raw;
-            if (!layer.isBaseLayer &&
-                layer instanceof OpenLayers.Layer.WMS) {
-                var allLayers = this.toArray(layer.allLayers),
+            if (!layer.isBaseLayer && layer.allLayers &&
+                    layer instanceof OpenLayers.Layer.WMS) {
+                var allLayers = layer.allLayers,
                     layersParam = layer.params.LAYERS ?
                         this.toArray(layer.params.LAYERS) : [],
                     i, l;
                 for (i = allLayers.length - 1; i >= 0; --i) {
-                    l = allLayers[i];
+                    l = allLayers[i].name;
                     var checkbox = overlaysContainer.add({
                         label: OpenLayers.i18n(l),
                         name: l,

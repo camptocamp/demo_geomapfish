@@ -3,6 +3,7 @@ Ext.define("App.view.Settings", {
     xtype: 'settingsview',
 
     config: {
+        scrollable: 'vertical',
         items: [{
             docked: 'top',
             xtype: 'toolbar',
@@ -18,6 +19,8 @@ Ext.define("App.view.Settings", {
             xtype: 'container',
             cls: 'settings',
             items: [{
+                xtype: 'map_permalink'
+            }, {
                 xtype: 'component',
                 html: 
                     '<h1 class="title">Copyright</h1>' +

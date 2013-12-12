@@ -156,7 +156,6 @@ demo.Map = function(config) {
         Ext.QuickTips.init();
         Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
         OpenLayers.Number.thousandsSeparator = ' ';
-        OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
         OpenLayers.DOTS_PER_INCH = 72;
         OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
         OpenLayers.Lang.setCode("${lang}");

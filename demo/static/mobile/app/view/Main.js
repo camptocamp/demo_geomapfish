@@ -1,3 +1,20 @@
+/**
+ * Copyright (c) 2011-2013 by Camptocamp SA
+ *
+ * CGXP is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * CGXP is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CGXP. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 Ext.define("App.view.Main", {
     extend: 'Ext.Container',
     xtype: 'mainview',
@@ -6,9 +23,7 @@ Ext.define("App.view.Main", {
         'Ext.field.Select',
         'Ext.SegmentedButton',
         'App.model.Layer',
-        'App.plugin.StatefulMap',
-        'App.view.GeolocateControl',
-        'App.view.MobileMeasure'
+        'App.plugin.StatefulMap'
     ],
 
     config: {
@@ -22,7 +37,7 @@ Ext.define("App.view.Main", {
             xtype: 'toolbar',
             docked: 'top',
             items: [{
-                xtype: 'searchfield',
+                xtype: 'mysearchfieldnestedinaform',
                 flex: 4,
                 locales: {
                     placeHolder: 'views.map.search'
@@ -33,16 +48,20 @@ Ext.define("App.view.Main", {
             }, {
                 xtype: 'button',
                 iconCls: 'layers',
-                action: 'layers',
-                iconMask: true
+                action: 'layers'
             }, {
                 xtype: 'button',
                 iconCls: 'settings',
-                action: 'settings',
-                iconMask: true
+                action: 'settings'
             }]
         }, {
-            id: 'map-container'
+            xtype: 'component',
+            id: 'map-container',
+            height: '100%',
+            style: {
+                position: 'relative',
+                zIndex: 0
+            }
         }]
     },
 
@@ -131,8 +150,8 @@ Ext.define("App.view.Main", {
 
         map.addControls([
             new OpenLayers.Control.Zoom(),
-            new App.view.GeolocateControl(),
-            new App.view.MobileMeasure()
+            new App.GeolocateControl(),
+            new App.MobileMeasure()
         ]);
     },
 
@@ -151,10 +170,10 @@ Ext.define("App.view.Main", {
         var ll = this.getMap().getLonLatFromPixel(llPx);
         var ur = this.getMap().getLonLatFromPixel(urPx);
         return new OpenLayers.Bounds(
-            parseInt(ll.lon),
-            parseInt(ll.lat),
-            parseInt(ur.lon),
-            parseInt(ur.lat)
+            parseInt(ll.lon, 10),
+            parseInt(ll.lat, 10),
+            parseInt(ur.lon, 10),
+            parseInt(ur.lat, 10)
         );
     },
 
@@ -173,8 +192,10 @@ Ext.define("App.view.Main", {
                     [f.geometry.x, f.geometry.y],
                     map.baseLayer.numZoomLevels - 3
                 );
-            } else {
+            } else if (f.geometry) {
                 map.zoomToExtent(f.geometry.getBounds());
+            } else if (f.bounds) {
+                map.zoomToExtent(f.bounds);
             }
             map.events.register('moveend', this, function onmoveend() {
                 layer.removeFeatures(f);
@@ -182,5 +203,20 @@ Ext.define("App.view.Main", {
                 map.events.unregister('moveend', this, onmoveend);
             });
         }
+    }
+});
+
+// see http://www.sencha.com/forum/showthread.php?151529-searchfield-not-showing-quot-Search-quot-button-on-iOS-keyboard.-Bug&p=945810&viewfull=1#post945810
+Ext.define('MySearchFieldNestedInAForm', {
+    extend: 'Ext.field.Search',
+    xtype: 'mysearchfieldnestedinaform',
+
+    getElementConfig: function() {
+        var tpl = this.callParent();
+
+        tpl.tag = 'form';
+        tpl.onsubmit = 'return false;';
+
+        return tpl;
     }
 });

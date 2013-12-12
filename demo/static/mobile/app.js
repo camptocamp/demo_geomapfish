@@ -1,13 +1,33 @@
+/**
+ * Copyright (c) 2011-2013 by Camptocamp SA
+ *
+ * CGXP is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * CGXP is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CGXP. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 Ext.application({
     name: 'App',
     appFolder: 'app',
 
     viewport: {
         // hide the address bar
-        autoMaximize: true
+        // autoMaximize set to false. See "AutoMaximize No More!" in
+        // http://www.sencha.com/blog/top-sencha-support-tips/
+        //autoMaximize: true
     },
 
     requires: [
+        'Ext.viewport.Viewport',
         'Ext.MessageBox',
         'Ext.data.Store',
         'Ext.data.proxy.JsonP',
@@ -18,7 +38,7 @@ Ext.application({
     ],
 
     views: ['Main', 'Layers', 'Themes', 'Search', 'Query', 'Settings', 'LoginForm'],
-    models: ['Layer', 'Search', 'Query'],
+    models: ['Layer', 'Search', 'Query', 'Theme'],
     controllers: ['Main', 'Search', 'Query'],
 
     icon: {
@@ -41,6 +61,10 @@ Ext.application({
 
     launch: function() {
 
+        // store current theme
+        var queryParams = Ext.Object.fromQueryString(window.location.search);
+        App.theme = queryParams.theme;
+
         // decode the information received from the server
         if (App.info) {
             App.info = Ext.JSON.decode(App.info, true);
@@ -48,11 +72,15 @@ Ext.application({
         if (App.themes) {
             App.themes = Ext.JSON.decode(App.themes, true);
         }
+        this.getController('Main').loadTheme(App.theme);
 
         // create the main view and set the map into it
         var mainView = Ext.create('App.view.Main');
+
         // App.map should be set in config.js
         mainView.setMap(App.map);
+
+        var layersView = Ext.create('App.view.Layers');
 
         // destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
