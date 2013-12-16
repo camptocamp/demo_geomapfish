@@ -1,11 +1,19 @@
 OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "layertree": "Themen",
+
+  "osrm_demo": "OSRM demo",
+  "c2c_car": "Camptocamp demo car",
+  "c2c_bicycle": "Camptocamp demo bicycle",
+  "c2c_foot": "Camptocamp demo foot",
+
   "1 A4 portrait demo": "A4 Hochformat",
   "2 A3 portrait demo": "A3 Hochformat",
   "3 A4 landscape demo": "A4 Querformat",
   "4 A3 landscape demo": "A3 Querformat",
+
   "OSM_MapQuest": "OSM-Karte",
   "plan":"Lokale Karte",
+
   "adresse": "Addresspunkt",
   "shortcut": "Shortcut",
   "eclairage": "Beleuchtung",

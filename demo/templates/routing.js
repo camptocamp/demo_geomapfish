@@ -71,22 +71,22 @@ Ext.onReady(function() {
         {
             ptype: 'cgxp_routing',
             routingService: { 
-                ENGINE_0: {
+                osrm_demo: {
                     type: 'OSRM', 
                     url: 'http://router.project-osrm.org/',
                     dynamic: true
                 },
-                engine_car: {
+                c2c_car: {
                     type: 'OSRM', 
                     url: 'http://mfusrgrp-re2013.demo-camptocamp.com/car',
                     dynamic: true
                 },
-                engine_bicycle: {
+                c2c_bicycle: {
                     type: 'OSRM', 
                     url: 'http://mfusrgrp-re2013.demo-camptocamp.com/bicycle',
                     dynamic: true
                 },
-                foot: {
+                c2c_foot: {
                     type: 'OSRM', 
                     url: 'http://mfusrgrp-re2013.demo-camptocamp.com/foot',
                     dynamic: true
