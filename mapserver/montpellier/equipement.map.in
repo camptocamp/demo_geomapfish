@@ -49,6 +49,7 @@ LAYER
         "gml_include_items" "nom_aire,toboggan_label,tourniquet_label"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
         "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+        "gml_featureid" "gid"
 
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Aires-de-jeux-par-type" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL

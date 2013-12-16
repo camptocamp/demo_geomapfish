@@ -28,7 +28,6 @@ Extended APIs.
 
         var mapConfig = {
             xtype: 'cgxp_mappanel',
-            projection: "EPSG:3857",
             extent: INITIAL_EXTENT,
             maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
             //restrictedExtent: RESTRICTED_EXTENT,
@@ -46,7 +45,6 @@ Extended APIs.
                     bottomOutUnits: false
                 }),
                 new OpenLayers.Control.LayerSwitcher(),
-                /*
                 new OpenLayers.Control.OverviewMap({
                     size: new OpenLayers.Size(200, 100),
                     layers: [new OpenLayers.Layer.OSM("OSM", [
@@ -66,11 +64,10 @@ Extended APIs.
                         numZoomLevels: 1
                     }
                 }),
-                */
                 new OpenLayers.Control.MousePosition({numDigits: 0})
             ],
             layers: [
-            {
+/*            {
                source: "olsource",
                type: "OpenLayers.Layer.WMTS",
                group: 'background',
@@ -82,9 +79,9 @@ Extended APIs.
                    group: 'background',
                    displayInLayerSwitcher: true
                }, WMTS_OPTIONS)]
-           },
+           },*/
            {
-		source: "olsource",
+        		source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
@@ -93,7 +90,7 @@ Extended APIs.
                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
-                   ], {
+                    ], {
                        transitionEffect: 'resize',
                        projection: new OpenLayers.Projection("EPSG:3857"),
                        attribution: [

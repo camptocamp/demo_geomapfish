@@ -427,8 +427,8 @@ Ext.onReady(function() {
             ],
             layers: [
 % if request.registry.settings['offline'] == False:
-	    {
-		source: "olsource",
+    	    {
+		        source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
@@ -437,7 +437,7 @@ Ext.onReady(function() {
                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
-                   ], {
+                    ], {
                        projection: new OpenLayers.Projection("EPSG:3857"),
                        transitionEffect: 'resize',
                        attribution: [
