@@ -2,9 +2,9 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "layertree": "Themen",
 
   "osrm_demo": "OSRM demo",
-  "c2c_car": "Camptocamp demo car",
-  "c2c_bicycle": "Camptocamp demo bicycle",
-  "c2c_foot": "Camptocamp demo foot",
+  "c2c_car": "Car - Camptocamp demo",
+  "c2c_bicycle": "Bicycle - Camptocamp demo",
+  "c2c_foot": "Foot - Camptocamp demo",
 
   "1 A4 portrait demo": "A4 Hochformat",
   "2 A3 portrait demo": "A3 Hochformat",
@@ -48,7 +48,6 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "librevetem": "Belag",
   "Paysage": "Landschaft",
   "arbres_remarq": "Auffallender Baum",
-  "nom_latin": "Lateinischer Name",
   "nom_usuel": "Gebräuchlicher Name",
   "age": "Alter",
   "descriptio": "Beschreibung",

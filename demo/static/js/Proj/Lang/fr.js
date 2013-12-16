@@ -2,9 +2,9 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "layertree": "Thèmes",
 
   "osrm_demo": "OSRM demo",
-  "c2c_car": "Camptocamp demo voiture",
-  "c2c_bicycle": "Camptocamp demo vélo",
-  "c2c_foot": "Camptocamp demo piéton",
+  "c2c_car": "Voiture - Camptocamp demo",
+  "c2c_bicycle": "Vélo - Camptocamp demo",
+  "c2c_foot": "Piéton - Camptocamp demo",
 
   "1 A4 portrait demo": "A4 Portrait",
   "2 A3 portrait demo": "A3 Portrait",
