@@ -8,14 +8,14 @@ Version 1.4
 
     git add versions.cfg
 
-    ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/prospection_demo_c2cgp package=demo
+    ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
 
-    cp /tmp/prospection_demo_c2cgp/README.rst .
+    cp /tmp/demo_geomapfish/README.rst .
     git add README.rst
-    cp /tmp/prospection_demo_c2cgp/demo/templates/routing.{js,html} demo/templates/
+    cp /tmp/demo_geomapfish/demo/templates/routing.{js,html} demo/templates/
     git add demo/templates/routing.{js,html}
 
-    rm -rf /tmp/prospection_demo_c2cgp
+    rm -rf /tmp/demo_geomapfish
 
 2. Remove the deprecated files:
 
@@ -238,7 +238,7 @@ Version 1.4
         OpenLayers.IMAGE_RELOAD_ATTEMPTS = 2;
 
   * Add the new configuration to the ``cgxp_querier`` plugin in the
-    ``prospection_demo_c2cgp/templates/viewer.js`` file:
+    ``demo_geomapfish/templates/viewer.js`` file:
 
         attributeURLs: ${queryer_attribute_urls | n}
 
@@ -843,10 +843,10 @@ Version 1.3
    https://github.com/camptocamp/c2cgeoportal/commit/3a8f0e4d87ab4199d474c0e8ed6cc33038e2e795
    or regenerate the API help:
 
-        ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/prospection_demo_c2cgp package=demo
-        cp -r /tmp/prospection_demo_c2cgp/demo/templates/api/apihelp.html demo/templates/api
-        cp -r /tmp/prospection_demo_c2cgp/demo/templates/api/xapihelp.html demo/templates/api
-        rm -rf /tmp/prospection_demo_c2cgp
+        ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
+        cp -r /tmp/demo_geomapfish/demo/templates/api/apihelp.html demo/templates/api
+        cp -r /tmp/demo_geomapfish/demo/templates/api/xapihelp.html demo/templates/api
+        rm -rf /tmp/demo_geomapfish
 
 10. c2cgeoportal 1.3 requires papyrus 0.10dev1. If papyrus is set to 0.9 or
     lower in the [versions] section of buildout.cfg, change it to 0.10dev1.
@@ -877,10 +877,10 @@ Version 1.2
    As minimal you should get the new files:
 
         ./buildout/bin/pcreate -s c2cgeoportal_create \
-                /tmp/prospection_demo_c2cgp package=demo
-        cp -r /tmp/prospection_demo_c2cgp/demo/static/mobile/custom.scss demo/static/mobile/
-        cp -r /tmp/prospection_demo_c2cgp/demo/static/mobile/app/ demo/static/mobile/
-        rm -rf /tmp/prospection_demo_c2cgp
+                /tmp/demo_geomapfish package=demo
+        cp -r /tmp/demo_geomapfish/demo/static/mobile/custom.scss demo/static/mobile/
+        cp -r /tmp/demo_geomapfish/demo/static/mobile/app/ demo/static/mobile/
+        rm -rf /tmp/demo_geomapfish
 
 2. CGXP plugin WFSGetFeature now requires that the themes are explicitly passed
    in its configuration in demo/templates/viewer.js using the following
@@ -1118,16 +1118,16 @@ Version 1.2
         create a temporary project and copy the API files from this
         temporary project to yours::
 
-        $ cd prospection_demo_c2cgp
+        $ cd demo_geomapfish
         $ ./buildout/bin/pcreate -s c2cgeoportal_create \
-                /tmp/prospection_demo_c2cgp package=demo
-        $ cp -r /tmp/prospection_demo_c2cgp/demo/templates/api demo/templates/
-        $ cp -r /tmp/prospection_demo_c2cgp/demo/static/apihelp demo/static/
-        $ rm -rf /tmp/prospection_demo_c2cgp
+                /tmp/demo_geomapfish package=demo
+        $ cp -r /tmp/demo_geomapfish/demo/templates/api demo/templates/
+        $ cp -r /tmp/demo_geomapfish/demo/static/apihelp demo/static/
+        $ rm -rf /tmp/demo_geomapfish
 
     Clean up (remove old API-related files)
 
-        $ cd prospection_demo_c2cgp
+        $ cd demo_geomapfish
         $ rm -f demo/static/js/api/Map.js
         $ rm -f demo/templates/apihelp.html
         $ rm -f demo/templates/apiloader.js
@@ -1440,7 +1440,7 @@ tilecache_url: http://$${vars:host}/$${vars:parent_instanceid}/wsgi/tilecache
         tilecache_url
 
     - Re apply the update scaffold to regenerate the CONST_buildout file:
-        ./buildout/bin/pcreate --interactive -s c2cgeoportal_update ../prospection_demo_c2cgp package=demo
+        ./buildout/bin/pcreate --interactive -s c2cgeoportal_update ../demo_geomapfish package=demo
 
     - In the file ``print/templates/print.mako.in`` replace
         ``${vars:mapserv_host}`` and ``${vars:wsgi_host}`` by ``${vars:host}``.
@@ -1507,11 +1507,11 @@ tilecache_url: http://$${vars:host}/$${vars:parent_instanceid}/wsgi/tilecache
    <a href="javascript:cgxp.tools.openInfoWindow('http://www.test.com', 'Popup title', 600, 500);">Link text</a>
 
 5. Add new deploy hooks to set the databases rights.
-   cd prospection_demo_c2cgp
-   ./buildout/bin/pcreate --overwrite -s c2cgeoportal_create /tmp/prospection_demo_c2cgp package=demo
-   cp /tmp/prospection_demo_c2cgp/deploy/hooks/post-restore-database.in deploy/hooks/
+   cd demo_geomapfish
+   ./buildout/bin/pcreate --overwrite -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
+   cp /tmp/demo_geomapfish/deploy/hooks/post-restore-database.in deploy/hooks/
    chmod +x deploy/hooks/post-restore-database.in
-   rm -rf /tmp/prospection_demo_c2cgp
+   rm -rf /tmp/demo_geomapfish
 
 6. HTTPS detection
 
@@ -1536,13 +1536,13 @@ tilecache_url: http://$${vars:host}/$${vars:parent_instanceid}/wsgi/tilecache
 
    Copy config.js and mobile.cfg from c2cgeoportal_create:
 
-   $ cd prospection_demo_c2cgp
+   $ cd demo_geomapfish
    $ ./buildout/bin/pcreate -s c2cgeoportal_create \
-           /tmp/prospection_demo_c2cgp package=demo
-   $ cp /tmp/prospection_demo_c2cgp/demo/static/mobile/config.js \
+           /tmp/demo_geomapfish package=demo
+   $ cp /tmp/demo_geomapfish/demo/static/mobile/config.js \
         demo/static/mobile/
-   $ cp /tmp/prospection_demo_c2cgp/jsbuild/mobile.cfg jsbuild/
-   $ rm -rf /tmp/prospection_demo_c2cgp
+   $ cp /tmp/demo_geomapfish/jsbuild/mobile.cfg jsbuild/
+   $ rm -rf /tmp/demo_geomapfish
 
    Add routes and views:
 
@@ -1649,11 +1649,11 @@ tilecache_url: http://$${vars:host}/$${vars:parent_instanceid}/wsgi/tilecache
 
 15. Update the print. A new file is required. To get it do the following:
 
-    ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/prospection_demo_c2cgp package=demo
-    cp /tmp/prospection_demo_c2cgp/print/WEB-INF/classes/spring-application-context.xml \
+    ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
+    cp /tmp/demo_geomapfish/print/WEB-INF/classes/spring-application-context.xml \
             print/WEB-INF/classes
     git add print/WEB-INF/classes/spring-application-context.xml
-    rm -rf /tmp/prospection_demo_c2cgp
+    rm -rf /tmp/demo_geomapfish
 
 16. The cgxp-install part is now deactivated by default, so if you still use
     SVN, you have to add it back in your ``buildout.cfg`` file, section
@@ -1882,12 +1882,12 @@ work in an existing project several steps are required:
    apply the c2cgeoportal_create directory outside the existing application,
    and copy the files from the newly created directory to the application:
 
-   cd prospection_demo_c2cgp
+   cd demo_geomapfish
    ./buildout/bin/paster create --template c2cgeoportal_create \
-       --output-dir=/tmp/prospection_demo_c2cgp package=demo
-   cp /tmp/prospection_demo_c2cgp/demo/templates/edit.html demo/templates/
-   cp /tmp/prospection_demo_c2cgp/demo/templates/edit.js demo/templates/
-   rm -rf /tmp/prospection_demo_c2cgp
+       --output-dir=/tmp/demo_geomapfish package=demo
+   cp /tmp/demo_geomapfish/demo/templates/edit.html demo/templates/
+   cp /tmp/demo_geomapfish/demo/templates/edit.js demo/templates/
+   rm -rf /tmp/demo_geomapfish
 
 5. SQL queries in the DATA properties should be changed in the mapfile for the
    editable layers. They should use the new "mapfile_data_subselect" Buildout
@@ -1976,15 +1976,15 @@ Other changes
 
    The base templates are deprecated, to get the new version do
    (Careful: this will overwrite your changes):
-       cd prospection_demo_c2cgp
+       cd demo_geomapfish
        ./buildout/bin/paster create --template c2cgeoportal_create \
-           --output-dir=/tmp/prospection_demo_c2cgp package=demo
-       cp /tmp/prospection_demo_c2cgp/demo/templates/apihelp.html demo/templates/
-       cp /tmp/prospection_demo_c2cgp/demo/templates/apiloader.html demo/templates/
-       cp /tmp/prospection_demo_c2cgp/demo/templates/apiviewer.html demo/templates/
-       cp /tmp/prospection_demo_c2cgp/demo/templates/index.html demo/templates/
-       cp /tmp/prospection_demo_c2cgp/demo/templates/viewer.js demo/templates/
-       rm -rf /tmp/prospection_demo_c2cgp
+           --output-dir=/tmp/demo_geomapfish package=demo
+       cp /tmp/demo_geomapfish/demo/templates/apihelp.html demo/templates/
+       cp /tmp/demo_geomapfish/demo/templates/apiloader.html demo/templates/
+       cp /tmp/demo_geomapfish/demo/templates/apiviewer.html demo/templates/
+       cp /tmp/demo_geomapfish/demo/templates/index.html demo/templates/
+       cp /tmp/demo_geomapfish/demo/templates/viewer.js demo/templates/
+       rm -rf /tmp/demo_geomapfish
 
    Notes:
 

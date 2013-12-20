@@ -8,7 +8,7 @@ Checkout
 
 .. code:: bash
 
-   git clone git@github.com:camptocamp/prospection_demo_c2cgp.git
+   git clone git@github.com:camptocamp/demo_geomapfish.git
 
 Build
 -----
