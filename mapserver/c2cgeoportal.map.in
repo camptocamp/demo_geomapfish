@@ -37,9 +37,6 @@ MAP
     FONTSET "fonts.conf"
     SYMBOLSET "symbols.sym"
 
-    #CONFIG "MS_ERRORFILE" "ms_error.log"
-    #DEBUG 5
-
     OUTPUTFORMAT
         NAME jpeg
         DRIVER "AGG/JPEG"
@@ -67,7 +64,7 @@ MAP
 
     WEB
         METADATA
-            "wms_title" "Flux de démo du c2cgeoportal"
+            "wms_title" "Démo du c2cgeoportal"
             "wms_abstract" "Des exemples de couches à partir de données OpenData de différentes villes françaises et suisse."
             "wms_onlineresource" "http://${vars:host}/${vars:instanceid}/wsgi/mapserv_proxy"
             "wms_srs" "epsg:3857"
@@ -86,6 +83,9 @@ MAP
             SIZE 9
         END
     END
+
+    # OSM
+    INCLUDE "osm.map"
 
     # Montpellier
     INCLUDE "montpellier/administration.map"

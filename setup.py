@@ -31,6 +31,7 @@ setup(
         ],
         'console_scripts': [
             'create_db = demo.scripts.create_db:main',
+            'mako = demo.scripts.mako_replacer:main',
         ],
     },
 )
