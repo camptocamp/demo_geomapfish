@@ -426,7 +426,6 @@ Ext.onReady(function() {
                 })
             ],
             layers: [
-% if request.registry.settings['offline'] == False:
     	    {
 		        source: "olsource",
                 type: "OpenLayers.Layer.OSM",
@@ -449,31 +448,6 @@ Ext.onReady(function() {
                     }
                 ]
             },
-% else:
-           {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                group: 'background',
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('plan'),
-                    mapserverLayers: 'plan',
-                    ref: 'plan',
-                    layer: 'plan',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            },
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('relief'),
-                    mapserverLayers: 'relief',
-                    ref: 'relief',
-                    layer: 'relief',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            },
-% endif
             {
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",

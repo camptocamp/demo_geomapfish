@@ -137,20 +137,7 @@ Ext.onReady(function() {
                 new OpenLayers.Control.MousePosition({numDigits: 0})
             ],
             layers: [{
-                // base layers go here
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                group: 'background',
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('plan'),
-                    mapserverLayers: 'plan',
-                    ref: 'plan',
-                    layer: 'plan',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            },
-	    {
-		source: "olsource",
+	        	source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
@@ -160,27 +147,16 @@ Ext.onReady(function() {
                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                    ], {
+                       projection: new OpenLayers.Projection("EPSG:3857"),
                        transitionEffect: 'resize',
                        attribution: [
                            "(c) <a href='http://openstreetmap.org/'>OSM</a>",
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
                        group: 'background',
-                       ref: 'osmmapquest'
+                       ref: 'OSM_MapQuest'
                     }
                 ]
-            },
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('ortho'),
-                    mapserverLayers: 'ortho',
-                    ref: 'ortho',
-                    layer: 'ortho',
-                    formatSuffix: 'jpeg',
-                    opacity: 0
-                }, WMTS_OPTIONS)]
             }],
             items: []
         }
