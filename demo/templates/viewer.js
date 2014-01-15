@@ -275,6 +275,12 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
             streetViewLink: true,
+            mouseoverWindowConfig: {
+                width: 270
+            },
+            rightclickWindowConfig: {
+                width: 270
+            },
             tpls: {
                 allTpl: 
                     OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
