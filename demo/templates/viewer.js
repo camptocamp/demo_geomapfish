@@ -264,13 +264,6 @@ Ext.onReady(function() {
                 tooltip: OpenLayers.i18n('Open Google Earth Panel')
              }
         }, {
-             ptype: 'cgxp_streetview',
-             actionTarget: 'center.tbar',
-             outputTarget: 'center',
-             toggleGroup: 'maptools',
-             tooltipText: OpenLayers.i18n('StreetView'),
-             baseURL: "${request.static_url('demo:static/lib/cgxp/geoext.ux/ux/StreetViewPanel/')}"
-        }, {
             ptype: "cgxp_fulltextsearch",
             url: "${request.route_url('fulltextsearch', path='')}",
             layerTreeId: "layertree",
@@ -281,9 +274,14 @@ Ext.onReady(function() {
             ptype: "cgxp_contextualdata",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
+            streetViewLink: true,
             tpls: {
-               allTpl: OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
-                       OpenLayers.i18n("Wsg Coord. Label") + " : {wsg_x} {wsg_y}<br /> etc."
+                allTpl: 
+                    OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
+                    OpenLayers.i18n("Wsg Coord. Label") + " : {wsg_x} {wsg_y}<br />" +
+                    "<a href='http://maps.google.ch/?ie=UTF8&ll={streetviewlat},{streetviewlon}&layer=c" +
+                    "&cbll={streetviewlat},{streetviewlon}&cbp=12,57.78,,0,8.1' " +
+                    "target='_blank'>{streetviewlabel}</a>"
             }
         }, {
             ptype: "cgxp_menushortcut",
