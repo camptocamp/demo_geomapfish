@@ -282,7 +282,7 @@ Ext.onReady(function() {
                 width: 270
             },
             tpls: {
-                allTpl: 
+                allTpl:
                     OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
                     OpenLayers.i18n("Wsg Coord. Label") + " : {wsg_x} {wsg_y}<br />" +
                     "<a href='http://maps.google.ch/?ie=UTF8&ll={streetviewlat},{streetviewlon}&layer=c" +
@@ -448,7 +448,41 @@ Ext.onReady(function() {
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
                        group: 'background',
-                       ref: 'OSM_MapQuest'
+                       ref: 'mapquest'
+                    }
+                ]
+            },
+    	    {
+		        source: "olsource",
+                type: "OpenLayers.Layer.OSM",
+                group: 'background',
+                args: [
+                    "Cycle Map",
+                    [
+                        "http://a.tile.opencyclemap.org/cycle/${'${z}/${x}/${y}'}.png",
+                        "http://b.tile.opencyclemap.org/cycle/${'${z}/${x}/${y}'}.png",
+                        "http://c.tile.opencyclemap.org/cycle/${'${z}/${x}/${y}'}.png"
+                    ],
+                    {
+                        transitionEffect: 'resize',
+                        ref: 'opencyclemap'
+                    }
+                ]
+            },
+    	    {
+		        source: "olsource",
+                type: "OpenLayers.Layer.OSM",
+                group: 'background',
+                args: [
+                    "Transport Map",
+                    [
+                        "http://a.tile2.opencyclemap.org/transport/${'${z}/${x}/${y}'}.png",
+                        "http://b.tile2.opencyclemap.org/transport/${'${z}/${x}/${y}'}.png",
+                        "http://c.tile2.opencyclemap.org/transport/${'${z}/${x}/${y'}}.png"
+                    ],
+                    {
+                        transitionEffect: 'resize',
+                        ref: 'transport'
                     }
                 ]
             },
@@ -490,28 +524,5 @@ Ext.onReady(function() {
                 html: serverError.join('<br />')
             },OpenLayers.i18n("Error notice"),600, 500);
         }
-//c2cgp_stats
-        var tools = {};
-        var toolbar = GeoExt.MapPanel.guess().ownerCt.getTopToolbar();
-        toolbar.items.each(function(tool) {
-            tool.on('click', function(){
-                var id = tool.iconCls;
-                if (!tools[id]) {
-                    tools[id] = 1;
-                } else {
-                    tools[id]++;
-                }
-            });
-        });
-        window.onunload = function() {
-            Ext.Ajax.request({
-                url: '/stats',
-                method: 'GET',
-                params: tools
-            });
-        };
-// end of c2cgp_stats
-
     }, app);
-
 });
