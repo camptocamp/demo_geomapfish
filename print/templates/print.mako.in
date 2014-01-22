@@ -44,6 +44,24 @@ hosts:
   - !dnsMatch
     host: otile4.mqcdn.com
     port: 80
+  - !dnsMatch
+    host: a.tile2.opencyclemap.org
+    port: 80
+  - !dnsMatch
+    host: b.tile2.opencyclemap.org
+    port: 80
+  - !dnsMatch
+    host: c.tile2.opencyclemap.org
+    port: 80
+  - !dnsMatch
+    host: a.tile.opencyclemap.org
+    port: 80
+  - !dnsMatch
+    host: b.tile.opencyclemap.org
+    port: 80
+  - !dnsMatch
+    host: c.tile.opencyclemap.org
+    port: 80
 
 localHostForward:
     from:

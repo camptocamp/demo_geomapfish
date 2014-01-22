@@ -465,6 +465,7 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        group: 'background',
                         ref: 'opencyclemap'
                     }
                 ]
@@ -482,6 +483,7 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        group: 'background',
                         ref: 'transport'
                     }
                 ]
