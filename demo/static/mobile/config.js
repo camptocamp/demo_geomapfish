@@ -11,6 +11,7 @@ OpenLayers.Lang.setCode("${lang}");
 
 App.info = '${info | n}';
 App.themes = '${themes | n}';
+App.theme = '${theme | n}';
 App.WFSTypes = '${wfs_types | n}';
 
 var dummy = "<% from json import dumps %>";
