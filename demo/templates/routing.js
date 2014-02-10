@@ -75,7 +75,7 @@ Ext.onReady(function() {
                     type: 'OSRM', 
                     url: 'http://router.project-osrm.org/',
                     dynamic: true
-                },
+                }/*,
                 c2c_car: {
                     type: 'OSRM', 
                     url: 'http://mfusrgrp-re2013.demo-camptocamp.com/car',
@@ -90,7 +90,7 @@ Ext.onReady(function() {
                     type: 'OSRM', 
                     url: 'http://mfusrgrp-re2013.demo-camptocamp.com/foot',
                     dynamic: true
-                }
+                }*/
             },
             searchOptions: {
                 url: "${request.route_url('fulltextsearch', path='')}",
