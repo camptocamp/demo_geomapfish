@@ -29,13 +29,29 @@ Ext.define('App.view.LoginForm', {
     config: {
         url: App.loginUrl,
         method: 'POST',
-        standardSubmit: true,
+        standardSubmit: false,
+        listeners: {
+            exception: function (self, result, eOpts) {
+                if (result === true) {
+                    var sep = App.cameFrom.indexOf('?') > 0 ? '&' : '?';
+                    window.location = App.cameFrom + sep + 'v=' + Math.round(Math.random() * 1000000);
+                }
+                else {
+                    if (result.status == 401) {
+                        Ext.Msg.alert(OpenLayers.i18n('unauthorized'));
+                    }
+                    else {
+                        Ext.Msg.alert(result.statusText);
+                    }
+                }
+            }
+        },
         items: [{
             xtype: 'fieldset',
             defaults: {
                 // labelWidth default is 35% and is too
                 // small on small devices (e.g.g iPhone)
-                labelWidth: '50%'
+                labelWidth: 130
             },
             items: [{
                 xtype: 'textfield',

@@ -226,7 +226,7 @@ Ext.onReady(function() {
             tpls: {
                 allTpl:
                     OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
-                    OpenLayers.i18n("Wsg Coord. Label") + " : {wsg_x} {wsg_y}<br />" +
+                    OpenLayers.i18n("Wgs Coord. Label") + " : {wgs_x} {wgs_y}<br />" +
                     "<a href='http://maps.google.ch/?ie=UTF8&ll={streetviewlat},{streetviewlon}&layer=c" +
                     "&cbll={streetviewlat},{streetviewlon}&cbp=12,57.78,,0,8.1' " +
                     "target='_blank'>{streetviewlabel}</a>"
