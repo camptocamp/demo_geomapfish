@@ -184,10 +184,10 @@ Ext.onReady(function() {
         },
 % else:
         {
-             ptype: "cgxp_featureswindow",
-             themes: THEMES,
-             events: EVENTS,
-             id: "featuresWindow"
+            ptype: "cgxp_featureswindow",
+            themes: THEMES,
+            events: EVENTS,
+            id: "featuresWindow"
         },
 % endif
         {

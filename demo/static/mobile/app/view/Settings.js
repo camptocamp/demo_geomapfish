@@ -18,6 +18,8 @@ Ext.define("App.view.Settings", {
             xtype: 'container',
             cls: 'settings',
             items: [{
+                xtype: 'login'
+            }, {
                 xtype: 'map_permalink'
             }, {
                 xtype: 'component',
