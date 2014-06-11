@@ -184,10 +184,10 @@ Ext.onReady(function() {
         },
 % else:
         {
-             ptype: "cgxp_featureswindow",
-             themes: THEMES,
-             events: EVENTS,
-             id: "featuresWindow"
+            ptype: "cgxp_featureswindow",
+            themes: THEMES,
+            events: EVENTS,
+            id: "featuresWindow"
         },
 % endif
         {
@@ -201,26 +201,6 @@ Ext.onReady(function() {
             extent: INITIAL_EXTENT
         },
         {
-            ptype: "cgxp_zoom",
-            actionTarget: "center.tbar",
-            toggleGroup: "maptools"
-        },
-        {
-            ptype: "gxp_navigationhistory",
-            actionTarget: "center.tbar"
-        },
-        {
-            ptype: "cgxp_permalink",
-            id: "permalink",
-            actionTarget: "center.tbar",
-            shortenerCreateURL: "${request.route_url('shortener_create', path='')}"
-        },
-        {
-            ptype: "cgxp_measure",
-            actionTarget: "center.tbar",
-            toggleGroup: "maptools"
-        },
-        {
             ptype: "cgxp_getfeature",
             mapserverURL: "${request.route_url('mapserverproxy', path='')}",
             actionTarget: null, //"center.tbar",
@@ -231,46 +211,8 @@ Ext.onReady(function() {
             externalWFSTypes: ${externalWFSTypes | n},
             enableWMTSLayers: true,
             toggleGroup: "maptools"
-        }, {
-             ptype: 'cgxp_profile',
-             actionTarget: 'center.tbar',
-             toggleGroup: 'maptools',
-             serviceUrl: "${request.route_url('profile.json')}",
-             csvServiceUrl: "${request.route_url('profile.csv')}",
-             rasterLayers: ['mnt']
         },
         {
-             ptype: 'cgxp_wmsbrowser',
-             actionTarget: "layerpanel.bbar",
-             layerTreeId: "layertree",
-             actionConfig: {
-                tooltip: OpenLayers.i18n('Add a WMS layer on the map')
-             },
-             defaultUrls: [
-                'http://wms.geo.admin.ch',
-                'http://ids.pigma.org/geoserver/wms',
-                'http://geobretagne.fr/geoserver/wms'
-             ]
-        }, {
-            ptype: "cgxp_addkmlfile",
-            echoUrl: "${request.route_url('echo', path='')}",
-            actionTarget: "layerpanel.bbar"
-        }, {
-             ptype: 'cgxp_googleearthview',
-             actionTarget: 'center.tbar',
-             outputTarget: 'center',
-             toggleGroup: 'maptools',
-             actionConfig: {
-                tooltip: OpenLayers.i18n('Open Google Earth Panel')
-             }
-        }, {
-            ptype: "cgxp_fulltextsearch",
-            url: "${request.route_url('fulltextsearch', path='')}",
-            layerTreeId: "layertree",
-            pointRecenterZoom: 20,
-            actionTarget: "center.tbar",
-            grouping: true
-        }, {
             ptype: "cgxp_contextualdata",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
@@ -284,17 +226,35 @@ Ext.onReady(function() {
             tpls: {
                 allTpl:
                     OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
-                    OpenLayers.i18n("Wsg Coord. Label") + " : {wsg_x} {wsg_y}<br />" +
+                    OpenLayers.i18n("Wgs Coord. Label") + " : {wgs_x} {wgs_y}<br />" +
                     "<a href='http://maps.google.ch/?ie=UTF8&ll={streetviewlat},{streetviewlon}&layer=c" +
                     "&cbll={streetviewlat},{streetviewlon}&cbp=12,57.78,,0,8.1' " +
                     "target='_blank'>{streetviewlabel}</a>"
             }
-        }, {
+        },
+        {
+            ptype: "cgxp_fulltextsearch",
+            url: "${request.route_url('fulltextsearch', path='')}",
+            layerTreeId: "layertree",
+            pointRecenterZoom: 20,
+            actionTarget: "center.tbar",
+            grouping: true
+        },
+
+
+        {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
             type: '->'
-        }, {
+        },
+        {
+            ptype: "cgxp_menushortcut",
+            actionTarget: "center.tbar",
+            type: '-'
+        },
+        {
             ptype: "cgxp_print",
+            toggleGroup: "maptools",
             legendPanelId: "legendPanel",
             featureProvider: "featuresWindow",
             actionTarget: "center.tbar",
@@ -309,6 +269,44 @@ Ext.onReady(function() {
             }
         },
         {
+            ptype: "cgxp_permalink",
+            id: "permalink",
+            actionTarget: "center.tbar",
+            shortenerCreateURL: "${request.route_url('shortener_create', path='')}",
+            actionConfig: {
+                text: OpenLayers.i18n("Link")
+            }
+        },
+        {
+            ptype: "cgxp_menushortcut",
+            actionTarget: "center.tbar",
+            type: '-'
+        },
+        {
+            ptype: "cgxp_measure",
+            actionTarget: "center.tbar",
+            toggleGroup: "maptools",
+            actionConfig: {
+                text: OpenLayers.i18n("Measure")
+            }
+        },
+        {
+            ptype: 'cgxp_profile',
+            actionTarget: 'center.tbar',
+            toggleGroup: 'maptools',
+            serviceUrl: "${request.route_url('profile.json')}",
+            csvServiceUrl: "${request.route_url('profile.csv')}",
+            rasterLayers: ['mnt'],
+            actionConfig: {
+                text: OpenLayers.i18n("Profile")
+            }
+        },
+        {
+            ptype: "cgxp_menushortcut",
+            actionTarget: "center.tbar",
+            type: '-'
+        },
+        {
             ptype: "cgxp_redlining",
             toggleGroup: "maptools",
             actionTarget: "center.tbar",
@@ -318,6 +316,16 @@ Ext.onReady(function() {
                 iconCls: 'cgxp-icon-redline',
                 tooltip: OpenLayers.i18n("Draw geometries on the map")
             }
+        },
+        {
+             ptype: 'cgxp_googleearthview',
+             actionTarget: 'center.tbar',
+             outputTarget: 'center',
+             toggleGroup: 'maptools',
+             actionConfig: {
+                text: OpenLayers.i18n("Google Earth"),
+                tooltip: OpenLayers.i18n('Open Google Earth Panel')
+             }
         },
         {
             ptype: "cgxp_legend",
@@ -332,7 +340,8 @@ Ext.onReady(function() {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
             type: '-'
-        }, {
+        },
+        {
             ptype: "cgxp_login",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
@@ -347,28 +356,42 @@ Ext.onReady(function() {
             forcePasswordChange: true,
             permalinkId: "permalink"
         },
+
+
         {
-            ptype: "cgxp_menushortcut",
-            actionTarget: "center.tbar",
-            type: '-'
+             ptype: 'cgxp_wmsbrowser',
+             actionTarget: "layerpanel.bbar",
+             layerTreeId: "layertree",
+             actionConfig: {
+                tooltip: OpenLayers.i18n('Add a WMS layer on the map')
+             },
+             defaultUrls: [
+                'http://wms.geo.admin.ch',
+                'http://ids.pigma.org/geoserver/wms',
+                'http://geobretagne.fr/geoserver/wms'
+             ]
         },
         {
-            ptype: "cgxp_help",
-            url: "${request.static_url('demo:static/_build/html/aide.html')}",
-            actionTarget: "center.tbar"
-        }, {
+            ptype: "cgxp_addkmlfile",
+            echoUrl: "${request.route_url('echo', path='')}",
+            actionTarget: "layerpanel.bbar"
+        },
+
+        {
             ptype: "cgxp_scalechooser",
             actionTarget: "center.bbar",
             roundValues: [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10],
             power10: true
-        }, {
+        },
+        {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.bbar",
             type: '->'
-        }, {
+        },
+        {
             ptype: "gxp_tool",
             actionTarget: "center.bbar",
-            actions: '<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://www.camptocamp.com" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a>.'
+            actions: '<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://www.camptocamp.com" target="_blank" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a> - <a target="_blank" href="http://geomapfish.org/">GeoMapFish</a>.'
         }
         ],
 

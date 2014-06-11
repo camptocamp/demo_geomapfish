@@ -1,6 +1,42 @@
 This file includes migration steps for each release of c2cgeoportal.
 
 
+Version 1.4.3
+=============
+
+1. MapserverProxy by default limits the number of features returned by a WFS
+   GetFeature request to 200 because Mapserver used to not support correctly
+   the ``maxFeatures`` parameter. This issue is fixed with Mapserver 6.4.
+
+   It is possible to disable or customize this limit by adding to the 
+   ``config.yaml.in`` file the following configuration:
+
+    wfs:
+        enable_limit_featurecollection: True
+        maxfeatures: 200
+
+   This configuration may also be used in the templates (for instance 
+   ``viewer.js``) by adding the following code:
+
+    <%
+    wfs_settings = request.registry.settings.get('wfs', {})
+    %>
+    maxFeatures: ${wfs_settings.get('maxfeatures')}
+
+2. In ``deploy/deploy.cfg.in`` replace
+
+    restore_tmp = sudo -u postgres pg_restore --no-owner -Fc -d
+
+   by
+
+    restore_tmp = sudo -u postgres pg_restore -Fc -d
+
+   You may also remove the GRANT instructions in ``deploy/hooks/post-restore-database.in``:
+
+    psql -c 'GRANT USAGE ON SCHEMA "${schema}" TO "${dbuser}";' ${db}
+    psql -c 'GRANT SELECT ON ALL TABLES IN SCHEMA "${schema}" TO "${dbuser}";' ${db}
+
+
 Version 1.4
 ===========
 
@@ -28,7 +64,7 @@ Version 1.4
         http://docs.camptocamp.net/c2cgeoportal/integrator/tilegeneration.html.
 
             git rm apache/tilecache.conf.in
-            git rm tilecache
+            git rm -r tilecache
 
 3. Update the `jsbuild/app.cfg` file.
 
@@ -75,23 +111,6 @@ Version 1.4
   * In the `include` section of the `[edit.js]` add the missing line:
 
         CGXP/tools/tools.js
-
-  * Adaptations for generic backend usage require the following change.
-
-    In the ``jsbuild/app.cfg`` file, add ``CGXP/cgxp.js`` in ``[app.js]``,
-    ``[edit.js]``, ``[routing.js]`` and ``[xapi.js]`` in the ``include =`` block,
-    before any other CGXP/* entries.
-
-    For example:
-
-         include =
-             EPSG21781.js #proj4js
-             util.js #GXP
-             widgets/Viewer.js #GXP
-             DragTracker.js #ext.overrides
-        +    CGXP/cgxp.js
-             CGXP/plugins/ThemeSelector.js
-             ...
 
   * And add a new routing section (replace <<srid>> by the right value):
 
@@ -147,6 +166,7 @@ Version 1.4
             util.js #GXP
             widgets/Viewer.js #GXP
             plugins/OLSource.js #GXP
+            CGXP/cgxp.js
             CGXP/plugins/MapOpacitySlider.js
             CGXP/plugins/Routing.js
             CGXP/data/OSRM.js
@@ -164,6 +184,22 @@ Version 1.4
             OpenLayers/Layer/WMTS.js
             OpenLayers/Renderer/SVG.js
             OpenLayers/Renderer/VML.js
+
+  * Adaptations for generic backend usage require the following change.
+
+    In the ``jsbuild/app.cfg`` file, make sure to have ``CGXP/cgxp.js`` in
+    ``[app.js]``, ``[edit.js]``, ``[routing.js]`` and ``[xapi.js]`` 
+    in the ``include =`` block, before any other CGXP/* entries.
+
+    For example:
+
+         include =
+             EPSG21781.js #proj4js
+             util.js #GXP
+             widgets/Viewer.js #GXP
+        +    CGXP/cgxp.js
+             CGXP/plugins/ThemeSelector.js
+             ...
 
 4. Update the `config.yaml.in` file:
 
@@ -229,7 +265,7 @@ Version 1.4
             % endif
             defaultThemes: ["to_be_defined"],
 
-  * In all the `demo/templates/*.js` files:
+  * In all the `demo/templates/*.js` files (including in `demo/templates/api/`):
 
       - Remove the `getMatrix` method from the `WMTS_OPTIONS`.
 
@@ -276,18 +312,6 @@ Version 1.4
 
     - var THEMES = {
       var THEMES = {
-
-  * In the `demo/templates/api/mapconfig.js`` file you should remove the lines:
-
-        + ...
-        - ..., # just remove the comma
-        - getMatrix: function() {
-        -     return {
-        -         identifier: OpenLayers.Util.indexOf(
-        -                         this.serverResolutions,
-        -                         this.map.getResolution())
-        -     };
-        - }
 
   * Password modification UI has been implemented.
 
@@ -448,6 +472,17 @@ Version 1.4
         document.write('<link rel="stylesheet" type="text/css" href="'
                 + "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/css/structure/list-view.css')}" + '" />');
 
+
+  * Because of a bug in Chrome on Windows highlighted by changes in OpenLayers,
+    parts of the user may turn gray on large screens.  We advice you do the
+    following changes in `demo/templates/viewer.js`:
+
+        -       wmsURL: "${request.route_url('mapserverproxy', path='')}"
+        +       wmsURL: "${request.route_url('mapserverproxy', path='')}",
+        +       wmsOptions: {
+        +           ratio: (Ext.isChrome && Ext.isWindows) ? 1 : 1.5
+        +       }
+
 6. In the `production.ini.in`and `development.ini.in`:
 
     You must add the following lines in the `[app:app]` section:
@@ -563,6 +598,7 @@ Version 1.4
       - The mobile application now has a built-in theme chooser, do the following changes:
 
             + App.themes = '${themes | n}';
+            + App.theme = '${theme | n}';
             + App.WFSTypes = '${wfs_types | n}';
 
         Both themes and layers can now be configured to be visible on desktop or
@@ -646,22 +682,22 @@ Version 1.4
         -RewriteRule ^${vars:apache-entry-point}$ /${vars:instanceid}/wsgi/ [PT]
         +RewriteRule ^${vars:apache-entry-point}?$ /${vars:instanceid}/wsgi/ [PT]
 
-    Add the following line:
+  * Add the following line:
 
         RewriteRule ^${vars:apache-entry-point}routing/?$ /${vars:instanceid}/wsgi/routing [PT]
 
-  * In the file `demo/__init__.py` remove the following code::
+11. In the file `demo/__init__.py` remove the following code::
 
-        from c2cgeoportal.views.tilecache import load_tilecache_config
+    from c2cgeoportal.views.tilecache import load_tilecache_config
 
-        # add a TileCache view
-        load_tilecache_config(config.get_settings())
-        config.add_route('tilecache', '/tilecache{path:.*?}')
-        config.add_view(
-            view='c2cgeoportal.views.tilecache:tilecache',
-            route_name='tilecache')
+    # add a TileCache view
+    load_tilecache_config(config.get_settings())
+    config.add_route('tilecache', '/tilecache{path:.*?}')
+    config.add_view(
+        view='c2cgeoportal.views.tilecache:tilecache',
+        route_name='tilecache')
 
-11. Some important notices:
+12. Some important notices:
 
   * Public layers can no longer be edited (feature creation/update/deletion) by anonymous users.
 

@@ -12,7 +12,7 @@ names = $${vars:db}
 psql = sudo -u postgres psql
 dump = sudo -u postgres pg_dump -Fc
 createdb = sudo -u postgres createdb
-restore_tmp = sudo -u postgres pg_restore --no-owner -Fc -d
+restore_tmp = sudo -u postgres pg_restore -Fc -d
 
 [code]
 dir = /var/www/c2cgeoportal_mapfish/private/c2cgeoportal

@@ -36,10 +36,11 @@ OpenLayers.Util.extend(OpenLayers.Lang.en, {
     'passwordLabel': 'Password',
     'loginSubmitButtonText': 'Submit',
     'loginCancelButtonText': 'Cancel',
+    'unauthorized': 'Wrong username or password, please try again.',
 
     // redirect to standard application
     'redirect_msg': "You're using the mobile version. Check out the" +
-        " <a href='${'${url}'}'>standard version</a>.",
+        " <a href='${url}'>standard version</a>.",
     'close': "Close",
 
     // permalink

@@ -64,7 +64,10 @@ Ext.define('App.plugin.StatefulMap', {
                         overlay.layers = state.layers;
                         return false;
                     });
-                    main.getLayersView().getStore().setData(map.layers);
+                    // Defer because layersView is not always created yet
+                    Ext.Function.defer(function() {
+                        main.getLayersView().getStore().setData(map.layers);
+                    }, 1);
                 }
                 if (state.lonlat) {
                     map.setCenter(state.lonlat, state.zoom);
@@ -83,14 +86,15 @@ Ext.define('App.plugin.StatefulMap', {
     },
 
     update: function() {
-        var center = this.getMap().getCenter();
+        var center = this.getMap().getCenter() || new OpenLayers.Bounds(this.getMap().extent).getCenterLonLat();
         var main = App.app.getController('Main');
+        var layers = main.getOverlay() && main.getOverlay().params.LAYERS || [];
         this.setState({
             lonlat: [center.lon, center.lat],
             zoom: this.getMap().getZoom(),
             theme: App.theme,
             bgLayer: this.getMap().baseLayer.ref,
-            layers: main.getOverlay().params.LAYERS
+            layers: layers
         });
     },
 
@@ -106,6 +110,10 @@ Ext.define('App.plugin.StatefulMap', {
                 state.layers.push.apply(state.layers, value.split(','));
             }
         });
+        if ((!state.layers || state.layers.length == 0) && q.tree_layers) {
+            state.layers = state.layers || [];
+            state.layers.push.apply(state.layers, q.tree_layers.split(','));
+        }
         if (q.map_x && q.map_y) {
             state.lonlat = [ q.map_x, q.map_y ];
             state.zoom = q.map_zoom;

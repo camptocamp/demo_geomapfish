@@ -56,7 +56,7 @@
     query_params = dict(request.params)
     def enc(vals):
         return (vals[0], vals[1].encode('utf8'))
-    query_string = urllib.urlencode(dict(map(enc, query_params)))
+    query_string = urllib.urlencode(dict(map(enc, query_params.items())))
     came_from = request.current_route_url(_query=query_params)
 %>
 <%doc>
@@ -71,8 +71,9 @@
         App.searchUrl = "${request.route_url('fulltextsearch', path='')}";
         App.wmsUrl = "${request.route_url('mapserverproxy', path='')}";
         App.rasterUrl = "${request.route_url('raster', path='')}";
-        App.loginUrl = "${request.route_url('login', _query={'came_from': came_from})}";
-        App.logoutUrl = "${request.route_url('logout', _query={'came_from': came_from})}";
+        App.loginUrl = "${request.route_url('login', path='')}";
+        App.logoutUrl = "${request.route_url('logout', path='')}";
+        App.cameFrom = "${came_from}";
         App.desktopAppUrl = "${request.route_url('home', path='', _query={'no_redirect':''})}";
     </script>
     <script type="text/javascript" src="openlayers-mobile.js"></script>
