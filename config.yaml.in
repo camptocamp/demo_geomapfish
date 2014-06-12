@@ -113,14 +113,16 @@ check_collector:
               display: Main page
             - name: checker_viewer
               display: Viewer script
-            - name: checker_printcapabilities
-              display: Print capabilities
-            - name: checker_pdf
-              display: Print PDF
+            - name: checker_edit
+              display: Edit page
+            - name: checker_edit_js
+              display: Edit script
             - name: checker_api
               display: API
             - name: checker_xapi
               display: Extended API
+            - name: checker_printcapabilities
+              display: Print capabilities
             - name: checker_fts
               display: FullTextSearch
             - name: checker_wmscapabilities
