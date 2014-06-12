@@ -62,7 +62,7 @@ Ext.onReady(function() {
                 id: 'left-panel',
                 region: 'west',
                 layout: 'fit',
-                width: 370
+                width: 405
             }]
         },
 
@@ -70,31 +70,34 @@ Ext.onReady(function() {
         tools: [
         {
             ptype: 'cgxp_routing',
-            routingService: { 
+            routingService: {
                 osrm_demo: {
-                    type: 'OSRM', 
+                    type: 'OSRM',
                     url: 'http://router.project-osrm.org/',
                     dynamic: true
                 }/*,
                 c2c_car: {
-                    type: 'OSRM', 
+                    type: 'OSRM',
                     url: 'http://mfusrgrp-re2013.demo-camptocamp.com/car',
                     dynamic: true
                 },
                 c2c_bicycle: {
-                    type: 'OSRM', 
+                    type: 'OSRM',
                     url: 'http://mfusrgrp-re2013.demo-camptocamp.com/bicycle',
                     dynamic: true
                 },
                 c2c_foot: {
-                    type: 'OSRM', 
+                    type: 'OSRM',
                     url: 'http://mfusrgrp-re2013.demo-camptocamp.com/foot',
                     dynamic: true
                 }*/
             },
             searchOptions: {
                 url: "${request.route_url('fulltextsearch', path='')}",
-            }, 
+            },
+            outputConfig: {
+                zoomToRouteLevel: 16
+            },
             outputTarget: 'left-panel'
         },
         {
@@ -144,7 +147,7 @@ Ext.onReady(function() {
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
-                    OpenLayers.i18n('OSM_MapQuest'), 
+                    OpenLayers.i18n('OSM_MapQuest'),
                     [
                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
