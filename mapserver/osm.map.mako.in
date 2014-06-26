@@ -114,3 +114,39 @@ LAYER
         "wms_timeitem" "timestamp"
     END
 END
+
+LAYER
+    NAME "osm_scale"
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    DATA "osm_switzerland/points"
+    PROJECTION
+      "init=epsg:4326"
+    END
+
+    MINSCALEDENOM 15000
+    MAXSCALEDENOM 40000
+
+    CLASS
+        NAME "osm_scale"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+            COLOR 230 0 0
+        END
+    END
+
+    METADATA
+        "wms_title" "OSM Scale"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_POINT_type" "point"
+        "gml_geometries" "POINT"
+        "wfs_enable_request" "*"
+    END
+END

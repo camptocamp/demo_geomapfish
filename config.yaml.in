@@ -64,6 +64,11 @@ raster:
 #    languages:
 #        fr: fr
 
+# The shortner base configuration
+shortener:
+  # The base of created URL
+  base_url:  http://${vars:host}/${vars:apache-entry-point}s/
+
 # For mapserver proxy
 mapserv_url: http://localhost/${vars:instanceid}/mapserv
 
@@ -73,7 +78,6 @@ print_url: http://localhost:8080/print-c2cgeoportal-${vars:instanceid}/pdf/
 # For base layers
 tiles_url:
 
-offline: False
 # Checker configuration
 checker:
     print_template: 1 A4 portrait demo
@@ -132,7 +136,7 @@ check_collector:
         default: # for children
             - name: checker_viewer
               display: Viewer script
-    hosts: 
+    hosts:
         - display: Parent
           url: http://${host}/${instanceid}/wsgi
           type: main
