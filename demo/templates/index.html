@@ -62,7 +62,7 @@
         <link rel="stylesheet" type="text/css" href="${request.static_url('demo:static/css/proj-widgets.css')}" />
         <link rel="stylesheet" type="text/css" href="${request.static_url('demo:static/css/proj.css')}" />
 % else:
-        <link rel="stylesheet" type="text/css" href="${request.static_url('demo:static/build/app.css')}" />
+        <link rel="stylesheet" type="text/css" href="${request.static_url('demo:static/build/app.css', _query=url_params)}" />
 % endif
         <script type="text/javascript" src='http://maps.google.com/maps?file=api&v=3&key=AIzaSyDcvJ9Y7qM0SopnQeL4fx7S9q2EqLYNMJY'></script>
     </head>
@@ -134,11 +134,15 @@
         <script type="text/javascript" src="${request.static_url(script.replace('/', ':', 1))}"></script>
     % endfor
 % else:
-        <script type="text/javascript" src="${request.static_url('demo:static/build/app.js')}"></script>
-        <script type="text/javascript" src="${request.static_url('demo:static/build/lang-%s.js' % lang)}"></script>
+        <script type="text/javascript" src="${request.static_url('demo:static/build/app.js', _query=url_params)}"></script>
+        <script type="text/javascript" src="${request.static_url('demo:static/build/lang-%s.js' % lang, _query=url_params)}"></script>
 % endif
-<%def name="params(params)">${'&amp;grid' if 'grid' in params else ''}</%def>
-${params(request.params)}
-        <script type="text/javascript" src="${request.route_url('viewer')}${extra_params}${params(request.params)}"></script>
+
+% if 'grid' in request.params:
+<%
+extra_param['grid'] = request.params['grid']
+%>
+% endif
+        <script type="text/javascript" src="${request.route_url('viewer', _query=extra_params)}"></script>
     </body>
 </html>
