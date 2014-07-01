@@ -67,7 +67,7 @@ raster:
 # The shortner base configuration
 shortener:
   # The base of created URL
-  base_url:  http://${vars:host}/${vars:apache-entry-point}s/
+  base_url:  http://${vars:host}${vars:apache-entry-point}s/
 
 # For mapserver proxy
 mapserv_url: http://localhost/${vars:instanceid}/mapserv

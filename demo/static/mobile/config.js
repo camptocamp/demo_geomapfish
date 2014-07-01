@@ -9,20 +9,28 @@
 
 OpenLayers.Lang.setCode("${lang}");
 
-App.info = '${info | n}';
-App.themes = '${themes | n}';
-App.theme = '${theme | n}';
-App.WFSTypes = '${wfs_types | n}';
-
 var dummy = "<% from json import dumps %>";
 jsonFormat = new OpenLayers.Format.JSON();
 try {
+    // App.info includes information that is needed by internal
+    // components, such as the Login view component.
+    App.info = jsonFormat.read('${dumps(info) | n}');
+
+    App.themes = jsonFormat.read('${dumps(themes) | n}');
+    App.theme = '${theme | n}';
+
+    App.WFSTypes = '${wfs_types | n}'.split(',');
+
+    // Query mode. Can be either 'click' or 'longpress'
+    App.queryMode = 'longpress';
+
     App.tilesURL = jsonFormat.read('${dumps(request.registry.settings["tiles_url"]) | n}');
 }
 catch (e) {
-    // For the Sencha build ...
-    App.tilesURL = "";
 }
+
+App.featureNS = 'http://mapserver.gis.umn.edu/mapserver';
+
 var WMTS_OPTIONS = {
     url: App.tilesURL,
     displayInLayerSwitcher: false,
