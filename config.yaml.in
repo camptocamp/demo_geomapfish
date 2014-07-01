@@ -73,7 +73,6 @@ print_url: http://localhost:8080/print-c2cgeoportal-${vars:instanceid}/pdf/
 # For base layers
 tiles_url:
 
-offline: False
 # Checker configuration
 checker:
     print_template: 1 A4 portrait demo
