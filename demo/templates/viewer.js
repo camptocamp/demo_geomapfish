@@ -453,8 +453,8 @@ Ext.onReady(function() {
                 })
             ],
             layers: [
-    	    {
-		        source: "olsource",
+            {
+                source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
@@ -475,8 +475,8 @@ Ext.onReady(function() {
                     }
                 ]
             },
-    	    {
-		        source: "olsource",
+            {
+                source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
@@ -493,8 +493,8 @@ Ext.onReady(function() {
                     }
                 ]
             },
-    	    {
-		        source: "olsource",
+            {
+                source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
@@ -513,14 +513,20 @@ Ext.onReady(function() {
             },
             {
                 source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('ortho'),
-                    ref: 'ortho',
-                    layer: 'ortho',
-                    formatSuffix: 'jpeg',
-                    opacity: ${request.registry.settings['ortho_opacity']}
-                }, WMTS_OPTIONS)]
+                type: "OpenLayers.Layer.OSM",
+                group: 'background',
+                args: [
+                    "Arial",
+                    [
+                        "http://a.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png",
+                        "http://b.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png"
+                    ],
+                    {
+                        transitionEffect: 'resize',
+                        group: 'background',
+                        ref: 'ortho'
+                    }
+                ]
             },
             {
                 source: "olsource",

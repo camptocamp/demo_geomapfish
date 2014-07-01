@@ -141,9 +141,8 @@ Ext.onReady(function() {
                 new OpenLayers.Control.MousePosition({numDigits: 0})
             ],
             layers: [
-% if request.registry.settings['offline'] == False:
-	    {
-		source: "olsource",
+        {
+        source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
@@ -164,41 +163,22 @@ Ext.onReady(function() {
                     }
                 ]
             },
-% else:
-           {
+            {
                 source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
+                type: "OpenLayers.Layer.OSM",
                 group: 'background',
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('plan'),
-                    mapserverLayers: 'plan',
-                    ref: 'plan',
-                    layer: 'plan',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            },
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('relief'),
-                    mapserverLayers: 'relief',
-                    ref: 'relief',
-                    layer: 'relief',
-                    group: 'background'
-                }, WMTS_OPTIONS)]
-            },
-% endif
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('ortho'),
-                    ref: 'ortho',
-                    layer: 'ortho',
-                    formatSuffix: 'jpeg',
-                    opacity: ${request.registry.settings['ortho_opacity']}
-                }, WMTS_OPTIONS)]
+                args: [
+                    "Arial",
+                    [
+                        "http://a.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png",
+                        "http://b.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png"
+                    ],
+                    {
+                        transitionEffect: 'resize',
+                        group: 'background',
+                        ref: 'ortho'
+                    }
+                ]
             },
             {
                 source: "olsource",
