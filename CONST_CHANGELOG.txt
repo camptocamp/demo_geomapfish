@@ -51,9 +51,9 @@ Version 1.5
 
 4. Update the `production.ini.in` and `development.ini.in` files:
 
-  * Add the new default_max_age to 10 hours:
+  * Add the new default_max_age to 10 days:
 
-        default_max_age = 36000
+        default_max_age = 864000
 
 5. In the `buildout.cfg` file:
 
@@ -100,11 +100,48 @@ Version 1.5
 
 9. Update the mobile application:
 
-  * In the `demo/static/mobile/config.js` file add the line:
+    * In the `demo/static/mobile/config.js` file do the following changes:
 
-        App.featureNS = 'http://mapserver.gis.umn.edu/mapserver';
+        -// App.info includes information that is needed by internal
+        -// components, such as the Login view component.
+        -App.info = '${info | n}';
+        -
+        -App.themes = '${themes | n}';
+        -App.theme = '${theme | n}';
+        -
+        -App.WFSTypes = '${wfs_types | n}';
+        -
+        -// Query mode. Can be either 'click' or 'longpress'
+        -App.queryMode = 'longpress';
+        -
+         var dummy = "<% from json import dumps %>";
+         jsonFormat = new OpenLayers.Format.JSON();
+         try {
+        +    // App.info includes information that is needed by internal
+        +    // components, such as the Login view component.
+        +    App.info = jsonFormat.read('${dumps(info) | n}');
+        +
+        +    App.themes = jsonFormat.read('${dumps(themes) | n}');
+        +    App.theme = '${theme | n}';
+        +
+        +    App.WFSTypes = '${wfs_types | n}'.split(',');
+        +
+        +    // Query mode. Can be either 'click' or 'longpress'
+        +    App.queryMode = 'longpress';
+
+             App.tilesURL = jsonFormat.read('${dumps(request.registry.settings["tiles_url"]) | n}');
+         }
+         catch (e) {
+             // For the Sencha build ...
+        -    App.tilesURL = "";
+         }
+        +
+        +App.featureNS = 'http://mapserver.gis.umn.edu/mapserver';
 
 10. Do the following changes in the ``apache/frontend.conf.in`` file:
+
+  -AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript application/javascript application/json
+  +AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript text/javascript application/javascript application/json
 
   -<LocationMatch /${vars:instanceid}/wsgi/(app|build|lib)>
   -    # Remove etags to enable better client-side caching
@@ -189,6 +226,32 @@ Version 1.4.5
    +     + "${request.static_url('demo:static/build/api.css', _query=url_params)}" + '" />');
 
    Similar changes are needed in ``demo/templates/api/xapi.js`` as well.
+
+11. In the `demo/__init__.py` file:
+
+   * Use the multiauthpolicy:
+
+
+        from pyramid.config import Configurator
+        -from pyramid.authentication import AuthTktAuthenticationPolicy
+        from pyramid.settings import asbool
+        from c2cgeoportal import locale_negotiator
+        -from c2cgeoportal.resources import FAModels, defaultgroupsfinder
+        +from c2cgeoportal.resources import FAModels
+        +from c2cgeoportal.lib.authentication import create_authentication
+        from demo.resources import Root
+
+        def main(global_config, **settings):
+            """ This function returns a Pyramid WSGI application.
+            """
+        -   authentication_policy = AuthTktAuthenticationPolicy(
+        -            settings.get('authtkt_secret'),
+        -            callback=defaultgroupsfinder,
+        -            cookie_name=settings.get('authtkt_cookie_name'))
+            config = Configurator(root_factory=Root, settings=settings,
+                     locale_negotiator=locale_negotiator,
+        -            authentication_policy=authentication_policy)
+        +            authentication_policy=create_authentication(settings))
 
 
 Version 1.4.3

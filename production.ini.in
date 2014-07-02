@@ -24,7 +24,7 @@ jsbuild_cfg = ${jsbuild:config}
 jsbuild_root_dir = ${buildout:directory}
 auth_replication_enabled = ${vars:enable_auth_replication}
 sqlalchemy_replication.url = postgresql://${dbuser_replication}:${dbpassword_replication}@${dbhost_replication}:${dbport_replication}/${db_replication}
-default_max_age = 36000
+default_max_age = 864000
 
 [filter:weberror]
 use = egg:WebError#error_catcher

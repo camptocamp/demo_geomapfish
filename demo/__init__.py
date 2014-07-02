@@ -1,24 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from pyramid.config import Configurator
-from pyramid.authentication import AuthTktAuthenticationPolicy
 from c2cgeoportal import locale_negotiator
-from c2cgeoportal.resources import FAModels, defaultgroupsfinder
+from c2cgeoportal.resources import FAModels
+from c2cgeoportal.lib.authentication import create_authentication
 from demo.resources import Root
 
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    authentication_policy = AuthTktAuthenticationPolicy(
-        settings.get('authtkt_secret'),
-        callback=defaultgroupsfinder,
-        cookie_name=settings.get('authtkt_cookie_name')
-    )
     config = Configurator(
         root_factory=Root, settings=settings,
         locale_negotiator=locale_negotiator,
-        authentication_policy=authentication_policy
+        authentication_policy=create_authentication(settings)
     )
 
     config.add_settings({'srid': 3857})
