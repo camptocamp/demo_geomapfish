@@ -102,7 +102,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_mapopacityslider",
-            defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}" //FUNCTIONALITY.default_basemap[0]
+            defaultBaseLayerRef: "OSM_MapQuest"
         }
         ],
 
@@ -140,43 +140,43 @@ Ext.onReady(function() {
                 }),
                 new OpenLayers.Control.MousePosition({numDigits: 0})
             ],
-            layers: [
-        {
-        source: "olsource",
+            layers: [{
+                source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
                 args: [
                     OpenLayers.i18n('OSM_MapQuest'),
                     [
-                       'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                       'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                       'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
+                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                    ], {
-                       projection: new OpenLayers.Projection("EPSG:3857"),
-                       transitionEffect: 'resize',
-                       attribution: [
-                           "(c) <a href='http://openstreetmap.org/'>OSM</a>",
-                           "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
-                       ].join(' '),
-                       group: 'background',
-                       ref: 'OSM_MapQuest'
+                        projection: new OpenLayers.Projection("EPSG:3857"),
+                        transitionEffect: 'resize',
+                        attribution: [
+                            "(c) <a href='http://openstreetmap.org/'>OSM</a>",
+                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
+                        ].join(' '),
+                        group: 'background',
+                        ref: 'OSM_MapQuest',
+                        opacity: 0
                     }
                 ]
             },
             {
                 source: "olsource",
                 type: "OpenLayers.Layer.OSM",
-                group: 'background',
                 args: [
-                    "Arial",
+                    OpenLayers.i18n('ortho'),
                     [
                         "http://a.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png",
                         "http://b.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png"
                     ],
                     {
+                        projection: new OpenLayers.Projection("EPSG:3857"),
                         transitionEffect: 'resize',
-                        group: 'background',
-                        ref: 'ortho'
+                        ref: 'ortho',
+                        opacity: 0
                     }
                 ]
             },
@@ -188,7 +188,7 @@ Ext.onReady(function() {
                     displayInLayerSwitcher: false,
                     ref: 'blank',
                     group: 'background',
-                    opacity: 0.8
+                    opacity: 0
                 }]
             }],
             items: []

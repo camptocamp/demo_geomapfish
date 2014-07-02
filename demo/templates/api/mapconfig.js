@@ -67,19 +67,6 @@ Extended APIs.
                 new OpenLayers.Control.MousePosition({numDigits: 0})
             ],
             layers: [
-/*            {
-               source: "olsource",
-               type: "OpenLayers.Layer.WMTS",
-               group: 'background',
-               args: [OpenLayers.Util.applyDefaults({
-                   name: OpenLayers.i18n('plan'),
-                   mapserverLayers: 'plan',
-                   ref: 'plan',
-                   layer: 'plan',
-                   group: 'background',
-                   displayInLayerSwitcher: true
-               }, WMTS_OPTIONS)]
-           },*/
            {
         		source: "olsource",
                 type: "OpenLayers.Layer.OSM",
@@ -98,22 +85,28 @@ Extended APIs.
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
                        group: 'background',
-                       ref: 'OSM_MapQuest'
+                       ref: 'OSM_MapQuest',
+                       displayInLayerSwitcher: false
                     }
                 ]
             },
             {
                 source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                args: [OpenLayers.Util.applyDefaults({
-                    name: OpenLayers.i18n('ortho'),
-                    mapserverLayers: 'ortho',
-                    ref: 'ortho',
-                    layer: 'ortho',
-                    formatSuffix: 'jpeg',
-                    opacity: 0.5,
-                    displayInLayerSwitcher: true
-                }, WMTS_OPTIONS)]
+                type: "OpenLayers.Layer.OSM",
+                args: [
+                    OpenLayers.i18n('ortho'),
+                    [
+                        "http://a.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png",
+                        "http://b.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png"
+                    ],
+                    {
+                        transitionEffect: 'resize',
+                        projection: new OpenLayers.Projection("EPSG:3857"),
+                        ref: 'ortho',
+                        opacity: 0,
+                        displayInLayerSwitcher: false
+                    }
+                ]
             },
             {
                 source: "olsource",

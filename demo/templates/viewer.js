@@ -460,18 +460,19 @@ Ext.onReady(function() {
                 args: [
                     OpenLayers.i18n('OSM_MapQuest'),
                     [
-                       'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                       'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                       'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
+                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                     ], {
-                       projection: new OpenLayers.Projection("EPSG:3857"),
-                       transitionEffect: 'resize',
-                       attribution: [
-                           "(c) <a href='http://openstreetmap.org/'>OSM</a>",
-                           "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
-                       ].join(' '),
-                       group: 'background',
-                       ref: 'mapquest'
+                        projection: new OpenLayers.Projection("EPSG:3857"),
+                        transitionEffect: 'resize',
+                        attribution: [
+                            "(c) <a href='http://openstreetmap.org/'>OSM</a>",
+                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
+                        ].join(' '),
+                        group: 'background',
+                        ref: 'mapquest',
+                        opacity: 0
                     }
                 ]
             },
@@ -489,7 +490,8 @@ Ext.onReady(function() {
                     {
                         transitionEffect: 'resize',
                         group: 'background',
-                        ref: 'opencyclemap'
+                        ref: 'opencyclemap',
+                        opacity: 0
                     }
                 ]
             },
@@ -507,24 +509,24 @@ Ext.onReady(function() {
                     {
                         transitionEffect: 'resize',
                         group: 'background',
-                        ref: 'transport'
+                        ref: 'transport',
+                        opacity: 0
                     }
                 ]
             },
             {
                 source: "olsource",
                 type: "OpenLayers.Layer.OSM",
-                group: 'background',
                 args: [
-                    "Arial",
+                    OpenLayers.i18n('ortho'),
                     [
                         "http://a.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png",
                         "http://b.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png"
                     ],
                     {
                         transitionEffect: 'resize',
-                        group: 'background',
-                        ref: 'ortho'
+                        ref: 'ortho',
+                        opacity: 0
                     }
                 ]
             },
@@ -536,7 +538,7 @@ Ext.onReady(function() {
                     displayInLayerSwitcher: false,
                     ref: 'blank',
                     group: 'background',
-                    opacity: 0.8
+                    opacity: 0
                 }]
             }],
             items: []
