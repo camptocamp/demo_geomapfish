@@ -101,3 +101,7 @@ a {
     color: #333333;
     font: 11px arial,tahoma,verdana,helvetica;
 }
+
+div.olControlScaleLine, div.olControlMousePosition, div.baseLayersOpacitySlider, div.olControlOverviewMapElement {
+    background-color: rgba(0, 0, 0, 0.75);
+}
