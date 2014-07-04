@@ -192,6 +192,7 @@ Ext.onReady(function() {
 % endif
         {
             ptype: "cgxp_mapopacityslider",
+            layerTreeId: "layertree",
             defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}"
         },
         {

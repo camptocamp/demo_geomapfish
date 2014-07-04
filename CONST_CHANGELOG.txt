@@ -4,60 +4,21 @@ This file includes migration steps for each release of c2cgeoportal.
 Version 1.5
 ===========
 
-1. Get the new files:
+1. Update the `jsbuild/app.cfg` file.
 
-    git add versions.cfg
+    * In the language sections [fr.js], [de.js] Add the following
+      localisation files (in `include`) respectively:
 
-    ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
+        GeoExt.ux/locale/StreetViewPanel-fr.js
+        GeoExt.ux/locale/StreetViewPanel-de.js
 
-    # Get the new files ...
-
-    rm -rf /tmp/demo_geomapfish
-
-2. Remove the deprecated files:
-
-    git rm ...
-
-3. Update the `jsbuild/app.cfg` file.
-
-  * Set all the `root` sections to:
-
-        demo/static/lib/cgxp/core/src/script
-        demo/static/lib/cgxp/ext
-        demo/static/lib/cgxp/geoext/lib
-        demo/static/lib/cgxp/openlayers/lib
-        demo/static/lib/cgxp/openlayers.addins/GoogleEarthView/lib
-        demo/static/lib/cgxp/openlayers.addins/Spherical/lib
-        demo/static/lib/cgxp/openlayers.addins/URLCompressed/lib
-        demo/static/lib/cgxp/openlayers.addins/DynamicMeasure/lib
-        demo/static/lib/cgxp/openlayers.addins/AddViaPoint/lib
-        demo/static/lib/cgxp/gxp/src/script
-        demo/static/lib/cgxp/proj4js
-        demo/static/lib/cgxp/geoext.ux/ux/Measure/lib
-        demo/static/lib/cgxp/geoext.ux/ux/SimplePrint/lib
-        demo/static/lib/cgxp/geoext.ux/ux/FeatureEditing/lib
-        demo/static/lib/cgxp/geoext.ux/ux/FeatureSelectionModel/lib
-        demo/static/lib/cgxp/geoext.ux/ux/WMSBrowser/lib
-        demo/static/lib/cgxp/geoext.ux/ux/StreetViewPanel
-        demo/static/lib/cgxp/sandbox
-        demo/static/lib/cgxp/styler/lib
-        demo/static/lib/cgxp/ext.ux/TwinTriggerComboBox
-        demo/static/lib/cgxp/ext.ux/GroupComboBox
-        demo/static/lib/cgxp/ext.ux/ColorPicker
-        demo/static/lib/cgxp/ext.ux/base64
-        demo/static/lib/cgxp/ext.overrides
-        demo/static/lib/cgxp/dygraphs
-        demo/static/js
-
-4. Update the `production.ini.in` and `development.ini.in` files:
+2. Update the `production.ini.in` and `development.ini.in` files:
 
   * Add the new default_max_age to 10 days:
 
         default_max_age = 864000
 
-5. In the `buildout.cfg` file:
-
-6. In the `config.yaml.in` file:
+3. In the `config.yaml.in` file:
 
    * Update the `main` `checkers` by removing `checker_apiloader` (no longer exists),
      and adding `checker_api`, `checker_xapi`, `checker_fts`, `checker_wmscapabilities`
@@ -83,7 +44,7 @@ Version 1.5
           # The base of created URL
           base_url:  http://${vars:host}${vars:apache-entry-point}s/
 
-7. In the `demo/__init__.py` file:
+4. In the `demo/__init__.py` file:
 
    * Use a cache header in the static view:
 
@@ -92,13 +53,21 @@ Version 1.5
         +     cache_max_age=int(config.get_settings()["default_max_age"])
         + )
 
-8. Update the templates:
+5. Update the templates:
 
   * In all the `demo/templates/*.js` files:
 
   * In the `demo/templates/viewer.js`:
 
-9. Update the mobile application:
+    * Add a reference to the `LayerTree` plugin in the `MapOpacitySlider` config:
+
+        {
+            ptype: "cgxp_mapopacityslider",
+      +     layerTreeId: "layertree",
+            defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}"
+        }
+
+6. Update the mobile application:
 
     * In the `demo/static/mobile/config.js` file do the following changes:
 
@@ -138,7 +107,7 @@ Version 1.5
         +
         +App.featureNS = 'http://mapserver.gis.umn.edu/mapserver';
 
-10. Do the following changes in the ``apache/frontend.conf.in`` file:
+7. Do the following changes in the ``apache/frontend.conf.in`` file:
 
   -AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript application/javascript application/json
   +AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript text/javascript application/javascript application/json
@@ -158,11 +127,11 @@ Version 1.5
   +    # Instruct proxys that these files are cacheable.
   +    Header merge Cache-Control "public"
 
-11. Add the following line in the ``apache/wsgi.conf.in`` file:
+8. Add the following line in the ``apache/wsgi.conf.in`` file:
 
     RewriteRule ^${vars:apache-entry-point}s/(.*)$ /${vars:instanceid}/wsgi/short/$1 [PT]
 
-12. Some important notices:
+9. Some important notices:
 
   * If using Mapserver 6.4 you have to move the substitution variables default
     values and validation patterns from the METADATA section to a VALIDATION
