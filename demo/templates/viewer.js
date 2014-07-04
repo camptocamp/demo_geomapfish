@@ -442,12 +442,11 @@ Ext.onReady(function() {
                            'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                            'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                         ], {
-                            projection: new OpenLayers.Projection("EPSG:3857"),
                             transitionEffect: 'resize',
                             attribution: [
-                                "(c) <a href='http://openstreetmap.org/'>OSM</a>",
-                                "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
-                            ].join(' ')
+                                'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>',
+                                ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
+                            ].join(' '),
                         }
                     )]
                 })
@@ -464,15 +463,14 @@ Ext.onReady(function() {
                         'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
                         'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                     ], {
-                        projection: new OpenLayers.Projection("EPSG:3857"),
                         transitionEffect: 'resize',
                         attribution: [
-                            "(c) <a href='http://openstreetmap.org/'>OSM</a>",
-                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
+                            'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>',
+                            ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
                         ].join(' '),
                         group: 'background',
                         ref: 'mapquest',
-                        opacity: 0
+                        visibility: false
                     }
                 ]
             },
@@ -489,9 +487,13 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        attribution: [
+                            '© <a href="/copyright">Contributeurs de OpenStreetMap</a>. ',
+                            'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
+                        ].join(' '),
                         group: 'background',
                         ref: 'opencyclemap',
-                        opacity: 0
+                        visibility: false
                     }
                 ]
             },
@@ -508,9 +510,13 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        attribution: [
+                            '© <a href="/copyright">Contributeurs de OpenStreetMap</a>. ',
+                            'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
+                        ].join(' '),
                         group: 'background',
                         ref: 'transport',
-                        opacity: 0
+                        visibility: false
                     }
                 ]
             },
@@ -525,7 +531,12 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        attribution: [
+                            "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> ",
+                            "<a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+                        ].join(' '),
                         ref: 'ortho',
+                        visibility: false,
                         opacity: 0
                     }
                 ]
