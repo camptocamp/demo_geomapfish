@@ -159,7 +159,7 @@ Ext.onReady(function() {
                         ].join(' '),
                         group: 'background',
                         ref: 'OSM_MapQuest',
-                        opacity: 0
+                        visibility: false
                     }
                 ]
             },
@@ -176,6 +176,7 @@ Ext.onReady(function() {
                         projection: new OpenLayers.Projection("EPSG:3857"),
                         transitionEffect: 'resize',
                         ref: 'ortho',
+                        visibility: false,
                         opacity: 0
                     }
                 ]
@@ -188,7 +189,7 @@ Ext.onReady(function() {
                     displayInLayerSwitcher: false,
                     ref: 'blank',
                     group: 'background',
-                    opacity: 0
+                    visibility: false
                 }]
             }],
             items: []
