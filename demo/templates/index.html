@@ -138,11 +138,6 @@
         <script type="text/javascript" src="${request.static_url('demo:static/build/lang-%s.js' % lang, _query=url_params)}"></script>
 % endif
 
-% if 'grid' in request.params:
-<%
-extra_param['grid'] = request.params['grid']
-%>
-% endif
-        <script type="text/javascript" src="${request.route_url('viewer', _query=extra_params)}"></script>
+        <script type="text/javascript" src="${request.route_url('viewer', _query=extra_params)}${"&grid=%s" % request.params['grid'] if 'grid' in request.params else ""}"></script>
     </body>
 </html>
