@@ -470,6 +470,7 @@ Ext.onReady(function() {
                             ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
                         ].join(' '),
                         group: 'background',
+                        projection: "EPSG:3857", 
                         ref: 'mapquest',
                         visibility: false
                     }
@@ -493,6 +494,7 @@ Ext.onReady(function() {
                             'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
                         ].join(' '),
                         group: 'background',
+                        projection: "EPSG:3857", 
                         ref: 'opencyclemap',
                         visibility: false
                     }
@@ -516,6 +518,7 @@ Ext.onReady(function() {
                             'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
                         ].join(' '),
                         group: 'background',
+                        projection: "EPSG:3857", 
                         ref: 'transport',
                         visibility: false
                     }
@@ -538,6 +541,7 @@ Ext.onReady(function() {
                         ].join(' '),
                         ref: 'ortho',
                         visibility: false,
+                        projection: "EPSG:3857", 
                         opacity: 0
                     }
                 ]
