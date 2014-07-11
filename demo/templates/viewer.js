@@ -193,6 +193,7 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_mapopacityslider",
             defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}"
+
         },
         {
             ptype: "gxp_zoomtoextent",
@@ -471,7 +472,8 @@ Ext.onReady(function() {
                            "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>by-sa</a>"
                        ].join(' '),
                        group: 'background',
-                       ref: 'mapquest'
+                       ref: 'mapquest',
+                       visibility: false
                     }
                 ]
             },
@@ -488,8 +490,10 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        projection: "EPSG:3857",
                         group: 'background',
-                        ref: 'opencyclemap'
+                        ref: 'opencyclemap',
+                        visibility: false
                     }
                 ]
             },
@@ -506,8 +510,10 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        projection: "EPSG:3857",
                         group: 'background',
-                        ref: 'transport'
+                        ref: 'transport',
+                        visibility: false
                     }
                 ]
             },
@@ -523,8 +529,11 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        projection: "EPSG:3857",
+                        visibility: false,
                         group: 'background',
-                        ref: 'ortho'
+                        ref: 'ortho',
+                        opacity: 0
                     }
                 ]
             },
@@ -536,7 +545,7 @@ Ext.onReady(function() {
                     displayInLayerSwitcher: false,
                     ref: 'blank',
                     group: 'background',
-                    opacity: 0.8
+                    opacity: 0
                 }]
             }],
             items: []
