@@ -175,7 +175,7 @@ Ext.onReady(function() {
 % if 'grid' in request.params:
         {
             ptype: "cgxp_featuresgrid",
-            id: "featureGrid",
+            id: "featuresGrid",
             csvURL: "${request.route_url('csvecho')}",
             maxFeatures: 200,
             outputTarget: "featuregrid-container",
@@ -257,7 +257,11 @@ Ext.onReady(function() {
             ptype: "cgxp_print",
             toggleGroup: "maptools",
             legendPanelId: "legendPanel",
+% if 'grid' in request.params:
+            featureProvider: "featuresGrid",
+% else:
             featureProvider: "featuresWindow",
+% endif
             actionTarget: "center.tbar",
             printURL: "${request.route_url('printproxy', path='')}",
             mapserverURL: "${request.route_url('mapserverproxy', path='')}",
