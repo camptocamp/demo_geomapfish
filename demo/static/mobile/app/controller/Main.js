@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2013 by Camptocamp SA
+ * Copyright (c) 2011-2014 by Camptocamp SA
  *
  * CGXP is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -131,10 +131,10 @@ Ext.define('App.controller.Main', {
             var theme = App.themes[i];
             for (var j = 0, jl = theme.allLayers.length; j < jl; j++ ) {
                 var layer = theme.allLayers[j];
+                var childLayers = layer.childLayers || [];
                 this.layers[layer.name] = layer;
-                for (var k = 0, kl = layer.childLayers.length; k < kl; k++ ) {
-                    var childLayer = layer.childLayers[k];
-                    this.layers[childLayer.name] = childLayer;
+                for (var k = 0, kl = childLayers.length; k < kl; k++ ) {
+                    this.layers[childLayers[k].name] = childLayers[k];
                 }
             }
         }
