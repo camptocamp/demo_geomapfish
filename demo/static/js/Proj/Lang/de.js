@@ -84,6 +84,9 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "cg67_colleges": "Hauptschule",
   "denominati": "Benennung",
   "adresse_du": "Adresse",
-  "numero_de": "Telefonnummer"
+  "numero_de": "Telefonnummer",
+  "Switzerland": "Schweiz",
+  "France": "Frankreich",
+  "Mexico": "Mexiko"
 });
 

@@ -253,6 +253,16 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             type: '-'
         },
+        {   
+            ptype: "cgxp_locationchooser",
+            toggleGroup: "maptools",
+            actionTarget: "center.tbar",
+            locations: {
+                'France': INITIAL_EXTENT,
+                'Switzerland': [578671, 5779224, 1369336, 6025657],
+                'Mexico': [-14130258, 1551033, -7804941, 3923639]
+            }   
+        },
         {
             ptype: "cgxp_print",
             toggleGroup: "maptools",
