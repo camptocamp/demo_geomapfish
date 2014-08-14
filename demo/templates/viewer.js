@@ -332,7 +332,7 @@ Ext.onReady(function() {
                 tooltip: OpenLayers.i18n("Draw geometries on the map")
             }
         },
-        {
+/*        {
              ptype: 'cgxp_googleearthview',
              actionTarget: 'center.tbar',
              outputTarget: 'center',
@@ -341,7 +341,14 @@ Ext.onReady(function() {
                 text: OpenLayers.i18n("Google Earth"),
                 tooltip: OpenLayers.i18n('Open Google Earth Panel')
              }
-        },
+        },*/
+/*        {
+            ptype: 'cgxp_streetview',
+            actionTarget: 'center.tbar',
+            outputTarget: 'center',
+            toggleGroup: 'maptools',
+            baseURL: "${request.static_url('demo:static/lib/cgxp/geoext.ux/ux/StreetViewPanel/')}"
+        },*/
         {
             ptype: "cgxp_legend",
             id: "legendPanel",
