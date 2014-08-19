@@ -303,7 +303,8 @@ Ext.onReady(function() {
             toggleGroup: "maptools",
             actionConfig: {
                 text: OpenLayers.i18n("Measure")
-            }
+            },
+            minAzimuth: 0
         },
         {
             ptype: 'cgxp_profile',
