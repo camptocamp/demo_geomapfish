@@ -21,9 +21,12 @@ setup(
     packages=find_packages(exclude=['ez_setup']),
     include_package_data=True,
     message_extractors={'demo': [
+        ('static/mobile/index.html', 'mako', {'input_encoding': 'utf-8'}),
         ('static/**', 'ignore', None),
         ('**.py', 'python', None),
-        ('templates/**', 'mako', {'input_encoding': 'utf-8'})]},
+        ('templates/**.html', 'mako', {'input_encoding': 'utf-8'}),
+        ('templates/**.js', 'mako', {'input_encoding': 'utf-8'}),
+    ]},
     zip_safe=False,
     entry_points={
         'paste.app_factory': [

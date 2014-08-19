@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: demo 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-19 11:47+0200\n"
+"POT-Creation-Date: 2014-08-19 11:58+0200\n"
 "PO-Revision-Date: 2014-08-19 11:25+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -17,27 +17,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
+#: demo/static/mobile/index.html:5
+msgid "GeoMapFish Demo Mobile Application"
+msgstr "Application mobile de démo GeoMapFish"
+
 #: demo/templates/edit.html:60 demo/templates/index.html:72
 #: demo/templates/routing.html:60
 msgid "Loading message"
 msgstr "Chargement en cours"
 
-#: demo/templates/index.html:121
+#: demo/templates/edit.html:74
+#, fuzzy
+msgid "search tip message"
+msgstr "Chargement en cours"
+
+#: demo/templates/index.html:121 demo/templates/routing.html:74
 msgid "Here you can search for city, coordinates, ..."
 msgstr "Ici vous pouvez chercher des lieux, des coordonnées, ..."
 
-#: demo/templates/index.html:124
+#: demo/templates/index.html:122 demo/templates/routing.html:75
+msgid "Search examples"
+msgstr "Examples de recherches"
+
+#: demo/templates/index.html:124 demo/templates/routing.html:77
 msgid "City"
 msgstr "Lieux"
 
-#: demo/templates/index.html:125
+#: demo/templates/index.html:125 demo/templates/routing.html:78
 msgid "Coordinates"
 msgstr "Coordonnées"
 
-#: demo/templates/index.html:127
+#: demo/templates/index.html:127 demo/templates/routing.html:80
 msgid "Swiss coordinates"
 msgstr "Coordonnées suisse"
 
-#: demo/templates/index.html:128
+#: demo/templates/index.html:128 demo/templates/routing.html:81
 msgid "WGS 84 coordinates (Longitude/latitude)"
 msgstr "Coordonnées WGS 84 (Longitude/latitude)"
+
