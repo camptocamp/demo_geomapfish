@@ -29,8 +29,6 @@ functionalities:
         print_template:
         - 1 A4 portrait demo
         - 2 A3 portrait demo
-        - 3 A4 landscape demo
-        - 4 A3 landscape demo
         default_basemap: OSM_MapQuest
         mobile_default_theme:
 
@@ -38,6 +36,11 @@ functionalities:
 # users with no associated functionalities in the
 # database.
     registered:
+        print_template:
+        - 1 A4 portrait demo
+        - 2 A3 portrait demo
+        - 3 A4 landscape demo
+        - 4 A3 landscape demo
 
 # Functionalities that are made available to Mako templates.
     available_in_templates:
