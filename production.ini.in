@@ -60,10 +60,10 @@ port = ${vars:waitress_port}
 # Begin logging configuration
 
 [loggers]
-keys = root, c2cgeoportal, demo
+keys = root, stats, c2cgeoportal, demo
 
 [handlers]
-keys = console
+keys = console, stats
 
 [formatters]
 keys = generic
@@ -71,6 +71,11 @@ keys = generic
 [logger_root]
 level = WARN
 handlers = console
+
+[logger_stats]
+level = INFO
+handlers = stats
+qualname = c2cgeoportal.lib.stats
 
 [logger_c2cgeoportal]
 level = INFO
@@ -88,7 +93,18 @@ args = (sys.stderr,)
 level = NOTSET
 formatter = generic
 
+[handler_stats]
+class = handlers.RotatingFileHandler
+backupCount = 10
+maxBytes = 1000000
+args = ('/var/sig/stats',)
+level = NOTSET
+formatter = stats
+
 [formatter_generic]
 format = %(asctime)s %(levelname)-5.5s [%(name)s][%(threadName)s] %(message)s
+
+[formatter_stats]
+format = %(message)s
 
 # End logging configuration
