@@ -154,7 +154,7 @@ Ext.onReady(function() {
 % endif
                 defaultThemes: ["Equipement"],
                 uniqueTheme: true,
-                wmsURL: "${request.route_url('mapserverproxy', path='')}"
+                wmsURL: "${request.route_url('mapserverproxy')}"
             },
             outputTarget: "layerpanel"
         },
@@ -163,7 +163,7 @@ Ext.onReady(function() {
             ptype: "cgxp_querier",
             outputTarget: "left-panel",
             events: EVENTS,
-            mapserverproxyURL: "${request.route_url('mapserverproxy', path='')}",
+            mapserverproxyURL: "${request.route_url('mapserverproxy')}",
             // don't work with actual version of mapserver, the proxy will limit to 200
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
@@ -203,7 +203,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_getfeature",
-            mapserverURL: "${request.route_url('mapserverproxy', path='')}",
+            mapserverURL: "${request.route_url('mapserverproxy')}",
             actionTarget: null, //"center.tbar",
             events: EVENTS,
             themes: THEMES,
@@ -235,7 +235,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_fulltextsearch",
-            url: "${request.route_url('fulltextsearch', path='')}",
+            url: "${request.route_url('fulltextsearch')}",
             layerTreeId: "layertree",
             pointRecenterZoom: 20,
             actionTarget: "center.tbar",
@@ -273,8 +273,9 @@ Ext.onReady(function() {
             featureProvider: "featuresWindow",
 % endif
             actionTarget: "center.tbar",
-            printURL: "${request.route_url('printproxy', path='')}",
-            mapserverURL: "${request.route_url('mapserverproxy', path='')}",
+            printURL: "${request.route_url('printproxy')}",
+            mapserverURL: "${request.route_url('mapserverproxy')}",
+            //printProviderConfig: $ {dumps(url_role_params)|n},
             options: {
                 labelAlign: 'top',
                 defaults: {
@@ -287,7 +288,7 @@ Ext.onReady(function() {
             ptype: "cgxp_permalink",
             id: "permalink",
             actionTarget: "center.tbar",
-            shortenerCreateURL: "${request.route_url('shortener_create', path='')}",
+            shortenerCreateURL: "${request.route_url('shortener_create')}",
             actionConfig: {
                 text: OpenLayers.i18n("Link")
             }
@@ -372,9 +373,9 @@ Ext.onReady(function() {
             username: "${user.username}",
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},
 % endif
-            loginURL: "${request.route_url('login', path='')}",
-            loginChangeURL: "${request.route_url('loginchange', path='')}",
-            logoutURL: "${request.route_url('logout', path='')}",
+            loginURL: "${request.route_url('login')}",
+            loginChangeURL: "${request.route_url('loginchange')}",
+            logoutURL: "${request.route_url('logout')}",
             enablePasswordChange: true,
             forcePasswordChange: true,
             permalinkId: "permalink"
@@ -396,7 +397,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_addkmlfile",
-            echoUrl: "${request.route_url('echo', path='')}",
+            echoUrl: "${request.route_url('echo')}",
             actionTarget: "layerpanel.bbar"
         },
 
