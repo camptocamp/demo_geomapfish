@@ -278,7 +278,7 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             printURL: "${request.route_url('printproxy')}",
             mapserverURL: "${request.route_url('mapserverproxy')}",
-            printProviderConfig: $ {dumps(url_role_params)|n},
+            printProviderConfig: ${dumps(url_role_params) | n},
             options: {
                 labelAlign: 'top',
                 defaults: {
