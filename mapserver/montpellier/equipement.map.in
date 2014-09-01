@@ -54,8 +54,9 @@ LAYER
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Aires-de-jeux-par-type" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
         "wms_metadataurl_type" "TC211" # For metadata URL
-
-        ${mapserver_layer_metadata} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation} # For secured layers
     END
 END
 
@@ -104,8 +105,9 @@ LAYER
         #"wms_metadataurl_href" "http://www.example.com/bar" # For metadata URL
         #"wms_metadataurl_format" "text/html" # For metadata URL
         #"wms_metadataurl_type" "TC211" # For metadata URL
-
-        ${mapserver_layer_metadata} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation} # For secured layers
     END
 END
 
@@ -227,8 +229,9 @@ LAYER
         #"wms_metadataurl_href" "http://www.example.com/bar" # For metadata URL
         #"wms_metadataurl_format" "text/html" # For metadata URL
         #"wms_metadataurl_type" "TC211" # For metadata URL
-
-        ${mapserver_layer_metadata} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation} # For secured layers
     END
 END
 
@@ -285,7 +288,8 @@ LAYER
         #"wms_metadataurl_href" "http://www.example.com/bar" # For metadata URL
         #"wms_metadataurl_format" "text/html" # For metadata URL
         #"wms_metadataurl_type" "TC211" # For metadata URL
-
-        ${mapserver_layer_metadata} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation} # For secured layers
     END
 END

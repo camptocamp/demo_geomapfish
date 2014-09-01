@@ -55,8 +55,9 @@ LAYER
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Monuments" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
         "wms_metadataurl_type" "TC211" # For metadata URL
-
-        ${mapserver_layer_metadata} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation} # For secured layers
     END
 END
 LAYER
@@ -116,8 +117,9 @@ LAYER
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Bornes-fontaines" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
         "wms_metadataurl_type" "TC211" # For metadata URL
-
-        ${mapserver_layer_metadata} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation} # For secured layers
     END
 END
 LAYER
@@ -183,8 +185,9 @@ LAYER
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Sites-classes-et-inscrits" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
         "wms_metadataurl_type" "TC211" # For metadata URL
-
-        ${mapserver_layer_metadata} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation} # For secured layers
     END
 END
 LAYER
@@ -235,8 +238,9 @@ LAYER
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Zones-pietonnes" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
         "wms_metadataurl_type" "TC211" # For metadata URL
-
-        ${mapserver_layer_metadata} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation} # For secured layers
     END
 END
 
