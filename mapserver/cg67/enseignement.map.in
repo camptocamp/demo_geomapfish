@@ -2,41 +2,37 @@ LAYER
     NAME 'cg67_metier_ens_lycees'
     TYPE POINT
     STATUS ON
-    #DEBUG 5
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
-DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, nom, adresse, commentaire FROM cg67.metier_ens_lycees geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_metier_ens_lycees') AS foo USING UNIQUE gid USING srid=3857"
-
-    DUMP TRUE # For GetFeatureInfo
+    DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, nom, adresse, commentaire FROM cg67.metier_ens_lycees geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_metier_ens_lycees') AS foo USING UNIQUE gid USING srid=3857"
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
     OPACITY 80
     TOLERANCE 10
-    #MAXSCALEDENOM 30000
-    #LABELITEM "ogr_atr_val"
+    MAXSCALEDENOM 30000
+    LABELITEM "ogr_atr_val"
     CLASS
         NAME "Lycées"
         STYLE
-          SIZE 10
-          SYMBOL "circle"
-          OUTLINECOLOR 20 20 20
-          COLOR 195 195 0
+            SIZE 10
+            SYMBOL "circle"
+            OUTLINECOLOR 20 20 20
+            COLOR 195 195 0
         END
-        #LABEL
-        #   ANGLE [ogr_angle]
-        #   COLOR  50 50 50
-        #   OUTLINECOLOR 255 255 255
-        #   FONT "arial"
-        #   TYPE truetype
-        #   SIZE 8
-        #   POSITION lc
-        #   PARTIALS FALSE
-        #   MAXSCALEDENOM 3000
-        #END
+        LABEL
+            ANGLE [ogr_angle]
+            COLOR  50 50 50
+            OUTLINECOLOR 255 255 255
+            FONT "arial"
+            TYPE truetype
+            SIZE 8
+            POSITION lc
+            PARTIALS FALSE
+            MAXSCALEDENOM 3000
+        END
     END
 
     METADATA
@@ -53,6 +49,9 @@ DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, nom, adresse, comm
 
         ${mapserver_layer_metadata} # For secured layers
     END
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
 END
 
 LAYER
@@ -64,36 +63,33 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
-DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, denominati, adresse_du, numero_de_ AS numero_de FROM cg67.colleges geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_colleges') AS foo USING UNIQUE gid USING srid=3857"
-
-    DUMP TRUE # For GetFeatureInfo
+    DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, denominati, adresse_du, numero_de_ AS numero_de FROM cg67.colleges geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_colleges') AS foo USING UNIQUE gid USING srid=3857"
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
     OPACITY 80
     TOLERANCE 10
-    #MAXSCALEDENOM 30000
-    #LABELITEM "ogr_atr_val"
+    MAXSCALEDENOM 30000
+    LABELITEM "ogr_atr_val"
     CLASS
         NAME "Collèges"
         STYLE
-          SIZE 10
-          SYMBOL "circle"
-          OUTLINECOLOR 20 20 20
-          COLOR 135 135 0
+            SIZE 10
+            SYMBOL "circle"
+            OUTLINECOLOR 20 20 20
+            COLOR 135 135 0
         END
-        #LABEL
-        #   ANGLE [ogr_angle]
-        #   COLOR  50 50 50
-        #   OUTLINECOLOR 255 255 255
-        #   FONT "arial"
-        #   TYPE truetype
-        #   SIZE 8
-        #   POSITION lc
-        #   PARTIALS FALSE
-        #   MAXSCALEDENOM 3000
-        #END
+        LABEL
+            ANGLE [ogr_angle]
+            COLOR  50 50 50
+            OUTLINECOLOR 255 255 255
+            FONT "arial"
+            TYPE truetype
+            SIZE 8
+            POSITION lc
+            PARTIALS FALSE
+            MAXSCALEDENOM 3000
+        END
     END
 
     METADATA
@@ -110,6 +106,9 @@ DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, denominati, adress
 
         ${mapserver_layer_metadata} # For secured layers
     END
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
 END
 
 # Cette couche n'est pas topologiquement correct!
@@ -117,26 +116,22 @@ LAYER
     NAME 'cg67_metier_ens_secteur_recrutement'
     TYPE POLYGON
     STATUS ON
-    #DEBUG 5
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
-DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid FROM cg67.metier_ens_secteur_recrutement geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_metier_ens_secteur_recrutement') AS foo USING UNIQUE gid USING srid=3857"
-
-    DUMP TRUE # For GetFeatureInfo
+    DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid FROM cg67.metier_ens_secteur_recrutement geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_metier_ens_secteur_recrutement') AS foo USING UNIQUE gid USING srid=3857"
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
-    OPACITY 50 
-    #MAXSCALEDENOM 51000
+    OPACITY 50
+    MAXSCALEDENOM 51000
     CLASS
         NAME "Secteur recrutement"
         STYLE
-          WIDTH 1
-          OUTLINECOLOR 255 255 192
-          COLOR 92 155 92
+            WIDTH 1
+            OUTLINECOLOR 255 255 192
+            COLOR 92 155 92
         END
     END
 
@@ -154,5 +149,7 @@ DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid FROM cg67.metier_en
 
         ${mapserver_layer_metadata} # For secured layers
     END
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
 END
-

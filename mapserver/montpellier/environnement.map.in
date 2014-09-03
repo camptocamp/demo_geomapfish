@@ -2,46 +2,36 @@ LAYER
     NAME 'courseau'
     TYPE POLYGON
     STATUS ON
-    #DEBUG 5
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     EXTENT 420107 5398192 442381 5412352
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
     DATA "geom FROM (SELECT geo.geom as geom, texte, gid FROM geodata.courseau AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'courseau') AS foo USING UNIQUE gid USING srid=3857"
-
-    # Example data for secured layer by role (without any area)
-    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
-    # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
-
-    DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
-    #MAXSCALEDENOM 3500
-    TOLERANCE 10 
+    MAXSCALEDENOM 3500
+    TOLERANCE 10
     LABELITEM "texte"
     CLASS
         NAME "Cours d'eau"
         STYLE
-          #SYMBOL "circle"
-          #SIZE 8
-          WIDTH 1
-          OUTLINECOLOR 0 0 64
-          COLOR 0 0 232
+            SYMBOL "circle"
+            SIZE 8
+            WIDTH 1
+            OUTLINECOLOR 0 0 64
+            COLOR 0 0 232
         END
         LABEL
-          COLOR  0 0 64
-          OUTLINECOLOR 192 192 255
-          FONT "arial"
-          TYPE truetype
-          SIZE 8
-          #ANGLE [angle2]
-          POSITION auto
-          PARTIALS FALSE
-          MAXSCALEDENOM 15000
+            COLOR  0 0 64
+            OUTLINECOLOR 192 192 255
+            FONT "arial"
+            TYPE truetype
+            SIZE 8
+            POSITION auto
+            PARTIALS FALSE
+            MAXSCALEDENOM 15000
         END
 
     END
@@ -61,52 +51,46 @@ LAYER
     VALIDATION
         ${mapserver_layer_validation} # For secured layers
     END
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
 END
 
 LAYER
     NAME 'bassinsversants'
     TYPE POLYGON
     STATUS ON
-    #DEBUG 5
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     EXTENT 420107 5398192 442381 5412352
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
     DATA "geom FROM (SELECT geo.geom as geom, nom, gid FROM geodata.bassinsversants AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'bassinsversants') AS foo USING UNIQUE gid USING srid=3857"
-
-    # Example data for secured layer by role (without any area)
-    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
-    # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
-
-    DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
-    #MAXSCALEDENOM 3500
+    MAXSCALEDENOM 3500
     TOLERANCE 10
     LABELITEM "nom"
     CLASS
         NAME "Bassins versants"
         STYLE
-          #SYMBOL "circle"
-          #SIZE 8
-          WIDTH 2
-          OUTLINECOLOR 0 0 64
-          OPACITY 50
-          COLOR 0 0 232
+            SYMBOL "circle"
+            SIZE 8
+            WIDTH 2
+            OUTLINECOLOR 0 0 64
+            OPACITY 50
+            COLOR 0 0 232
         END
         LABEL
-          COLOR  0 0 64  
-          OUTLINECOLOR 100 100 255
-          FONT "arial"
-          TYPE truetype
-          SIZE 8
-          POSITION auto
-          PARTIALS FALSE
-          #MAXSCALEDENOM 15000
+            COLOR  0 0 64
+            OUTLINECOLOR 100 100 255
+            FONT "arial"
+            TYPE truetype
+            SIZE 8
+            POSITION auto
+            PARTIALS FALSE
+            MAXSCALEDENOM 15000
         END
 
     END
@@ -125,5 +109,8 @@ LAYER
     END
     VALIDATION
         ${mapserver_layer_validation} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation}
     END
 END

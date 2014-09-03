@@ -2,20 +2,16 @@ LAYER
     NAME 'cg67_metier_lip_cdc'
     TYPE POLYGON
     STATUS ON
-    #DEBUG 5
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
-DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, nom_cdc FROM cg67.metier_lip_cdc geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_metier_lip_cdc') AS foo USING UNIQUE gid USING srid=3857"
-
-    DUMP TRUE # For GetFeatureInfo
+    DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, nom_cdc FROM cg67.metier_lip_cdc geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.the_geom) AND ${mapserver_join_where} 'cg67_metier_lip_cdc') AS foo USING UNIQUE gid USING srid=3857"
     PROJECTION
       "init=epsg:3857"
     END
-    OPACITY 50 
-    #MAXSCALEDENOM 51000
+    OPACITY 50
+    MAXSCALEDENOM 51000
     CLASS
         NAME "CDC"
         STYLE
@@ -39,10 +35,7 @@ DATA "geom FROM (SELECT geo.the_geom as geom, ogc_fid AS gid, nom_cdc FROM cg67.
 
         ${mapserver_layer_metadata} # For secured layers
     END
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
 END
-
-# Departement
-
-# Commune
-
-

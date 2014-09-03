@@ -31,13 +31,14 @@ Ext.onReady(function() {
 % endif
     };
 
+
 % if user and user.role.extent:
     var INITIAL_EXTENT = ${user.role.json_extent};
 % else:
-    var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
+    var INITIAL_EXTENT = [-466375, 5379611, 1035458, 6573252];
 % endif
 
-    var RESTRICTED_EXTENT = [-666375.77628413, 3379611.8001185, 1235458.955194, 7573252.433606];
+    var RESTRICTED_EXTENT = [-666375, 3379611, 1235458, 7573252];
 
     // Used to transmit event throw the application
     var EVENTS = new Ext.util.Observable();
@@ -261,7 +262,8 @@ Ext.onReady(function() {
             toggleGroup: "maptools",
             actionTarget: "center.tbar",
             locations: {
-                'France': INITIAL_EXTENT,
+                'User initial': INITIAL_EXTENT,
+                'France': [-466375, 5379611, 1035458, 6573252],
                 'Switzerland': [578671, 5779224, 1369336, 6025657],
                 'Mexico': [-14130258, 1551033, -7804941, 3923639]
             }   

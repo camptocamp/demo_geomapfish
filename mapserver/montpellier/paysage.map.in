@@ -7,51 +7,44 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
     DATA "geom FROM (SELECT geo.geom as geom, gid, nom_latin, nom_usuel, nom_commun, libarchite, librevetem, releve FROM geodata.arbres_align AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'arbres_align') AS foo USING UNIQUE gid USING srid=3857"
-
-    # Example data for secured layer by role (without any area)
-    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
-    # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
-
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
     MAXSCALEDENOM 3500
-    TOLERANCE 10 
+    TOLERANCE 10
     LABELITEM "nom_usuel"
     CLASSITEM "nom_usuel"
     CLASS
         #NAME "Platanne"
         EXPRESSION "Platane"
         STYLE
-          SYMBOL "circle"
-          SIZE 8
-          WIDTH 1
-          OUTLINECOLOR 0 64 0
-          COLOR 192 255 192
+            SYMBOL "circle"
+            SIZE 8
+            WIDTH 1
+            OUTLINECOLOR 0 64 0
+            COLOR 192 255 192
         END
     END
     CLASS
         NAME "Arbres"
         STYLE
-          SYMBOL "circle"
-          SIZE 8
-          WIDTH 1
-          OUTLINECOLOR 0 64 0
-          COLOR 192 255 192
+            SYMBOL "circle"
+            SIZE 8
+            WIDTH 1
+            OUTLINECOLOR 0 64 0
+            COLOR 192 255 192
         END
         LABEL
-          COLOR  0 64 0 
-          OUTLINECOLOR 192 255 192
-          FONT "arial"
-          TYPE truetype
-          SIZE 8
-          POSITION auto
-          PARTIALS FALSE
-          MAXSCALEDENOM 15000
+            COLOR  0 64 0
+            OUTLINECOLOR 192 255 192
+            FONT "arial"
+            TYPE truetype
+            SIZE 8
+            POSITION auto
+            PARTIALS FALSE
+            MAXSCALEDENOM 15000
         END
     END
 
@@ -59,9 +52,12 @@ LAYER
         "wms_title" "Alignement des arbres" # For WMS
         "wms_srs" "epsg:3857" # For WMS
 
-        "gml_include_items" "nom_latin,nom_commun,libarchite,librevetem,releve"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
-        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
-        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+        "gml_include_items" "geom,nom_latin,nom_commun,libarchite,librevetem,releve"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "gml_types" "auto"
+        "gml_featureid" "id"
+        "wfs_enable_request" "*"
+        "gml_geometries" "geom"
+        "gml_geom_type" "point"
 
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Liste-des-arbres-de-la-Ville-de" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
@@ -72,6 +68,9 @@ LAYER
     END
     VALIDATION
         ${mapserver_layer_validation} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation}
     END
 END
 
@@ -84,38 +83,31 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
     DATA "geom FROM (SELECT geo.geom as geom, gid, nom_latin, nom_usuel, age, descriptio FROM geodata.arbres_remarq AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'arbres_remarq') AS foo USING UNIQUE gid USING srid=3857"
-
-    # Example data for secured layer by role (without any area)
-    #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=-1"
-    # Example data for public layer
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.airedejeux AS geo) AS foo USING UNIQUE gid USING srid=3857"
-
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
     TOLERANCE 10
     LABELITEM "nom_latin"
     CLASS
         NAME "Arbres remarquables"
         STYLE
-          SYMBOL "circle"
-          SIZE 8
-          WIDTH 1
-          OUTLINECOLOR 0 64 0
-          COLOR 0 128 0
+            SYMBOL "circle"
+            SIZE 8
+            WIDTH 1
+            OUTLINECOLOR 0 64 0
+            COLOR 0 128 0
         END
         LABEL
-          COLOR  150 0 0
-          OUTLINECOLOR 255 255 255
-          FONT "arial"
-          TYPE truetype
-          SIZE 8
-          POSITION auto
-          PARTIALS FALSE
-          MAXSCALEDENOM 15000
+            COLOR  150 0 0
+            OUTLINECOLOR 255 255 255
+            FONT "arial"
+            TYPE truetype
+            SIZE 8
+            POSITION auto
+            PARTIALS FALSE
+            MAXSCALEDENOM 15000
         END
     END
 
@@ -123,9 +115,12 @@ LAYER
         "wms_title" "Arbres remarquables" # For WMS
         "wms_srs" "epsg:3857" # For WMS
 
-        "gml_include_items" "nom_latin,nom_usuel,age,descriptio"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
-        "ows_geom_type" "point" # For returning geometries in GetFeatureInfo
-        "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
+        "gml_include_items" "all"  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
+        "gml_types" "auto"
+        "gml_featureid" "gid"
+        "wfs_enable_request" "*"
+        "gml_geometries" "geom"
+        "gml_geom_type" "point"
 
         "wms_metadataurl_href" "http://opendata.montpelliernumerique.fr/Liste-des-arbres-remarquables" # For metadata URL
         "wms_metadataurl_format" "text/html" # For metadata URL
@@ -134,25 +129,24 @@ LAYER
     VALIDATION
         ${mapserver_layer_validation} # For secured layers
     END
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
 END
 
 LAYER
     NAME 'pistescyclables'
     TYPE LINE
     STATUS ON
-    #DEBUG 5
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     EXTENT 420107 5398192 442381 5412352
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
     DATA "geom FROM (SELECT geo.geom as geom, nom, gid FROM geodata.pistescyclables AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'pistescyclables') AS foo USING UNIQUE gid USING srid=3857"
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.pistescyclables AS geo) AS foo USING UNIQUE gid USING srid=3857"
-
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
     TOLERANCE 10
     CLASSITEM "nom"
@@ -160,52 +154,51 @@ LAYER
         NAME "Couloir de bus cyclable"
         EXPRESSION "Couloir de bus cyclable"
         STYLE
-          WIDTH 3
-          OUTLINECOLOR 0 0 64
-          COLOR 0 0 220
+            WIDTH 3
+            OUTLINECOLOR 0 0 64
+            COLOR 0 0 220
         END
     END
     CLASS
         NAME "Voie verte"
         EXPRESSION "Voie verte"
         STYLE
-          WIDTH 3
-          OUTLINECOLOR 0 64 0
-          COLOR 0 220 0
+            WIDTH 3
+            OUTLINECOLOR 0 64 0
+            COLOR 0 220 0
         END
     END
     CLASS
         NAME "Voie fléchée"
         EXPRESSION "Voie fléchée"
         STYLE
-          WIDTH 1
-          OUTLINECOLOR 0 64 0
-          COLOR 0 220 0
+            WIDTH 1
+            OUTLINECOLOR 0 64 0
+            COLOR 0 220 0
         END
         STYLE
-   #       GEOMTRANSFORM "start"
-          COLOR 0 255 0
-          SYMBOL "arrow-start"
-          SIZE 8.0
-          ANGLE AUTO
+            COLOR 0 255 0
+            SYMBOL "arrow-start"
+            SIZE 8.0
+            ANGLE AUTO
         END # STYLE
     END
     CLASS
         NAME "Voie unidirectionnelle"
         EXPRESSION "Voie unidirectionnelle"
         STYLE
-          WIDTH 1
-          OUTLINECOLOR 64 0 0
-          COLOR 220 0 0
+            WIDTH 1
+            OUTLINECOLOR 64 0 0
+            COLOR 220 0 0
         END
     END
     CLASS
         NAME "Voie bidirectionnelle"
         EXPRESSION "Voie bidirectionnelle"
         STYLE
-          WIDTH 3
-          OUTLINECOLOR 64 0 0
-          COLOR 220 0 0
+            WIDTH 3
+            OUTLINECOLOR 64 0 0
+            COLOR 220 0 0
         END
     END
     METADATA
@@ -224,35 +217,33 @@ LAYER
     VALIDATION
         ${mapserver_layer_validation} # For secured layers
     END
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
 END
 
 LAYER
     NAME 'espaces_verts'
     TYPE POLYGON
     STATUS ON
-    #DEBUG 5
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     EXTENT 420107 5398192 442381 5412352
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    # Example data for secured layer by restriction area
     DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.espaces_verts AS geo, ${mapserver_join_tables} WHERE ST_Contains(${mapserver_join_area}, geo.geom) AND ${mapserver_join_where} 'espaces_verts') AS foo USING UNIQUE gid USING srid=3857"
-    #DATA "geom FROM (SELECT geo.geom as geom, gid FROM geodata.pistescyclables AS geo) AS foo USING UNIQUE gid USING srid=3857"
 
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
-      "init=epsg:3857"
+        "init=epsg:3857"
     END
     TOLERANCE 10
     CLASS
         NAME "Espaces verts"
         STYLE
-          #SYMBOL "circle"
-          #SIZE 8
-          WIDTH 1
-          OUTLINECOLOR 0 64 0
-          COLOR 0 120 0
+            WIDTH 1
+            OUTLINECOLOR 0 64 0
+            COLOR 0 120 0
         END
     END
 
@@ -260,8 +251,6 @@ LAYER
         "wms_title" "Parc et jardin" # For WMS
         "wms_srs" "epsg:3857" # For WMS
 
-        #"gml_exclude_items" "all"
-        #"gml_include_items" ""  # For GetFeatureInfo and WFS GetFeature (QuerryBuilder)
         "ows_geom_type" "polygon" # For returning geometries in GetFeatureInfo
         "ows_geometries" "geom" # For returning geometries in GetFeatureInfo
 
@@ -271,5 +260,8 @@ LAYER
     END
     VALIDATION
         ${mapserver_layer_validation} # For secured layers
+    END
+    VALIDATION
+        ${mapserver_layer_validation}
     END
 END
