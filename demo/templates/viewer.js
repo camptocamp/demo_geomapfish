@@ -92,6 +92,7 @@ Ext.onReady(function() {
                 height: 160,
                 split: true,
                 collapseMode: "mini",
+                stateful: false,
                 hidden: true,
                 bodyStyle: 'background-color: transparent;'
             },
@@ -103,6 +104,7 @@ Ext.onReady(function() {
                 minWidth: 300,
                 split: true,
                 collapseMode: "mini",
+                stateful: false,
                 border: false,
                 defaults: {width: 300},
                 items: [{
