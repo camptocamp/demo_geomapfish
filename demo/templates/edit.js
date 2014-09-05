@@ -80,7 +80,8 @@ Ext.onReady(function() {
             },
             layerTreeId: 'layertree',
             themes: THEMES
-        }, {
+        },
+        {
             ptype: "cgxp_layertree",
             id: "layertree",
             outputConfig: {
@@ -92,17 +93,41 @@ Ext.onReady(function() {
                 wmsURL: '${request.route_url('mapserverproxy')}'
             },
             outputTarget: 'left-panel'
-        }, {
+        },
+        {
+            ptype: "cgxp_fulltextsearch",
+            url: "${request.route_url('fulltextsearch')}",
+            layerTreeId: "layertree",
+            pointRecenterZoom: 20,
+            actionTarget: "map.tbar",
+            grouping: true
+        },
+        {
             ptype: "cgxp_menushortcut",
             type: '->'
-        }, {
+        },
+        {
+            ptype: "cgxp_permalink",
+            id: "permalink",
+            actionTarget: "map.tbar",
+            shortenerCreateURL: "${request.route_url('shortener_create')}",
+            actionConfig: {
+                text: OpenLayers.i18n("Link")
+            }
+        },
+        {
             ptype: "cgxp_login",
             actionTarget: "map.tbar",
 % if user:
             username: "${user.username}",
+            isPasswordChanged: ${"true" if user.is_password_changed else "false"},
 % endif
             loginURL: "${request.route_url('login', path='')}",
-            logoutURL: "${request.route_url('logout', path='')}"
+            loginChangeURL: "${request.route_url('loginchange')}",
+            logoutURL: "${request.route_url('logout', path='')}",
+            enablePasswordChange: true,
+            forcePasswordChange: true,
+            permalinkId: "permalink"
         }],
 
         // layer sources

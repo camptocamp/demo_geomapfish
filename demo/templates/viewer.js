@@ -247,8 +247,6 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             grouping: true
         },
-
-
         {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
