@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from pyramid.config import Configurator
-from c2cgeoportal import locale_negotiator
+from c2cgeoportal import locale_negotiator, add_interface, INTERFACE_TYPE_SENCHA_TOUCH
 from c2cgeoportal.resources import FAModels
 from c2cgeoportal.lib.authentication import create_authentication
 from demo.resources import Root
@@ -40,29 +40,9 @@ def main(global_config, **settings):
         cache_max_age=int(config.get_settings()["default_max_age"])
     )
 
-    # mobile views and routes
-    config.add_route('mobile_index_dev', '/mobile_dev/')
-    config.add_view('c2cgeoportal.views.entry.Entry',
-                    attr='mobile',
-                    renderer='demo:static/mobile/index.html',
-                    route_name='mobile_index_dev')
-    config.add_route('mobile_config_dev', '/mobile_dev/config.js')
-    config.add_view('c2cgeoportal.views.entry.Entry',
-                    attr='mobileconfig',
-                    renderer='demo:static/mobile/config.js',
-                    route_name='mobile_config_dev')
-    config.add_static_view('mobile_dev', 'demo:static/mobile')
-
-    config.add_route('mobile_index_prod', '/mobile/')
-    config.add_view('c2cgeoportal.views.entry.Entry',
-                    attr='mobile',
-                    renderer='demo:static/mobile/build/production/App/index.html',
-                    route_name='mobile_index_prod')
-    config.add_route('mobile_config_prod', '/mobile/config.js')
-    config.add_view('c2cgeoportal.views.entry.Entry',
-                    attr='mobileconfig',
-                    renderer='demo:static/mobile/build/production/App/config.js',
-                    route_name='mobile_config_prod')
-    config.add_static_view('mobile', 'demo:static/mobile/build/production/App')
+    add_interface(config)
+    add_interface(config, 'edit')
+    add_interface(config, 'routing')
+    add_interface(config, 'mobile', INTERFACE_TYPE_SENCHA_TOUCH)
 
     return config.make_wsgi_app()

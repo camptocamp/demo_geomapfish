@@ -1,6 +1,74 @@
 This file includes migration steps for each release of c2cgeoportal.
 
 
+Version 1.6
+===========
+
+1. Get the new files:
+
+    ./buildout/bin/pcreate -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
+
+    cp /tmp/demo_geomapfish/alembic.ini.in .
+    git add alembic.ini.in
+
+    rm -rf /tmp/demo_geomapfish
+
+2. Removes the deprecated files:
+
+    git rm -r demo/CONST_migration
+
+3. In the demo/__init__.py file do the following changes:
+
+    -from c2cgeoportal import locale_negotiator
+    +from c2cgeoportal import locale_negotiator, add_interface, INTERFACE_TYPE_SENCHA_TOUCH
+
+    -    mobile view configuration ...
+    +    add_interface(config)
+    +    add_interface(config, 'edit')
+    +    add_interface(config, 'routing')
+    +    add_interface(config, 'mobile', INTERFACE_TYPE_SENCHA_TOUCH)
+
+4. In the mapfile add the following lines to all restricted layers:
+
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
+
+5. Remove the deprecated versioning table:
+
+    sudo -u postgres psql -c "DROP TABLE version_<schema>" <database>
+
+6. For non Apt/Dpkg based OS, disable the package checking:
+   In the ``buildout.cfg`` section ``[buildout]`` add:
+
+        parts -=
+            test-packages
+            test-packages-mobile
+            test-packages-tilecloud-chain
+
+
+Version 1.5.2
+=============
+
+1. In the demo/static/mobile/config.js file do the following change:
+
+   -    App.WFSTypes = '${wfs_types | n}'.split(',');
+   +    App.WFSTypes = jsonFormat.read('${dumps(wfs_types) | n}');
+
+
+Version 1.5.1
+=============
+
+1. Remove in ``production.ini.in`` and ``development.ini.in`` in the ``[app:app]`` section:
+
+   cache_version = ${cache_version}
+
+2. In the ``viewer.js`` you should add the following configuration in the
+   ``cgxp_permalink`` plugin:
+
+    shortenerCreateURL: "${request.route_url('shortener_create', path='')}",
+
+
 Version 1.5
 ===========
 
@@ -191,7 +259,13 @@ Full git hub diff: https://github.com/camptocamp/c2cgeoportal/compare/1.4...1.5#
         -     Proj/Lang/<lang>.js
         -     Proj/Lang/GeoExt-<lang>.js
 
-10. Some important notices:
+10. Remove old files:
+
+   We now use the mapfish print 2.1, than remove the 2.0 war:
+
+        git rm print/print-servlet-2.0-SNAPSHOT-IMG-MAGICK.war
+
+11. Some important notices:
 
   * If using Mapserver 6.4 you have to move the substitution variables default
     values and validation patterns from the METADATA section to a VALIDATION

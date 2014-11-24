@@ -18,7 +18,6 @@ enable_admin_interface = ${vars:enable_admin_interface}
 sqlalchemy.url = postgresql://${dbuser}:${dbpassword}@${dbhost}:${dbport}/${db}
 schema = ${vars:schema}
 parentschema = ${vars:parent_schema}
-cache_version = ${cache_version}
 # For debug mode
 jsbuild_cfg = ${jsbuild:config}
 jsbuild_root_dir = ${buildout:directory}
