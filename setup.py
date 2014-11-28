@@ -20,13 +20,6 @@ setup(
     ],
     packages=find_packages(exclude=['ez_setup']),
     include_package_data=True,
-    message_extractors={'demo': [
-        ('static/mobile/index.html', 'mako', {'input_encoding': 'utf-8'}),
-        ('static/**', 'ignore', None),
-        ('**.py', 'python', None),
-        ('templates/**.html', 'mako', {'input_encoding': 'utf-8'}),
-        ('templates/**.js', 'mako', {'input_encoding': 'utf-8'}),
-    ]},
     zip_safe=False,
     entry_points={
         'paste.app_factory': [
@@ -34,7 +27,6 @@ setup(
         ],
         'console_scripts': [
             'create_db = demo.scripts.create_db:main',
-            'mako = demo.scripts.mako_replacer:main',
         ],
     },
 )

@@ -258,7 +258,7 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             type: '-'
         },
-        {   
+        {
             ptype: "cgxp_locationchooser",
             toggleGroup: "maptools",
             actionTarget: "center.tbar",
@@ -267,7 +267,7 @@ Ext.onReady(function() {
                 'France': [-466375, 5379611, 1035458, 6573252],
                 'Switzerland': [578671, 5779224, 1369336, 6025657],
                 'Mexico': [-14130258, 1551033, -7804941, 3923639]
-            }   
+            }
         },
         {
             ptype: "cgxp_print",
@@ -500,7 +500,7 @@ Ext.onReady(function() {
                             ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
                         ].join(' '),
                         group: 'background',
-                        projection: "EPSG:3857", 
+                        projection: "EPSG:3857",
                         ref: 'mapquest',
                         visibility: false
                     }
@@ -524,7 +524,7 @@ Ext.onReady(function() {
                             'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
                         ].join(' '),
                         group: 'background',
-                        projection: "EPSG:3857", 
+                        projection: "EPSG:3857",
                         ref: 'opencyclemap',
                         visibility: false
                     }
@@ -548,7 +548,7 @@ Ext.onReady(function() {
                             'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
                         ].join(' '),
                         group: 'background',
-                        projection: "EPSG:3857", 
+                        projection: "EPSG:3857",
                         ref: 'transport',
                         visibility: false
                     }
@@ -571,7 +571,7 @@ Ext.onReady(function() {
                         ].join(' '),
                         ref: 'ortho',
                         visibility: false,
-                        projection: "EPSG:3857", 
+                        projection: "EPSG:3857",
                         opacity: 0
                     }
                 ]
