@@ -21,7 +21,7 @@
 /mapserver/*/*.map
 /mapserver/ms_error.log
 /demo/locale/*/LC_MESSAGES/*.mo
-/print/lib/*.jar
+/print/WEB-INF/lib/*.jar
 /demo/static/build/
 /deploy/hooks/post-restore-database
 /demo/static/mobile/resources/sass/.sass-cache

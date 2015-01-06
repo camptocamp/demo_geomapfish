@@ -188,7 +188,8 @@ Ext.onReady(function() {
             maxFeatures: 200,
             outputTarget: "featuregrid-container",
             events: EVENTS,
-            csvIncludeHeader: true
+            csvIncludeHeader: true,
+            globalSelection: true
         },
 % else:
         {
@@ -297,8 +298,29 @@ Ext.onReady(function() {
                 defaults: {
                     anchor:'100%'
                 },
-                autoFit: true
-            }
+                autoFit: true,
+                fieldsExtraClientConfiguration: {
+                    "A4 portrait": {
+                        "title": {
+                            fieldAttributes: {
+                                fieldLabel: "${_("Name")}",
+                                emptyText: "${_("Name")}"
+                            }
+                        },
+                        "comments": {
+                            useTextArea: true,
+                            fieldAttributes: {
+                                fieldLabel: "${_("Description")}",
+                                emptyText: "${_("Description")}"
+                            }
+                        }
+                    }
+                }
+            },
+            version: 3,
+            encodeLayer: {},
+            encodeExternalLayer: {},
+            additionalAttributes: []
         },
         {
             ptype: "cgxp_permalink",
