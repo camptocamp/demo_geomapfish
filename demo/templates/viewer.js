@@ -374,6 +374,7 @@ Ext.onReady(function() {
             ptype: "cgxp_login",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
+            events: EVENTS,
 % if user:
             username: "${user.username}",
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},
