@@ -62,6 +62,9 @@ hosts:
   - !dnsMatch
     host: c.tile.opencyclemap.org
     port: 80
+  - !dnsMatch
+    host: geomapfish.demo-camptocamp.com
+    port: 80
 
 localHostForward:
     from:

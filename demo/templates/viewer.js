@@ -31,9 +31,9 @@ Ext.onReady(function() {
 % endif
     };
 
-
-% if user and user.role.extent:
-    var INITIAL_EXTENT = ${user.role.json_extent};
+    <% bounds = user.role.bounds if user else None %>
+% if bounds:
+    var INITIAL_EXTENT = ${dumps(bounds)};
 % else:
     var INITIAL_EXTENT = [-466375, 5379611, 1035458, 6573252];
 % endif
@@ -149,6 +149,7 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_layertree",
             id: "layertree",
+            events: EVENTS,
             outputConfig: {
                 header: false,
                 flex: 1,

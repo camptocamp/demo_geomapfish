@@ -13,8 +13,9 @@ Ext.onReady(function() {
     // GeoExt global settings
     GeoExt.Lang.set("${lang}");
 
-% if user:
-    var INITIAL_EXTENT = ${user.role.json_extent};
+    <% bounds = user.role.bounds if user else None %>
+% if bounds:
+    var INITIAL_EXTENT = ${dumps(bounds)};
 % else:
     var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
 % endif
@@ -84,6 +85,7 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_layertree",
             id: "layertree",
+            events: EVENTS,
             outputConfig: {
                 header: false,
                 flex: 1,
@@ -118,6 +120,7 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_login",
             actionTarget: "map.tbar",
+            events: EVENTS,
 % if user:
             username: "${user.username}",
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},

@@ -96,7 +96,7 @@ formatter = generic
 class = handlers.RotatingFileHandler
 backupCount = 10
 maxBytes = 1000000
-args = ('/var/sig/stats',)
+args = ('/var/sig/log/stats',)
 level = NOTSET
 formatter = stats
 

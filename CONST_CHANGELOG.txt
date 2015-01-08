@@ -46,6 +46,15 @@ Version 1.6
             test-packages-mobile
             test-packages-tilecloud-chain
 
+7. In the `demo/templates/*.js` files do the following change:
+
+    -<% json_extent = user.role.json_extent if user else None %>
+    -% if json_extent:
+    -    var INITIAL_EXTENT = ${json_extent};
+    +<% bounds = user.role.bounds if user else None %>
+    +% if bounds:
+    +    var INITIAL_EXTENT = ${dumps(bounds)};
+
 
 Version 1.5.2
 =============
@@ -55,6 +64,23 @@ Version 1.5.2
    -    App.WFSTypes = '${wfs_types | n}'.split(',');
    +    App.WFSTypes = jsonFormat.read('${dumps(wfs_types) | n}');
 
+2. In the <package>/templates/viewer.js and <package>/templates/edit.js files, for plugins ``cgxp_layertree`` and ``cgxp_login``, 
+   add the ``events`` parameter:
+        
+        ...
+        ptype: "cgxp_layertree",
+        id: "layertree",
+    +   events: EVENTS,
+        ...
+        ...
+        ptype: 'cgxp_login',
+        actionTarget: 'center.tbar',
+    +   events: EVENTS,
+        ...
+        
+    this allows to use the new ``showRestrictedContentWarning`` parameter
+    in plugin ``cgxp_layertree`` to warn the user that some content in the 
+    permalink he has loaded is only available if logged in.
 
 Version 1.5.1
 =============

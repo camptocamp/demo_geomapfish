@@ -13,9 +13,9 @@ Ext.onReady(function() {
     // GeoExt global settings
     GeoExt.Lang.set("${lang}");
 
-    <% json_extent = user.role.json_extent if user else None %>
-% if json_extent:
-    var INITIAL_EXTENT = ${json_extent};
+    <% bounds = user.role.bounds if user else None %>
+% if bounds:
+    var INITIAL_EXTENT = ${dumps(bounds)};
 % else:
     var INITIAL_EXTENT = [732500, 5860399, 745017, 5869046];
 % endif
