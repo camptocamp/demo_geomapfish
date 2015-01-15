@@ -1,6 +1,32 @@
 This file includes migration steps for each release of c2cgeoportal.
 
 
+Version 1.5.2
+=============
+
+1. In the demo/static/mobile/config.js file do the following change:
+
+   -    App.WFSTypes = '${wfs_types | n}'.split(',');
+   +    App.WFSTypes = jsonFormat.read('${dumps(wfs_types) | n}');
+
+2. In the <package>/templates/viewer.js and <package>/templates/edit.js files, for plugins ``cgxp_layertree`` and ``cgxp_login``, 
+   add the ``events`` parameter:
+        
+        ...
+        ptype: "cgxp_layertree",
+        id: "layertree",
+    +   events: EVENTS,
+        ...
+        ...
+        ptype: 'cgxp_login',
+        actionTarget: 'center.tbar',
+    +   events: EVENTS,
+        ...
+        
+    this allows to use the new ``showRestrictedContentWarning`` parameter
+    in plugin ``cgxp_layertree`` to warn the user that some content in the 
+    permalink he has loaded is only available if logged in.
+
 Version 1.5.1
 =============
 

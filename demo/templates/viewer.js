@@ -38,8 +38,6 @@ Ext.onReady(function() {
     var INITIAL_EXTENT = [-466375, 5379611, 1035458, 6573252];
 % endif
 
-    var RESTRICTED_EXTENT = [-666375, 3379611, 1235458, 7573252];
-
     // Used to transmit event throw the application
     var EVENTS = new Ext.util.Observable();
 
@@ -440,7 +438,6 @@ Ext.onReady(function() {
             projection: "EPSG:3857",
             extent: INITIAL_EXTENT,
             maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
-            //restrictedExtent: RESTRICTED_EXTENT,
             stateId: "map",
             projection: new OpenLayers.Projection("EPSG:3857"),
             units: "m",

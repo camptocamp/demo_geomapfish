@@ -1,23 +1,24 @@
 Ext.onReady(function() {
-    // Ext global settings
-    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
+    /*
+     * Initialize the application.
+     */
+    // OpenLayers
+    OpenLayers.Number.thousandsSeparator = ' ';
+    OpenLayers.DOTS_PER_INCH = 72;
+    OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
+
+    // Ext
     Ext.QuickTips.init();
 
-    // OpenLayers global settings
-    OpenLayers.Number.thousandsSeparator = ' ';
-    OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
-    OpenLayers.DOTS_PER_INCH = 72;
     OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
-    OpenLayers.Lang.setCode("${lang}");
+    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
 
-    // GeoExt global settings
+    // Apply same language than on the server side
+    OpenLayers.Lang.setCode("${lang}");
     GeoExt.Lang.set("${lang}");
 
-% if user:
-    var INITIAL_EXTENT = ${user.role.json_extent};
-% else:
-    var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
-% endif
+    // Server errors (if any)
+    var serverError = ${serverError | n};
 
     var THEMES = {
         "local": ${themes | n}
@@ -25,6 +26,15 @@ Ext.onReady(function() {
         , "external": ${external_themes | n}
 % endif
     };
+
+% if user:
+    var INITIAL_EXTENT = ${user.role.json_extent};
+% else:
+    var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
+% endif
+
+    // Used to transmit event throw the application
+    var EVENTS = new Ext.util.Observable();
 
     var WMTS_OPTIONS = {
         url: ${tiles_url | n},
@@ -84,6 +94,7 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_layertree",
             id: "layertree",
+            events: EVENTS,
             outputConfig: {
                 header: false,
                 flex: 1,
@@ -118,6 +129,7 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_login",
             actionTarget: "map.tbar",
+            events: EVENTS,
 % if user:
             username: "${user.username}",
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},
@@ -193,5 +205,11 @@ Ext.onReady(function() {
         Ext.fly('loading-mask').fadeOut({
             remove: true
         });
+
+        if (serverError.length > 0) {
+            cgxp.tools.openWindow({
+                html: serverError.join('<br />')
+            },OpenLayers.i18n("Error notice"),600, 500);
+        }
     }, app);
 });
