@@ -149,6 +149,7 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_layertree",
             id: "layertree",
+            events: EVENTS,
             outputConfig: {
                 header: false,
                 flex: 1,
@@ -378,6 +379,7 @@ Ext.onReady(function() {
             username: "${user.username}",
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},
 % endif
+            events: EVENTS,
             loginURL: "${request.route_url('login')}",
             loginChangeURL: "${request.route_url('loginchange')}",
             logoutURL: "${request.route_url('logout')}",
