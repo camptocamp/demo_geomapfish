@@ -274,6 +274,12 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
+        },
+        {
+            ptype: "cgxp_myposition",
+            actionTarget: "center.tbar",
+            recenteringZoom: 16,
+            drawAccuracy: true,
             type: '->'
         },
         {
