@@ -273,3 +273,4 @@
 <%def name="title()">\
 1 A4 portrait\
 </%def>
+<%def name="backgroundPdf()"></%def>

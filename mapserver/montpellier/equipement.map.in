@@ -109,7 +109,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT geo.geom as geom, gid, materiau, geo.type FROM geodata.eclairage AS geo WHERE ST_Contains((${vars:mapfile_data_subselect} 'eclairage'), geo.geom)) AS foo USING UNIQUE gid USING srid=3857"
+    DATA "geom FROM (SELECT geo.geom as geom, gid, materiau, geo.type FROM geodata.eclairage AS geo WHERE ST_Contains((${mapfile_data_subselect} 'eclairage'), geo.geom)) AS foo USING UNIQUE gid USING srid=3857"
     DUMP TRUE # For GetFeatureInfo
     PROJECTION
         "init=epsg:3857"

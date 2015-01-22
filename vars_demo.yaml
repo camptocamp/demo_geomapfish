@@ -1,0 +1,170 @@
+extends: CONST_vars.yaml
+
+vars:
+    # database name
+    db: demo_geomapfish_1_6
+    # database schema
+    schema: main
+
+    # the visible host name
+    host: mapfish-geoportal.demo-camptocamp.com
+
+    # mapserver apache allows for clients (ex: Allow from camptocamp.com)
+    mapserv_allow: Allow from 127
+
+    facts: /usr/bin/facter --json fqdn
+
+    # The application's default language. This is the language used by
+    # the application if no specific language is specified in the URLs.
+    # This also defines the language used for the text search.
+    default_locale_name: fr
+
+    # The set of languages supported by the applications.
+    available_locale_names:
+    - en
+    - fr
+    - de
+
+    admin_interface:
+        # Default values for the admin interface's maps.
+        map_x: 740000
+        map_y: 5860000
+        map_zoom: 10
+
+        # The list of functionalities that can be configured
+        # through the admin interface.
+        available_functionalities:
+        - default_basemap
+        - print_template
+        - mapserver_substitution
+
+    functionalities:
+        # Functionalities that are accessible to anonymous
+        # users.
+        anonymous:
+            print_template:
+            - 1 A4 portrait demo
+            - 2 A3 portrait demo
+            default_basemap: OSM_MapQuest
+            mobile_default_theme:
+
+        # Functionalities that are accessible to authenticated
+        # users with no associated functionalities in the
+        # database.
+        registered:
+            print_template:
+            - 1 A4 portrait demo
+            - 2 A3 portrait demo
+            - 3 A4 landscape demo
+            - 4 A3 landscape demo
+
+        # Functionalities that are made available to Mako templates.
+        available_in_templates:
+        - default_basemap
+
+    # Define URLs to the parent application. Only useful if
+    # this application is a child application in a parent/child
+    # architecture.
+    external_themes_url:
+    external_mapserv_url:
+
+    # The "raster web services" configuration. See the "raster"
+    # chapter in the integrator documentation.
+    raster:
+      mnt:
+        file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
+        round: 1
+      mns:
+        file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
+        round: 1
+
+    fulltextsearch:
+        languages:
+            fr: fr
+
+    # The shortner base configuration
+    shortener:
+      # The base of created URL
+      base_url:  http://{host}{apache-entry-point}s/
+
+    # For mapserver proxy
+    mapserv_url: http://localhost/{instanceid}/mapserv
+
+    # For print proxy
+    print_url: http://localhost:8080/print-c2cgeoportal-{instanceid}/pdf/
+
+    # For base layers
+    tiles_url:
+
+    # Checker configuration
+    checker:
+        print_template: 1 A4 portrait demo
+        print_center_lon: 6
+        print_center_lat: 46
+        print_scale: 10000
+        fulltextsearch: text to search
+
+    # Check collector configuration
+    check_collector:
+        check_type:
+            all:
+                - name: checker_main
+                  display: Main page
+                - name: checker_viewer
+                  display: Viewer script
+                - name: checker_edit
+                  display: Edit page
+                - name: checker_edit_js
+                  display: Edit script
+                - name: checker_api
+                  display: API
+                - name: checker_xapi
+                  display: Extended API
+                - name: checker_printcapabilities
+                  display: Print capabilities
+                - name: checker_pdf
+                  display: Print PDF
+                - name: checker_fts
+                  display: FullTextSearch
+                - name: checker_wmscapabilities
+                  display: WMS capabilities
+                - name: checker_wfscapabilities
+                  display: WFS capabilities
+            main:
+                - name: checker_main
+                  display: Main page
+                - name: checker_viewer
+                  display: Viewer script
+                - name: checker_edit
+                  display: Edit page
+                - name: checker_edit_js
+                  display: Edit script
+                - name: checker_api
+                  display: API
+                - name: checker_xapi
+                  display: Extended API
+                - name: checker_printcapabilities
+                  display: Print capabilities
+                - name: checker_fts
+                  display: FullTextSearch
+                - name: checker_wmscapabilities
+                  display: WMS capabilities
+                - name: checker_wfscapabilities
+                  display: WFS capabilities
+            default: # for children
+                - name: checker_viewer
+                  display: Viewer script
+        hosts:
+            - display: Parent
+              url: http://{host}/{instanceid}/wsgi
+              type: main
+
+    banner_image: banner_c2c_left.png
+    banner_height: 210px
+    ortho_opacity: 0
+
+interpreted:
+    bash:
+    - facts
+    json:
+    - facts
