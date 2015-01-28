@@ -85,7 +85,7 @@ vars:
     # The shortner base configuration
     shortener:
       # The base of created URL
-      base_url:  http://{host}{apache-entry-point}s/
+      base_url:  http://{host}{apache_entry_point}s/
 
     # For mapserver proxy
     mapserv_url: http://localhost/{instanceid}/mapserv

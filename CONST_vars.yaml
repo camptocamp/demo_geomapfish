@@ -9,7 +9,7 @@ vars:
     # the Unix user under which the modwsgi daemon processes are executed.
     modwsgi_user: www-data
     # url-path where the instance must respond.
-    apache-entry-point: /{instanceid}/
+    apache_entry_point: /{instanceid}/
     # cookie session secret
     authtkt_secret: __import__('uuid').uuid4().hex
     # database user
@@ -170,6 +170,8 @@ vars:
     # external_mapserv_wfs_url parameter
     #external_mapserv_wfs_url:
 
+    servers:
+
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
     raster:
@@ -177,7 +179,7 @@ vars:
     # The shortner base configuration
     shortener:
       # The base of created URL
-      base_url:  http://{host}{apache-entry-point}s/
+      base_url:  http://{host}{apache_entry_point}s/
 
     # URL to internal MapServer instance
     mapserv_url: http://localhost/{instanceid}/mapserv
@@ -197,8 +199,6 @@ vars:
 
     # For print proxy
     print_url: http://localhost:8080/print-c2cgeoportal-{instanceid}/pdf/
-
-    servers:
 
     # For base layers
     tiles_url:
