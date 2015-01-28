@@ -1,31 +1,47 @@
+<%
+from json import dumps
+%>
 Ext.onReady(function() {
-    // Ext global settings
-    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
+    /*
+     * Initialize the application.
+     */
+    // OpenLayers
+    OpenLayers.Number.thousandsSeparator = ' ';
+    OpenLayers.DOTS_PER_INCH = 72;
+    OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
+
+    // Ext
     Ext.QuickTips.init();
 
-    // OpenLayers global settings
-    OpenLayers.Number.thousandsSeparator = ' ';
-    OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
-    OpenLayers.DOTS_PER_INCH = 72;
     OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
-    OpenLayers.Lang.setCode("${lang}");
+    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
 
-    // GeoExt global settings
+    // Apply same language than on the server side
+    OpenLayers.Lang.setCode("${lang}");
     GeoExt.Lang.set("${lang}");
 
-    <% bounds = user.role.bounds if user else None %>
-% if bounds:
-    var INITIAL_EXTENT = ${dumps(bounds)};
-% else:
-    var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
-% endif
+    // Server errors (if any)
+    var serverError = ${serverError | n};
 
+    // Themes definitions
     var THEMES = {
         "local": ${themes | n}
 % if external_themes:
         , "external": ${external_themes | n}
 % endif
     };
+
+    <% bounds = user.role.bounds if user else None %>
+% if bounds:
+    var INITIAL_EXTENT = ${dumps(bounds)};
+% else:
+    var INITIAL_EXTENT = [-466375, 5379611, 1035458, 6573252];
+% endif
+
+    var RESTRICTED_EXTENT = [-666375, 3379611, 1235458, 7573252];
+
+    // Used to transmit event throw the application
+    var EVENTS = new Ext.util.Observable();
 
     var WMTS_OPTIONS = {
         url: ${tiles_url | n},
@@ -45,7 +61,6 @@ Ext.onReady(function() {
         formatSuffix: 'png',
         serverResolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135]
     };
-
 
     app = new gxp.Viewer({
 
@@ -196,5 +211,11 @@ Ext.onReady(function() {
         Ext.fly('loading-mask').fadeOut({
             remove: true
         });
+
+        if (serverError.length > 0) {
+            cgxp.tools.openWindow({
+                html: serverError.join('<br />')
+            },OpenLayers.i18n("Error notice"),600, 500);
+        }
     }, app);
 });

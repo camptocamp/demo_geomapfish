@@ -1,26 +1,29 @@
+<%
+from json import dumps
+%>
 Ext.onReady(function() {
-    // Ext global settings
-    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
-    Ext.QuickTips.init();
-
-    // OpenLayers global settings
+    /*
+     * Initialize the application.
+     */
+    // OpenLayers
     OpenLayers.Number.thousandsSeparator = ' ';
     OpenLayers.DOTS_PER_INCH = 72;
     OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
-    OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
-    OpenLayers.Lang.setCode("${lang}");
 
-    // GeoExt global settings
+    // Ext
+    Ext.QuickTips.init();
+
+    OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
+    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
+
+    // Apply same language than on the server side
+    OpenLayers.Lang.setCode("${lang}");
     GeoExt.Lang.set("${lang}");
 
-    <% bounds = user.role.bounds if user else None %>
-% if bounds:
-    var INITIAL_EXTENT = ${dumps(bounds)};
-% else:
-    var INITIAL_EXTENT = [732500, 5860399, 745017, 5869046];
-% endif
-    var RESTRICTED_EXTENT = [-666375.77628413, 3379611.8001185, 1235458.955194, 7573252.433606];
+    // Server errors (if any)
+    var serverError = ${serverError | n};
 
+    // Themes definitions
     var THEMES = {
         "local": ${themes | n}
 % if external_themes:
@@ -28,8 +31,17 @@ Ext.onReady(function() {
 % endif
     };
 
-    // Server errors (if any)
-    var serverError = ${serverError | n};
+    <% bounds = user.role.bounds if user else None %>
+% if bounds:
+    var INITIAL_EXTENT = ${dumps(bounds)};
+% else:
+    var INITIAL_EXTENT = [-466375, 5379611, 1035458, 6573252];
+% endif
+
+    var RESTRICTED_EXTENT = [-666375, 3379611, 1235458, 7573252];
+
+    // Used to transmit event throw the application
+    var EVENTS = new Ext.util.Observable();
 
     var WMTS_OPTIONS = {
         url: ${tiles_url | n},
