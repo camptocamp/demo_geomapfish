@@ -75,8 +75,8 @@ vars:
 
     # For debug mode
     jsbuild:
-        config: jsbuild/app.cfg
-        root_dir: {directory}
+        config: "{directory}/jsbuild/app.cfg"
+        root_dir: "{directory}"
 
     # pyramid_closure configuration
     closure_library_path: 'process.stdout.write(require("openlayers/node_modules/closure-util").getLibraryPath())'
