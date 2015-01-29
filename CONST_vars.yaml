@@ -58,6 +58,7 @@ vars:
     dbuser_replication: to_be_defined
     dbpassword_replication: to_be_defined
     enable_admin_interface: True
+    geometry_validation: True
 
     directory: pwd
     python_path: __import__('distutils').sysconfig.get_python_lib()
