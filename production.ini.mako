@@ -8,6 +8,8 @@ pyramid.debug_templates = false
 mako.directories = demo:templates
     c2cgeoportal:templates
 app.cfg = %(here)s/.build/config.yaml
+authtkt_secret = ${authtkt_secret}
+authtkt_cookie_name = ${authtkt_cookie_name}
 
 [filter:fanstatic]
 use = egg:fanstatic#fanstatic

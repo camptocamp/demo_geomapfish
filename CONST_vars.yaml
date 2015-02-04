@@ -61,10 +61,10 @@ vars:
     python_path: __import__('distutils').sysconfig.get_python_lib()
 
     # Authentication settings
-    authtkt:
-        # Cookie session secret
-        secret: __import__('uuid').uuid4().hex
-        cookie_name: auth_tkt_{instanceid}
+    # Cookie session secret
+    authtkt_secret: __import__('uuid').uuid4().hex
+    authtkt_cookie_name: auth_tkt_{instanceid}
+
     # Database informations
     sqlalchemy:
         url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/{db}
