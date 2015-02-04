@@ -10,8 +10,6 @@ vars:
     modwsgi_user: www-data
     # url-path where the instance must respond.
     apache_entry_point: /{instanceid}/
-    # cookie session secret
-    authtkt_secret: __import__('uuid').uuid4().hex
     # database user
     dbuser: www-data
     # database password
@@ -23,7 +21,7 @@ vars:
     # database name
     db: override_me
     # sqlalchemy schema
-    schema: webapp
+    schema: main
     # database parent schema
     parentschema: ""
     # apache/mapserver.conf "Allow" statement
@@ -58,13 +56,15 @@ vars:
     dbuser_replication: to_be_defined
     dbpassword_replication: to_be_defined
     enable_admin_interface: True
-    geometry_validation: True
 
     directory: pwd
     python_path: __import__('distutils').sysconfig.get_python_lib()
 
     # Authentication settings
-    authtkt_cookie_name: auth_tkt_{instanceid}
+    authtkt:
+        # Cookie session secret
+        secret: __import__('uuid').uuid4().hex
+        cookie_name: auth_tkt_{instanceid}
     # Database informations
     sqlalchemy:
         url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/{db}
@@ -76,8 +76,8 @@ vars:
 
     # For debug mode
     jsbuild:
-        config: "{directory}/jsbuild/app.cfg"
-        root_dir: "{directory}"
+        config: jsbuild/app.cfg
+        root_dir: {directory}
 
     # pyramid_closure configuration
     closure_library_path: 'process.stdout.write(require("openlayers/node_modules/closure-util").getLibraryPath())'
