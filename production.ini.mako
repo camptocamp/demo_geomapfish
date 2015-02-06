@@ -8,8 +8,11 @@ pyramid.debug_templates = false
 mako.directories = demo:templates
     c2cgeoportal:templates
 app.cfg = %(here)s/.build/config.yaml
-authtkt_secret = ${authtkt_secret}
-authtkt_cookie_name = ${authtkt_cookie_name}
+authtkt_secret = ${authtkt["secret"]}
+authtkt_cookie_name = ${authtkt["cookie_name"]}
+% if "timeout" in authtkt:
+authtkt_timeout = ${authtkt["timeout"]}
+% endif
 
 [filter:fanstatic]
 use = egg:fanstatic#fanstatic
