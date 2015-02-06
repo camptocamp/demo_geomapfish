@@ -16,7 +16,7 @@ def main(global_config, **settings):
         authentication_policy=create_authentication(settings)
     )
 
-    config.add_settings({'srid': 3857})
+    config.add_settings({'srid': 21781})
 
     config.include('c2cgeoportal')
 

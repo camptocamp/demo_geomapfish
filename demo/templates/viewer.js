@@ -35,10 +35,11 @@ Ext.onReady(function() {
 % if bounds:
     var INITIAL_EXTENT = ${dumps(bounds)};
 % else:
-    var INITIAL_EXTENT = [-466375, 5379611, 1035458, 6573252];
+    var INITIAL_EXTENT = [529000, 147000, 555000, 161000];
 % endif
 
-    var RESTRICTED_EXTENT = [-666375, 3379611, 1235458, 7573252];
+    var RESTRICTED_EXTENT = [529000, 147000, 555000, 161000];
+    var MAX_EXTENT = [420000, 30000, 900000, 350000];
 
     // Used to transmit event throw the application
     var EVENTS = new Ext.util.Observable();
@@ -57,11 +58,34 @@ Ext.onReady(function() {
         },
         matrixSet: 'c2cgp',
         //maxExtent: new OpenLayers.Bounds(420000, 30000, 900000, 350000),
-        projection: new OpenLayers.Projection("EPSG:3857"),
+        projection: new OpenLayers.Projection("EPSG:21781"),
         units: "m",
         formatSuffix: 'png',
         //serverResolutions: [1000,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05],
         serverResolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135]
+    };
+
+    var WMTSASITVD_OPTIONS2 = {
+        url: "http://ows.asitvd.ch/wmts/",
+        displayInLayerSwitcher: false,
+        requestEncoding: 'REST',
+        buffer: 0,
+        style: 'default',
+        dimensions: ['DIM1','ELEVATION'],
+        params: {
+            'dim1': 'default',
+            'elevation': '0'
+        },
+        matrixSet: "21781",
+        maxExtent: new OpenLayers.Bounds(420000,30000,900000,350000),
+        projection: new OpenLayers.Projection("EPSG:21781"),
+        units: "m",
+        format: "image/png",
+        formatSuffix: 'png',
+        opacity: 1,
+        visibility: true,
+        serverResolutions: [4000.0,3750.0,3500.0,3250.0,3000.0,2750.0,2500.0,2250.0,2000.0,1750.0,1500.0,1250.0,1000.0,750.0,650.0,500.0,250.0,100.0,50.0,20.0,10.0,5.0,2.5,2.0,1.5,1.0,0.5,0.25,0.1,0.05]
+
     };
 
     app = new gxp.Viewer({
@@ -159,7 +183,7 @@ Ext.onReady(function() {
 % if permalink_themes:
                 permalinkThemes: ${permalink_themes | n},
 % endif
-                defaultThemes: ["Equipement"],
+                defaultThemes: ["Administration"],
                 uniqueTheme: true,
                 wmsURL: "${request.route_url('mapserverproxy')}"
             },
@@ -174,8 +198,8 @@ Ext.onReady(function() {
             // don't work with actual version of mapserver, the proxy will limit to 200
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
-            srsName: 'EPSG:3857',
-            featureTypes: ["MTP_adresse", "monuments", "arbres_remarq"],
+            srsName: 'EPSG:21781',
+            featureTypes: ["hospitals", "firestations"],
             attributeURLs: ${queryer_attribute_urls | n}
         },
 % endif
@@ -437,15 +461,16 @@ Ext.onReady(function() {
         map: {
             id: "app-map", // id needed to reference map in portalConfig above
             xtype: 'cgxp_mappanel',
-            projection: "EPSG:3857",
+            projection: "EPSG:21781",
             extent: INITIAL_EXTENT,
-            maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
+            maxExtent: MAX_EXTENT,
             //restrictedExtent: RESTRICTED_EXTENT,
             stateId: "map",
-            projection: new OpenLayers.Projection("EPSG:3857"),
+            projection: new OpenLayers.Projection("EPSG:21781"),
             units: "m",
             //resolutions: [1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
-            resolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
+            //resolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
+            resolutions: [50,20,10,5,2.5,2,1,0.5,0.25,0.1,0.05],
             controls: [
                 new OpenLayers.Control.Navigation(),
                 new OpenLayers.Control.KeyboardDefaults(),
@@ -485,96 +510,44 @@ Ext.onReady(function() {
             layers: [
             {
                 source: "olsource",
-                type: "OpenLayers.Layer.OSM",
+                type: "OpenLayers.Layer.WMTS",
                 group: 'background',
-                args: [
-                    OpenLayers.i18n('OSM_MapQuest'),
-                    [
-                        'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                        'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                        'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
-                    ], {
-                        transitionEffect: 'resize',
-                        attribution: [
-                            'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>',
-                            ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
-                        ].join(' '),
-                        group: 'background',
-                        projection: "EPSG:3857",
-                        ref: 'mapquest',
-                        visibility: false
-                    }
-                ]
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('asitvd.fond_couleur'),
+                    ref: 'asitvd.fond_couleur',
+                    layer: 'asitvd.fond_couleur',
+                    queryLayers: [],
+                    transitionEffect: "resize",
+                    group: 'background',
+                    visibility: false
+                }, WMTSASITVD_OPTIONS2)]
             },
             {
                 source: "olsource",
-                type: "OpenLayers.Layer.OSM",
+                type: "OpenLayers.Layer.WMTS",
                 group: 'background',
-                args: [
-                    "Cycle Map",
-                    [
-                        "http://a.tile.opencyclemap.org/cycle/${'${z}/${x}/${y}'}.png",
-                        "http://b.tile.opencyclemap.org/cycle/${'${z}/${x}/${y}'}.png",
-                        "http://c.tile.opencyclemap.org/cycle/${'${z}/${x}/${y}'}.png"
-                    ],
-                    {
-                        transitionEffect: 'resize',
-                        attribution: [
-                            '© <a href="/copyright">Contributeurs de OpenStreetMap</a>. ',
-                            'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
-                        ].join(' '),
-                        group: 'background',
-                        projection: "EPSG:3857",
-                        ref: 'opencyclemap',
-                        visibility: false
-                    }
-                ]
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('asitvd.fond_gris'),
+                    ref: 'asitvd.fond_gris',
+                    layer: 'asitvd.fond_gris',
+                    queryLayers: [],
+                    transitionEffect: "resize",
+                    group: 'background',
+                    visibility: false
+                }, WMTSASITVD_OPTIONS2)]
             },
             {
                 source: "olsource",
-                type: "OpenLayers.Layer.OSM",
-                group: 'background',
-                args: [
-                    "Transport Map",
-                    [
-                        "http://a.tile2.opencyclemap.org/transport/${'${z}/${x}/${y}'}.png",
-                        "http://b.tile2.opencyclemap.org/transport/${'${z}/${x}/${y}'}.png",
-                        "http://c.tile2.opencyclemap.org/transport/${'${z}/${x}/${y'}}.png"
-                    ],
-                    {
-                        transitionEffect: 'resize',
-                        attribution: [
-                            '© <a href="/copyright">Contributeurs de OpenStreetMap</a>. ',
-                            'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
-                        ].join(' '),
-                        group: 'background',
-                        projection: "EPSG:3857",
-                        ref: 'transport',
-                        visibility: false
-                    }
-                ]
-            },
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.OSM",
-                args: [
-                    OpenLayers.i18n('ortho'),
-                    [
-                        "http://a.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png",
-                        "http://b.tiles.mapbox.com/v2/camptocamp.map-con6pdvs/${'${z}/${x}/${y}'}.png"
-                    ],
-                    {
-                        transitionEffect: 'resize',
-                        attribution: [
-                            "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> ",
-                            "<a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
-                        ].join(' '),
-                        ref: 'ortho',
-                        visibility: false,
-                        projection: "EPSG:3857",
-                        opacity: 0
-                    }
-                ]
+                type: "OpenLayers.Layer.WMTS",
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('asitvd.fond_pourortho'),
+                    ref: 'ortho',
+                    layer: 'asitvd.fond_pourortho',
+                    queryLayers: [],
+                    transitionEffect: "resize",
+                    visibility: false,
+                    opacity: 0
+                }, WMTSASITVD_OPTIONS2)]
             },
             {
                 source: "olsource",

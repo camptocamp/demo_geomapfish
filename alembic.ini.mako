@@ -25,7 +25,7 @@ version_table = c2cgeoportal_version
 version_table_schema = ${schema}
 schema = ${schema}
 parentschema = ${parentschema}
-srid = 3857
+srid = 21781
 
 # Logging configuration
 [loggers]
