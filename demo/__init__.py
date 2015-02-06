@@ -37,7 +37,7 @@ def main(global_config, **settings):
     # add the main static view
     config.add_static_view(
         'proj', 'demo:static',
-        cache_max_age=int(config.get_settings()["default_max_age"])
+        cachebust=True
     )
 
     add_interface(config)

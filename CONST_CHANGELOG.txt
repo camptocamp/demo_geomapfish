@@ -70,6 +70,10 @@ Version 1.6
     + add_interface(config, 'routing')
     + add_interface(config, 'mobile', INTERFACE_TYPE_SENCHA_TOUCH)
 
+    In the `add_static_view` do the following change:
+    - cache_max_age=int(config.get_settings()["default_max_age"])
+    + cachebust=True,
+
 7. In the `demo/templates/*.html` files you should do the following
    changes:
 

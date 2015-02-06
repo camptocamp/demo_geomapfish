@@ -10,6 +10,8 @@ vars:
     modwsgi_user: www-data
     # url-path where the instance must respond.
     apache_entry_point: /{instanceid}/
+    # cookie session secret
+    authtkt_secret: __import__('uuid').uuid4().hex
     # database user
     dbuser: www-data
     # database password
@@ -63,10 +65,7 @@ vars:
     python_path: __import__('distutils').sysconfig.get_python_lib()
 
     # Authentication settings
-    # Cookie session secret
-    authtkt_secret: __import__('uuid').uuid4().hex
     authtkt_cookie_name: auth_tkt_{instanceid}
-
     # Database informations
     sqlalchemy:
         url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/{db}
