@@ -72,7 +72,7 @@ certain <em>id</em> where you want your map to be:
     <div id='map1' class="map"></div>
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map1', // id of the div element to put the map in
-    zoom: 5,
+    zoom: 10,
     center: [516000, 5885000]
 });</pre>
 </div>
@@ -82,7 +82,7 @@ certain <em>id</em> where you want your map to be:
     <div id='map2' class="map"></div>
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map2',
-    zoom: 5,
+    zoom: 10,
     center: [516000, 5885000]
 });
 map.addMarker();</pre>
@@ -93,11 +93,11 @@ map.addMarker();</pre>
     <div id='map3' class="map"></div>
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map3',
-    zoom: 5,
+    zoom: 10,
     center: [516000, 5885000]
 });
 map.addMarker({
-    position: [600000, 5700000],
+    position: [516000, 5885000],
     size: [14, 14],
     icon: '${request.static_path('demo:static/apihelp/images/info.png')}'
 });
@@ -120,7 +120,7 @@ map.addMarker({
     div: 'map4',
     zoom: 12,
     center: [429600, 5405400],
-    layers: ['airedejeux']
+    layers: ['hospitals']
 });</pre>
 </div>
 
@@ -131,7 +131,7 @@ map.addMarker({
     div: 'map5',
     zoom: 12,
     center: [429600, 5405400],
-    layers: ['airedejeux'],
+    layers: ['hospitals'],
     addLayerSwitcher: true,
     layerSwitcherExpanded: true,
     addMiniMap: true,
@@ -149,18 +149,18 @@ map.addMarker({
     <div id='map6' class="map"></div>
     <pre data-language="javascript">var map_ = new demo.Map({
     div: 'map6',
-    zoom: 4,
+    zoom: 10,
     center: [516000, 5885000],
     addMiniMap: true,
     miniMapExpanded: true
 });
 var button1 = document.getElementById('button1');
 button1.onclick = function() {
-    map_.recenter([270000, 5952000], 5);
+    map_.recenter([516500, 5885000], 12);
 }
 var button2 = document.getElementById('button2');
 button2.onclick = function() {
-    map_.recenter([930000, 5925000], 7);
+    map_.recenter([515000, 5885000], 10);
 }
 </pre>
 </div>
@@ -170,7 +170,7 @@ button2.onclick = function() {
     <div id='map7' class="map"></div>
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map7',
-    layers: ['airedejeux']
+    layers: ['hospitals']
 });
 map.recenterOnObjects(
     /* the layer name */

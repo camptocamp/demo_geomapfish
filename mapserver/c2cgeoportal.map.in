@@ -59,7 +59,7 @@ MAP
     END
 
     PROJECTION
-        "init=epsg:3857"
+        "init=epsg:21781"
     END
 
     WEB
@@ -67,7 +67,7 @@ MAP
             "wms_title" "Démo du c2cgeoportal"
             "wms_abstract" "Des exemples de couches à partir de données OpenData de différentes villes françaises et suisse."
             "wms_onlineresource" "http://${host}/${instanceid}/wsgi/mapserv_proxy"
-            "wms_srs" "epsg:3857"
+            "wms_srs" "epsg:21781"
             "wms_encoding" "UTF-8"
             "wms_enable_request" "*"
             "wfs_enable_request" "*"
@@ -87,20 +87,7 @@ MAP
     # OSM
     INCLUDE "osm.map"
     INCLUDE "edit.map"
-
-    # Montpellier
-    INCLUDE "montpellier/administration.map"
-    INCLUDE "montpellier/equipement.map"
-    INCLUDE "montpellier/paysage.map"
-    INCLUDE "montpellier/environnement.map"
-    INCLUDE "montpellier/patrimoine.map"
-    INCLUDE "montpellier/planville.map"
-
-    #CG67
-    INCLUDE "cg67/cadastre.map"
-    INCLUDE "cg67/enseignement.map"
-    INCLUDE "cg67/transport.map"
-    INCLUDE "cg67/administration.map"
+    INCLUDE "private.map"
 
     LAYER
       NAME "Departements"
