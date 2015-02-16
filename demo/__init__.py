@@ -16,13 +16,9 @@ def main(global_config, **settings):
         authentication_policy=create_authentication(settings)
     )
 
-    config.add_settings({'srid': 21781})
-
     config.include('c2cgeoportal')
 
     config.add_translation_dirs('demo:locale/')
-
-    config.add_route('checker_all', '/checker_all')
 
     # scan view decorator for adding routes
     config.scan()
@@ -31,7 +27,5 @@ def main(global_config, **settings):
     add_interface(config, 'edit')
     add_interface(config, 'routing')
     add_interface(config, 'mobile', INTERFACE_TYPE_SENCHA_TOUCH)
-    add_admin_interface(config)
-    add_static_view(config)
 
     return config.make_wsgi_app()
