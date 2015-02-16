@@ -5,7 +5,7 @@ VARS_FILE = vars_demo.yaml
 VARS_FILES += ${VARS_FILE}
 endif
 
-INSTANCE_ID = 1.6
+INSTANCE_ID ?= 1.6
 PRINT2 = TRUE
 PRINT3 = FALSE
 CONFIG_VARS += banner_image \
