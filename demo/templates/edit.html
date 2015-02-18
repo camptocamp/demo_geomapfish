@@ -88,7 +88,7 @@
         <script type="text/javascript" src="${request.static_url(script.replace('/', ':', 1))}"></script>
     % endfor
 % else:
-        <script type="text/javascript" src="${request.static_url('demo:static/build/edit.js', _query=extra_params)}"></script>
+        <script type="text/javascript" src="${request.static_url('demo:static/build/edit.js')}"></script>
         <script type="text/javascript" src="${request.static_url('demo:static/build/lang-%s.js' % lang)}"></script>
 % endif
         <script type="text/javascript" src="${request.route_url('edit.js')}"></script>

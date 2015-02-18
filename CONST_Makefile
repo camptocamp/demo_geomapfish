@@ -35,7 +35,7 @@ WEB_RULE ?= $(DEFAULT_WEB_RULE)
 
 # Make rules
 
-DEFAULT_BUILD_RULES ?= test-packages .build/requirement.timestamp $(WEB_RULE) build-server
+DEFAULT_BUILD_RULES ?= test-packages .build/requirements.timestamp $(WEB_RULE) build-server
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 DEFAULT_BUILD_RULES += test-packages-tilecloud-chain
 endif
@@ -55,9 +55,9 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 
-EGGS_DEPENDENTIES += .build/venv.timestamp setup.py CONST_versions.txt CONST_requirement.txt
-REQUIREMENTS += -r CONST_requirement.txt
-DEV_REQUIREMENTS += -r CONST_dev-requirement.txt
+EGGS_DEPENDENTIES += .build/venv.timestamp setup.py CONST_versions.txt CONST_requirements.txt
+REQUIREMENTS += -r CONST_requirements.txt
+DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 DEV_REQUIREMENTS += 'tilecloud-chain>=1.0.0dev'
 endif
@@ -198,13 +198,13 @@ PRINT_WAR ?= print-$(PACKAGE)-$(INSTANCE_ID).war
 PRINT_OUTPUT ?= /srv/tomcat/tomcat1/webapps
 ifeq ($(PRINT3), TRUE)
 PRINT_BASE_WAR ?= print-servlet-3.1-SNAPSHOT.war
-PRINT_INPUT += print-app
+PRINT_INPUT += print-apps
 PRINT_REQUIREMENT += \
 	$(PRINT_BASE_DIR)/WEB-INF/lib/jasperreports-functions-5.5.0.jar \
 	$(PRINT_BASE_DIR)/WEB-INF/lib/joda-time-1.6.jar \
 	$(PRINT_BASE_DIR)/WEB-INF/lib/jasperreports-fonts-5.5.0.jar \
 	$(PRINT_BASE_DIR)/WEB-INF/lib/postgresql-9.3-1102.jdbc41.jar
-PRINT_REQUIREMENT += $(shell find $(PRINT_BASE_DIR)/print-app 2> /dev/null)
+PRINT_REQUIREMENT += $(shell find $(PRINT_BASE_DIR)/print-apps 2> /dev/null)
 endif
 ifeq ($(PRINT2), TRUE)
 PRINT_BASE_WAR ?= print-servlet-2.1-SNAPSHOT-IMG-MAGICK.war
@@ -229,8 +229,7 @@ CONFIG_VARS += sqlalchemy.url auth_replication_enabled \
 	node_modules_path closure_library_path default_locale_name servers \
 	available_locale_names cache admin_interface functionalities external_themes_url \
 	external_mapserv_url raster shortener mapserv_url hide_capabilities use_security_metadata \
-	print_url tiles_url checker check_collector wfs default_max_age jsbuild package \
-	geometry_validation srid
+	print_url tiles_url checker check_collector wfs default_max_age jsbuild package srid
 ENVIRONMENT_VARS += INSTANCE_ID=${INSTANCE_ID} DEVELOPMENT=${DEVELOPMENT} PACKAGE=${PACKAGE}
 C2C_TEMPLATE_CMD = $(ENVIRONMENT_VARS) .build/venv/bin/c2c-template --vars $(VARS_FILE)
 
@@ -340,7 +339,7 @@ endif
 
 # server localisation
 
-.build/venv/bin/pot-create: .build/requirement.timestamp
+.build/venv/bin/pot-create: .build/requirements.timestamp
 
 .PHONY: compile-py-catalog
 compile-py-catalog: $(SERVER_LOCALISATION_FILES)
@@ -375,7 +374,7 @@ build-ngeo: \
 .PHONY: compile-js-catalog
 compile-js-catalog: $(JSON_CLIENT_LOCALISATION_FILES)
 
-.build/venv/bin/db2pot: .build/requirement.timestamp
+.build/venv/bin/db2pot: .build/requirements.timestamp
 
 $(PACKAGE)/closure/%.py: $(CLOSURE_LIBRARY_PATH)/closure/bin/build/%.py
 	cp $< $@
@@ -383,7 +382,7 @@ $(PACKAGE)/closure/%.py: $(CLOSURE_LIBRARY_PATH)/closure/bin/build/%.py
 $(PACKAGE)/locale/$(PACKAGE)-js.pot: $(APP_HTML_FILES) .build/node_modules.timestamp
 	node tasks/extract-messages.js $(APP_HTML_FILES) > $@
 
-$(PACKAGE)/locale/$(PACKAGE)-db.pot: .build/venv/bin/db2pot
+$(PACKAGE)/locale/$(PACKAGE)-db.pot: .build/venv/bin/db2pot development.ini .build/config.yaml
 	mkdir -p $(dir $@)
 	.build/venv/bin/db2pot
 	msguniq $@ -o $@
@@ -393,7 +392,7 @@ $(PACKAGE)/locale/$(PACKAGE)-client.pot: $(PACKAGE)/locale/$(PACKAGE)-js.pot $(P
 
 $(JSON_CLIENT_LOCALISATION_FILES): .build/node_modules.timestamp
 
-$(OUTPUT_DIR)/locale/%/$(PACKAGE).json: $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po
+$(OUTPUT_DIR)/locale/%/$(PACKAGE).json: $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po .build/node_modules.timestamp
 	mkdir -p $(dir $@)
 	node tasks/compile-catalog $< > $@
 
@@ -402,9 +401,9 @@ $(PACKAGE)/locale/%/LC_MESSAGES/%/$(PACKAGE)-client.po: $(PACKAGE)/locale/$(PACK
 	touch $@
 	msgmerge --update $@ $<
 
-$(OUTPUT_DIR)/build.js: build.json $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) .build/externs/angular-1.3.js .build/externs/angular-1.3-q.js .build/externs/angular-1.3-http-promise.js .build/externs/jquery-1.9.js .build/node_modules.timestamp
+$(OUTPUT_DIR)/build.js: .build/node_modules.timestamp .build/build.js
 	mkdir -p $(dir $@)
-	node tasks/build.js $< $@
+	awk 'FNR==1{print ""}1' $(addprefix node_modules/, jquery/dist/jquery.min.js angular/angular.min.js angular-gettext/dist/angular-gettext.min.js angular-animate/angular-animate.min.js bootstrap/dist/js/bootstrap.min.js) .build/build.js > $@
 
 $(OUTPUT_DIR)/build.min.css: $(LESS_FILES) .build/node_modules.timestamp
 	mkdir -p $(dir $@)
@@ -413,6 +412,9 @@ $(OUTPUT_DIR)/build.min.css: $(LESS_FILES) .build/node_modules.timestamp
 $(OUTPUT_DIR)/build.css: $(LESS_FILES) .build/node_modules.timestamp
 	mkdir -p $(dir $@)
 	./node_modules/.bin/lessc $(PACKAGE)/static/less/$(PACKAGE).less $@
+
+.build/build.js: build.json $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) .build/externs/angular-1.3.js .build/externs/angular-1.3-q.js .build/externs/angular-1.3-http-promise.js .build/externs/jquery-1.9.js .build/node_modules.timestamp
+	node tasks/build.js $< $@
 
 .build/externs/angular-1.3.js:
 	mkdir -p $(dir $@)
@@ -572,7 +574,7 @@ test-packages-ngeo: .build/test-packages-ngeo.timestamp
 
 # Venv
 
-.build/dev-requirements.timestamp: .build/venv.timestamp CONST_dev-requirement.txt
+.build/dev-requirements.timestamp: .build/venv.timestamp CONST_dev-requirements.txt
 	$(PIP_CMD) $(PIP_INSTALL_ARGS) $(DEV_REQUIREMENTS) $(PIP_REDIRECT)
 	touch $@
 
@@ -584,7 +586,7 @@ test-packages-ngeo: .build/test-packages-ngeo.timestamp
 		'pip>=6' 'setuptools>=12'
 	touch $@
 
-.build/requirement.timestamp: $(EGGS_DEPENDENTIES)
+.build/requirements.timestamp: $(EGGS_DEPENDENTIES)
 	$(PIP_CMD) $(PIP_INSTALL_ARGS) $(REQUIREMENTS) $(PIP_REDIRECT)
 	touch $@
 
