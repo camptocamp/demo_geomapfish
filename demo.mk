@@ -8,8 +8,5 @@ endif
 INSTANCE_ID ?= 1.6
 PRINT2 = TRUE
 PRINT3 = FALSE
-CONFIG_VARS += banner_image \
-	banner_height \
-	ortho_opacity
 
 include CONST_Makefile

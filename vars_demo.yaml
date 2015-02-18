@@ -11,11 +11,6 @@ vars:
 
     srid: 21781
 
-    # mapserver apache allows for clients (ex: Allow from camptocamp.com)
-    mapserv_allow: Allow from 127
-
-    facts: /usr/bin/facter --json fqdn
-
     # The application's default language. This is the language used by
     # the application if no specific language is specified in the URLs.
     # This also defines the language used for the text search.
@@ -77,27 +72,16 @@ vars:
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
     raster:
-      mnt:
-        file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
-        round: 1
-      mns:
-        file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
-        round: 1
+        mnt:
+            file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
+            round: 1
+        mns:
+            file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
+            round: 1
 
     fulltextsearch:
         languages:
             fr: fr
-
-    # The shortner base configuration
-    shortener:
-      # The base of created URL
-      base_url:  http://{host}{apache_entry_point}s/
-
-    # For mapserver proxy
-    mapserv_url: http://localhost/{instanceid}/mapserv
-
-    # For print proxy
-    print_url: http://localhost:8080/print-c2cgeoportal-{instanceid}/pdf/
 
     # For base layers
     tiles_url:
@@ -109,71 +93,6 @@ vars:
         print_center_lat: 46
         print_scale: 10000
         fulltextsearch: text to search
-
-    # Check collector configuration
-    check_collector:
-        check_type:
-            all:
-                - name: checker_main
-                  display: Main page
-                - name: checker_viewer
-                  display: Viewer script
-                - name: checker_edit
-                  display: Edit page
-                - name: checker_edit_js
-                  display: Edit script
-                - name: checker_api
-                  display: API
-                - name: checker_xapi
-                  display: Extended API
-                - name: checker_printcapabilities
-                  display: Print capabilities
-                - name: checker_pdf
-                  display: Print PDF
-                - name: checker_fts
-                  display: FullTextSearch
-                - name: checker_wmscapabilities
-                  display: WMS capabilities
-                - name: checker_wfscapabilities
-                  display: WFS capabilities
-            main:
-                - name: checker_main
-                  display: Main page
-                - name: checker_viewer
-                  display: Viewer script
-                - name: checker_edit
-                  display: Edit page
-                - name: checker_edit_js
-                  display: Edit script
-                - name: checker_api
-                  display: API
-                - name: checker_xapi
-                  display: Extended API
-                - name: checker_printcapabilities
-                  display: Print capabilities
-                - name: checker_fts
-                  display: FullTextSearch
-                - name: checker_wmscapabilities
-                  display: WMS capabilities
-                - name: checker_wfscapabilities
-                  display: WFS capabilities
-            default: # for children
-                - name: checker_viewer
-                  display: Viewer script
-        hosts:
-            - display: Parent
-              url: http://{host}/{instanceid}/wsgi
-              type: main
-
-    banner_image: banner_c2c_left.png
-    banner_height: 210px
-    ortho_opacity: 0
-
-interpreted:
-    bash:
-    - facts
-    json:
-    - facts
 
 update_paths:
 - authtkt

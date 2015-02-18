@@ -115,7 +115,7 @@ App.map = new OpenLayers.Map({
             name: OpenLayers.i18n('ortho'),
             ref: 'ortho',
             layer: 'asitvd.fond_pourortho',
-            opacity: ${request.registry.settings['ortho_opacity']}
+            opacity: 0
         }, WMTSASITVD_OPTIONS2)),
         new OpenLayers.Layer(
             OpenLayers.i18n('blank'),
