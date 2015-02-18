@@ -30,7 +30,7 @@ hosts:
     host: ${host}
     port: 80 
   - !dnsMatch
-    host: ${facts}
+    host: ${host}
     port: ${waitress_port}
   - !dnsMatch
     host: otile1.mqcdn.com
