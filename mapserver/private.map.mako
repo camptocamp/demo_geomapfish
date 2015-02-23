@@ -7,7 +7,10 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM geodata.osm_hospitals) AS foo USING UNIQUE osm_id USING srid=21781"
+    DATA "geom FROM (SELECT geo.* FROM geodata.osm_hospitals AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'hospitals')) AS foo USING UNIQUE osm_id USING srid=21781"
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
     LABELITEM "name"
     PROJECTION
       "init=epsg:21781"
@@ -50,7 +53,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT geo.* FROM geodata.osm_firestations AS geo WHERE ST_Contains((${mapfile_data_subselect} 'firestations'), ST_SetSRID(geo.geom, 21781))) as foo using unique osm_id using srid=21781"
+    DATA "geom FROM (SELECT geo.* FROM geodata.osm_firestations AS geo WHERE ST_Contains((${mapfile_data_subselect} 'firestations'), ST_SetSRID(geo.geom, 21781))) AS foo USING UNIQUE osm_id USING srid=21781"
     VALIDATION
         ${mapserver_layer_validation}
     END
