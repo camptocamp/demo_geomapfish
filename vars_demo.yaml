@@ -2,7 +2,7 @@ extends: CONST_vars.yaml
 
 vars:
     # database name
-    db: demo_geomapfish_sbr
+    db: demo_geomapfish_1_6
     # database schema
     schema: main
 
@@ -72,11 +72,11 @@ vars:
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
     raster:
-        mnt:
-            file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
+        srtm:
+            file: /var/sig/SRTM21781/srtm.shp
             round: 1
-        mns:
-            file: /var/sig/demo/c2cgeoportal/raster/MNT250_L93_FRANCE.shp
+        aster:
+            file: /var/sig/Aster21781/aster.shp
             round: 1
 
     fulltextsearch:
