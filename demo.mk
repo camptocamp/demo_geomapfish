@@ -6,7 +6,7 @@ VARS_FILES += ${VARS_FILE}
 endif
 
 INSTANCE_ID ?= 1.6
-PRINT2 = TRUE
-PRINT3 = FALSE
+PRINT_VERSION ?= 2
+APACHE_VHOST ?= geomapfish-demo
 
 include CONST_Makefile

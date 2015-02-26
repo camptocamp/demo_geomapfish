@@ -26,6 +26,8 @@ vars:
         # One day
         timeout: 86400
 
+    print_url: http://localhost:8080/print-{instanceid}/pdf/
+
     admin_interface:
         # Default values for the admin interface's maps.
         map_x: 740000
