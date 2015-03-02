@@ -37,7 +37,6 @@ Ext.onReady(function() {
 % else:
     var INITIAL_EXTENT = [529000, 147000, 555000, 161000];
 % endif
-    var RESTRICTED_EXTENT = [529000, 147000, 555000, 161000];
     var MAX_EXTENT = [420000, 30000, 900000, 350000];
 
     // Used to transmit event throw the application
@@ -465,12 +464,9 @@ Ext.onReady(function() {
             projection: "EPSG:21781",
             extent: INITIAL_EXTENT,
             maxExtent: MAX_EXTENT,
-            //restrictedExtent: RESTRICTED_EXTENT,
             stateId: "map",
             projection: new OpenLayers.Projection("EPSG:21781"),
             units: "m",
-            //resolutions: [1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
-            //resolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
             resolutions: [50,20,10,5,2.5,2,1,0.5,0.25,0.1,0.05],
             controls: [
                 new OpenLayers.Control.Navigation(),
@@ -535,19 +531,6 @@ Ext.onReady(function() {
                     transitionEffect: "resize",
                     group: 'background',
                     visibility: false
-                }, WMTSASITVD_OPTIONS2)]
-            },
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
-                args: [Ext.applyIf({
-                    name: OpenLayers.i18n('asitvd.fond_pourortho'),
-                    ref: 'ortho',
-                    layer: 'asitvd.fond_pourortho',
-                    queryLayers: [],
-                    transitionEffect: "resize",
-                    visibility: false,
-                    opacity: 0
                 }, WMTSASITVD_OPTIONS2)]
             },
             {
