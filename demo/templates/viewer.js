@@ -37,7 +37,6 @@ Ext.onReady(function() {
 % else:
     var INITIAL_EXTENT = [529000, 147000, 555000, 161000];
 % endif
-
     var RESTRICTED_EXTENT = [529000, 147000, 555000, 161000];
     var MAX_EXTENT = [420000, 30000, 900000, 350000];
 
@@ -405,6 +404,7 @@ Ext.onReady(function() {
             username: "${user.username}",
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},
 % endif
+            events: EVENTS,
             loginURL: "${request.route_url('login')}",
             loginChangeURL: "${request.route_url('loginchange')}",
             logoutURL: "${request.route_url('logout')}",
