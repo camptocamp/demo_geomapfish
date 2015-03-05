@@ -1,0 +1,79 @@
+#!/bin/bash
+
+INSTANCE_ID=1.6
+
+function display_result {
+    CODE=`grep '^HTTP' /tmp/headers | tail -n 1 | awk '{{print $2}}'`
+    CACHE_CONTROL=`grep '^Cache-Control' /tmp/headers | awk -F ': ' '{{print $2}}' | head -c -2`
+    CONTENT_TYPE=`grep '^Content-Type' /tmp/headers | awk -F ': ' '{{print $2}}' | head -c -2`
+    echo "$CODE: $CACHE_CONTROL / $CONTENT_TYPE"
+
+}
+
+function check {
+    echo $1
+
+    CURL_ARGS="--header Host:geomapfish.demo-camptocamp.com"
+    CURL_ARGS="$CURL_ARGS --dump-header /tmp/headers"
+    CURL_ARGS="$CURL_ARGS --silent"
+
+    if [ "$3" == "POST" ]
+    then
+        CURL_ARGS="$CURL_ARGS -H Content-Type:$4 --request POST --data-binary @/tmp/post"
+    fi
+    if [ "$3" == "FORM" ]
+    then
+        CURL_ARGS="$CURL_ARGS $4"
+    fi
+
+#    echo curl $CURL_ARGS "http://localhost/$INSTANCE_ID$2"
+    curl $CURL_ARGS "http://localhost/$INSTANCE_ID$2" > /dev/null
+    display_result
+
+    CURL_ARGS="$CURL_ARGS --user demo:demo"
+    curl $CURL_ARGS "http://localhost/$INSTANCE_ID$2" > /dev/null
+    display_result
+
+    echo
+}
+
+check "WMS GetCapabilities" "/wsgi/mapserv_proxy?REQUEST=GetCapabilities&SERVICE=WMS&VERSION=1.1.1"
+check "WMS GetMap" "/wsgi/mapserv_proxy?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=&SRS=EPSG:21781&BBOX=523010,145860,557120,158880&WIDTH=1706&HEIGHT=651"
+check "WMS GetFeatureInfo" "/wsgi/mapserv_proxy?REQUEST=GetFeatureInfo&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo&QUERY_LAYERS=zoo&STYLES=&BBOX=528695,148030,551435,156710&FEATURE_COUNT=200&HEIGHT=434&WIDTH=1137&FORMAT=image/png&INFO_FORMAT=application/vnd.ogc.gml&SRS=EPSG:21781&X=517&Y=224"
+check "WMS GetLegendGraphic" "/wsgi/mapserv_proxy?REQUEST=GetLegendGraphic&SERVICE=WMS&VERSION=1.1.1&LAYER=zoo&FORMAT=image/png&TRANSPARENT=TRUE&RULE=Zoo"
+check "WMS GetLegendGraphic with rule" "/wsgi/mapserv_proxy?REQUEST=GetLegendGraphic&SERVICE=WMS&VERSION=1.1.1&LAYER=zoo&FORMAT=image/png&TRANSPARENT=TRUE&RULE=Zoo&SCALE=56692.9"
+check "WMS DescribeLayer" "/wsgi/mapserv_proxy?REQUEST=DescribeLayer&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo"
+
+check "WFS GetCapabilities" "/wsgi/mapserv_proxy?REQUEST=GetCapabilities&SERVICE=WFS&VERSION=1.1.0"
+echo '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" service="WFS" version="1.1.0" maxFeatures="200" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><wfs:Query typeName="feature:zoo" xmlns:feature="http://mapserver.gis.umn.edu/mapserver"><ogc:Filter xmlns:ogc="http://www.opengis.net/ogc"><ogc:BBOX><ogc:PropertyName>geom</ogc:PropertyName><gml:Envelope xmlns:gml="http://www.opengis.net/gml"><gml:lowerCorner>538875 152070</gml:lowerCorner><gml:upperCorner>539235 152410</gml:upperCorner></gml:Envelope></ogc:BBOX></ogc:Filter></wfs:Query></wfs:GetFeature>' > /tmp/post
+check "WFS GetFeature" "/wsgi/mapserv_proxy" POST T application/xml
+check "WFS DescribeFeatureType" "/wsgi/mapserv_proxy?REQUEST=DescribeFeatureType&SERVICE=WFS&VERSION=1.1.0"
+
+check "WMTS capabilities" /tiles/1.0.0/WMTSCapabilities.xml
+check "WMTS tile" /tiles/1.0.0/ortho/default/2011/swissgrid_025/0/0/0.jpeg
+
+#check "Print2 info.json" /wsgi/printproxy/info.json
+#echo '{"units":"m","srs":"EPSG:21781","layout":"1 A4 portrait demo","dpi":254,"outputFormat":"pdf","title":"","comment":"","layers":[],"pages":[{"center":[542000,154000],"scale":100000,"rotation":0,"col0":"","table":{"data":[{"col0":""}],"columns":["col0"]},"showMap":true,"showScale":true,"showAttr":false,"showNorth":true,"showScalevalue":true,"showMapframe":true,"showMapframeQueryresult":false}],"legends":[]}' > /tmp/post
+#check "Print2 create.json" /wsgi/printproxy/create.json POST application/json
+check "Print3 capabilities.json" /wsgi/printproxy/capabilities.json
+echo '{"layout":"A4 portrait","outputFormat":"pdf","attributes":{"title":"","comments":"","datasource":[],"map":{"projection":"EPSG:21781","dpi":254,"rotation":0,"center":[540065,152370],"scale":25000,"longitudeFirst":true,"layers":[{"baseURL":"http://geomapfish.demo-camptocamp.com/$INSTANCE_ID/wsgi/mapserv_proxy","opacity":1,"type":"wms","layers":["zoo"],"imageFormat":"image/png","styles":[""],"customParams":{"TRANSPARENT":true}},{"baseURL":"http://ows.asitvd.ch/wmts/","opacity":1,"type":"wmts","layer":"asitvd.fond_couleur","version":"1.0.0","requestEncoding":"REST","style":"default","dimensions":["DIM1","ELEVATION"],"dimensionParams":{"DIM1":"default","ELEVATION":"0"},"matrixSet":"21781","imageFormat":"image/png","matrices":[{"identifier":0,"matrixSize":[38,25],"scaleDenominator":178571.42857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":1,"matrixSize":[94,63],"scaleDenominator":71428.57142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":2,"matrixSize":[188,125],"scaleDenominator":35714.28571428572,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":3,"matrixSize":[375,250],"scaleDenominator":17857.14285714286,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":4,"matrixSize":[750,500],"scaleDenominator":8928.57142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":5,"matrixSize":[938,625],"scaleDenominator":7142.857142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":6,"matrixSize":[1875,1250],"scaleDenominator":3571.4285714285716,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":7,"matrixSize":[3750,2500],"scaleDenominator":1785.7142857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":8,"matrixSize":[7500,5000],"scaleDenominator":892.8571428571429,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":9,"matrixSize":[18750,12500],"scaleDenominator":357.14285714285717,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":10,"matrixSize":[37500,25000],"scaleDenominator":178.57142857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]}]}]},"legend":{"classes":[{"name":"","classes":[{"name":"zoo","icons":["http://geomapfish.demo-camptocamp.com/$INSTANCE_ID/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=zoo&FORMAT=image%2Fpng&SCALE=25000"]}]}]}}}' > /tmp/post
+check "Print3 report.pdf" /wsgi/printproxy/report.pdf POST application/json
+# TODO manually Get status
+# TODO manually Get file
+check FullTextSearch "/wsgi/fulltextsearch?limit=20&query=paud"
+check "FullTextSearch callback" "/wsgi/fulltextsearch?limit=20&query=paud&callback=stcCallback1003"
+check "Raster point" "/wsgi/raster?lon=561030&lat=143010"
+check "Raster point callback" "/wsgi/raster?lon=561030&lat=143010&callback=stcCallback1003"
+FORM='--form layers=srtm'
+FORM="${FORM} --form geom={\"type\":\"LineString\",\"coordinates\":[[559570,143590],[560870,142570]]}"
+FORM="${FORM} --form nbPoints=100"
+check "Raster profile" /wsgi/profile.json FORM "${FORM}"
+check "Raster profile" /wsgi/profile.json?callback=stcCallback1003 FORM "${FORM}"
+check "Main index" /
+check "Main viewer" /wsgi/viewer.js
+check "Theme" /wsgi/themes
+check "Mobile index" /mobile/
+check "Mobile config.js" /mobile/config.js
+check "api.js" /wsgi/api.js
+check "xapi.js" /wsgi/xapi.js
+# TODO manually check "Static files"
