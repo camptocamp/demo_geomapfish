@@ -45,17 +45,9 @@ vars:
     mapfile_data_noarea_subselect: 'SELECT rra.role_id FROM {mapserver_join_tables} WHERE rra.restrictionarea_id = ra.id AND lra.restrictionarea_id = ra.id AND lra.layer_id = la.id AND la.name = '
     # port for the waitress web server
     waitress_port: 5000
-    # password change replication activation
-    auth_replication_enabled: false
-    # database connection for auth replication
-    dbhost_replication: to_be_defined
-    dbport_replication: to_be_defined
-    db_replication: to_be_defined
-    dbuser_replication: to_be_defined
-    dbpassword_replication: to_be_defined
     enable_admin_interface: True
 
-    directory: pwd
+    directory: pwd | tr -d '\n'
     python_path: __import__('distutils').sysconfig.get_python_lib()
 
     # Authentication settings
@@ -66,8 +58,6 @@ vars:
     # Database informations
     sqlalchemy:
         url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/{db}
-    sqlalchemy_replication:
-        url: postgresql://{dbuser_replication}:{dbpassword_replication}@{dbhost_replication}:{dbport_replication}/{db_replication}
 
     # 10 days of default cache
     default_max_age: 864000
@@ -77,18 +67,22 @@ vars:
         config: "{directory}/jsbuild/app.cfg"
         root_dir: "{directory}"
 
-    # pyramid_closure configuration
-    closure_library_path: 'process.stdout.write(require("openlayers/node_modules/closure-util").getLibraryPath())'
-    pyramid_closure:
-        roots:
-        - "{closure_library_path}/closure/goog"
-        roots_with_prefix:
-            ../../../../../../../../../proj/js: "{directory}/{package}/static/js"
-            ../../../../../../../../../node_modules/openlayers: "{directory}/node_modules/openlayers"
-            ../../../../../../../../../node_modules/ngeo/src: "{directory}/node_modules/ngeo/src"
-
     # used for the "node_modules" and "closure" static views
+    closure_library_path: 'process.stdout.write(require("openlayers/node_modules/closure-util").getLibraryPath())'
     node_modules_path: "{directory}/node_modules"
+
+    # pyramid_closure configuration
+    # Each item in the roots_with_prefix array is an array with two elements. The
+    # first element is the path pyramid_closure passed to request.static_url. The
+    # second element is the file system path where js source files are searched.
+    # For this to work window.CLOSURE_BASE_PATH being set to the empty string in
+    # the HTML page.
+    pyramid_closure:
+        roots_with_prefix:
+        - ["{closure_library_path}/closure/goog", "{closure_library_path}/closure/goog"]
+        - ["{package}:static/js", "{directory}/{package}/static/js"]
+        - ["{node_modules_path}/openlayers", "{node_modules_path}/openlayers"]
+        - ["{node_modules_path}/ngeo/src", "{node_modules_path}/ngeo/src"]
 
     # The application's default language. This is the language used by
     # the application if no specific language is specified in the URLs.
@@ -165,10 +159,18 @@ vars:
     # this application is a child application in a parent/child
     # architecture.
     external_themes_url:
-    external_mapserv_url:
-    # If the WFS service is different from the WMS service, uncomment and set the
-    # external_mapserv_wfs_url parameter
-    #external_mapserv_wfs_url:
+
+    mapserverproxy:
+        # URL to internal MapServer instance
+        mapserv_url: http://localhost/{instanceid}/mapserv
+        # If the WFS service is different from the WMS service, uncomment and set the
+        # mapserv_wfs_url parameter
+        #mapserv_wfs_url:
+
+        external_mapserv_url:
+        # If the WFS service is different from the WMS service, uncomment and set the
+        # external_mapserv_wfs_url parameter
+        #external_mapserv_wfs_url:
 
     servers:
 
@@ -180,12 +182,6 @@ vars:
     shortener:
         # The base of created URL
         base_url:  http://{host}{apache_entry_point}s/
-
-    # URL to internal MapServer instance
-    mapserv_url: http://localhost/{instanceid}/mapserv
-    # If the WFS service is different from the WMS service, uncomment and set the
-    # mapserv_wfs_url parameter
-    #mapserv_wfs_url:
 
     # Define whether the MapServer proxy should hide the OGC capabilities.
     hide_capabilities: false
@@ -216,12 +212,6 @@ vars:
     #proxies:
     #    http: http://someproxy
 
-    wfs:
-        # Set to True so that MapserverProxy limits the number of features
-        # returned by a WFS GetFeature request:
-        enable_limit_featurecollection: True
-        # Max number of features returned by a WFS GetFeature request:
-        maxfeatures: 200
 
     # Checker configuration
     checker:
@@ -230,6 +220,7 @@ vars:
         print_center_lat: to be defined
         print_scale: 10000
         fulltextsearch: text to search
+        lang_files: [ngeo, cgxp, cgxp-api]
 
     # Check collector configuration
     check_collector:
@@ -244,10 +235,14 @@ vars:
               display: Edit page
             - name: checker_edit_js
               display: Edit script
+            - name: checker_theme_errors
+              display: Errors in the themes
             - name: checker_api
               display: API
             - name: checker_xapi
               display: Extended API
+            - name: checker_lang_files
+              display: Language files
             - name: checker_printcapabilities
               display: Print capabilities
             - name: checker_pdf
@@ -286,5 +281,3 @@ interpreted:
     - development
     bash:
     - directory
-    yaml:
-    - directory # to trim

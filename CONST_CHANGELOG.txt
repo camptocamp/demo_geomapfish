@@ -8,20 +8,20 @@ Version 1.6
 
     .build/venv/bin/pcreate -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
 
-    cp /tmp/demo_geomapfish/alembic.ini.in .
-    cp /tmp/demo_geomapfish/.jshintrc .
     cp /tmp/demo_geomapfish/.gitignore .
+    cp /tmp/demo_geomapfish/.jshintrc .
     cp /tmp/demo_geomapfish/demo.mk .
     cp /tmp/demo_geomapfish/README.rst .
+    cp /tmp/demo_geomapfish/alembic.ini.in .
+    cp /tmp/demo_geomapfish/alembic_static.ini.in .
     cp /tmp/demo_geomapfish/build.json .
+    cp /tmp/demo_geomapfish/development.ini.mako .
     cp /tmp/demo_geomapfish/lingua.cfg .
     cp /tmp/demo_geomapfish/package.json .
-    cp /tmp/demo_geomapfish/development.ini.mako .
     cp /tmp/demo_geomapfish/production.ini.mako .
+    cp /tmp/demo_geomapfish/vars_demo.yaml .
     cp /tmp/demo_geomapfish/deploy/hooks/post-restore-code deploy/hooks
     chmod +x deploy/hooks/post-restore-code
-
-    git add alembic.ini.in deploy/hooks/post-restore-code
 
     rm -rf /tmp/demo_geomapfish
 
@@ -133,7 +133,7 @@ Version 1.6
 
     +OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
 
-13. Remove your Apache configuration file, probably in 
+13. Remove your Apache configuration file, probably in
     `/var/www/vhost/demo_geomapfish/conf`. Now it will be automatically created.
 
 
@@ -157,7 +157,7 @@ Version 1.5.2
    +    App.WFSTypes = jsonFormat.read('${dumps(wfs_types) | n}');
 
 2. In the ``demo/templates/viewer.js`` and ``demo/templates/edit.js`` files,
-   for plugins ``cgxp_layertree`` and ``cgxp_login``, 
+   for plugins ``cgxp_layertree`` and ``cgxp_login``,
    add the ``events`` parameter:
 
         ...
@@ -2830,4 +2830,3 @@ Added a colorpicker to the redlining tool.
 In the jsbuild/app.cfg, CGXP/plugins/Redlining.js should be replaced by
 CGXP/widgets/RedliningColorPicker.js for the new colorpicker or by
 CGXP/widgets/RedliningCombo.js to have the old combobox.
-

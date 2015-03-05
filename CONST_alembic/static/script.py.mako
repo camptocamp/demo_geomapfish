@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2013-2014, Camptocamp SA
+# Copyright (c) 2015, Camptocamp SA
 # All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without
@@ -28,24 +28,32 @@
 # either expressed or implied, of the FreeBSD Project.
 
 
-"""Alter_column_url_to_remove_limitation
+"""${message}
 
-Revision ID: 3f89a7d71a5e
-Revises: 20137477bd02
-Create Date: 2014-12-18 10:27:52.263992
-
+Revision ID: ${up_revision}
+Revises: ${down_revision}
+Create Date: ${create_date}
 """
 
-# revision identifiers, used by Alembic.
-revision = '3f89a7d71a5e'
-down_revision = '20137477bd02'
+from alembic import op
+${imports if imports else ""}
 
-from alembic import op, context
-from sqlalchemy import types
+# revision identifiers, used by Alembic.
+revision = "${up_revision}"
+down_revision = "${down_revision}"
+
 
 def upgrade():
-    schema='%s_static' % context.get_context().config.get_main_option('schema')
-    op.alter_column('shorturl', 'url', type_=types.Unicode, schema=schema)
+    schema = context.get_context().config.get_main_option("schema")
+    staticschems = schema + "_static"
+    parentschema = context.get_context().config.get_main_option("parentschema")
+
+    ${upgrades if upgrades else "# Instructions"}
+
 
 def downgrade():
-    pass
+    schema = context.get_context().config.get_main_option("schema")
+    staticschems = schema + "_static"
+    parentschema = context.get_context().config.get_main_option("parentschema")
+
+    ${downgrades if downgrades else "# Instructions"}

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2013-2014, Camptocamp SA
+# Copyright (c) 2015, Camptocamp SA
 # All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without
@@ -33,20 +33,23 @@
 Revision ID: ${up_revision}
 Revises: ${down_revision}
 Create Date: ${create_date}
-
 """
 
-# revision identifiers, used by Alembic.
-revision = ${repr(up_revision)}
-down_revision = ${repr(down_revision)}
-
 from alembic import op
-import sqlalchemy as sa
 ${imports if imports else ""}
 
+# revision identifiers, used by Alembic.
+revision = "${up_revision}"
+down_revision = "${down_revision}"
+
+
 def upgrade():
-    ${upgrades if upgrades else "pass"}
+    schema = context.get_context().config.get_main_option("schema")
+
+    ${upgrades if upgrades else "# Instructions"}
 
 
 def downgrade():
-    ${downgrades if downgrades else "pass"}
+    schema = context.get_context().config.get_main_option("schema")
+
+    ${downgrades if downgrades else "# Instructions"}

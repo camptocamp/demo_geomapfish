@@ -1,5 +1,5 @@
 PYTHON_VERSION = $(shell .build/venv/bin/python -c "import sys; print('%i.%i' % (sys.version_info.major, sys.version_info.minor))" 2> /dev/null)
-PACKAGE = demo
+PACKAGE = {{package}}
 
 # Don't minify the js / css, ...
 DEVELOPMENT ?= FALSE
@@ -53,7 +53,7 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 
-EGGS_DEPENDENTIES += .build/venv.timestamp-noclean setup.py CONST_versions.txt CONST_requirements.txt
+EGGS_DEPENDENTIES += .build/venv.timestamp setup.py CONST_versions.txt CONST_requirements.txt
 REQUIREMENTS += -r CONST_requirements.txt
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -222,19 +222,19 @@ endif
 PRINT_REQUIREMENT += $(PRINT_BASE_DIR)/$(PRINT_BASE_WAR)
 
 # Templates
-TEMPLATE_EXCLUDE += .build print/templates \
-	CONST_alembic/main/script.py.mako CONST_alembic/static/script.py.mako
+TEMPLATE_EXCLUDE += .build CONST_alembic/script.py.mako print/templates
 FIND_OPTS = $(foreach ELEM, $(TEMPLATE_EXCLUDE),-path ./$(ELEM) -prune -o) -type f
 TEMPLATE_FILES = $(shell find $(FIND_OPTS) -name "*.in" -print)
 MAKO_FILES = $(shell find $(FIND_OPTS) -name "*.mako" -print)
 JINJA_FILES = $(shell find $(FIND_OPTS) -name "*.jinja" -print)
 VARS_FILES += CONST_vars.yaml $(VARS_FILE)
 VARS_DEPENDS += $(VARS_FILES) .build/node_modules.timestamp
-CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid_closure \
+CONFIG_VARS += sqlalchemy.url auth_replication_enabled \
+	sqlalchemy_replication.url schema parentschema enable_admin_interface pyramid_closure \
 	node_modules_path closure_library_path default_locale_name servers \
 	available_locale_names cache admin_interface functionalities external_themes_url \
-	raster shortener hide_capabilities use_security_metadata mapserverproxy \
-	print_url tiles_url checker check_collector default_max_age jsbuild package srid
+	external_mapserv_url raster shortener mapserv_url hide_capabilities use_security_metadata \
+	print_url tiles_url checker check_collector wfs default_max_age jsbuild package srid
 ENVIRONMENT_VARS += INSTANCE_ID=${INSTANCE_ID} DEVELOPMENT=${DEVELOPMENT} PACKAGE=${PACKAGE}
 C2C_TEMPLATE_CMD = $(ENVIRONMENT_VARS) .build/venv/bin/c2c-template --vars $(VARS_FILE)
 
@@ -242,7 +242,7 @@ C2C_TEMPLATE_CMD = $(ENVIRONMENT_VARS) .build/venv/bin/c2c-template --vars $(VAR
 APACHE_VHOST ?= $(PACKAGE)
 APACHE_CONF_DIR ?= /var/www/vhosts/$(APACHE_VHOST)/conf
 CONF_FILES = $(shell ls -1 apache/*.conf)
-PY_FILES = $(shell find $(PACKAGE) -type f -name '*.py' -print)
+PY_FILES = $(shell find c2cgeoportal -type f -name '*.py' -print)
 
 
 .PHONY: help
@@ -606,11 +606,11 @@ test-packages-ngeo: .build/test-packages-ngeo.timestamp
 
 # Venv
 
-.build/dev-requirements.timestamp: .build/venv.timestamp-noclean CONST_dev-requirements.txt
+.build/dev-requirements.timestamp: .build/venv.timestamp CONST_dev-requirements.txt
 	$(PIP_CMD) $(PIP_INSTALL_ARGS) $(DEV_REQUIREMENTS) $(PIP_REDIRECT)
 	touch $@
 
-.build/venv.timestamp-noclean:
+.build/venv.timestamp:
 	mkdir -p $(dir $@)
 	virtualenv --setuptools --no-site-packages .build/venv
 	$(PIP_CMD) install \
