@@ -7,10 +7,10 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.point) AS foo USING UNIQUE id USING srid=3857"
+    DATA "geom FROM (SELECT * FROM edit.point) AS foo USING UNIQUE id USING srid=21781"
     LABELITEM "name"
     PROJECTION
-      "init=epsg:3857"
+      "init=epsg:21781"
     END
     CLASS
         NAME "Point"
@@ -50,10 +50,10 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.line) AS foo USING UNIQUE id USING srid=3857"
+    DATA "geom FROM (SELECT * FROM edit.line) AS foo USING UNIQUE id USING srid=21781"
     LABELITEM "name"
     PROJECTION
-      "init=epsg:3857"
+      "init=epsg:21781"
     END
     CLASS
         NAME "Line"
@@ -89,10 +89,10 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.polygon) AS foo USING UNIQUE id USING srid=3857"
+    DATA "geom FROM (SELECT * FROM edit.polygon) AS foo USING UNIQUE id USING srid=21781"
     LABELITEM "name"
     PROJECTION
-      "init=epsg:3857"
+      "init=epsg:21781"
     END
     CLASS
         NAME "Polygon"
