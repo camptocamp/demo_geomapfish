@@ -245,6 +245,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_contextualdata",
+            url: "${request.route_url('raster', path='')}",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
             streetViewLink: true,
@@ -256,8 +257,10 @@ Ext.onReady(function() {
             },
             tpls: {
                 allTpl:
-                    OpenLayers.i18n("Local Coord. Label") + " : {coord_x} {coord_y}<br />" +
-                    OpenLayers.i18n("Wgs Coord. Label") + " : {wgs_x} {wgs_y}<br />" +
+                    OpenLayers.i18n("Local Coord. Label") + ": {coord_x} {coord_y}<br />" +
+                    OpenLayers.i18n("Wgs Coord. Label") + ": {wgs_x} {wgs_y}<br />" +
+                    "Elevation (SRTM): {srtm_value} [m]<br />" +
+                    "Elevation (Aster): {aster_value} [m]<br />" +
                     "<a href='http://maps.google.ch/?ie=UTF8&ll={streetviewlat},{streetviewlon}&layer=c" +
                     "&cbll={streetviewlat},{streetviewlon}&cbp=12,57.78,,0,8.1' " +
                     "target='_blank'>{streetviewlabel}</a>"

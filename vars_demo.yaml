@@ -71,6 +71,9 @@ vars:
     external_themes_url:
     external_mapserv_url:
 
+    layers:
+        geometry_validation: True
+
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
     raster:
