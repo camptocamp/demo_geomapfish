@@ -37,6 +37,6 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "line": "Line",
     "point": "Point",
 
-    "hospital": "Hôpitals",
-    "firestation": "Caserne de pompiers"
+    "hospitals": "Hôpitals",
+    "firestations": "Caserne de pompiers"
 });
