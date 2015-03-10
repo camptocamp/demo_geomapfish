@@ -38,5 +38,10 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "point": "Point",
 
     "hospitals": "Hôpitals",
-    "firestations": "Caserne de pompiers"
+    "firestations": "Caserne de pompiers",
+
+    "osm_id": "ID OSM",
+    "timestamp": "Horodatage",
+    "name": "Nom",
+    "type": "Type"
 });
