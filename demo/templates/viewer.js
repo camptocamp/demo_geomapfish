@@ -257,7 +257,7 @@ Ext.onReady(function() {
             },
             tpls: {
                 allTpl:
-                    OpenLayers.i18n("Local Coord. Label") + ": {coord_x} {coord_y}<br />" +
+                    "Swiss grid (LV03): {coord_x} {coord_y}<br />" +
                     OpenLayers.i18n("Wgs Coord. Label") + ": {wgs_x} {wgs_y}<br />" +
                     "Elevation (SRTM): {srtm_value} [m]<br />" +
                     "Elevation (Aster): {aster_value} [m]<br />" +
@@ -275,31 +275,26 @@ Ext.onReady(function() {
             grouping: true
         },
         {
-            ptype: "cgxp_menushortcut",
+            ptype: "cgxp_locationchooser",
+            toggleGroup: "maptools",
             actionTarget: "center.tbar",
+            locations: {
+                'User initial': INITIAL_EXTENT,
+                'Lausanne': [535436, 155243, 539476, 150443],
+                'Pully': [539606, 152493, 541106, 150443],
+                'Vevey': [551755, 149340, 555995, 145060]
+            }
         },
         {
             ptype: "cgxp_myposition",
             actionTarget: "center.tbar",
             recenteringZoom: 16,
             drawAccuracy: true,
-            type: '->'
         },
         {
             ptype: "cgxp_menushortcut",
             actionTarget: "center.tbar",
-            type: '-'
-        },
-        {
-            ptype: "cgxp_locationchooser",
-            toggleGroup: "maptools",
-            actionTarget: "center.tbar",
-            locations: {
-                'User initial': INITIAL_EXTENT,
-                'France': [-466375, 5379611, 1035458, 6573252],
-                'Switzerland': [578671, 5779224, 1369336, 6025657],
-                'Mexico': [-14130258, 1551033, -7804941, 3923639]
-            }
+            type: '->'
         },
         {
             ptype: "cgxp_print",
