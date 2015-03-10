@@ -251,7 +251,8 @@ Ext.onReady(function() {
             layerTreeId: "layertree",
             pointRecenterZoom: 20,
             actionTarget: "center.tbar",
-            grouping: true
+            grouping: true,
+            useColorPicker: true
         },
         {
             ptype: "cgxp_locationchooser",
