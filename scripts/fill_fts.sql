@@ -5,4 +5,5 @@ INSERT INTO main.tsearch
 SELECT
 ST_Transform(way, 21781), '', name, TRUE, NULL, to_tsvector('french', name)
 FROM
-dblink('dbname=osm', 'select name, way from planet_osm_polygon where admin_level IS NOT NULL') AS p(name name, way Geometry);
+dblink('dbname=osm', 'SELECT name, way FROM planet_osm_polygon WHERE admin_level IS NOT NULL')
+AS p(name text, way Geometry);
