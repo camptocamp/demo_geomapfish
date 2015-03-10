@@ -252,7 +252,10 @@ Ext.onReady(function() {
             pointRecenterZoom: 20,
             actionTarget: "center.tbar",
             grouping: true,
-            useColorPicker: true
+            useColorPicker: true,
+            widgetOptions: {
+                projectionCodes: [21781, 2056, 4326]
+            }
         },
         {
             ptype: "cgxp_locationchooser",
