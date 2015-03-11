@@ -254,9 +254,6 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             grouping: true,
             useColorPicker: true,
-            widgetOptions: {
-                projectionCodes: [21781, 2056, 4326]
-            }
         },
         {
             ptype: "cgxp_locationchooser",
@@ -453,7 +450,7 @@ Ext.onReady(function() {
         map: {
             id: "app-map", // id needed to reference map in portalConfig above
             xtype: 'cgxp_mappanel',
-            projection: "EPSG:21781",
+            projectionCodes: [21781, 2056, 4326],
             extent: INITIAL_EXTENT,
             maxExtent: MAX_EXTENT,
             restrictedExtent: RESTRICTED_EXTENT,
