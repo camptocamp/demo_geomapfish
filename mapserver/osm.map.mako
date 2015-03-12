@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 <%!
+columns = 'osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,name,\\"natural\\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way'
 layers = [{
     "column": "amenity",
     "value": "fuel",
@@ -83,7 +84,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
-    DATA "way FROM (SELECT * FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    DATA "way FROM (SELECT ${columns} FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     FILTER ('[${layer['column']}]' ${layer.get('operator', '=')} '${layer['value']}')
     LABELITEM "name"
     PROJECTION
@@ -156,7 +157,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
-    DATA "way FROM (SELECT * FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    DATA "way FROM (SELECT ${columns} FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     PROJECTION
         "init=epsg:21781"
