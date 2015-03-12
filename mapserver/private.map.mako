@@ -16,7 +16,7 @@ LAYER
       "init=epsg:21781"
     END
     CLASS
-        NAME "Hospitals"
+        NAME "Hopitaux"
         STYLE
             SYMBOL "circle"
             SIZE 6
@@ -62,7 +62,7 @@ LAYER
       "init=epsg:21781"
     END
     CLASS
-        NAME "Firestations"
+        NAME "Casernes de pompiers"
         STYLE
             WIDTH 1
             OUTLINECOLOR 30 0 0

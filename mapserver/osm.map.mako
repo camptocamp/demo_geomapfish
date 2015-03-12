@@ -123,7 +123,7 @@ LAYER
         "init=epsg:4326"
     END
     CLASS
-        NAME "osm_time"
+        NAME "Dans les temps"
         STYLE
             SYMBOL "circle"
             SIZE 6
@@ -166,7 +166,7 @@ LAYER
     MAXSCALEDENOM 4000
 
     CLASS
-        NAME "osm_scale"
+        NAME "OSM"
         STYLE
             SYMBOL "circle"
             SIZE 6
