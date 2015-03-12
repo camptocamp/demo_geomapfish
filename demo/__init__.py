@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from pyramid.config import Configurator
-from c2cgeoportal import locale_negotiator, add_interface, INTERFACE_TYPE_SENCHA_TOUCH, \
-    add_admin_interface, add_static_view
+from c2cgeoportal import locale_negotiator, add_interface, INTERFACE_TYPE_SENCHA_TOUCH
 from c2cgeoportal.lib.authentication import create_authentication
 from demo.resources import Root
 

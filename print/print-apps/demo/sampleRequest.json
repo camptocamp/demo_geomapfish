@@ -1,0 +1,292 @@
+{
+    "layout": "A4 portrait",
+    "outputFormat": "pdf",
+    "attributes": {
+        "title": "",
+        "comments": "",
+        "datasource": [{
+            "title": "bus_stop",
+            "table": {
+                "columns": ["osm_id", "timestamp", "name", "Type"],
+                "data": [
+                    ["337907707", "2010-11-09T22:54:26Z", "Alpes", "bus_stop"],
+                    ["337907710", "2010-11-09T22:54:25Z", "Alpes", "bus_stop"],
+                    ["347352116", "2010-11-09T22:54:23Z", "Mirabeau", "bus_stop"]
+                ]
+            }
+        }, {
+            "title": "restaurant",
+            "table": {
+                "columns": ["osm_id", "timestamp", "name", "Type"],
+                "data": [
+                    ["629119177", "2010-02-04T18:42:23Z", "Oh! Liban", "restaurant"],
+                    ["1423114737", "2011-09-04T15:05:13Z", "Restaurant Mirabeau", "restaurant"]
+                ]
+            }
+        }],
+        "map": {
+            "projection": "EPSG:21781",
+            "dpi": 254,
+            "rotation": 0,
+            "center": [542000, 154000],
+            "scale": 100000,
+            "longitudeFirst": true,
+            "layers": [{
+                "type": "geojson",
+                "style": {
+                    "1": {
+                        "fillColor": "red",
+                        "strokeColor": "red",
+                        "fillOpacity": 0.6,
+                        "hoverFillColor": "white",
+                        "hoverFillOpacity": 0.8,
+                        "strokeOpacity": 1,
+                        "strokeWidth": 2,
+                        "strokeLinecap": "round",
+                        "strokeDashstyle": "solid",
+                        "hoverStrokeColor": "red",
+                        "hoverStrokeOpacity": 1,
+                        "hoverStrokeWidth": 0.2,
+                        "pointRadius": 6,
+                        "hoverPointRadius": 1,
+                        "hoverPointUnit": "%",
+                        "pointerEvents": "visiblePainted",
+                        "cursor": "inherit",
+                        "fontColor": "#000000",
+                        "labelAlign": "cm",
+                        "labelOutlineColor": "white",
+                        "labelOutlineWidth": 3
+                    },
+                    "version": "1",
+                    "styleProperty": "_gx_style"
+                },
+                "geoJson": {
+                    "type": "FeatureCollection",
+                    "features": [{
+                        "type": "Feature",
+                        "properties": {
+                            "_gx_style": 1,
+                            "osm_id": "337907707",
+                            "timestamp": "2010-11-09T22:54:26Z",
+                            "name": "Alpes",
+                            "type": "bus_stop"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [538442.421319, 151817.140031]
+                        }
+                    }, {
+                        "type": "Feature",
+                        "properties": {
+                            "_gx_style": 1,
+                            "osm_id": "337907710",
+                            "timestamp": "2010-11-09T22:54:25Z",
+                            "name": "Alpes",
+                            "type": "bus_stop"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [538474.353811, 151862.615586]
+                        }
+                    }, {
+                        "type": "Feature",
+                        "properties": {
+                            "_gx_style": 1,
+                            "osm_id": "347352116",
+                            "timestamp": "2010-11-09T22:54:23Z",
+                            "name": "Mirabeau",
+                            "type": "bus_stop"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [538314.149264, 152046.467663]
+                        }
+                    }, {
+                        "type": "Feature",
+                        "properties": {
+                            "_gx_style": 1,
+                            "osm_id": "629119177",
+                            "timestamp": "2010-02-04T18:42:23Z",
+                            "name": "Oh! Liban",
+                            "type": "restaurant"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [538396.724407, 152032.68026]
+                        }
+                    }, {
+                        "type": "Feature",
+                        "properties": {
+                            "_gx_style": 1,
+                            "osm_id": "1423114737",
+                            "timestamp": "2011-09-04T15:05:13Z",
+                            "name": "Restaurant Mirabeau",
+                            "type": "restaurant"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [538371.262438, 152033.652827]
+                        }
+                    }]
+                }
+            }, {
+                "baseURL": "http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy",
+                "opacity": 1,
+                "type": "wms",
+                "layers": ["osm"],
+                "imageFormat": "image/png",
+                "styles": [""],
+                "customParams": {
+                    "TRANSPARENT": true
+                }
+            }, {
+                "baseURL": "http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy",
+                "opacity": 1,
+                "type": "wms",
+                "layers": ["osm_scale", "zoo", "restaurant", "post_office", "police", "place_of_worship", "parking", "cafe", "bus_stop", "bank", "alpin_hut", "cinema", "information", "hotel", "fluel"],
+                "imageFormat": "image/png",
+                "styles": [""],
+                "customParams": {
+                    "TRANSPARENT": true
+                }
+            }, {
+                "baseURL": "http://ows.asitvd.ch/wmts/",
+                "opacity": 1,
+                "type": "wmts",
+                "layer": "asitvd.fond_couleur",
+                "version": "1.0.0",
+                "requestEncoding": "REST",
+                "style": "default",
+                "dimensions": ["DIM1", "ELEVATION"],
+                "dimensionParams": {
+                    "DIM1": "default",
+                    "ELEVATION": "0"
+                },
+                "matrixSet": "21781",
+                "imageFormat": "image/png",
+                "matrices": [{
+                    "identifier": 0,
+                    "matrixSize": [38, 25],
+                    "scaleDenominator": 178571.42857142858,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 1,
+                    "matrixSize": [94, 63],
+                    "scaleDenominator": 71428.57142857143,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 2,
+                    "matrixSize": [188, 125],
+                    "scaleDenominator": 35714.28571428572,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 3,
+                    "matrixSize": [375, 250],
+                    "scaleDenominator": 17857.14285714286,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 4,
+                    "matrixSize": [750, 500],
+                    "scaleDenominator": 8928.57142857143,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 5,
+                    "matrixSize": [938, 625],
+                    "scaleDenominator": 7142.857142857143,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 6,
+                    "matrixSize": [1875, 1250],
+                    "scaleDenominator": 3571.4285714285716,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 7,
+                    "matrixSize": [3750, 2500],
+                    "scaleDenominator": 1785.7142857142858,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 8,
+                    "matrixSize": [7500, 5000],
+                    "scaleDenominator": 892.8571428571429,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 9,
+                    "matrixSize": [18750, 12500],
+                    "scaleDenominator": 357.14285714285717,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }, {
+                    "identifier": 10,
+                    "matrixSize": [37500, 25000],
+                    "scaleDenominator": 178.57142857142858,
+                    "tileSize": [256, 256],
+                    "topLeftCorner": [420000, 350000]
+                }]
+            }]
+        },
+        "legend": [{
+            "name": "",
+            "classes": [{
+                "name": "osm",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=osm&FORMAT=image%2Fpng&SCALE=100000"]
+            }]
+        }, {
+            "name": "",
+            "classes": [{
+                "name": "fluel",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=fluel&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "hotel",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=hotel&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "information",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=information&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "cinema",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=cinema&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "alpin_hut",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=alpin_hut&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "bank",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=bank&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "bus_stop",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=bus_stop&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "cafe",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=cafe&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "parking",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=parking&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "place_of_worship",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=place_of_worship&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "police",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=police&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "post_office",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=post_office&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "restaurant",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=restaurant&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "zoo",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=zoo&FORMAT=image%2Fpng&SCALE=100000"]
+            }, {
+                "name": "osm_scale",
+                "icons": ["http://geomapfish.demo-camptocamp.com/sbrunner/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=osm_scale&FORMAT=image%2Fpng&SCALE=100000"]
+            }]
+        }]
+    }
+}
