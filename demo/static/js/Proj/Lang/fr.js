@@ -33,7 +33,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "bus_stop": "Arrêts de bus",
     "osm_scale": "OSM scale",
 
-    "poligon": "Polygone",
+    "polygon": "Polygone",
     "line": "Line",
     "point": "Point",
 
