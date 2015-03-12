@@ -2,47 +2,75 @@
 
 <%!
 layers = [{
-    'type': 'fluel',
-    'name': u'Essence'
+    "column": "amenity",
+    "value": "fuel",
+    "type": "fuel",
+    "name": u"Stations service"
 }, {
-    'type': 'hotel',
-    'name': u'Hôtel'
+    "column": "tourism",
+    "value": "hotel",
+    "type": "hotel",
+    "name": u"Hôtels"
 }, {
-    'type': 'information',
-    'name': u'Information'
+    "column": "tourism",
+    "value": "information",
+    "type": "information",
+    "name": u"Informations"
 }, {
-    'type': 'cinema',
-    'name': u'Cinema'
+    "column": "amenity",
+    "value": "cinema",
+    "type": "cinema",
+    "name": u"Cinémas"
 }, {
-    'type': 'alpin_hut',
-    'name': u'Cabane'
+    "column": "tourism",
+    "value": "alpine_hut",
+    "type": "alpine_hut",
+    "name": u"Cabanes alpines"
 }, {
-    'type': 'bank',
-    'name': u'Banque'
+    "column": "amenity",
+    "value": "bank",
+    "type": "bank",
+    "name": u"Banques"
 }, {
-    'type': 'bus_stop',
-    'name': u'Arrêt de bus'
+    "column": "highway",
+    "value": "bus_stop",
+    "type": "bus_stop",
+    "name": u"Arrêts de bus"
 }, {
-    'type': 'cafe',
-    'name': u'Café'
+    "column": "amenity",
+    "value": "cafe",
+    "type": "cafe",
+    "name": u"Cafés"
 }, {
-    'type': 'parking',
-    'name': u'Parking'
+    "column": "amenity",
+    "value": "parking",
+    "type": "parking",
+    "name": u"Parkings"
 }, {
-    'type': 'place_of_worship',
-    'name': u'Eglise'
+    "column": "amenity",
+    "value": "place_of_worship",
+    "type": "place_of_worship",
+    "name": u"Lieux de culte"
 }, {
-    'type': 'police',
-    'name': u'Police'
+    "column": "amenity",
+    "value": "police",
+    "type": "police",
+    "name": u"Postes de police"
 }, {
-    'type': 'post_office',
-    'name': u'Poste'
+    "column": "amenity",
+    "value": "post_office",
+    "type": "post_office",
+    "name": u"Offices de poste"
 }, {
-    'type': 'restaurant',
-    'name': u'Restaurent'
+    "column": "amenity",
+    "value": "restaurant",
+    "type": "restaurant",
+    "name": u"Restaurants"
 }, {
-    'type': 'zoo',
-    'name': u'Zoo'
+    "column": "tourism",
+    "value": "zoo",
+    "type": "zoo",
+    "name": u"Zoos"
 }]
 %>
 % for layer in layers:
@@ -52,10 +80,14 @@ LAYER
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
-    DATA "osm_switzerland/points"
-    FILTER ('[type]' = '${layer['type']}')
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "way FROM (SELECT * FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=2056"
+    FILTER ('[${layer['column']}]' ${layer.get('operator', '=')} '${layer['value']}')
+    LABELITEM "name"
     PROJECTION
-      "init=epsg:4326"
+        "init=epsg:2056"
     END
     CLASS
         NAME "${layer['name']}"
@@ -85,9 +117,13 @@ LAYER
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
-    DATA "osm_switzerland/points"
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "way FROM (SELECT * FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=2056"
+    LABELITEM "name"
     PROJECTION
-      "init=epsg:4326"
+        "init=epsg:2056"
     END
     CLASS
         NAME "osm_time"
@@ -120,13 +156,17 @@ LAYER
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
-    DATA "osm_switzerland/points"
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "way FROM (SELECT * FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=2056"
+    LABELITEM "name"
     PROJECTION
-      "init=epsg:4326"
+        "init=epsg:2056"
     END
 
-    MINSCALEDENOM 15000
-    MAXSCALEDENOM 40000
+    MINSCALEDENOM 1500
+    MAXSCALEDENOM 4000
 
     CLASS
         NAME "osm_scale"

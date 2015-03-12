@@ -17,11 +17,11 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
 
     "osm": "OSM",
     "osm_time": "OSM time",
-    "fluel": "Stations service",
+    "fuel": "Stations service",
     "hotel": "Hôtels",
     "information": "Informations",
     "cinema": "Cinémas",
-    "alpin_hut": "Cabanes alpines",
+    "alpine_hut": "Cabanes alpines",
     "bank": "Banques",
     "cafe": "Cafés",
     "parking": "Parkings",
