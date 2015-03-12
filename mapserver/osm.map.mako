@@ -117,13 +117,10 @@ LAYER
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
-    CONNECTIONTYPE postgis
-    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
-    DATA "way FROM (SELECT * FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=2056"
+    DATA "osm_switzerland/points"
     LABELITEM "name"
     PROJECTION
-        "init=epsg:2056"
+        "init=epsg:4326"
     END
     CLASS
         NAME "osm_time"
@@ -131,8 +128,8 @@ LAYER
             SYMBOL "circle"
             SIZE 6
             WIDTH 1
-            OUTLINECOLOR 30 0 0
-            COLOR 230 0 0
+            OUTLINECOLOR 0 0 30
+            COLOR 0 0 230
         END
     END
 
@@ -174,8 +171,8 @@ LAYER
             SYMBOL "circle"
             SIZE 6
             WIDTH 1
-            OUTLINECOLOR 30 0 0
-            COLOR 230 0 0
+            OUTLINECOLOR 0 30 0
+            COLOR 0 230 0
         END
     END
 
