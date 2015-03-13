@@ -152,6 +152,7 @@ Ext.onReady(function() {
             ptype: "cgxp_layertree",
             id: "layertree",
             events: EVENTS,
+            showRestrictedContentWarning: true,
             outputConfig: {
                 header: false,
                 flex: 1,
@@ -163,6 +164,7 @@ Ext.onReady(function() {
 % endif
                 defaultThemes: ["Transport"],
                 uniqueTheme: true,
+                restrictedContent: true,
                 wmsURL: "${request.route_url('mapserverproxy')}"
             },
             outputTarget: "layerpanel"
