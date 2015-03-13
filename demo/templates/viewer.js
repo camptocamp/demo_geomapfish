@@ -164,7 +164,6 @@ Ext.onReady(function() {
 % endif
                 defaultThemes: ["Transport"],
                 uniqueTheme: true,
-                restrictedContent: true,
                 wmsURL: "${request.route_url('mapserverproxy')}"
             },
             outputTarget: "layerpanel"
