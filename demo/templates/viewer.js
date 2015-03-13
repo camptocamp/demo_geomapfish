@@ -45,6 +45,7 @@ Ext.onReady(function() {
 
     var WMTSASITVD_OPTIONS2 = {
         url: "http://ows.asitvd.ch/wmts/",
+        attribution: "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>",
         displayInLayerSwitcher: false,
         requestEncoding: 'REST',
         buffer: 0,
