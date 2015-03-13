@@ -73,5 +73,13 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "surface": "Surface",
     "tourism": "Tourisme",
     "waterway": "Voie navigable",
-    "wood": "Bois"
+    "wood": "Bois",
+
+    "asitvd.fond_pourortho": "Fond de plan ASIT VD - transparent pour photos",
+    "ch.swisstopo.dreiecksvermaschung": "MN95 Maillage triangulaire",
+    "ch.swisstopo.geologie-gravimetrischer_atlas": "Découpage atlas gravimétrique",
+    "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen": "Groupes lithologiques",
+    "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung": "Classification des roches",
+    "ch.are.alpenkonvention": "Convention des Alpes",
+    "ch.astra.ausnahmetransportrouten": "Itinéraires convois exceptionnels"
 });
