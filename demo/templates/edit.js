@@ -184,10 +184,11 @@ Ext.onReady(function() {
             id: "app-map", // id needed to reference map in portalConfig above
             stateId: "map",
             xtype: 'cgxp_mappanel',
-            projection: new OpenLayers.Projection("EPSG:21781"),
+            projectionCodes: [21781, 2056, 4326],
             extent: INITIAL_EXTENT,
             maxExtent: MAX_EXTENT,
-            //restrictedExtent: [420000, 30000, 900000, 350000],
+            restrictedExtent: RESTRICTED_EXTENT,
+            projection: new OpenLayers.Projection("EPSG:21781"),
             units: "m",
             //resolutions: [4000,2000,1000,500,250,100,50,20,10,5,2.5,1,0.5,0.25,0.1,0.05],
             //resolutions: [156543.03390625,78271.516953125,39135.7584765625,19567.87923828125,9783.939619140625,4891.9698095703125,2445.9849047851562,1222.9924523925781,611.4962261962891,305.74811309814453,152.87405654907226,76.43702827453613,38.218514137268066,19.109257068634033,9.554628534317017,4.777314267158508,2.388657133579254,1.194328566789627,0.5971642833948135],
