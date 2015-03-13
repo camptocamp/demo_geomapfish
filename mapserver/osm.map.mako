@@ -87,6 +87,7 @@ LAYER
     DATA "way FROM (SELECT ${columns} FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     FILTER ('[${layer['column']}]' ${layer.get('operator', '=')} '${layer['value']}')
     LABELITEM "name"
+    EXTENT 473743 74095 850904 325533
     PROJECTION
         "init=epsg:21781"
     END
@@ -120,6 +121,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     DATA "osm_switzerland/points"
     LABELITEM "name"
+    EXTENT 473743 74095 850904 325533
     PROJECTION
         "init=epsg:4326"
     END
@@ -159,6 +161,7 @@ LAYER
     CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
     DATA "way FROM (SELECT ${columns} FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
+    EXTENT 473743 74095 850904 325533
     PROJECTION
         "init=epsg:21781"
     END
