@@ -204,8 +204,8 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_mapopacityslider",
             layerTreeId: "layertree",
-            defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}"
-
+            defaultBaseLayerRef: "${functionality['default_basemap'][0] | n}",
+            orthoRef: undefined
         },
         {
             ptype: "gxp_zoomtoextent",
