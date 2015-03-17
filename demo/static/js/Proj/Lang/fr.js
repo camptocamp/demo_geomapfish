@@ -36,6 +36,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "polygon": "Polygone",
     "line": "Line",
     "point": "Point",
+    "kind": "Type",
 
     "hospitals": "Hôpitaux",
     "firestations": "Casernes de pompiers",
