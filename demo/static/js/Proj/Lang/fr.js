@@ -41,6 +41,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "hospitals": "Hôpitaux",
     "firestations": "Casernes de pompiers",
 
+    "display_name": "Nom formaté",
     "osm_id": "ID OSM",
     "timestamp": "Horodatage",
     "name": "Nom",

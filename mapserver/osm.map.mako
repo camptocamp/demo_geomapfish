@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 <%!
-columns = 'osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,name,\\"natural\\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way'
+columns = 'regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,name,\\"natural\\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way'
 layers = [{
     "column": "amenity",
     "value": "fuel",
