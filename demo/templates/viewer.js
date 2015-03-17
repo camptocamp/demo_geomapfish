@@ -470,6 +470,7 @@ Ext.onReady(function() {
                 new OpenLayers.Control.ArgParser(),
                 new OpenLayers.Control.Attribution(),
                 new OpenLayers.Control.ScaleLine({
+                    geodesic: true,
                     bottomInUnits: false,
                     bottomOutUnits: false
                 }),
@@ -496,8 +497,7 @@ Ext.onReady(function() {
                     )]
                 })
             ],
-            layers: [
-            {
+            layers: [{
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
                 group: 'background',
@@ -550,7 +550,7 @@ Ext.onReady(function() {
         if (serverError.length > 0) {
             cgxp.tools.openWindow({
                 html: serverError.join('<br />')
-            },OpenLayers.i18n("Error notice"),600, 500);
+            }, OpenLayers.i18n("Error notice"), 600, 500);
         }
     }, app);
 });
