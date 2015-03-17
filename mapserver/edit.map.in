@@ -7,7 +7,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.point) AS foo USING UNIQUE id USING srid=21781"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.point AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=21781"
     LABELITEM "name"
     PROJECTION
       "init=epsg:21781"
@@ -35,6 +35,7 @@ LAYER
         "wms_title" "Point"
 
         "gml_include_items" "all"
+        "gml_exclude_items" "id"
         "gml_types" "auto"
         "gml_featureid" "id"
         "gml_geom_type" "point"
@@ -50,7 +51,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.line) AS foo USING UNIQUE id USING srid=21781"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.line AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=21781"
     LABELITEM "name"
     PROJECTION
       "init=epsg:21781"
@@ -74,6 +75,7 @@ LAYER
         "wms_title" "Line"
 
         "gml_include_items" "all"
+        "gml_exclude_items" "id"
         "gml_types" "auto"
         "gml_featureid" "id"
         "gml_geom_type" "line"
@@ -89,7 +91,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.polygon) AS foo USING UNIQUE id USING srid=21781"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.polygon AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=21781"
     LABELITEM "name"
     PROJECTION
       "init=epsg:21781"
@@ -118,6 +120,7 @@ LAYER
         "wms_title" "Polygon"
 
         "gml_include_items" "all"
+        "gml_exclude_items" "id"
         "gml_types" "auto"
         "gml_featureid" "id"
         "gml_geom_type" "polygon"
