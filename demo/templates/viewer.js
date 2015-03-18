@@ -312,6 +312,12 @@ Ext.onReady(function() {
                                 fieldLabel: "${_("Description")}",
                                 emptyText: "${_("Description")}"
                             }
+                        },
+                        "debug": {
+                            fieldAttributes: {
+                                fieldLabel: "${_("Add debug header")}",
+                                value: 0
+                            }
                         }
                     }
                 }
