@@ -31,14 +31,7 @@ templates:
         - !reportBuilder # compile all reports in current directory
             directory: '.'
         - !prepareLegend
-            maxWidth: 148
-            dpi: 100
             template: legend.jrxml
-            inputMapper: {legend: legend}
-            outputMapper:
-              legend: legend
-              legendSubReport: legendSubReport
-              numberOfLegendRows: numberOfLegendRows
         - !createNorthArrow {}
         - !createScalebar {}
         - !createMap {}
