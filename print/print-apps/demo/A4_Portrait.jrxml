@@ -90,7 +90,7 @@
                 <text><![CDATA[Detail band 2]]></text>
             </staticText>
             <subreport>
-                <reportElement x="0" y="0" width="888" height="42"/>
+                <reportElement x="0" y="0" width="888" height="42" stretchType="RelativeToTallestObject"/>
                 <dataSourceExpression><![CDATA[$P{jrDataSource}]]></dataSourceExpression>
                 <subreportExpression><![CDATA["results.jasper"]]></subreportExpression>
             </subreport>
@@ -118,7 +118,7 @@
                 <text><![CDATA[LÉGENDE]]></text>
             </staticText>
             <subreport>
-                <reportElement positionType="FixRelativeToBottom" x="0" y="26" width="255" height="56"/>
+                <reportElement stretchType="RelativeToTallestObject" x="0" y="26" width="255" height="56"/>
                 <dataSourceExpression><![CDATA[$P{legend}]]></dataSourceExpression>
                 <subreportExpression><![CDATA[$P{legendSubReport}]]></subreportExpression>
             </subreport>
