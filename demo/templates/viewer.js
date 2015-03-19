@@ -302,20 +302,20 @@ Ext.onReady(function() {
                     "A4 portrait": {
                         "title": {
                             fieldAttributes: {
-                                fieldLabel: "${_("Name")}",
-                                emptyText: "${_("Name")}"
+                                fieldLabel: OpenLayers.i18n("Title"),
+                                emptyText: OpenLayers.i18n("Title")
                             }
                         },
                         "comments": {
                             useTextArea: true,
                             fieldAttributes: {
-                                fieldLabel: "${_("Description")}",
-                                emptyText: "${_("Description")}"
+                                fieldLabel: OpenLayers.i18n("Description"),
+                                emptyText: OpenLayers.i18n("Description")
                             }
                         },
                         "debug": {
                             fieldAttributes: {
-                                fieldLabel: "${_("Add debug header")}",
+                                fieldLabel: OpenLayers.i18n("Add debug header"),
                                 value: 0
                             }
                         }

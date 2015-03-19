@@ -11,6 +11,10 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "3 A4 landscape demo": "A4 Paysage",
     "4 A3 landscape demo": "A3 Paysage",
 
+    "Title": "Titre",
+    "Description": "Description",
+    "Add debug header": "Ajouter en-tête de debug",
+
     "asitvd.fond_couleur": "Plan ASIT VD",
     "asitvd.fond_gris": "Plan ASIT VD (noir et blanc)",
     "blank": "Pas de fond de plan",
