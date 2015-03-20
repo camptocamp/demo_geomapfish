@@ -8,7 +8,7 @@ from pyramid.i18n import TranslationStringFactory
 from c2cgeoportal.models import *  # noqa
 # from c2cgeoportal.models import _schema
 
-_ = TranslationStringFactory('demo')
+_ = TranslationStringFactory('demo-server')
 log = logging.getLogger(__name__)
 
 LayerInternalWMS.__acl__ = [DENY_ALL]
