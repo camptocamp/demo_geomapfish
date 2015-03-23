@@ -25,12 +25,9 @@ LAYER
             COLOR 230 0 0
         END
         LABEL
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            FONT arial_bold
-            TYPE truetype
             SIZE 10
             OFFSET 0 -13
+            PARTIALS FALSE
         END
     END
 
@@ -73,11 +70,8 @@ LAYER
             OPACITY 60
         END
         LABEL
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            FONT arial_bold
-            TYPE truetype
             SIZE 10
+            PARTIALS FALSE
         END
     END
 

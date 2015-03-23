@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 <%!
-columns = 'regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,name,\\"natural\\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way'
+columns = 'regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\\"natural\\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way'
 layers = [{
     "column": "amenity",
     "value": "fuel",
@@ -100,6 +100,11 @@ LAYER
             OUTLINECOLOR 30 0 0
             COLOR 230 0 0
         END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
     END
 
     METADATA
@@ -119,11 +124,14 @@ LAYER
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
-    DATA "osm_switzerland/points"
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     EXTENT 473743 74095 839000 306400
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:21781"
     END
     CLASS
         NAME "Dans les temps"
@@ -133,6 +141,11 @@ LAYER
             WIDTH 1
             OUTLINECOLOR 0 0 30
             COLOR 0 0 230
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
         END
     END
 
@@ -177,6 +190,11 @@ LAYER
             WIDTH 1
             OUTLINECOLOR 0 30 0
             COLOR 0 230 0
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
         END
     END
 
