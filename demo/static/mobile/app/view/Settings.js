@@ -25,8 +25,7 @@ Ext.define("App.view.Settings", {
                 xtype: 'component',
                 html:
                     '<h1 class="title">Copyright</h1>' +
-                    'Base Layer: Data CC-By-SA by <a href="http://openstreetmap.org/">OpenStreetMap</a><br />' +
-                    'Overlay Layers: Open Data licence <a href="http://opendata.montpelliernumerique.fr">Montpellier</a>'
+                    'CC-By-SA by <a href="http://openstreetmap.org/">OpenStreetMap</a>'
             }]
         }]
     }
