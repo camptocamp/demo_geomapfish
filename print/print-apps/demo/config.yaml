@@ -4,9 +4,12 @@ templates:
     A4 portrait: !template
         reportTemplate: A4_Portrait.jrxml
         attributes:
-            title: !string {}
-            comments: !string {}
-            debug: !integer {}
+            title: !string
+                default: ""
+            comments: !string
+                default: ""
+            debug: !integer
+                default: 0
             legend: !legend {}
             northArrow: !northArrow
                 size: 40
