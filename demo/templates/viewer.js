@@ -179,7 +179,8 @@ Ext.onReady(function() {
             //maxFeatures: 200,
             srsName: 'EPSG:21781',
             featureTypes: ["hospitals", "firestations"],
-            attributeURLs: ${queryer_attribute_urls | n}
+            attributeURLs: ${queryer_attribute_urls | n},
+            describeFeatureTypeParams: ${dumps(url_role_params) | n}
         },
 % endif
 % if 'grid' in request.params:
