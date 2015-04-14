@@ -9,6 +9,6 @@
 </LocationMatch>
 
 <LocationMatch /${vars:instanceid}/tiles/>
-    Header set Access-Control-Allow-Origin "*"
+    Header add Access-Control-Allow-Origin "*"
     Header merge Cache-Control "public"
 </LocationMatch>

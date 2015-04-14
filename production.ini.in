@@ -12,6 +12,7 @@ app.cfg = %(here)s/${appcfg}
 # Authentication settings
 authtkt_cookie_name = auth_tkt_${instanceid}
 authtkt_secret = ${authtkt_secret}
+authtkt_timeout = ${authtkt_timeout}
 # Enable Admin Interface
 enable_admin_interface = ${vars:enable_admin_interface}
 # Database informations
