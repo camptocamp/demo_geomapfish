@@ -95,7 +95,8 @@ vars:
         print_center_lon: 6
         print_center_lat: 46
         print_scale: 10000
-        fulltextsearch: text to search
+        fulltextsearch: pau
+        lang_files: [cgxp, cgxp-api]
 
     check_collector:
         disabled:
@@ -105,4 +106,5 @@ vars:
 
 update_paths:
 - authtkt
+- checker
 - check_collector.hosts

@@ -3,12 +3,12 @@
     from jstools.merge import Merger
     %>
     <%
-    jsbuild_cfg = request.registry.settings.get('jsbuild_cfg')
-    jsbuild_root_dir = request.registry.settings.get('jsbuild_root_dir')
+    jsbuild_settings = request.registry.settings.get('jsbuild', {})
+    jsbuild_cfg = jsbuild_settings.get('config')
+    jsbuild_root_dir = jsbuild_settings.get('root_dir')
     %>
-    % for script in Merger.from_fn(jsbuild_cfg.split(), root_dir=jsbuild_root_dir).list_run(['xapi.js', 'lang-%s.js' % lang]):
-document.write('<script type="text/javascript" src="'
-        + "${request.static_url(script.replace('/', ':', 1))}" + '"></script>');
+    % for script in Merger.from_fn(jsbuild_cfg, root_dir=jsbuild_root_dir).list_run(['xapi.js', 'lang-%s.js' % lang]):
+document.write('<script type="text/javascript" src="${request.static_url(script.replace('/', ':', 1))}"></script>');
     % endfor
 
 document.write('<link rel="stylesheet" type="text/css" href="'

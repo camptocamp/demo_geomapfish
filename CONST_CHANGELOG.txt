@@ -6,14 +6,14 @@ Version 1.6
 
 1. Get the new and heavily modified files:
 
-    .build/venv/bin/pcreate -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
-
     cp /tmp/demo_geomapfish/.gitignore .
     cp /tmp/demo_geomapfish/.jshintrc .
+    cp /tmp/demo_geomapfish/.travis.yml .
+    cp /tmp/demo_geomapfish/travis.mk .
     cp /tmp/demo_geomapfish/demo.mk .
     cp /tmp/demo_geomapfish/README.rst .
-    cp /tmp/demo_geomapfish/alembic.ini.in .
-    cp /tmp/demo_geomapfish/alembic_static.ini.in .
+    cp /tmp/demo_geomapfish/alembic.ini.mako .
+    cp /tmp/demo_geomapfish/alembic_static.ini.mako .
     cp /tmp/demo_geomapfish/build.json .
     cp /tmp/demo_geomapfish/development.ini.mako .
     cp /tmp/demo_geomapfish/lingua.cfg .
@@ -22,8 +22,6 @@ Version 1.6
     cp /tmp/demo_geomapfish/vars_demo.yaml .
     cp /tmp/demo_geomapfish/deploy/hooks/post-restore-code deploy/hooks
     chmod +x deploy/hooks/post-restore-code
-
-    rm -rf /tmp/demo_geomapfish
 
 2. Removes the deprecated files:
 
@@ -49,7 +47,7 @@ Version 1.6
    - The `development.ini.in`, `production.ini.in` files will be replaced by
      the `development.ini.mako`, `production.ini.mako` files. If you lost
      something it should probably be moved in the `demo.yaml` file.
-   - The `print/template/print.makoi.in` file should be moved to
+   - The `print/template/print.mako.in` file should be moved to
      `print.yaml.mako`.
    - The build environments (`<user>.mk` files) must be recreated again.
      For multi project mode have a look on the documentation:
@@ -102,25 +100,7 @@ Version 1.6
    Remove the no more needed `_query=url_params` argument of the
    `static_url` calls.
 
-8. In the mapfile add the following lines to all restricted layers:
-
-    VALIDATION
-        ${mapserver_layer_validation}
-    END
-
-9. Remove the deprecated versioning table:
-
-    sudo -u postgres psql -c "DROP TABLE version_<schema>" <database>
-
-10. For non Apt/Dpkg based OS, disable the package checking:
-    In the ``buildout.cfg`` section ``[buildout]`` add:
-
-        parts -=
-            test-packages
-            test-packages-mobile
-            test-packages-tilecloud-chain
-
-11. In the `demo/templates/*.js` files do the following change:
+8. In the `demo/templates/*.js` files do the following change:
 
     -<% json_extent = user.role.json_extent if user else None %>
     -% if json_extent:
@@ -129,12 +109,86 @@ Version 1.6
     +% if bounds:
     +    var INITIAL_EXTENT = ${dumps(bounds)};
 
+9. In the mapfile add the following lines to all restricted layers:
+
+    VALIDATION
+        ${mapserver_layer_validation}
+    END
+
+10. Remove the deprecated versioning table:
+
+    sudo -u postgres psql -c "DROP TABLE version_<schema>" <database>
+
+11. For non Apt/Dpkg based OS, disable the package checking:
+    In the ``buildout.cfg`` section ``[buildout]`` add:
+
+        parts -=
+            test-packages
+            test-packages-mobile
+            test-packages-tilecloud-chain
+
 12. In the `demo/static/mobile/config.js` add the following line at the top of the file:
 
     +OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
 
-13. Remove your Apache configuration file, probably in
+13. Move the `jsbuild/app.cfg` file to `jsbuild/app.cfg.mako`.
+
+    Add the following lines in the start of the file:
+        <%
+        root = [
+            "demo/static/lib/cgxp/core/src/script",
+            "demo/static/lib/cgxp/ext",
+            "demo/static/lib/cgxp/geoext/lib",
+            "demo/static/lib/cgxp/openlayers/lib",
+            "demo/static/lib/cgxp/openlayers.addins/GoogleEarthView/lib",
+            "demo/static/lib/cgxp/openlayers.addins/Spherical/lib",
+            "demo/static/lib/cgxp/openlayers.addins/URLCompressed/lib",
+            "demo/static/lib/cgxp/openlayers.addins/DynamicMeasure/lib",
+            "demo/static/lib/cgxp/openlayers.addins/AddViaPoint/lib",
+            "demo/static/lib/cgxp/openlayers.addins/AutoProjection/lib",
+            "demo/static/lib/cgxp/gxp/src/script",
+            "demo/static/lib/cgxp/proj4js",
+            "demo/static/lib/cgxp/geoext.ux/ux/Measure/lib",
+            "demo/static/lib/cgxp/geoext.ux/ux/SimplePrint/lib",
+            "demo/static/lib/cgxp/geoext.ux/ux/FeatureEditing/lib",
+            "demo/static/lib/cgxp/geoext.ux/ux/FeatureSelectionModel/lib",
+            "demo/static/lib/cgxp/geoext.ux/ux/WMSBrowser/lib",
+            "demo/static/lib/cgxp/geoext.ux/ux/StreetViewPanel",
+            "demo/static/lib/cgxp/sandbox",
+            "demo/static/lib/cgxp/styler/lib",
+            "demo/static/lib/cgxp/ext.ux/TwinTriggerComboBox",
+            "demo/static/lib/cgxp/ext.ux/GroupComboBox",
+            "demo/static/lib/cgxp/ext.ux/ColorPicker",
+            "demo/static/lib/cgxp/ext.ux/base64",
+            "demo/static/lib/cgxp/ext.overrides",
+            "demo/static/lib/cgxp/dygraphs",
+            "demo/static/js",
+        ]
+        %>
+
+    Replace all the root section by:
+
+        root =
+            ${"\n    ".join(root)}
+
+14. Remove your Apache configuration file, probably in
     `/var/www/vhost/demo_geomapfish/conf`. Now it will be automatically created.
+
+15. Notes on database changes:
+    * In prevision of GeoMapFish 2.0 some tables were added and some fields updated.
+    * Table ``user`` has been moved to schema ``main_static`` in order to store all
+      data modified by the web application in the same schema.
+      As a result the passwords no longer need to be synchronised among the various instances
+      of the application and the password replication tool has been removed.
+
+16. Add at the end of the `deploy/hooks/post-restore-database.mako` file the following line:
+
+    + .build/venv/bin/alembic -c alembic_static.ini upgrade head
+
+17. In the `demo/subscribers.py`, `demo/model.py`, `demo/form.py` do the following changes:
+
+    -... = TranslationStringFactory('demo')
+    +... = TranslationStringFactory("demo-server")
 
 
 Version 1.5.4

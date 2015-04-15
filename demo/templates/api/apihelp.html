@@ -195,13 +195,13 @@ map.addCustomLayer('gpx', 'My GPX layer', '${request.static_path('demo:static/ap
 
 <div class="api">
     <h2>Load data from a text file</h2>
-    See <a href="${request.static_path('demo:static/apihelp/MonFichier.txt')}" target="_blank">MonFichier.txt</a>.
+    See <a href="${request.static_path('demo:static/apihelp/data.txt')}" target="_blank">data.txt</a>.
     <br />
     <div id='map9' class="map"></div>
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map9'
 });
-map.addCustomLayer('text', 'My custom txt layer', '${request.static_path('demo:static/apihelp/MonFichier.txt')}');
+map.addCustomLayer('text', 'My custom txt layer', '${request.static_path('demo:static/apihelp/data.txt')}');
 </pre>
 </div>
 

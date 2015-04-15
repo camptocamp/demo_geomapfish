@@ -23,6 +23,7 @@
 /demo/locale/*/LC_MESSAGES/*.mo
 /print/WEB-INF/lib/*.jar
 /print/WEB-INF/classes/logback.xml
+/jsbuild/app.cfg
 /demo/static/build/
 /demo/locale/*.pot
 /deploy/hooks/post-restore-database
