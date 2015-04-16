@@ -180,7 +180,7 @@ Ext.onReady(function() {
             srsName: 'EPSG:21781',
             featureTypes: ["hospitals", "firestations"],
             attributeURLs: ${queryer_attribute_urls | n},
-            describeFeatureTypeParams: ${dumps(url_role_params) | n}
+            describeFeatureTypeParams: ${dumps(version_role_params) | n}
         },
 % endif
 % if 'grid' in request.params:
@@ -292,7 +292,7 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             printURL: "${request.route_url('printproxy')}",
             mapserverURL: "${request.route_url('mapserverproxy')}",
-            printProviderConfig: ${dumps(url_role_params) | n},
+            printProviderConfig: ${dumps(version_role_params) | n},
             options: {
                 labelAlign: 'top',
                 defaults: {
