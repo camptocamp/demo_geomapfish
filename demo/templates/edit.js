@@ -84,7 +84,8 @@ Ext.onReady(function() {
         tools: [{
             ptype: 'cgxp_editing',
             layerTreeId: 'layertree',
-            layersURL: "${request.route_url('layers_root')}"
+            layersURL: "${request.route_url('layers_root')}",
+            metadataParams: ${dumps(version_role_params) | n}
         },
         {
             ptype: "cgxp_mapopacityslider",
