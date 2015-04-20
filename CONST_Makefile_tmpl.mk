@@ -1,5 +1,5 @@
 PYTHON_VERSION = $(shell .build/venv/bin/python -c "import sys; print('%i.%i' % (sys.version_info.major, sys.version_info.minor))" 2> /dev/null)
-PACKAGE = demo
+PACKAGE = {{package}}
 
 # Don't minify the js / css, ...
 DEVELOPMENT ?= FALSE
