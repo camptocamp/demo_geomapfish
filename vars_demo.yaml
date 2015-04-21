@@ -46,7 +46,7 @@ vars:
             print_template:
             - 1 A4 portrait demo
             - 2 A3 portrait demo
-            default_basemap: OSM_MapQuest
+            default_basemap: asitvd.fond_couleur
             mobile_default_theme:
 
         # Functionalities that are accessible to authenticated
