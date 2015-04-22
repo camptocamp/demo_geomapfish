@@ -10,6 +10,7 @@
 /apache/tilecache.conf
 /apache/tiles.conf
 /apache/wsgi.conf
+/apache/tinyows.conf
 /apache/application.wsgi
 /deploy/deploy.cfg
 /development.ini
@@ -21,6 +22,7 @@
 /apache/tiles.conf
 /mapserver/*.map
 /mapserver/*/*.map
+/mapserver/tinyows.xml
 /mapserver/ms_error.log
 /print/WEB-INF/lib/*.jar
 /print/WEB-INF/classes/logback.xml
