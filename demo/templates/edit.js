@@ -8,13 +8,13 @@ Ext.onReady(function() {
     // OpenLayers
     OpenLayers.Number.thousandsSeparator = ' ';
     OpenLayers.DOTS_PER_INCH = 72;
-    OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
+    OpenLayers.ProxyHost = "${request.route_url('ogcproxy') | n}?url=";
 
     // Ext
     Ext.QuickTips.init();
 
-    OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
-    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
+    OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/') | n}";
+    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif') | n}";
 
     // Apply same language than on the server side
     OpenLayers.Lang.setCode("${lang}");
@@ -84,8 +84,7 @@ Ext.onReady(function() {
         tools: [{
             ptype: 'cgxp_editing',
             layerTreeId: 'layertree',
-            layersURL: "${request.route_url('layers_root')}",
-            metadataParams: ${dumps(version_role_params) | n}
+            layersURL: "${request.route_url('layers_root') | n}"
         },
         {
             ptype: "cgxp_mapopacityslider",
@@ -113,14 +112,14 @@ Ext.onReady(function() {
                 layout: 'fit',
                 autoScroll: true,
                 themes: THEMES,
-                wmsURL: '${request.route_url('mapserverproxy')}',
+                wmsURL: "${request.route_url('mapserverproxy') | n}",
                 defaultThemes: ["Edit"],
             },
             outputTarget: 'left-panel'
         },
         {
             ptype: "cgxp_fulltextsearch",
-            url: "${request.route_url('fulltextsearch')}",
+            url: "${request.route_url('fulltextsearch') | n}",
             layerTreeId: "layertree",
             pointRecenterZoom: 20,
             actionTarget: "map.tbar",
@@ -134,7 +133,7 @@ Ext.onReady(function() {
             ptype: "cgxp_permalink",
             id: "permalink",
             actionTarget: "map.tbar",
-            shortenerCreateURL: "${request.route_url('shortener_create')}",
+            shortenerCreateURL: "${request.route_url('shortener_create') | n}",
             actionConfig: {
                 text: OpenLayers.i18n("Link")
             }
@@ -147,9 +146,9 @@ Ext.onReady(function() {
             username: "${user.username}",
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},
 % endif
-            loginURL: "${request.route_url('login', path='')}",
-            loginChangeURL: "${request.route_url('loginchange')}",
-            logoutURL: "${request.route_url('logout', path='')}",
+            loginURL: "${request.route_url('login') | n}",
+            loginChangeURL: "${request.route_url('loginchange') | n}",
+            logoutURL: "${request.route_url('logout') | n}",
             enablePasswordChange: true,
             forcePasswordChange: true,
             permalinkId: "permalink"

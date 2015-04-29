@@ -8,13 +8,13 @@ Ext.onReady(function() {
     // OpenLayers
     OpenLayers.Number.thousandsSeparator = ' ';
     OpenLayers.DOTS_PER_INCH = 72;
-    OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
+    OpenLayers.ProxyHost = "${request.route_url('ogcproxy') | n}?url=";
 
     // Ext
     Ext.QuickTips.init();
 
-    OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
-    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
+    OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/') | n}";
+    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif') | n}";
 
     // Apply same language than on the server side
     OpenLayers.Lang.setCode("${lang}");
@@ -108,7 +108,7 @@ Ext.onReady(function() {
                 }*/
             },
             searchOptions: {
-                url: "${request.route_url('fulltextsearch', path='')}",
+                url: "${request.route_url('fulltextsearch') | n}",
             },
             outputConfig: {
                 zoomToRouteLevel: 16

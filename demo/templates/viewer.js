@@ -8,7 +8,7 @@ Ext.onReady(function() {
     // OpenLayers
     OpenLayers.Number.thousandsSeparator = ' ';
     OpenLayers.DOTS_PER_INCH = 72;
-    OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
+    OpenLayers.ProxyHost = "${request.route_url('ogcproxy') | n}?url=";
 
     // Ext
     Ext.QuickTips.init();
@@ -164,7 +164,7 @@ Ext.onReady(function() {
 % endif
                 defaultThemes: ["Transport"],
                 uniqueTheme: true,
-                wmsURL: "${request.route_url('mapserverproxy')}"
+                wmsURL: "${request.route_url('mapserverproxy') | n}"
             },
             outputTarget: "layerpanel"
         },
@@ -173,21 +173,21 @@ Ext.onReady(function() {
             ptype: "cgxp_querier",
             outputTarget: "left-panel",
             events: EVENTS,
-            mapserverproxyURL: "${request.route_url('mapserverproxy')}",
+            mapserverproxyURL: "${request.route_url('mapserverproxy') | n}",
             // don't work with actual version of mapserver, the proxy will limit to 200
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
             srsName: 'EPSG:21781',
             featureTypes: ["hospitals", "firestations"],
             attributeURLs: ${queryer_attribute_urls | n},
-            describeFeatureTypeParams: ${dumps(url_role_params) | n}
+            //describeFeatureTypeParams: ${dumps(url_role_params) | n}
         },
 % endif
 % if 'grid' in request.params:
         {
             ptype: "cgxp_featuresgrid",
             id: "featuresGrid",
-            csvURL: "${request.route_url('csvecho')}",
+            csvURL: "${request.route_url('csvecho') | n}",
             maxFeatures: 200,
             outputTarget: "featuregrid-container",
             events: EVENTS,
@@ -216,7 +216,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_getfeature",
-            mapserverURL: "${request.route_url('mapserverproxy')}",
+            mapserverURL: "${request.route_url('mapserverproxy') | n}",
             actionTarget: null, //"center.tbar",
             events: EVENTS,
             themes: THEMES,
@@ -228,7 +228,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_contextualdata",
-            url: "${request.route_url('raster', path='')}",
+            url: "${request.route_url('raster') | n}",
             actionTarget: "center.tbar",
             toggleGroup: "maptools",
             streetViewLink: true,
@@ -251,7 +251,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_fulltextsearch",
-            url: "${request.route_url('fulltextsearch')}",
+            url: "${request.route_url('fulltextsearch') | n}",
             layerTreeId: "layertree",
             pointRecenterZoom: 20,
             actionTarget: "center.tbar",
@@ -290,9 +290,15 @@ Ext.onReady(function() {
             featureProvider: "featuresWindow",
 % endif
             actionTarget: "center.tbar",
+<<<<<<< HEAD
             printURL: "${request.route_url('printproxy')}",
             mapserverURL: "${request.route_url('mapserverproxy')}",
             printProviderConfig: ${dumps(url_role_params) | n},
+=======
+            printURL: "${request.route_url('printproxy') | n}",
+            mapserverURL: "${request.route_url('mapserverproxy') | n}",
+            printProviderConfig: ${dumps(version_role_params) | n},
+>>>>>>> Don't interpret chars
             options: {
                 labelAlign: 'top',
                 defaults: {
@@ -332,7 +338,7 @@ Ext.onReady(function() {
             ptype: "cgxp_permalink",
             id: "permalink",
             actionTarget: "center.tbar",
-            shortenerCreateURL: "${request.route_url('shortener_create')}",
+            shortenerCreateURL: "${request.route_url('shortener_create') | n}",
             actionConfig: {
                 text: OpenLayers.i18n("Link")
             }
@@ -355,8 +361,8 @@ Ext.onReady(function() {
             ptype: 'cgxp_profile',
             actionTarget: 'center.tbar',
             toggleGroup: 'maptools',
-            serviceUrl: "${request.route_url('profile.json')}",
-            csvServiceUrl: "${request.route_url('profile.csv')}",
+            serviceUrl: "${request.route_url('profile.json') | n}",
+            csvServiceUrl: "${request.route_url('profile.csv') | n}",
             rasterLayers: ['srtm', 'aster'],
             actionConfig: {
                 text: OpenLayers.i18n("Profile")
@@ -402,9 +408,9 @@ Ext.onReady(function() {
             isPasswordChanged: ${"true" if user.is_password_changed else "false"},
 % endif
             events: EVENTS,
-            loginURL: "${request.route_url('login')}",
-            loginChangeURL: "${request.route_url('loginchange')}",
-            logoutURL: "${request.route_url('logout')}",
+            loginURL: "${request.route_url('login') | n}",
+            loginChangeURL: "${request.route_url('loginchange') | n}",
+            logoutURL: "${request.route_url('logout') | n}",
             enablePasswordChange: true,
             forcePasswordChange: true,
             permalinkId: "permalink"
@@ -426,7 +432,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_addkmlfile",
-            echoUrl: "${request.route_url('echo')}",
+            echoUrl: "${request.route_url('echo') | n}",
             actionTarget: "layerpanel.bbar"
         },
 
