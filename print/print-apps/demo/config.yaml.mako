@@ -14,7 +14,7 @@ templates:
             northArrow: !northArrow
                 size: 40
                 default:
-                    graphic: "north.svg"
+                    graphic: "file:///north.svg"
             scalebar: !scalebar
                 width: 150
                 height: 20
