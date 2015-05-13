@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 
 # Copyright (c) 2015, Camptocamp SA
 # All rights reserved.
@@ -28,31 +27,36 @@
 # of the authors and should not be interpreted as representing official policies,
 # either expressed or implied, of the FreeBSD Project.
 
-"""${message}
+"""add column time_widget
 
-Revision ID: ${up_revision}
-Revises: ${down_revision}
-Create Date: ${create_date}
+Revision ID: 5109242131ce
+Revises: 164ac0819a61
+Create Date: 2015-04-27 17:31:41.760977
 """
 
 from alembic import op, context
+from sqlalchemy import Column
+from sqlalchemy.types import Unicode
 
 # revision identifiers, used by Alembic.
-revision = "${up_revision}"
-down_revision = "${down_revision}"
+revision = "5109242131ce"
+down_revision = "164ac0819a61"
 
 
 def upgrade():
     schema = context.get_context().config.get_main_option("schema")
-    staticschema = schema + "_static"
-    parentschema = context.get_context().config.get_main_option("parentschema")
 
-    ${upgrades if upgrades else "# Instructions"}
+    # Instructions
+    for table in ["layerv1", "layer_internal_wms", "layer_external_wms"]:
+        op.add_column(table, Column("time_widget", Unicode(10), default=u"slider"), schema=schema)
+        op.execute("UPDATE %(schema)s.%(table)s SET time_widget = 'slider'" % {
+            "schema": schema, "table": table
+        })
 
 
 def downgrade():
     schema = context.get_context().config.get_main_option("schema")
-    staticschema = schema + "_static"
-    parentschema = context.get_context().config.get_main_option("parentschema")
 
-    ${downgrades if downgrades else "# Instructions"}
+    # Instructions
+    for table in ["layerv1", "layer_internal_wms", "layer_external_wms"]:
+        op.drop_column(table, "time_widget", schema=schema)

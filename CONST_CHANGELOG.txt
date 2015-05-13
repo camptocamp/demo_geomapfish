@@ -23,48 +23,38 @@ Version 1.6
     cp /tmp/demo_geomapfish/deploy/hooks/post-restore-code deploy/hooks
     chmod +x deploy/hooks/post-restore-code
 
-2. Removes the deprecated files:
-
-    git rm -r demo/CONST_migration
-    git rm -r demo/static/build
-    git rm config.yaml
-    git rm bootstrep.py
-    git rm -r *buildout*
-    git rm development.ini.in production.ini.in
-    git rm versions.cfg
-
-3. Starting from version 1.6 we use a new build system based on Make that will change
+2. Starting from version 1.6 we use a new build system based on Make that will change
    many of your habits, information are given at:
    http://docs.camptocamp.net/c2cgeoportal/1.6/integrator/make.html
 
    Main things to do:
    - Move your old `config.yaml` and your `vars` section of the old
-     `buildout.cfg` file to the new `demo.yaml` file.
+     `buildout.cfg` file to the new `vars_demo.yaml` file.
    - Move your special task from your old `buildout.cfg` file to your new
      `demo.mk` file
    - The `README.rst`, `.gitignore` files will be overwritten.
      Please make sure to back your changes up before proceeding.
    - The `development.ini.in`, `production.ini.in` files will be replaced by
      the `development.ini.mako`, `production.ini.mako` files. If you lost
-     something it should probably be moved in the `demo.yaml` file.
+     something it should probably be moved in the `vars_demo.yaml` file.
    - The `print/template/print.mako.in` file should be moved to
      `print.yaml.mako`.
-   - The build environments (`<user>.mk` files) must be recreated again.
-     For multi project mode have a look on the documentation:
+   - The build environments (`<user>.mk` files) must be recreated.
+     For multi project mode have a look at the documentation:
      http://docs.camptocamp.net/c2cgeoportal/master/integrator/create_application.html
 
-4. In the `setup.cfg` file you should remove all the `[compile_catalog]`,
+3. In the `setup.cfg` file you should remove all the `[compile_catalog]`,
    `[extract_messages]`, `[init_catalog]`, `[update_catalog]` sections.
 
-5. In the `setup.py` file you should remove the `message_extractors`
+4. In the `setup.py` file you should remove the `message_extractors`
    argument.
 
-6. In the demo/__init__.py file do the following changes:
+5. In the demo/__init__.py file do the following changes:
 
     -from c2cgeoportal import locale_negotiator
     +from c2cgeoportal import locale_negotiator, add_interface, INTERFACE_TYPE_SENCHA_TOUCH
 
-    - mobile view configuration ...
+    Replace the mobile view configuration by the following lines:
     + add_interface(config)
     + add_interface(config, 'edit')
     + add_interface(config, 'routing')
@@ -88,7 +78,7 @@ Version 1.6
     Remove the activation of the checkers (now done directly in c2cgeoportal):
     - config.add_route('checker_all', '/checker_all')
 
-7. In the `demo/templates/*.html` files you should do the following
+6. In the `demo/templates/*.html` files you should do the following
    changes:
 
    - jsbuild_cfg = request.registry.settings.get('jsbuild_cfg')
@@ -100,7 +90,7 @@ Version 1.6
    Remove the no more needed `_query=url_params` argument of the
    `static_url` calls.
 
-8. In the `demo/templates/*.js` files do the following changes:
+7. In the `demo/templates/*.js` files do the following changes:
 
     - <% json_extent = user.role.json_extent if user else None %>
     - % if json_extent:
@@ -115,26 +105,30 @@ Version 1.6
 
     + getURL: function() {
     +     var url = OpenLayers.Layer.WMTS.prototype.getURL.apply(this, arguments);
-    +     return url + "?${"&".join(["%s=%s" % p for p in version_params.items()])}";
+    +     return url + "?${"&".join(["%s=%s" % p for p in version_params.items()]) | }";
     + },
 
-9. In the `demo/templates/edit.js` file do the following change:
+9. In the `demo/templates/*.js`, `demo/templates/api/*.js`,
+    `demo/static/mobile/config.js`, `demo/static/mobile/index.html`
+    files add ` | n` after all the `static_url` and `route_url` call, like:
+    - "${request.static_url('...')}"
+    + "${request.static_url('...') | n}"
 
-    In the `cgxp_editing` plugin add the following attribute:
-
+10. In the `demo/templates/edit.js` file
+    add the following attribute to the `cgxp_editing` plugin:
     + metadataParams: ${dumps(version_role_params) | n}
 
-10. In the mapfile add the following lines to all restricted layers:
+11. In the mapfile add the following lines to all restricted layers:
 
     VALIDATION
         ${mapserver_layer_validation}
     END
 
-11. Remove the deprecated versioning table:
+12. Remove the deprecated versioning table:
 
     sudo -u postgres psql -c "DROP TABLE version_<schema>" <database>
 
-12. For non Apt/Dpkg based OS, disable the package checking:
+13. For non Apt/Dpkg based OS, disable the package checking:
     In the ``buildout.cfg`` section ``[buildout]`` add:
 
         parts -=
@@ -142,11 +136,11 @@ Version 1.6
             test-packages-mobile
             test-packages-tilecloud-chain
 
-13. In the `demo/static/mobile/config.js` add the following line at the top of the file:
+14. In the `demo/static/mobile/config.js` add the following line at the top of the file:
 
     +OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
 
-14. Move the `jsbuild/app.cfg` file to `jsbuild/app.cfg.mako`.
+15. Move the `jsbuild/app.cfg` file to `jsbuild/app.cfg.mako`.
 
     Add the following lines in the start of the file:
         <%
@@ -186,24 +180,37 @@ Version 1.6
         root =
             ${"\n    ".join(root)}
 
-15. Remove your Apache configuration file, probably in
+16. Remove your Apache configuration file, probably in
     `/var/www/vhost/demo_geomapfish/conf`. Now it will be automatically created.
 
-16. Notes on database changes:
+17. Notes on database changes:
     * In prevision of GeoMapFish 2.0 some tables were added and some fields updated.
     * Table ``user`` has been moved to schema ``main_static`` in order to store all
       data modified by the web application in the same schema.
       As a result the passwords no longer need to be synchronised among the various instances
       of the application and the password replication tool has been removed.
 
-17. Add at the end of the `deploy/hooks/post-restore-database.mako` file the following line:
+18. Add at the end of the `deploy/hooks/post-restore-database.mako` file the following line:
 
     + .build/venv/bin/alembic -c alembic_static.ini upgrade head
+
+18. In your `apache/wsgi.conf.mako` or `apache/wsgi.conf.in` file replace all the
+    `apache-entry-point` by `apache_entry_point`
 
 19. In the `demo/subscribers.py`, `demo/model.py`, `demo/form.py` do the following changes:
 
     -... = TranslationStringFactory('demo')
     +... = TranslationStringFactory("demo-server")
+
+20. Remove the deprecated files:
+
+    git rm -r demo/CONST_migration
+    git rm -r demo/static/build
+    git rm config.yaml.in
+    git rm bootstrap.py
+    git rm -r *buildout*
+    git rm development.ini.in production.ini.in
+    git rm versions.cfg
 
 
 Version 1.5.4

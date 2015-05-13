@@ -13,8 +13,8 @@ Ext.onReady(function() {
     // Ext
     Ext.QuickTips.init();
 
-    OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
-    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
+    OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/') | n}";
+    Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif') | n}";
 
     // Apply same language than on the server side
     OpenLayers.Lang.setCode("${lang}");
@@ -372,7 +372,7 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             redliningText: OpenLayers.i18n('Dessin'),
             stateId: 'rl',
-            layerManagerUrl: "${request.static_url('demo:static/lib/cgxp/sandbox/LayerManager/ux/')}",
+            layerManagerUrl: "${request.static_url('demo:static/lib/cgxp/sandbox/LayerManager/ux/') | n}",
             actionConfig: {
                 iconCls: 'cgxp-icon-redline',
                 tooltip: OpenLayers.i18n("Draw geometries on the map")

@@ -154,10 +154,10 @@ demo.Map = function(config) {
          */
 
         Ext.QuickTips.init();
-        Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif')}";
+        Ext.BLANK_IMAGE_URL = "${request.static_url('demo:static/lib/cgxp/ext/Ext/resources/images/default/s.gif') | n}";
         OpenLayers.Number.thousandsSeparator = ' ';
         OpenLayers.DOTS_PER_INCH = 72;
-        OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
+        OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/') | n}";
         OpenLayers.Lang.setCode("${lang}");
         GeoExt.Lang.set("${lang}");
 
@@ -173,7 +173,7 @@ demo.Map = function(config) {
         return new demo.Map(config);
     }
 
-    this.wmsURL = "${request.route_url('mapserverproxy')}";
+    this.wmsURL = "${request.route_url('mapserverproxy') | n}";
     this.queryableLayers = ${queryable_layers|n};
     return cgxp.api.Map.call(this, config);
 };

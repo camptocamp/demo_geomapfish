@@ -37,7 +37,7 @@ demo.Map = function(config) {
 
         OpenLayers.Number.thousandsSeparator = ' ';
         OpenLayers.DOTS_PER_INCH = 72;
-        OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/')}";
+        OpenLayers.ImgPath = "${request.static_url('demo:static/lib/cgxp/core/src/theme/img/ol/') | n}";
         OpenLayers.Lang.setCode("${lang}");
 
         OpenLayers.inherit(demo.Map, cgxp.api.Map);
@@ -50,7 +50,7 @@ demo.Map = function(config) {
         return new demo.Map(config);
     }
 
-    this.wmsURL = "${request.route_url('mapserverproxy')}";
+    this.wmsURL = "${request.route_url('mapserverproxy') | n}";
     this.queryableLayers = ${queryable_layers|n};
     return cgxp.api.Map.call(this, config);
 };
