@@ -290,15 +290,8 @@ Ext.onReady(function() {
             featureProvider: "featuresWindow",
 % endif
             actionTarget: "center.tbar",
-<<<<<<< HEAD
-            printURL: "${request.route_url('printproxy')}",
-            mapserverURL: "${request.route_url('mapserverproxy')}",
-            printProviderConfig: ${dumps(url_role_params) | n},
-=======
             printURL: "${request.route_url('printproxy') | n}",
             mapserverURL: "${request.route_url('mapserverproxy') | n}",
-            printProviderConfig: ${dumps(version_role_params) | n},
->>>>>>> Don't interpret chars
             options: {
                 labelAlign: 'top',
                 defaults: {
@@ -378,6 +371,7 @@ Ext.onReady(function() {
             toggleGroup: "maptools",
             actionTarget: "center.tbar",
             redliningText: OpenLayers.i18n('Dessin'),
+            stateId: 'rl',
             layerManagerUrl: "${request.static_url('demo:static/lib/cgxp/sandbox/LayerManager/ux/')}",
             actionConfig: {
                 iconCls: 'cgxp-icon-redline',
