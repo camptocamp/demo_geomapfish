@@ -112,12 +112,6 @@ App.map = new OpenLayers.Map({
                 group: 'background',
                 visibility: false
         }, WMTSASITVD_OPTIONS2)),
-        new OpenLayers.Layer.WMTS(OpenLayers.Util.applyDefaults({
-            name: OpenLayers.i18n('ortho'),
-            ref: 'ortho',
-            layer: 'asitvd.fond_pourortho',
-            opacity: 0
-        }, WMTSASITVD_OPTIONS2)),
         new OpenLayers.Layer(
             OpenLayers.i18n('blank'),
             {
