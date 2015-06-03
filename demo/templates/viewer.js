@@ -257,17 +257,17 @@ Ext.onReady(function() {
             grouping: true,
             useColorPicker: true,
         },
+% if 'location' in functionality:
         {
             ptype: "cgxp_locationchooser",
             toggleGroup: "maptools",
             actionTarget: "center.tbar",
             locations: {
-                'User initial': INITIAL_EXTENT,
-                'Lausanne': [535436, 155243, 539476, 150443],
-                'Pully': [539606, 152493, 541106, 150443],
-                'Vevey': [551755, 149340, 555995, 145060]
+                'Initial': INITIAL_EXTENT,
+                ${', '.join([functionality['location']]) }
             }
         },
+% endif
         {
             ptype: "cgxp_myposition",
             actionTarget: "center.tbar",
