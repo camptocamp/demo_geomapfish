@@ -96,7 +96,7 @@
 % endif
             </div>
             <div id="toolbar">
-% if request.user:
+% if request.user and request.user.role_name == 'role_admin':
                 <a href="${request.route_url('home')}admin?lang=${lang}" target="_blank" class="icon-admin" title="Ouvrir l'interface d'admin">Admin</a> - 
 % endif
                 <a href="${request.route_url('routing')}?lang=${lang}" target="_blank" class="icon-routing" title="Ouvrir l'application de calcul d'itinéraire">Calcul d'itinéraire</a> -
