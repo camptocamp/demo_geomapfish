@@ -257,14 +257,14 @@ Ext.onReady(function() {
             grouping: true,
             useColorPicker: true,
         },
-% if 'location' in functionality:
+% if len(functionality["location"]) > 0:
         {
             ptype: "cgxp_locationchooser",
             toggleGroup: "maptools",
             actionTarget: "center.tbar",
             locations: {
                 'Initial': INITIAL_EXTENT,
-                ${', '.join([functionality['location']]) }
+                ${', '.join(functionality['location']) | n}
             }
         },
 % endif
