@@ -98,12 +98,24 @@ vars:
 
     # Checker configuration
     checker:
-        print_template: 1 A4 portrait demo
-        print_center_lon: 6
-        print_center_lat: 46
-        print_scale: 10000
         fulltextsearch: pau
         lang_files: [cgxp, cgxp-api]
+        print_spec:
+            layout: "A4 portrait"
+            outputFormat: "pdf"
+            attributes:
+                title: ""
+                comments: ""
+                datasource: []
+                map:
+                    projection: "EPSG:21781"
+                    dpi: 254
+                    rotation: 0
+                    center: [600000, 200000]
+                    scale: 100000
+                    longitudeFirst: true
+                    layers: []
+                legend: {}
 
     check_collector:
         disabled:
