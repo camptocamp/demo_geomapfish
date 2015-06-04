@@ -5,9 +5,9 @@ VARS_FILE = vars_demo.yaml
 VARS_FILES += ${VARS_FILE}
 endif
 
-INSTANCE_ID = main
-APACHE_ENTRY_POINT ?= /
-APACHE_VHOST = geomapfish-demo
+INSTANCE_ID = viewer
+#APACHE_ENTRY_POINT ?= /
+APACHE_VHOST = geomapfish
 PRINT_VERSION = 3
 
 PRINT_INPUT += WEB-INF
