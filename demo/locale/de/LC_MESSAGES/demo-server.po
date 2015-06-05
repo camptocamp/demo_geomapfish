@@ -1,32 +1,32 @@
-#: demo/templates/index.html:72 demo/templates/routing.html:60
-#: demo/templates/edit.html:60
+#: demo/templates/edit.html:60 demo/templates/routing.html:60
+#: demo/templates/index.html:72
 msgid "Loading message"
-msgstr ""
-
-#: demo/templates/index.html:121 demo/templates/routing.html:74
-msgid "Here you can search for city, coordinates, ..."
-msgstr ""
-
-#: demo/templates/index.html:122 demo/templates/routing.html:75
-msgid "Search examples"
-msgstr ""
-
-#: demo/templates/index.html:124 demo/templates/routing.html:77
-msgid "City"
-msgstr ""
-
-#: demo/templates/index.html:125 demo/templates/routing.html:78
-msgid "Coordinates"
-msgstr ""
-
-#: demo/templates/index.html:127 demo/templates/routing.html:80
-msgid "Swiss coordinates"
-msgstr ""
-
-#: demo/templates/index.html:128 demo/templates/routing.html:81
-msgid "WGS 84 coordinates (Longitude/latitude)"
 msgstr ""
 
 #: demo/templates/edit.html:74
 msgid "search tip message"
+msgstr ""
+
+#: demo/templates/routing.html:74 demo/templates/index.html:121
+msgid "Here you can search for city, coordinates, ..."
+msgstr ""
+
+#: demo/templates/routing.html:75 demo/templates/index.html:122
+msgid "Search examples"
+msgstr ""
+
+#: demo/templates/routing.html:77 demo/templates/index.html:124
+msgid "City"
+msgstr ""
+
+#: demo/templates/routing.html:78 demo/templates/index.html:125
+msgid "Coordinates"
+msgstr ""
+
+#: demo/templates/routing.html:80 demo/templates/index.html:127
+msgid "Swiss coordinates"
+msgstr ""
+
+#: demo/templates/routing.html:81 demo/templates/index.html:128
+msgid "WGS 84 coordinates (Longitude/latitude)"
 msgstr ""
