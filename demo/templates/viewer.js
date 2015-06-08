@@ -1,3 +1,4 @@
+## -*- coding: utf-8 -*-
 <%
 from json import dumps
 %>
@@ -45,7 +46,7 @@ Ext.onReady(function() {
 
     var WMTSASITVD_OPTIONS2 = {
         url: "http://ows.asitvd.ch/wmts/",
-        attribution: "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>",
+        attribution: OpenLayers.i18n("© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"),
         displayInLayerSwitcher: false,
         requestEncoding: 'REST',
         buffer: 0,
@@ -449,7 +450,7 @@ Ext.onReady(function() {
         {
             ptype: "gxp_tool",
             actionTarget: "center.bbar",
-            actions: '<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://www.camptocamp.com" target="_blank" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a> - <a target="_blank" href="http://geomapfish.org/">GeoMapFish</a>.'
+            actions: OpenLayers.i18n('<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://www.camptocamp.com" target="_blank" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a> - <a target="_blank" href="http://geomapfish.org/">GeoMapFish</a>.')
         }
         ],
 

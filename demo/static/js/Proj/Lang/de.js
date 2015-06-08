@@ -88,7 +88,12 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
     "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen": "lithologie Haubtgruppen",
     "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung": "Gesteinskasifizierung",
     "ch.are.alpenkonvention": "Alpen Konvention",
-    "ch.astra.ausnahmetransportrouten": "Ausnahmetransportrouten"
+    "ch.astra.ausnahmetransportrouten": "Ausnahmetransportrouten",
+
+    "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>":
+        "© <a href='http://asitvd.ch'>ASIT VD</a>, <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> Mitwirkende",
+    '<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://www.camptocamp.com" target="_blank" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a> - <a target="_blank" href="http://geomapfish.org/">GeoMapFish</a>.':
+        '<a href="mailto:info+demo@camptocamp.com">Kontakt</a> - entwickelt von <a href="http://www.camptocamp.com" target="_blank" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a> - <a target="_blank" href="http://geomapfish.org/">GeoMapFish</a>.'
 
 
 });
