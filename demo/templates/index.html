@@ -8,10 +8,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9; IE=EmulateIE10">
         <title>GeoMapFish Demo</title>
         <link rel="shortcut icon" type="image/x-icon" href="${request.static_url('demo:static/images/favicon.ico')}">
-% if not no_redirect and mobile_url is not None:                                                        
+% if not no_redirect and mobile_url is not None:
         <script>
             if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                    window.location = "${mobile_url}";                                                      
+                    window.location = "${mobile_url}";
             }
         </script>
 % endif
@@ -83,7 +83,7 @@
             </ul>
             <div id="lang">
 % if lang != 'de':
-             <a href="${request.route_url('home')}?lang=de">de</a> - 
+             <a href="${request.route_url('home')}?lang=de">de</a> -
 % endif
 % if lang != 'fr':
              <a href="${request.route_url('home')}?lang=fr">fr</a>
@@ -92,18 +92,18 @@
 % endif
 % endif
 % if lang != 'en':
-             <a href="${request.route_url('home')}?lang=en">en</a> 
+             <a href="${request.route_url('home')}?lang=en">en</a>
 % endif
             </div>
             <div id="toolbar">
 % if request.user and request.user.role_name == 'role_admin':
-                <a href="${request.route_url('home')}admin?lang=${lang}" target="_blank" class="icon-admin" title="Ouvrir l'interface d'admin">Admin</a> - 
+                <a href="${request.route_url('home')}admin?lang=${lang}" target="_blank" class="icon-admin" title="Ouvrir l'interface d'admin">${_("Admin")}</a> -
 % endif
-                <a href="${request.route_url('routing')}?lang=${lang}" target="_blank" class="icon-routing" title="Ouvrir l'application de calcul d'itinéraire">Calcul d'itinéraire</a> -
+                <a href="${request.route_url('routing')}?lang=${lang}" target="_blank" class="icon-routing" title="Ouvrir l'application de calcul d'itinéraire">${_("Routing")}</a> -
 % if request.user:
-                <a href="${request.route_url('edit')}?lang=${lang}" target="_blank" class="icon-edit" title="Ouvrir l'application d'édition">Édition</a> -
+                <a href="${request.route_url('edit')}?lang=${lang}" target="_blank" class="icon-edit" title="Ouvrir l'application d'édition">${_("Editing")}</a> -
 % endif
-                <a href="${request.route_url('mobile_index_prod')}?lang=${lang}" target="_blank" class="icon-mobile" title="Application mobile">Mobile</a> -
+                <a href="${request.route_url('mobile_index_prod')}?lang=${lang}" target="_blank" class="icon-mobile" title="Application mobile">${_("Mobile")}</a> -
                 <a href="${request.route_url('apihelp')}?lang=${lang}" target="_blank" class="icon-routing" title="Aide d'utilisation de l'API">API</a> -
                 <a href="${request.route_url('xapihelp')}?lang=${lang}" target="_blank" class="icon-routing" title="Aide d'utilisation de l'extended API">XAPI</a>
 	   </div>
@@ -111,7 +111,7 @@
         </div>
         <noscript><p>JavaScript is required here</p></noscript>
         <form method="POST" id="loginForm" style="display: none">
-            <input id="login" name="login" type="text" autocomplete="on"/>                                                                                                                                                                                                                                          
+            <input id="login" name="login" type="text" autocomplete="on"/>
             <input id="password" name="password" type="password" autocomplete="on"/>
             <input id="newPassword" name="newPassword" type="password" />
             <input id="confirmNewPassword" name="confirmNewPassword" type="password" />
