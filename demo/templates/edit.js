@@ -84,7 +84,14 @@ Ext.onReady(function() {
         tools: [{
             ptype: 'cgxp_editing',
             layerTreeId: 'layertree',
-            layersURL: "${request.route_url('layers_root') | n}"
+            layersURL: "${request.route_url('layers_root') | n}",
+            mapserverUrl: "${request.route_url('mapserverproxy') | n}",
+            snapLayers: {
+                "buildings": {
+                    tolerance: 15,
+                }
+            },
+            snapOptions: {}
         },
         {
             ptype: "cgxp_mapopacityslider",

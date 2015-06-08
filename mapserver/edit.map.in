@@ -127,3 +127,51 @@ LAYER
         "gml_geometries" "geom"
     END
 END
+
+LAYER
+    NAME "buildings"
+    GROUP "edit"
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, number, k.name AS building, geom FROM edit.building AS g LEFT OUTER JOIN edit.type AS k ON g.building_id = k.id) AS foo USING UNIQUE id USING srid=21781"
+    LABELITEM "name"
+    MAXSCALEDENOM 40000
+    LABELMAXSCALEDENOM 5000
+
+    PROJECTION
+      "init=epsg:21781"
+    END
+    CLASS
+        NAME "Building"
+        STYLE
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+        END
+        STYLE
+            COLOR 0 0 230
+            OPACITY 30
+        END
+        LABEL
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            FONT arial_bold
+            TYPE truetype
+            SIZE 10
+        END
+    END
+
+    METADATA
+        "wms_title" "Polygon"
+
+        "gml_include_items" "all"
+        "gml_exclude_items" "id"
+        "gml_types" "auto"
+        "gml_featureid" "id"
+        "gml_geom_type" "polygon"
+        "gml_geometries" "geom"
+    END
+END

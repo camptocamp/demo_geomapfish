@@ -263,7 +263,7 @@ Ext.onReady(function() {
             toggleGroup: "maptools",
             actionTarget: "center.tbar",
             locations: {
-                'Initial': INITIAL_EXTENT,
+##                'Initial': INITIAL_EXTENT,
                 ${', '.join(functionality['location']) | n}
             }
         },
