@@ -178,7 +178,7 @@ Ext.onReady(function() {
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
             srsName: 'EPSG:21781',
-            featureTypes: ["hospitals", "firestations"],
+            featureTypes: ["bus_stop", "hospitals", "firestations"],
             attributeURLs: ${queryer_attribute_urls | n}
         },
 % endif
