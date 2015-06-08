@@ -82,6 +82,8 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
     "wood": "Wald",
     "number" : "Nummer",
 
+    "buildings": "Gebäude",
+
     "asitvd.fond_pourortho": "ASIT VD grund Plan - durchsichtig für fotos",
     "ch.swisstopo.dreiecksvermaschung": "MN95 Dreiecksvermaschung",
     "ch.swisstopo.geologie-gravimetrischer_atlas": "gravimetrischer Atlas",
