@@ -80,6 +80,7 @@ include =
     widgets/Viewer.js #GXP
     Ext/ux/form/GroupComboBox.js
     CGXP/cgxp.js
+    CGXP/plugins/WFSPermalink.js
     CGXP/plugins/ThemeSelector.js
     CGXP/plugins/LocationChooser.js
     CGXP/plugins/ThemeFinder.js

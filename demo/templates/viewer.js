@@ -130,6 +130,15 @@ Ext.onReady(function() {
             outputTarget: "map"
         },
         {
+            ptype: "cgxp_wfspermalink",
+            WFSURL: "${request.route_url('mapserverproxy') | n}",
+            WFSTypes: ["buildings"],
+            maxFeatures: 10,
+            pointRecenterZoom: 13,
+            srsName: 'EPSG:21781',
+            events: EVENTS
+        },
+        {
             ptype: "cgxp_themeselector",
             outputTarget: "layerpanel",
             layerTreeId: "layertree",

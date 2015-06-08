@@ -148,7 +148,7 @@ Ext.onReady(function() {
         },
         {
             ptype: "cgxp_menushortcut",
-            actionTarget: "center.tbar",
+            actionTarget: "map.tbar",
             type: '-'
         },
         {
