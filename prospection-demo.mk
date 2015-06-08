@@ -1,8 +1,8 @@
 ifdef VARS_FILE
-VARS_FILES += ${VARS_FILE} vars_geoportailv3.yaml
+VARS_FILES += ${VARS_FILE} vars_prospection.yaml vars_demo.yaml
 else
-VARS_FILE = vars_demo.yaml
-VARS_FILES += ${VARS_FILE}
+VARS_FILE = vars_prospection.yaml
+VARS_FILES += ${VARS_FILE} vars_demo.yaml
 endif
 
 INSTANCE_ID = viewer
