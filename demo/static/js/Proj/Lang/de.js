@@ -80,6 +80,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
     "tourism": "Tourismus",
     "waterway": "Wasserweg",
     "wood": "Wald",
+    "number" : "Nummer",
 
     "asitvd.fond_pourortho": "ASIT VD grund Plan - durchsichtig für fotos",
     "ch.swisstopo.dreiecksvermaschung": "MN95 Dreiecksvermaschung",
