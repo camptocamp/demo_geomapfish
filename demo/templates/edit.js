@@ -88,7 +88,7 @@ Ext.onReady(function() {
             mapserverUrl: "${request.route_url('mapserverproxy') | n}",
             snapLayers: {
                 "buildings": {
-                    tolerance: 15,
+                    tolerance: 30,
                 }
             },
             snapOptions: {}
@@ -144,6 +144,11 @@ Ext.onReady(function() {
             actionConfig: {
                 text: OpenLayers.i18n("Link")
             }
+        },
+        {
+            ptype: "cgxp_menushortcut",
+            actionTarget: "center.tbar",
+            type: '-'
         },
         {
             ptype: "cgxp_login",
