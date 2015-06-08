@@ -198,7 +198,13 @@ Ext.onReady(function() {
             ptype: "cgxp_featureswindow",
             themes: THEMES,
             events: EVENTS,
-            id: "featuresWindow"
+            id: "featuresWindow",
+            defaultStyle: {
+                fillColor: 'blue', strokeColor: 'blue', label: ""
+            },
+            highlightStyle: {
+                fillColor: 'red', strokeColor: 'red', fillOpacity: 0.6, strokeOpacity: 1, strokeWidth: 2, label: ""
+            }
         },
 % endif
         {
