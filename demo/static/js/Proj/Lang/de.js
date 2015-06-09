@@ -1,15 +1,18 @@
 OpenLayers.Util.extend(OpenLayers.Lang.de, {
-  "layertree": "Themen",
+    "layertree": "Themen",
+    "Dessin": "Zeichnen",
+    "Profile": "Profil",
+    "Measure": "Messen",
 
-  "osrm_demo": "OSRM demo",
-  "c2c_car": "Auto - Camptocamp demo",
-  "c2c_bicycle": "Fahrrad - Camptocamp demo",
-  "c2c_foot": "Fussgänger - Camptocamp demo",
+    "osrm_demo": "OSRM demo",
+    "c2c_car": "Auto - Camptocamp demo",
+    "c2c_bicycle": "Fahrrad - Camptocamp demo",
+    "c2c_foot": "Fussgänger - Camptocamp demo",
 
-  "1 A4 portrait demo": "A4 Hochformat",
-  "2 A3 portrait demo": "A3 Hochformat",
-  "3 A4 landscape demo": "A4 Querformat",
-  "4 A3 landscape demo": "A3 Querformat",
+    "1 A4 portrait demo": "A4 Hochformat",
+    "2 A3 portrait demo": "A3 Hochformat",
+    "3 A4 landscape demo": "A4 Querformat",
+    "4 A3 landscape demo": "A3 Querformat",
 
     "Title": "Titel",
     "Description": "Beschreibung",
