@@ -210,7 +210,7 @@ Ext.onReady(function() {
             events: EVENTS,
             id: "featuresWindow",
             defaultStyle: {
-                fillColor: 'blue', strokeColor: 'blue', label: ""
+                fillColor: 'orange', strokeColor: 'orange', label: ""
             },
             highlightStyle: {
                 fillColor: 'red', strokeColor: 'red', fillOpacity: 0.6, strokeOpacity: 1, strokeWidth: 2, label: ""
