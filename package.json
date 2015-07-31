@@ -1,0 +1,31 @@
+{
+  "name": "demo",
+  "version": "0.0.1",
+  "description": "Pyramid Closure Project",
+  "scripts": {},
+  "license": "BSD",
+  "dependencies": {
+    "async": "~0.2.10"
+  },
+  "devDependencies": {
+    "angular": "1.4.3",
+    "angular-animate": "1.4.3",
+    "angular-gettext": "2.1.0",
+    "angular-gettext-tools": "2.1.2",
+    "bootstrap": "^3.3.0",
+    "font-awesome": "4.4.0",
+    "jquery": "1.11.3",
+    "jshint": "2.8.0",
+    "less": "2.5.1",
+    "less-plugin-clean-css": "1.5.1",
+    "ngeo": "camptocamp/ngeo#master",
+    "nomnom": "~1.6.2",
+    "openlayers": "openlayers/ol3#master",
+    "proj4": "2.3.6",
+    "phantomjs": "~1.9.7-5",
+    "typeahead.js": "~0.10.5",
+    "temp": "~0.7.0",
+    "walk": "~2.3.3",
+    "d3": "3.5.5"
+  }
+}
