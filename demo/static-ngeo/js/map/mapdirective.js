@@ -8,10 +8,12 @@
 goog.provide('app.mapDirective');
 
 goog.require('app');
+goog.require('ngeo.mapDirective');
 goog.require('ol.Map');
 goog.require('ol.View');
 goog.require('ol.layer.Tile');
 goog.require('ol.source.OSM');
+
 
 /**
  * @param {string} appMapUrl Url to themes template

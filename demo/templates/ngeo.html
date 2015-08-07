@@ -14,10 +14,15 @@
 % else:
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/build.min.css')}" type="text/css">
 % endif
+    <style>
+      #map {
+        width: 600px;
+        height: 400px;
+      }
+    </style>
   <head>
   <body>
     <app-map app-map-map="::mainCtrl.map"></app-map>
-
 
 % if debug:
     <script>
