@@ -271,6 +271,7 @@ include =
     GeoExt.ux/locale/WMSBrowser-fr.js
     ux/locale/StreetViewPanel-fr.js
     Styler/lang/fr.js
+    locale/SimplePrint-fr.js
     locale/fr.js #GXP
     CGXP/locale/fr.js
 last =
@@ -289,6 +290,7 @@ include =
     FeatureEditing/resources/lang/de.js
     GeoExt.ux/locale/WMSBrowser-de.js
     ux/locale/StreetViewPanel-de.js
+    locale/SimplePrint-de.js
     Styler/lang/de.js
 #    locale/de.js #GXP
     CGXP/locale/de.js
