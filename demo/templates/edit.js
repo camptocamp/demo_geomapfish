@@ -87,6 +87,7 @@ Ext.onReady(function() {
             layerTreeId: 'layertree',
             layersURL: "${request.route_url('layers_root') | n}",
             mapserverUrl: "${request.route_url('mapserverproxy') | n}",
+            differenceServiceUrl: "${request.route_url('difference') | n}",
             snapLayers: {
                 "buildings": {
                     tolerance: 30,

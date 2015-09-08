@@ -130,6 +130,9 @@ vars:
         - print_template
         - mapserver_substitution
 
+        available_metadata:
+        - copy_to
+
     functionalities:
     # Functionalities that are accessible to anonymous
     # users.
