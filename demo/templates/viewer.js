@@ -337,10 +337,7 @@ Ext.onReady(function() {
                     }
                 }
             },
-            version: 3,
-            encodeLayer: {},
-            encodeExternalLayer: {},
-            additionalAttributes: []
+            version: 3
         },
         {
             ptype: "cgxp_permalink",
