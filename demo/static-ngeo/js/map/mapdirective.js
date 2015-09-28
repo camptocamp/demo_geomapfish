@@ -6,6 +6,7 @@
  * <app-map app-map-map="::mainCtrl.map"><app-map>
  */
 goog.provide('app.mapDirective');
+goog.provide('app.MapController')
 
 goog.require('app');
 

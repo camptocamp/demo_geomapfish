@@ -11,7 +11,7 @@ CGXP ?= TRUE
 # Enable sencha touch build
 MOBILE ?= TRUE
 # Enable ngeo build
-NGEO ?= FALSE
+NGEO ?= TRUE
 # Use TileCloud chain
 TILECLOUD_CHAIN ?= TRUE
 # Used print version
@@ -80,9 +80,9 @@ OL_JS_FILES = $(shell find node_modules/openlayers/src/ol -type f -name '*.js' 2
 NGEO_JS_FILES = $(shell find node_modules/ngeo/src -type f -name '*.js' 2> /dev/null)
 APP_JS_FILES = $(shell find $(PACKAGE)/static-ngeo/js -type f -name '*.js')
 APP_HTML_FILES = $(shell find $(PACKAGE)/templates -type f -name '*.html')
-APP_PARTIALS_FILES := $(shell find $(PACKAGE)/static/js -type f -name '*.html')
-LESS_FILES = $(shell find $(PACKAGE)/static/less -type f -name '*.less' 2> /dev/null)
-JSON_CLIENT_LOCALISATION_FILES = $(addprefix $(OUTPUT_DIR)/locale/, $(addsuffix /$(PACKAGE).json, $(LANGUAGES)))
+APP_PARTIALS_FILES := $(shell find $(PACKAGE)/static-ngeo/js -type f -name '*.html')
+LESS_FILES = $(shell find $(PACKAGE)/static-ngeo/less -type f -name '*.less' 2> /dev/null)
+JSON_CLIENT_LOCALISATION_FILES = $(addprefix $(APP_OUTPUT_DIR)/locale/, $(addsuffix /$(PACKAGE).json, $(LANGUAGES)))
 NGEO_LIBS_JS_FILES += \
 	node_modules/jquery/dist/jquery.min.js \
 	node_modules/angular/angular.min.js \
@@ -288,7 +288,7 @@ CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid
 	available_locale_names cache admin_interface functionalities external_themes_url \
 	raster shortener hide_capabilities use_security_metadata mapserverproxy \
 	tinyowsproxy print_url tiles_url checker check_collector default_max_age jsbuild package srid \
-	reset_password
+	reset_password fulltextsearch
 ENVIRONMENT_VARS += INSTANCE_ID=${INSTANCE_ID} \
 	APACHE_ENTRY_POINT=$(APACHE_ENTRY_POINT) \
 	DEVELOPMENT=${DEVELOPMENT} \
@@ -460,12 +460,16 @@ build-ngeo: \
 .PHONY: compile-js-catalog
 compile-js-catalog: $(JSON_CLIENT_LOCALISATION_FILES)
 
+# to don't delete them
+.SECONDARY: $(addprefix $(PACKAGE)/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)-client.po, $(LANGUAGES)))
+
 $(VENV_BIN)/db2pot: .build/requirements.timestamp
 
 $(PACKAGE)/closure/%.py: $(CLOSURE_LIBRARY_PATH)/closure/bin/build/%.py
 	cp $< $@
 
 $(PACKAGE)/locale/$(PACKAGE)-js.pot: $(APP_HTML_FILES) $(APP_JS_FILES) $(APP_PARTIALS_FILES) .build/node_modules.timestamp
+	mkdir -p $(dir $@)
 	node tools/extract-messages.js $(APP_HTML_FILES) $(APP_JS_FILES) $(APP_PARTIALS_FILES) > $@
 
 $(PACKAGE)/locale/$(PACKAGE)-db.pot: $(VENV_BIN)/db2pot development.ini .build/config-$(INSTANCE_ID).timestamp
@@ -482,12 +486,12 @@ $(APP_OUTPUT_DIR)/locale/%/$(PACKAGE).json: $(PACKAGE)/locale/%/LC_MESSAGES/$(PA
 	mkdir -p $(dir $@)
 	node tools/compile-catalog $< > $@
 
-$(PACKAGE)/locale/%/LC_MESSAGES/%/$(PACKAGE)-client.po: $(PACKAGE)/locale/$(PACKAGE)-client.pot
+$(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po: $(PACKAGE)/locale/$(PACKAGE)-client.pot
 	mkdir -p $(dir $@)
-	touch $@
+	[ -f $@ ] || msginit --no-translator --input=$< --output-file=$@ -l $*
 	msgmerge --update $@ $<
 
-$(APP_OUTPUT_DIR)/build.js: .build/node_modules.timestamp .build/build.js
+$(APP_OUTPUT_DIR)/build.js: .build/node_modules.timestamp .build/build.js $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES)
 	mkdir -p $(dir $@)
 	awk 'FNR==1{print ""}1' $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES) .build/build.js > $@
 	sed -i '/^\/\/# sourceMappingURL=.*\.map$$/d' $@
@@ -509,7 +513,7 @@ $(APP_OUTPUT_DIR)/build.css: $(LESS_FILES) .build/node_modules.timestamp
 		.build/node_modules.timestamp
 	./node_modules/openlayers/node_modules/.bin/closure-util build $< $@
 
-.build/templatecache.js: templatecache.js.mako $(APP_PARTIALS_FILES)
+.build/templatecache.js: templatecache.js.mako $(APP_PARTIALS_FILES) .build/dev-requirements.timestamp
 	$(VENV_BIN)/mako-render --var "partials=$(APP_PARTIALS_FILES)" $< > $@
 
 .build/externs/angular-1.4.js:
