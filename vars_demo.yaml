@@ -35,9 +35,6 @@ vars:
         # The list of functionalities that can be configured
         # through the admin interface.
         available_functionalities:
-        - default_basemap
-        - print_template
-        - mapserver_substitution
         - mobile_default_theme
         - location
 
@@ -100,7 +97,6 @@ vars:
     # Checker configuration
     checker:
         fulltextsearch: pau
-        lang_files: [cgxp, cgxp-api]
         print_spec:
             layout: "A4 portrait"
             outputFormat: "pdf"
@@ -128,3 +124,4 @@ update_paths:
 - authtkt
 - checker
 - check_collector.hosts
+- admin_interface
