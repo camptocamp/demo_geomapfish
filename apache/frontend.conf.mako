@@ -8,7 +8,7 @@
     Header merge Cache-Control "public"
 </LocationMatch>
 
-<LocationMatch /${vars:instanceid}/tiles/>
+<LocationMatch /${instanceid}/tiles/>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript text/javascript application/javascript application/xml
     Header add Access-Control-Allow-Origin "*"
     Header add Access-Control-Allow-Headers "X-Requested-With, Content-Type"
