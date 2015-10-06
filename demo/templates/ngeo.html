@@ -1,3 +1,9 @@
+## -*- coding: utf-8 -*-
+<%
+    settings = request.registry.settings
+    node_modules_path = settings.get('node_modules_path')
+    closure_library_path = settings.get('closure_library_path')
+%>\
 <!DOCTYPE html>
 <html lang="{{mainCtrl.lang}}" ng-app="app" ng-controller="MainController as mainCtrl">
   <head>
@@ -8,10 +14,43 @@
 % else:
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/build.min.css')}" type="text/css">
 % endif
+    <style>
+      #map {
+        width: 600px;
+        height: 400px;
+      }
+    </style>
   <head>
   <body>
     <app-map app-map-map="::mainCtrl.map"></app-map>
 
+% if debug:
+    <script>
+      // We should really use the empty string for CLOSURE_BASE_PATH for there
+      // is a bug in Closure Library preventing us from doing it. See
+      // <https://github.com/google/closure-library/pull/418>.
+      window.CLOSURE_BASE_PATH = ' ';
+      window.CLOSURE_NO_DEPS = true;
+    </script>
+    <script src="${request.static_url('%s/jquery/dist/jquery.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/angular/angular.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/closure/goog/base.js' % closure_library_path)}"></script>
+    <script src="${request.route_url('deps.js')}"></script> 
+    <script src="${request.static_url('demo:static-ngeo/js/main.js')}"></script>
+
+% else:
     <script src="${request.static_url('demo:static-ngeo/build/build.js')}"></script>
+% endif
+
+    <script>
+      (function() {
+         var appModule = angular.module('app');
+% if debug:
+         appModule.value('appMapUrl', '${request.static_url('demo:static-ngeo/js/map/map.html')}');
+% endif
+
+      })();
+    </script>
   </body>
 </html>
