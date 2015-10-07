@@ -11,6 +11,13 @@ vars:
 
     srid: 21781
 
+    # all interface uset to create the apache revrite rules
+    interfaces:
+    - main
+    - edit
+    - routing
+    - ngeo
+
     # The application's default language. This is the language used by
     # the application if no specific language is specified in the URLs.
     # This also defines the language used for the text search.

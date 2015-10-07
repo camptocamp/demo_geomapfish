@@ -36,7 +36,7 @@
       "ol.ENABLE_WEBGL=false"
     ],
     "js": [
-      "demo/static-ngeo/js/main.js",
+      "demo/static-ngeo/js/${interface}.js",
       "node_modules/openlayers/externs/olx.js",
       "node_modules/ngeo/externs/ngeox.js",
       "node_modules/openlayers/externs/oli.js"

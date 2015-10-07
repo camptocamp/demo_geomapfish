@@ -76,6 +76,8 @@ GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 
 # ngeo
 APP_OUTPUT_DIR =  $(PACKAGE)/static-ngeo/build
+NGEO_INTERFACES ?= ngeo
+NGEO_OUTPUT_FILES = $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .js, $(NGEO_INTERFACES)))
 OL_JS_FILES = $(shell find node_modules/openlayers/src/ol -type f -name '*.js' 2> /dev/null)
 NGEO_JS_FILES = $(shell find node_modules/ngeo/src -type f -name '*.js' 2> /dev/null)
 APP_JS_FILES = $(shell find $(PACKAGE)/static-ngeo/js -type f -name '*.js')
@@ -452,7 +454,7 @@ $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-server.po: $(PACKAGE)/locale/$(PACKAG
 
 .PHONY: build-ngeo
 build-ngeo: \
-	$(APP_OUTPUT_DIR)/build.js \
+	$(NGEO_OUTPUT_FILES) \
 	$(APP_OUTPUT_DIR)/build.css \
 	$(APP_OUTPUT_DIR)/build.min.css \
 	compile-js-catalog
@@ -491,9 +493,9 @@ $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po: $(PACKAGE)/locale/$(PACKAG
 	[ -f $@ ] || msginit --no-translator --input=$< --output-file=$@ -l $*
 	msgmerge --update $@ $<
 
-$(APP_OUTPUT_DIR)/build.js: .build/node_modules.timestamp .build/build.js $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES)
+$(APP_OUTPUT_DIR)/%.js: .build/%.js .build/node_modules.timestamp $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES)
 	mkdir -p $(dir $@)
-	awk 'FNR==1{print ""}1' $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES) .build/build.js > $@
+	awk 'FNR==1{print ""}1' $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES) $< > $@
 	sed -i '/^\/\/# sourceMappingURL=.*\.map$$/d' $@
 
 $(APP_OUTPUT_DIR)/build.min.css: $(LESS_FILES) .build/node_modules.timestamp
@@ -504,14 +506,16 @@ $(APP_OUTPUT_DIR)/build.css: $(LESS_FILES) .build/node_modules.timestamp
 	mkdir -p $(dir $@)
 	./node_modules/.bin/lessc $(PACKAGE)/static-ngeo/less/$(PACKAGE).less $@
 
-.build/build.js: build.json $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
+.build/%.js: build.mako.json $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
 		.build/templatecache.js \
 		.build/externs/angular-1.4.js \
 		.build/externs/angular-1.4-q_templated.js \
 		.build/externs/angular-1.4-http-promise_templated.js \
 		.build/externs/jquery-1.9.js \
 		.build/node_modules.timestamp
-	./node_modules/openlayers/node_modules/.bin/closure-util build $< $@
+	PYTHONIOENCODING=UTF-8 $(VENV_BIN)/mako-render --var "interface=$*" build.mako.json > build.json
+	./node_modules/openlayers/node_modules/.bin/closure-util build build.json $@
+	rm build.json
 
 .build/templatecache.js: templatecache.js.mako $(APP_PARTIALS_FILES) .build/dev-requirements.timestamp
 	$(VENV_BIN)/mako-render --var "partials=$(APP_PARTIALS_FILES)" $< > $@
