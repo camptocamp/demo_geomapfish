@@ -188,7 +188,7 @@ Ext.onReady(function() {
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
             srsName: 'EPSG:21781',
-            featureTypes: ["bus_stop", "hospitals", "firestations"],
+            featureTypes: ["bus_stop", "hospitals", "firestations", "osm_time"],
             attributeURLs: ${queryer_attribute_urls | n}
         },
 % endif
@@ -331,7 +331,7 @@ Ext.onReady(function() {
                         "debug": {
                             fieldAttributes: {
                                 fieldLabel: OpenLayers.i18n("Add debug header"),
-                                value: 0
+                                checked: false
                             }
                         }
                     }
