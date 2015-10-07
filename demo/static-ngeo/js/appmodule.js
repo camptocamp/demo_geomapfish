@@ -5,7 +5,7 @@
  */
 goog.provide('app');
 
-goog.require('ngeo');
+goog.require('gmf');
 
 
 /**
