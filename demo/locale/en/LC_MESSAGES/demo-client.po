@@ -5,11 +5,15 @@ msgstr ""
 "Language-Team: none\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "#-#-#-#-#  demo-js.pot  #-#-#-#-#\n"
 "#-#-#-#-#  demo-db.pot  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: demo/templates/ngeo.html:18
+msgid "The demo Web GIS"
+msgstr ""
 
 #: theme.2 group.9
 msgid "Paysage"
