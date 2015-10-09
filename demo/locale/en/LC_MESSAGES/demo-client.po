@@ -15,170 +15,171 @@ msgstr ""
 msgid "The demo Web GIS"
 msgstr ""
 
-#: theme.2 group.9
-msgid "Paysage"
-msgstr "Paysage"
-
-#: theme.3 group.8
+#: des eaux:3 eaux:8 group.Gestion theme.Gestion
 msgid "Gestion des eaux"
 msgstr "Gestion des eaux"
 
-#: theme.5 group.6 group.10
-msgid "Administration"
-msgstr "Administration"
-
-#: group.66
-msgid "Group"
-msgstr "Group"
-
-#: group.63
-msgid "Layers"
-msgstr "Layers"
-
-#: group.72 theme.73
-msgid "Edit"
-msgstr "Edit"
-
-#: theme.64
-msgid "OSM"
-msgstr "OSM"
-
-#: layerv1.49 l_int_wms.97
-msgid "hotel"
-msgstr "hotel"
-
-#: layerv1.50 l_int_wms.98
-msgid "information"
-msgstr "information"
-
-#: layerv1.51 l_int_wms.99
-msgid "cinema"
-msgstr "cinema"
-
-#: layerv1.54 l_int_wms.100
-msgid "bank"
-msgstr "bank"
-
-#: layerv1.55 l_int_wms.101
-msgid "bus_stop"
-msgstr "bus_stop"
-
-#: layerv1.56 l_int_wms.102
-msgid "cafe"
-msgstr "cafe"
-
-#: layerv1.57 l_int_wms.103
-msgid "parking"
-msgstr "parking"
-
-#: layerv1.58 l_int_wms.104
-msgid "place_of_worship"
-msgstr "place_of_worship"
-
-#: layerv1.59 l_int_wms.105
-msgid "police"
-msgstr "police"
-
-#: layerv1.60 l_int_wms.106
-msgid "post_office"
-msgstr "post_office"
-
-#: layerv1.61 l_int_wms.107
-msgid "restaurant"
-msgstr "restaurant"
-
-#: layerv1.62 l_int_wms.108
-msgid "zoo"
-msgstr "zoo"
-
-#: layerv1.65 l_int_wms.109
-msgid "osm"
-msgstr "osm"
-
-#: layerv1.67 layerv1.96 l_int_wms.110 l_int_wms.126
-msgid "osm_time"
-msgstr "osm_time"
-
-#: layerv1.70 l_int_wms.111
-msgid "line"
-msgstr "line"
-
-#: layerv1.71 l_int_wms.112
-msgid "polygon"
-msgstr "polygon"
-
-#: layerv1.69 l_int_wms.113
-msgid "point"
-msgstr "point"
-
-#: layerv1.74 l_int_wms.114
-msgid "osm_scale"
-msgstr "osm_scale"
-
-#: layerv1.77 l_ext_wms.115
-msgid "ch.swisstopo.dreiecksvermaschung"
-msgstr "ch.swisstopo.dreiecksvermaschung"
-
-#: layerv1.78 l_ext_wms.116
-msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
-msgstr "ch.swisstopo.geologie-gravimetrischer_atlas"
-
-#: layerv1.79 l_ext_wms.117
-msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
-msgstr "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
-
-#: layerv1.80 l_ext_wms.118
-msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
-msgstr "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
-
-#: layerv1.81 l_wmts.119
-msgid "ch.are.alpenkonvention"
-msgstr "ch.are.alpenkonvention"
-
-#: layerv1.86 l_wmts.120
-msgid "ch.astra.ausnahmetransportrouten"
-msgstr "ch.astra.ausnahmetransportrouten"
-
-#: layerv1.11 l_int_wms.121
-msgid "hospitals"
-msgstr "hospitals"
-
-#: layerv1.12 l_int_wms.122
-msgid "firestations"
-msgstr "firestations"
-
-#: theme.38 theme.92 group.35 group.93
-msgid "Enseignement"
-msgstr "Enseignement"
-
-#: theme.37 group.36
-msgid "Transport"
-msgstr "Transport"
-
-#: theme.29 group.30
-msgid "Cadastre"
-msgstr "Cadastre"
-
-#: theme.4 group.7
-msgid "Patrimoine"
-msgstr "Patrimoine"
-
-#: theme.91 group.94
-msgid "Equipement"
-msgstr "Equipement"
-
-#: group.68
+#: function:68 group.OSM
 msgid "OSM function"
 msgstr "OSM function"
 
-#: layerv1.53 l_int_wms.123
+#: group.Administration:6 group.Administration:10 theme.Administration:5
+msgid "Administration"
+msgstr "Administration"
+
+#: group.Cadastre:30 theme.Cadastre:29
+msgid "Cadastre"
+msgstr "Cadastre"
+
+#: group.Edit:72 theme.Edit:73
+msgid "Edit"
+msgstr "Edit"
+
+#: group.Enseignement:35 group.Enseignement:93 theme.Enseignement:38
+#: theme.Enseignement:92
+msgid "Enseignement"
+msgstr "Enseignement"
+
+#: group.Equipement:94 theme.Equipement:91
+msgid "Equipement"
+msgstr "Equipement"
+
+#: group.Group:66
+msgid "Group"
+msgstr "Group"
+
+#: group.Layers:63
+msgid "Layers"
+msgstr "Layers"
+
+#: group.Patrimoine:7 theme.Patrimoine:4
+msgid "Patrimoine"
+msgstr "Patrimoine"
+
+#: group.Paysage:9 theme.Paysage:2
+msgid "Paysage"
+msgstr "Paysage"
+
+#: group.Transport:36 theme.Transport:37
+msgid "Transport"
+msgstr "Transport"
+
+#: l_ext_wms.ch.swisstopo.dreiecksvermaschung:115
+msgid "ch.swisstopo.dreiecksvermaschung"
+msgstr "ch.swisstopo.dreiecksvermaschung"
+
+#: l_ext_wms.ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung:118
+msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
+msgstr "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
+
+#: l_ext_wms.ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen:117
+msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
+msgstr "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
+
+#: l_ext_wms.ch.swisstopo.geologie-gravimetrischer_atlas:116
+msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
+msgstr "ch.swisstopo.geologie-gravimetrischer_atlas"
+
+#: l_int_wms.alpine_hut:123
 msgid "alpine_hut"
 msgstr "alpine_hut"
 
-#: layerv1.48 l_int_wms.124
+#: l_int_wms.bank:100
+msgid "bank"
+msgstr "bank"
+
+#: l_int_wms.bus_stop:101
+msgid "bus_stop"
+msgstr "bus_stop"
+
+#: l_int_wms.cafe:102
+msgid "cafe"
+msgstr "cafe"
+
+#: l_int_wms.cinema:99
+msgid "cinema"
+msgstr "cinema"
+
+#: l_int_wms.firestations:122
+msgid "firestations"
+msgstr "firestations"
+
+#: l_int_wms.fuel:124
 msgid "fuel"
 msgstr "fuel"
 
-#: layerv1.95 l_wmts.125
+#: l_int_wms.hospitals:121
+msgid "hospitals"
+msgstr "hospitals"
+
+#: l_int_wms.hotel:97
+msgid "hotel"
+msgstr "hotel"
+
+#: l_int_wms.information:98
+msgid "information"
+msgstr "information"
+
+#: l_int_wms.line:111
+msgid "line"
+msgstr "line"
+
+#: l_int_wms.osm:109
+msgid "osm"
+msgstr "osm"
+
+#: l_int_wms.osm_scale:114
+msgid "osm_scale"
+msgstr "osm_scale"
+
+#: l_int_wms.osm_time:110 l_int_wms.osm_time:126
+msgid "osm_time"
+msgstr "osm_time"
+
+#: l_int_wms.parking:103
+msgid "parking"
+msgstr "parking"
+
+#: l_int_wms.place_of_worship:104
+msgid "place_of_worship"
+msgstr "place_of_worship"
+
+#: l_int_wms.point:113
+msgid "point"
+msgstr "point"
+
+#: l_int_wms.police:105
+msgid "police"
+msgstr "police"
+
+#: l_int_wms.polygon:112
+msgid "polygon"
+msgstr "polygon"
+
+#: l_int_wms.post_office:106
+msgid "post_office"
+msgstr "post_office"
+
+#: l_int_wms.restaurant:107
+msgid "restaurant"
+msgstr "restaurant"
+
+#: l_int_wms.zoo:108
+msgid "zoo"
+msgstr "zoo"
+
+#: l_wmts.asitvd.fond_pourortho:125
 msgid "asitvd.fond_pourortho"
 msgstr "asitvd.fond_pourortho"
+
+#: l_wmts.ch.are.alpenkonvention:119
+msgid "ch.are.alpenkonvention"
+msgstr "ch.are.alpenkonvention"
+
+#: l_wmts.ch.astra.ausnahmetransportrouten:120
+msgid "ch.astra.ausnahmetransportrouten"
+msgstr "ch.astra.ausnahmetransportrouten"
+
+#: theme.OSM:64
+msgid "OSM"
+msgstr "OSM"

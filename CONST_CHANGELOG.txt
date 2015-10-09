@@ -4,18 +4,33 @@ This file includes migration steps for each release of c2cgeoportal.
 Version 2.0.0
 =============
 
-1. If you use ngeo you will need the `templatecache.js.mako` file at the root of
-   your project:
+1. Get the new and heavily modified files for ngeo integration:
 
-    .build/venv/bin/pcreate -s c2cgeoportal_create /tmp/demo_geomapfish package=demo
+    at that point, the following folder should exist: /tmp/demo_geomapfish/
+
+    cp /tmp/demo_geomapfish/.jshintrc .
+    cp /tmp/demo_geomapfish/build.json .
+    cp /tmp/demo_geomapfish/package.json .
     cp /tmp/demo_geomapfish/templatecache.js.mako .
+    cp /tmp/demo_geomapfish/lingua-client.cfg .
+    cp /tmp/demo_geomapfish/lingua-server.cfg .
 
-2. pyramid_closure include:
+2. Remove the no longer used files:
 
-   If your project's main function includes config.include('pyramid_closure'),
-   remove it, as c2cgeoportal now takes care of including pyramid_closure.
+    git rm -r lingua.cfg
+    git rm -r CONST_requirements_windows.txt
 
-3. To migrate your theme from version 1 to version 2 a script is available.
+3. In the `vars_demo.yaml` file:
+
+   * Remove the `vars.checker.lang_files` parameter to use the default value
+     that checks the ngeo language files.
+
+4. In the `demo/__init__.py` file:
+
+   * If your project's main function includes `config.include("pyramid_closure")`,
+     remove it, as c2cgeoportal now takes care of including `pyramid_closure`.
+
+5. To migrate your theme from version 1 to version 2 a script is available.
    Use `.build/venv/bin/themev1tov2 --help` for more information.
 
 
@@ -153,6 +168,10 @@ Version 1.6.3
     + /deploy/hooks/pre-restore-database
 
 
+11. In the PDF report config the show_map attribute will be removed and a map is added in the config hierarchy.
+    See the doc to update your config: http://docs.camptocamp.net/c2cgeoportal/master/integrator/pdfreport.html
+
+
 Version 1.6.2
 =============
 
@@ -174,6 +193,18 @@ Version 1.6.2
 
 3. In the `demo/__init__.py` file remove all the `config.add_settings({ ... })`, they should be in the `vars_*.yaml` files.
 
+
+   In the `vars_*.yaml` file, the `closure_library_path` configuration variable and the entry in the `interpreted`
+   section can be removed:
+
+     closure_library_path: 'process.stdout.write(require("openlayers/node_modules/closure-util").getLibraryPath())'
+
+     node:
+        vars:
+        - closure_library_path
+        cmd: ["node", "-e"]
+
+   It is now directly defined in the CONST_vars.yaml file.
 
 Version 1.6
 ===========

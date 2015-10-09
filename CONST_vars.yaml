@@ -83,6 +83,7 @@ vars:
         - ["{package}:static-ngeo/js", "{directory}/{package}/static-ngeo/js"]
         - ["{node_modules_path}/openlayers", "{node_modules_path}/openlayers"]
         - ["{node_modules_path}/ngeo/src", "{node_modules_path}/ngeo/src"]
+        - ["{node_modules_path}/ngeo/contribs/gmf/src", "{node_modules_path}/ngeo/contribs/gmf/src"]
 
     # The application's default language. This is the language used by
     # the application if no specific language is specified in the URLs.
@@ -221,6 +222,9 @@ vars:
     # For print proxy
     print_url: http://localhost:8080/print-{instanceid}/print/{package}
 
+    pdfreport:
+        print_url: http://localhost:8080/print-{instanceid}/print/{package}
+
     # For base layers
     tiles_url:
     - http://a.tiles.{host}/{instanceid}/tiles
@@ -241,7 +245,7 @@ vars:
     # Checker configuration
     checker:
         fulltextsearch: text to search
-        lang_files: [cgxp, cgxp-api]
+        lang_files: [ngeo, cgxp, cgxp-api]
         themes:
             default:
                 params:
