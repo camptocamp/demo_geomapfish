@@ -83,21 +83,21 @@
             </ul>
             <div id="lang">
 % if lang != 'de':
-             <a href="${request.route_url('home')}?lang=de">de</a> -
+             <a href="${request.route_url('old')}?lang=de">de</a> -
 % endif
 % if lang != 'fr':
-             <a href="${request.route_url('home')}?lang=fr">fr</a>
+             <a href="${request.route_url('old')}?lang=fr">fr</a>
 % if lang != 'en':
              -
 % endif
 % endif
 % if lang != 'en':
-             <a href="${request.route_url('home')}?lang=en">en</a>
+             <a href="${request.route_url('old')}?lang=en">en</a>
 % endif
             </div>
             <div id="toolbar">
 % if request.user and request.user.role_name == 'role_admin':
-                <a href="${request.route_url('home')}admin?lang=${lang}" target="_blank" class="icon-admin" title="Ouvrir l'interface d'admin">${_("Admin")}</a> -
+                <a href="${request.route_url('old')}admin?lang=${lang}" target="_blank" class="icon-admin" title="Ouvrir l'interface d'admin">${_("Admin")}</a> -
 % endif
                 <a href="${request.route_url('routing')}?lang=${lang}" target="_blank" class="icon-routing" title="Ouvrir l'application de calcul d'itinéraire">${_("Routing")}</a> -
 % if request.user:
@@ -148,6 +148,6 @@
         <script type="text/javascript" src="${request.static_url('demo:static/build/lang-%s.js' % lang)}"></script>
 % endif
 
-        <script type="text/javascript" src="${request.route_url('viewer', _query=extra_params)}${"&grid=%s" % request.params['grid'] if 'grid' in request.params else ""}"></script>
+        <script type="text/javascript" src="${request.route_url('old.js', _query=extra_params)}${"&grid=%s" % request.params['grid'] if 'grid' in request.params else ""}"></script>
     </body>
 </html>

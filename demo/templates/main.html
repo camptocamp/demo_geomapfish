@@ -1,0 +1,44 @@
+## -*- coding: utf-8 -*-
+<%
+    settings = request.registry.settings
+    node_modules_path = settings.get('node_modules_path')
+    closure_library_path = settings.get('closure_library_path')
+%>\
+<!DOCTYPE html>
+<html lang="{{mainCtrl.lang}}" ng-app="app" ng-controller="MainController as mainCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+% if debug:
+    <link rel="stylesheet/less" href="${request.static_url('demo:static-ngeo/less/main.less')}" type="text/css">
+    <script src="${request.static_url('%s/less/dist/less.min.js' % node_modules_path)}"></script>
+% else:
+    <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/main.min.css')}" type="text/css">
+% endif
+    <title translate>The demo Web GIS</title>
+  </head>
+  <body>
+    <h1>Main</h1>
+    <gmf-map gmf-map-map="mainCtrl.map"></gmf-map>
+
+% if debug:
+    <script>
+      window.CLOSURE_BASE_PATH = ' ';
+      window.CLOSURE_NO_DEPS = true;
+    </script>
+    <script src="${request.static_url('%s/jquery/dist/jquery.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/angular/angular.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/d3/d3.min.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/typeahead.js/dist/typeahead.bundle.js' % node_modules_path)}"></script>
+    <script src="${request.static_url('%s/closure/goog/base.js' % closure_library_path)}"></script>
+    <script src="${request.route_url('deps.js')}"></script> 
+    <script src="${request.static_url('demo:static-ngeo/js/main.js')}"></script>
+    <script src="${request.static_url('demo:static-ngeo/build/templatecache.js')}"></script>
+% else:
+    <script src="${request.static_url('demo:static-ngeo/build/main.js')}"></script>
+% endif
+  </body>
+</html>
