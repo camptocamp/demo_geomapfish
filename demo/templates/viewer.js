@@ -132,9 +132,9 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_wfspermalink",
             WFSURL: "${request.route_url('mapserverproxy') | n}",
-            WFSTypes: ["buildings"],
+            WFSTypes: ["buildings", "fuel"],
             maxFeatures: 10,
-            pointRecenterZoom: 13,
+            pointRecenterZoom: 9,
             srsName: 'EPSG:21781',
             events: EVENTS
         },
