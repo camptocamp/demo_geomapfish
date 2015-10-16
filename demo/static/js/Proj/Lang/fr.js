@@ -87,5 +87,9 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen": "Groupes lithologiques",
     "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung": "Classification des roches",
     "ch.are.alpenkonvention": "Convention des Alpes",
-    "ch.astra.ausnahmetransportrouten": "Itinéraires convois exceptionnels"
+    "ch.astra.ausnahmetransportrouten": "Itinéraires convois exceptionnels",
+
+    "title": "Titre",
+    "comment": "Comentaires",
+    "debug": "Ajouter en-tête de debug"
 });
