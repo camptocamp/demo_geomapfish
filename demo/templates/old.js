@@ -132,9 +132,9 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_wfspermalink",
             WFSURL: "${request.route_url('mapserverproxy') | n}",
-            WFSTypes: ["buildings"],
+            WFSTypes: ["buildings", "fuel"],
             maxFeatures: 10,
-            pointRecenterZoom: 13,
+            pointRecenterZoom: 9,
             srsName: 'EPSG:21781',
             events: EVENTS
         },
@@ -317,21 +317,13 @@ Ext.onReady(function() {
                     "A4 portrait": {
                         "title": {
                             fieldAttributes: {
-                                fieldLabel: OpenLayers.i18n("Title"),
-                                emptyText: OpenLayers.i18n("Title")
+                                emptyText: OpenLayers.i18n("title")
                             }
                         },
                         "comments": {
                             useTextArea: true,
                             fieldAttributes: {
-                                fieldLabel: OpenLayers.i18n("Description"),
-                                emptyText: OpenLayers.i18n("Description")
-                            }
-                        },
-                        "debug": {
-                            fieldAttributes: {
-                                fieldLabel: OpenLayers.i18n("Add debug header"),
-                                checked: false
+                                emptyText: OpenLayers.i18n("comments")
                             }
                         }
                     }
