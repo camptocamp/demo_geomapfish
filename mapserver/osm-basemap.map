@@ -1,62 +1,15 @@
-MAP
-FONTSET "fonts.lst"
-IMAGETYPE png
-MAXSIZE 4000
-SIZE 800 800
-EXTENT -180 -90 180 90
-UNITS dd
-IMAGECOLOR "#B3C6D4"
-WEB
-   METADATA
-      "ows_enable_request" "*"
-      "wms_srs" "EPSG:900913 EPSG:4326 EPSG:3857 EPSG:2154 EPSG:310642901 EPSG:4171 EPSG:310024802 EPSG:310915814 EPSG:310486805 EPSG:310702807 EPSG:310700806 EPSG:310547809 EPSG:310706808 EPSG:310642810 EPSG:310642801 EPSG:310642812 EPSG:310032811 EPSG:310642813 EPSG:2986"
-      "labelcache_map_edge_buffer" "-10"
-      "wms_title" "osm france"
-   END
-END
-DEBUG 1
-CONFIG "MS_ERRORFILE" "stderr"
-CONFIG "PROJ_LIB" "/home/sbrunner/basemaps"
-PROJECTION
-   "init=epsg:21781"
-END
-LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land0"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:4326"
-   END
-   MINSCALEDENOM 332808204
-   MAXSCALEDENOM 99999999999
-   DATA "data/TM_WORLD_BORDERS-0.3.shp"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 99999999999
-   MINSCALEDENOM 332808204
-   TYPE LINE
-   NAME "borders0"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 0.5
-         COLOR "#CDCBC6"
-      END
-   END
-END
+# Required function:
+# CREATE OR REPLACE FUNCTION osm_to_boolean (p_string text) RETURNS text AS $$
+# BEGIN
+#   IF p_string IS NULL THEN RETURN '0'; END IF;
+#     IF lower(p_string) = 'no' THEN RETURN '0'; END IF;
+#       RETURN '1';
+#       END
+#       $$ LANGUAGE plpgsql;
+# Add Lac Léman
+# wget http://api.openstreetmap.org/api/0.6/relation/332617/full -O lac-leman.osm
+# osm2pgsql --append --proj 21781 --cache-strategy sparse --database osm --username www-data --password --host localhost lac-leman.osm
+
 LAYER
  STATUS ON
  GROUP "default"
@@ -66,13 +19,12 @@ LAYER
  NAME "places0"
  MINSCALEDENOM 332808204
  MAXSCALEDENOM 99999999999
- DATA "geometry from (select * from planet_osmplaces where type in ('country','continent') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'continents'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -84,43 +36,6 @@ LAYER
    POSITION cc
   END
  END
-END
-LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land1"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:4326"
-   END
-   MINSCALEDENOM 166404102
-   MAXSCALEDENOM 332808204
-   DATA "data/TM_WORLD_BORDERS-0.3.shp"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 332808204
-   MINSCALEDENOM 166404102
-   TYPE LINE
-   NAME "borders1"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 0.5
-         COLOR "#CDCBC6"
-      END
-   END
 END
 LAYER
  STATUS ON
@@ -131,13 +46,12 @@ LAYER
  NAME "places1"
  MINSCALEDENOM 166404102
  MAXSCALEDENOM 332808204
- DATA "geometry from (select * from planet_osmplaces where type in ('country','continent') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'continents'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -151,43 +65,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land2"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:4326"
-   END
-   MINSCALEDENOM 83202051
-   MAXSCALEDENOM 166404102
-   DATA "data/TM_WORLD_BORDERS-0.3.shp"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 166404102
-   MINSCALEDENOM 83202051
-   TYPE LINE
-   NAME "borders2"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 0.5
-         COLOR "#CDCBC6"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -196,13 +73,12 @@ LAYER
  NAME "places2"
  MINSCALEDENOM 83202051
  MAXSCALEDENOM 166404102
- DATA "geometry from (select * from planet_osmplaces where type in ('country','continent') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'continents'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -217,7 +93,6 @@ LAYER
  CLASS
   EXPRESSION 'country'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -234,43 +109,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land3"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 41601025
-   MAXSCALEDENOM 83202051
-   DATA "data/shoreline_300"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 83202051
-   MINSCALEDENOM 41601025
-   TYPE LINE
-   NAME "borders3"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 0.5
-         COLOR "#CDCBC6"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -279,13 +117,12 @@ LAYER
  NAME "places3"
  MINSCALEDENOM 41601025
  MAXSCALEDENOM 83202051
- DATA "geometry from (select * from planet_osmplaces where type in ('country','continent','city') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'country'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -303,7 +140,6 @@ LAYER
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -326,25 +162,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land4"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 20800512
-   MAXSCALEDENOM 41601025
-   DATA "data/shoreline_300"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -354,7 +171,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages_gen00)            as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 41601025
@@ -362,7 +179,7 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
@@ -376,7 +193,7 @@ LAYER
        END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -384,7 +201,7 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
@@ -408,13 +225,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
@@ -430,7 +247,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas_gen0) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 41601025
     MINSCALEDENOM 20800512
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -453,24 +270,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 41601025
-   MINSCALEDENOM 20800512
-   TYPE LINE
-   NAME "borders4"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 0.5
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -479,13 +278,12 @@ LAYER
  NAME "places4"
  MINSCALEDENOM 20800512
  MAXSCALEDENOM 41601025
- DATA "geometry from (select * from planet_osmplaces where type in ('country','continent','city') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'country'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -503,7 +301,6 @@ LAYER
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -526,25 +323,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land5"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 10400256
-   MAXSCALEDENOM 20800512
-   DATA "data/shoreline_300"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -554,7 +332,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages_gen00)            as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 20800512
@@ -562,7 +340,7 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
@@ -576,7 +354,7 @@ LAYER
        END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -584,7 +362,7 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
@@ -608,13 +386,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
@@ -630,7 +408,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas_gen0) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 20800512
     MINSCALEDENOM 10400256
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -661,7 +439,7 @@ LAYER
     NAME "roads5"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads_gen0 where type in ('trunk','motorway') order by z_order asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
@@ -682,24 +460,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 20800512
-   MINSCALEDENOM 10400256
-   TYPE LINE
-   NAME "borders5"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 0.5
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -708,13 +468,12 @@ LAYER
  NAME "places5"
  MINSCALEDENOM 10400256
  MAXSCALEDENOM 20800512
- DATA "geometry from (select * from planet_osmplaces where type in ('country','continent','city') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'country'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -732,7 +491,6 @@ LAYER
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -755,25 +513,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land6"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 5200128
-   MAXSCALEDENOM 10400256
-   DATA "data/shoreline_300"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -783,7 +522,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages_gen0)            as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 10400256
@@ -791,7 +530,7 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
@@ -805,7 +544,7 @@ LAYER
        END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -813,7 +552,7 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
@@ -837,13 +576,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
@@ -859,7 +598,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas_gen0) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 10400256
     MINSCALEDENOM 5200128
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -882,7 +621,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -902,7 +640,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways_gen0 where type='river') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 10400256
     MINSCALEDENOM 5200128
@@ -920,7 +658,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -957,7 +694,7 @@ LAYER
     NAME "roads6"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads_gen0 where type in ('trunk','motorway') order by z_order asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
@@ -978,29 +715,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 10400256
-   MINSCALEDENOM 5200128
-   TYPE LINE
-   NAME "borders6"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 0.5
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -1009,13 +723,12 @@ LAYER
  NAME "places6"
  MINSCALEDENOM 5200128
  MAXSCALEDENOM 10400256
- DATA "geometry from (select * from planet_osmplaces where type in ('country','continent','city') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'country'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -1033,7 +746,6 @@ LAYER
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -1056,25 +768,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land7"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 2600064
-   MAXSCALEDENOM 5200128
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -1084,7 +777,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages_gen0)            as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 5200128
@@ -1092,7 +785,7 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
@@ -1106,7 +799,7 @@ LAYER
        END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -1114,7 +807,7 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
@@ -1138,13 +831,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
@@ -1160,7 +853,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas_gen0) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 5200128
     MINSCALEDENOM 2600064
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -1183,7 +876,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -1203,7 +895,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways_gen0 where type='river') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 5200128
     MINSCALEDENOM 2600064
@@ -1221,7 +913,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -1258,7 +949,7 @@ LAYER
     NAME "roads7"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads_gen0 where type in ('trunk','motorway') order by z_order asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
@@ -1279,29 +970,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 5200128
-   MINSCALEDENOM 2600064
-   TYPE LINE
-   NAME "borders7"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -1310,13 +978,12 @@ LAYER
  NAME "places7"
  MINSCALEDENOM 2600064
  MAXSCALEDENOM 5200128
- DATA "geometry from (select * from planet_osmplaces where type in ('country','continent','city') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'country'
   LABEL
-   FONT scb
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -1334,7 +1001,6 @@ LAYER
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -1357,25 +1023,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land8"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 1300032
-   MAXSCALEDENOM 2600064
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -1385,7 +1032,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages_gen0)            as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 2600064
@@ -1393,7 +1040,7 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
@@ -1407,7 +1054,7 @@ LAYER
        END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -1415,7 +1062,7 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
@@ -1439,13 +1086,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
@@ -1461,7 +1108,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas_gen0) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 2600064
     MINSCALEDENOM 1300032
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -1484,7 +1131,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -1504,7 +1150,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways_gen0 where type='river') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 2600064
     MINSCALEDENOM 1300032
@@ -1522,7 +1168,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -1559,7 +1204,7 @@ LAYER
     MAXSCALEDENOM 2600064
     TYPE LINE
     NAME "railways8"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways_gen1 where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -1591,11 +1236,11 @@ LAYER
     NAME "roads8"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads_gen1 where type in ('trunk','motorway','primary') order by z_order asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway', 'primary') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {primary,primary_link}
+        EXPRESSION {primary, primary_link}
         STYLE
             WIDTH 0.5
             COLOR "#aaaaaa"
@@ -1619,29 +1264,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 2600064
-   MINSCALEDENOM 1300032
-   TYPE LINE
-   NAME "borders8"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -1650,13 +1272,12 @@ LAYER
  NAME "places8"
  MINSCALEDENOM 1300032
  MAXSCALEDENOM 2600064
- DATA "geometry from (select * from planet_osmplaces where type in ('city','town') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -1680,7 +1301,6 @@ LAYER
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -1704,25 +1324,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land9"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 650016
-   MAXSCALEDENOM 1300032
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -1732,7 +1333,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages_gen1       where type in ('forest','industrial','commercial','residential')) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'industrial', 'commercial', 'residential')) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 1300032
@@ -1740,7 +1341,7 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
@@ -1754,7 +1355,7 @@ LAYER
        END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -1762,7 +1363,7 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
@@ -1786,13 +1387,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
@@ -1808,7 +1409,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas_gen1) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 1300032
     MINSCALEDENOM 650016
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -1831,7 +1432,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -1851,7 +1451,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways_gen1 where type='river') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 1300032
     MINSCALEDENOM 650016
@@ -1869,7 +1469,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -1906,7 +1505,7 @@ LAYER
     MAXSCALEDENOM 1300032
     TYPE LINE
     NAME "railways9"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways_gen1 where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -1938,21 +1537,21 @@ LAYER
     NAME "roads9"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads_gen1 where type in ('secondary','trunk','motorway','primary') order by z_order asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('secondary', 'trunk', 'motorway', 'primary') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {secondary,secondary_link}
+        EXPRESSION {secondary, secondary_link}
         STYLE
             WIDTH 0.5
             COLOR "#aaaaaa"
         END
     END
     CLASS
-        EXPRESSION {primary,primary_link}
+        EXPRESSION {primary, primary_link}
         STYLE
             WIDTH 0.75
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
@@ -1987,29 +1586,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 1300032
-   MINSCALEDENOM 650016
-   TYPE LINE
-   NAME "borders9"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -2018,13 +1594,12 @@ LAYER
  NAME "places9"
  MINSCALEDENOM 650016
  MAXSCALEDENOM 1300032
- DATA "geometry from (select * from planet_osmplaces where type in ('city','town') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -2048,7 +1623,6 @@ LAYER
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -2072,25 +1646,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land10"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 325008
-   MAXSCALEDENOM 650016
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -2100,7 +1655,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages_gen1       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 650016
@@ -2108,7 +1663,7 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
@@ -2122,7 +1677,7 @@ LAYER
        END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -2130,7 +1685,7 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
@@ -2154,13 +1709,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
@@ -2176,7 +1731,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas_gen1) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 650016
     MINSCALEDENOM 325008
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -2199,7 +1754,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -2219,7 +1773,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways_gen1 where type='river') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 650016
     MINSCALEDENOM 325008
@@ -2237,7 +1791,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -2265,7 +1818,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -2289,7 +1841,7 @@ LAYER
     MAXSCALEDENOM 650016
     TYPE LINE
     NAME "railways10"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways_gen1 where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -2321,28 +1873,28 @@ LAYER
     NAME "roads10"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads_gen1 ) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {tertiary,tertiary_link}
+        EXPRESSION {tertiary, tertiary_link}
         STYLE
             WIDTH 0.5
             COLOR "#aaaaaa"
         END
     END
     CLASS
-        EXPRESSION {secondary,secondary_link}
+        EXPRESSION {secondary, secondary_link}
         STYLE
             WIDTH 0.75
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary,primary_link}
+        EXPRESSION {primary, primary_link}
         STYLE
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
@@ -2356,7 +1908,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -2384,7 +1935,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -2412,7 +1962,7 @@ LAYER
     NAME "aeroways10"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -2438,29 +1988,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 650016
-   MINSCALEDENOM 325008
-   TYPE LINE
-   NAME "borders10"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -2469,13 +1996,12 @@ LAYER
  NAME "places10"
  MINSCALEDENOM 325008
  MAXSCALEDENOM 650016
- DATA "geometry from (select * from planet_osmplaces where type in ('city','town') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 10
@@ -2493,7 +2019,6 @@ LAYER
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -2517,25 +2042,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land11"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 162504
-   MAXSCALEDENOM 325008
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -2545,7 +2051,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages_gen1       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 325008
@@ -2553,7 +2059,7 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
@@ -2567,7 +2073,7 @@ LAYER
        END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -2576,7 +2082,6 @@ LAYER
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
-       FONT sc
        SIZE 8
        COLOR 0 0 0
        OUTLINECOLOR 255 255 255
@@ -2590,14 +2095,13 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -2630,38 +2134,17 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
     END
-END
-LAYER
-   TYPE POLYGON
-   STATUS ON
-   PROJECTION
-       "init=epsg:21781"
-   END
-   NAME "transport_areas11"
-   GROUP "default"
-   CONNECTIONTYPE POSTGIS
-   CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-   DATA "geometry from planet_osmtransport_areas using unique osm_id using srid=21781"
-   PROCESSING "CLOSE_CONNECTION=DEFER"
-   MAXSCALEDENOM 325008
-   MINSCALEDENOM 162504
-   LABELITEM "name"
-   CLASS
-      STYLE
-         COLOR 200 200 200
-      END
-   END
 END
 LAYER
     TYPE POLYGON
@@ -2673,7 +2156,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas_gen1) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 325008
     MINSCALEDENOM 162504
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -2696,7 +2179,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -2716,7 +2198,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways_gen1 where type='river') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 325008
     MINSCALEDENOM 162504
@@ -2734,7 +2216,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -2762,7 +2243,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -2786,7 +2266,7 @@ LAYER
     MAXSCALEDENOM 325008
     TYPE LINE
     NAME "railways11"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways_gen1 where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -2818,35 +2298,35 @@ LAYER
     NAME "roads11"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads order by z_order asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {unclassified,residential,service,road,living_street}
+        EXPRESSION {unclassified, residential, service, road, living_street}
         STYLE
             WIDTH 0.5
             COLOR "#aaaaaa"
         END
     END
     CLASS
-        EXPRESSION {tertiary,tertiary_link}
+        EXPRESSION {tertiary, tertiary_link}
         STYLE
             WIDTH 0.75
             COLOR "#aaaaaa"
         END
     END
     CLASS
-        EXPRESSION {secondary,secondary_link}
+        EXPRESSION {secondary, secondary_link}
         STYLE
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary,primary_link}
+        EXPRESSION {primary, primary_link}
         STYLE
             WIDTH 1.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
@@ -2860,7 +2340,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -2888,7 +2367,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -2916,7 +2394,7 @@ LAYER
     NAME "aeroways11"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -2942,29 +2420,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 325008
-   MINSCALEDENOM 162504
-   TYPE LINE
-   NAME "borders11"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -2973,13 +2428,12 @@ LAYER
  NAME "places11"
  MINSCALEDENOM 162504
  MAXSCALEDENOM 325008
- DATA "geometry from (select * from planet_osmplaces where type in ('city','town','village') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town', 'village') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 11
@@ -2997,7 +2451,6 @@ LAYER
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -3022,7 +2475,6 @@ LAYER
  CLASS
   EXPRESSION 'village'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -3045,25 +2497,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land12"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 81252
-   MAXSCALEDENOM 162504
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -3073,7 +2506,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 162504
@@ -3081,13 +2514,12 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -3108,7 +2540,6 @@ LAYER
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -3121,7 +2552,7 @@ LAYER
       END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -3130,7 +2561,6 @@ LAYER
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
-       FONT sc
        SIZE 8
        COLOR 0 0 0
        OUTLINECOLOR 255 255 255
@@ -3144,14 +2574,13 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -3173,7 +2602,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
        ENCODING "utf-8"
             SIZE 8
             COLOR 0 0 0
@@ -3193,7 +2621,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 0
          COLOR "#333333"
          OUTLINECOLOR 255 255 255
@@ -3213,7 +2640,6 @@ LAYER
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
           COLOR 0 0 0
           OUTLINECOLOR 255 255 255
@@ -3227,14 +2653,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -3248,14 +2673,13 @@ LAYER
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
-        FONT sc
         SIZE 8
         COLOR 0 0 0
         OUTLINECOLOR 255 255 255
@@ -3270,27 +2694,6 @@ LAYER
     END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   PROJECTION
-       "init=epsg:21781"
-   END
-   NAME "transport_areas12"
-   GROUP "default"
-   CONNECTIONTYPE POSTGIS
-   CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-   DATA "geometry from planet_osmtransport_areas using unique osm_id using srid=21781"
-   PROCESSING "CLOSE_CONNECTION=DEFER"
-   MAXSCALEDENOM 162504
-   MINSCALEDENOM 81252
-   LABELITEM "name"
-   CLASS
-      STYLE
-         COLOR 200 200 200
-      END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -3300,7 +2703,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 162504
     MINSCALEDENOM 81252
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -3323,7 +2726,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -3343,7 +2745,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 162504
     MINSCALEDENOM 81252
@@ -3361,7 +2763,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -3383,7 +2784,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -3404,7 +2804,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -3428,7 +2827,7 @@ LAYER
     MAXSCALEDENOM 162504
     TYPE LINE
     NAME "railways12"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -3460,11 +2859,11 @@ LAYER
     NAME "roads12"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads order by z_order asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {unclassified,residential,service,road,living_street}
+        EXPRESSION {unclassified, residential, service, road, living_street}
         STYLE
             WIDTH 0.75
             COLOR "#aaaaaa"
@@ -3479,24 +2878,24 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary,tertiary_link}
+        EXPRESSION {tertiary, tertiary_link}
         STYLE
             WIDTH 1
             COLOR "#aaaaaa"
         END
     END
     CLASS
-        EXPRESSION {secondary,secondary_link}
+        EXPRESSION {secondary, secondary_link}
         STYLE
             WIDTH 1.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary,primary_link}
+        EXPRESSION {primary, primary_link}
         STYLE
             WIDTH 2
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
@@ -3517,7 +2916,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -3545,7 +2943,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -3573,7 +2970,7 @@ LAYER
     NAME "aeroways12"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -3599,29 +2996,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 162504
-   MINSCALEDENOM 81252
-   TYPE LINE
-   NAME "borders12"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -3630,13 +3004,12 @@ LAYER
  NAME "places12"
  MINSCALEDENOM 81252
  MAXSCALEDENOM 162504
- DATA "geometry from (select * from planet_osmplaces where type in ('city','town','village') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town', 'village') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 11
@@ -3654,7 +3027,6 @@ LAYER
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 10
@@ -3673,7 +3045,6 @@ LAYER
  CLASS
   EXPRESSION 'village'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -3696,25 +3067,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land13"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 40626
-   MAXSCALEDENOM 81252
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -3724,7 +3076,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 81252
@@ -3732,13 +3084,12 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -3759,7 +3110,6 @@ LAYER
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -3772,7 +3122,7 @@ LAYER
       END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -3781,7 +3131,6 @@ LAYER
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
-       FONT sc
        SIZE 8
        COLOR 0 0 0
        OUTLINECOLOR 255 255 255
@@ -3795,14 +3144,13 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -3824,7 +3172,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
        ENCODING "utf-8"
             SIZE 8
             COLOR 0 0 0
@@ -3844,7 +3191,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 0
          COLOR "#333333"
          OUTLINECOLOR 255 255 255
@@ -3864,7 +3210,6 @@ LAYER
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
           COLOR 0 0 0
           OUTLINECOLOR 255 255 255
@@ -3878,14 +3223,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -3899,14 +3243,13 @@ LAYER
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
-        FONT sc
         SIZE 8
         COLOR 0 0 0
         OUTLINECOLOR 255 255 255
@@ -3921,27 +3264,6 @@ LAYER
     END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   PROJECTION
-       "init=epsg:21781"
-   END
-   NAME "transport_areas13"
-   GROUP "default"
-   CONNECTIONTYPE POSTGIS
-   CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-   DATA "geometry from planet_osmtransport_areas using unique osm_id using srid=21781"
-   PROCESSING "CLOSE_CONNECTION=DEFER"
-   MAXSCALEDENOM 81252
-   MINSCALEDENOM 40626
-   LABELITEM "name"
-   CLASS
-      STYLE
-         COLOR 200 200 200
-      END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -3951,7 +3273,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 81252
     MINSCALEDENOM 40626
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -3974,7 +3296,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -3994,7 +3315,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 81252
     MINSCALEDENOM 40626
@@ -4012,7 +3333,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -4034,7 +3354,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -4055,7 +3374,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -4079,7 +3397,7 @@ LAYER
     MAXSCALEDENOM 81252
     TYPE LINE
     NAME "railways13"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -4111,11 +3429,11 @@ LAYER
     NAME "roads13"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type from planet_osmroads order by z_order asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {unclassified,residential,service,road,living_street}
+        EXPRESSION {unclassified, residential, service, road, living_street}
         STYLE
             WIDTH 1
             COLOR "#aaaaaa"
@@ -4130,22 +3448,21 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary,tertiary_link}
+        EXPRESSION {tertiary, tertiary_link}
         STYLE
             WIDTH 1.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {secondary,secondary_link}
+        EXPRESSION {secondary, secondary_link}
         STYLE
             WIDTH 2
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -4159,15 +3476,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {primary,primary_link}
+        EXPRESSION {primary, primary_link}
         STYLE
             WIDTH 2.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -4198,7 +3514,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -4226,7 +3541,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -4254,7 +3568,7 @@ LAYER
     NAME "aeroways13"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -4280,29 +3594,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 81252
-   MINSCALEDENOM 40626
-   TYPE LINE
-   NAME "borders13"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -4311,13 +3602,12 @@ LAYER
  NAME "places13"
  MINSCALEDENOM 40626
  MAXSCALEDENOM 81252
- DATA "geometry from (select * from planet_osmplaces where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 12
@@ -4335,7 +3625,6 @@ LAYER
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 10
@@ -4354,7 +3643,6 @@ LAYER
  CLASS
   EXPRESSION 'village'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -4376,9 +3664,8 @@ LAYER
   END
  END
  CLASS
-  EXPRESSION {suburb,hamlet,locality}
+  EXPRESSION {suburb, hamlet, locality}
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -4395,25 +3682,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land14"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 20313
-   MAXSCALEDENOM 40626
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -4423,7 +3691,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 40626
@@ -4431,13 +3699,12 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -4458,7 +3725,6 @@ LAYER
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -4471,7 +3737,7 @@ LAYER
       END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -4480,7 +3746,6 @@ LAYER
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
-       FONT sc
        SIZE 8
        COLOR 0 0 0
        OUTLINECOLOR 255 255 255
@@ -4494,14 +3759,13 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -4523,7 +3787,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
        ENCODING "utf-8"
             SIZE 8
             COLOR 0 0 0
@@ -4543,7 +3806,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 0
          COLOR "#333333"
          OUTLINECOLOR 255 255 255
@@ -4563,7 +3825,6 @@ LAYER
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
           COLOR 0 0 0
           OUTLINECOLOR 255 255 255
@@ -4577,14 +3838,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -4598,14 +3858,13 @@ LAYER
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
-        FONT sc
         SIZE 8
         COLOR 0 0 0
         OUTLINECOLOR 255 255 255
@@ -4620,27 +3879,6 @@ LAYER
     END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   PROJECTION
-       "init=epsg:21781"
-   END
-   NAME "transport_areas14"
-   GROUP "default"
-   CONNECTIONTYPE POSTGIS
-   CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-   DATA "geometry from planet_osmtransport_areas using unique osm_id using srid=21781"
-   PROCESSING "CLOSE_CONNECTION=DEFER"
-   MAXSCALEDENOM 40626
-   MINSCALEDENOM 20313
-   LABELITEM "name"
-   CLASS
-      STYLE
-         COLOR 200 200 200
-      END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -4650,7 +3888,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 40626
     MINSCALEDENOM 20313
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -4673,7 +3911,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -4693,7 +3930,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 40626
     MINSCALEDENOM 20313
@@ -4711,7 +3948,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -4733,7 +3969,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -4754,7 +3989,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -4778,7 +4012,7 @@ LAYER
     MAXSCALEDENOM 40626
     TYPE LINE
     NAME "railways14"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -4810,11 +4044,11 @@ LAYER
     NAME "roads14"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type||bridge||tunnel as type from planet_osmroads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
         STYLE
             WIDTH 1.5
             COLOR "#aaaaaa"
@@ -4829,22 +4063,21 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary00,tertiary_link00}
+        EXPRESSION {tertiary00, tertiary_link00}
         STYLE
             WIDTH 2
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {secondary00,secondary_link00}
+        EXPRESSION {secondary00, secondary_link00}
         STYLE
             WIDTH 2.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -4858,15 +4091,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {primary00,primary_link00}
+        EXPRESSION {primary00, primary_link00}
         STYLE
             WIDTH 3
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -4897,7 +4129,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -4925,7 +4156,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -4944,7 +4174,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
         STYLE
             WIDTH 1.5
             OUTLINECOLOR 136 136 136
@@ -4957,7 +4187,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary10,tertiary_link10}
+        EXPRESSION {tertiary10, tertiary_link10}
         STYLE
             WIDTH 2
             OUTLINECOLOR 136 136 136
@@ -4966,11 +4196,11 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {secondary10,secondary_link10}
+        EXPRESSION {secondary10, secondary_link10}
         STYLE
             WIDTH 2.5
             OUTLINECOLOR 136 136 136
@@ -4979,11 +4209,11 @@ LAYER
         END
         STYLE
             WIDTH 2.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary10,primary_link10}
+        EXPRESSION {primary10, primary_link10}
         STYLE
             WIDTH 3
             OUTLINECOLOR 136 136 136
@@ -4992,11 +4222,11 @@ LAYER
         END
         STYLE
             WIDTH 3
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {pedestrian10,footway10,path10}
+        EXPRESSION {pedestrian10, footway10, path10}
         STYLE
             WIDTH 1.5
             OUTLINECOLOR 136 136 136
@@ -5061,7 +4291,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified01,residential01,service01,living_street01}
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
         STYLE
             WIDTH 1.5
             COLOR "#aaaaaa"
@@ -5069,7 +4299,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {pedestrian01,footway01,path01}
+        EXPRESSION {pedestrian01, footway01, path01}
         STYLE
             WIDTH 1.5
             COLOR "#f2f2ed"
@@ -5077,26 +4307,26 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary01,tertiary_link01}
+        EXPRESSION {tertiary01, tertiary_link01}
         STYLE
             WIDTH 2
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {secondary01,secondary_link01}
+        EXPRESSION {secondary01, secondary_link01}
         STYLE
             WIDTH 2.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {primary01,primary_link01}
+        EXPRESSION {primary01, primary_link01}
         STYLE
             WIDTH 3
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
@@ -5142,7 +4372,7 @@ LAYER
     NAME "aeroways14"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -5168,29 +4398,6 @@ LAYER
     END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 40626
-   MINSCALEDENOM 20313
-   TYPE LINE
-   NAME "borders14"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -5199,13 +4406,12 @@ LAYER
  NAME "places14"
  MINSCALEDENOM 20313
  MAXSCALEDENOM 40626
- DATA "geometry from (select * from planet_osmplaces where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 12
@@ -5223,7 +4429,6 @@ LAYER
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 10
@@ -5242,7 +4447,6 @@ LAYER
  CLASS
   EXPRESSION 'village'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -5258,9 +4462,8 @@ LAYER
   END
  END
  CLASS
-  EXPRESSION {suburb,hamlet,locality}
+  EXPRESSION {suburb, hamlet, locality}
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 8
@@ -5277,25 +4480,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land15"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 10156
-   MAXSCALEDENOM 20313
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -5305,7 +4489,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 20313
@@ -5313,13 +4497,12 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -5340,7 +4523,6 @@ LAYER
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -5353,7 +4535,7 @@ LAYER
       END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -5362,7 +4544,6 @@ LAYER
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
-       FONT sc
        SIZE 8
        COLOR 0 0 0
        OUTLINECOLOR 255 255 255
@@ -5376,14 +4557,13 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -5405,7 +4585,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
        ENCODING "utf-8"
             SIZE 8
             COLOR 0 0 0
@@ -5425,7 +4604,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR "#333333"
          OUTLINECOLOR 255 255 255
@@ -5445,7 +4623,6 @@ LAYER
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
           COLOR 0 0 0
           OUTLINECOLOR 255 255 255
@@ -5459,14 +4636,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -5480,14 +4656,13 @@ LAYER
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
-        FONT sc
         SIZE 8
         COLOR 0 0 0
         OUTLINECOLOR 255 255 255
@@ -5502,27 +4677,6 @@ LAYER
     END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   PROJECTION
-       "init=epsg:21781"
-   END
-   NAME "transport_areas15"
-   GROUP "default"
-   CONNECTIONTYPE POSTGIS
-   CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-   DATA "geometry from planet_osmtransport_areas using unique osm_id using srid=21781"
-   PROCESSING "CLOSE_CONNECTION=DEFER"
-   MAXSCALEDENOM 20313
-   MINSCALEDENOM 10156
-   LABELITEM "name"
-   CLASS
-      STYLE
-         COLOR 200 200 200
-      END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -5532,7 +4686,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 20313
     MINSCALEDENOM 10156
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -5555,7 +4709,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -5575,7 +4728,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 20313
     MINSCALEDENOM 10156
@@ -5593,7 +4746,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 9
           COLOR "#6B94B0"
@@ -5615,7 +4767,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -5636,7 +4787,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -5660,7 +4810,7 @@ LAYER
     MAXSCALEDENOM 20313
     TYPE LINE
     NAME "railways15"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -5692,19 +4842,18 @@ LAYER
     NAME "roads15"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type||bridge||tunnel as type from planet_osmroads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
         STYLE
             WIDTH 2
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -5722,12 +4871,11 @@ LAYER
         STYLE
             PATTERN 2 3 END
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -5741,15 +4889,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary00,tertiary_link00}
+        EXPRESSION {tertiary00, tertiary_link00}
         STYLE
             WIDTH 2.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -5763,15 +4910,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {secondary00,secondary_link00}
+        EXPRESSION {secondary00, secondary_link00}
         STYLE
             WIDTH 3.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -5785,23 +4931,22 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {footway00,path00}
+        EXPRESSION {footway00, path00}
         STYLE
             PATTERN 2 3 END
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary00,primary_link00}
+        EXPRESSION {primary00, primary_link00}
         STYLE
             WIDTH 4
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -5823,7 +4968,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -5847,7 +4991,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -5875,7 +5018,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -5894,7 +5036,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
         STYLE
             WIDTH 2
             OUTLINECOLOR 136 136 136
@@ -5903,11 +5045,11 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {tertiary10,tertiary_link10}
+        EXPRESSION {tertiary10, tertiary_link10}
         STYLE
             WIDTH 2.5
             OUTLINECOLOR 136 136 136
@@ -5916,11 +5058,11 @@ LAYER
         END
         STYLE
             WIDTH 2.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {secondary10,secondary_link10}
+        EXPRESSION {secondary10, secondary_link10}
         STYLE
             WIDTH 3.5
             OUTLINECOLOR 136 136 136
@@ -5929,11 +5071,11 @@ LAYER
         END
         STYLE
             WIDTH 3.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary10,primary_link10}
+        EXPRESSION {primary10, primary_link10}
         STYLE
             WIDTH 4
             OUTLINECOLOR 136 136 136
@@ -5942,11 +5084,11 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {pedestrian10,footway10,path10}
+        EXPRESSION {pedestrian10, footway10, path10}
         STYLE
             WIDTH 2
             OUTLINECOLOR 136 136 136
@@ -6011,15 +5153,15 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified01,residential01,service01,living_street01}
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
         STYLE
             WIDTH 2
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {pedestrian01,footway01,path01}
+        EXPRESSION {pedestrian01, footway01, path01}
         STYLE
             WIDTH 2
             COLOR "#f2f2ed"
@@ -6027,26 +5169,26 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary01,tertiary_link01}
+        EXPRESSION {tertiary01, tertiary_link01}
         STYLE
             WIDTH 2.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {secondary01,secondary_link01}
+        EXPRESSION {secondary01, secondary_link01}
         STYLE
             WIDTH 3.5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {primary01,primary_link01}
+        EXPRESSION {primary01, primary_link01}
         STYLE
             WIDTH 4
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
@@ -6092,7 +5234,7 @@ LAYER
     NAME "aeroways15"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -6127,7 +5269,7 @@ LAYER
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id, name as name from planet_osmbuildings) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -6144,7 +5286,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          PARTIALS FALSE
          MINFEATURESIZE AUTO
          SIZE 8
@@ -6158,29 +5299,6 @@ LAYER
    END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 20313
-   MINSCALEDENOM 10156
-   TYPE LINE
-   NAME "borders15"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -6189,13 +5307,12 @@ LAYER
  NAME "places15"
  MINSCALEDENOM 10156
  MAXSCALEDENOM 20313
- DATA "geometry from (select * from planet_osmplaces where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'city'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 13
@@ -6213,7 +5330,6 @@ LAYER
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 11
@@ -6232,7 +5348,6 @@ LAYER
  CLASS
   EXPRESSION 'village'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 10
@@ -6248,9 +5363,8 @@ LAYER
   END
  END
  CLASS
-  EXPRESSION {suburb,hamlet,locality}
+  EXPRESSION {suburb, hamlet, locality}
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -6267,25 +5381,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land16"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 5078
-   MAXSCALEDENOM 10156
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -6295,7 +5390,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 10156
@@ -6303,13 +5398,12 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -6330,7 +5424,6 @@ LAYER
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -6343,7 +5436,7 @@ LAYER
       END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -6352,7 +5445,6 @@ LAYER
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
-       FONT sc
        SIZE 8
        COLOR 0 0 0
        OUTLINECOLOR 255 255 255
@@ -6366,14 +5458,13 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -6395,7 +5486,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
        ENCODING "utf-8"
             SIZE 8
             COLOR 0 0 0
@@ -6415,7 +5505,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR "#333333"
          OUTLINECOLOR 255 255 255
@@ -6435,7 +5524,6 @@ LAYER
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
           COLOR 0 0 0
           OUTLINECOLOR 255 255 255
@@ -6449,14 +5537,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -6470,14 +5557,13 @@ LAYER
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
-        FONT sc
         SIZE 8
         COLOR 0 0 0
         OUTLINECOLOR 255 255 255
@@ -6492,27 +5578,6 @@ LAYER
     END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   PROJECTION
-       "init=epsg:21781"
-   END
-   NAME "transport_areas16"
-   GROUP "default"
-   CONNECTIONTYPE POSTGIS
-   CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-   DATA "geometry from planet_osmtransport_areas using unique osm_id using srid=21781"
-   PROCESSING "CLOSE_CONNECTION=DEFER"
-   MAXSCALEDENOM 10156
-   MINSCALEDENOM 5078
-   LABELITEM "name"
-   CLASS
-      STYLE
-         COLOR 200 200 200
-      END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -6522,7 +5587,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 10156
     MINSCALEDENOM 5078
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -6545,7 +5610,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -6565,7 +5629,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 10156
     MINSCALEDENOM 5078
@@ -6583,7 +5647,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 9
           COLOR "#6B94B0"
@@ -6605,7 +5668,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -6626,7 +5688,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -6650,7 +5711,7 @@ LAYER
     MAXSCALEDENOM 10156
     TYPE LINE
     NAME "railways16"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -6682,19 +5743,18 @@ LAYER
     NAME "roads16"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type||bridge||tunnel as type from planet_osmroads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
         STYLE
             WIDTH 4
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -6712,12 +5772,11 @@ LAYER
         STYLE
             PATTERN 2 3 END
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -6731,15 +5790,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary00,tertiary_link00}
+        EXPRESSION {tertiary00, tertiary_link00}
         STYLE
             WIDTH 5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -6753,15 +5811,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {secondary00,secondary_link00}
+        EXPRESSION {secondary00, secondary_link00}
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -6775,23 +5832,22 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {footway00,path00}
+        EXPRESSION {footway00, path00}
         STYLE
             PATTERN 2 3 END
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary00,primary_link00}
+        EXPRESSION {primary00, primary_link00}
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -6813,7 +5869,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -6837,7 +5892,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -6865,7 +5919,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -6884,7 +5937,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
         STYLE
             WIDTH 4
             OUTLINECOLOR 136 136 136
@@ -6893,11 +5946,11 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {tertiary10,tertiary_link10}
+        EXPRESSION {tertiary10, tertiary_link10}
         STYLE
             WIDTH 5
             OUTLINECOLOR 136 136 136
@@ -6906,11 +5959,11 @@ LAYER
         END
         STYLE
             WIDTH 5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {secondary10,secondary_link10}
+        EXPRESSION {secondary10, secondary_link10}
         STYLE
             WIDTH 6
             OUTLINECOLOR 136 136 136
@@ -6919,11 +5972,11 @@ LAYER
         END
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary10,primary_link10}
+        EXPRESSION {primary10, primary_link10}
         STYLE
             WIDTH 7
             OUTLINECOLOR 136 136 136
@@ -6932,11 +5985,11 @@ LAYER
         END
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {pedestrian10,footway10,path10}
+        EXPRESSION {pedestrian10, footway10, path10}
         STYLE
             WIDTH 2.5
             OUTLINECOLOR 136 136 136
@@ -7001,15 +6054,15 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified01,residential01,service01,living_street01}
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
         STYLE
             WIDTH 4
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {pedestrian01,footway01,path01}
+        EXPRESSION {pedestrian01, footway01, path01}
         STYLE
             WIDTH 2.5
             COLOR "#f2f2ed"
@@ -7017,26 +6070,26 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary01,tertiary_link01}
+        EXPRESSION {tertiary01, tertiary_link01}
         STYLE
             WIDTH 5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {secondary01,secondary_link01}
+        EXPRESSION {secondary01, secondary_link01}
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {primary01,primary_link01}
+        EXPRESSION {primary01, primary_link01}
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
@@ -7082,7 +6135,7 @@ LAYER
     NAME "aeroways16"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -7117,7 +6170,7 @@ LAYER
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id, name as name from planet_osmbuildings) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -7134,7 +6187,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          PARTIALS FALSE
          MINFEATURESIZE AUTO
          SIZE 8
@@ -7148,29 +6200,6 @@ LAYER
    END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 10156
-   MINSCALEDENOM 5078
-   TYPE LINE
-   NAME "borders16"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -7179,13 +6208,12 @@ LAYER
  NAME "places16"
  MINSCALEDENOM 5078
  MAXSCALEDENOM 10156
- DATA "geometry from (select * from planet_osmplaces where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 11
@@ -7204,7 +6232,6 @@ LAYER
  CLASS
   EXPRESSION 'village'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 10
@@ -7220,9 +6247,8 @@ LAYER
   END
  END
  CLASS
-  EXPRESSION {suburb,hamlet,locality}
+  EXPRESSION {suburb, hamlet, locality}
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -7239,25 +6265,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land17"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 2539
-   MAXSCALEDENOM 5078
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -7267,7 +6274,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 5078
@@ -7275,13 +6282,12 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -7302,7 +6308,6 @@ LAYER
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -7315,7 +6320,7 @@ LAYER
       END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -7324,7 +6329,6 @@ LAYER
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
-       FONT sc
        SIZE 8
        COLOR 0 0 0
        OUTLINECOLOR 255 255 255
@@ -7338,14 +6342,13 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -7367,7 +6370,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
        ENCODING "utf-8"
             SIZE 8
             COLOR 0 0 0
@@ -7387,7 +6389,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR "#333333"
          OUTLINECOLOR 255 255 255
@@ -7407,7 +6408,6 @@ LAYER
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
           COLOR 0 0 0
           OUTLINECOLOR 255 255 255
@@ -7421,14 +6421,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -7442,14 +6441,13 @@ LAYER
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
-        FONT sc
         SIZE 8
         COLOR 0 0 0
         OUTLINECOLOR 255 255 255
@@ -7464,27 +6462,6 @@ LAYER
     END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   PROJECTION
-       "init=epsg:21781"
-   END
-   NAME "transport_areas17"
-   GROUP "default"
-   CONNECTIONTYPE POSTGIS
-   CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-   DATA "geometry from planet_osmtransport_areas using unique osm_id using srid=21781"
-   PROCESSING "CLOSE_CONNECTION=DEFER"
-   MAXSCALEDENOM 5078
-   MINSCALEDENOM 2539
-   LABELITEM "name"
-   CLASS
-      STYLE
-         COLOR 200 200 200
-      END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -7494,7 +6471,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 5078
     MINSCALEDENOM 2539
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -7517,7 +6494,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -7537,7 +6513,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 5078
     MINSCALEDENOM 2539
@@ -7555,7 +6531,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 10
           COLOR "#6B94B0"
@@ -7577,7 +6552,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -7598,7 +6572,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -7622,7 +6595,7 @@ LAYER
     MAXSCALEDENOM 5078
     TYPE LINE
     NAME "railways17"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -7654,19 +6627,18 @@ LAYER
     NAME "roads17"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type||bridge||tunnel as type from planet_osmroads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
         STYLE
             WIDTH 5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -7684,12 +6656,11 @@ LAYER
         STYLE
             PATTERN 2 3 END
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -7703,15 +6674,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary00,tertiary_link00}
+        EXPRESSION {tertiary00, tertiary_link00}
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -7725,15 +6695,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {secondary00,secondary_link00}
+        EXPRESSION {secondary00, secondary_link00}
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -7747,23 +6716,22 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {footway00,path00}
+        EXPRESSION {footway00, path00}
         STYLE
             PATTERN 2 3 END
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary00,primary_link00}
+        EXPRESSION {primary00, primary_link00}
         STYLE
             WIDTH 8
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -7785,7 +6753,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -7809,7 +6776,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -7837,7 +6803,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -7856,7 +6821,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
         STYLE
             WIDTH 5
             OUTLINECOLOR 136 136 136
@@ -7865,11 +6830,11 @@ LAYER
         END
         STYLE
             WIDTH 5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {tertiary10,tertiary_link10}
+        EXPRESSION {tertiary10, tertiary_link10}
         STYLE
             WIDTH 6
             OUTLINECOLOR 136 136 136
@@ -7878,11 +6843,11 @@ LAYER
         END
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {secondary10,secondary_link10}
+        EXPRESSION {secondary10, secondary_link10}
         STYLE
             WIDTH 7
             OUTLINECOLOR 136 136 136
@@ -7891,11 +6856,11 @@ LAYER
         END
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary10,primary_link10}
+        EXPRESSION {primary10, primary_link10}
         STYLE
             WIDTH 8
             OUTLINECOLOR 136 136 136
@@ -7904,11 +6869,11 @@ LAYER
         END
         STYLE
             WIDTH 8
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {pedestrian10,footway10,path10}
+        EXPRESSION {pedestrian10, footway10, path10}
         STYLE
             WIDTH 3
             OUTLINECOLOR 136 136 136
@@ -7973,15 +6938,15 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified01,residential01,service01,living_street01}
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
         STYLE
             WIDTH 5
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {pedestrian01,footway01,path01}
+        EXPRESSION {pedestrian01, footway01, path01}
         STYLE
             WIDTH 3
             COLOR "#f2f2ed"
@@ -7989,26 +6954,26 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary01,tertiary_link01}
+        EXPRESSION {tertiary01, tertiary_link01}
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {secondary01,secondary_link01}
+        EXPRESSION {secondary01, secondary_link01}
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {primary01,primary_link01}
+        EXPRESSION {primary01, primary_link01}
         STYLE
             WIDTH 8
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
@@ -8054,7 +7019,7 @@ LAYER
     NAME "aeroways17"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -8089,7 +7054,7 @@ LAYER
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id, name as name from planet_osmbuildings) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -8106,7 +7071,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          PARTIALS FALSE
          MINFEATURESIZE AUTO
          SIZE 8
@@ -8120,29 +7084,6 @@ LAYER
    END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 5078
-   MINSCALEDENOM 2539
-   TYPE LINE
-   NAME "borders17"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -8151,13 +7092,12 @@ LAYER
  NAME "places17"
  MINSCALEDENOM 2539
  MAXSCALEDENOM 5078
- DATA "geometry from (select * from planet_osmplaces where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 11
@@ -8176,7 +7116,6 @@ LAYER
  CLASS
   EXPRESSION 'village'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 10
@@ -8192,9 +7131,8 @@ LAYER
   END
  END
  CLASS
-  EXPRESSION {suburb,hamlet,locality}
+  EXPRESSION {suburb, hamlet, locality}
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -8211,25 +7149,6 @@ LAYER
  END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   GROUP "default"
-   DEBUG 1
-   NAME "land18"
-   PROCESSING "APPROXIMATION_SCALE=full"
-   PROJECTION
-       "init=epsg:3857"
-   END
-   MINSCALEDENOM 0
-   MAXSCALEDENOM 2539
-   DATA "data/processed_p"
-   CLASS
-       STYLE
-           COLOR "#E8E6E1"
-       END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -8239,7 +7158,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry ,osm_id, type, name as name from planet_osmlandusages       where type in ('forest','pedestrian','cemetery','industrial','commercial',      'brownfield','residential','school','college','university',      'military','park','golf_course','hospital','parking','stadium','sports_center',      'pitch') order by area desc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 2539
@@ -8247,13 +7166,12 @@ LAYER
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
-       EXPRESSION {forest,wood}
+       EXPRESSION {forest, wood}
        STYLE
           COLOR "#C2D1B2"
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -8274,7 +7192,6 @@ LAYER
        END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR 0 0 0
          OUTLINECOLOR 255 255 255
@@ -8287,7 +7204,7 @@ LAYER
       END
    END
    CLASS
-     EXPRESSION {industrial,commercial,parking}
+     EXPRESSION {industrial, commercial, parking}
      STYLE
        COLOR "#d1d1d1"
        OUTLINECOLOR "#d1d1d1"
@@ -8296,7 +7213,6 @@ LAYER
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
-       FONT sc
        SIZE 8
        COLOR 0 0 0
        OUTLINECOLOR 255 255 255
@@ -8310,14 +7226,13 @@ LAYER
      END
     END
     CLASS
-        EXPRESSION {park,golf_course}
+        EXPRESSION {park, golf_course}
         STYLE
             COLOR "#DCDCB4"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -8339,7 +7254,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
        ENCODING "utf-8"
             SIZE 8
             COLOR 0 0 0
@@ -8359,7 +7273,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          SIZE 8
          COLOR "#333333"
          OUTLINECOLOR 255 255 255
@@ -8379,7 +7292,6 @@ LAYER
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
           COLOR 0 0 0
           OUTLINECOLOR 255 255 255
@@ -8393,14 +7305,13 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {school,college,university}
+        EXPRESSION {school, college, university}
         STYLE
             COLOR "#DED1AB"
         END
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           SIZE 8
        ENCODING "utf-8"
           COLOR 0 0 0
@@ -8414,14 +7325,13 @@ LAYER
         END
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center, stadium, pitch}
       STYLE
           COLOR "#DED1AB"
       END
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
-        FONT sc
         SIZE 8
         COLOR 0 0 0
         OUTLINECOLOR 255 255 255
@@ -8436,27 +7346,6 @@ LAYER
     END
 END
 LAYER
-   TYPE POLYGON
-   STATUS ON
-   PROJECTION
-       "init=epsg:21781"
-   END
-   NAME "transport_areas18"
-   GROUP "default"
-   CONNECTIONTYPE POSTGIS
-   CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-   DATA "geometry from planet_osmtransport_areas using unique osm_id using srid=21781"
-   PROCESSING "CLOSE_CONNECTION=DEFER"
-   MAXSCALEDENOM 2539
-   MINSCALEDENOM 0
-   LABELITEM "name"
-   CLASS
-      STYLE
-         COLOR 200 200 200
-      END
-   END
-END
-LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
@@ -8466,7 +7355,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id ,name as name,type from planet_osmwaterareas) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 2539
     MINSCALEDENOM 0
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -8489,7 +7378,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 8
           COLOR "#6B94B0"
@@ -8509,7 +7397,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type, name as name from planet_osmwaterways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 2539
     MINSCALEDENOM 0
@@ -8527,7 +7415,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
           SIZE 10
           COLOR "#6B94B0"
@@ -8549,7 +7436,6 @@ LAYER
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -8570,7 +7456,6 @@ LAYER
         END
         LABEL
           TYPE TRUETYPE
-          FONT sc
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE 8
@@ -8594,7 +7479,7 @@ LAYER
     MAXSCALEDENOM 2539
     TYPE LINE
     NAME "railways18"
-    DATA "geometry from (select geometry, osm_id, tunnel from planet_osmrailways where type='rail') as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
     CLASSITEM "tunnel"
     CLASS
       EXPRESSION "0"
@@ -8626,19 +7511,18 @@ LAYER
     NAME "roads18"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select osm_id,geometry,name as name,ref,type||bridge||tunnel as type from planet_osmroads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
-        EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -8656,12 +7540,11 @@ LAYER
         STYLE
             PATTERN 2 3 END
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -8675,15 +7558,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary00,tertiary_link00}
+        EXPRESSION {tertiary00, tertiary_link00}
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -8697,15 +7579,14 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {secondary00,secondary_link00}
+        EXPRESSION {secondary00, secondary_link00}
         STYLE
             WIDTH 8
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -8719,23 +7600,22 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {footway00,path00}
+        EXPRESSION {footway00, path00}
         STYLE
             PATTERN 2 3 END
             WIDTH 1
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary00,primary_link00}
+        EXPRESSION {primary00, primary_link00}
         STYLE
             WIDTH 9
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -8757,7 +7637,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT sc
             SIZE 8
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -8781,7 +7660,6 @@ LAYER
             TYPE TRUETYPE
             PARTIALS FALSE
             PRIORITY 1
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -8809,7 +7687,6 @@ LAYER
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
-            FONT scb
             SIZE 9
             MINDISTANCE 200
             REPEATDISTANCE 400
@@ -8828,7 +7705,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
         STYLE
             WIDTH 6
             OUTLINECOLOR 136 136 136
@@ -8837,11 +7714,11 @@ LAYER
         END
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {tertiary10,tertiary_link10}
+        EXPRESSION {tertiary10, tertiary_link10}
         STYLE
             WIDTH 7
             OUTLINECOLOR 136 136 136
@@ -8850,11 +7727,11 @@ LAYER
         END
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {secondary10,secondary_link10}
+        EXPRESSION {secondary10, secondary_link10}
         STYLE
             WIDTH 8
             OUTLINECOLOR 136 136 136
@@ -8863,11 +7740,11 @@ LAYER
         END
         STYLE
             WIDTH 8
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {primary10,primary_link10}
+        EXPRESSION {primary10, primary_link10}
         STYLE
             WIDTH 9
             OUTLINECOLOR 136 136 136
@@ -8876,11 +7753,11 @@ LAYER
         END
         STYLE
             WIDTH 9
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
         END
     END
     CLASS
-        EXPRESSION {pedestrian10,footway10,path10}
+        EXPRESSION {pedestrian10, footway10, path10}
         STYLE
             WIDTH 3.5
             OUTLINECOLOR 136 136 136
@@ -8945,15 +7822,15 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {unclassified01,residential01,service01,living_street01}
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
         STYLE
             WIDTH 6
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {pedestrian01,footway01,path01}
+        EXPRESSION {pedestrian01, footway01, path01}
         STYLE
             WIDTH 3.5
             COLOR "#f2f2ed"
@@ -8961,26 +7838,26 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION {tertiary01,tertiary_link01}
+        EXPRESSION {tertiary01, tertiary_link01}
         STYLE
             WIDTH 7
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {secondary01,secondary_link01}
+        EXPRESSION {secondary01, secondary_link01}
         STYLE
             WIDTH 8
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
     CLASS
-        EXPRESSION {primary01,primary_link01}
+        EXPRESSION {primary01, primary_link01}
         STYLE
             WIDTH 9
-            COLOR "#ffffff"
+            COLOR "#eeeeee"
             OPACITY 40
         END
     END
@@ -9026,7 +7903,7 @@ LAYER
     NAME "aeroways18"
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry, osm_id, type from planet_osmaeroways) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
@@ -9061,7 +7938,7 @@ LAYER
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
-    DATA "geometry from (select geometry,osm_id, name as name from planet_osmbuildings) as foo using unique osm_id using srid=21781"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -9078,7 +7955,6 @@ LAYER
       END
       LABEL
          TYPE TRUETYPE
-         FONT sc
          PARTIALS FALSE
          MINFEATURESIZE AUTO
          SIZE 8
@@ -9092,29 +7968,6 @@ LAYER
    END
 END
 LAYER
-   GROUP "default"
-   STATUS ON
-   MAXSCALEDENOM 2539
-   MINSCALEDENOM 0
-   TYPE LINE
-   NAME "borders18"
-   PROJECTION
-     "init=epsg:4326"
-   END
-   DATA "data/boundaries.shp"
-   CLASS
-      STYLE
-         WIDTH 5
-         COLOR "#CDCBC6"
-         OPACITY 50
-      END
-      STYLE
-         WIDTH 1
-         COLOR "#8d8b8d"
-      END
-   END
-END
-LAYER
  STATUS ON
  GROUP "default"
  TYPE POINT
@@ -9123,13 +7976,12 @@ LAYER
  NAME "places18"
  MINSCALEDENOM 0
  MAXSCALEDENOM 2539
- DATA "geometry from (select * from planet_osmplaces where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=21781"
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place IS NOT NULL AND name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
  LABELITEM 'name'
  CLASSITEM 'type'
  CLASS
   EXPRESSION 'town'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 11
@@ -9148,7 +8000,6 @@ LAYER
  CLASS
   EXPRESSION 'village'
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 10
@@ -9164,9 +8015,8 @@ LAYER
   END
  END
  CLASS
-  EXPRESSION {suburb,hamlet,locality}
+  EXPRESSION {suburb, hamlet, locality}
   LABEL
-   FONT sc
    TYPE TRUETYPE
    ENCODING "utf-8"
    SIZE 9
@@ -9187,5 +8037,4 @@ SYMBOL
  type ellipse
  points 1 1 end
  filled true
-END
 END
