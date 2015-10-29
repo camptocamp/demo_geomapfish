@@ -2,7 +2,7 @@ grids:
     # grid name, I just recommends to add the min resolution because it's common to not generate all the layers at the same resolution.
     swissgrid_05:
         # resolutions [required]
-        resolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5]
+        resolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
         # bbox [required]
         bbox: [420000, 30000, 900000, 350000]
         # srs [required]
@@ -34,50 +34,37 @@ layer_default:
     type: wms
     grid: swissgrid_05
     # The minimum resolution to seed, useful to use with mapcache, optional.
-    # min_resolution_seed: 1
+    min_resolution_seed: 5
     # the URL of the WMS server to used
-    url: http://${facts:fqdn}/${vars:instanceid}/mapserv
-    # file name extension
-    extension: png
+    url: http://${host}/${instanceid}/mapserv
     # the bbox there we want to generate tiles
-    #bbox: [493000, 114000, 586000, 204000]
+    bbox: [473743, 74095, 850904, 325533]
 
-    # mime type used for the WMS request and the WMTS capabilities generation
-    mime_type: image/png
     wmts_style: default
-    # the WMTS dimensions definition [default to []]
-    dimensions:
-        -   name: DATE
-            # the default value for the WMTS capabilities
-            default: 2012
-            # the generated value
-            value: 2012
-            # all the available values in the WMTS capabilities
-            values: [2012]
     # the meta tiles definition [default to off]
     meta: on
     # the meta tiles size [default to 8]
     meta_size: 8
     # the meta tiles buffer [default to 128]
     meta_buffer: 128
-    # connexion an sql to get geometries (in column named geom) where we want to generate tiles
-    # Warn: too complex result can slow down the application
-#    connection: user=www-data password=www-data dbname=<db> host=localhost
-#    geoms:
-#        -   sql: <column> AS geom FROM <table>
-    # size and hash used to detect empty tiles and metatiles [optional, default to None]
-    empty_metatile_detection:
-        size: 740
-        hash: 3237839c217b51b8a9644d596982f342f8041546
-    empty_tile_detection:
-        size: 921
-        hash: 1e3da153be87a493c4c71198366485f290cad43c
+
 
 layers:
-    plan:
-        layers: plan
-    ortho:
-        layers: ortho
+    map:
+        layers: default
+        # file name extension
+        extension: png
+        # mime type used for the WMS request and the WMTS capabilities generation
+        mime_type: image/png
+        # size and hash used to detect empty tiles and metatiles [optional, default to None]
+        empty_metatile_detection:
+            size: 740
+            hash: 3237839c217b51b8a9644d596982f342f8041546
+        empty_tile_detection:
+            size: 921
+            hash: 1e3da153be87a493c4c71198366485f290cad43c
+    map_jpeg:
+        layers: default
         extension: jpeg
         mime_type: image/jpeg
         # no buffer needed on rater sources
@@ -91,8 +78,6 @@ layers:
 
 generation:
     default_cache: local
-    # used to allowed only a specific user to generate tiles (for rights issue)
-    authorised_user: www-data
 
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
