@@ -59,9 +59,9 @@ Ext.onReady(function() {
     };
 
     var WMTS_OPTIONS = Ext.applyIf({
-        url: ${request.registry.config['tiles_url'] | n},
+        url: ${dumps(request.registry.settings['tiles_url']) | n},
         matrixSet: 'swissgrid_005',
-        serverResolutions: [1000,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05]
+        serverResolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
     }, WMTS_BASE_OPTIONS);
 
     var WMTSASITVD_OPTIONS = Ext.applyIf({

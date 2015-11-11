@@ -12,6 +12,4 @@ APACHE_VHOST ?= geomapfish-demo
 PRINT_INPUT += WEB-INF
 PRINT_REQUIREMENT += print/WEB-INF/classes/mapfish-spring-application-context-override.xml
 
-TILECLOUD_CHAIN ?= FALSE
-
 include CONST_Makefile

@@ -93,7 +93,7 @@ vars:
             fr: fr
 
     # For base layers
-    tiles_url:
+    tiles_url: http://{host}/{instanceid}/tiles
 
     # Checker configuration
     checker:
