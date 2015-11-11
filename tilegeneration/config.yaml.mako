@@ -1,6 +1,6 @@
 grids:
     # grid name, I just recommends to add the min resolution because it's common to not generate all the layers at the same resolution.
-    swissgrid_05:
+    swissgrid_005:
         # resolutions [required]
         resolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
         # bbox [required]
@@ -9,34 +9,35 @@ grids:
         srs: epsg:21781
 
 caches:
-    local:
-        type: filesystem
-        folder: /var/sig/tiles
-        # for GetCapabilities
-        http_url: https://%(host)s/tiles
-        hosts:
-        - wmts0.<host>
-        - wmts1.<host>
-        - wmts2.<host>
-        - wmts3.<host>
-        - wmts4.<host>
     s3:
         type: s3
-        bucket: tiles
+        bucket: camptocamp-gmf-demo-tiles
         folder: ''
         # for GetCapabilities
-        http_url: https://%(host)s/%(bucket)s/%(folder)s
+        http_url: https://%(host)s.geomapfish-demo.camptocamp.net
         hosts:
-        - wmts0.<host>
+        - tiles
+        - tiles0
+        - tiles1
+        - tiles2
+        - tiles3
+        - tiles4
+        - tiles5
+        - tiles6
+        - tiles7
+        - tiles8
+        - tiles9
 
 # this defines some defaults values for all the layers
 layer_default:
     type: wms
-    grid: swissgrid_05
+    grid: swissgrid_005
     # The minimum resolution to seed, useful to use with mapcache, optional.
     min_resolution_seed: 5
     # the URL of the WMS server to used
-    url: http://${host}/${instanceid}/mapserv
+    url: http://localhost/${instanceid}/mapserv
+    headers:
+        Host: ${host}
     # the bbox there we want to generate tiles
     bbox: [473743, 74095, 850904, 325533]
 
@@ -77,7 +78,7 @@ layers:
             hash: 2892fea0a474228f5d66a534b0b5231d923696da
 
 generation:
-    default_cache: local
+    default_cache: s3
 
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10

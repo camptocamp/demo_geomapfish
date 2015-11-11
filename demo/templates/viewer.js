@@ -44,28 +44,37 @@ Ext.onReady(function() {
     // Used to transmit event throw the application
     var EVENTS = new Ext.util.Observable();
 
-    var WMTSASITVD_OPTIONS2 = {
-        url: "http://ows.asitvd.ch/wmts/",
-        attribution: OpenLayers.i18n("© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"),
+
+    var WMTS_BASE_OPTIONS = {
         displayInLayerSwitcher: false,
         requestEncoding: 'REST',
         buffer: 0,
+        transitionEffect: "resize",
+        visibility: false,
         style: 'default',
+        maxExtent: MAX_EXTENT,
+        projection: new OpenLayers.Projection("EPSG:{{srid}}"),
+        units: "m",
+        formatSuffix: 'png',
+    };
+
+    var WMTS_OPTIONS = Ext.applyIf({
+        url: ${tiles_url | n},
+        matrixSet: 'swissgrid_005',
+        serverResolutions: [1000,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05]
+    }, WMTS_BASE_OPTIONS);
+
+    var WMTSASITVD_OPTIONS = Ext.applyIf({
+        url: "http://ows.asitvd.ch/wmts/",
+        attribution: OpenLayers.i18n("© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"),
         dimensions: ['DIM1','ELEVATION'],
         params: {
             'dim1': 'default',
             'elevation': '0'
         },
         matrixSet: "21781",
-        maxExtent: MAX_EXTENT,
-        projection: new OpenLayers.Projection("EPSG:21781"),
-        units: "m",
-        format: "image/png",
-        formatSuffix: 'png',
-        opacity: 1,
-        visibility: true,
         serverResolutions: [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,05]
-    };
+    }, WMTS_BASE_OPTIONS);
 
     app = new gxp.Viewer({
         portalConfig: {
@@ -511,6 +520,18 @@ Ext.onReady(function() {
             layers: [{
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
+                args: [Ext.applyIf({
+                    name: OpenLayers.i18n('map'),
+                    mapserverLayers: 'default',
+                    ref: 'map',
+                    layer: 'map',
+                    group: 'background',
+                    visibility: false
+                }, WMTS_OPTIONS)]
+            },
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
                 group: 'background',
                 args: [Ext.applyIf({
                     name: OpenLayers.i18n('asitvd.fond_couleur'),
@@ -520,7 +541,7 @@ Ext.onReady(function() {
                     transitionEffect: "resize",
                     group: 'background',
                     visibility: false
-                }, WMTSASITVD_OPTIONS2)]
+                }, WMTSASITVD_OPTIONS)]
             },
             {
                 source: "olsource",
@@ -534,7 +555,7 @@ Ext.onReady(function() {
                     transitionEffect: "resize",
                     group: 'background',
                     visibility: false
-                }, WMTSASITVD_OPTIONS2)]
+                }, WMTSASITVD_OPTIONS)]
             },
             {
                 source: "olsource",
