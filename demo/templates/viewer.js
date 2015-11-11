@@ -53,13 +53,13 @@ Ext.onReady(function() {
         visibility: false,
         style: 'default',
         maxExtent: MAX_EXTENT,
-        projection: new OpenLayers.Projection("EPSG:{{srid}}"),
+        projection: new OpenLayers.Projection("EPSG:21781"),
         units: "m",
         formatSuffix: 'png',
     };
 
     var WMTS_OPTIONS = Ext.applyIf({
-        url: ${tiles_url | n},
+        url: ${request.registry.config['tiles_url'] | n},
         matrixSet: 'swissgrid_005',
         serverResolutions: [1000,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05]
     }, WMTS_BASE_OPTIONS);

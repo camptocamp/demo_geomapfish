@@ -15,6 +15,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "Description": "Description",
     "Add debug header": "Ajouter en-tête de debug",
 
+    "map": "Fond de plan OSM",
     "asitvd.fond_couleur": "Plan ASIT VD",
     "asitvd.fond_gris": "Plan ASIT VD (noir et blanc)",
     "blank": "Pas de fond de plan",
