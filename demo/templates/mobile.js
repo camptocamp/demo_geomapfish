@@ -1,15 +1,3 @@
-goog.provide('app.MainController');
-
-goog.require('app');
-goog.require('ngeo.FeatureOverlayMgr');
-goog.require('ol.Map');
-goog.require('ol.View');
-goog.require('ol.control.ScaleLine');
-goog.require('ol.control.Zoom');
-goog.require('ol.layer.Tile');
-goog.require('ol.source.OSM');
-
-
 
 /**
  * @param {ngeo.FeatureOverlayMgr} ngeoFeatureOverlayMgr The ngeo feature
@@ -18,7 +6,7 @@ goog.require('ol.source.OSM');
  * @ngInject
  * @export
  */
-app.MainController = function(ngeoFeatureOverlayMgr) {
+app.MobileController = function(ngeoFeatureOverlayMgr) {
 
   proj4.defs('EPSG:21781',
       '+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 ' +
@@ -78,7 +66,7 @@ app.MainController = function(ngeoFeatureOverlayMgr) {
 /**
  * @export
  */
-app.MainController.prototype.toggleLeftNavVisibility = function() {
+app.MobileController.prototype.toggleLeftNavVisibility = function() {
   this.leftNavVisible = !this.leftNavVisible;
 };
 
@@ -86,7 +74,7 @@ app.MainController.prototype.toggleLeftNavVisibility = function() {
 /**
  * @export
  */
-app.MainController.prototype.toggleRightNavVisibility = function() {
+app.MobileController.prototype.toggleRightNavVisibility = function() {
   this.rightNavVisible = !this.rightNavVisible;
 };
 
@@ -95,7 +83,7 @@ app.MainController.prototype.toggleRightNavVisibility = function() {
  * Hide both navigation menus.
  * @export
  */
-app.MainController.prototype.hideNav = function() {
+app.MobileController.prototype.hideNav = function() {
   this.leftNavVisible = this.rightNavVisible = false;
 };
 
@@ -105,7 +93,7 @@ app.MainController.prototype.hideNav = function() {
  * otherwise false.
  * @export
  */
-app.MainController.prototype.navIsVisible = function() {
+app.MobileController.prototype.navIsVisible = function() {
   return this.leftNavVisible || this.rightNavVisible;
 };
 
@@ -115,7 +103,7 @@ app.MainController.prototype.navIsVisible = function() {
  * otherwise false.
  * @export
  */
-app.MainController.prototype.leftNavIsVisible = function() {
+app.MobileController.prototype.leftNavIsVisible = function() {
   return this.leftNavVisible;
 };
 
@@ -125,9 +113,9 @@ app.MainController.prototype.leftNavIsVisible = function() {
  * otherwise false.
  * @export
  */
-app.MainController.prototype.rightNavIsVisible = function() {
+app.MobileController.prototype.rightNavIsVisible = function() {
   return this.rightNavVisible;
 };
 
 
-app.module.controller('MainController', app.MainController);
+app.module.controller('MobileController', app.MobileController);

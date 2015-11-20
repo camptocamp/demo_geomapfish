@@ -7,7 +7,7 @@
  * This file includes `goog.require`'s for all the components/directives used
  * by the HTML page.
  */
-goog.provide('app_main');
+goog.provide('demo_main');
 
 goog.require('app.MainController');
 goog.require('gmf.mapDirective');

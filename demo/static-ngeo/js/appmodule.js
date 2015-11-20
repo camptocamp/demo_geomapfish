@@ -3,7 +3,7 @@
  * application's main namespace. And it defines the application's Angular
  * module.
  */
-goog.provide('app');
+goog.provide('demo');
 
 goog.require('gmf');
 
