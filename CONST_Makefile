@@ -9,7 +9,7 @@ LANGUAGES ?= en fr de
 # Enable CGXP build
 CGXP ?= TRUE
 # Enable sencha touch build
-MOBILE ?= TRUE
+MOBILE ?= FALSE
 # Enable ngeo build
 NGEO ?= TRUE
 # Use TileCloud chain
@@ -43,9 +43,9 @@ ifeq ($(DEPLOY), TRUE)
 DEFAULT_BUILD_RULES += test-packages-deploy
 endif
 ifeq ($(TILECLOUD_CHAIN), TRUE)
-DEFAULT_BUILD_RULES += test-packages-tilecloud-chain apache/mapcache.xml apache/tiles.conf
+DEFAULT_BUILD_RULES += test-packages-tilecloud-chain apache/tiles.conf
 endif
-ifeq ($(MOBLE), TRUE)
+ifeq ($(MOBILE), TRUE)
 DEFAULT_BUILD_RULES += test-packages-mobile
 endif
 ifeq ($(NGEO), TRUE)
@@ -62,6 +62,7 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 # Requirements
 CONST_REQUIREMENT ?= CONST_requirements.txt
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions.txt $(CONST_REQUIREMENT)
+REQUIREMENTS ?= 'c2cgeoportal>=2.0.0.dev'
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -82,7 +83,7 @@ GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 
 # ngeo
 APP_OUTPUT_DIR =  $(PACKAGE)/static-ngeo/build
-NGEO_INTERFACES ?= ngeo
+NGEO_INTERFACES ?= mobile
 NGEO_OUTPUT_FILES = $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .js, $(NGEO_INTERFACES))) \
 	$(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .min.css, $(NGEO_INTERFACES)))
 OL_JS_FILES = $(shell find node_modules/openlayers/src/ol -type f -name '*.js' 2> /dev/null)
@@ -298,8 +299,8 @@ VARS_DEPENDS += $(VARS_FILES) .build/node_modules.timestamp
 CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid_closure \
 	node_modules_path closure_library_path default_locale_name servers layers \
 	available_locale_names cache admin_interface functionalities external_themes_url \
-	raster shortener hide_capabilities use_security_metadata mapserverproxy \
-	tinyowsproxy print_url tiles_url checker check_collector default_max_age jsbuild package srid \
+	raster shortener hide_capabilities mapserverproxy tinyowsproxy print_url tiles_url \
+	checker check_collector default_max_age jsbuild package srid \
 	reset_password fulltextsearch
 ENVIRONMENT_VARS += INSTANCE_ID=${INSTANCE_ID} \
 	APACHE_ENTRY_POINT=$(APACHE_ENTRY_POINT) \
@@ -777,7 +778,7 @@ print/WEB-INF/lib/postgresql-9.3-1102.jdbc41.jar:
 apache/mapcache.xml: tilegeneration/config.yaml .build/dev-requirements.timestamp
 	$(VENV_BIN)/generate_controller --generate-mapcache-config
 
-apache/mapcache.xml: tilegeneration/config.yaml .build/dev-requirements.timestamp
+apache/tiles.conf: tilegeneration/config.yaml apache/mapcache.xml .build/dev-requirements.timestamp
 	$(VENV_BIN)/generate_controller --generate-apache-config
 
 # Apache config
@@ -803,6 +804,13 @@ $(APACHE_CONF_DIR)/$(INSTANCE_ID).conf:
 # Upgrade
 UPGRADE_MAKE_FILE ?= $(INSTANCE_ID).mk
 UPGRADE_ARGS ?=
+
+$(UPGRADE_MAKE_FILE):
+	@echo "The file '$(UPGRADE_MAKE_FILE)' can't be found,"
+	@echo "this probably mean that you Makefile isn't named '<instanceid>.mk'."
+	@echo "To solve this you can rename your Makefile or add in your Makefile"
+	@echo "`UPGRADE_MAKE_FILE = <your_makefile_name>`."
+	exit 1
 
 .PHONY: upgrade
 upgrade: .build/requirements.timestamp project.yaml

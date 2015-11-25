@@ -4,21 +4,27 @@ This file includes migration steps for each release of c2cgeoportal.
 Version 2.0.0
 =============
 
+This changelog considers that you don't currently use an ngeo interface and you
+replace your sencha touch interface by an ngeo interface.
+
 1. Get the new and heavily modified files for ngeo integration:
 
     at that point, the following folder should exist: /tmp/demo_geomapfish/
 
     cp /tmp/demo_geomapfish/.jshintrc .
-    cp /tmp/demo_geomapfish/build.json .
+    cp /tmp/demo_geomapfish/build.mako.json .
     cp /tmp/demo_geomapfish/package.json .
     cp /tmp/demo_geomapfish/templatecache.js.mako .
     cp /tmp/demo_geomapfish/lingua-client.cfg .
     cp /tmp/demo_geomapfish/lingua-server.cfg .
+    cp /tmp/demo_geomapfish/apache/wsgi.conf apache/
+    cp /tmp/demo_geomapfish/demo/static-ngeo demo/
+    cp /tmp/demo_geomapfish/demo/templates/mobile.html demo/templates/
 
 2. Remove the no longer used files:
 
-    git rm -r lingua.cfg
-    git rm -r CONST_requirements_windows.txt
+    git rm lingua.cfg
+    git rm -r demo/static/mobile/
 
 3. In the `vars_demo.yaml` file:
 
@@ -29,6 +35,17 @@ Version 2.0.0
 
    * If your project's main function includes `config.include("pyramid_closure")`,
      remove it, as c2cgeoportal now takes care of including `pyramid_closure`.
+
+   * Use the ngeo interface for the mobile by doing this changes:
+
+     - from c2cgeoportal import locale_negotiator, add_interface, \
+     -     INTERFACE_TYPE_SENCHA_TOUCH, INTERFACE_TYPE_NGEO
+     + from c2cgeoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
+
+     ...
+
+     - add_interface(config, "mobile", INTERFACE_TYPE_SENCHA_TOUCH)
+     + add_interface(config, "mobile", INTERFACE_TYPE_NGEO)
 
 5. To migrate your theme from version 1 to version 2 a script is available.
    Use `.build/venv/bin/themev1tov2 --help` for more information.
