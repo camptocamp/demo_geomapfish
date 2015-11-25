@@ -11,7 +11,4 @@ from c2cgeoportal.models import *  # noqa
 _ = TranslationStringFactory('demo-server')
 log = logging.getLogger(__name__)
 
-LayerInternalWMS.__acl__ = [DENY_ALL]
-LayerExternalWMS.__acl__ = [DENY_ALL]
-LayerWMTS.__acl__ = [DENY_ALL]
-WMTSDimension.__acl__ = [DENY_ALL]
+LayerV1.__acl__ = [DENY_ALL]
