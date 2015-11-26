@@ -43,6 +43,7 @@ vars:
         # The list of functionalities that can be configured
         # through the admin interface.
         available_functionalities:
+        - default_basemap
         - mobile_default_theme
         - location
 
@@ -53,7 +54,7 @@ vars:
             print_template:
             - A4 portrait
             - A3 portrait
-            default_basemap: asitvd.fond_couleur
+            default_basemap: map
             mobile_default_theme:
 #            location:
 #            - "'Lausanne': [535436, 155243, 539476, 150443]"
@@ -144,6 +145,20 @@ vars:
         - checker_printcapabilities
         - checker_pdf
         hosts: []
+
+    reset_password:
+        # Used to send a confirmation email
+        email_from: info@camptocamp.com
+        email_subject: New password generated for GeoMapFish
+        email_body: |
+            Hello,
+
+            You have asked for an new password,
+            the new generated password is: %s
+
+            Sincerely yours
+            The GeoMapfish team
+        smtp_server: smtp.example.com
 
 update_paths:
 - authtkt

@@ -1,6 +1,7 @@
 LAYER
     NAME "hospitals"
     GROUP "private"
+    EXTENT 420000 40500 839000 306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -44,6 +45,7 @@ END
 LAYER
     NAME "firestations"
     GROUP "private"
+    EXTENT 420000 40500 839000 306400
     TYPE POLYGON
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo

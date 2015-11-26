@@ -78,6 +78,7 @@ layers = [{
 LAYER
     NAME "${layer['type']}"
     GROUP "osm"
+    EXTENT 420000 40500 839000 306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -121,6 +122,7 @@ END
 
 LAYER
     NAME "osm_time"
+    EXTENT 420000 40500 839000 306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -166,6 +168,7 @@ END
 
 LAYER
     NAME "osm_scale"
+    EXTENT 420000 40500 839000 306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo

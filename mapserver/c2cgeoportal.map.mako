@@ -88,4 +88,5 @@ MAP
     INCLUDE "osm.map"
     INCLUDE "edit.map"
     INCLUDE "private.map"
+    INCLUDE "osm-basemap.map"
 END

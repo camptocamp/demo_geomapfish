@@ -1,0 +1,8141 @@
+# Required function:
+# CREATE OR REPLACE FUNCTION osm_to_boolean (p_string text) RETURNS text AS $$
+# BEGIN
+#   IF p_string IS NULL THEN RETURN '0'; END IF;
+#     IF lower(p_string) = 'no' THEN RETURN '0'; END IF;
+#       RETURN '1';
+#       END
+#       $$ LANGUAGE plpgsql;
+# Add Lac Léman
+# wget http://api.openstreetmap.org/api/0.6/relation/332617/full -O lac-leman.osm
+# osm2pgsql --append --proj 21781 --cache-strategy sparse --database osm --username www-data --password --host localhost lac-leman.osm
+
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ EXTENT 420000 40500 839000 306400
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places0"
+ MINSCALEDENOM 332808204
+ MAXSCALEDENOM 99999999999
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'continents'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 1
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places1"
+ MINSCALEDENOM 166404102
+ MAXSCALEDENOM 332808204
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'continents'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 1
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places2"
+ MINSCALEDENOM 83202051
+ MAXSCALEDENOM 166404102
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'continents'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 1
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+ CLASS
+  EXPRESSION 'country'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places3"
+ MINSCALEDENOM 41601025
+ MAXSCALEDENOM 83202051
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'country'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 68 68 68
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+   STYLE
+    SIZE 5
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse4"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 41601025
+    MINSCALEDENOM 20800512
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea4"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 41601025
+    MINSCALEDENOM 20800512
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places4"
+ MINSCALEDENOM 20800512
+ MAXSCALEDENOM 41601025
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'country'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 68 68 68
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+   STYLE
+    SIZE 5
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse5"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 20800512
+    MINSCALEDENOM 10400256
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea5"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 20800512
+    MINSCALEDENOM 10400256
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 10400256
+    MAXSCALEDENOM 20800512
+    NAME "roads5"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 0.5
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 0.5
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places5"
+ MINSCALEDENOM 10400256
+ MAXSCALEDENOM 20800512
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'country'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 68 68 68
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+   STYLE
+    SIZE 5
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse6"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 10400256
+    MINSCALEDENOM 5200128
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea6"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 10400256
+    MINSCALEDENOM 5200128
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways6"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 10400256
+    MINSCALEDENOM 5200128
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0.15
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 5200128
+    MAXSCALEDENOM 10400256
+    NAME "roads6"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 0.5
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 0.5
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places6"
+ MINSCALEDENOM 5200128
+ MAXSCALEDENOM 10400256
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'country'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 68 68 68
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+   STYLE
+    SIZE 5
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse7"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 5200128
+    MINSCALEDENOM 2600064
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea7"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 5200128
+    MINSCALEDENOM 2600064
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways7"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 5200128
+    MINSCALEDENOM 2600064
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0.25
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 2600064
+    MAXSCALEDENOM 5200128
+    NAME "roads7"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 0.5
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 0.5
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places7"
+ MINSCALEDENOM 2600064
+ MAXSCALEDENOM 5200128
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('country', 'continent', 'city') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'country'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 100 100 100
+   OUTLINECOLOR -1 -1 -1
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION cc
+  END
+ END
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR 68 68 68
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+   STYLE
+    SIZE 5
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse8"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 2600064
+    MINSCALEDENOM 1300032
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea8"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 2600064
+    MINSCALEDENOM 1300032
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways8"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 2600064
+    MINSCALEDENOM 1300032
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0.5
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 1300032
+    MAXSCALEDENOM 2600064
+    TYPE LINE
+    NAME "railways8"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 0.5
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 0.5
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 1300032
+    MAXSCALEDENOM 2600064
+    NAME "roads8"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway', 'primary') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {primary, primary_link}
+        STYLE
+            WIDTH 0.5
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 1
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 1
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places8"
+ MINSCALEDENOM 1300032
+ MAXSCALEDENOM 2600064
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+   STYLE
+    SIZE 6
+    SYMBOL "citycircle"
+    COLOR 255 255 255
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR "#666666"
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+   STYLE
+    SIZE 3
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse9"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'industrial', 'commercial', 'residential')) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 1300032
+    MINSCALEDENOM 650016
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea9"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 1300032
+    MINSCALEDENOM 650016
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways9"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 1300032
+    MINSCALEDENOM 650016
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 1
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 650016
+    MAXSCALEDENOM 1300032
+    TYPE LINE
+    NAME "railways9"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 0.5
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 0.5
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 650016
+    MAXSCALEDENOM 1300032
+    NAME "roads9"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('secondary', 'trunk', 'motorway', 'primary') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {secondary, secondary_link}
+        STYLE
+            WIDTH 0.5
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {primary, primary_link}
+        STYLE
+            WIDTH 0.75
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 2
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link"
+        STYLE
+            WIDTH 0.75
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 2
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link"
+        STYLE
+            WIDTH 0.75
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places9"
+ MINSCALEDENOM 650016
+ MAXSCALEDENOM 1300032
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+   STYLE
+    SIZE 6
+    SYMBOL "citycircle"
+    COLOR 255 255 255
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR "#666666"
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+   STYLE
+    SIZE 3
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse10"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 650016
+    MINSCALEDENOM 325008
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea10"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 650016
+    MINSCALEDENOM 325008
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways10"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 650016
+    MINSCALEDENOM 325008
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 1
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0.5
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0.5
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 325008
+    MAXSCALEDENOM 650016
+    TYPE LINE
+    NAME "railways10"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 325008
+    MAXSCALEDENOM 650016
+    NAME "roads10"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {tertiary, tertiary_link}
+        STYLE
+            WIDTH 0.5
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary, secondary_link}
+        STYLE
+            WIDTH 0.75
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary, primary_link}
+        STYLE
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 2
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link"
+        STYLE
+            WIDTH 1
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 2
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link"
+        STYLE
+            WIDTH 1
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 325008
+    MAXSCALEDENOM 650016
+    TYPE LINE
+    NAME "aeroways10"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 1
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 0
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 0.2
+      END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places10"
+ MINSCALEDENOM 325008
+ MAXSCALEDENOM 650016
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 10
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 3
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR "#666666"
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+   STYLE
+    SIZE 5
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse11"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 325008
+    MINSCALEDENOM 162504
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+     LABEL
+       ENCODING "utf-8"
+       TYPE TRUETYPE
+       SIZE 8
+       COLOR 0 0 0
+       OUTLINECOLOR 255 255 255
+       OUTLINEWIDTH 2
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea11"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 325008
+    MINSCALEDENOM 162504
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways11"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 325008
+    MINSCALEDENOM 162504
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 2
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0.5
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 0.5
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 162504
+    MAXSCALEDENOM 325008
+    TYPE LINE
+    NAME "railways11"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 162504
+    MAXSCALEDENOM 325008
+    NAME "roads11"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {unclassified, residential, service, road, living_street}
+        STYLE
+            WIDTH 0.5
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary, tertiary_link}
+        STYLE
+            WIDTH 0.75
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary, secondary_link}
+        STYLE
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary, primary_link}
+        STYLE
+            WIDTH 1.5
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 3
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link"
+        STYLE
+            WIDTH 1.5
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 3
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link"
+        STYLE
+            WIDTH 1.5
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 162504
+    MAXSCALEDENOM 325008
+    TYPE LINE
+    NAME "aeroways11"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 2
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 0
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 0.2
+      END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places11"
+ MINSCALEDENOM 162504
+ MAXSCALEDENOM 325008
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town', 'village') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 11
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 3
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+   STYLE
+    SIZE 5
+    SYMBOL "citycircle"
+    COLOR 200 200 200
+    OUTLINECOLOR 0 0 0
+   END
+  END
+ END
+ CLASS
+  EXPRESSION 'village'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR "#444444"
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   BUFFER 4
+   POSITION AUTO
+   STYLE
+       SYMBOL "citycircle"
+       COLOR 200 200 200
+       OUTLINECOLOR 0 0 0
+       SIZE 3
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse12"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 162504
+    MINSCALEDENOM 81252
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+     LABEL
+       ENCODING "utf-8"
+       TYPE TRUETYPE
+       SIZE 8
+       COLOR 0 0 0
+       OUTLINECOLOR 255 255 255
+       OUTLINEWIDTH 2
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+       ENCODING "utf-8"
+            SIZE 8
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+            MINFEATURESIZE AUTO
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 0
+         COLOR "#333333"
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+         LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        SIZE 8
+        COLOR 0 0 0
+        OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+        OUTLINEWIDTH 2
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea12"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 162504
+    MINSCALEDENOM 81252
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways12"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 162504
+    MINSCALEDENOM 81252
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 2
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 1
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+       ENCODING "utf-8"
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 1
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 81252
+    MAXSCALEDENOM 162504
+    TYPE LINE
+    NAME "railways12"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 81252
+    MAXSCALEDENOM 162504
+    NAME "roads12"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {unclassified, residential, service, road, living_street}
+        STYLE
+            WIDTH 0.75
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION "track"
+        STYLE
+            PATTERN 2 2 END
+            WIDTH 0.75
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary, tertiary_link}
+        STYLE
+            WIDTH 1
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary, secondary_link}
+        STYLE
+            WIDTH 1.5
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary, primary_link}
+        STYLE
+            WIDTH 2
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian'
+        STYLE
+            WIDTH 0.75
+            COLOR "#f2f2ed"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link"
+        STYLE
+            WIDTH 2
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link"
+        STYLE
+            WIDTH 2
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 81252
+    MAXSCALEDENOM 162504
+    TYPE LINE
+    NAME "aeroways12"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 3
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 0
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 0.2
+      END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places12"
+ MINSCALEDENOM 81252
+ MAXSCALEDENOM 162504
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place in ('city', 'town', 'village') and name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 11
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 3
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 10
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'village'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR "#444444"
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   BUFFER 4
+   POSITION AUTO
+   STYLE
+       SYMBOL "citycircle"
+       COLOR 200 200 200
+       OUTLINECOLOR 0 0 0
+       SIZE 3
+   END
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse13"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 81252
+    MINSCALEDENOM 40626
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+     LABEL
+       ENCODING "utf-8"
+       TYPE TRUETYPE
+       SIZE 8
+       COLOR 0 0 0
+       OUTLINECOLOR 255 255 255
+       OUTLINEWIDTH 2
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+       ENCODING "utf-8"
+            SIZE 8
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+            MINFEATURESIZE AUTO
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 0
+         COLOR "#333333"
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+         LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        SIZE 8
+        COLOR 0 0 0
+        OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+        OUTLINEWIDTH 2
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea13"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 81252
+    MINSCALEDENOM 40626
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways13"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 81252
+    MINSCALEDENOM 40626
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 3
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 1
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+       ENCODING "utf-8"
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 1
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 40626
+    MAXSCALEDENOM 81252
+    TYPE LINE
+    NAME "railways13"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 40626
+    MAXSCALEDENOM 81252
+    NAME "roads13"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {unclassified, residential, service, road, living_street}
+        STYLE
+            WIDTH 1
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION "track"
+        STYLE
+            PATTERN 2 2 END
+            WIDTH 0.75
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary, tertiary_link}
+        STYLE
+            WIDTH 1.5
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary, secondary_link}
+        STYLE
+            WIDTH 2
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {primary, primary_link}
+        STYLE
+            WIDTH 2.5
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian'
+        STYLE
+            WIDTH 1
+            COLOR "#f2f2ed"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link"
+        STYLE
+            WIDTH 2.5
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link"
+        STYLE
+            WIDTH 2.5
+            COLOR 255 255 255
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 40626
+    MAXSCALEDENOM 81252
+    TYPE LINE
+    NAME "aeroways13"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 5
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 0
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 1
+      END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places13"
+ MINSCALEDENOM 40626
+ MAXSCALEDENOM 81252
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 12
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 3
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 10
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'village'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   BUFFER 4
+   POSITION AUTO
+   STYLE
+       SYMBOL "citycircle"
+       COLOR 200 200 200
+       OUTLINECOLOR 0 0 0
+       SIZE 4
+   END
+  END
+ END
+ CLASS
+  EXPRESSION {suburb, hamlet, locality}
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR "#444444"
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse14"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 40626
+    MINSCALEDENOM 20313
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+     LABEL
+       ENCODING "utf-8"
+       TYPE TRUETYPE
+       SIZE 8
+       COLOR 0 0 0
+       OUTLINECOLOR 255 255 255
+       OUTLINEWIDTH 2
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+       ENCODING "utf-8"
+            SIZE 8
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+            MINFEATURESIZE AUTO
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 0
+         COLOR "#333333"
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+         LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        SIZE 8
+        COLOR 0 0 0
+        OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+        OUTLINEWIDTH 2
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea14"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 40626
+    MINSCALEDENOM 20313
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways14"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 40626
+    MINSCALEDENOM 20313
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 3
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 2
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+       ENCODING "utf-8"
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 2
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 20313
+    MAXSCALEDENOM 40626
+    TYPE LINE
+    NAME "railways14"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 20313
+    MAXSCALEDENOM 40626
+    NAME "roads14"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
+        STYLE
+            WIDTH 1.5
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION "track00"
+        STYLE
+            PATTERN 2 2 END
+            WIDTH 0.75
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary00, tertiary_link00}
+        STYLE
+            WIDTH 2
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary00, secondary_link00}
+        STYLE
+            WIDTH 2.5
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {primary00, primary_link00}
+        STYLE
+            WIDTH 3
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian00'
+        STYLE
+            WIDTH 1.5
+            COLOR "#f2f2ed"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 5
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link00"
+        STYLE
+            WIDTH 3
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 5
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link00"
+        STYLE
+            WIDTH 3
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
+        STYLE
+            WIDTH 1.5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 1.5
+            COLOR "#aaaaaa"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary10, tertiary_link10}
+        STYLE
+            WIDTH 2
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 2
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary10, secondary_link10}
+        STYLE
+            WIDTH 2.5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 2.5
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary10, primary_link10}
+        STYLE
+            WIDTH 3
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 3
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian10, footway10, path10}
+        STYLE
+            WIDTH 1.5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 1.5
+            COLOR "#f2f2ed"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway10"
+        STYLE
+            WIDTH 5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 5
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link10"
+        STYLE
+            WIDTH 3
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 3
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk10"
+        STYLE
+            WIDTH 5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 5
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link10"
+        STYLE
+            WIDTH 3
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 3
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
+        STYLE
+            WIDTH 1.5
+            COLOR "#aaaaaa"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian01, footway01, path01}
+        STYLE
+            WIDTH 1.5
+            COLOR "#f2f2ed"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary01, tertiary_link01}
+        STYLE
+            WIDTH 2
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {secondary01, secondary_link01}
+        STYLE
+            WIDTH 2.5
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {primary01, primary_link01}
+        STYLE
+            WIDTH 3
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway01"
+        STYLE
+            WIDTH 5
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link01"
+        STYLE
+            WIDTH 3
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk01"
+        STYLE
+            WIDTH 5
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link01"
+        STYLE
+            WIDTH 3
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 20313
+    MAXSCALEDENOM 40626
+    TYPE LINE
+    NAME "aeroways14"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 7
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 0
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 1.5
+      END
+    END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places14"
+ MINSCALEDENOM 20313
+ MAXSCALEDENOM 40626
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 12
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 3
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 10
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'village'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   BUFFER 4
+   POSITION AUTO
+  END
+ END
+ CLASS
+  EXPRESSION {suburb, hamlet, locality}
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 8
+   COLOR "#444444"
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse15"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 20313
+    MINSCALEDENOM 10156
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+     LABEL
+       ENCODING "utf-8"
+       TYPE TRUETYPE
+       SIZE 8
+       COLOR 0 0 0
+       OUTLINECOLOR 255 255 255
+       OUTLINEWIDTH 2
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+       ENCODING "utf-8"
+            SIZE 8
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+            MINFEATURESIZE AUTO
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR "#333333"
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+         LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        SIZE 8
+        COLOR 0 0 0
+        OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+        OUTLINEWIDTH 2
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea15"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 20313
+    MINSCALEDENOM 10156
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways15"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 20313
+    MINSCALEDENOM 10156
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 4
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 9
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 2
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+       ENCODING "utf-8"
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 4
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 10156
+    MAXSCALEDENOM 20313
+    TYPE LINE
+    NAME "railways15"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 10156
+    MAXSCALEDENOM 20313
+    NAME "roads15"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
+        STYLE
+            WIDTH 2
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "track00"
+        STYLE
+            PATTERN 2 3 END
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary00, tertiary_link00}
+        STYLE
+            WIDTH 2.5
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary00, secondary_link00}
+        STYLE
+            WIDTH 3.5
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {footway00, path00}
+        STYLE
+            PATTERN 2 3 END
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary00, primary_link00}
+        STYLE
+            WIDTH 4
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian00'
+        STYLE
+            WIDTH 2
+            COLOR "#f2f2ed"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 6
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link00"
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 6
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link00"
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
+        STYLE
+            WIDTH 2
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 2
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary10, tertiary_link10}
+        STYLE
+            WIDTH 2.5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 2.5
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary10, secondary_link10}
+        STYLE
+            WIDTH 3.5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 3.5
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary10, primary_link10}
+        STYLE
+            WIDTH 4
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 4
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian10, footway10, path10}
+        STYLE
+            WIDTH 2
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 2
+            COLOR "#f2f2ed"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway10"
+        STYLE
+            WIDTH 6
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 6
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link10"
+        STYLE
+            WIDTH 4
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk10"
+        STYLE
+            WIDTH 6
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 6
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link10"
+        STYLE
+            WIDTH 4
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
+        STYLE
+            WIDTH 2
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian01, footway01, path01}
+        STYLE
+            WIDTH 2
+            COLOR "#f2f2ed"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary01, tertiary_link01}
+        STYLE
+            WIDTH 2.5
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {secondary01, secondary_link01}
+        STYLE
+            WIDTH 3.5
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {primary01, primary_link01}
+        STYLE
+            WIDTH 4
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway01"
+        STYLE
+            WIDTH 6
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link01"
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk01"
+        STYLE
+            WIDTH 6
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link01"
+        STYLE
+            WIDTH 4
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 10156
+    MAXSCALEDENOM 20313
+    TYPE LINE
+    NAME "aeroways15"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 11
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 1
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 2
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    GROUP "default"
+    NAME "buildings15"
+    TYPE POLYGON
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 20313
+    MINSCALEDENOM 10156
+    CLASS
+      STYLE
+         COLOR "#bbbbbb"
+         OPACITY 50
+      END
+      STYLE
+         OUTLINECOLOR "#333333"
+         WIDTH 0
+      END
+      LABEL
+         TYPE TRUETYPE
+         PARTIALS FALSE
+         MINFEATURESIZE AUTO
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+      END
+   END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places15"
+ MINSCALEDENOM 10156
+ MAXSCALEDENOM 20313
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'city'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 13
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 3
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 11
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'village'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 10
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   BUFFER 4
+   POSITION AUTO
+  END
+ END
+ CLASS
+  EXPRESSION {suburb, hamlet, locality}
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse16"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 10156
+    MINSCALEDENOM 5078
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+     LABEL
+       ENCODING "utf-8"
+       TYPE TRUETYPE
+       SIZE 8
+       COLOR 0 0 0
+       OUTLINECOLOR 255 255 255
+       OUTLINEWIDTH 2
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+       ENCODING "utf-8"
+            SIZE 8
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+            MINFEATURESIZE AUTO
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR "#333333"
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+         LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        SIZE 8
+        COLOR 0 0 0
+        OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+        OUTLINEWIDTH 2
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea16"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 10156
+    MINSCALEDENOM 5078
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways16"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 10156
+    MINSCALEDENOM 5078
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 5
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 9
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 2
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+       ENCODING "utf-8"
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 8
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 5078
+    MAXSCALEDENOM 10156
+    TYPE LINE
+    NAME "railways16"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 5078
+    MAXSCALEDENOM 10156
+    NAME "roads16"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
+        STYLE
+            WIDTH 4
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "track00"
+        STYLE
+            PATTERN 2 3 END
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary00, tertiary_link00}
+        STYLE
+            WIDTH 5
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary00, secondary_link00}
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {footway00, path00}
+        STYLE
+            PATTERN 2 3 END
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary00, primary_link00}
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian00'
+        STYLE
+            WIDTH 2.5
+            COLOR "#f2f2ed"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link00"
+        STYLE
+            WIDTH 7
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link00"
+        STYLE
+            WIDTH 7
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
+        STYLE
+            WIDTH 4
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 4
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary10, tertiary_link10}
+        STYLE
+            WIDTH 5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 5
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary10, secondary_link10}
+        STYLE
+            WIDTH 6
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary10, primary_link10}
+        STYLE
+            WIDTH 7
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian10, footway10, path10}
+        STYLE
+            WIDTH 2.5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 2.5
+            COLOR "#f2f2ed"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway10"
+        STYLE
+            WIDTH 8
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link10"
+        STYLE
+            WIDTH 7
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 7
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk10"
+        STYLE
+            WIDTH 8
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link10"
+        STYLE
+            WIDTH 7
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 7
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
+        STYLE
+            WIDTH 4
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian01, footway01, path01}
+        STYLE
+            WIDTH 2.5
+            COLOR "#f2f2ed"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary01, tertiary_link01}
+        STYLE
+            WIDTH 5
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {secondary01, secondary_link01}
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {primary01, primary_link01}
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway01"
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link01"
+        STYLE
+            WIDTH 7
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk01"
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link01"
+        STYLE
+            WIDTH 7
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 5078
+    MAXSCALEDENOM 10156
+    TYPE LINE
+    NAME "aeroways16"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 15
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 1
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 3
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    GROUP "default"
+    NAME "buildings16"
+    TYPE POLYGON
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 10156
+    MINSCALEDENOM 5078
+    CLASS
+      STYLE
+         COLOR "#bbbbbb"
+         OPACITY 50
+      END
+      STYLE
+         OUTLINECOLOR "#333333"
+         WIDTH 0.1
+      END
+      LABEL
+         TYPE TRUETYPE
+         PARTIALS FALSE
+         MINFEATURESIZE AUTO
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+      END
+   END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places16"
+ MINSCALEDENOM 5078
+ MAXSCALEDENOM 10156
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 11
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'village'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 10
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   BUFFER 4
+   POSITION AUTO
+  END
+ END
+ CLASS
+  EXPRESSION {suburb, hamlet, locality}
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse17"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 5078
+    MINSCALEDENOM 2539
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+     LABEL
+       ENCODING "utf-8"
+       TYPE TRUETYPE
+       SIZE 8
+       COLOR 0 0 0
+       OUTLINECOLOR 255 255 255
+       OUTLINEWIDTH 2
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+       ENCODING "utf-8"
+            SIZE 8
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+            MINFEATURESIZE AUTO
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR "#333333"
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+         LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        SIZE 8
+        COLOR 0 0 0
+        OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+        OUTLINEWIDTH 2
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea17"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 5078
+    MINSCALEDENOM 2539
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways17"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 5078
+    MINSCALEDENOM 2539
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 6
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 10
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 2
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+       ENCODING "utf-8"
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 16
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 2539
+    MAXSCALEDENOM 5078
+    TYPE LINE
+    NAME "railways17"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 2539
+    MAXSCALEDENOM 5078
+    NAME "roads17"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
+        STYLE
+            WIDTH 5
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "track00"
+        STYLE
+            PATTERN 2 3 END
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary00, tertiary_link00}
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary00, secondary_link00}
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {footway00, path00}
+        STYLE
+            PATTERN 2 3 END
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary00, primary_link00}
+        STYLE
+            WIDTH 8
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian00'
+        STYLE
+            WIDTH 3
+            COLOR "#f2f2ed"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link00"
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link00"
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
+        STYLE
+            WIDTH 5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 5
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary10, tertiary_link10}
+        STYLE
+            WIDTH 6
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary10, secondary_link10}
+        STYLE
+            WIDTH 7
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary10, primary_link10}
+        STYLE
+            WIDTH 8
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 8
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian10, footway10, path10}
+        STYLE
+            WIDTH 3
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 3
+            COLOR "#f2f2ed"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway10"
+        STYLE
+            WIDTH 9
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link10"
+        STYLE
+            WIDTH 8
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk10"
+        STYLE
+            WIDTH 9
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link10"
+        STYLE
+            WIDTH 8
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
+        STYLE
+            WIDTH 5
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian01, footway01, path01}
+        STYLE
+            WIDTH 3
+            COLOR "#f2f2ed"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary01, tertiary_link01}
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {secondary01, secondary_link01}
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {primary01, primary_link01}
+        STYLE
+            WIDTH 8
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway01"
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link01"
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk01"
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link01"
+        STYLE
+            WIDTH 8
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 2539
+    MAXSCALEDENOM 5078
+    TYPE LINE
+    NAME "aeroways17"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 19
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 1
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 4
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    GROUP "default"
+    NAME "buildings17"
+    TYPE POLYGON
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 5078
+    MINSCALEDENOM 2539
+    CLASS
+      STYLE
+         COLOR "#bbbbbb"
+         OPACITY 50
+      END
+      STYLE
+         OUTLINECOLOR "#333333"
+         WIDTH 0.5
+      END
+      LABEL
+         TYPE TRUETYPE
+         PARTIALS FALSE
+         MINFEATURESIZE AUTO
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+      END
+   END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places17"
+ MINSCALEDENOM 2539
+ MAXSCALEDENOM 5078
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 11
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'village'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 10
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   BUFFER 4
+   POSITION AUTO
+  END
+ END
+ CLASS
+  EXPRESSION {suburb, hamlet, locality}
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+  END
+ END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "landuse18"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 2539
+    MINSCALEDENOM 0
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+       EXPRESSION {forest, wood}
+       STYLE
+          COLOR "#C2D1B2"
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR "#E3DED4"
+          OUTLINECOLOR "#E3DED4"
+          OUTLINEWIDTH 0
+       END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+   CLASS
+     EXPRESSION {industrial, commercial, parking}
+     STYLE
+       COLOR "#d1d1d1"
+       OUTLINECOLOR "#d1d1d1"
+       OUTLINEWIDTH 0
+     END
+     LABEL
+       ENCODING "utf-8"
+       TYPE TRUETYPE
+       SIZE 8
+       COLOR 0 0 0
+       OUTLINECOLOR 255 255 255
+       OUTLINEWIDTH 2
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+    END
+    CLASS
+        EXPRESSION {park, golf_course}
+        STYLE
+            COLOR "#DCDCB4"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'cemetery'
+        STYLE
+          COLOR "#d1d1d1"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+       ENCODING "utf-8"
+            SIZE 8
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+            MINFEATURESIZE AUTO
+        END
+    END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR "#f2f2ed"
+      END
+      LABEL
+         TYPE TRUETYPE
+         SIZE 8
+         COLOR "#333333"
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+   END
+    CLASS
+        EXPRESSION 'hospital'
+        STYLE
+            COLOR "#E6C8C3"
+        END
+         LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+        EXPRESSION {school, college, university}
+        STYLE
+            COLOR "#DED1AB"
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          SIZE 8
+       ENCODING "utf-8"
+          COLOR 0 0 0
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+    CLASS
+      EXPRESSION {sports_center, stadium, pitch}
+      STYLE
+          COLOR "#DED1AB"
+      END
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        SIZE 8
+        COLOR 0 0 0
+        OUTLINECOLOR 255 255 255
+       ENCODING "utf-8"
+        OUTLINEWIDTH 2
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    NAME "waterarea18"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
+    MAXSCALEDENOM 2539
+    MINSCALEDENOM 0
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#B3C6D4"
+            OUTLINECOLOR "#B3C6D4"
+            OUTLINEWIDTH 0
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    TYPE LINE
+    NAME "waterways18"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    MAXSCALEDENOM 2539
+    MINSCALEDENOM 0
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 7
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+          SIZE 10
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 2
+        END
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+       ENCODING "utf-8"
+          ANGLE FOLLOW
+          BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#B3C6D4"
+            WIDTH 30
+        END
+        LABEL
+          TYPE TRUETYPE
+          MINDISTANCE 200
+            REPEATDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+       ENCODING "utf-8"
+          OUTLINECOLOR 255 255 255
+          OUTLINEWIDTH 2
+          MINFEATURESIZE AUTO
+          ANGLE FOLLOW
+          BUFFER 3
+          PARTIALS FALSE
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    MINSCALEDENOM 0
+    MAXSCALEDENOM 2539
+    TYPE LINE
+    NAME "railways18"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, tunnel FROM planet_osm_line WHERE railway='rail') as foo using unique osm_id using srid=21781"
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         OUTLINEWIDTH 0
+         OUTLINECOLOR "#777777"
+         PATTERN 2 2 END
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH 1
+         COLOR "#777777"
+         PATTERN 2 2 END
+         OPACITY 40
+         LINECAP BUTT
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    TYPE LINE
+    MINSCALEDENOM 0
+    MAXSCALEDENOM 2539
+    NAME "roads18"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+        EXPRESSION {unclassified00, residential00, service00, road00, living_street00}
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+    END
+    CLASS
+        EXPRESSION "track00"
+        STYLE
+            PATTERN 2 3 END
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary00, tertiary_link00}
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary00, secondary_link00}
+        STYLE
+            WIDTH 8
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION {footway00, path00}
+        STYLE
+            PATTERN 2 3 END
+            WIDTH 1
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary00, primary_link00}
+        STYLE
+            WIDTH 9
+            COLOR "#eeeeee"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian00'
+        STYLE
+            WIDTH 3.5
+            COLOR "#f2f2ed"
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 8
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR "#333333"
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            MINFEATURESIZE AUTO
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 10
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link00"
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk00"
+        TEXT ("[ref]")
+        STYLE
+            WIDTH 10
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            SIZE 9
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            MINFEATURESIZE AUTO
+            COLOR "#555555"
+            ANGLE FOLLOW
+            BUFFER 3
+            ENCODING "UTF-8"
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link00"
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified10, residential10, service10, road10, living_street10}
+        STYLE
+            WIDTH 6
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary10, tertiary_link10}
+        STYLE
+            WIDTH 7
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {secondary10, secondary_link10}
+        STYLE
+            WIDTH 8
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 8
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {primary10, primary_link10}
+        STYLE
+            WIDTH 9
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 9
+            COLOR "#eeeeee"
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian10, footway10, path10}
+        STYLE
+            WIDTH 3.5
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 3.5
+            COLOR "#f2f2ed"
+        END
+    END
+    CLASS
+        EXPRESSION "motorway10"
+        STYLE
+            WIDTH 10
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 10
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link10"
+        STYLE
+            WIDTH 9
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk10"
+        STYLE
+            WIDTH 10
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 10
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link10"
+        STYLE
+            WIDTH 9
+            OUTLINECOLOR 136 136 136
+            OUTLINEWIDTH 1
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+        END
+    END
+    CLASS
+        EXPRESSION {unclassified01, residential01, service01, living_street01}
+        STYLE
+            WIDTH 6
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {pedestrian01, footway01, path01}
+        STYLE
+            WIDTH 3.5
+            COLOR "#f2f2ed"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {tertiary01, tertiary_link01}
+        STYLE
+            WIDTH 7
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {secondary01, secondary_link01}
+        STYLE
+            WIDTH 8
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION {primary01, primary_link01}
+        STYLE
+            WIDTH 9
+            COLOR "#eeeeee"
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway01"
+        STYLE
+            WIDTH 10
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "motorway_link01"
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk01"
+        STYLE
+            WIDTH 10
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link01"
+        STYLE
+            WIDTH 9
+            COLOR 255 255 255
+            OPACITY 40
+        END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM 0
+    MAXSCALEDENOM 2539
+    TYPE LINE
+    NAME "aeroways18"
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 23
+        LINECAP BUTT
+        LINEJOIN MITER
+      END
+      STYLE
+        COLOR 80 80 80
+        WIDTH 1
+        PATTERN 2 2 END
+        LINECAP BUTT
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR 180 180 180
+        WIDTH 5
+      END
+    END
+END
+LAYER
+    EXTENT 420000 40500 839000 306400
+    STATUS ON
+    PROJECTION
+        "init=epsg:21781"
+    END
+    GROUP "default"
+    NAME "buildings18"
+    TYPE POLYGON
+    CONNECTIONTYPE postgis
+    CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
+    LABELITEM "name"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 2539
+    MINSCALEDENOM 0
+    CLASS
+      STYLE
+         COLOR "#bbbbbb"
+         OPACITY 50
+      END
+      STYLE
+         OUTLINECOLOR "#333333"
+         WIDTH 0.5
+      END
+      LABEL
+         TYPE TRUETYPE
+         PARTIALS FALSE
+         MINFEATURESIZE AUTO
+         SIZE 8
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         OUTLINEWIDTH 2
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+      END
+   END
+END
+LAYER
+ EXTENT 420000 40500 839000 306400
+ STATUS ON
+ GROUP "default"
+ TYPE POINT
+ CONNECTIONTYPE postgis
+ CONNECTION "user=www-data password=www-data host=localhost dbname=osm"
+ NAME "places18"
+ MINSCALEDENOM 0
+ MAXSCALEDENOM 2539
+ DATA "geometry FROM (SELECT way AS geometry, osm_id, name, place AS type FROM planet_osm_point WHERE place IS NOT NULL AND name IS NOT NULL ORDER BY population asc NULLS FIRST) as foo using unique osm_id using srid=21781"
+ LABELITEM 'name'
+ CLASSITEM 'type'
+ CLASS
+  EXPRESSION 'town'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 11
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   POSITION AUTO
+   BUFFER 4
+   POSITION auto
+  END
+ END
+ CLASS
+  EXPRESSION 'village'
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 10
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   PARTIALS FALSE
+   BUFFER 4
+   POSITION AUTO
+  END
+ END
+ CLASS
+  EXPRESSION {suburb, hamlet, locality}
+  LABEL
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE 9
+   COLOR 0 0 0
+   OUTLINECOLOR 255 255 255
+   OUTLINEWIDTH 2
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+  END
+ END
+END
+SYMBOL
+ name "citycircle"
+ type ellipse
+ points 1 1 end
+ filled true
+END

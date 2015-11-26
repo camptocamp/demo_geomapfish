@@ -10,6 +10,4 @@ APACHE_VHOST ?= geomapfish-demo
 NGEO ?= TRUE
 NGEO_INTERFACES = main mobile
 
-TILECLOUD_CHAIN ?= FALSE
-
 include CONST_Makefile
