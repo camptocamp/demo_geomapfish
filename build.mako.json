@@ -8,7 +8,7 @@
     "demo/static-ngeo/build/templatecache.js"
   ],
   "compile": {
-    "closure_entry_point": "app_${interface}",
+    "closure_entry_point": "demo_${interface}",
     "externs": [
       "node_modules/openlayers/externs/bingmaps.js",
       "node_modules/openlayers/externs/closure-compiler.js",
@@ -79,7 +79,7 @@
       "missingRequire"
     ],
     "extra_annotation_name": [
-      "api", "observable"
+      "api", "observable", "ngdoc", "ngname"
     ],
     "angular_pass": true,
     "compilation_level": "ADVANCED",

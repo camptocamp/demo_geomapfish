@@ -101,8 +101,23 @@ vars:
             en: english
             de: german
 
-    # For base layers
-    tiles_url:
+    reset_password:
+        # Used to send a confirmation email
+        email_from: info@camptocamp.com
+        email_subject: New password generated for GeoMapFish
+        email_body: |
+            Hello,
+
+            You have asked for an new password,
+            the new generated password is: %s
+
+            Sincerely yours
+            The GeoMapfish team
+        smtp_server: smtp.example.com
+
+    headers:
+        mapserver:
+            access_control_allow_origin: "*"
 
     # Checker configuration
     checker:

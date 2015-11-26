@@ -19,37 +19,29 @@ RewriteEngine on
 WSGIPassAuthorization On
 
 
-## RewriteRule ^${apache_entry_point}?$ /${instanceid}/wsgi/ [PT]
-## RewriteRule ^${apache_entry_point}theme/(.+)$ /${instanceid}/wsgi/theme/$1 [PT]
-## RewriteRule ^${apache_entry_point}s/(.*)$ /${instanceid}/wsgi/short/$1 [PT]
-
 % for interface in interfaces:
-% if interface == "main":
 <%
-path = apache_entry_point
+path = apache_entry_point \
+    if interface == "main" \
+    else "%s%s/" % (apache_entry_point, interface)
+interface = "" if interface == "main" else interface
 %>
-% else:
-<%
-path = "%s%s/" % (apache_entry_point, interface)
-%>
-% endif
 RewriteRule ^${path}?$ /${instanceid}/wsgi/${interface} [PT]
 RewriteRule ^${path}theme/(.+)$ /${instanceid}/wsgi/${interface}/theme/$1 [PT]
 % endfor
 
-RewriteRule ^${apache_entry_point}s/(.*)$ /${instanceid}/wsgi/short/$1 [PT]
-RewriteRule ^${apache_entry_point}proj/help/([a-z]{2})$ /${instanceid}/wsgi/proj/help/help_$1.html [PT]
+RewriteRule ^${apache_entry_point}?$ /${instanceid}/wsgi/ [PT]
 RewriteRule ^${apache_entry_point}api.js$ /${instanceid}/wsgi/api.js [PT]
 RewriteRule ^${apache_entry_point}xapi.js$ /${instanceid}/wsgi/xapi.js [PT]
 RewriteRule ^${apache_entry_point}apihelp.html$ /${instanceid}/wsgi/apihelp.html [PT]
 RewriteRule ^${apache_entry_point}xapihelp.html$ /${instanceid}/wsgi/xapihelp.html [PT]
 RewriteRule ^${apache_entry_point}admin/?$ /${instanceid}/wsgi/admin/ [PT]
 RewriteRule ^${apache_entry_point}search$ /${instanceid}/wsgi/fulltextsearch [PT]
-
+RewriteRule ^${apache_entry_point}s/(.*)$ /${instanceid}/wsgi/short/$1 [PT]
 
 # define a process group
 # WSGIDaemonProcess must be commented/removed when running the project on windows
-WSGIDaemonProcess c2cgeoportal:${instanceid} display-name=%{GROUP} user=${modwsgi_user} python-path=${python_path}
+WSGIDaemonProcess c2cgeoportal:${instanceid} display-name=%{GROUP} user=${modwsgi_user}
 
 # define the path to the WSGI app
 WSGIScriptAlias /${instanceid}/wsgi ${directory}/apache/application.wsgi
