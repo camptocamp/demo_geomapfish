@@ -25,7 +25,7 @@
  * GENERATED FILE. DO NOT EDIT.
  */
 
-goog.require('app');
+goog.require('demo');
 
 (function() {
   /**
@@ -38,5 +38,5 @@ goog.require('app');
   %endfor
   };
 
-  app.module.run(runner);
+  demo.module.run(runner);
 })();\

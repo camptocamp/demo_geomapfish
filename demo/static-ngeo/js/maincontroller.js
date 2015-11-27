@@ -6,7 +6,7 @@
  * available in the controller for use from other parts (directives) of the
  * application. It also defines the behavior of elements of the HTML page.
  */
-goog.provide('app.MainController');
+goog.provide('demo.MainController');
 
 goog.require('demo');
 goog.require('ol.Map');
@@ -20,7 +20,7 @@ goog.require('ol.source.OSM');
  * @export
  * @ngInject
  */
-app.MainController = function() {
+demo.MainController = function() {
 
   /**
    * @type {string}
@@ -44,4 +44,4 @@ app.MainController = function() {
     })
   });
 };
-app.module.controller('MainController', app.MainController);
+demo.module.controller('MainController', demo.MainController);

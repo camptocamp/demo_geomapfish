@@ -142,8 +142,8 @@ vars:
 
     check_collector:
         disabled:
-        - checker_printcapabilities
-        - checker_pdf
+        - checker_main
+        - checker_viewer
         hosts: []
 
     reset_password:
@@ -163,5 +163,6 @@ vars:
 update_paths:
 - authtkt
 - checker
+- check_collector.disabled
 - check_collector.hosts
 - admin_interface
