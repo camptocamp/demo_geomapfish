@@ -117,8 +117,20 @@ vars:
         smtp_server: smtp.example.com
 
     headers:
+        themes:
+            access_control_allow_origin: "*"
         mapserver:
             access_control_allow_origin: "*"
+        fulltextsearch:
+            access_control_allow_origin: "*"
+        print:
+            access_control_allow_origin: "*"
+        layers:
+            access_control_allow_origin: "*"
+
+    access_control_allow_origin:
+    - http://camptocamp.github.io
+    - https://camptocamp.github.io
 
     # Checker configuration
     checker:
@@ -166,3 +178,4 @@ update_paths:
 - check_collector.disabled
 - check_collector.hosts
 - admin_interface
+- access_control_allow_origin

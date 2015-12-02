@@ -315,6 +315,10 @@ vars:
     - http://{host}/{instanceid}
     - https://{host}/{instanceid}
 
+    access_control_allow_origin:
+    - http://{host}
+    - https://{host}
+
 interpreted:
     python:
     - authtkt.secret
