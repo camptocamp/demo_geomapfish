@@ -420,6 +420,7 @@ Ext.onReady(function() {
             events: EVENTS,
             loginURL: "${request.route_url('login') | n}",
             loginChangeURL: "${request.route_url('loginchange') | n}",
+            loginResetPasswordURL: "${request.route_url('loginresetpassword')}",
             logoutURL: "${request.route_url('logout') | n}",
             enablePasswordChange: true,
             forcePasswordChange: true,
