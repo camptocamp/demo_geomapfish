@@ -209,7 +209,7 @@ Ext.onReady(function() {
             maxFeatures: 200,
             outputTarget: "featuregrid-container",
             csvIncludeHeader: true,
-            globalSelection: true
+            globalSelection: true,
 % else:
             ptype: "cgxp_featureswindow",
             themes: THEMES,
