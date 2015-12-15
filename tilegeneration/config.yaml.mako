@@ -14,7 +14,7 @@ caches:
         bucket: camptocamp-gmf-demo-tiles
         folder: ''
         # for GetCapabilities
-        http_url: http://%(host)s.geomapfish-demo.camptocamp.net/${instanceid}/tiles
+        http_url: https://%(host)s.geomapfish-demo.camptocamp.net
         hosts:
         - tiles
         - tiles0
