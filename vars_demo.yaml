@@ -46,6 +46,17 @@ vars:
         - default_basemap
         - mobile_default_theme
         - location
+        available_metadata:
+        - legend_rule
+        - is_legend_expanded
+        - metadata_url
+        - disclaimer
+        - is_checked
+        - identifier_attribute_field
+        - max_resolution
+        - legend
+        - min_resolution
+        - thumbnail
 
     functionalities:
         # Functionalities that are accessible to anonymous
