@@ -254,6 +254,7 @@ vars:
     #proxies:
     #    http: http://someproxy
 
+    headers:
 
     # Checker configuration
     checker:
@@ -322,10 +323,6 @@ vars:
     authorized_referers:
     - http://{host}/{instanceid}
     - https://{host}/{instanceid}
-
-    access_control_allow_origin:
-    - http://{host}
-    - https://{host}
 
 interpreted:
     python:
