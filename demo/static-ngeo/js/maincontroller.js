@@ -44,4 +44,4 @@ demo.MainController = function() {
     })
   });
 };
-demo.module.controller('MainController', demo.MainController);
+demoModule.controller('MainController', demo.MainController);
