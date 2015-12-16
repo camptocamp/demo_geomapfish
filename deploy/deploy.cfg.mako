@@ -2,6 +2,8 @@
 project = demo 
 
 [main]
+# to update the static schema, we need to deploy the code first
+restore_order = code,database,files
 hookdir = %(here)s/hooks/
 
 [files]

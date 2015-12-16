@@ -101,7 +101,9 @@ JSBUILD_MAIN_OUTPUT_FILES ?= app.js edit.js routing.js api.js xapi.js
 JSBUILD_MAIN_OUTPUT_FILES += $(addprefix lang-, $(addsuffix .js, $(LANGUAGES)))
 JSBUILD_MAIN_OUTPUT_FILES += $(addprefix api-lang-, $(addsuffix .js, $(LANGUAGES)))
 JSBUILD_MAIN_OUTPUT_FILES := $(addprefix $(OUTPUT_DIR)/, $(JSBUILD_MAIN_OUTPUT_FILES))
-JSBUILD_ARGS = $(if ifeq($(DEVELOPMENT), ‘TRUE’),-u,)
+ifeq ($(DEVELOPMENT), TRUE)
+JSBUILD_ARGS += --uncompress
+endif
 
 ifeq ($(DEVELOPMENT), FALSE)
 	CSSMIN_ARGS += --compress
@@ -690,7 +692,7 @@ $(VENV_BIN)/flake8: .build/dev-requirements.timestamp
 	virtualenv --setuptools --no-site-packages .build/venv
 	$(PIP_CMD) install \
 		--index-url http://pypi.camptocamp.net/pypi \
-		'pip>=7' 'setuptools>=12'
+		'pip>=6,<7' 'setuptools>=12'
 	touch $@
 
 .build/requirements.timestamp: $(EGGS_DEPENDENCIES)
@@ -738,7 +740,7 @@ print/WEB-INF/lib/jasperreports-functions-5.5.0.jar:
 
 print/WEB-INF/lib/joda-time-1.6.jar:
 	mkdir -p $(dir $@)
-	wget http://mirrors.ibiblio.org/pub/mirrors/maven2/joda-time/joda-time/1.6/joda-time-1.6.jar -O $@
+	wget http://maven.ibiblio.org/maven2/joda-time/joda-time/1.6/joda-time-1.6.jar -O $@
 	touch $@
 
 print/WEB-INF/lib/jasperreports-fonts-5.5.0.jar:
