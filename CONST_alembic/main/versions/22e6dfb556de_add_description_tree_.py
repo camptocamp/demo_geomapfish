@@ -27,34 +27,32 @@
 # of the authors and should not be interpreted as representing official policies,
 # either expressed or implied, of the FreeBSD Project.
 
-"""Set layergroup_treeitem.id as a primary key
+"""Add description column in the tree
 
-Revision ID: 2b8ed8c1df94
-Revises: 26a8c51827c6
-Create Date: 2015-10-29 16:11:24.760733
+Revision ID: 22e6dfb556de
+Revises: 2b8ed8c1df94
+Create Date: 2015-12-04 13:44:42.475652
 """
 
 from alembic import op, context
+from sqlalchemy import Column, Unicode
 
 # revision identifiers, used by Alembic.
-revision = '2b8ed8c1df94'
-down_revision = '32527659d57b'
-branch_labels = ('1.6',)
-depends_on = None
+revision = "22e6dfb556de"
+down_revision = "2b8ed8c1df94"
 
 
 def upgrade():
-    schema = context.get_context().config.get_main_option('schema')
+    schema = context.get_context().config.get_main_option("schema")
 
-    op.create_primary_key(
-        'layergroup_treeitem_pkey', 'layergroup_treeitem', ['id'],
-        schema=schema
-    )
+    # Instructions
+    op.add_column("layergroup_treeitem", Column("description", Unicode), schema=schema)
+    op.add_column("treeitem", Column("description", Unicode), schema=schema)
 
 
 def downgrade():
-    schema = context.get_context().config.get_main_option('schema')
+    schema = context.get_context().config.get_main_option("schema")
 
-    op.drop_constraint(
-        'layergroup_treeitem_pkey', 'layergroup_treeitem', schema=schema
-    )
+    # Instructions
+    op.drop_column("layergroup_treeitem", "description", schema=schema)
+    op.drop_column("treeitem", "description", schema=schema)

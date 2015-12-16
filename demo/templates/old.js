@@ -201,31 +201,34 @@ Ext.onReady(function() {
             attributeURLs: ${queryer_attribute_urls | n}
         },
 % endif
-% if 'grid' in request.params:
         {
+% if 'grid' in request.params:
             ptype: "cgxp_featuresgrid",
             id: "featuresGrid",
             csvURL: "${request.route_url('csvecho') | n}",
             maxFeatures: 200,
             outputTarget: "featuregrid-container",
-            events: EVENTS,
             csvIncludeHeader: true,
-            globalSelection: true
-        },
+            globalSelection: true,
 % else:
-        {
             ptype: "cgxp_featureswindow",
             themes: THEMES,
-            events: EVENTS,
             id: "featuresWindow",
+% endif
+            events: EVENTS,
             defaultStyle: {
-                fillColor: 'orange', strokeColor: 'orange', label: ""
+                display: 'none',
             },
             highlightStyle: {
-                fillColor: 'red', strokeColor: 'red', fillOpacity: 0.6, strokeOpacity: 1, strokeWidth: 2, label: ""
+                display: '',
+                fillColor: 'red',
+                strokeColor: 'red',
+                fillOpacity: 0.6,
+                strokeOpacity: 1,
+                strokeWidth: 2,
+                label: ''
             }
         },
-% endif
         {
             ptype: "cgxp_mapopacityslider",
             layerTreeId: "layertree",
@@ -417,6 +420,7 @@ Ext.onReady(function() {
             events: EVENTS,
             loginURL: "${request.route_url('login') | n}",
             loginChangeURL: "${request.route_url('loginchange') | n}",
+            loginResetPasswordURL: "${request.route_url('loginresetpassword')}",
             logoutURL: "${request.route_url('logout') | n}",
             enablePasswordChange: true,
             forcePasswordChange: true,
