@@ -125,7 +125,7 @@ vars:
 
             Sincerely yours
             The GeoMapfish team
-        smtp_server: smtp.example.com
+        smtp_server: psemail.epfl.ch
 
     headers:
         themes: &headers
@@ -173,20 +173,6 @@ vars:
         - checker_main
         - checker_viewer
         hosts: []
-
-    reset_password:
-        # Used to send a confirmation email
-        email_from: info@camptocamp.com
-        email_subject: New password generated for GeoMapFish
-        email_body: |
-            Hello,
-
-            You have asked for an new password,
-            the new generated password is: %s
-
-            Sincerely yours
-            The GeoMapfish team
-        smtp_server: smtp.example.com
 
 update_paths:
 - authtkt
