@@ -133,12 +133,12 @@ vars:
                 - https://camptocamp.github.io
                 - http://localhost:3000
                 - http://localhost
-        mapserver: *headers
+        mapserver:
             access_control_allow_origin:
                 - https://camptocamp.github.io
                 - http://localhost:3000
                 - http://localhost
-                - *
+                - "*"
         fulltextsearch: *headers
         print: *headers
         layers: *headers
