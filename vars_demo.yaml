@@ -130,19 +130,33 @@ vars:
     headers:
         themes: &headers
             access_control_allow_origin:
-                - https://camptocamp.github.io
-                - http://localhost:3000
-                - http://localhost
-        mapserver:
-            access_control_allow_origin:
-                - https://camptocamp.github.io
-                - http://localhost:3000
-                - http://localhost
-                - "*"
+            - https://camptocamp.github.io
+            - https://adube.github.io
+            - http://localhost:3000
+            - http://localhost
+            - http://127.0.0.1:3000
+            - http://127.0.0.1
+            - "*"
+        mapserver: *headers
         fulltextsearch: *headers
         print: *headers
         layers: *headers
-        login: *headers
+        login:
+            access_control_allow_origin:
+            - https://camptocamp.github.io
+            - https://adube.github.io
+            - http://localhost:3000
+            - http://localhost
+            - http://127.0.0.1:3000
+            - http://127.0.0.1
+
+    authorized_referers:
+    - https://camptocamp.github.io/
+    - https://adube.github.io/
+    - http://localhost:3000/
+    - http://localhost/
+    - http://127.0.0.1:3000/
+    - http://127.0.0.1/
 
     access_control_allow_origin:
     - http://camptocamp.github.io
