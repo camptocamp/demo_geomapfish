@@ -460,7 +460,7 @@ compile-py-catalog: $(SERVER_LOCALISATION_FILES)
 .SECONDARY: $(SERVER_LOCALISATION_FILES:.mo=.po)
 
 $(PACKAGE)/locale/$(PACKAGE)-server.pot: $(SERVER_LOCALISATION_SOURCES_FILES) $(VENV_BIN)/pot-create lingua-server.cfg
-	$(VENV_BIN)/pot-create -c lingua-server.cfg -o $@ $(SERVER_LOCALISATION_SOURCES_FILES)
+	$(VENV_BIN)/pot-create --keyword _ -c lingua-server.cfg -o $@ $(SERVER_LOCALISATION_SOURCES_FILES)
 	# removes the always changed date line
 	sed -i '/^"POT-Creation-Date: /d' $@
 	sed -i '/^"PO-Revision-Date: /d' $@
