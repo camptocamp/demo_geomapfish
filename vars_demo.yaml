@@ -151,6 +151,7 @@ vars:
             - http://127.0.0.1
 
     authorized_referers:
+    - https://geomapfish-demo.camptocamp.net/
     - https://camptocamp.github.io/
     - https://adube.github.io/
     - http://localhost:3000/
