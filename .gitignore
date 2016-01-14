@@ -2,6 +2,7 @@
 *.pyc
 .*.swp
 /.build
+/.tx/config
 /demo.egg-info
 /jsbuild/app.cfg
 /node_modules
@@ -22,6 +23,7 @@
 /print/WEB-INF/lib/*.jar
 /print/WEB-INF/classes/logback.xml
 /print/print-apps/demo/config.yaml
+/print/print-servlet.war
 /mapserver/c2cgeoportal.map
 /mapserver/tinyows.xml
 /mapserver/edit.map
