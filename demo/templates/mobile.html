@@ -4,7 +4,7 @@
     <title translate>Mobile Application</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <meta name="mobile-web-demo-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 % if debug:
     <link rel="stylesheet/less" href="${request.static_url('%s/ngeo/contribs/gmf/less/font.less' % request.registry.settings['node_modules_path'])}" type="text/css">
     <link rel="stylesheet/less" href="${request.static_url('demo:static-ngeo/less/mobile.less')}" type="text/css">
@@ -12,6 +12,7 @@
 % else:
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/mobile.css')}" type="text/css">
 % endif
+
   </head>
   <body ng-class="{'nav-is-visible': mainCtrl.navIsVisible(),
                    'nav-left-is-visible': mainCtrl.leftNavIsVisible(),
@@ -46,20 +47,18 @@
           <li>
             <a href="#background" data-toggle="slide-in">Background</a>
             <a href="#data" data-toggle="slide-in">Data</a>
+            <a href="#login" data-toggle="slide-in">Login</a>
           </li>
         </ul>
-        <hr>
-        <ul>
-          <li>
-            <a href="#">Login</a>
-          </li>
-        </ul>
+        <hr />
         <p class="text-center">
           <b>Put your logo here</b>
         </p>
       </div>
       <div id="background" class="slide" data-header-title="Background">
-        <span>Background</span>
+        <gmf-mobile-background-layer-selector
+          gmf-mobile-background-layer-selector-map="::mainCtrl.map">
+        </gmf-mobile-background-layer-selector>
       </div>
       <div id="data" class="slide" data-header-title="Data">
         <ul>
@@ -68,9 +67,15 @@
           </li>
         </ul>
       </div>
-      <div id="themes" class="slide" data-header-title="Themes">
-        <span>Themes</span>
-      </div>
+      <gmf-themeselector
+          id="themes"
+          class="slide"
+          data-header-title="Themes"
+          gmf-themeselector-currenttheme="mainCtrl.theme"
+          gmf-themeselector-filter="::mainCtrl.filter">
+      </gmf-themeselector>
+      <gmf-authentication id="login" class="slide" data-header-title="Login">
+      </gmf-authentication>
     </nav>
     <nav class="nav-right" gmf-mobile-nav>
       <header>
@@ -110,7 +115,6 @@
     <script>
         goog.require('demo_mobile');
     </script>
-    <script src="${request.static_url('demo:static-ngeo/js/mobile.js')}"></script>
     <script src="${request.static_url('demo:static-ngeo/build/templatecache.js')}"></script>
     <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/less/dist/less.min.js' % request.registry.settings['node_modules_path'])}"></script>
@@ -120,12 +124,18 @@
     <script>
       (function() {
          var module = angular.module('demo');
-         var serverVars = {
+         module.constant('serverVars', {
+           defaultLang: '${request.registry.settings["default_locale_name"]}',
+           langUrls: {
+${ ",\n".join([
+    "             '{lang}': '{url}'".format(lang=lang, url=request.static_url('demo:static-ngeo/build/{lang}.json'.format(lang=lang)))
+    for lang in request.registry.settings["available_locale_names"]
+]) | n}
+           },
            serviceUrls: {
-             fulltextsearch: '${request.route_url('fulltextsearch') | n}?query=%QUERY'
+             fulltextsearch: 'https://geomapfish-demo.camptocamp.net/2.0/wsgi/fulltextsearch?query=%QUERY'
            }
-         };
-         module.constant('serverVars', serverVars);
+         });
        })();
     </script>
   </body>

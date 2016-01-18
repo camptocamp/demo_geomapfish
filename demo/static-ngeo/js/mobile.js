@@ -12,6 +12,20 @@ goog.provide('demo_mobile');
 
 goog.require('demo');
 goog.require('gmf.AbstractMobileController');
+goog.require('gmf.Themes');
+/** @suppress {extraRequire} */
+goog.require('gmf.authenticationDirective');
+/** @suppress {extraRequire} */
+goog.require('gmf.proj.EPSG21781');
+/** @suppress {extraRequire} */
+goog.require('gmf.searchDirective');
+/** @suppress {extraRequire} */
+goog.require('ngeo.mobileGeolocationDirective');
+
+
+demoModule.constant(
+    'authenticationBaseUrl',
+    'https://geomapfish-demo.camptocamp.net/2.0/wsgi');
 
 
 
@@ -19,15 +33,25 @@ goog.require('gmf.AbstractMobileController');
  * @param {ngeo.FeatureOverlayMgr} ngeoFeatureOverlayMgr The ngeo feature
  *     overlay manager service.
  * @param {Object} serverVars vars from GMF
+ * @param {angularGettext.Catalog} gettextCatalog Gettext catalog.
+ * @param {ngeo.StateManager} ngeoStateManager the state manager.
+ * @param {angular.Scope} $scope Scope.
+ * @param {ngeo.GetBrowserLanguage} ngeoGetBrowserLanguage
+ * @param {gmf.Themes} gmfThemes Themes service.
  * @constructor
  * @extends {gmf.AbstractMobileController}
  * @ngInject
  * @export
  */
-demo.MobileController = function(ngeoFeatureOverlayMgr, serverVars) {
-  goog.base(this, ngeoFeatureOverlayMgr, serverVars);
+demo.MobileController = function(
+    ngeoFeatureOverlayMgr, serverVars, gettextCatalog, ngeoStateManager, $scope,
+    ngeoGetBrowserLanguage, gmfThemes) {
+  goog.base(
+      this, ngeoFeatureOverlayMgr, serverVars, gettextCatalog, ngeoStateManager,
+      $scope, ngeoGetBrowserLanguage, gmfThemes);
 };
 goog.inherits(demo.MobileController, gmf.AbstractMobileController);
+
 
 
 demoModule.controller('MobileController', demo.MobileController);

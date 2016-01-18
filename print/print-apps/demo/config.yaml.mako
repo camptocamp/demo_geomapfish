@@ -37,43 +37,43 @@ templates:
             directory: '.'
         - !configureHttpRequests &configureHttpRequests
             httpProcessors:
-            - !mapUri
-                matchers:
-                - !dnsMatch
-                    host: ${host}
-                mapping:
-                    (https?)://${host}/(.*): "$1://127.0.0.1/$2"
-            - !useHttpForHttps
-                matchers:
-                - !localMatch {}
-            - !forwardHeaders
-                matchers:
-                - !localMatch {}
-                headers:
-                - Cookie
-                - Host
+#            - !mapUri
+#                matchers:
+#                - !dnsMatch
+#                    host: ${host}
+#                mapping:
+#                    (https?)://${host}/(.*): "$1://127.0.0.1/$2"
+#            - !useHttpForHttps
+#                matchers:
+#                - !localMatch {}
+#            - !forwardHeaders
+#                matchers:
+#                - !localMatch {}
+#                headers:
+#                - Cookie
+#                - Host
             - !forwardHeaders
                 headers:
                 - Referer
-            - !restrictUris
-                matchers:
-                - !localMatch
-                  pathRegex: "^/${instanceid}/wsgi/mapserv_proxy$"
-                - !localMatch
-                  reject: true
-                - !ipMatch
-                  ip: 10.0.0.0
-                  mask: 255.0.0.0
-                  reject: true
-                - !ipMatch
-                  ip: 172.16.0.0
-                  mask: 255.240.0.0
-                  reject: true
-                - !ipMatch
-                  ip: 192.168.0.0
-                  mask: 255.255.0.0
-                  reject: true
-                - !acceptAll {}
+#            - !restrictUris
+#                matchers:
+#                - !localMatch
+#                  pathRegex: "^/${instanceid}/wsgi/mapserv_proxy$"
+#                - !localMatch
+#                  reject: true
+#                - !ipMatch
+#                  ip: 10.0.0.0
+#                  mask: 255.0.0.0
+#                  reject: true
+#                - !ipMatch
+#                  ip: 172.16.0.0
+#                  mask: 255.240.0.0
+#                  reject: true
+#                - !ipMatch
+#                  ip: 192.168.0.0
+#                  mask: 255.255.0.0
+#                  reject: true
+#                - !acceptAll {}
         - !prepareLegend
             template: legend.jrxml
         - !createNorthArrow {}

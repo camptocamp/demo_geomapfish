@@ -25,13 +25,18 @@ replace your sencha touch interface by an ngeo interface.
 
     git rm lingua.cfg
     git rm -r demo/static/mobile/
+    git rm print/print-servlet.war
 
-3. In the `vars_demo.yaml` file:
+3. Add in the `.gitignore` file:
+
+    + print/print-servlet.war
+
+4. In the `vars_demo.yaml` file:
 
    * Remove the `vars.checker.lang_files` parameter to use the default value
      that checks the ngeo language files.
 
-4. In the `demo/__init__.py` file:
+5. In the `demo/__init__.py` file:
 
    * If your project's main function includes `config.include("pyramid_closure")`,
      remove it, as c2cgeoportal now takes care of including `pyramid_closure`.
@@ -47,10 +52,10 @@ replace your sencha touch interface by an ngeo interface.
      - add_interface(config, "mobile", INTERFACE_TYPE_SENCHA_TOUCH)
      + add_interface(config, "mobile", INTERFACE_TYPE_NGEO)
 
-5. To migrate your theme from version 1 to version 2 a script is available.
+6. To migrate your theme from version 1 to version 2 a script is available.
    Use `.build/venv/bin/themev1tov2 --help` for more information.
 
-6. If you have set the `cache_control` in your `vars_demo.yaml` file,
+7. If you have set the `cache_control` in your `vars_demo.yaml` file,
    rename 'cache_control' to 'headers' and 'max_age' to
    'cache_control_max_age':
 
@@ -67,6 +72,22 @@ replace your sencha touch interface by an ngeo interface.
    +      "<service_name>":
    +          "cache_control_max_age": <max_age>
 
+8. A new checker has been added to test for javascript error. If you have
+   overridded the checker list in your `vars_demo.yaml` file, you must
+   add it.
+
+    # Check collector configuration
+    check_collector:
+        disabled: [checker_printcapabilities, checker_pdf]
+        check_type:
+            all:
+    ...
+   +         - name: checker_js_generic
+   +           display: PhantomJS generic test
+            main:
+    ...
+   +         - name: checker_js_generic
+   +           display: PhantomJS generic test
 
 Version 1.6.7
 =============
@@ -103,10 +124,7 @@ Version 1.6.7
                 - !dnsMatch
                     host: ${host}
                 mapping:
-                    (https?)://${host}/(.*): "$1://127.0.0.1/$2"
-            - !useHttpForHttps
-                matchers:
-                - !localMatch {}
+                    (https?)://${host}/(.*): "http://127.0.0.1/$2"
             - !forwardHeaders
                 matchers:
                 - !localMatch {}
@@ -120,6 +138,8 @@ Version 1.6.7
                 matchers:
                 - !localMatch
                   pathRegex: "^/${instanceid}/wsgi/mapserv_proxy$"
+                - !localMatch
+                  pathRegex: "/${instanceid}/tiles/.*"
                 - !localMatch
                   reject: true
                 - !ipMatch

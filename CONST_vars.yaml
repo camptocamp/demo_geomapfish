@@ -135,7 +135,17 @@ vars:
 
     # The list of available variable names for the `UI metadatas` form.
         available_metadata:
-        - copy_to
+        - copyTo
+        - legendRule
+        - isLegendExpanded
+        - metadataUrl
+        - disclaimer
+        - isChecked
+        - identifierAttributeField
+        - maxResolution
+        - legend
+        - minResolution
+        - thumbnail
 
     # The list of functionalities that can be configured
     # through the admin interface.
@@ -204,6 +214,11 @@ vars:
         # the host has to be set explicitly in a vhost environment.
         # tinyows_host: {host}
 
+    resourceproxy:
+        # list of urls from which it is safe to load content
+        targets:
+          #exempletargetname: http://www.camptocamp.com/?param1=%s&param2=%s
+
     fulltextsearch:
         defaultlimit: 30
         maxlimit: 200
@@ -254,7 +269,12 @@ vars:
     #proxies:
     #    http: http://someproxy
 
+    # Control the HTTP headers
     headers:
+        ngeo_index:
+            access_control_max_age: 600 # 10 minutes
+        mapserver:
+            access_control_allow_origin: ["*"]
 
     # Checker configuration
     checker:
@@ -300,6 +320,8 @@ vars:
               display: WMS capabilities
             - name: checker_wfscapabilities
               display: WFS capabilities
+            - name: checker_js_generic
+              display: PhantomJS generic test
             main:
             - name: checker_main
               display: Main page
@@ -311,6 +333,8 @@ vars:
               display: Print capabilities
             - name: checker_fts
               display: FullTextSearch
+            - name: checker_js_generic
+              display: PhantomJS generic test
             default: # for children
             - name: checker_viewer
               display: Viewer script

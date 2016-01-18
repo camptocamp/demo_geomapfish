@@ -1,30 +1,37 @@
 {
-  "name": "demo",
-  "version": "2.0.0",
-  "description": "GeoMapfish Project",
-  "scripts": {},
-  "license": "BSD",
-  "dependencies": {
-    "async": "~0.2.10"
-  },
-  "devDependencies": {
-    "angular": "1.4.7",
-    "angular-gettext": "2.1.0",
-    "angular-gettext-tools": "2.1.2",
-    "bootstrap": "^3.3.0",
-    "font-awesome": "4.4.0",
-    "jquery": "2.1.4",
-    "jshint": "2.8.0",
-    "less": "2.5.1",
-    "less-plugin-clean-css": "1.5.1",
-    "ngeo": "git://github.com/camptocamp/ngeo#master",
-    "nomnom": "~1.6.2",
-    "openlayers": "git://github.com/openlayers/ol3#master",
-    "proj4": "2.3.6",
-    "phantomjs": "~1.9.7-5",
-    "typeahead.js": "~0.11.1",
-    "temp": "~0.7.0",
-    "walk": "~2.3.3",
-    "d3": "3.5.5"
-  }
+    "license": "MIT", 
+    "description": "GeoMapfish project", 
+    "version": "0.0.1", 
+    "dependencies": {
+        "async": "0.2.10"
+    }, 
+    "scripts": {}, 
+    "devDependencies": {
+        "angular-gettext": "2.1.0", 
+        "less": "2.5.3", 
+        "graceful-fs": "3.0.2", 
+        "ngeo": "git://github.com/camptocamp/ngeo#master", 
+        "walk": "2.3.3", 
+        "clean-css": "2.2.7", 
+        "openlayers": "openlayers/ol3#master", 
+        "d3": "3.5.5", 
+        "phantomjs": "1.9.19", 
+        "angular": "1.4.7", 
+        "gaze": "0.5.2", 
+        "karma-jasmine": "0.1.5", 
+        "less-plugin-autoprefix": "1.5.1", 
+        "angular-gettext-tools": "2.1.2", 
+        "karma-phantomjs-launcher": "0.1.4", 
+        "jquery": "2.1.4", 
+        "angular-mocks": "1.4.7", 
+        "proj4": "2.3.6", 
+        "temp": "0.7.0", 
+        "bootstrap": "3.3.0", 
+        "nomnom": "1.6.2", 
+        "fs-extra": "0.8.1", 
+        "karma": "0.12.16", 
+        "jshint": "2.5.1", 
+        "typeahead.js": "0.11.1"
+    }, 
+    "name": "demo"
 }
