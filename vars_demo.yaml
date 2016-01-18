@@ -43,20 +43,8 @@ vars:
         # The list of functionalities that can be configured
         # through the admin interface.
         available_functionalities:
-        - default_basemap
         - mobile_default_theme
         - location
-        available_metadata:
-        - legend_rule
-        - is_legend_expanded
-        - metadata_url
-        - disclaimer
-        - is_checked
-        - identifier_attribute_field
-        - max_resolution
-        - legend
-        - min_resolution
-        - thumbnail
 
     functionalities:
         # Functionalities that are accessible to anonymous
@@ -194,4 +182,4 @@ update_paths:
 - checker
 - check_collector.disabled
 - check_collector.hosts
-- admin_interface
+- admin_interface.available_functionalities
