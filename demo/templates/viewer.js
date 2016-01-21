@@ -508,14 +508,14 @@ Ext.onReady(function() {
                     minRatio: 64,
                     maxRatio: 64,
                     layers: [new OpenLayers.Layer.OSM("OSM", [
-                           'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                           'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                           'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
+                           'https://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                           'https://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                           'https://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                         ], {
                             transitionEffect: 'resize',
                             attribution: [
-                                'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>',
-                                ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
+                                'Tiles Courtesy of <a href="https://www.mapquest.com/" target="_blank">MapQuest</a>',
+                                ' <img src="https://developer.mapquest.com/content/osm/mq_logo.png">'
                             ].join(' ')
                         }
                     )]
