@@ -19,6 +19,8 @@ PRINT_VERSION ?= 3
 
 PIP_CMD ?= $(VENV_BIN)/pip
 PIP_INSTALL_ARGS += install --trusted-host pypi.camptocamp.net
+PIP_VERSION ?= pip>=6
+SETUPTOOL_VERSION ?= setuptools>=12
 
 GIT_MODULES_FOLDER ?= .git/modules/
 
@@ -274,11 +276,14 @@ CONF_FILES_IN = $(shell ls -1 apache/*.conf.in 2> /dev/null)
 CONF_FILES_MAKO = $(shell ls -1 apache/*.conf.mako 2> /dev/null)
 CONF_FILES_JINJA = $(shell ls -1 apache/*.conf.jinja 2> /dev/null)
 CONF_FILES = $(shell ls -1 apache/*.conf 2> /dev/null) $(CONF_FILES_IN:.in=) $(CONF_FILES_MAKO:.mako=) $(CONF_FILES_JINJA:.jinja=)
+ifeq ($(TILECLOUD_CHAIN), TRUE)
+CONF_FILES += apache/tiles.conf
+endif
 PY_FILES = $(shell find $(PACKAGE) -type f -name '*.py' -print)
 TEMPLATES_FILES = $(shell find $(PACKAGE)/templates -type f -print)
 
 # Templates
-TEMPLATE_EXCLUDE += .build print/templates \
+TEMPLATE_EXCLUDE += .build node_modules print/templates \
 	CONST_alembic/main/script.py.mako \
 	CONST_alembic/static/script.py.mako \
 	$(PACKAGE)/static/lib
@@ -291,8 +296,8 @@ VARS_DEPENDS += $(VARS_FILES) .build/node_modules.timestamp
 CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid_closure \
 	node_modules_path closure_library_path default_locale_name servers layers \
 	available_locale_names cache admin_interface functionalities external_themes_url \
-	raster shortener hide_capabilities mapserverproxy tinyowsproxy print_url tiles_url \
-	checker check_collector default_max_age jsbuild package srid \
+	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
+	tiles_url checker check_collector default_max_age jsbuild package srid \
 	reset_password fulltextsearch
 ENVIRONMENT_VARS += INSTANCE_ID=${INSTANCE_ID} \
 	APACHE_ENTRY_POINT=$(APACHE_ENTRY_POINT) \
@@ -519,23 +524,19 @@ $(OUTPUT_DIR)/templatecache.js: templatecache.mako.js $(APP_PARTIALS_FILES) .bui
 
 .build/externs/angular-1.4.js:
 	mkdir -p $(dir $@)
-	wget -O $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.4.js
-	touch $@
+	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.4.js
 
 .build/externs/angular-1.4-q_templated.js:
 	mkdir -p $(dir $@)
-	wget -O $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.4-q_templated.js
-	touch $@
+	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.4-q_templated.js
 
 .build/externs/angular-1.4-http-promise_templated.js:
 	mkdir -p $(dir $@)
-	wget -O $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.4-http-promise_templated.js
-	touch $@
+	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-1.4-http-promise_templated.js
 
 .build/externs/jquery-1.9.js:
 	mkdir -p $(dir $@)
-	wget -O $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/jquery-1.9.js
-	touch $@
+	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/jquery-1.9.js
 
 package.json:
 ifeq ($(NGEO), TRUE)
@@ -692,7 +693,7 @@ $(VENV_BIN)/flake8: .build/dev-requirements.timestamp
 	virtualenv --setuptools --no-site-packages .build/venv
 	$(PIP_CMD) install \
 		--index-url http://pypi.camptocamp.net/pypi \
-		'pip>=6,<7' 'setuptools>=12'
+		'$(PIP_VERSION)' '$(SETUPTOOL_VERSION)'
 	touch $@
 
 .build/requirements.timestamp: $(EGGS_DEPENDENCIES)
@@ -735,23 +736,19 @@ endif
 
 print/WEB-INF/lib/jasperreports-functions-5.5.0.jar:
 	mkdir -p $(dir $@)
-	wget http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%205.5.0/jasperreports-functions-5.5.0.jar/download -O $@
-	touch $@
+	curl --location --output $@ http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%205.5.0/jasperreports-functions-5.5.0.jar/download
 
 print/WEB-INF/lib/joda-time-1.6.jar:
 	mkdir -p $(dir $@)
-	wget http://maven.ibiblio.org/maven2/joda-time/joda-time/1.6/joda-time-1.6.jar -O $@
-	touch $@
+	curl --max-redirs 0 --location --output $@ http://maven.ibiblio.org/maven2/joda-time/joda-time/1.6/joda-time-1.6.jar
 
 print/WEB-INF/lib/jasperreports-fonts-5.5.0.jar:
 	mkdir -p $(dir $@)
-	wget http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%205.5.0/jasperreports-fonts-5.5.0.jar/download -O $@
-	touch $@
+	curl --location --output $@ http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%205.5.0/jasperreports-fonts-5.5.0.jar/download
 
 print/WEB-INF/lib/postgresql-9.3-1102.jdbc41.jar:
 	mkdir -p $(dir $@)
-	wget http://jdbc.postgresql.org/download/postgresql-9.3-1102.jdbc41.jar -O $@
-	touch $@
+	curl --max-redirs 0 --location --output $@ https://jdbc.postgresql.org/download/postgresql-9.3-1102.jdbc41.jar
 
 # Tile cloud chain
 apache/mapcache.xml: tilegeneration/config.yaml .build/dev-requirements.timestamp
@@ -792,6 +789,9 @@ $(INSTANCE_ID_MARKER):
 
 .PHONY: upgrade
 upgrade: .build/requirements.timestamp project.yaml
+	.build/venv/bin/pip install --index-url http://pypi.camptocamp.net/pypi \
+		--find-links https://camptocamp.github.io/c2cgeoportal/index/c2cgeoportal \
+		c2cgeoportal==${VERSION}
 	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION}
 
 .PHONY: upgrade1
