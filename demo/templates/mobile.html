@@ -12,7 +12,6 @@
 % else:
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/mobile.css')}" type="text/css">
 % endif
-
   </head>
   <body ng-class="{'nav-is-visible': mainCtrl.navIsVisible(),
                    'nav-left-is-visible': mainCtrl.leftNavIsVisible(),
@@ -21,6 +20,7 @@
       <gmf-map gmf-map-map="mainCtrl.map"></gmf-map>
       <button class="nav-trigger nav-left-trigger"
         ng-click="mainCtrl.toggleLeftNavVisibility()">
+        <span class="gmf-icon gmf-icon-layers"></span>
       </button>
       <div class="search">
         <gmf-search gmf-search-map="mainCtrl.map"
@@ -30,11 +30,13 @@
       </div>
       <button class="nav-trigger nav-right-trigger"
         ng-click="mainCtrl.toggleRightNavVisibility()">
+        <i class="fa fa-wrench"></i>
       </button>
       <div class="overlay" ng-click="mainCtrl.hideNav()"></div>
       <button ngeo-mobile-geolocation=""
         ngeo-mobile-geolocation-map="::mainCtrl.map"
         ngeo-mobile-geolocation-options="::mainCtrl.mobileGeolocationOptions">
+        <span class="fa fa-location-arrow"></span>
       </button>
     </main>
     <nav class="nav-left" gmf-mobile-nav>
@@ -47,7 +49,6 @@
           <li>
             <a href="#background" data-toggle="slide-in">Background</a>
             <a href="#data" data-toggle="slide-in">Data</a>
-            <a href="#login" data-toggle="slide-in">Login</a>
           </li>
         </ul>
         <hr />
@@ -65,6 +66,13 @@
           <li>
             <a href="#themes" data-toggle="slide-in">Themes</a>
           </li>
+          <li>
+            <gmf-layertree
+                gmf-layertree-source="mainCtrl.theme"
+                gmf-layertree-map="::mainCtrl.map"
+                gmf-layertree-openlinksinnewwindow="true">
+            </gmf-layertree>
+          </li>
         </ul>
       </div>
       <gmf-themeselector
@@ -74,8 +82,6 @@
           gmf-themeselector-currenttheme="mainCtrl.theme"
           gmf-themeselector-filter="::mainCtrl.filter">
       </gmf-themeselector>
-      <gmf-authentication id="login" class="slide" data-header-title="Login">
-      </gmf-authentication>
     </nav>
     <nav class="nav-right" gmf-mobile-nav>
       <header>
@@ -86,6 +92,7 @@
         <ul>
           <li>
             <a href="#measure-tools" data-toggle="slide-in">Measure tools</a>
+            <a href="#login" data-toggle="slide-in">Login</a>
           </li>
         </ul>
       </div>
@@ -97,6 +104,8 @@
           </li>
         </ul>
       </div>
+      <gmf-authentication id="login" class="slide" data-header-title="Login">
+      </gmf-authentication>
     </nav>
 % if debug:
     <script>
@@ -124,18 +133,16 @@
     <script>
       (function() {
          var module = angular.module('demo');
-         module.constant('serverVars', {
-           defaultLang: '${request.registry.settings["default_locale_name"]}',
-           langUrls: {
-${ ",\n".join([
-    "             '{lang}': '{url}'".format(lang=lang, url=request.static_url('demo:static-ngeo/build/{lang}.json'.format(lang=lang)))
-    for lang in request.registry.settings["available_locale_names"]
-]) | n}
-           },
-           serviceUrls: {
-             fulltextsearch: 'https://geomapfish-demo.camptocamp.net/2.0/wsgi/fulltextsearch?query=%QUERY'
-           }
+         module.constant('defaultLang', 'en');
+         module.constant('langUrls', {
+           'en': '../../build/gmf-en.json',
+           'fr': '../../build/gmf-fr.json',
+           'de': '../../build/gmf-de.json'
          });
+         module.constant('authenticationBaseUrl', 'https://geomapfish-demo.camptocamp.net/2.0/wsgi');
+         module.constant('fulltextsearchUrl', 'https://geomapfish-demo.camptocamp.net/2.0/wsgi/fulltextsearch');
+         module.constant('gmfWmsUrl', 'https://geomapfish-demo.camptocamp.net/2.0/wsgi/mapserv_proxy');
+         module.constant('gmfTreeUrl', 'https://geomapfish-demo.camptocamp.net/2.0/wsgi/themes?version=2&background=background');
        })();
     </script>
   </body>
