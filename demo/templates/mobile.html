@@ -133,16 +133,20 @@
     <script>
       (function() {
          var module = angular.module('demo');
-         module.constant('defaultLang', 'en');
+         module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
          module.constant('langUrls', {
-           'en': '../../build/gmf-en.json',
-           'fr': '../../build/gmf-fr.json',
-           'de': '../../build/gmf-de.json'
-         });
-         module.constant('authenticationBaseUrl', 'https://geomapfish-demo.camptocamp.net/2.0/wsgi');
-         module.constant('fulltextsearchUrl', 'https://geomapfish-demo.camptocamp.net/2.0/wsgi/fulltextsearch');
-         module.constant('gmfWmsUrl', 'https://geomapfish-demo.camptocamp.net/2.0/wsgi/mapserv_proxy');
-         module.constant('gmfTreeUrl', 'https://geomapfish-demo.camptocamp.net/2.0/wsgi/themes?version=2&background=background');
+${ ',\n'.join([
+    "             '{lang}': '{url}'".format(
+        lang=lang,
+        url=request.static_url('demo:static-ngeo/build/{lang}.json'.format(lang=lang))
+    )
+    for lang in request.registry.settings["available_locale_names"]
+]) | n}
+           });
+         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
+         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch') | n}');
+         module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
+         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": 2, "background": "background"}) | n}');
        })();
     </script>
   </body>
