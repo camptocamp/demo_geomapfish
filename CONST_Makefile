@@ -78,7 +78,7 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 # Requirements
 CONST_REQUIREMENT ?= CONST_requirements.txt
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= 'c2cgeoportal==2.0.0.dev2'
+REQUIREMENTS ?= 'c2cgeoportal==2.0.0.dev3'
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -346,7 +346,7 @@ CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid
 	available_locale_names cache admin_interface functionalities external_themes_url \
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
 	tiles_url checker check_collector default_max_age jsbuild package srid \
-	reset_password fulltextsearch headers authorized_referers
+	reset_password fulltextsearch headers authorized_referers hooks
 ENVIRONMENT_VARS += INSTANCE_ID=${INSTANCE_ID} \
 	APACHE_ENTRY_POINT=$(APACHE_ENTRY_POINT) \
 	DEVELOPMENT=${DEVELOPMENT} \
@@ -606,11 +606,20 @@ $(APP_OUTPUT_DIR)/%.css: $(PACKAGE)/static-ngeo/less/%-build.less $(LESS_FILES) 
 	mkdir -p $(dir $@)
 	node_modules/.bin/lessc $< $@
 
-.build/%.json: build.mako.json $(VENV_BIN)/mako-render
-	PYTHONIOENCODING=UTF-8 $(VENV_BIN)/mako-render --var "interface=$*" $< > $@
+node_modules/ngeo/buildtools/mako_build.json: .build/node_modules.timestamp
+
+.build/%.json: node_modules/ngeo/buildtools/mako_build.json \
+		$(VENV_BIN)/mako-render
+	PYTHONIOENCODING=UTF-8 $(VENV_BIN)/mako-render \
+		--var 'src=$(PACKAGE)/static-ngeo/js/**/*.js' \
+		--var src_set=contribs_gmf \
+		--var entry_point=$(PACKAGE)_$* \
+		--var js=$(PACKAGE)/static-ngeo/js/$*.js \
+		--var ngeo_folder=node_modules/ngeo/ \
+		--var generate_exports=true $< > $@
 
 .build/%.js: .build/%.json $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
-		.build/templatecache.js \
+		.build/gmftemplatecache.js \
 		.build/externs/angular-1.4.js \
 		.build/externs/angular-1.4-q_templated.js \
 		.build/externs/angular-1.4-http-promise_templated.js \
@@ -620,7 +629,7 @@ $(APP_OUTPUT_DIR)/%.css: $(PACKAGE)/static-ngeo/less/%-build.less $(LESS_FILES) 
 
 node_modules/ngeo/buildtools/templatecache.mako.js: .build/node_modules.timestamp
 
-.build/templatecache.js: node_modules/ngeo/buildtools/templatecache.mako.js $(VENV_BIN)/mako-render \
+.build/gmftemplatecache.js: node_modules/ngeo/buildtools/templatecache.mako.js $(VENV_BIN)/mako-render \
 		$(APP_DIRECTIVES_PARTIALS_FILES) $(GMF_DIRECTIVES_PARTIALSFILES) $(NGEO_DIRECTIVES_PARTIALS_FILES)
 	mkdir -p $(dir $@)
 	PYTHONIOENCODING=UTF-8 $(VENV_BIN)/mako-render \
@@ -862,14 +871,17 @@ endif # !DOCKER
 print/WEB-INF/lib/jasperreports-functions-$(JASPERREPORTS_VERSION).jar:
 	mkdir -p $(dir $@)
 	curl --location --output $@ http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%20$(JASPERREPORTS_VERSION)/jasperreports-functions-$(JASPERREPORTS_VERSION).jar/download
+	unzip -t -q $@
 
 print/WEB-INF/lib/joda-time-1.6.jar:
 	mkdir -p $(dir $@)
 	curl --max-redirs 0 --location --output $@ http://maven.ibiblio.org/maven2/joda-time/joda-time/1.6/joda-time-1.6.jar
+	unzip -t -q $@
 
 print/WEB-INF/lib/postgresql-9.3-1102.jdbc41.jar:
 	mkdir -p $(dir $@)
 	curl --max-redirs 0 --location --output $@ https://jdbc.postgresql.org/download/postgresql-9.3-1102.jdbc41.jar
+	unzip -t -q $@
 
 # Tile cloud chain
 apache/mapcache.xml: tilegeneration/config.yaml .build/dev-requirements.timestamp

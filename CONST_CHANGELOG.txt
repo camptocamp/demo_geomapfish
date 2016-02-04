@@ -31,6 +31,10 @@ replace your sencha touch interface by an ngeo interface.
 
     + /print/print-servlet.war
     + /.tx/ngeo.gmf-*
+    + /c2cgeoportal/scaffolds/
+    + /demo/static-ngeo/build/
+    + /demo/static-ngeo/fonts/gmf-icons.*
+    + /demo/static-ngeo/fonts/fontawesome-webfont.*
 
 4. In the `vars_demo.yaml` file:
 
@@ -145,7 +149,7 @@ Version 1.6.7
             - !restrictUris
                 matchers:
                 - !localMatch
-                  pathRegex: "^/${instanceid}/wsgi/mapserv_proxy$"
+                  pathRegex: "/${instanceid}/wsgi/mapserv_proxy"
                 - !localMatch
                   pathRegex: "/${instanceid}/tiles/.*"
                 - !localMatch

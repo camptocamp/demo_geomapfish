@@ -9,5 +9,7 @@
  */
 goog.provide('demo_main');
 
+/** @suppress {extraRequire} */
 goog.require('demo.MainController');
+/** @suppress {extraRequire} */
 goog.require('gmf.mapDirective');
