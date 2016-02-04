@@ -54,8 +54,3 @@ WSGIScriptAlias /${instanceid}/wsgi ${directory}/apache/application.wsgi
     WSGIProcessGroup c2cgeoportal:${instanceid}
     WSGIApplicationGroup %{GLOBAL}
 </Location>
-
-<LocationMatch /${instanceid}/wsgi/project/>
-    Header add Access-Control-Allow-Origin "*"
-    Header add Access-Control-Allow-Headers "X-Requested-With, Content-Type"
-</LocationMatch>
