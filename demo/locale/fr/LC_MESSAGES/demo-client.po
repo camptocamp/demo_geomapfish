@@ -11,6 +11,14 @@ msgstr ""
 "#-#-#-#-#  demo-db.pot  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .build/config.yaml:raster/aster
+msgid "aster"
+msgstr "ASTER"
+
+#: .build/config.yaml:raster/srtm
+msgid "srtm"
+msgstr "SRTM"
+
 #: demo/templates/main.html:18
 msgid "The demo Web GIS"
 msgstr "Le web SIG de demo"
