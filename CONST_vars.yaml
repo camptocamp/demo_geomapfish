@@ -12,6 +12,8 @@ vars:
     modwsgi_user: www-data
     # url-path where the instance must respond.
     apache_entry_point: APACHE_ENTRY_POINT
+    # Docker base image name (comes from the makefile).
+    docker_base: DOCKER_BASE
     # database user
     dbuser: www-data
     # database password
@@ -237,7 +239,7 @@ vars:
 
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
-    raster:
+    raster: {}
 
     # Used by enumeration in the query builder
     layers:
@@ -365,6 +367,9 @@ vars:
       #   the settings at runtime (they are constructed at build time).
       #   The function receives one parameter: the settings object.
 
+    # Statistics are disabled by default
+    stats: {}
+
 interpreted:
     python:
     - authtkt.secret
@@ -373,6 +378,7 @@ interpreted:
     environment:
     - instanceid
     - apache_entry_point
+    - docker_base
     - development
     node:
         vars:
