@@ -58,4 +58,4 @@ goog.inherits(demo.MobileController, gmf.AbstractMobileController);
 
 
 
-demoModule.controller('MobileController', demo.MobileController);
+demo.module.controller('MobileController', demo.MobileController);
