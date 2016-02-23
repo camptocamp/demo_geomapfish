@@ -1,3 +1,6 @@
+<%
+from json import dumps
+%>
 <!DOCTYPE html>
 <html lang="{{mobileCtrl.lang}}" ng-app="demo" ng-controller="MobileController as mainCtrl">
   <head>
@@ -18,14 +21,37 @@
                    'nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
     <main>
       <gmf-map gmf-map-map="mainCtrl.map"></gmf-map>
+      <span
+        ngeo-mobile-query=""
+        ngeo-mobile-query-map="::mainCtrl.map"
+        ngeo-mobile-query-active="::mainCtrl.queryActive">
+      </span>
+      <gmf-mobiledisplayqueries
+        gmf-mobiledisplayqueries-featuresstyle="::mainCtrl.queryFeatureStyle">
+      </gmf-mobiledisplayqueries>
+      <div
+        class="measure-tools-control"
+        gmf-mobile-measure-length
+        gmf-mobile-measure-length-active="mainCtrl.measureLengthActive"
+        gmf-mobile-measure-length-decimals="2"
+        gmf-mobile-measure-length-map="::mainCtrl.map">
+      </div>
+      <div
+        class="measure-tools-control"
+        gmf-mobile-measure-point
+        gmf-mobile-measure-point-active="mainCtrl.measurePointActive"
+        gmf-mobile-measure-point-decimals="2"
+        gmf-mobile-measure-point-map="::mainCtrl.map">
+      </div>
       <button class="nav-trigger nav-left-trigger"
         ng-click="mainCtrl.toggleLeftNavVisibility()">
         <span class="gmf-icon gmf-icon-layers"></span>
       </button>
       <div class="search">
         <gmf-search gmf-search-map="mainCtrl.map"
-                    gmf-search-datasources="mainCtrl.searchDatasources"
-                    gmf-search-clearbutton="true">
+          gmf-search-datasources="mainCtrl.searchDatasources"
+          gmf-search-currenttheme="mainCtrl.theme"
+          gmf-search-clearbutton="true">
         </gmf-search>
       </div>
       <button class="nav-trigger nav-right-trigger"
@@ -47,40 +73,32 @@
       <div class="active slide">
         <ul>
           <li>
-            <a href="#background" data-toggle="slide-in">Background</a>
-            <a href="#data" data-toggle="slide-in">Data</a>
+            <a href data-target="#background" data-toggle="slide-in">Background</a>
           </li>
+          <li>
+            <a href data-target="#themes" data-toggle="slide-in">Themes</a>
+          </li>
+          <gmf-layertree
+            gmf-layertree-source="mainCtrl.theme"
+            gmf-layertree-map="::mainCtrl.map"
+            gmf-layertree-openlinksinnewwindow="true">
+          </gmf-layertree>
         </ul>
-        <hr />
-        <p class="text-center">
-          <b>Put your logo here</b>
-        </p>
       </div>
       <div id="background" class="slide" data-header-title="Background">
         <gmf-mobile-background-layer-selector
-          gmf-mobile-background-layer-selector-map="::mainCtrl.map">
+          gmf-mobile-background-layer-selector-map="::mainCtrl.map"
+          gmf-mobile-background-layer-selector-select="mainCtrl.hideNav()">
         </gmf-mobile-background-layer-selector>
       </div>
-      <div id="data" class="slide" data-header-title="Data">
-        <ul>
-          <li>
-            <a href="#themes" data-toggle="slide-in">Themes</a>
-          </li>
-          <li>
-            <gmf-layertree
-                gmf-layertree-source="mainCtrl.theme"
-                gmf-layertree-map="::mainCtrl.map"
-                gmf-layertree-openlinksinnewwindow="true">
-            </gmf-layertree>
-          </li>
-        </ul>
-      </div>
       <gmf-themeselector
-          id="themes"
-          class="slide"
-          data-header-title="Themes"
-          gmf-themeselector-currenttheme="mainCtrl.theme"
-          gmf-themeselector-filter="::mainCtrl.filter">
+        id="themes"
+        class="slide"
+        data-header-title="Themes"
+        gmf-themeselector-defaulttheme="OSM"
+        gmf-themeselector-currenttheme="mainCtrl.theme"
+        gmf-themeselector-filter="::mainCtrl.filter"
+        gmf-mobile-nav-back="mainCtrl.theme">
       </gmf-themeselector>
     </nav>
     <nav class="nav-right" gmf-mobile-nav>
@@ -91,18 +109,20 @@
       <div class="active slide">
         <ul>
           <li>
-            <a href="#measure-tools" data-toggle="slide-in">Measure tools</a>
-            <a href="#login" data-toggle="slide-in">Login</a>
+            <a href data-target="#measure-tools" data-toggle="slide-in">Measure tools</a>
+            <a href data-target="#login" data-toggle="slide-in">Login</a>
           </li>
         </ul>
       </div>
       <div id="measure-tools" class="slide" data-header-title="Measure tools">
-        <ul>
-          <li>
-            <a href="#">Length</a>
-            <a href="#">Area</a>
-          </li>
-        </ul>
+        <a ngeo-btn
+          ng-click="mainCtrl.hideNav()"
+          class="btn btn-default measure-tools-button"
+          ng-model="mainCtrl.measurePointActive">Coordinate</a>
+        <a ngeo-btn
+          ng-click="mainCtrl.hideNav()"
+          class="btn btn-default measure-tools-button"
+          ng-model="mainCtrl.measureLengthActive">Length</a>
       </div>
       <gmf-authentication id="login" class="slide" data-header-title="Login">
       </gmf-authentication>
@@ -144,9 +164,12 @@ ${ ',\n'.join([
 ]) | n}
            });
          module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
-         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch') | n}');
+         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"limit": "20"}) | n}');
          module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
-         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": 2, "background": "background"}) | n}');
+         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background"}) | n}');
+         module.constant('gmfSearchGroups', []);
+         // Requires that the gmfSearchGroups is specified
+         module.constant('gmfSearchActions', []);
        })();
     </script>
   </body>

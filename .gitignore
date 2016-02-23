@@ -7,6 +7,7 @@
 /.whiskey/action_hooks/pre-build
 /demo.egg-info
 /jsbuild/app.cfg
+/docker-compose.yml
 /node_modules
 /apache/README.txt
 /apache/frontend.conf
@@ -33,9 +34,13 @@
 /mapserver/private.map
 /mapserver/replace_db.sh
 /deploy/hooks/post-restore-database
+/testDB/01-schemas.sql
+/testDB/Dockerfile
+/demo/version.py
 /demo/static/build/
 /demo/static-ngeo/build/
-/demo/static-ngeo/fonts/
+/demo/static-ngeo/fonts/gmf-icons.*
+/demo/static-ngeo/fonts/fontawesome-webfont.*
 /demo/locale/*/LC_MESSAGES/*.mo
 /demo/locale/demo-*.pot
 /demo/static/mobile/resources/sass/.sass-cache
