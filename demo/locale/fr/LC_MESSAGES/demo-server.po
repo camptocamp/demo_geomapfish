@@ -10,53 +10,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Lingua 3.7\n"
 
-#: demo/templates/edit.html:61 demo/templates/old.html:72
+#: demo/templates/edit.html:61 demo/templates/index.html:72
 #: demo/templates/routing.html:61
 msgid "Loading message"
 msgstr "Chargement de la page"
 
-#: demo/templates/edit.html:76 demo/templates/old.html:121
+#: demo/templates/edit.html:76 demo/templates/index.html:121
 #: demo/templates/routing.html:76
 msgid "Here you can search for city, coordinates, ..."
 msgstr "Vous pouvez rechercher des villes, coordonées, ..."
 
-#: demo/templates/edit.html:77 demo/templates/old.html:122
+#: demo/templates/edit.html:77 demo/templates/index.html:122
 #: demo/templates/routing.html:77
 msgid "Search examples"
 msgstr "Example de recherche"
 
-#: demo/templates/edit.html:79 demo/templates/old.html:124
+#: demo/templates/edit.html:79 demo/templates/index.html:124
 #: demo/templates/routing.html:79
 msgid "City"
 msgstr "Villes"
 
-#: demo/templates/edit.html:80 demo/templates/old.html:125
+#: demo/templates/edit.html:80 demo/templates/index.html:125
 #: demo/templates/routing.html:80
 msgid "Coordinates"
 msgstr "Coordonées"
 
-#: demo/templates/edit.html:82 demo/templates/old.html:127
+#: demo/templates/edit.html:82 demo/templates/index.html:127
 #: demo/templates/routing.html:82
 msgid "Swiss coordinates"
 msgstr "Coordonnées suisses"
 
-#: demo/templates/edit.html:83 demo/templates/old.html:128
+#: demo/templates/edit.html:83 demo/templates/index.html:128
 #: demo/templates/routing.html:83
 msgid "WGS 84 coordinates (Longitude/latitude)"
 msgstr "Coordonnée WGS 84 (Longitude/latitude)"
 
-#: demo/templates/old.html:100
+#: demo/templates/index.html:100
 msgid "Admin"
 msgstr "Admin"
 
-#: demo/templates/old.html:102
+#: demo/templates/index.html:102
 msgid "Routing"
 msgstr "Calcul d'itinéraire"
 
-#: demo/templates/old.html:104
+#: demo/templates/index.html:104
 msgid "Editing"
 msgstr "Édition"
 
-#: demo/templates/old.html:106
+#: demo/templates/index.html:106
 msgid "Mobile"
 msgstr "Mobile"

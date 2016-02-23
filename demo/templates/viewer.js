@@ -65,8 +65,8 @@ Ext.onReady(function() {
     }, WMTS_BASE_OPTIONS);
 
     var WMTSASITVD_OPTIONS = Ext.applyIf({
-        url: "http://ows.asitvd.ch/wmts/",
-        attribution: OpenLayers.i18n("© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"),
+        url: "https://ows.asitvd.ch/wmts/",
+        attribution: OpenLayers.i18n("© <a href='https://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>"),
         dimensions: ['DIM1','ELEVATION'],
         params: {
             'dim1': 'default',
@@ -271,7 +271,7 @@ Ext.onReady(function() {
                     OpenLayers.i18n("Wgs Coord. Label") + ": {wgs_x} {wgs_y}<br />" +
                     "Elevation (SRTM): {srtm_value} [m]<br />" +
                     "Elevation (Aster): {aster_value} [m]<br />" +
-                    "<a href='http://maps.google.ch/?ie=UTF8&ll={streetviewlat},{streetviewlon}&layer=c" +
+                    "<a href='https://maps.google.ch/?ie=UTF8&ll={streetviewlat},{streetviewlon}&layer=c" +
                     "&cbll={streetviewlat},{streetviewlon}&cbp=12,57.78,,0,8.1' " +
                     "target='_blank'>{streetviewlabel}</a>"
             }
@@ -436,9 +436,9 @@ Ext.onReady(function() {
                 tooltip: OpenLayers.i18n('Add a WMS layer on the map')
              },
              defaultUrls: [
-                'http://wms.geo.admin.ch',
-                'http://ids.pigma.org/geoserver/wms',
-                'http://geobretagne.fr/geoserver/wms'
+                'https://wms.geo.admin.ch',
+                'https://ids.pigma.org/geoserver/wms',
+                'https://geobretagne.fr/geoserver/wms'
              ]
         },
         {
@@ -461,7 +461,7 @@ Ext.onReady(function() {
         {
             ptype: "gxp_tool",
             actionTarget: "center.bbar",
-            actions: OpenLayers.i18n('<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="http://www.camptocamp.com" target="_blank" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a> - <a target="_blank" href="http://geomapfish.org/">GeoMapFish</a>.')
+            actions: OpenLayers.i18n('<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="https://www.camptocamp.com" target="_blank" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a> - <a target="_blank" href="https://geomapfish.org/">GeoMapFish</a>.')
         }
         ],
 
@@ -508,14 +508,14 @@ Ext.onReady(function() {
                     minRatio: 64,
                     maxRatio: 64,
                     layers: [new OpenLayers.Layer.OSM("OSM", [
-                           'http://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                           'http://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                           'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
+                           'https://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                           'https://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
+                           'https://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                         ], {
                             transitionEffect: 'resize',
                             attribution: [
-                                'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>',
-                                ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
+                                'Tiles Courtesy of <a href="https://www.mapquest.com/" target="_blank">MapQuest</a>',
+                                ' <img src="https://developer.mapquest.com/content/osm/mq_logo.png">'
                             ].join(' ')
                         }
                     )]
