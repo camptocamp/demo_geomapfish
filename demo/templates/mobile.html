@@ -20,12 +20,10 @@ from json import dumps
                    'nav-left-is-visible': mainCtrl.leftNavIsVisible(),
                    'nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
     <main>
-      <gmf-map gmf-map-map="mainCtrl.map"></gmf-map>
-      <span
+      <gmf-map gmf-map-map="mainCtrl.map"
         ngeo-mobile-query=""
         ngeo-mobile-query-map="::mainCtrl.map"
-        ngeo-mobile-query-active="::mainCtrl.queryActive">
-      </span>
+        ngeo-mobile-query-active="mainCtrl.queryActive"></gmf-map>
       <gmf-mobiledisplayqueries
         gmf-mobiledisplayqueries-featuresstyle="::mainCtrl.queryFeatureStyle">
       </gmf-mobiledisplayqueries>
@@ -73,10 +71,10 @@ from json import dumps
       <div class="active slide">
         <ul>
           <li>
-            <a href data-target="#background" data-toggle="slide-in">Background</a>
+            <a href data-target="#background" data-toggle="slide-in" translate>Background</a>
           </li>
           <li>
-            <a href data-target="#themes" data-toggle="slide-in">Themes</a>
+            <a href data-target="#themes" data-toggle="slide-in" translate>Themes</a>
           </li>
           <gmf-layertree
             gmf-layertree-source="mainCtrl.theme"
@@ -86,10 +84,10 @@ from json import dumps
         </ul>
       </div>
       <div id="background" class="slide" data-header-title="Background">
-        <gmf-mobile-background-layer-selector
-          gmf-mobile-background-layer-selector-map="::mainCtrl.map"
-          gmf-mobile-background-layer-selector-select="mainCtrl.hideNav()">
-        </gmf-mobile-background-layer-selector>
+        <gmf-mobile-backgroundlayerselector
+          gmf-mobile-backgroundlayerselector-map="::mainCtrl.map"
+          gmf-mobile-backgroundlayerselector-select="mainCtrl.hideNav()">
+        </gmf-mobile-backgroundlayerselector>
       </div>
       <gmf-themeselector
         id="themes"
@@ -109,20 +107,26 @@ from json import dumps
       <div class="active slide">
         <ul>
           <li>
-            <a href data-target="#measure-tools" data-toggle="slide-in">Measure tools</a>
-            <a href data-target="#login" data-toggle="slide-in">Login</a>
+            <a href data-target="#measure-tools" data-toggle="slide-in" translate>Measure tools</a>
+            <a href data-target="#login" data-toggle="slide-in" translate>Login</a>
           </li>
         </ul>
       </div>
       <div id="measure-tools" class="slide" data-header-title="Measure tools">
         <a ngeo-btn
           ng-click="mainCtrl.hideNav()"
-          class="btn btn-default measure-tools-button"
-          ng-model="mainCtrl.measurePointActive">Coordinate</a>
+          class="measure-tools-button"
+          ng-model="mainCtrl.measurePointActive">
+          <span class="fa fa-fw" ng-class="{'fa-check': mainCtrl.measurePointActive}"></span>
+          Coordinate
+        </a>
         <a ngeo-btn
           ng-click="mainCtrl.hideNav()"
-          class="btn btn-default measure-tools-button"
-          ng-model="mainCtrl.measureLengthActive">Length</a>
+          class="measure-tools-button"
+          ng-model="mainCtrl.measureLengthActive">
+          <span class="fa fa-fw" ng-class="{'fa-check': mainCtrl.measureLengthActive}"></span>
+          Length
+        </a>
       </div>
       <gmf-authentication id="login" class="slide" data-header-title="Login">
       </gmf-authentication>
@@ -134,8 +138,8 @@ from json import dumps
     </script>
     <script src="${request.static_url('%s/jquery/dist/jquery.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular/angular.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/d3/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>

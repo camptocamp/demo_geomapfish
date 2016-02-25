@@ -19,6 +19,23 @@ msgstr ""
 
 #: demo/templates/mobile.html:7
 msgid "Mobile Application"
+msgstr "Mobile Applikation"
+
+#: demo/templates/mobile.html:74
+#, fuzzy
+msgid "Background"
+msgstr "hintergrund"
+
+#: demo/templates/mobile.html:77
+msgid "Themes"
+msgstr ""
+
+#: demo/templates/mobile.html:110
+msgid "Measure tools"
+msgstr ""
+
+#: demo/templates/mobile.html:111
+msgid "Login"
 msgstr ""
 
 #: 2:38 theme.Enseignement
@@ -27,83 +44,83 @@ msgstr ""
 
 #: des eaux:3 eaux:8 group.Gestion theme.Gestion
 msgid "Gestion des eaux"
-msgstr ""
+msgstr "Wasserwirtschaft"
 
 #: function:68 group.OSM
 msgid "OSM function"
-msgstr ""
+msgstr "OSM Funktion"
 
 #: group.Administration:6 group.Administration:10 theme.Administration:5
 msgid "Administration"
-msgstr ""
+msgstr "Administration"
 
 #: group.Cadastre:30 theme.Cadastre:29
 msgid "Cadastre"
-msgstr ""
+msgstr "Kadaster"
 
 #: group.Edit:72 theme.Edit:73
 msgid "Edit"
-msgstr ""
+msgstr "Editieren"
 
 #: group.Enseignement:35 group.Enseignement:93 theme.Enseignement:92
 msgid "Enseignement"
-msgstr ""
+msgstr "Schuldienst"
 
 #: group.Equipement:94 theme.Equipement:91
 msgid "Equipement"
-msgstr ""
+msgstr "Ausrüstung"
 
 #: group.Group:66
 msgid "Group"
-msgstr ""
+msgstr "Gruppe"
 
 #: group.Layers:63
 msgid "Layers"
-msgstr ""
+msgstr "Schicht"
 
 #: group.Patrimoine:7 theme.Patrimoine:4
 msgid "Patrimoine"
-msgstr ""
+msgstr "Erbe"
 
 #: group.Paysage:9 theme.Paysage:2
 msgid "Paysage"
-msgstr ""
+msgstr "Landschaft"
 
 #: group.Restaurants:137
 msgid "Restaurants"
-msgstr ""
+msgstr "Restaurants"
 
 #: group.Transport:36 theme.Transport:37
 msgid "Transport"
-msgstr ""
+msgstr "Transport"
 
 #: group.background:131
 msgid "background"
-msgstr ""
+msgstr "hintergrund"
 
 #: group.test:135
 msgid "test"
-msgstr ""
+msgstr "test"
 
 #: group.test2:136
 msgid "test2"
-msgstr ""
+msgstr "test2"
 
 #: l_wms.alpine_hut:123
 msgid "alpine_hut"
-msgstr ""
+msgstr "Berghütte"
 
 #: l_wms.bank:100
 msgid "bank"
-msgstr ""
+msgstr "leer"
 
 #: l_wms.bus_stop:101
 msgid "bus_stop"
-msgstr ""
+msgstr "Bushaltestelle"
 
 #: l_wms.cafe:102
 msgid "cafe"
-msgstr ""
+msgstr "Kaffe"
 
 #: l_wms.ch.swisstopo.dreiecksvermaschung:115
 msgid "ch.swisstopo.dreiecksvermaschung"
@@ -123,87 +140,87 @@ msgstr "Gravimetrischer Atlas 1:100000"
 
 #: l_wms.cinema:99
 msgid "cinema"
-msgstr ""
+msgstr "Kino"
 
 #: l_wms.firestations:122
 msgid "firestations"
-msgstr ""
+msgstr "Feuerwehrtation"
 
 #: l_wms.fuel:124
 msgid "fuel"
-msgstr ""
+msgstr "Tankstelle"
 
 #: l_wms.hospitals:121
 msgid "hospitals"
-msgstr ""
+msgstr "Spital"
 
 #: l_wms.hotel:97
 msgid "hotel"
-msgstr ""
+msgstr "Hotel"
 
 #: l_wms.information:98
 msgid "information"
-msgstr ""
+msgstr "Information"
 
 #: l_wms.line:111
 msgid "line"
-msgstr ""
+msgstr "Linie"
 
 #: l_wms.osm:109
 msgid "osm"
-msgstr ""
+msgstr "OSM"
 
 #: l_wms.osm_scale:114
 msgid "osm_scale"
-msgstr ""
+msgstr "OSM Skala"
 
 #: l_wms.osm_time:110 l_wms.osm_time:126
 msgid "osm_time"
-msgstr ""
+msgstr "OSM Zeit"
 
 #: l_wms.parking:103
 msgid "parking"
-msgstr ""
+msgstr "Parkplatz"
 
 #: l_wms.place_of_worship:104
 msgid "place_of_worship"
-msgstr ""
+msgstr "Kultsätte"
 
 #: l_wms.point:113
 msgid "point"
-msgstr ""
+msgstr "Punkt"
 
 #: l_wms.police:105
 msgid "police"
-msgstr ""
+msgstr "Polizei"
 
 #: l_wms.polygon:112
 msgid "polygon"
-msgstr ""
+msgstr "Polygon"
 
 #: l_wms.post_office:106
 msgid "post_office"
-msgstr ""
+msgstr "Post"
 
 #: l_wms.restaurant:107
 msgid "restaurant"
-msgstr ""
+msgstr "Restaurant"
 
 #: l_wms.zoo:108
 msgid "zoo"
-msgstr ""
+msgstr "Zoo"
 
 #: l_wmts.asitvd.fond_couleur:133
 msgid "asitvd.fond_couleur"
-msgstr ""
+msgstr "asitvd.fond_couleur"
 
 #: l_wmts.asitvd.fond_gris:132
 msgid "asitvd.fond_gris"
-msgstr ""
+msgstr "asitvd.fond_gris"
 
 #: l_wmts.asitvd.fond_pourortho:125
 msgid "asitvd.fond_pourortho"
-msgstr ""
+msgstr "asitvd.fond_pourortho"
 
 #: l_wmts.ch.are.alpenkonvention:119
 msgid "ch.are.alpenkonvention"
@@ -215,8 +232,8 @@ msgstr "Ausnahmetransportrouten"
 
 #: l_wmts.map:134
 msgid "map"
-msgstr ""
+msgstr "Karte"
 
 #: theme.OSM:64
 msgid "OSM"
-msgstr ""
+msgstr "OSM"

@@ -1,4 +1,7 @@
 {
+    "bin": {
+        "compile-catalog": "buildtools/compile-catalog.js"
+    },
     "dependencies": {
         "async": "0.2.10",
         "svg2ttf": "3.0.0",
@@ -12,6 +15,7 @@
         "angular-gettext": "2.1.0",
         "angular-gettext-tools": "2.1.2",
         "angular-mocks": "1.5.0",
+        "angular-touch": "1.5.0",
         "bootstrap": "3.3.6",
         "clean-css": "2.2.7",
         "closure-util": "1.10.0",
@@ -23,14 +27,14 @@
         "fs-extra": "0.26.5",
         "gaze": "0.5.2",
         "graceful-fs": "3.0.2",
-        "jquery": "2.2.0",
+        "jquery": "2.2.1",
         "karma": "0.12.16",
         "karma-coverage": "0.5.3",
         "karma-jasmine": "0.1.5",
         "karma-phantomjs-launcher": "1.0.0",
         "less": "2.6.0",
         "less-plugin-autoprefix": "1.5.1",
-        "ngeo": "git://github.com/camptocamp/ngeo#9cee37c84edc1fb3fb7b956fb8aa503d71392f8b",
+        "ngeo": "git://github.com/camptocamp/ngeo#d088f30febae152290d46a2eede95327dfe96404",
         "nomnom": "1.8.1",
         "openlayers": "openlayers/ol3#82f6fb9",
         "phantomjs-prebuilt": "2.1.4",
