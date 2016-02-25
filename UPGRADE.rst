@@ -11,6 +11,11 @@ During the step 2 you should get some files from the create template:
    cp /tmp/demo_geomapfish/demo/templates/mobile.html demo/templates/
    cp /tmp/demo_geomapfish/demo/static-ngeo/js/mobile.js demo/static-ngeo/js/
 
+And complete the files (step 2 or 3 ?):
+
+    demo/locale/*/LC_MESSAGES/demo-client.po
+
+
 Do the update in the common folder:
 https://camptocamp.github.io/c2cgeoportal/master/integrator/upgrade_application.html#easy-updating-an-application-code
 https://camptocamp.github.io/c2cgeoportal/master/integrator/deploy.html?highlight=sigdev#shared-environement
