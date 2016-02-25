@@ -1,6 +1,4 @@
-var async = require('async');
 var fs = require('fs');
-var path = require('path');
 var nomnom = require('nomnom');
 var Compiler = require('angular-gettext-tools').Compiler;
 
@@ -8,30 +6,29 @@ function main(inputs) {
   var compiler = new Compiler({format: 'json'});
 
   var contents = [];
-  async.eachSeries(inputs, function(input, cb) {
+  inputs.forEach(function(input) {
     fs.exists(input, function(exists) {
+      // ignore un existing and empty files
       if (exists) {
-        fs.stat(input, function(error, stats) {
-          if (stats.size != 0) {
             fs.readFile(input, {encoding: 'utf-8'}, function(err, content) {
               if (!err) {
                 contents.push(content);
+                if (contents.length == inputs.length) {
+                    process.stdout.write(compiler.convertPo(contents.filter(function (content) {
+                      return content.length != 0;
+                    })));
+                }
               }
-              cb(err);
+              else {
+                console.error(err);
+                process.exit(1);
+              }
             });
-          } else {
-            process.stdout.write("{}");
-          }
-        });
-      } else {
-        process.stdout.write("{}");
+      }
+      else {
+        contents.push("")
       }
     });
-  }, function(err) {
-    if (!err) {
-      var output = compiler.convertPo(contents);
-      process.stdout.write(output);
-    }
   });
 }
 
