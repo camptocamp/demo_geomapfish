@@ -22,7 +22,6 @@ msgid "Mobile Application"
 msgstr "Mobile Applikation"
 
 #: demo/templates/mobile.html:74
-#, fuzzy
 msgid "Background"
 msgstr "Hintergrund"
 
@@ -38,9 +37,17 @@ msgstr "Messwerkzeug"
 msgid "Login"
 msgstr "Anmelden"
 
+#: demo/templates/mobile.html:121
+msgid "Coordinate"
+msgstr "Koordinate"
+
+#: demo/templates/mobile.html:128
+msgid "Length"
+msgstr "Länge"
+
 #: 2:38 theme.Enseignement
 msgid "Enseignement 2"
-msgstr "Schuldienst 2"
+msgstr "Schuldienst"
 
 #: des eaux:3 eaux:8 group.Gestion theme.Gestion
 msgid "Gestion des eaux"

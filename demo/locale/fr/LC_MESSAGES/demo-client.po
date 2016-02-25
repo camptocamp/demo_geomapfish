@@ -24,21 +24,28 @@ msgid "Mobile Application"
 msgstr "Application mobile"
 
 #: demo/templates/mobile.html:74
-#, fuzzy
 msgid "Background"
-msgstr "Fonds de carte"
+msgstr "Fond de carte"
 
 #: demo/templates/mobile.html:77
 msgid "Themes"
-msgstr "Thème"
+msgstr "Thèmes"
 
 #: demo/templates/mobile.html:110
 msgid "Measure tools"
-msgstr "Outils de measure"
+msgstr "Outils de mesure"
 
 #: demo/templates/mobile.html:111
 msgid "Login"
 msgstr "Se connecter"
+
+#: demo/templates/mobile.html:121
+msgid "Coordinate"
+msgstr "Coordonnée"
+
+#: demo/templates/mobile.html:128
+msgid "Length"
+msgstr "Longueur"
 
 #: 2:38 theme.Enseignement
 msgid "Enseignement 2"
@@ -98,7 +105,7 @@ msgstr ""
 
 #: group.background:131
 msgid "background"
-msgstr "Fonds de carte"
+msgstr "Fond de carte"
 
 #: group.test:135
 msgid "test"
@@ -142,7 +149,7 @@ msgstr "Atlas gravimétrique 1:100000"
 
 #: l_wms.cinema:99
 msgid "cinema"
-msgstr "Cinema"
+msgstr "Cinéma"
 
 #: l_wms.firestations:122
 msgid "firestations"
@@ -174,7 +181,7 @@ msgstr "OSM"
 
 #: l_wms.osm_scale:114
 msgid "osm_scale"
-msgstr "Echèles OSM"
+msgstr "Échelles OSM"
 
 #: l_wms.osm_time:110 l_wms.osm_time:126
 msgid "osm_time"
@@ -241,4 +248,4 @@ msgid "OSM"
 msgstr ""
 
 #~ msgid "The demo Web GIS"
-#~ msgstr "Le web SIG de demo"
+#~ msgstr "Le web SIG de démo"
