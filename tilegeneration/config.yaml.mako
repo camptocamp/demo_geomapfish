@@ -14,19 +14,20 @@ caches:
         bucket: camptocamp-gmf-demo-tiles
         folder: ''
         # for GetCapabilities
-        http_url: https://%(host)s.geomapfish-demo.camptocamp.net
-        hosts:
-        - tiles
-        - tiles0
-        - tiles1
-        - tiles2
-        - tiles3
-        - tiles4
-        - tiles5
-        - tiles6
-        - tiles7
-        - tiles8
-        - tiles9
+        http_url: https://geomapfish-demo.camptocamp.net/2.0/tiles
+#        http_url: https://%(host)s.geomapfish-demo.camptocamp.net
+#        hosts:
+#        - tiles
+#        - tiles0
+#        - tiles1
+#        - tiles2
+#        - tiles3
+#        - tiles4
+#        - tiles5
+#        - tiles6
+#        - tiles7
+#        - tiles8
+#        - tiles9
 
 # this defines some defaults values for all the layers
 layer_default:
