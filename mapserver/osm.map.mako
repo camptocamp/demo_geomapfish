@@ -92,6 +92,8 @@ LAYER
     PROJECTION
         "init=epsg:21781"
     END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
     CLASS
         NAME "${layer['name']}"
         STYLE
@@ -135,6 +137,8 @@ LAYER
     PROJECTION
         "init=epsg:21781"
     END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
     CLASS
         NAME "Dans les temps"
         STYLE
@@ -181,6 +185,8 @@ LAYER
     PROJECTION
         "init=epsg:21781"
     END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
 
     MINSCALEDENOM 1500
     MAXSCALEDENOM 4000

@@ -16,6 +16,8 @@ LAYER
     PROJECTION
       "init=epsg:21781"
     END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
     CLASS
         NAME "Hopitaux"
         STYLE
@@ -60,6 +62,8 @@ LAYER
     PROJECTION
       "init=epsg:21781"
     END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
     CLASS
         NAME "Casernes de pompiers"
         STYLE

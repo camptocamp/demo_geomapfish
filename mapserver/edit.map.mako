@@ -13,6 +13,8 @@ LAYER
     PROJECTION
       "init=epsg:21781"
     END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
     CLASS
         NAME "Point"
         STYLE
@@ -99,6 +101,8 @@ LAYER
     PROJECTION
       "init=epsg:21781"
     END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
     CLASS
         NAME "Polygon"
         STYLE
@@ -149,6 +153,8 @@ LAYER
     PROJECTION
       "init=epsg:21781"
     END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
     CLASS
         NAME "Building"
         STYLE
