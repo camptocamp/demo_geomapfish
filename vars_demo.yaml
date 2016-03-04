@@ -120,9 +120,10 @@ vars:
             access_control_max_age: 30
             access_control_allow_origin:
             - https://camptocamp.github.io
-            - https://adube.github.io
             - https://pgiraud.github.io
             - https://ger-benjamin.github.io
+            - https://tsauerwein.github.io
+            - https://adube.github.io
             - https://blattmann.github.io
             - http://localhost:3000
             - http://localhost
@@ -139,9 +140,10 @@ vars:
             access_control_max_age: 30
             access_control_allow_origin:
             - https://camptocamp.github.io
-            - https://adube.github.io
             - https://pgiraud.github.io
             - https://ger-benjamin.github.io
+            - https://tsauerwein.github.io
+            - https://adube.github.io
             - https://blattmann.github.io
             - http://localhost:3000
             - http://localhost
@@ -151,9 +153,10 @@ vars:
     authorized_referers:
     - https://geomapfish-demo.camptocamp.net/
     - https://camptocamp.github.io/
-    - https://adube.github.io/
     - https://pgiraud.github.io/
     - https://ger-benjamin.github.io/
+    - https://tsauerwein.github.io/
+    - https://adube.github.io/
     - https://blattmann.github.io/
     - http://localhost:3000/
     - http://localhost/
