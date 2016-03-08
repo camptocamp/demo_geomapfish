@@ -218,3 +218,49 @@ LAYER
         "wfs_enable_request" "*"
     END
 END
+
+LAYER
+    NAME "osm_open"
+    EXTENT 420000 40500 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''/sbrunner20/wsgi/resourceproxy?target=point&values='||osm_id||''',''OSM'',800,500)\">Open</a>' AS open,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
+    LABELITEM "name"
+    EXTENT 473743 74095 839000 306400
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+
+    CLASS
+        NAME "OSM"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+            COLOR 230 0 0
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "OSM Open"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_POINT_type" "point"
+        "gml_geometries" "POINT"
+        "wfs_enable_request" "*"
+    END
+END

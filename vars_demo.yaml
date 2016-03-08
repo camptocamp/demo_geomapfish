@@ -115,6 +115,11 @@ vars:
             The GeoMapfish team
         smtp_server: psemail.epfl.ch
 
+    resourceproxy:
+        targets:
+            point: http://www.openstreetmap.org/node/%s
+
+
     headers:
         themes: &headers
             access_control_max_age: 30
