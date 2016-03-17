@@ -125,6 +125,7 @@ vars:
             access_control_max_age: 30
             access_control_allow_origin:
             - https://camptocamp.github.io
+            - https://fredj.github.io
             - https://pgiraud.github.io
             - https://ger-benjamin.github.io
             - https://tsauerwein.github.io
@@ -144,6 +145,7 @@ vars:
             access_control_max_age: 30
             access_control_allow_origin:
             - https://camptocamp.github.io
+            - https://fredj.github.io
             - https://pgiraud.github.io
             - https://ger-benjamin.github.io
             - https://tsauerwein.github.io
@@ -156,6 +158,7 @@ vars:
     authorized_referers:
     - https://geomapfish-demo.camptocamp.net/
     - https://camptocamp.github.io/
+    - https://fredj.github.io/
     - https://pgiraud.github.io/
     - https://ger-benjamin.github.io/
     - https://tsauerwein.github.io/
