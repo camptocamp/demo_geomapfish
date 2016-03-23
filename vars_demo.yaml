@@ -34,6 +34,9 @@ vars:
         # One day
         timeout: 86400
 
+    tiles_url:
+    - http://{host}/{instanceid}/tiles
+
     admin_interface:
         # Default values for the admin interface's maps.
         map_x: 740000
