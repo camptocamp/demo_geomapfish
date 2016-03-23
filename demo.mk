@@ -5,7 +5,7 @@ VARS_FILE = vars_demo.yaml
 VARS_FILES += ${VARS_FILE}
 endif
 
-INSTANCE_ID ?= 2.0
+INSTANCE_ID ?= 2.1
 APACHE_VHOST ?= geomapfish-demo
 NGEO ?= TRUE
 NGEO_INTERFACES = mobile
