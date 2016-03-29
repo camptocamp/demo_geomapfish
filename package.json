@@ -1,49 +1,28 @@
 {
-    "bin": {
-        "compile-catalog": "buildtools/compile-catalog.js"
-    },
-    "dependencies": {
-        "async": "0.2.10",
-        "svg2ttf": "3.0.0",
-        "ttf2eot": "1.3.0",
-        "ttf2woff": "1.3.0"
-    },
     "description": "A GeoMapFish project",
     "devDependencies": {
         "angular": "1.5.0",
         "angular-animate": "1.5.0",
         "angular-gettext": "2.1.0",
         "angular-gettext-tools": "2.1.2",
-        "angular-mocks": "1.5.0",
         "angular-touch": "1.5.0",
         "bootstrap": "3.3.6",
-        "clean-css": "2.2.7",
+        "clean-css": "3.4.10",
         "closure-util": "1.10.0",
-        "coveralls": "2.11.6",
         "d3": "3.5.16",
         "eslint": "2.2.0",
         "eslint-config-openlayers": "4.0.0",
         "font-awesome": "4.5.0",
-        "fs-extra": "0.26.5",
-        "gaze": "0.5.2",
-        "graceful-fs": "3.0.2",
         "jquery": "2.2.1",
-        "karma": "0.12.16",
-        "karma-coverage": "0.5.3",
-        "karma-jasmine": "0.1.5",
-        "karma-phantomjs-launcher": "1.0.0",
         "less": "2.6.0",
         "less-plugin-autoprefix": "1.5.1",
-        "ngeo": "git://github.com/camptocamp/ngeo#d9ccdb68f32b6d50ede9546768f34a6d4a5506fa",
-        "nomnom": "1.8.1",
-        "openlayers": "openlayers/ol3#82f6fb9",
+        "less-plugin-clean-css": "1.5.1",
+        "ngeo": "git://github.com/camptocamp/ngeo#58b36f887341187a7f9e418d492449b7f457808b",
+        "openlayers": "3.14.1",
         "phantomjs-prebuilt": "2.1.4",
         "proj4": "2.3.12",
-        "temp": "0.8.3",
-        "typeahead.js": "0.11.1",
-        "walk": "2.3.9"
+        "typeahead.js": "0.11.1"
     },
-    "license": "MIT",
     "name": "demo",
-    "version": "0.0.1"
+    "version": "2.0.0"
 }

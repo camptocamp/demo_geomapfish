@@ -4,14 +4,14 @@ https://camptocamp.github.io/c2cgeoportal/master/developer/build_release.html#id
 Do the upgrade in your home folder:
 https://camptocamp.github.io/c2cgeoportal/master/integrator/upgrade_application.html#easy-upgrading-an-application
 
-During the step 2 you should get some files from the create template:
+Before the step 2 you should get some files from the create template:
 
 .. code::
 
    cp /tmp/demo_geomapfish/demo/templates/mobile.html demo/templates/
    cp /tmp/demo_geomapfish/demo/static-ngeo/js/mobile.js demo/static-ngeo/js/
 
-And complete the files (step 2 or 3 ?):
+Before the step 3, complete the files:
 
     demo/locale/*/LC_MESSAGES/demo-client.po
 

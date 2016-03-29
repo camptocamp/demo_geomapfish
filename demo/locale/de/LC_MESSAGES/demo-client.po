@@ -17,31 +17,31 @@ msgstr "ASTER"
 msgid "srtm"
 msgstr "SRTM"
 
-#: demo/templates/mobile.html:7
+#: demo/templates/mobile.html:8
 msgid "Mobile Application"
 msgstr "Mobile Applikation"
 
-#: demo/templates/mobile.html:74 demo/templates/mobile.html:86
+#: demo/templates/mobile.html:77 demo/templates/mobile.html:89
 msgid "Background"
 msgstr "Hintergrund"
 
-#: demo/templates/mobile.html:77 demo/templates/mobile.html:95
+#: demo/templates/mobile.html:80 demo/templates/mobile.html:98
 msgid "Themes"
 msgstr "Themen"
 
-#: demo/templates/mobile.html:110 demo/templates/mobile.html:115
+#: demo/templates/mobile.html:113 demo/templates/mobile.html:118
 msgid "Measure tools"
 msgstr "Messwerkzeug"
 
-#: demo/templates/mobile.html:111 demo/templates/mobile.html:131
+#: demo/templates/mobile.html:114 demo/templates/mobile.html:134
 msgid "Login"
 msgstr "Anmelden"
 
-#: demo/templates/mobile.html:121
+#: demo/templates/mobile.html:124
 msgid "Coordinate"
 msgstr "Koordinate"
 
-#: demo/templates/mobile.html:128
+#: demo/templates/mobile.html:131
 msgid "Length"
 msgstr "Länge"
 
@@ -808,8 +808,9 @@ msgstr ""
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.point:point l_wms.police:police l_wms.polygon:polygon
 #: l_wms.post_office:post_office l_wms.restaurant:restaurant l_wms.zoo:zoo
+#, fuzzy
 msgid "open"
-msgstr ""
+msgstr "OSM Zeit"
 
 #: l_wms.alpine_hut:alpine_hut l_wms.bank:bank l_wms.bus_stop:bus_stop
 #: l_wms.cafe:cafe l_wms.cinema:cinema l_wms.firestations:firestations
