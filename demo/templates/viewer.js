@@ -499,7 +499,6 @@ Ext.onReady(function() {
                     bottomOutUnits: false
                 }),
                 new OpenLayers.Control.MousePosition({numDigits: 0}),
-                // OSM version
                 new OpenLayers.Control.OverviewMap({
                     size: new OpenLayers.Size(200, 100),
                     mapOptions: {
@@ -507,18 +506,9 @@ Ext.onReady(function() {
                     },
                     minRatio: 64,
                     maxRatio: 64,
-                    layers: [new OpenLayers.Layer.OSM("OSM", [
-                           'https://otile1.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                           'https://otile2.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png',
-                           'https://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
-                        ], {
-                            transitionEffect: 'resize',
-                            attribution: [
-                                'Tiles Courtesy of <a href="https://www.mapquest.com/" target="_blank">MapQuest</a>',
-                                ' <img src="https://developer.mapquest.com/content/osm/mq_logo.png">'
-                            ].join(' ')
-                        }
-                    )]
+                    layers: [new OpenLayers.Layer.WMTS(Ext.applyIf({
+                        layer: 'map',
+                    }, WMTS_OPTIONS))]
                 })
             ],
             layers: [{

@@ -45,7 +45,8 @@ Ext.onReady(function() {
     var EVENTS = new Ext.util.Observable();
 
     var WMTSASITVD_OPTIONS2 = {
-        url: "http://ows.asitvd.ch/wmts/",
+        url: "https://ows.asitvd.ch/wmts/",
+        attribution: OpenLayers.i18n("© <a href='https://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>"),
         displayInLayerSwitcher: false,
         requestEncoding: 'REST',
         buffer: 0,
@@ -89,24 +90,9 @@ Ext.onReady(function() {
             routingService: {
                 osrm_demo: {
                     type: 'OSRM',
-                    url: 'http://router.project-osrm.org/',
+                    url: 'https://router.project-osrm.org/',
                     dynamic: true
-                }/*,
-                c2c_car: {
-                    type: 'OSRM',
-                    url: 'http://mfusrgrp-re2013.demo-camptocamp.com/car',
-                    dynamic: true
-                },
-                c2c_bicycle: {
-                    type: 'OSRM',
-                    url: 'http://mfusrgrp-re2013.demo-camptocamp.com/bicycle',
-                    dynamic: true
-                },
-                c2c_foot: {
-                    type: 'OSRM',
-                    url: 'http://mfusrgrp-re2013.demo-camptocamp.com/foot',
-                    dynamic: true
-                }*/
+                }
             },
             searchOptions: {
                 url: "${request.route_url('fulltextsearch') | n}",
