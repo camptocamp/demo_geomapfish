@@ -46,7 +46,7 @@ layer_default:
     # the meta tiles definition [default to off]
     meta: on
     # the meta tiles size [default to 8]
-    meta_size: 8
+    meta_size: 5
     # the meta tiles buffer [default to 128]
     meta_buffer: 128
 
