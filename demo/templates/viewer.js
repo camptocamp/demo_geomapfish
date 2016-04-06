@@ -461,7 +461,7 @@ Ext.onReady(function() {
         {
             ptype: "gxp_tool",
             actionTarget: "center.bbar",
-            actions: OpenLayers.i18n('<a href="mailto:info+demo@camptocamp.com">Contact</a> - Développé par <a href="https://www.camptocamp.com" target="_blank" title="Camptocamp: inovative solutions by open source expert!">Camptocamp</a> - <a target="_blank" href="https://geomapfish.org/">GeoMapFish</a>.')
+            actions: OpenLayers.i18n('toolbar_contact')
         }
         ],
 
