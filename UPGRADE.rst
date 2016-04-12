@@ -10,6 +10,8 @@ During the step 2 you should get some files from the create template:
 
    cp /tmp/demo_geomapfish/demo/templates/mobile.html demo/templates/
    cp /tmp/demo_geomapfish/demo/static-ngeo/js/mobile.js demo/static-ngeo/js/
+   cp /tmp/demo_geomapfish/demo/templates/desktop.html demo/templates/
+   cp /tmp/demo_geomapfish/demo/static-ngeo/js/desktop.js demo/static-ngeo/js/
 
 And complete the files (step 2 or 3 ?):
 
