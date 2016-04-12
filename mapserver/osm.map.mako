@@ -34,11 +34,6 @@ layers = [{
     "name": u"Arrêts de bus"
 }, {
     "column": "amenity",
-    "value": "cafe",
-    "type": "cafe",
-    "name": u"Cafés"
-}, {
-    "column": "amenity",
     "value": "parking",
     "type": "parking",
     "name": u"Parkings"
@@ -350,7 +345,6 @@ LAYER
 
     METADATA
         "wms_title" "Lieux de culte"
-
         "gml_include_items" "all"
         "gml_types" "auto"
         "gml_featureid" "osm_id"
@@ -359,6 +353,50 @@ LAYER
     END
 END
 
+LAYER
+    NAME "cafe"
+    GROUP "osm"
+    EXTENT 420000 40500 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, pop    ulation, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    FILTER ('amenity' = 'cafe')
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Cafés"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+            COLOR 230 0 0
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "Cafés"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
 
 LAYER
     NAME "osm_time"
