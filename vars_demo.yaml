@@ -34,6 +34,9 @@ vars:
         # One day
         timeout: 86400
 
+    tiles_url:
+    - https://{host}/{instanceid}/tiles
+
     admin_interface:
         # Default values for the admin interface's maps.
         map_x: 740000
@@ -130,6 +133,7 @@ vars:
             - https://ger-benjamin.github.io
             - https://tsauerwein.github.io
             - https://adube.github.io
+            - https://oliviersemet.github.io
             - http://localhost:3000
             - http://localhost
             - http://127.0.0.1:3000
@@ -150,6 +154,7 @@ vars:
             - https://ger-benjamin.github.io
             - https://tsauerwein.github.io
             - https://adube.github.io
+            - https://oliviersemet.github.io
             - http://localhost:3000
             - http://localhost
             - http://127.0.0.1:3000
@@ -163,6 +168,7 @@ vars:
     - https://ger-benjamin.github.io/
     - https://tsauerwein.github.io/
     - https://adube.github.io/
+    - https://oliviersemet.github.io/
     - http://localhost:3000/
     - http://localhost/
     - http://127.0.0.1:3000/

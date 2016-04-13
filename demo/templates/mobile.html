@@ -1,3 +1,4 @@
+## -*- coding: utf-8 -*-
 <%
 from json import dumps
 %>
@@ -19,7 +20,7 @@ from json import dumps
   <body ng-class="{'nav-is-visible': mainCtrl.navIsVisible(),
                    'nav-left-is-visible': mainCtrl.leftNavIsVisible(),
                    'nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
-    <main>
+    <main ng-class="{'search-is-active': mainCtrl.searchOverlayVisible}">
       <gmf-map gmf-map-map="mainCtrl.map"
         ngeo-mobile-query=""
         ngeo-mobile-query-map="::mainCtrl.map"
@@ -49,7 +50,8 @@ from json import dumps
         <gmf-search gmf-search-map="mainCtrl.map"
           gmf-search-datasources="mainCtrl.searchDatasources"
           gmf-search-currenttheme="mainCtrl.theme"
-          gmf-search-clearbutton="true">
+          gmf-search-clearbutton="true"
+          gmf-search-listeners="::mainCtrl.searchListeners">
         </gmf-search>
       </div>
       <button class="nav-trigger nav-right-trigger"
@@ -57,6 +59,7 @@ from json import dumps
         <i class="fa fa-wrench"></i>
       </button>
       <div class="overlay" ng-click="mainCtrl.hideNav()"></div>
+      <div class="search-overlay" ng-click="mainCtrl.hideSearchOverlay()"></div>
       <button ngeo-mobile-geolocation=""
         ngeo-mobile-geolocation-map="::mainCtrl.map"
         ngeo-mobile-geolocation-options="::mainCtrl.mobileGeolocationOptions">
@@ -93,7 +96,7 @@ from json import dumps
         id="themes"
         class="slide"
         data-header-title="{{'Themes' | translate}}"
-        gmf-themeselector-defaulttheme="Transport"
+        gmf-themeselector-defaulttheme="OSM"
         gmf-themeselector-currenttheme="mainCtrl.theme"
         gmf-themeselector-filter="::mainCtrl.filter"
         gmf-mobile-nav-back="mainCtrl.theme">
@@ -118,14 +121,14 @@ from json import dumps
           class="measure-tools-button"
           ng-model="mainCtrl.measurePointActive">
           <span class="fa fa-fw" ng-class="{'fa-check': mainCtrl.measurePointActive}"></span>
-          {{ 'Coordinate' | translate }}
+          {{'Coordinate' | translate}}
         </a>
         <a ngeo-btn
           ng-click="mainCtrl.hideNav()"
           class="measure-tools-button"
           ng-model="mainCtrl.measureLengthActive">
           <span class="fa fa-fw" ng-class="{'fa-check': mainCtrl.measureLengthActive}"></span>
-          {{ 'Length' | translate }}
+          {{'Length' | translate}}
         </a>
       </div>
       <gmf-authentication id="login" class="slide" data-header-title="{{'Login' | translate}}">
@@ -150,7 +153,7 @@ from json import dumps
     <script>
         goog.require('demo_mobile');
     </script>
-    <script src="${request.static_url('demo:static-ngeo/build/templatecache.js')}"></script>
+    <script src="${request.static_url('demo:static-ngeo/build/gmftemplatecache.js')}"></script>
     <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/less/dist/less.min.js' % request.registry.settings['node_modules_path'])}"></script>
 % else:
