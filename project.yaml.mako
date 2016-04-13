@@ -3,4 +3,6 @@ project_package: demo
 host: geomapfish-demo.camptocamp.net
 checker_path: /${instanceid}/wsgi/check_collector?
 template_vars:
-    mobile_application_title: 'Demo Geoportal Mobile Application'
+    package: demo
+    srid: 21781
+    apache_vhost: geomapfish-demo
