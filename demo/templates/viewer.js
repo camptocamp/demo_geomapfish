@@ -284,6 +284,7 @@ Ext.onReady(function() {
             actionTarget: "center.tbar",
             grouping: true,
             useColorPicker: true,
+            showCenter: true
         },
 % if len(functionality["location"]) > 0:
         {
