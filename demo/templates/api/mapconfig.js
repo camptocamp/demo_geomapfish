@@ -2,9 +2,12 @@
 This file defines map config for both the Simple and the
 Extended APIs.
 </%doc>
+<%!
+import json
+%>
 
         var WMTS_OPTIONS = {
-            url: ${dumps(request.registry.settings['tiles_url']) | n},
+            url: ${json.dumps(request.registry.settings['tiles_url']) | n},
             layer: 'map',
             displayInLayerSwitcher: false,
             requestEncoding: 'REST',

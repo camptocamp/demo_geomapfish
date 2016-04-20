@@ -7,7 +7,5 @@ endif
 
 INSTANCE_ID ?= 2.1
 APACHE_VHOST ?= geomapfish-demo
-NGEO ?= TRUE
-NGEO_INTERFACES = mobile
 
 include CONST_Makefile

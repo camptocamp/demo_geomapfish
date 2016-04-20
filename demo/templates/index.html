@@ -9,10 +9,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9; IE=EmulateIE11">
         <title>GeoMapFish Demo</title>
         <link rel="shortcut icon" type="image/x-icon" href="${request.static_url('demo:static/images/favicon.ico')}">
-% if not no_redirect and mobile_url is not None:
+% if not "no_redirect" not in request.params:
         <script>
             if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                    window.location = "${mobile_url}";
+                    window.location = "${request.route_url('mobile')}";
             }
         </script>
 % endif

@@ -85,7 +85,8 @@ vars:
         roots_with_prefix:
         - ["{closure_library_path}/closure/goog", "{closure_library_path}/closure/goog"]
         - ["{package}:static-ngeo/js", "{directory}/{package}/static-ngeo/js"]
-        - ["{node_modules_path}/openlayers", "{node_modules_path}/openlayers"]
+        - ["{node_modules_path}/openlayers/src", "{node_modules_path}/openlayers/src"]
+        - ["{node_modules_path}/openlayers/build", "{node_modules_path}/openlayers/build"]
         - ["{node_modules_path}/ngeo/src", "{node_modules_path}/ngeo/src"]
         - ["{node_modules_path}/ngeo/contribs/gmf/src", "{node_modules_path}/ngeo/contribs/gmf/src"]
 
@@ -267,6 +268,7 @@ vars:
     - http://b.tiles.{host}/{instanceid}/tiles
     - http://c.tiles.{host}/{instanceid}/tiles
     - http://d.tiles.{host}/{instanceid}/tiles
+    wmtscapabilities_path: WMTSCAPABILITIES_PATH
 
     # The URL template used to generate the sub domain URL
     # %(sub)s will be replaced by the sub domain value.
@@ -286,6 +288,7 @@ vars:
 
     # Checker configuration
     checker:
+        forward_headers: []
         fulltextsearch: text to search
         lang_files: [ngeo, cgxp, cgxp-api]
         themes:
@@ -380,6 +383,7 @@ interpreted:
     - apache_entry_point
     - docker_base
     - development
+    - wmtscapabilities_path
     node:
         vars:
         - closure_library_path
