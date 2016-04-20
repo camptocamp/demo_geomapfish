@@ -12,30 +12,33 @@ replace your sencha touch interface by an ngeo interface.
     at that point, the following folder should exist: /tmp/demo_geomapfish/
 
     cp /tmp/demo_geomapfish/.jshintrc .
-    cp /tmp/demo_geomapfish/build.mako.json .
-    cp /tmp/demo_geomapfish/package.json .
-    cp /tmp/demo_geomapfish/templatecache.mako.js .
     cp /tmp/demo_geomapfish/lingua-client.cfg .
     cp /tmp/demo_geomapfish/lingua-server.cfg .
     cp /tmp/demo_geomapfish/apache/wsgi.conf.mako apache/
-    cp /tmp/demo_geomapfish/demo/static-ngeo demo/
+    cp -r /tmp/demo_geomapfish/demo/static-ngeo demo/
     cp /tmp/demo_geomapfish/demo/templates/mobile.html demo/templates/
 
 2. Remove the no longer used files:
 
     git rm lingua.cfg
     git rm -r demo/static/mobile/
+    git rm jsbuild/mobile.cfg
     git rm print/print-servlet.war
 
 3. Add in the `.gitignore` file:
 
+    + /node_modules/
     + /print/print-servlet.war
+    + /.tx/nconfig
     + /.tx/ngeo.gmf-*
-    + /c2cgeoportal/scaffolds/
     + /demo/static-ngeo/build/
     + /demo/static-ngeo/fonts/gmf-icons.*
     + /demo/static-ngeo/fonts/fontawesome-webfont.*
     + /demo/version.py
+    + /mapserver/replace_db.sh
+    + /testDB/01-schemas.sql
+    * /testDB/Dockerfile
+    + /.whiskey/action_hooks/pre-build
 
 4. In the `vars_demo.yaml` file:
 
@@ -58,8 +61,10 @@ replace your sencha touch interface by an ngeo interface.
      - add_interface(config, "mobile", INTERFACE_TYPE_SENCHA_TOUCH)
      + add_interface(config, "mobile", INTERFACE_TYPE_NGEO)
 
-6. To migrate your theme from version 1 to version 2 a script is available.
-   Use `.build/venv/bin/themev1tov2 --help` for more information.
+6. To easer migrate your application from version 1 to version 2 some scripts are available:
+    `.build/venv/bin/themev1tov2` to migrate the theme
+    `.build/venv/bin/l10nv1tov2` to migrate the localisation
+    Use the `--help` argument for more information.
 
 7. If you have set the `cache_control` in your `vars_demo.yaml` file,
    rename 'cache_control' to 'headers' and 'max_age' to
@@ -72,34 +77,34 @@ replace your sencha touch interface by an ngeo interface.
    +      "<service_name>":
    +          "cache_control_max_age": <max_age>
 
-   If you don't have a `cache_control` you should also add the following lines:
+8. In the `demo/templates/(index|edit|routing).html` files do the following change:
 
-   +  headers:
-   +      "<service_name>":
-   +          "cache_control_max_age": <max_age>
+      <input id="password" name="password" type="password" autocomplete="on"/>
+    + <input id="oldPassword" name="oldPassword" type="password" />
+      <input id="newPassword" name="newPassword" type="password" />
 
-8. A new checker has been added to test for javascript error. If you have
-   overridded the checker list in your `vars_demo.yaml` file, you must
-   add it.
+9. On the `demo/model.py` removes the following lines:
 
-    # Check collector configuration
-    check_collector:
-        disabled: [checker_printcapabilities, checker_pdf]
-        check_type:
-            all:
-    ...
-   +         - name: checker_js_generic
-   +           display: PhantomJS generic test
-            main:
-    ...
-   +         - name: checker_js_generic
-   +           display: PhantomJS generic test
+    - LayerInternalWMS.__acl__ = [DENY_ALL]
+    - LayerExternalWMS.__acl__ = [DENY_ALL]
+    - LayerWMTS.__acl__ = [DENY_ALL]
+    - WMTSDimension.__acl__ = [DENY_ALL]
 
-9. In the `demo/templates/(index|edit|routing).html` files do the following change:
+10. Add a Layer group named 'background' with the background layers.
 
-     <input id="password" name="password" type="password" autocomplete="on"/>
-    +<input id="oldPassword" name="oldPassword" type="password" />
-     <input id="newPassword" name="newPassword" type="password" />
+11. It's not allowed anymore to have layers directly in a theme.
+
+12. Do the following change in the `demo/templates/index.html` file:
+
+    - % if not no_redirect and mobile_url is not None:
+    + % if "no_redirect" not in request.params:
+      <script>
+          if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+    -         window.location = "${mobile_url}";
+    +         window.location = "${request.route_url('mobile')}";
+          }
+      </script>
+      % endif
 
 
 Version 1.6.8
