@@ -1,5 +1,5 @@
 ifdef VARS_FILE
-VARS_FILES += ${VARS_FILE} vars_geoportailv3.yaml
+VARS_FILES += ${VARS_FILE} vars_demo.yaml
 else
 VARS_FILE = vars_demo.yaml
 VARS_FILES += ${VARS_FILE}
