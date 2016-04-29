@@ -37,7 +37,6 @@ CLIENT_CHECK_RULE ?= lint-ngeo
 endif
 WEB_RULE ?= $(DEFAULT_WEB_RULE)
 
-# Make rules
 DEFAULT_BUILD_RULES ?= test-packages .build/requirements.timestamp $(WEB_RULE) build-server apache
 
 # TileCloud-chain
@@ -51,6 +50,7 @@ DEFAULT_BUILD_RULES += $(WMTSCAPABILITIES_FILE)
 endif
 endif
 
+# Make rules
 ifeq ($(MOBILE), TRUE)
 DEFAULT_BUILD_RULES += test-packages-mobile
 endif
@@ -320,7 +320,6 @@ MAKE_FILES = $(shell ls -1 *.mk) CONST_Makefile
 
 .PHONY: help
 help:
-	@echo $(BUILD_RULES)
 	@echo  "Usage: make <target>"
 	@echo
 	@echo  "Main targets:"
