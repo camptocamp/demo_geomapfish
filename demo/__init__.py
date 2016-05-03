@@ -23,7 +23,7 @@ def main(global_config, **settings):
     config.scan()
 
     # add the interfaces
-    add_interface(config)
+    add_interface(config, "desktop", INTERFACE_TYPE_NGEO)
     add_interface(config, "mobile", INTERFACE_TYPE_NGEO)
     add_interface(config, "edit")
     add_interface(config, "routing")

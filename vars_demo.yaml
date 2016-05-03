@@ -54,8 +54,7 @@ vars:
         # users.
         anonymous:
             print_template:
-            - A4 portrait
-            - A3 portrait
+            - 1 A4 portrait
             default_basemap: map
             mobile_default_theme:
 #            location:
@@ -69,10 +68,10 @@ vars:
         # database.
         registered:
             print_template:
-            - A4 portrait
-            - A3 portrait
-            - A4 landscape
-            - A3 landscape
+            - 1 A4 portrait
+            - 2 A4 landscape
+            - 3 A3 portrait
+            - 4 A3 landscape
 
         # Functionalities that are made available to Mako templates.
         available_in_templates:
@@ -182,23 +181,27 @@ vars:
 
     # Checker configuration
     checker:
-        fulltextsearch: pau
-        print_spec:
-            layout: "A4 portrait"
-            outputFormat: "pdf"
-            attributes:
-                title: ""
-                comments: ""
-                datasource: []
-                map:
-                    projection: "EPSG:21781"
-                    dpi: 254
-                    rotation: 0
-                    center: [600000, 200000]
-                    scale: 100000
-                    longitudeFirst: true
-                    layers: []
-                legend: {}
+        defaults:
+            routes_disable: []
+            fulltextsearch: pau
+            print_spec:
+                layout: "1 A4 portrait"
+                outputFormat: "pdf"
+                attributes:
+                    title: ""
+                    comments: ""
+                    datasource: []
+                    map:
+                        projection: "EPSG:21781"
+                        dpi: 254
+                        rotation: 0
+                        center: [600000, 200000]
+                        scale: 100000
+                        longitudeFirst: true
+                        layers: []
+                    legend: {}
+        all:
+            routes_disable: []
 
     check_collector:
         disabled:
@@ -208,7 +211,8 @@ vars:
 
 update_paths:
 - authtkt
-- checker
+- checker.defaults
+- checker.all
 - check_collector.disabled
 - check_collector.hosts
 - admin_interface.available_functionalities

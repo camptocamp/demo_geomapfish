@@ -17,9 +17,39 @@ msgstr "ASTER"
 msgid "srtm"
 msgstr "SRTM"
 
+#: demo/templates/desktop.html:7
+msgid "Desktop Application"
+msgstr "Desktop Applikation"
+
+#: demo/templates/desktop.html:30
+msgid "Theme:"
+msgstr "Themen:"
+
+#: demo/templates/desktop.html:31
+msgid "Loading..."
+msgstr ""
+
+#: demo/templates/desktop.html:54 demo/templates/mobile.html:113
+#: demo/templates/mobile.html:133
+msgid "Login"
+msgstr "Anmelden"
+
+#: demo/templates/desktop.html:58
+msgid "Print"
+msgstr ""
+
+#: demo/templates/desktop.html:62 demo/templates/mobile.html:112
+#: demo/templates/mobile.html:117
+msgid "Measure tools"
+msgstr "Messwerkzeug"
+
 #: demo/templates/mobile.html:7
 msgid "Mobile Application"
 msgstr "Mobile Applikation"
+
+#: demo/templates/mobile.html:70 demo/templates/mobile.html:106
+msgid "Back"
+msgstr ""
 
 #: demo/templates/mobile.html:76 demo/templates/mobile.html:88
 msgid "Background"
@@ -28,14 +58,6 @@ msgstr "Hintergrund"
 #: demo/templates/mobile.html:79 demo/templates/mobile.html:97
 msgid "Themes"
 msgstr "Themen"
-
-#: demo/templates/mobile.html:112 demo/templates/mobile.html:117
-msgid "Measure tools"
-msgstr "Messwerkzeug"
-
-#: demo/templates/mobile.html:113 demo/templates/mobile.html:133
-msgid "Login"
-msgstr "Anmelden"
 
 #: demo/templates/mobile.html:123
 msgid "Coordinate"

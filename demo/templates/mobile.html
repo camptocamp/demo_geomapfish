@@ -48,8 +48,8 @@ from json import dumps
       <div class="search">
         <gmf-search gmf-search-map="mainCtrl.map"
           gmf-search-datasources="mainCtrl.searchDatasources"
-          gmf-search-currenttheme="mainCtrl.theme"
           gmf-search-clearbutton="true"
+          gmf-search-coordinatesprojections="mainCtrl.searchCoordinatesProjections"
           gmf-search-listeners="::mainCtrl.searchListeners">
         </gmf-search>
       </div>
@@ -67,7 +67,7 @@ from json import dumps
     </main>
     <nav class="nav-left" gmf-mobile-nav>
       <header>
-        <a class="go-back" href></a>
+        <a class="go-back" href>{{'Back' | translate}}</a>
       </header>
       <!-- main menu -->
       <div class="active slide">
@@ -98,12 +98,12 @@ from json import dumps
         gmf-themeselector-defaulttheme="OSM"
         gmf-themeselector-currenttheme="mainCtrl.theme"
         gmf-themeselector-filter="::mainCtrl.filter"
-        gmf-mobile-nav-back="mainCtrl.theme">
+        gmf-mobile-nav-back="mainCtrl.theme.name">
       </gmf-themeselector>
     </nav>
     <nav class="nav-right" gmf-mobile-nav>
       <header>
-        <a class="go-back" href></a>
+        <a class="go-back" href>{{'Back' | translate}}</a>
       </header>
       <!-- main menu -->
       <div class="active slide">
@@ -143,7 +143,6 @@ from json import dumps
     <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-touch/angular-touch.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-sanitize/angular-sanitize.min.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/d3/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>

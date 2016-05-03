@@ -1,0 +1,157 @@
+<%
+from json import dumps
+%>
+<!DOCTYPE html>
+<html lang="{{desktopCtrl.lang}}" ng-app="demo" ng-controller="DesktopController as mainCtrl">
+  <head>
+    <title translate>Desktop Application</title>
+    <meta charset="utf-8">
+% if debug:
+    <link rel="stylesheet/less" href="${request.static_url('%s/ngeo/contribs/gmf/less/font.less' % request.registry.settings['node_modules_path'])}" type="text/css">
+    <link rel="stylesheet/less" href="${request.static_url('demo:static-ngeo/less/desktop.less')}" type="text/css">
+    <link rel="stylesheet/less" href="${request.static_url('%s/ngeo/contribs/gmf/less/desktop.less' % request.registry.settings['node_modules_path'])}" type="text/css">
+% else:
+    <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/desktop.css')}" type="text/css">
+% endif
+  </head>
+  <body>
+    <header>
+      <div>
+        Put your logos or menus here
+      </div>
+    </header>
+    <main>
+      <div class="data-panel" ng-cloak>
+        <div class="header">
+          <div class="dropdown">
+            <a href class="btn btn-default btn-block"
+              data-toggle="dropdown">
+              <span class="fa fa-grid"></span>
+              <span translate>Theme:</span>
+              <b ng-if="!mainCtrl.theme.name" translate>Loading...</b>
+              <b ng-if="mainCtrl.theme.name">{{mainCtrl.theme.name|translate}}</b>
+              <span class="caret"></span>
+            </a>
+            <gmf-themeselector class="dropdown-menu"
+              gmf-themeselector-defaulttheme="OSM"
+              gmf-themeselector-currenttheme="mainCtrl.theme"
+              gmf-themeselector-filter="::mainCtrl.filter">
+            </gmf-themeselector>
+          </div>
+        </div>
+        <div class="content">
+          <gmf-layertree
+            gmf-layertree-source="mainCtrl.theme"
+            gmf-layertree-map="::mainCtrl.map"
+            gmf-layertree-openlinksinnewwindow="true">
+          </gmf-layertree>
+        </div>
+      </div>
+      <div class="tools" ngeo-resizemap="mainCtrl.map"
+        ngeo-resizemap-state="mainCtrl.toolsActive">
+        <div ngeo-btn-group class="bar btn-group-vertical" ngeo-btn-group-active="mainCtrl.toolsActive">
+          <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.loginActive"
+            data-toggle="tooltip" data-placement="left" data-original-title="{{'Login'|translate}}">
+            <span class="fa fa-user"></span>
+          </button>
+          <button ngeo-btn class="btn btn-default" ng-model="printActive"
+            data-toggle="tooltip" data-placement="left" data-original-title="{{'Print'|translate}}">
+            <span class="fa fa-print"></span>
+          </button>
+          <button ngeo-btn class="btn btn-default" ng-model="measureActive"
+            data-toggle="tooltip" data-placement="left" data-original-title="{{'Measure tools'|translate}}">
+            <span class="fa fa-circle"></span>
+          </button>
+        </div>
+        <div class="tools-content container-fluid" ng-class="{active: mainCtrl.toolsActive}">
+          <div class="row">
+            <div class="col-sm-12">
+              <div ng-show="mainCtrl.loginActive" class="row">
+                <div class="col-sm-12">
+                  <div class="tools-content-heading">
+                    Login
+                    <a class="btn close" ng-click="mainCtrl.loginActive = false">&times;</a>
+                  </div>
+                  <gmf-authentication></gmf-authentication>
+                </div>
+              </div>
+              <div ng-show="printActive" class="row">
+                <div class="col-sm-12">
+                  <div class="tools-content-heading">
+                    Print
+                    <a class="btn close" ng-click="printActive = false">&times;</a>
+                  </div>
+                </div>
+              </div>
+              <div ng-show="measureActive" class="row">
+                <div class="col-sm-12">
+                  <div class="tools-content-heading">
+                    Measure
+                    <a class="btn close" ng-click="measureActive = false">&times;</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-container">
+        <div class="search">
+          <gmf-search gmf-search-map="mainCtrl.map"
+            gmf-search-datasources="mainCtrl.searchDatasources"
+            gmf-search-coordinatesprojections="mainCtrl.searchCoordinatesProjections"
+            gmf-search-clearbutton="true">
+          </gmf-search>
+        </div>
+        <gmf-map class="gmf-map" gmf-map-map="mainCtrl.map"></gmf-map>
+      </div>
+    </main>
+% if debug:
+    <script>
+        window.CLOSURE_BASE_PATH = '';
+        window.CLOSURE_NO_DEPS = true;
+    </script>
+    <script src="${request.static_url('%s/jquery/dist/jquery.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular/angular.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-touch/angular-touch.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/d3/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/typeahead.js/dist/typeahead.bundle.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
+    <script src="${request.route_url('deps.js')}"></script>
+    <script>
+        goog.require('demo_desktop');
+    </script>
+    <script src="${request.static_url('demo:static-ngeo/build/templatecache.js')}"></script>
+    <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/less/dist/less.min.js' % request.registry.settings['node_modules_path'])}"></script>
+% else:
+    <script src="${request.static_url('demo:static-ngeo/build/desktop.js')}"></script>
+% endif
+    <script>
+      (function() {
+         var module = angular.module('demo');
+         module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
+         module.constant('langUrls', {
+${ ',\n'.join([
+    "             '{lang}': '{url}'".format(
+        lang=lang,
+        url=request.static_url('demo:static-ngeo/build/{lang}.json'.format(lang=lang))
+    )
+    for lang in request.registry.settings["available_locale_names"]
+]) | n}
+           });
+         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
+         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"partitionlimit": "5", "limit": "30"}) | n}');
+         module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
+         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background"}) | n}');
+         module.constant('gmfSearchGroups', ${dumps(fulltextsearch_groups) | n});
+         // Requires that the gmfSearchGroups is specified
+         module.constant('gmfSearchActions', ['add_theme', 'add_group', 'add_layer']);
+       })();
+    </script>
+  </body>
+</html>
