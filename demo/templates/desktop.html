@@ -157,10 +157,10 @@ ${ ',\n'.join([
            });
          module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
          module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"partitionlimit": "5", "limit": "30"}) | n}');
-         module.constant('gmfPrintUrl', 'https://geomapfish-demo.camptocamp.net/2.1/wsgi/printproxy');
+         module.constant('gmfPrintUrl', '${request.route_url('printproxy') | n}');
          module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
          module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background"}) | n}');
-         module.constant('gmfSearchGroups', ${dumps(fulltextsearch_groups) | n});
+         module.constant('gmfSearchGroups', ["osm", "district"]);
          // Requires that the gmfSearchGroups is specified
          module.constant('gmfSearchActions', ['add_theme', 'add_group', 'add_layer']);
        })();
