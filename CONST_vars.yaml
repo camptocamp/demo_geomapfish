@@ -138,9 +138,6 @@ vars:
 
     # The list of available variable names for the `UI metadatas` form.
         available_metadata:
-        # Theme
-        - name: thumbnail
-          type: url
         # Layers group
         - name: isExpanded
           type: boolean
@@ -157,13 +154,13 @@ vars:
           type: boolean
         - identifierAttributeField
         - name: legend
-          type: boolean
-        - name: legendUrl
           type: url
         - name: maxResolution
           type: float
         - name: minResolution
           type: float
+        - name: thumbnail
+          type: url
         - name: wmsUrl
           type: url
         - name: wfsUrl

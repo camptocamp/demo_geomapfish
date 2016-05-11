@@ -23,26 +23,25 @@ msgstr "SRTM"
 msgid "Desktop Application"
 msgstr ""
 
-#: demo/templates/desktop.html:30
+#: demo/templates/desktop.html:31
 msgid "Theme:"
 msgstr ""
 
-#: demo/templates/desktop.html:31
+#: demo/templates/desktop.html:32
 msgid "Loading..."
 msgstr ""
 
-#: demo/templates/desktop.html:54 demo/templates/mobile.html:113
+#: demo/templates/desktop.html:55 demo/templates/mobile.html:113
 #: demo/templates/mobile.html:133
 msgid "Login"
 msgstr ""
 
-#: demo/templates/desktop.html:58
+#: demo/templates/desktop.html:59
 msgid "Print"
 msgstr ""
 
-#: demo/templates/desktop.html:62 demo/templates/mobile.html:112
-#: demo/templates/mobile.html:117
-msgid "Measure tools"
+#: demo/templates/desktop.html:63 demo/templates/desktop.html:94
+msgid "Draw & Measure"
 msgstr ""
 
 #: demo/templates/mobile.html:7
@@ -59,6 +58,10 @@ msgstr ""
 
 #: demo/templates/mobile.html:79 demo/templates/mobile.html:97
 msgid "Themes"
+msgstr ""
+
+#: demo/templates/mobile.html:112 demo/templates/mobile.html:117
+msgid "Measure tools"
 msgstr ""
 
 #: demo/templates/mobile.html:123

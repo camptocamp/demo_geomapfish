@@ -23,27 +23,26 @@ msgstr "SRTM"
 msgid "Desktop Application"
 msgstr "Application bureau"
 
-#: demo/templates/desktop.html:30
+#: demo/templates/desktop.html:31
 msgid "Theme:"
 msgstr "Thème:"
 
-#: demo/templates/desktop.html:31
+#: demo/templates/desktop.html:32
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: demo/templates/desktop.html:54 demo/templates/mobile.html:113
+#: demo/templates/desktop.html:55 demo/templates/mobile.html:113
 #: demo/templates/mobile.html:133
 msgid "Login"
 msgstr "Se connecter"
 
-#: demo/templates/desktop.html:58
+#: demo/templates/desktop.html:59
 msgid "Print"
 msgstr "Impression"
 
-#: demo/templates/desktop.html:62 demo/templates/mobile.html:112
-#: demo/templates/mobile.html:117
-msgid "Measure tools"
-msgstr "Outils de mesure"
+#: demo/templates/desktop.html:63 demo/templates/desktop.html:94
+msgid "Draw & Measure"
+msgstr "Mesure et dessin"
 
 #: demo/templates/mobile.html:7
 msgid "Mobile Application"
@@ -60,6 +59,10 @@ msgstr "Fond de carte"
 #: demo/templates/mobile.html:79 demo/templates/mobile.html:97
 msgid "Themes"
 msgstr "Thèmes"
+
+#: demo/templates/mobile.html:112 demo/templates/mobile.html:117
+msgid "Measure tools"
+msgstr "Outils de mesure"
 
 #: demo/templates/mobile.html:123
 msgid "Coordinate"

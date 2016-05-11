@@ -125,7 +125,7 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions_requirements.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.1.0.dev6
+REQUIREMENTS ?= c2cgeoportal==2.1.0.dev7
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)

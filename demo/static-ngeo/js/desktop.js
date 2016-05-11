@@ -21,6 +21,12 @@ goog.require('ngeo.proj.EPSG2056');
 goog.require('ngeo.proj.EPSG21781');
 
 
+demo.module.constant('ngeoExportFeatureFormats', [
+  ngeo.FeatureHelper.FormatType.KML,
+  ngeo.FeatureHelper.FormatType.GPX
+]);
+
+
 demo.module.constant('ngeoQueryOptions', {
   'limit': 20
 });
