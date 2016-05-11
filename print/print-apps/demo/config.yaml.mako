@@ -49,27 +49,27 @@ templates:
             - !forwardHeaders
                 headers:
                 - Referer
-            - !restrictUris
-                matchers:
-                - !localMatch
-                  pathRegex: "/${instanceid}/wsgi/mapserv_proxy"
-                - !localMatch
-                  pathRegex: "/${instanceid}/tiles/.*"
-                - !localMatch
-                  reject: true
-                - !ipMatch
-                  ip: 10.0.0.0
-                  mask: 255.0.0.0
-                  reject: true
-                - !ipMatch
-                  ip: 172.16.0.0
-                  mask: 255.240.0.0
-                  reject: true
-                - !ipMatch
-                  ip: 192.168.0.0
-                  mask: 255.255.0.0
-                  reject: true
-                - !acceptAll {}
+#            - !restrictUris
+#                matchers:
+#                - !localMatch
+#                  pathRegex: "/${instanceid}/wsgi/mapserv_proxy"
+#                - !localMatch
+#                  pathRegex: "/${instanceid}/tiles/.*"
+#                - !localMatch
+#                  reject: true
+#                - !ipMatch
+#                  ip: 10.0.0.0
+#                  mask: 255.0.0.0
+#                  reject: true
+#                - !ipMatch
+#                  ip: 172.16.0.0
+#                  mask: 255.240.0.0
+#                  reject: true
+#                - !ipMatch
+#                  ip: 192.168.0.0
+#                  mask: 255.255.0.0
+#                  reject: true
+#                - !acceptAll {}
         - !prepareLegend
             template: legend.jrxml
         - !createNorthArrow {}
