@@ -76,6 +76,7 @@ MAP
     END
 
     LEGEND
+        KEYSIZE 20 25
         LABEL
             ENCODING "UTF-8"
             TYPE TRUETYPE
