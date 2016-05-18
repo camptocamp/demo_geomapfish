@@ -9,6 +9,20 @@ SYMBOLSET
      #ANCHORPOINT 0.5 0.5
   END
 
+ SYMBOL
+    NAME "atm"
+    TYPE PIXMAP
+    IMAGE "symbols/atm-2.png"
+    ANCHORPOINT 0.5 1
+  END
+
+ SYMBOL
+    NAME "bank"
+    TYPE PIXMAP
+    IMAGE "symbols/bank.png"
+    ANCHORPOINT 0.5 1
+  END
+
   SYMBOL
      NAME "church"
      TYPE PIXMAP
