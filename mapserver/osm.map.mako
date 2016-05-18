@@ -28,11 +28,6 @@ layers = [{
     "type": "alpine_hut",
     "name": u"Cabanes alpines"
 }, {
-    "column": "amenity",
-    "value": "bank",
-    "type": "bank",
-    "name": u"Banques"
-}, {
     "column": "highway",
     "value": "bus_stop",
     "type": "bus_stop",
@@ -115,6 +110,63 @@ LAYER
     END
 END
 % endfor
+
+LAYER
+    NAME "bank"
+    GROUP "osm"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=amenity in ('bank','atm')"
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASSITEM "amenity"
+    CLASS
+        NAME "Banques"
+        EXPRESSION "bank"
+        KEYIMAGE symbols/bank.png
+        STYLE
+            SYMBOL "bank"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 2 92 5
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+        END
+    END
+    CLASS
+        NAME "Distributeurs"
+        EXPRESSION "atm"
+        KEYIMAGE symbols/atm-2.png
+        STYLE
+            SYMBOL "atm"
+            SIZE 30
+        END
+    END
+
+    METADATA
+        "wms_title" "bank"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
 
 LAYER
     NAME "place_of_worship"
