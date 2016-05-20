@@ -160,7 +160,7 @@ ${ ',\n'.join([
          module.constant('gmfPrintUrl', '${request.route_url('printproxy') | n}');
          module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
          module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background"}) | n}');
-         module.constant('gmfSearchGroups', ["osm", "district"]);
+         module.constant('gmfSearchGroups', ${dumps(fulltextsearch_groups) | n});
          // Requires that the gmfSearchGroups is specified
          module.constant('gmfSearchActions', ['add_theme', 'add_group', 'add_layer']);
        })();
