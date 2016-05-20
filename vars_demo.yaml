@@ -121,6 +121,10 @@ vars:
         targets:
             point: http://www.openstreetmap.org/node/%s
 
+    servers:
+      local: https://{host}
+      instance: https://{host}/{instanceid}
+      tiles: https://{host}/{instanceid}/tiles
 
     headers:
         themes: &headers
