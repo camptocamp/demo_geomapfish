@@ -9,7 +9,6 @@ Ext.onReady(function() {
     // OpenLayers
     OpenLayers.Number.thousandsSeparator = ' ';
     OpenLayers.DOTS_PER_INCH = 72;
-    OpenLayers.ProxyHost = "${request.route_url('ogcproxy') | n}?url=";
 
     // Ext
     Ext.QuickTips.init();
