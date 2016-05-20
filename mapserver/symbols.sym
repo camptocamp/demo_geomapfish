@@ -1,7 +1,7 @@
 SYMBOLSET
   SYMBOL
      NAME "circle"
-     TYPE ellipse 
+     TYPE ellipse
      POINTS
        1 1
      END # end of POINTS
@@ -9,16 +9,32 @@ SYMBOLSET
      #ANCHORPOINT 0.5 0.5
   END
 
-  #SYMBOL
-  #  NAME "recyclage"
-  #  TYPE SVG
-  #  IMAGE "symbols/Green_dot_logo.svg"
-  #END
+ SYMBOL
+    NAME "atm"
+    TYPE PIXMAP
+    IMAGE "symbols/atm-2.png"
+    ANCHORPOINT 0.5 1
+  END
+
+ SYMBOL
+    NAME "bank"
+    TYPE PIXMAP
+    IMAGE "symbols/bank.png"
+    ANCHORPOINT 0.5 1
+  END
 
   SYMBOL
-     NAME "recyclage-png"
+     NAME "church"
      TYPE PIXMAP
-     IMAGE "symbols/Green_dot_logo.png"
+     IMAGE "symbols/church.png"
+     ANCHORPOINT 0.5 1
+  END
+
+ SYMBOL
+    NAME "mosquee"
+    TYPE PIXMAP
+    IMAGE "symbols/mosquee.png"
+    ANCHORPOINT 0.5 1
   END
 
   SYMBOL
@@ -27,13 +43,14 @@ SYMBOLSET
   END
 
   SYMBOL
-   NAME "trait"
-   TYPE vector
-   POINTS
-     0 0
-     1 0
-   END
-  END  
+     NAME "trait"
+     TYPE vector
+     POINTS
+       0 0
+       1 0
+     END
+  END
+
   SYMBOL
      NAME "cross"
      TYPE vector
@@ -47,19 +64,19 @@ SYMBOLSET
   END
 
   SYMBOL
-    NAME "arrow-start"
-    TYPE vector
-    FILLED true
-    POINTS
-      0 0.4
-      3 0.4
-      3 0
-      5 0.8
-      3 1.6
-      3 1.2
-      0 1.2
-      0 0.4
-    END # POINTS
-    #ANCHORPOINT 0 0.5
+      NAME "arrow-start"
+      TYPE vector
+      FILLED true
+      POINTS
+        0 0.4
+        3 0.4
+        3 0
+        5 0.8
+        3 1.6
+        3 1.2
+        0 1.2
+        0 0.4
+      END # POINTS
+      #ANCHORPOINT 0 0.5
   END # SYMBOL
 END

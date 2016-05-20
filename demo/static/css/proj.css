@@ -13,6 +13,10 @@
 	background: url("../img/icons/paintbrush.gif") no-repeat scroll left top transparent;
 }
 
+.x-tree-node-leaf .x-tree-node-icon-wms {
+  height: 20px !important;
+}
+
 #toolbar {
     float: right;
     width: 100%;
