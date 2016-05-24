@@ -1,6 +1,6 @@
 project_folder: demo_geomapfish
-project_package: demo
-host: geomapfish-demo.camptocamp.net
+project_package: ${package}
+host: ${host}
 checker_path: /${instanceid}/wsgi/check_collector?
 template_vars:
     package: ${package}
