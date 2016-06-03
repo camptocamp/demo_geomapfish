@@ -18,12 +18,12 @@ createdb = sudo -u postgres createdb
 restore_tmp = sudo -u postgres pg_restore -Fc -d
 
 [code]
-src = /var/www/gmfusrgrp_version2-geomapfishtest/private/${instanceid}
-dst = /var/www/geomapfish-demo/private/${instanceid}
+src = /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/${instanceid}/demo_geomapfish
+dst = /var/www/vhosts/geomapfish-demo/private/${instanceid}
 
 [apache]
-dest = /var/www/geomapfish-demo/conf/${instanceid}.conf
-content = Include /var/www/geomapfish-demo/private/${instanceid}/apache/*.conf
+dest = /var/www/vhosts/geomapfish-demo/conf/${instanceid}.conf
+content = Include /var/www/vhosts/geomapfish-demo/private/${instanceid}/apache/*.conf
 
 [remote_hosts]
 demo_server = geomapfish-demo.infra.internal
