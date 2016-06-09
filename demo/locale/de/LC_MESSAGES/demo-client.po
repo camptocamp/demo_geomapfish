@@ -19,7 +19,7 @@ msgstr "SRTM"
 
 #: demo/templates/desktop.html:7
 msgid "Desktop Application"
-msgstr "Desktop Applikation"
+msgstr "Desktop-Applikation"
 
 #: demo/templates/desktop.html:31
 msgid "Theme:"
@@ -27,7 +27,7 @@ msgstr "Themen:"
 
 #: demo/templates/desktop.html:32
 msgid "Loading..."
-msgstr ""
+msgstr "Applikation wird geladen..."
 
 #: demo/templates/desktop.html:55 demo/templates/mobile.html:113
 #: demo/templates/mobile.html:133
@@ -36,11 +36,11 @@ msgstr "Anmelden"
 
 #: demo/templates/desktop.html:59
 msgid "Print"
-msgstr ""
+msgstr "Drucken"
 
 #: demo/templates/desktop.html:63 demo/templates/desktop.html:94
 msgid "Draw & Measure"
-msgstr ""
+msgstr "Zeichnen und Messen"
 
 #: demo/templates/mobile.html:7
 msgid "Mobile Application"
@@ -48,7 +48,7 @@ msgstr "Mobile Applikation"
 
 #: demo/templates/mobile.html:70 demo/templates/mobile.html:106
 msgid "Back"
-msgstr ""
+msgstr "Zurück"
 
 #: demo/templates/mobile.html:76 demo/templates/mobile.html:88
 msgid "Background"
@@ -72,7 +72,7 @@ msgstr "Länge"
 
 #: print/print-apps/demo/config.yaml:template/1 A4 portrait
 msgid "1 A4 portrait"
-msgstr ""
+msgstr "1 A4 Hochformat"
 
 #: print/print-apps/demo/config.yaml:template/1
 #: print/print-apps/demo/config.yaml:template/2
@@ -80,7 +80,7 @@ msgstr ""
 #: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/comments
 #: portrait/comments
 msgid "comments"
-msgstr ""
+msgstr "Kommentare"
 
 #: print/print-apps/demo/config.yaml:template/1
 #: print/print-apps/demo/config.yaml:template/2
@@ -88,7 +88,7 @@ msgstr ""
 #: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/datasource
 #: portrait/datasource
 msgid "datasource"
-msgstr ""
+msgstr "Datenquelle"
 
 #: print/print-apps/demo/config.yaml:template/1
 #: print/print-apps/demo/config.yaml:template/2
@@ -96,7 +96,7 @@ msgstr ""
 #: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/debug
 #: portrait/debug
 msgid "debug"
-msgstr ""
+msgstr "Debug"
 
 #: print/print-apps/demo/config.yaml:template/1
 #: print/print-apps/demo/config.yaml:template/2
@@ -104,7 +104,7 @@ msgstr ""
 #: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/legend
 #: portrait/legend
 msgid "legend"
-msgstr ""
+msgstr "Legende"
 
 #: print/print-apps/demo/config.yaml:template/1
 #: print/print-apps/demo/config.yaml:template/2
@@ -120,7 +120,7 @@ msgstr "Karte"
 #: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/northArrow
 #: portrait/northArrow
 msgid "northArrow"
-msgstr ""
+msgstr "Nord-Pfeil"
 
 #: print/print-apps/demo/config.yaml:template/1
 #: print/print-apps/demo/config.yaml:template/2
@@ -128,7 +128,7 @@ msgstr ""
 #: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/scalebar
 #: portrait/scalebar
 msgid "scalebar"
-msgstr ""
+msgstr "Massstabsbalken"
 
 #: print/print-apps/demo/config.yaml:template/1
 #: print/print-apps/demo/config.yaml:template/2
@@ -136,27 +136,27 @@ msgstr ""
 #: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/title
 #: portrait/title
 msgid "title"
-msgstr ""
+msgstr "Titel"
 
 #: print/print-apps/demo/config.yaml:template/2 A4 landscape
 msgid "2 A4 landscape"
-msgstr ""
+msgstr "2 A4 Querformat"
 
 #: print/print-apps/demo/config.yaml:template/3 A3 portrait
 msgid "3 A3 portrait"
-msgstr ""
+msgstr "3 A3 Hochformat"
 
 #: print/print-apps/demo/config.yaml:template/4 A3 landscape
 msgid "4 A3 landscape"
-msgstr ""
+msgstr "4 A3 Querformat"
 
 #: 2 theme:Enseignement
 msgid "Enseignement 2"
-msgstr "Schuldienst"
+msgstr "Bildungsinstitutionen"
 
 #: des eaux group:Gestion theme:Gestion
 msgid "Gestion des eaux"
-msgstr "Wasserwirtschaft"
+msgstr "Wassermanagement"
 
 #: function group:OSM
 msgid "OSM function"
@@ -168,7 +168,7 @@ msgstr "Administration"
 
 #: group:Cadastre theme:Cadastre
 msgid "Cadastre"
-msgstr "Kadaster"
+msgstr "Kataster"
 
 #: group:Edit theme:Edit
 msgid "Edit"
@@ -176,11 +176,11 @@ msgstr "Editieren"
 
 #: group:Enseignement theme:Enseignement
 msgid "Enseignement"
-msgstr "Schuldienst"
+msgstr "Bildung"
 
 #: group:Equipement theme:Equipement
 msgid "Equipement"
-msgstr "Ausrüstung"
+msgstr "Infrastruktur"
 
 #: group:Group
 msgid "Group"
@@ -188,11 +188,11 @@ msgstr "Gruppe"
 
 #: group:Layers
 msgid "Layers"
-msgstr "Schicht"
+msgstr "Ebene"
 
 #: group:Patrimoine theme:Patrimoine
 msgid "Patrimoine"
-msgstr "Erbe"
+msgstr "Kulturelles Erbe"
 
 #: group:Paysage theme:Paysage
 msgid "Paysage"
@@ -208,7 +208,7 @@ msgstr "Transport"
 
 #: group:background
 msgid "background"
-msgstr "hintergrund"
+msgstr "Hintergrund"
 
 #: group:osm_time
 msgid "osm_time"
@@ -230,7 +230,7 @@ msgstr "test2"
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
 #: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
 msgid "access"
-msgstr ""
+msgstr "Zugang"
 
 #: l_wms.Layer l_wms.alpine_hut:alpine_hut l_wms.bank:bank
 #: l_wms.bus_stop:bus_stop l_wms.cafe:cafe l_wms.cinema:cinema l_wms.fuel:fuel
@@ -240,7 +240,7 @@ msgstr ""
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
 #: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
 msgid "aerialway"
-msgstr ""
+msgstr "Luftwege"
 
 #: l_wms.Layer l_wms.alpine_hut:alpine_hut l_wms.bank:bank
 #: l_wms.bus_stop:bus_stop l_wms.cafe:cafe l_wms.cinema:cinema l_wms.fuel:fuel
@@ -363,7 +363,7 @@ msgstr ""
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
 #: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
 msgid "layer"
-msgstr "Schicht"
+msgstr "Ebene"
 
 #: l_wms.Layer l_wms.alpine_hut:alpine_hut l_wms.bank:bank
 #: l_wms.bus_stop:bus_stop l_wms.cafe:cafe l_wms.cinema:cinema l_wms.fuel:fuel
@@ -442,7 +442,7 @@ msgstr ""
 #: l_wms.two_layers:cafe l_wms.two_layers:restaurant l_wms.zoo:zoo long
 #: name:restaurant very with
 msgid "osm_id"
-msgstr "OSM Zeit"
+msgstr "OSM zeitbezogen"
 
 #: l_wms.Layer l_wms.alpine_hut:alpine_hut l_wms.bank:bank
 #: l_wms.bus_stop:bus_stop l_wms.cafe:cafe l_wms.cinema:cinema l_wms.fuel:fuel
@@ -603,7 +603,7 @@ msgstr "Bushaltestelle"
 
 #: l_wms:cafe
 msgid "cafe"
-msgstr "Kaffe"
+msgstr "Café"
 
 #: l_wms:ch.swisstopo.dreiecksvermaschung
 msgid "ch.swisstopo.dreiecksvermaschung"
@@ -611,7 +611,7 @@ msgstr "LV95 Dreiecksvermaschung"
 
 #: l_wms:ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung
 msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
-msgstr "Gesteinklassierung"
+msgstr "Gesteinsklassierung"
 
 #: l_wms:ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen
 msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
@@ -627,7 +627,7 @@ msgstr "Kino"
 
 #: l_wms:firestations
 msgid "firestations"
-msgstr "Feuerwehrtation"
+msgstr "Feuerwehrstation"
 
 #: l_wms:fuel
 msgid "fuel"
@@ -655,7 +655,7 @@ msgstr "OSM"
 
 #: l_wms:osm_open
 msgid "osm_open"
-msgstr "OSM Zeit"
+msgstr "OSM zeitbezogen"
 
 #: l_wms:osm_scale
 msgid "osm_scale"
@@ -664,22 +664,22 @@ msgstr "OSM Skala"
 #: l_wms:osm_time_r_dp
 #, fuzzy
 msgid "osm_time_r_dp"
-msgstr "OSM Zeit"
+msgstr "OSM zeitbezogen"
 
 #: l_wms:osm_time_r_s
 #, fuzzy
 msgid "osm_time_r_s"
-msgstr "OSM Zeit"
+msgstr "OSM zeitbezogen"
 
 #: l_wms:osm_time_v_dp
 #, fuzzy
 msgid "osm_time_v_dp"
-msgstr "OSM Zeit"
+msgstr "OSM zeitbezogen"
 
 #: l_wms:osm_time_v_s
 #, fuzzy
 msgid "osm_time_v_s"
-msgstr "OSM Zeit"
+msgstr "OSM zeitbezogen"
 
 #: l_wms:parking
 msgid "parking"
@@ -687,7 +687,7 @@ msgstr "Parkplatz"
 
 #: l_wms:place_of_worship
 msgid "place_of_worship"
-msgstr "Kultsätte"
+msgstr "Kultstätte"
 
 #: l_wms:point
 msgid "point"
@@ -712,7 +712,7 @@ msgstr "Restaurant"
 #: l_wms:two_layers
 #, fuzzy
 msgid "two_layers"
-msgstr "Schicht"
+msgstr "Ebene"
 
 #: l_wms:zoo
 msgid "zoo"
@@ -720,15 +720,15 @@ msgstr "Zoo"
 
 #: l_wmts:asitvd.fond_couleur
 msgid "asitvd.fond_couleur"
-msgstr "asitvd.fond_couleur"
+msgstr "ASIT VD Basiskarte farbig"
 
 #: l_wmts:asitvd.fond_gris
 msgid "asitvd.fond_gris"
-msgstr "asitvd.fond_gris"
+msgstr "ASIT VD Basiskarte grau"
 
 #: l_wmts:asitvd.fond_pourortho
 msgid "asitvd.fond_pourortho"
-msgstr "asitvd.fond_pourortho"
+msgstr "ASIT VD Basiskarte Ortho"
 
 #: l_wmts:ch.are.alpenkonvention
 msgid "ch.are.alpenkonvention"
