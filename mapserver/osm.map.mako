@@ -57,11 +57,7 @@ layers = [{
     "value": "restaurant",
     "type": "restaurant",
     "name": u"Restaurants"
-}, {
-    "column": "tourism",
-    "value": "zoo",
-    "type": "zoo",
-    "name": u"Zoos"
+
 }]
 %>
 % for layer in layers:
@@ -110,6 +106,121 @@ LAYER
     END
 END
 % endfor
+
+LAYER
+    NAME "tourism_activity"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=tourism in ('zoo','information','museum','viewpoint')"
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLUSTER
+       MAXDISTANCE 42  # in pixels
+       REGION "ellipse"  # can be rectangle or ellipse
+       GROUP ('[tourism]' = 'information') # a logical expression to specify the grouping condition
+    END
+
+    CLASSITEM "tourism"
+    CLASS
+        EXPRESSION ([Cluster_FeatureCount] > 1)
+        STYLE
+           SYMBOL 'information'
+           SIZE 30
+        END
+        LABEL
+            TEXT 'x[Cluster_FeatureCount]'
+            SIZE 12
+            OFFSET 24 -30
+            COLOR 35 32 191
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 4
+            PARTIALS FALSE
+        END
+    END
+    CLASS
+        NAME "Musée"
+        EXPRESSION ('[tourism]' = 'museum' and [Cluster_FeatureCount] = 1)
+        KEYIMAGE symbols/museum.png
+        STYLE
+            SYMBOL "museum"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 192 112 180
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    CLASS
+        NAME "Point de vue"
+        EXPRESSION ('[tourism]' = 'viewpoint' and [Cluster_FeatureCount] = 1)
+        KEYIMAGE symbols/viewpoint.png
+        STYLE
+            SYMBOL "viewpoint"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 210 128 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    CLASS
+        NAME "Zoo"
+        EXPRESSION ('[tourism]' = 'zoo' and [Cluster_FeatureCount] = 1)
+        KEYIMAGE symbols/zoo.png
+        STYLE
+            SYMBOL "zoo"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 2 92 5
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    CLASS
+        NAME "Informations"
+        EXPRESSION ('[tourism]' = 'information' and [Cluster_FeatureCount] = 1)
+        KEYIMAGE symbols/information.png
+        STYLE
+            SYMBOL "information"
+            SIZE 30
+        END
+    END
+
+    METADATA
+        "wms_title" "tourism_activity"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
 
 LAYER
     NAME "bank"

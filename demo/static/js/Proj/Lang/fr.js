@@ -34,7 +34,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "police": "Postes de police",
     "post_office": "Offices de poste",
     "restaurant": "Restaurants",
-    "zoo": "Zoos",
+    "tourism_activity": "Activité touristique",
     "bus_stop": "Arrêts de bus",
     "osm_scale": "OSM scale",
 

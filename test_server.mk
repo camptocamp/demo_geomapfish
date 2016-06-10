@@ -1,4 +1,4 @@
-INSTANCE_ID = sbrunner16
+INSTANCE_ID = 2.0
 DEVELOPMENT = TRUE
 
 include demo.mk

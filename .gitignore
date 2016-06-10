@@ -34,8 +34,8 @@
 /mapserver/private.map
 /mapserver/replace_db.sh
 /deploy/hooks/post-restore-database
-/testDB/01-schemas.sql
 /testDB/Dockerfile
+/testDB/11-schemas.sql
 /demo/version.py
 /demo/static/build/
 /demo/static-ngeo/build/
