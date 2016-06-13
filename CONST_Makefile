@@ -3,7 +3,11 @@ PACKAGE = demo
 OPERATING_SYSTEM ?= LINUX
 
 ifeq ($(DEBUG), TRUE)
+ifeq ($(OPERATING_SYSTEM), WINDOWS)
+PRERULE_CMD ?= @echo "Build $@ due mofification on $?"; ls -lt --reverse $? $@ || true
+else
 PRERULE_CMD ?= @echo "Build \033[1;34m$@\033[0m due mofification on \033[1;34m$?\033[0m"; ls -lt --reverse $? $@ || true
+endif
 endif
 
 ifeq ($(OPERATING_SYSTEM), WINDOWS)
@@ -55,8 +59,8 @@ INSTANCE_ID =
 endif
 
 PIP_CMD ?= $(VENV_BIN)/pip
-PIP_VERSION ?= pip>=7
-SETUPTOOL_VERSION ?= setuptools>=12
+PIP_VERSION ?= pip==8.1.2
+SETUPTOOLS_VERSION ?= setuptools==21.1.0
 
 GIT_MODULES_FOLDER ?= .git/modules/
 
@@ -125,7 +129,7 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions_requirements.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.1.0.dev7
+REQUIREMENTS ?= c2cgeoportal==2.1.0.dev8
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -146,9 +150,9 @@ GIT_REMOTE ?= origin
 GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 
 # i18n
-TX_VERSION = $(shell .build/venv/bin/python -c "print('_'.join(__import__('pkg_resources').get_distribution('c2cgeoportal').version.split('.')[0:2]))")
+TX_VERSION = $(shell $(VENV_BIN)/python -c "print('_'.join(__import__('pkg_resources').get_distribution('c2cgeoportal').version.split('.')[0:2]))")
 TX_RC = $(HOME_DIR).transifexrc
-TX_DEPENDENCIES = $(VENV_BIN)/tx $(TX_RC) .tx/config
+TX_DEPENDENCIES = $(VENV_BIN)/tx$(PYTHON_BIN_POSTFIX) $(TX_RC) .tx/config
 TX_HOST ?= https://www.transifex.com
 ifeq (,$(wildcard $(TX_RC)))
 TOUCHBACK_TXRC =
@@ -193,6 +197,7 @@ NGEO_GMF_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/gmf-icons, .woff .ttf 
 NGEO_FONTAWESOME_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/fontawesome-webfont, .woff .woff2 .ttf .eot)
 NGEO_FONTS = $(NGEO_GMF_FONTS) $(NGEO_FONTAWESOME_FONTS)
 JSON_CLIENT_LOCALISATION_FILES = $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .json, $(LANGUAGES)))
+ANGULAR_LOCALES_FILES = $(addprefix $(APP_OUTPUT_DIR)/angular-locale_, $(addsuffix .js, $(LANGUAGES)))
 NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
 	node_modules/ngeo/node_modules/font-awesome \
 	node_modules/ngeo/node_modules/openlayers \
@@ -203,14 +208,16 @@ NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
 	node_modules/ngeo/contribs/gmf/fonts/fontawesome-webfont.eot \
 	$(APP_OUTPUT_DIR)/templatecache.js \
 	$(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .js, $(NGEO_INTERFACES))) \
-	$(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .css, $(NGEO_INTERFACES)))
+	$(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .css, $(NGEO_INTERFACES))) \
+	$(ANGULAR_LOCALES_FILES)
 NGEO_LIBS_JS_FILES += \
 	node_modules/jquery/dist/jquery.min.js \
 	node_modules/angular/angular.min.js \
-	node_modules/angular-gettext/dist/angular-gettext.min.js \
 	node_modules/angular-animate/angular-animate.min.js \
-	node_modules/angular-touch/angular-touch.min.js \
+	node_modules/angular-gettext/dist/angular-gettext.min.js \
 	node_modules/angular-sanitize/angular-sanitize.min.js \
+	node_modules/angular-touch/angular-touch.min.js \
+	node_modules/angular-dynamic-locale/dist/tmhDynamicLocale.min.js \
 	node_modules/bootstrap/dist/js/bootstrap.min.js \
 	node_modules/proj4/dist/proj4.js \
 	node_modules/d3/d3.min.js \
@@ -414,7 +421,7 @@ CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid
 	available_locale_names cache admin_interface functionalities external_themes_url \
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
 	tiles_url checker check_collector default_max_age jsbuild package srid \
-	reset_password fulltextsearch headers authorized_referers hooks stats
+	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser
 ENVIRONMENT_VARS += INSTANCE_ID=$(INSTANCE_ID) \
 	APACHE_ENTRY_POINT=$(APACHE_ENTRY_POINT) \
 	DOCKER_BASE=$(DOCKER_BASE) \
@@ -662,6 +669,7 @@ $(TX_RC):
 .PRECIOUS: .build/locale/%/LC_MESSAGES/gmf.po
 .build/locale/%/LC_MESSAGES/gmf.po: $(TX_DEPENDENCIES)
 	$(PRERULE_CMD)
+	mkdir -p $(dir $@)
 	$(VENV_BIN)/tx pull -l $* --force
 	$(TOUCHBACK_TXRC)
 
@@ -687,6 +695,10 @@ $(APP_OUTPUT_DIR)/%.json: $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po \
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
 	node $(COMPILE_CATALOG) .build/locale/$*/LC_MESSAGES/gmf.po $< > $@
+
+$(APP_OUTPUT_DIR)/angular-locale_%.js:
+	mkdir -p $(dir $@)
+	wget -O $@ https://raw.githubusercontent.com/angular/angular.js/master/src/ngLocale/angular-locale_$*.js
 
 $(APP_OUTPUT_DIR)/%.js: .build/%.js .build/node_modules.timestamp $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES)
 	$(PRERULE_CMD)
@@ -790,6 +802,7 @@ node_modules/ngeo/buildtools/templatecache.mako.js: .build/node_modules.timestam
 
 $(APP_OUTPUT_DIR)/templatecache.js: .build/gmftemplatecache.js
 	$(PRERULE_CMD)
+	mkdir -p $(dir $@)
 	cp $< $@
 
 .PRECIOUS: .build/gmftemplatecache.js
@@ -839,6 +852,8 @@ $(NPM_CMD):
 	$(PRERULE_CMD)
 ifeq ($(OPERATING_SYSTEM), LINUX)
 	npm install npm || sleep 20 || npm install npm || sleep 90 || npm install npm
+else
+	touch $@
 endif
 
 .build/node_modules.timestamp: package.json $(NPM_CMD)
@@ -856,7 +871,7 @@ $(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 	.build/node_modules.timestamp \
 	$(APP_JS_FILES)
 	mkdir -p $(dir $@)
-	$(VENV_BIN)/gjslint --jslint_error=all --strict --custom_jsdoc_tags=event,fires,function,classdesc,api,observable $(filter-out $(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX) .build/node_modules.timestamp $?)
+	$(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX) --jslint_error=all --strict --custom_jsdoc_tags=event,fires,function,classdesc,api,observable $(filter-out $(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX) .build/node_modules.timestamp, $?)
 	touch $@
 
 node_modules/.bin/jshint$(NODE_BIN_POSTFIX): .build/node_modules.timestamp
@@ -864,7 +879,7 @@ node_modules/.bin/jshint$(NODE_BIN_POSTFIX): .build/node_modules.timestamp
 .build/jshint.timestamp: node_modules/.bin/jshint$(NODE_BIN_POSTFIX) $(APP_JS_FILES)
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	node_modules/.bin/jshint --verbose $(filter-out node_modules/.bin/jshint$(NODE_BIN_POSTFIX) $?)
+	node_modules/.bin/jshint$(NODE_BIN_POSTFIX) --verbose $(filter-out node_modules/.bin/jshint$(NODE_BIN_POSTFIX), $?)
 	touch $@
 
 
@@ -971,7 +986,7 @@ $(VENV_BIN)/flake8$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
 	virtualenv --no-site-packages .build/venv
-	$(PIP_CMD) install '$(PIP_VERSION)' '$(SETUPTOOL_VERSION)'
+	$(PIP_CMD) install '$(PIP_VERSION)' '$(SETUPTOOLS_VERSION)'
 	touch $@
 
 .build/requirements.timestamp: $(EGGS_DEPENDENCIES)
@@ -1158,13 +1173,13 @@ push_docker:
 	docker push $(DOCKER_BASE)_mapserver:$(DOCKER_TAG)
 
 .PHONY: testDB
-testDB: testDB/02-alembic.sql testDB/03-alembic-static.sql
+testDB: testDB/12-alembic.sql testDB/13-alembic-static.sql
 
-testDB/02-alembic.sql: $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX) alembic.ini
+testDB/12-alembic.sql: $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX) alembic.ini
 	$(PRERULE_CMD)
 	$(VENV_BIN)/alembic -c alembic.ini upgrade --sql head > $@
 
-testDB/03-alembic-static.sql: $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX) alembic_static.ini
+testDB/13-alembic-static.sql: $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX) alembic_static.ini
 	$(PRERULE_CMD)
 	$(VENV_BIN)/alembic -c alembic_static.ini upgrade --sql head > $@
 endif

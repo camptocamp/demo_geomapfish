@@ -31,16 +31,16 @@ msgstr "Thème:"
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: demo/templates/desktop.html:55 demo/templates/mobile.html:113
-#: demo/templates/mobile.html:133
+#: demo/templates/desktop.html:55 demo/templates/desktop.html:71
+#: demo/templates/mobile.html:116 demo/templates/mobile.html:142
 msgid "Login"
 msgstr "Se connecter"
 
-#: demo/templates/desktop.html:59
+#: demo/templates/desktop.html:59 demo/templates/desktop.html:80
 msgid "Print"
 msgstr "Impression"
 
-#: demo/templates/desktop.html:63 demo/templates/desktop.html:94
+#: demo/templates/desktop.html:63 demo/templates/desktop.html:92
 msgid "Draw & Measure"
 msgstr "Mesure et dessin"
 
@@ -48,27 +48,27 @@ msgstr "Mesure et dessin"
 msgid "Mobile Application"
 msgstr "Application mobile"
 
-#: demo/templates/mobile.html:70 demo/templates/mobile.html:106
+#: demo/templates/mobile.html:72 demo/templates/mobile.html:109
 msgid "Back"
 msgstr "Retour"
 
-#: demo/templates/mobile.html:76 demo/templates/mobile.html:88
+#: demo/templates/mobile.html:78 demo/templates/mobile.html:93
 msgid "Background"
 msgstr "Fond de carte"
 
-#: demo/templates/mobile.html:79 demo/templates/mobile.html:97
+#: demo/templates/mobile.html:81 demo/templates/mobile.html:100
 msgid "Themes"
 msgstr "Thèmes"
 
-#: demo/templates/mobile.html:112 demo/templates/mobile.html:117
+#: demo/templates/mobile.html:115 demo/templates/mobile.html:120
 msgid "Measure tools"
 msgstr "Outils de mesure"
 
-#: demo/templates/mobile.html:123
+#: demo/templates/mobile.html:128
 msgid "Coordinate"
 msgstr "Coordonnée"
 
-#: demo/templates/mobile.html:130
+#: demo/templates/mobile.html:137
 msgid "Length"
 msgstr "Longueur"
 
@@ -230,7 +230,7 @@ msgstr "Deuxième test"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "access"
 msgstr "Acces"
 
@@ -240,7 +240,7 @@ msgstr "Acces"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "aerialway"
 msgstr "Remontée méchanique"
 
@@ -250,7 +250,7 @@ msgstr "Remontée méchanique"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "amenity"
 msgstr "Equipements"
 
@@ -260,7 +260,7 @@ msgstr "Equipements"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "barrier"
 msgstr "Barière"
 
@@ -270,7 +270,7 @@ msgstr "Barière"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "bicycle"
 msgstr "Vélo"
 
@@ -280,7 +280,7 @@ msgstr "Vélo"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "brand"
 msgstr "Marque"
 
@@ -290,7 +290,7 @@ msgstr "Marque"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "building"
 msgstr "Batiment"
 
@@ -300,7 +300,7 @@ msgstr "Batiment"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "covered"
 msgstr "Couvert"
 
@@ -310,7 +310,7 @@ msgstr "Couvert"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "denomination"
 msgstr "Dénomination"
 
@@ -323,7 +323,7 @@ msgstr "Dénomination"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "display_name"
 msgstr "Nom"
 
@@ -333,7 +333,7 @@ msgstr "Nom"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "ele"
 msgstr "Elévation"
 
@@ -343,7 +343,7 @@ msgstr "Elévation"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "foot"
 msgstr "Foot"
 
@@ -353,7 +353,7 @@ msgstr "Foot"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "highway"
 msgstr "Routes"
 
@@ -363,7 +363,7 @@ msgstr "Routes"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "layer"
 msgstr "Couches"
 
@@ -373,7 +373,7 @@ msgstr "Couches"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "leisure"
 msgstr "Loisires"
 
@@ -383,7 +383,7 @@ msgstr "Loisires"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "man_made"
 msgstr "Fabrication humaine"
 
@@ -393,7 +393,7 @@ msgstr "Fabrication humaine"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "motorcar"
 msgstr "Véhicules"
 
@@ -407,8 +407,8 @@ msgstr "Véhicules"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.point:point l_wms.police:police l_wms.polygon:polygon
 #: l_wms.post_office:post_office l_wms.restaurant:restaurant
-#: l_wms.two_layers:cafe l_wms.two_layers:restaurant l_wms.zoo:zoo long
-#: name:restaurant very with
+#: l_wms.two_layers:cafe l_wms.two_layers:restaurant long name:restaurant very
+#: with
 msgid "name"
 msgstr "Nom"
 
@@ -418,7 +418,7 @@ msgstr "Nom"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "natural"
 msgstr "Naturel"
 
@@ -428,7 +428,7 @@ msgstr "Naturel"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "operator"
 msgstr "Opérateur"
 
@@ -441,8 +441,8 @@ msgstr "Opérateur"
 #: l_wms.osm_time_v_s:osm_time l_wms.parking:parking
 #: l_wms.place_of_worship:place_of_worship l_wms.police:police
 #: l_wms.post_office:post_office l_wms.restaurant:restaurant
-#: l_wms.two_layers:cafe l_wms.two_layers:restaurant l_wms.zoo:zoo long
-#: name:restaurant very with
+#: l_wms.two_layers:cafe l_wms.two_layers:restaurant long name:restaurant very
+#: with
 msgid "osm_id"
 msgstr "ID OSM"
 
@@ -452,7 +452,7 @@ msgstr "ID OSM"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "place"
 msgstr "Place"
 
@@ -462,7 +462,7 @@ msgstr "Place"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "population"
 msgstr "Population"
 
@@ -472,7 +472,7 @@ msgstr "Population"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "power"
 msgstr "Energie"
 
@@ -482,7 +482,7 @@ msgstr "Energie"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "railway"
 msgstr "Chemins de fer"
 
@@ -492,7 +492,7 @@ msgstr "Chemins de fer"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "ref"
 msgstr "Réference"
 
@@ -502,7 +502,7 @@ msgstr "Réference"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "religion"
 msgstr "Religion"
 
@@ -512,7 +512,7 @@ msgstr "Religion"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "shop"
 msgstr "Magasin"
 
@@ -522,7 +522,7 @@ msgstr "Magasin"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "sport"
 msgstr "Sport"
 
@@ -532,7 +532,7 @@ msgstr "Sport"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "surface"
 msgstr "Surface"
 
@@ -542,7 +542,7 @@ msgstr "Surface"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "tourism"
 msgstr "Tourism"
 
@@ -552,7 +552,7 @@ msgstr "Tourism"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "waterway"
 msgstr "Cours d'eau"
 
@@ -562,7 +562,7 @@ msgstr "Cours d'eau"
 #: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
 #: l_wms.police:police l_wms.post_office:post_office
 #: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant l_wms.zoo:zoo long name:restaurant very with
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "wood"
 msgstr "Bois"
 

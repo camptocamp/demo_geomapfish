@@ -23,6 +23,9 @@ goog.require('ngeo.mobileGeolocationDirective');
 
 /* global demo */
 
+// Filter to demoly by default on all coordinates.
+demo.module.constant('ngeoPointfilter', 'ngeoNumberCoordinates:0:{x} E, {y} N');
+
 demo.module.constant('ngeoQueryOptions', {
   'limit': 20
 });
