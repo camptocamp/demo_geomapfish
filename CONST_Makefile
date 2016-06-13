@@ -212,6 +212,7 @@ NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
 	$(ANGULAR_LOCALES_FILES)
 NGEO_LIBS_JS_FILES += \
 	node_modules/jquery/dist/jquery.min.js \
+	node_modules/ngeo/contribs/gmf/third-party/jquery-ui/jquery-ui.min.jsi \
 	node_modules/angular/angular.min.js \
 	node_modules/angular-animate/angular-animate.min.js \
 	node_modules/angular-gettext/dist/angular-gettext.min.js \
