@@ -192,6 +192,10 @@ msgstr ""
 msgid "Layers"
 msgstr ""
 
+#: group:OSM time two
+msgid "OSM two time"
+msgstr ""
+
 #: group:Patrimoine theme:Patrimoine
 msgid "Patrimoine"
 msgstr "Heritage"
@@ -318,12 +322,13 @@ msgstr "Information"
 #: l_wms.bus_stop:bus_stop l_wms.cafe:cafe l_wms.cinema:cinema
 #: l_wms.firestations:firestations l_wms.fuel:fuel l_wms.hospitals:hospitals
 #: l_wms.hotel:hotel l_wms.information:information l_wms.osm_scale:osm_scale
-#: l_wms.osm_time_r_dp:osm_time l_wms.osm_time_r_s:osm_time
-#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
-#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
-#: l_wms.police:police l_wms.post_office:post_office
-#: l_wms.restaurant:restaurant l_wms.two_layers:cafe
-#: l_wms.two_layers:restaurant long name:restaurant very with
+#: l_wms.osm_time_r_dp:osm_time l_wms.osm_time_r_dp_2:osm_time
+#: l_wms.osm_time_r_s:osm_time l_wms.osm_time_v_dp:osm_time
+#: l_wms.osm_time_v_s:osm_time l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.restaurant:restaurant
+#: l_wms.two_layers:cafe l_wms.two_layers:restaurant long name:restaurant very
+#: with
 msgid "display_name"
 msgstr ""
 
@@ -402,13 +407,13 @@ msgstr "Motorcar"
 #: l_wms.firestations:firestations l_wms.fuel:fuel l_wms.hospitals:hospitals
 #: l_wms.hotel:hotel l_wms.information:information l_wms.line:line
 #: l_wms.osm_open:osm_open l_wms.osm_scale:osm_scale
-#: l_wms.osm_time_r_dp:osm_time l_wms.osm_time_r_s:osm_time
-#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
-#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
-#: l_wms.point:point l_wms.police:police l_wms.polygon:polygon
-#: l_wms.post_office:post_office l_wms.restaurant:restaurant
-#: l_wms.two_layers:cafe l_wms.two_layers:restaurant long name:restaurant very
-#: with
+#: l_wms.osm_time_r_dp:osm_time l_wms.osm_time_r_dp_2:osm_time
+#: l_wms.osm_time_r_s:osm_time l_wms.osm_time_v_dp:osm_time
+#: l_wms.osm_time_v_s:osm_time l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.point:point
+#: l_wms.police:police l_wms.polygon:polygon l_wms.post_office:post_office
+#: l_wms.restaurant:restaurant l_wms.two_layers:cafe
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "name"
 msgstr "Name"
 
@@ -437,12 +442,12 @@ msgstr "Operator"
 #: l_wms.firestations:firestations l_wms.fuel:fuel l_wms.hospitals:hospitals
 #: l_wms.hotel:hotel l_wms.information:information l_wms.osm_open:osm_open
 #: l_wms.osm_scale:osm_scale l_wms.osm_time_r_dp:osm_time
-#: l_wms.osm_time_r_s:osm_time l_wms.osm_time_v_dp:osm_time
-#: l_wms.osm_time_v_s:osm_time l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.restaurant:restaurant
-#: l_wms.two_layers:cafe l_wms.two_layers:restaurant long name:restaurant very
-#: with
+#: l_wms.osm_time_r_dp_2:osm_time l_wms.osm_time_r_s:osm_time
+#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.restaurant:restaurant l_wms.two_layers:cafe
+#: l_wms.two_layers:restaurant long name:restaurant very with
 msgid "osm_id"
 msgstr "OSM ID"
 
@@ -575,14 +580,14 @@ msgid "open"
 msgstr "Open"
 
 #: l_wms.osm_open:osm_open l_wms.osm_time_r_dp:osm_time
-#: l_wms.osm_time_r_s:osm_time l_wms.osm_time_v_dp:osm_time
-#: l_wms.osm_time_v_s:osm_time
+#: l_wms.osm_time_r_dp_2:osm_time l_wms.osm_time_r_s:osm_time
+#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
 msgid "timestamp"
 msgstr "Timestamp"
 
 #: l_wms.osm_open:osm_open l_wms.osm_time_r_dp:osm_time
-#: l_wms.osm_time_r_s:osm_time l_wms.osm_time_v_dp:osm_time
-#: l_wms.osm_time_v_s:osm_time
+#: l_wms.osm_time_r_dp_2:osm_time l_wms.osm_time_r_s:osm_time
+#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
 msgid "type"
 msgstr "Type"
 
@@ -664,6 +669,11 @@ msgstr "OSM scale"
 
 #: l_wms:osm_time_r_dp
 msgid "osm_time_r_dp"
+msgstr "OSM time range picker"
+
+#: l_wms:osm_time_r_dp_2
+#, fuzzy
+msgid "osm_time_r_dp_2"
 msgstr "OSM time range picker"
 
 #: l_wms:osm_time_r_s
