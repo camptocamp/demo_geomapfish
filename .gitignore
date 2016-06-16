@@ -52,6 +52,9 @@
 /demo/static/mobile/bootstrap.json
 #docker
 /mapserver/mapserver.map
+/mapserver/defaults.env
+/testDB/12-alembic.sql
+/testDB/13-alembic-static.sql
 /testDB/15-schema-geodata.sql
 /testDB/16-schema-edit.sql
 /testDB/18-data-main.sql
