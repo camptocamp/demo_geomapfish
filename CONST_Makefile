@@ -141,7 +141,7 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.0.0rc5
+REQUIREMENTS ?= c2cgeoportal==2.0.0rc6
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -1175,11 +1175,6 @@ $(UPGRADE_MAKE_FILE):
 .PHONY: upgrade
 upgrade: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
 	$(VENV_BIN)/pip install c2cgeoportal==${VERSION}
-	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION}
-
-.PHONY: upgrade_v2
-upgrade_v2: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
-	.build/venv/bin/pip install c2cgeoportal==${VERSION}
 	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION}
 
 .PHONY: upgrade1
