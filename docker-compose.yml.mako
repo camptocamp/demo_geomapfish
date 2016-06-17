@@ -6,16 +6,20 @@ db:
     POSTGRES_USER: ${dbuser}
     POSTGRES_DB: ${db}
     POSTGRES_PASSWORD: ${dbpassword}
-  #ports:
-  #  - 15432:5432
+% if development == "TRUE":
+  ports:
+  - 15432:5432
+%endif
 %endif
 
 print:
   image: ${docker_base}_print:latest
   links:
   - mapserver
-  #ports:
-  #  - 8280:8080
+% if development == "TRUE":
+  ports:
+  - 8280:8080
+%endif
 
 mapserver:
   image: ${docker_base}_mapserver:latest
@@ -23,13 +27,16 @@ mapserver:
   links:
   - db
 % endif
-  #ports:
-  #  - 8380:80
+% if development == "TRUE":
+  ports:
+  - 8380:80
+%endif
 
 wsgi:
   image: ${docker_base}_wsgi:latest
   links:
   - mapserver
+  - print
 % if dbhost == "db":
   - db
 % endif
