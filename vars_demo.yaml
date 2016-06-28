@@ -6,6 +6,8 @@ vars:
     # database schema
     schema: main
 
+    mapserver_docker_dbconnection: user={dbuser} password={dbpassword} dbname={db} host={dbhost}
+
     # the visible host name
     host: gmf-test.sig.cloud.camptocamp.net
 

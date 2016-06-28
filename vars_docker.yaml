@@ -4,7 +4,6 @@ vars:
     # the visible host name
     dbhost: db
     mapserver_connection: '{{getenv "DB_CONNECTION"}}'
-    mapserver_docker_dbconnection: user={dbuser} password={dbpassword} dbname={db} host={dbhost}
 
     mapserverproxy:
         mapserv_url: http://mapserver/
