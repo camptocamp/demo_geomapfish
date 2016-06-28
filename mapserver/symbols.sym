@@ -10,6 +10,55 @@ SYMBOLSET
   END
 
   SYMBOL
+    NAME "bar"
+    TYPE PIXMAP
+    IMAGE "symbols/bar.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "dancinghall"
+    TYPE PIXMAP
+    IMAGE "symbols/dancinghall.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "cinema"
+    TYPE PIXMAP
+    IMAGE "symbols/cinema.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "coffee_marron"
+    TYPE PIXMAP
+    IMAGE "symbols/coffee_marron.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "coffee"
+    TYPE PIXMAP
+    IMAGE "symbols/coffee.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "fastfood"
+    TYPE PIXMAP
+    IMAGE "symbols/fastfood.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "restaurant"
+    TYPE PIXMAP
+    IMAGE "symbols/restaurant.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
     NAME "information"
     TYPE PIXMAP
     IMAGE "symbols/information.png"

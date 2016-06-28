@@ -34,11 +34,6 @@ layers = [{
     "name": u"Arrêts de bus"
 }, {
     "column": "amenity",
-    "value": "cafe",
-    "type": "cafe",
-    "name": u"Cafés"
-}, {
-    "column": "amenity",
     "value": "parking",
     "type": "parking",
     "name": u"Parkings"
@@ -52,12 +47,6 @@ layers = [{
     "value": "post_office",
     "type": "post_office",
     "name": u"Offices de poste"
-}, {
-    "column": "amenity",
-    "value": "restaurant",
-    "type": "restaurant",
-    "name": u"Restaurants"
-
 }]
 %>
 % for layer in layers:
@@ -350,7 +339,6 @@ LAYER
 
     METADATA
         "wms_title" "Lieux de culte"
-
         "gml_include_items" "all"
         "gml_types" "auto"
         "gml_featureid" "osm_id"
@@ -359,6 +347,191 @@ LAYER
     END
 END
 
+LAYER
+    NAME "sustenance"
+    GROUP "restaurant"
+    EXTENT 420000 40500 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=amenity in ('cafe','restaurant', 'fast_food', 'bar')"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    LABELITEM "name"
+    CLASSITEM "amenity"
+    CLASS
+        NAME "Cafés"
+        EXPRESSION {cafe,bar}
+        KEYIMAGE symbols/coffee.png
+        STYLE
+            SYMBOL "coffee"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 100 38 144
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+   CLASS
+        NAME "Fast-food"
+        EXPRESSION "fast_food"
+        KEYIMAGE symbols/fastfood.png
+        STYLE
+            SYMBOL "fastfood"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 100 38 144
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    CLASS
+        NAME "Restaurant"
+        EXPRESSION "restaurant"
+        KEYIMAGE symbols/restaurant.png
+        STYLE
+           SYMBOL "restaurant"
+           SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 100 38 144
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+
+    METADATA
+        "wms_title" "Location of restaurant"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
+
+LAYER
+    NAME "entertainment"
+    GROUP "cafe"
+    EXTENT 420000 40500 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=amenity in ('cafe','bar','nightclub', 'cinema')"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    LABELITEM "name"
+    CLASSITEM "amenity"
+    CLASS
+        NAME "Cafés"
+        EXPRESSION "cafe"
+        KEYIMAGE symbols/coffee_marron.png
+        STYLE
+            SYMBOL "coffee_marron"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 139 114 59
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    CLASS
+        NAME "bar"
+        EXPRESSION "bar"
+        KEYIMAGE symbols/bar.png
+        STYLE
+            SYMBOL "bar"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 139 114 59
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    CLASS
+        NAME "Cinéma"
+        EXPRESSION "cinema"
+        KEYIMAGE symbols/cinema.png
+        STYLE
+            SYMBOL "cinema"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 139 114 59
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    CLASS
+        NAME "nightclub"
+        EXPRESSION "nightclub"
+        KEYIMAGE symbols/dancinghall.png
+        STYLE
+           SYMBOL "dancinghall"
+           SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 139 114 59
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+
+    METADATA
+        "wms_title" "nightclub"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
 
 LAYER
     NAME "osm_time"
