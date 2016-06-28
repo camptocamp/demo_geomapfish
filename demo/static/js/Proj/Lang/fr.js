@@ -37,6 +37,9 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "tourism_activity": "Activité touristique",
     "bus_stop": "Arrêts de bus",
     "osm_scale": "OSM scale",
+    "entertainment": "Divertissement",
+    "sustenance": "Restaurants",
+    "Hobbies": "Loisirs",
 
     "polygon": "Polygone",
     "line": "Line",
