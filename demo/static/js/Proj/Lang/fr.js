@@ -40,7 +40,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
     "entertainment": "Divertissement",
     "sustenance": "Restaurants",
     "Hobbies": "Loisirs",
-    "accommodation", "Hébergement",
+    "accommodation": "Hébergement",
 
     "polygon": "Polygone",
     "line": "Line",

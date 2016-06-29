@@ -8,6 +8,26 @@ SYMBOLSET
      FILLED true
      #ANCHORPOINT 0.5 0.5
   END
+  SYMBOL
+    NAME "busstop"
+    TYPE PIXMAP
+    IMAGE "symbols/busstop.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "parking"
+    TYPE PIXMAP
+    IMAGE "symbols/parking.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "fillingstation"
+    TYPE PIXMAP
+    IMAGE "symbols/fillingstation.png"
+    ANCHORPOINT 0.5 1
+  END
 
   SYMBOL
     NAME "bar"

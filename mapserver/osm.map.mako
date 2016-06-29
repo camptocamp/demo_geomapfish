@@ -4,24 +4,9 @@
 columns = 'regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\\"natural\\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way'
 layers = [{
     "column": "amenity",
-    "value": "fuel",
-    "type": "fuel",
-    "name": u"Stations service"
-}, {
-    "column": "amenity",
     "value": "cinema",
     "type": "cinema",
     "name": u"Cinémas"
-}, {
-    "column": "highway",
-    "value": "bus_stop",
-    "type": "bus_stop",
-    "name": u"Arrêts de bus"
-}, {
-    "column": "amenity",
-    "value": "parking",
-    "type": "parking",
-    "name": u"Parkings"
 }, {
     "column": "amenity",
     "value": "police",
@@ -80,6 +65,142 @@ LAYER
     END
 END
 % endfor
+
+LAYER
+    NAME "fuel"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=amenity = 'fuel'"
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+
+    CLASS
+        NAME "Station service"
+        KEYIMAGE symbols/fillingstation.png
+        STYLE
+            SYMBOL "fillingstation"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 157 112 80
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    METADATA
+        "wms_title" "fuel"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
+
+LAYER
+    NAME "parking"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=amenity = 'parking'"
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+
+    CLASS
+        NAME "Parking"
+        KEYIMAGE symbols/parking.png
+        STYLE
+            SYMBOL "parking"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 157 112 80
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    METADATA
+        "wms_title" "parking"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
+
+LAYER
+    NAME "bus_stop"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=highway = 'bus_stop'"
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+
+    CLASS
+        NAME "Arrêt de bus"
+        MAXSCALEDENOM 20000
+        KEYIMAGE symbols/busstop.png
+        STYLE
+            SYMBOL "busstop"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 157 112 80
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 15000
+        END
+    END
+    METADATA
+        "wms_title" "bus_stop"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
 
 LAYER
     NAME "accommodation"
