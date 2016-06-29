@@ -94,6 +94,41 @@ SYMBOLSET
   END
 
   SYMBOL
+    NAME "casino"
+    TYPE PIXMAP
+    IMAGE "symbols/casino-2.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "bicycle_rental"
+    TYPE PIXMAP
+    IMAGE "symbols/cycling.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "boat_rental"
+    TYPE PIXMAP
+    IMAGE "symbols/sailing.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "winery"
+    TYPE PIXMAP
+    IMAGE "symbols/winebar.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "brewery"
+    TYPE PIXMAP
+    IMAGE "symbols/brewery.png"
+    ANCHORPOINT 0.5 1
+  END
+
+ SYMBOL
     NAME "viewpoint"
     TYPE PIXMAP
     IMAGE "symbols/viewpoint.png"

@@ -39,6 +39,8 @@ OpenLayers.Util.extend(OpenLayers.Lang.en, {
     "osm_scale": "OSM scale",
     "sustenance": "Sustenance",
     "entertainment": "Entertainment",
+    "accommodation": "Accommodation",
+    "tourism_activity": "Tourism activities",
 
     "polygon": "Polygon",
     "line": "Line",
