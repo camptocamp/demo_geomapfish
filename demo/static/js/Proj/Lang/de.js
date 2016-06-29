@@ -42,6 +42,8 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
     "entertainment": "Unterhaltung",
     "sustenance": "Nahrung",
     "Hobbies": "Hobbys",
+    "accommodation": "Unterkunft",
+    "tourism_activity": "Tourismus-Aktivität",
 
     "polygon": "Polygon",
     "line": "Linie",
