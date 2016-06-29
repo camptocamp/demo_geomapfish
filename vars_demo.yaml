@@ -133,6 +133,7 @@ vars:
             access_control_max_age: 30
             access_control_allow_origin:
             - https://camptocamp.github.io
+            - https://gmf-test.sig.cloud.camptocamp.net
             - https://fredj.github.io
             - https://pgiraud.github.io
             - https://ger-benjamin.github.io
@@ -155,6 +156,7 @@ vars:
             access_control_max_age: 30
             access_control_allow_origin:
             - https://camptocamp.github.io
+            - https://gmf-test.sig.cloud.camptocamp.net
             - https://fredj.github.io
             - https://pgiraud.github.io
             - https://ger-benjamin.github.io
