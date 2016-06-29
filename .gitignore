@@ -36,6 +36,8 @@
 /deploy/hooks/post-restore-database
 /testDB/Dockerfile
 /testDB/11-schemas.sql
+/testDB/12-alembic.sql
+/testDB/13-alembic-static.sql
 /demo/version.py
 /demo/static/build/
 /demo/static-ngeo/build/

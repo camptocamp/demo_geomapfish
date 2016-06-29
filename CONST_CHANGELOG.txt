@@ -120,7 +120,9 @@ Version 2.0.0
     + /demo/static-ngeo/fonts/fontawesome-webfont.*
     + /demo/version.py
     + /mapserver/replace_db.sh
-    + /testDB/01-schemas.sql
+    + /testDB/11-schemas.sql
+    + /testDB/12-alembic.sql
+    + /testDB/13-alembic-static.sql
     * /testDB/Dockerfile
     + /.whiskey/action_hooks/pre-build
 

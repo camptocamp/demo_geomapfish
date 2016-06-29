@@ -39,6 +39,11 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
     "zoo": "Zoo",
     "bus_stop": "Bushaltestelle",
     "osm_scale": "OSM scale",
+    "entertainment": "Unterhaltung",
+    "sustenance": "Verköstigung",
+    "Hobbies": "Hobbys",
+    "accommodation": "Unterkunft",
+    "tourism_activity": "Touristenaktivität",
 
     "polygon": "Polygon",
     "line": "Linie",

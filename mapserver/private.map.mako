@@ -20,16 +20,19 @@ LAYER
     TOLERANCEUNITS pixels
     CLASS
         NAME "Hopitaux"
+        KEYIMAGE "symbols/hospital-2.png"
         STYLE
-            SYMBOL "circle"
-            SIZE 6
+            SYMBOL "hospital"
+            SIZE 30
             WIDTH 1
             OUTLINECOLOR 30 0 0
             COLOR 230 0 0
         END
         LABEL
             SIZE 10
-            OFFSET 0 -13
+            COLOR 56 117 215
+            OUTLINECOLOR 255 255 255
+            OFFSET 0 10
             PARTIALS FALSE
         END
     END
@@ -66,17 +69,29 @@ LAYER
     TOLERANCEUNITS pixels
     CLASS
         NAME "Casernes de pompiers"
+        KEYIMAGE "symbols/firemen.png"
         STYLE
             WIDTH 1
-            OUTLINECOLOR 30 0 0
+            OUTLINECOLOR 128 0 0
+            MAXSCALEDENOM 15000
         END
         STYLE
             WIDTH 1
-            COLOR 0 0 230
+            COLOR 228 0 0
             OPACITY 60
+            MAXSCALEDENOM 10000
+        END
+        STYLE
+            SYMBOL "firemen"
+            GEOMTRANSFORM "centroid"
+            SIZE 30
         END
         LABEL
             SIZE 10
+            COLOR 128 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            OFFSET 0 10
             PARTIALS FALSE
         END
     END
