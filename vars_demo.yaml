@@ -152,6 +152,7 @@ vars:
         layers: *headers
         raster: *headers
         profile: *headers
+        shortner: *headers
         login:
             access_control_max_age: 30
             access_control_allow_origin:
