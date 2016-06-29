@@ -8,6 +8,21 @@ SYMBOLSET
      FILLED true
      #ANCHORPOINT 0.5 0.5
   END
+
+  SYMBOL
+    NAME "postal"
+    TYPE PIXMAP
+    IMAGE "symbols/postal.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "police"
+    TYPE PIXMAP
+    IMAGE "symbols/police.png"
+    ANCHORPOINT 0.5 1
+  END
+
   SYMBOL
     NAME "busstop"
     TYPE PIXMAP
@@ -26,6 +41,20 @@ SYMBOLSET
     NAME "fillingstation"
     TYPE PIXMAP
     IMAGE "symbols/fillingstation.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "firemen"
+    TYPE PIXMAP
+    IMAGE "symbols/firemen.png"
+    ANCHORPOINT 0.5 1
+  END
+
+  SYMBOL
+    NAME "hospital"
+    TYPE PIXMAP
+    IMAGE "symbols/hospital-2.png"
     ANCHORPOINT 0.5 1
   END
 
