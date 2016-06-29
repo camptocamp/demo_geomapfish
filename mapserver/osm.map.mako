@@ -563,7 +563,7 @@ LAYER
         END
     END
     CLASS
-        NAME "bar"
+        NAME "Bar"
         EXPRESSION "bar"
         KEYIMAGE symbols/bar.png
         STYLE
@@ -599,7 +599,7 @@ LAYER
         END
     END
     CLASS
-        NAME "nightclub"
+        NAME "Boîte de nuit"
         EXPRESSION "nightclub"
         KEYIMAGE symbols/dancinghall.png
         STYLE
