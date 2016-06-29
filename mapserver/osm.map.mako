@@ -7,16 +7,6 @@ layers = [{
     "value": "cinema",
     "type": "cinema",
     "name": u"Cinémas"
-}, {
-    "column": "amenity",
-    "value": "police",
-    "type": "police",
-    "name": u"Postes de police"
-}, {
-    "column": "amenity",
-    "value": "post_office",
-    "type": "post_office",
-    "name": u"Offices de poste"
 }]
 %>
 % for layer in layers:
@@ -65,6 +55,96 @@ LAYER
     END
 END
 % endfor
+
+LAYER
+    NAME "police"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=amenity = 'police'"
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+
+    CLASS
+        NAME "Poste de police"
+        KEYIMAGE symbols/police.png
+        STYLE
+            SYMBOL "police"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 56 117 215
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    METADATA
+        "wms_title" "police"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
+
+LAYER
+    NAME "post_office"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=amenity = 'post_office'"
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+
+    CLASS
+        NAME "Office de poste"
+        KEYIMAGE symbols/postal.png
+        STYLE
+            SYMBOL "postal"
+            SIZE 30
+        END
+        LABEL
+            SIZE 12
+            OFFSET 0 10
+            COLOR 128 128 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            PARTIALS FALSE
+            MAXSCALEDENOM 150000
+        END
+    END
+    METADATA
+        "wms_title" "post_office"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
 
 LAYER
     NAME "fuel"
