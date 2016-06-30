@@ -40,7 +40,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
     "bus_stop": "Bushaltestelle",
     "osm_scale": "OSM scale",
     "entertainment": "Unterhaltung",
-    "sustenance": "Verköstigung",
+    "sustenance": "Verpflegung",
     "Hobbies": "Hobbys",
     "accommodation": "Unterkunft",
     "tourism_activity": "Touristenaktivität",

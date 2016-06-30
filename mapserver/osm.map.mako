@@ -363,7 +363,7 @@ LAYER
         END
     END
     CLASS
-        NAME "Hotels"
+        NAME "Hôtel"
         EXPRESSION 'hotel'
         KEYIMAGE symbols/hotel_0star.png
         STYLE
