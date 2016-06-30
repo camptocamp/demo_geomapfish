@@ -19,7 +19,7 @@ LAYER
     TOLERANCE 10
     TOLERANCEUNITS pixels
     CLASS
-        NAME "Hopitaux"
+        NAME "Hôpital"
         KEYIMAGE "symbols/hospital-2.png"
         STYLE
             SYMBOL "hospital"
