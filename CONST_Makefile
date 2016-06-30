@@ -1,5 +1,5 @@
 PYTHON_VERSION = $(shell $(VENV_BIN)/python -c "import sys; print('%i.%i' % (sys.version_info.major, sys.version_info.minor))" 2> /dev/null)
-PACKAGE = demo
+export PACKAGE = demo
 OPERATING_SYSTEM ?= LINUX
 
 ifeq ($(DEBUG), TRUE)
@@ -38,8 +38,15 @@ CONST_REQUIREMENT ?= CONST_requirements.txt
 PRINT_TMP ?= /tmp
 endif
 
+TEMPLATE_EXCLUDE += .build node_modules \
+	print/templates CONST_alembic \
+	$(PACKAGE)/static/lib
+FIND_OPTS = $(foreach ELEM, $(TEMPLATE_EXCLUDE),-path ./$(ELEM) -prune -o) -type f
+
+
 # Don't minify the js / css, ...
 DEVELOPMENT ?= FALSE
+export DEVELOPMENT
 # Language provided by the application
 LANGUAGES ?= en fr de
 NGEO_INTERFACES ?= desktop mobile
@@ -49,6 +56,7 @@ PRINT_VERSION ?= 3
 # Enable Docker target
 DOCKER ?= FALSE
 DOCKER_BASE ?= no
+export DOCKER_BASE
 DOCKER_TAG ?= latest
 # Use deploy
 ifeq ($(DOCKER), FALSE)
@@ -57,6 +65,7 @@ else
 DEPLOY ?= FALSE
 INSTANCE_ID =
 endif
+export INSTANCE_ID
 
 PIP_CMD ?= $(VENV_BIN)/pip
 PIP_VERSION ?= pip==8.1.2
@@ -64,10 +73,10 @@ SETUPTOOLS_VERSION ?= setuptools==21.1.0
 
 GIT_MODULES_FOLDER ?= .git/modules/
 
-ifneq ($(CGXP_INTERFACE), "")
+ifneq ($(CGXP_INTERFACES), "")
 DEFAULT_WEB_RULE += build-cgxp
 endif
-ifneq ($(NGEO_INTERFACE), "")
+ifneq ($(NGEO_INTERFACES), "")
 DEFAULT_WEB_RULE += build-ngeo
 CLIENT_CHECK_RULE ?= lint-ngeo
 endif
@@ -77,7 +86,7 @@ DEFAULT_BUILD_RULES ?= .build/requirements.timestamp $(WEB_RULE) $(PACKAGE)/vers
 
 # TileCloud-chain
 WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-$(INSTANCE_ID).xml
-ENVIRONMENT_VARS += WMTSCAPABILITIES_PATH=${WMTSCAPABILITIES_PATH}
+export WMTSCAPABILITIES_PATH
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 WMTSCAPABILITIES_FILE ?= /var/sig/tiles/$(WMTSCAPABILITIES_PATH)
 DEFAULT_BUILD_RULES += apache/tiles.conf tilegeneration/config.yaml
@@ -91,6 +100,9 @@ ifndef TEST_PACKAGES
 TEST_PACKAGES = common
 ifeq ($(DOCKER), FALSE)
 TEST_PACKAGES += main
+ifneq (, $(filter $(PRINT_VERSION), 2 3))
+TEST_PACKAGES += print
+endif
 ifeq ($(MAPSERVER), TRUE)
 TEST_PACKAGES += mapserver
 endif
@@ -103,13 +115,13 @@ endif
 ifeq ($(DEPLOY), TRUE)
 TEST_PACKAGES += deploy
 endif
-ifneq ($(NGEO_INTERFACE), "")
+ifneq ($(NGEO_INTERFACES), "")
 TEST_PACKAGES += ngeo
 endif
 else
 TEST_PACKAGES += docker
-endif
-endif
+endif # DOCKER
+endif # TEST_PACKAGES
 
 # Make rules
 DEFAULT_BUILD_RULES ?= .build/requirements.timestamp $(WEB_RULE) $(PACKAGE)/version.py build-server apache
@@ -117,10 +129,13 @@ ifneq ($(TEST_PACKAGES), FALSE)
 DEFAULT_BUILD_RULES += test-packages
 endif
 ifeq ($(TILECLOUD_CHAIN), TRUE)
-DEFAULT_BUILD_RULES += apache/tiles.conf
+DEFAULT_BUILD_RULES += tilegeneration/config.yaml
 endif
 ifeq ($(PRINT_VERSION), 3)
 DEFAULT_BUILD_RULES += print
+endif
+ifeq (${DEPOY}, TRUE)
+DEFAULT_BUILD_RULES += deploy/deploy.cfg
 endif
 ifeq (${DOCKER}, TRUE)
 DEFAULT_BUILD_RULES += testDB
@@ -129,18 +144,15 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions_requirements.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.1.0.dev9
+REQUIREMENTS ?= c2cgeoportal==2.1.0.dev11
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 DEV_REQUIREMENTS += 'tilecloud-chain>=1.0.0dev'
 endif
-ifneq ($(CGXP_INTERFACE), "")
+ifneq ($(CGXP_INTERFACES), "")
 REQUIREMENTS += JSTools
 DEV_REQUIREMENTS += 'c2c.cssmin>=0.7dev6'
-endif
-ifneq ($(NGEO_INTERFACE), "")
-DEV_REQUIREMENTS += http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 endif
 
 OUTPUT_DIR = $(PACKAGE)/static/build
@@ -161,10 +173,9 @@ TOUCHBACK_TXRC = touch --date "$(shell stat -c '%y' $(TX_RC))" $(TX_RC)
 endif
 
 MAP_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map" -print)
-MAP_TEMPLATE_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map.in" -print)
 MAP_MAKO_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map.mako" -print)
 MAP_JINJA_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map.jinja" -print)
-MAP_FILES +=  $(MAP_TEMPLATE_FILES:.in=) $(MAP_MAKO_FILES:.mako=) $(MAP_JINJA_FILES:.jinja=)
+MAP_FILES +=  $(MAP_MAKO_FILES:.mako=) $(MAP_JINJA_FILES:.jinja=)
 
 I18N_SOURCE_FILES += $(APP_HTML_FILES) \
 	$(APP_JS_FILES) \
@@ -389,34 +400,38 @@ PRINT_REQUIREMENT += $(PRINT_EXTRA_LIBS) \
 I18N_SOURCE_FILES += print/print-apps/$(PACKAGE)/config.yaml
 endif
 
+PRINT_FILES += $(shell $(FIND) print $(FIND_OPTS) -not -name ".mako" -not -name ".jinja" -print)
+PRINT_MAKO_FILES += $(shell $(FIND) print $(FIND_OPTS) -name "*.mako" -print)
+PRINT_JINJA_FILES += $(shell $(FIND) print $(FIND_OPTS) -name "*.jinja" -print)
+PRINT_FILES +=  $(PRINT_MAKO_FILES:.mako=) $(PRINT_JINJA_FILES:.jinja=)
+PRINT_REQUIREMENT += $(PRINT_FILES)
+
 ifeq ($(DOCKER), FALSE)
 PRINT_REQUIREMENT += $(PRINT_BASE_DIR)/$(PRINT_BASE_WAR)
 endif
 
 # Apache
 APACHE_ENTRY_POINT ?= /$(INSTANCE_ID)/
+export APACHE_ENTRY_POINT
 APACHE_VHOST ?= $(PACKAGE)
 APACHE_CONF_DIR ?= /var/www/vhosts/$(APACHE_VHOST)/conf
 APACHE_GRACEFUL ?= sudo /usr/sbin/apache2ctl graceful
-CONF_FILES_IN = $(shell ls -1 apache/*.conf.in 2> /dev/null)
+CONF_FILES += apache/application.wsgi
 CONF_FILES_MAKO = $(shell ls -1 apache/*.conf.mako 2> /dev/null)
 CONF_FILES_JINJA = $(shell ls -1 apache/*.conf.jinja 2> /dev/null)
-CONF_FILES = $(shell ls -1 apache/*.conf 2> /dev/null) $(CONF_FILES_IN:.in=) $(CONF_FILES_MAKO:.mako=) $(CONF_FILES_JINJA:.jinja=)
+CONF_FILES += $(shell ls -1 apache/*.conf 2> /dev/null) $(CONF_FILES_MAKO:.mako=) $(CONF_FILES_JINJA:.jinja=)
 ifeq ($(TILECLOUD_CHAIN), TRUE)
-CONF_FILES += apache/tiles.conf
+CONF_FILES += apache/tiles.conf apache/mapcache.xml
 endif
 PY_FILES = $(shell $(FIND) $(PACKAGE) -type f -name '*.py' -print)
 TEMPLATES_FILES = $(shell $(FIND) $(PACKAGE)/templates -type f -print)
 
 # Templates
-TEMPLATE_EXCLUDE += .build node_modules print/templates \
-	CONST_alembic/main/script.py.mako \
-	CONST_alembic/static/script.py.mako \
-	$(PACKAGE)/static/lib
-FIND_OPTS = $(foreach ELEM, $(TEMPLATE_EXCLUDE),-path ./$(ELEM) -prune -o) -type f
-TEMPLATE_FILES = $(shell $(FIND) $(FIND_OPTS) -name "*.in" -print)
-MAKO_FILES = $(shell $(FIND) $(FIND_OPTS) -name "*.mako" -print)
-JINJA_FILES = $(shell $(FIND) $(FIND_OPTS) -name "*.jinja" -print)
+ALL_MAKO_FILES = $(shell $(FIND) $(FIND_OPTS) -name "*.mako" -print)
+ALL_JINJA_FILES = $(shell $(FIND) $(FIND_OPTS) -name "*.jinja" -print)
+EXTRA_EXCLUDE = $(foreach ELEM, print apache mapfile deploy jsbuild tilegeneration,-path ./$(ELEM) -prune -o)
+MAKO_FILES = $(shell $(FIND) $(EXTRA_EXCLUDE) $(FIND_OPTS) -name "*.mako" -print)
+JINJA_FILES = $(shell $(FIND) $(EXTRA_EXCLUDE) $(FIND_OPTS) -name "*.jinja" -print)
 VARS_FILES += CONST_vars.yaml $(VARS_FILE)
 VARS_DEPENDS += $(VARS_FILES) .build/node_modules.timestamp
 CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid_closure \
@@ -425,11 +440,6 @@ CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
 	tiles_url checker check_collector default_max_age jsbuild package srid \
 	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser
-ENVIRONMENT_VARS += INSTANCE_ID=$(INSTANCE_ID) \
-	APACHE_ENTRY_POINT=$(APACHE_ENTRY_POINT) \
-	DOCKER_BASE=$(DOCKER_BASE) \
-	DEVELOPMENT=$(DEVELOPMENT) \
-	PACKAGE=$(PACKAGE)
 C2C_TEMPLATE_CMD = $(ENVIRONMENT_VARS) $(VENV_BIN)/c2c-template --vars $(VARS_FILE)
 MAKE_FILES = $(shell ls -1 *.mk) CONST_Makefile
 
@@ -503,10 +513,7 @@ cleanall: clean
 	rm -rf .build
 	rm -rf node_modules
 	rm -f $(ANGULAR_LOCALES_FILES)
-	rm -f .build/externs/angular-$(ANGULAR_VERSION).js \
-		.build/externs/angular-$(ANGULAR_VERSION)-q_templated.js \
-		.build/externs/angular-$(ANGULAR_VERSION)-http-promise_templated.js \
-		.build/externs/jquery-1.9.js
+
 ifdef PRINT_BASE_WAR
 	rm -f $(PRINT_BASE_DIR)/$(PRINT_BASE_WAR) $(PRINT_EXTRA_LIBS)
 endif
@@ -532,7 +539,7 @@ build-server: template-generate compile-py-catalog $(SERVER_LOCALISATION_FILES)
 build-cgxp: $(JSBUILD_MAIN_OUTPUT_FILES) $(CSS_BASE_OUTPUT) $(CSS_API_OUTPUT) $(CSS_XAPI_OUTPUT)
 
 .PHONY: lint-ngeo
-lint-ngeo: $(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX) .build/node_modules.timestamp .build/gjslint.timestamp .build/jshint.timestamp
+lint-ngeo: .build/eslint.timestamp
 
 .PHONY: serve
 serve: build development.ini
@@ -556,23 +563,14 @@ upgrade-db: alembic.ini alembic_static.ini $(VENV_BIN)/alembic$(PYTHON_BIN_POSTF
 
 .PHONY: template-clean
 template-clean:
-	rm -f $(TEMPLATE_FILES:.in=)
-	rm -f $(MAKO_FILES:.mako=)
-	rm -f $(JINJA_FILES:.jinja=)
+	rm -f $(ALL_MAKO_FILES:.mako=)
+	rm -f $(ALL_JINJA_FILES:.jinja=)
 	rm -f .build/config.yaml
 
 .PHONY: template-generate
-template-generate: $(TEMPLATE_FILES:.in=) $(MAKO_FILES:.mako=) $(JINJA_FILES:.jinja=) .build/config.yaml
+template-generate: $(ALL_MAKO_FILES:.mako=) $(ALL_JINJA_FILES:.jinja=) .build/config.yaml
 
-$(TEMPLATE_FILES:.in=) $(MAKO_FILES:.mako=) $(JINJA_FILES:.jinja=): $(VENV_BIN)/c2c-template$(PYTHON_BIN_POSTFIX) $(VARS_DEPENDS)
-
-%: %.in $(INSTANCE_ID_MARKER)
-	$(PRERULE_CMD)
-ifeq ($(origin VARS_FILE), undefined)
-	@echo "Error: the variable VARS_FILE is required."
-	exit 1
-endif
-	$(C2C_TEMPLATE_CMD) --engine template --files $<
+$(MAKO_FILES:.mako=) $(JINJA_FILES:.jinja=): $(VENV_BIN)/c2c-template$(PYTHON_BIN_POSTFIX) $(VARS_DEPENDS)
 
 %: %.mako $(INSTANCE_ID_MARKER)
 	$(PRERULE_CMD)
@@ -622,7 +620,8 @@ $(PACKAGE)/locale/$(PACKAGE)-client.pot: \
 		lingua-client.cfg \
 		$(I18N_DEPENDENTIES) \
 		$(I18N_SOURCE_FILES) \
-		$(VENV_BIN)/pot-create$(PYTHON_BIN_POSTFIX)
+		$(VENV_BIN)/pot-create$(PYTHON_BIN_POSTFIX) \
+		.build/mapserver.timestamp
 	$(PRERULE_CMD)
 	$(VENV_BIN)/pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
 	# removes the always changed date line
@@ -719,7 +718,7 @@ node_modules/%: .build/node_modules.timestamp
 node_modules/ngeo/node_modules/%: node_modules/%
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	ln -s ../../../$< $@
+	[ -e $@ ] || ln -s ../../../$< $@
 	touch --no-create $@
 
 .PRECIOUS: node_modules/font-awesome/fonts/fontawesome-webfont.%
@@ -789,8 +788,6 @@ node_modules/ngeo/buildtools/mako_build.json: .build/node_modules.timestamp
 		--var ngeo_folder=node_modules/ngeo/ \
 		--var generate_exports=true $< > $@
 
-node_modules/.bin/closure-util$(NODE_BIN_POSTFIX): .build/node_modules.timestamp
-
 .PRECIOUS: .build/%.js
 .build/%.js: .build/%.json $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
 		.build/gmftemplatecache.js \
@@ -798,9 +795,9 @@ node_modules/.bin/closure-util$(NODE_BIN_POSTFIX): .build/node_modules.timestamp
 		.build/externs/angular-$(ANGULAR_VERSION)-q_templated.js \
 		.build/externs/angular-$(ANGULAR_VERSION)-http-promise_templated.js \
 		.build/externs/jquery-1.9.js \
-		node_modules/.bin/closure-util$(NODE_BIN_POSTFIX)
+		.build/node_modules.timestamp
 	$(PRERULE_CMD)
-	node_modules/.bin/closure-util build $< $@
+	node node_modules/ngeo/buildtools/build.js $< $@
 
 node_modules/ngeo/buildtools/templatecache.mako.js: .build/node_modules.timestamp
 
@@ -845,7 +842,7 @@ $(APP_OUTPUT_DIR)/templatecache.js: .build/gmftemplatecache.js
 
 package.json:
 	$(PRERULE_CMD)
-ifneq ($(NGEO_INTERFACE), "")
+ifneq ($(NGEO_INTERFACES), "")
 	@echo Missing $@ required file by ngeo
 	exit 1
 else
@@ -863,27 +860,17 @@ endif
 .build/node_modules.timestamp: package.json $(NPM_CMD)
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-ifneq ($(NGEO_INTERFACE), "")
+ifneq ($(NGEO_INTERFACES), "")
 	$(NPM_CMD) install || sleep 20 || $(NPM_CMD) install || sleep 90 || $(NPM_CMD) install
 endif
 	touch $@
 
-$(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
+node_modules/.bin/eslint$(NODE_BIN_POSTFIX): .build/node_modules.timestamp
 
-.build/gjslint.timestamp: $(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX) \
-	$(PRERULE_CMD)
-	.build/node_modules.timestamp \
-	$(APP_JS_FILES)
-	mkdir -p $(dir $@)
-	$(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX) --jslint_error=all --strict --custom_jsdoc_tags=event,fires,function,classdesc,api,observable $(filter-out $(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX) .build/node_modules.timestamp, $?)
-	touch $@
-
-node_modules/.bin/jshint$(NODE_BIN_POSTFIX): .build/node_modules.timestamp
-
-.build/jshint.timestamp: node_modules/.bin/jshint$(NODE_BIN_POSTFIX) $(APP_JS_FILES)
+.build/eslint.timestamp: node_modules/.bin/eslint$(NODE_BIN_POSTFIX) $(APP_JS_FILES)
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	node_modules/.bin/jshint$(NODE_BIN_POSTFIX) --verbose $(filter-out node_modules/.bin/jshint$(NODE_BIN_POSTFIX), $?)
+	node_modules/.bin/eslint$(NODE_BIN_POSTFIX) $(filter-out node_modules/.bin/eslint$(NODE_BIN_POSTFIX), $?)
 	touch $@
 
 
@@ -901,7 +888,7 @@ update:
 	git submodule foreach git submodule update --init
 	git submodule foreach git clean -fd
 	git submodule foreach git submodule foreach git clean -fd
-ifneq ($(NGEO_INTERFACE), "")
+ifneq ($(NGEO_INTERFACES), "")
 	rm -f .build/node_modules.timestamp
 	$(NPM_CMD) install --force
 	touch .build/node_modules.timestamp
@@ -975,8 +962,6 @@ test-packages: .build/test-packages.timestamp
 
 # Check
 
-$(VENV_BIN)/gjslint$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
-
 $(VENV_BIN)/flake8$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 
 # Venv
@@ -1002,7 +987,7 @@ $(VENV_BIN)/flake8$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 
 .PHONY: print
 ifeq ($(DOCKER), TRUE)
-print: $(MAKO_FILES:.mako=) print/Dockerfile $(PRINT_REQUIREMENT)
+print: print/Dockerfile $(PRINT_REQUIREMENT)
 	docker build -t $(DOCKER_BASE)_print:$(DOCKER_TAG) print
 
 else  # !DOCKER
@@ -1111,15 +1096,24 @@ $(APACHE_CONF_DIR)/$(INSTANCE_ID).conf:
 	echo "Include $(shell pwd)/apache/*.conf" > $@
 
 .build/apache.timestamp: \
+		.build/mapserver.timestamp \
 		.build/config.yaml \
 		$(CONF_FILES) \
 		apache/application.wsgi \
 		$(PY_FILES) \
 		$(TEMPLATES_FILES) \
-		$(APACHE_CONF_DIR)/$(INSTANCE_ID).conf \
 		.build/requirements.timestamp \
 		$(PRINT_OUTPUT_WAR) \
-		development.ini production.ini
+		development.ini production.ini \
+		$(JSON_CLIENT_LOCALISATION_FILES)
+	$(PRERULE_CMD)
+	$(APACHE_GRACEFUL)
+	touch $@
+
+.build/mapserver.timestamp: \
+		$(TEMPLATES_FILES) \
+		apache/mapserver.conf \
+		$(APACHE_CONF_DIR)/$(INSTANCE_ID).conf
 	$(PRERULE_CMD)
 	$(APACHE_GRACEFUL)
 	touch $@
@@ -1167,6 +1161,14 @@ upgrade3: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
 .PHONY: upgrade4
 upgrade4: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
 	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION} --step 4
+
+.PHONY: upgrade5
+upgrade5: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
+	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION} --step 5
+
+.PHONY: upgrade6
+upgrade6: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
+	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION} --step 6
 
 # Docker
 ifeq ($(DOCKER), TRUE)

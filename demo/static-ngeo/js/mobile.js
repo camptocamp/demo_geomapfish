@@ -13,22 +13,9 @@ goog.provide('demo_mobile');
 goog.require('demo');
 goog.require('gmf.AbstractMobileController');
 /** @suppress {extraRequire} */
-goog.require('gmf.authenticationDirective');
-/** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG2056');
 /** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG21781');
-/** @suppress {extraRequire} */
-goog.require('ngeo.mobileGeolocationDirective');
-
-/* global demo */
-
-// Filter to demoly by default on all coordinates.
-demo.module.constant('ngeoPointfilter', 'ngeoNumberCoordinates:0:{x} E, {y} N');
-
-demo.module.constant('ngeoQueryOptions', {
-  'limit': 20
-});
 
 
 /**
@@ -50,6 +37,13 @@ demo.MobileController = function($scope, $injector) {
         }
       },
       $scope, $injector);
+
+  /**
+   * @type {Array.<string>}
+   * @export
+   */
+  this.searchCoordinatesProjections = ['EPSG:21781', 'EPSG:2056', 'EPSG:4326'];
+
 };
 goog.inherits(demo.MobileController, gmf.AbstractMobileController);
 

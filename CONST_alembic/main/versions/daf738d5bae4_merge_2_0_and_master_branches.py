@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 
 # Copyright (c) 2016, Camptocamp SA
 # All rights reserved.
@@ -28,29 +27,23 @@
 # of the authors and should not be interpreted as representing official policies,
 # either expressed or implied, of the FreeBSD Project.
 
-"""${message}
+"""Merge 2.0 and master branches
 
-Revision ID: ${up_revision}
-Revises: ${down_revision}
-Create Date: ${create_date}
+Revision ID: daf738d5bae4
+Revises: ('6a412d9437b1', '951ff84bd8ec')
+Create Date: 2016-06-29 13:50:59.746514
 """
 
-from alembic import op, context
-
 # revision identifiers, used by Alembic.
-revision = ${repr(up_revision)}
-down_revision = ${repr(down_revision)}
-branch_labels = ${repr(branch_labels)}
-depends_on = ${repr(depends_on)}
+revision = 'daf738d5bae4'
+down_revision = ('6a412d9437b1', '951ff84bd8ec')
+branch_labels = None
+depends_on = None
 
 
 def upgrade():
-    schema = context.get_context().config.get_main_option('schema')
-
-    ${upgrades if upgrades else '# Instructions'}
+    pass
 
 
 def downgrade():
-    schema = context.get_context().config.get_main_option('schema')
-
-    ${downgrades if downgrades else '# Instructions'}
+    pass

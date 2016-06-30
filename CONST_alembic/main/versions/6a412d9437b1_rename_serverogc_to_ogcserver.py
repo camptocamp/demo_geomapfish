@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 
 # Copyright (c) 2016, Camptocamp SA
 # All rights reserved.
@@ -28,29 +27,33 @@
 # of the authors and should not be interpreted as representing official policies,
 # either expressed or implied, of the FreeBSD Project.
 
-"""${message}
+"""Rename ServerOGC to OGCServer
 
-Revision ID: ${up_revision}
-Revises: ${down_revision}
-Create Date: ${create_date}
+Revision ID: 6a412d9437b1
+Revises: 29f2a32859ec
+Create Date: 2016-06-28 18:08:23.888198
 """
 
 from alembic import op, context
 
 # revision identifiers, used by Alembic.
-revision = ${repr(up_revision)}
-down_revision = ${repr(down_revision)}
-branch_labels = ${repr(branch_labels)}
-depends_on = ${repr(depends_on)}
+revision = '6a412d9437b1'
+down_revision = '29f2a32859ec'
+branch_labels = None
+depends_on = None
 
 
 def upgrade():
     schema = context.get_context().config.get_main_option('schema')
 
-    ${upgrades if upgrades else '# Instructions'}
+    op.rename_table('server_ogc', 'ogc_server', schema=schema)
+    with op.batch_alter_table('layer_wms', schema=schema) as table_op:
+        table_op.alter_column('server_ogc_id', new_column_name='ogc_server_id')
 
 
 def downgrade():
     schema = context.get_context().config.get_main_option('schema')
 
-    ${downgrades if downgrades else '# Instructions'}
+    op.rename_table('ogc_server', 'server_ogc', schema=schema)
+    with op.batch_alter_table('layer_wms', schema=schema) as table_op:
+        table_op.alter_column('ogc_server_id', new_column_name='server_ogc_id')

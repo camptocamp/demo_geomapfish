@@ -1,5 +1,6 @@
 <%
 from json import dumps
+from c2cgeoportal.lib-cacheversion import get_cache_version
 %>
 <!DOCTYPE html>
 <html lang="{{mobileCtrl.lang}}" ng-app="demo" ng-controller="MobileController as mainCtrl">
@@ -8,7 +9,7 @@ from json import dumps
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/image/favicon.png')}"/>
+    <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/image/favicon.ico')}"/>
 % if debug:
     <link rel="stylesheet/less" href="${request.static_url('%s/ngeo/contribs/gmf/less/font.less' % request.registry.settings['node_modules_path'])}" type="text/css">
     <link rel="stylesheet/less" href="${request.static_url('demo:static-ngeo/less/mobile.less')}" type="text/css">
@@ -22,12 +23,12 @@ from json import dumps
                    'nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
     <main ng-class="{'search-is-active': mainCtrl.searchOverlayVisible}">
       <gmf-map gmf-map-map="mainCtrl.map"
-        ngeo-mobile-query=""
-        ngeo-mobile-query-map="::mainCtrl.map"
-        ngeo-mobile-query-active="mainCtrl.queryActive"></gmf-map>
-      <gmf-mobiledisplayqueries
-        gmf-mobiledisplayqueries-featuresstyle="::mainCtrl.queryFeatureStyle">
-      </gmf-mobiledisplayqueries>
+        ngeo-map-query=""
+        ngeo-map-query-map="::mainCtrl.map"
+        ngeo-map-query-active="mainCtrl.queryActive"></gmf-map>
+      <gmf-displayqueries
+        gmf-displayqueries-featuresstyle="::mainCtrl.queryFeatureStyle">
+      </gmf-displayqueries>
       <div
         class="measure-tools-control"
         gmf-mobile-measure-length
@@ -102,7 +103,7 @@ from json import dumps
         gmf-themeselector-defaulttheme="OSM"
         gmf-themeselector-currenttheme="mainCtrl.theme"
         gmf-themeselector-filter="::mainCtrl.filter"
-        gmf-mobile-nav-back="mainCtrl.theme.name">
+        gmf-mobile-nav-back-on-click>
       </gmf-themeselector>
     </nav>
     <nav class="nav-right" gmf-mobile-nav>
@@ -149,7 +150,7 @@ from json import dumps
         window.CLOSURE_NO_DEPS = true;
     </script>
     <script src="${request.static_url('%s/jquery/dist/jquery.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/ngeo/contrib/gmf/third-party/jquery-ui/jquery-ui.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/ngeo/contribs/gmf/third-party/jquery-ui/jquery-ui.min.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular/angular.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-sanitize/angular-sanitize.js' % request.registry.settings['node_modules_path'])}"></script>
@@ -174,25 +175,25 @@ from json import dumps
     <script src="${request.static_url('demo:static-ngeo/build/mobile.js')}"></script>
 % endif
     <script>
-      (function() {
-        var urlElements = window.location.pathname.split('/');
+      (function() {        var urlElements = window.location.pathname.split('/');
 
 
         var gmfModule = angular.module('gmf');
         gmfModule.constant('angularLocaleScript', '${ request.static_url('demo:static-ngeo/build/angular-locale_{{locale}}.js') }');
-var langUrls = {
+        var langUrls = {
 ${ ',\n'.join([
-    "             '{lang}': '{url}'".format(
+    "          '{lang}': '{url}'".format(
         lang=lang,
         url=request.static_url('demo:static-ngeo/build/{lang}.json'.format(lang=lang))
     )
     for lang in request.registry.settings["available_locale_names"]
 ]) | n}
-           });
+        };
 
         var module = angular.module('demo');
         module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
         module.constant('langUrls', langUrls);
+        module.constant('cacheVersion', get_cache_version());
         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"limit": "20"}) | n}');
         module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
