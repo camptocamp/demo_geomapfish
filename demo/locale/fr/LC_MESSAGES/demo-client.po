@@ -11,14 +11,6 @@ msgstr ""
 "#-#-#-#-#  demo-db.pot  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .build/config.yaml:raster/aster
-msgid "aster"
-msgstr "ASTER"
-
-#: .build/config.yaml:raster/srtm
-msgid "srtm"
-msgstr "SRTM"
-
 #: demo/templates/desktop.html:8
 msgid "Desktop Application"
 msgstr "Application bureau"
@@ -48,7 +40,7 @@ msgstr "Mesure et dessin"
 msgid "Mobile Application"
 msgstr "Application mobile"
 
-#: demo/templates/mobile.html:74 demo/templates/mobile.html:111
+#: demo/templates/mobile.html:111 demo/templates/mobile.html:74
 msgid "Back"
 msgstr "Retour"
 
@@ -56,7 +48,7 @@ msgstr "Retour"
 msgid "Background"
 msgstr "Fond de carte"
 
-#: demo/templates/mobile.html:83 demo/templates/mobile.html:102
+#: demo/templates/mobile.html:102 demo/templates/mobile.html:83
 msgid "Themes"
 msgstr "Thèmes"
 
@@ -72,73 +64,647 @@ msgstr "Coordonnée"
 msgid "Length"
 msgstr "Longueur"
 
+#: .build/config.yaml:raster/aster
+msgid "aster"
+msgstr "ASTER"
+
+#: .build/config.yaml:raster/srtm
+msgid "srtm"
+msgstr "SRTM"
+
+#: theme:Paysage group:Paysage
+msgid "Paysage"
+msgstr ""
+
+#: theme:Gestion des eaux group:Gestion
+msgid "Gestion des eaux"
+msgstr ""
+
+#: theme:Patrimoine group:Patrimoine
+msgid "Patrimoine"
+msgstr ""
+
+#: theme:Administration group:Administration
+msgid "Administration"
+msgstr ""
+
+#: theme:Cadastre group:Cadastre
+msgid "Cadastre"
+msgstr ""
+
+#: theme:Transport group:Transport
+msgid "Transport"
+msgstr ""
+
+#: theme:Enseignement 2
+msgid "Enseignement 2"
+msgstr "Enseignement"
+
+#: theme:OSM
+msgid "OSM"
+msgstr ""
+
+#: theme:Edit group:Edit
+msgid "Edit"
+msgstr "Edition"
+
+#: theme:Equipement group:Equipement
+msgid "Equipement"
+msgstr ""
+
+#: theme:Enseignement group:Enseignement
+msgid "Enseignement"
+msgstr ""
+
+#: group:Layers
+msgid "Layers"
+msgstr "Couches"
+
+#: group:Group
+msgid "Group"
+msgstr "Groupe"
+
+#: group:OSM functions mixed
+msgid "OSM functions mixed"
+msgstr "Fonctions OSM mixed"
+
+#: group:background
+msgid "background"
+msgstr "Fond de carte"
+
+#: group:test
+msgid "test"
+msgstr "Test"
+
+#: group:test2
+msgid "test2"
+msgstr "Deuxième test"
+
+#: group:Loisirs
+msgid "Loisirs"
+msgstr ""
+
+#: group:osm_time
+msgid "osm_time"
+msgstr "Temps OSM"
+
+#: group:OSM functions
+msgid "OSM functions"
+msgstr "Fonctions OSM"
+
+#: l_wms:information
+msgid "information"
+msgstr "Informations"
+
+#: l_wms.information:information
+msgid "Cluster_FeatureCount"
+msgstr "Grappe nombre elements"
+
+#: l_wms.information:information
+msgid "Cluster_Group"
+msgstr "Grappe groupe"
+
+#: l_wms.information:information
+msgid "Cluster_BaseFID"
+msgstr "Grappe base FID"
+
+#: l_wms:cinema
+msgid "cinema"
+msgstr "Cinéma"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_time_r_s:osm_time
+#: l_wms.osm_scale:osm_scale l_wms.hospitals:hospitals
+#: l_wms.firestations:firestations l_wms.fuel:fuel
+#: l_wms.osm_time_r_dp:osm_time l_wms.osm_time_v_dp:osm_time
+#: l_wms.osm_time_v_s:osm_time l_wms.osm_time_r_dp_2:osm_time
+msgid "display_name"
+msgstr "Nom"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_time_r_s:osm_time
+#: l_wms.line:line l_wms.polygon:polygon l_wms.point:point
+#: l_wms.osm_scale:osm_scale l_wms.hospitals:hospitals
+#: l_wms.firestations:firestations l_wms.fuel:fuel
+#: l_wms.osm_time_r_dp:osm_time l_wms.osm_open:osm_open
+#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
+#: l_wms.osm_time_r_dp_2:osm_time
+msgid "name"
+msgstr "Nom"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_time_r_s:osm_time
+#: l_wms.osm_scale:osm_scale l_wms.hospitals:hospitals
+#: l_wms.firestations:firestations l_wms.fuel:fuel
+#: l_wms.osm_time_r_dp:osm_time l_wms.osm_open:osm_open
+#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
+#: l_wms.osm_time_r_dp_2:osm_time
+msgid "osm_id"
+msgstr "ID OSM"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "access"
+msgstr "Acces"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "aerialway"
+msgstr "Remontée méchanique"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "amenity"
+msgstr "Equipements"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "barrier"
+msgstr "Barière"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "bicycle"
+msgstr "Vélo"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "brand"
+msgstr "Marque"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "building"
+msgstr "Batiment"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "covered"
+msgstr "Couvert"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "denomination"
+msgstr "Dénomination"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "ele"
+msgstr "Elévation"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "foot"
+msgstr "Foot"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "highway"
+msgstr "Routes"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "layer"
+msgstr "Couches"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "leisure"
+msgstr "Loisires"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "man_made"
+msgstr "Fabrication humaine"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "motorcar"
+msgstr "Véhicules"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "natural"
+msgstr "Naturel"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "operator"
+msgstr "Opérateur"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "population"
+msgstr "Population"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "power"
+msgstr "Energie"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "place"
+msgstr "Place"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "railway"
+msgstr "Chemins de fer"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "ref"
+msgstr "Réference"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "religion"
+msgstr "Religion"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "shop"
+msgstr "Magasin"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "sport"
+msgstr "Sport"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "surface"
+msgstr "Surface"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "tourism"
+msgstr "Tourism"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "waterway"
+msgstr "Cours d'eau"
+
+#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
+#: l_wms.entertainment:entertainment l_wms.parking:parking
+#: l_wms.place_of_worship:place_of_worship l_wms.police:police
+#: l_wms.post_office:post_office l_wms.sustenance:sustenance
+#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
+#: l_wms.fuel:fuel
+msgid "wood"
+msgstr "Bois"
+
+#: l_wms:bank
+msgid "bank"
+msgstr "Vide"
+
+#: l_wms:bus_stop
+msgid "bus_stop"
+msgstr "Arrêt de bus"
+
+#: l_wms:entertainment
+msgid "entertainment"
+msgstr ""
+
+#: l_wms:parking
+msgid "parking"
+msgstr "Parking"
+
+#: l_wms:place_of_worship
+msgid "place_of_worship"
+msgstr "Lieux de culte"
+
+#: l_wms:police
+msgid "police"
+msgstr "Police"
+
+#: l_wms:post_office
+msgid "post_office"
+msgstr "Poste"
+
+#: l_wms:sustenance
+msgid "sustenance"
+msgstr ""
+
+#: l_wms:tourism_activity
+#, fuzzy
+msgid "tourism_activity"
+msgstr "Tourism"
+
+#: l_wms:osm
+msgid "osm"
+msgstr "OSM"
+
+#: l_wms:osm_time_r_s
+msgid "osm_time_r_s"
+msgstr "Temps OSM curseur interval"
+
+#: l_wms.osm_time_r_s:osm_time l_wms.osm_time_r_dp:osm_time
+#: l_wms.osm_open:osm_open l_wms.osm_time_v_dp:osm_time
+#: l_wms.osm_time_v_s:osm_time l_wms.osm_time_r_dp_2:osm_time
+msgid "type"
+msgstr "Type"
+
+#: l_wms.osm_time_r_s:osm_time l_wms.osm_time_r_dp:osm_time
+#: l_wms.osm_open:osm_open l_wms.osm_time_v_dp:osm_time
+#: l_wms.osm_time_v_s:osm_time l_wms.osm_time_r_dp_2:osm_time
+msgid "timestamp"
+msgstr "Datation"
+
+#: l_wms:line
+msgid "line"
+msgstr "Lignes"
+
+#: l_wms:bank
+msgid "bank"
+msgstr "Banque"
+
+#: l_wms.line:line l_wms.polygon:polygon l_wms.point:point
+msgid "kind"
+msgstr "Sorte"
+
+#: l_wms:polygon
+msgid "polygon"
+msgstr "Polygon"
+
+#: l_wms:point
+msgid "point"
+msgstr "Point"
+
+#: l_wms:osm_scale
+msgid "osm_scale"
+msgstr "Échelles OSM"
+
+#: l_wms:ch.swisstopo.dreiecksvermaschung
+msgid "ch.swisstopo.dreiecksvermaschung"
+msgstr "MN95 Maillage triangulaire"
+
+#: l_wms:ch.swisstopo.geologie-gravimetrischer_atlas
+msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
+msgstr "Atlas gravimétrique 1:100000"
+
+#: l_wms:ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen
+msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
+msgstr "Groupes lithologiques"
+
+#: l_wms:ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung
+msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
+msgstr "Classification des roches"
+
+#: l_wms:hospitals
+msgid "hospitals"
+msgstr "Hôpitals"
+
+#: l_wms:firestations
+msgid "firestations"
+msgstr "Caserne de pompiers"
+
+#: l_wms:accommodation
+msgid "accommodation"
+msgstr ""
+
+#: l_wms:fuel
+msgid "fuel"
+msgstr "Station d'essence"
+
+#: l_wms:osm_time_r_dp
+msgid "osm_time_r_dp"
+msgstr "Temps OSM popup interval"
+
+#: l_wms:osm_open
+msgid "osm_open"
+msgstr "Ouverture OSM"
+
+#: l_wms.osm_open:osm_open
+msgid "open"
+msgstr "Ouvert"
+
+#: l_wms:Layer with very long name
+msgid "Layer with very very very very very long name"
+msgstr "Couche avec un nom très très très très très long"
+
+#: l_wms:two_layers
+msgid "two_layers"
+msgstr "Deux couches"
+
+#: l_wms:osm_time_v_dp
+msgid "osm_time_v_dp"
+msgstr "Temps OSM popup valeur"
+
+#: l_wms:osm_time_v_s
+msgid "osm_time_v_s"
+msgstr "Temps OSM curseur valeur"
+
+#: l_wms:osm_time_r_dp_2
+msgid "osm_time_r_dp_2"
+msgstr "Temps OSM popup interval"
+
+#: l_wmts:ch.are.alpenkonvention
+msgid "ch.are.alpenkonvention"
+msgstr "Convention des Alpes"
+
+#: l_wmts:ch.astra.ausnahmetransportrouten
+msgid "ch.astra.ausnahmetransportrouten"
+msgstr "Itinéraires convois exceptionnels"
+
+#: l_wmts:asitvd.fond_pourortho
+msgid "asitvd.fond_pourortho"
+msgstr "ASIT VD - Fond pour orthophoto"
+
+#: l_wmts:map print/print-apps/demo/config.yaml:template/1 A4 portrait/map
+#: print/print-apps/demo/config.yaml:template/2 landscape/map
+#: print/print-apps/demo/config.yaml:template/3 A3
+#: print/print-apps/demo/config.yaml:template/4
+msgid "map"
+msgstr "Carte"
+
+#: l_wmts:asitvd.fond_couleur
+msgid "asitvd.fond_couleur"
+msgstr "ASIT VD - Fond couleur"
+
+#: l_wmts:asitvd.fond_gris
+msgid "asitvd.fond_gris"
+msgstr "ASIT VD - Fond gris"
+
 #: print/print-apps/demo/config.yaml:template/1 A4 portrait
 msgid "1 A4 portrait"
 msgstr "A4 portrait"
 
-#: print/print-apps/demo/config.yaml:template/1
-#: print/print-apps/demo/config.yaml:template/2
-#: print/print-apps/demo/config.yaml:template/3
-#: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/comments
-#: portrait/comments
-msgid "comments"
-msgstr "Commentaires"
+#: print/print-apps/demo/config.yaml:template/1 A4 portrait/title
+#: print/print-apps/demo/config.yaml:template/2 landscape/title
+#: print/print-apps/demo/config.yaml:template/3 A3
+#: print/print-apps/demo/config.yaml:template/4
+msgid "title"
+msgstr "Titre"
 
-#: print/print-apps/demo/config.yaml:template/1
-#: print/print-apps/demo/config.yaml:template/2
-#: print/print-apps/demo/config.yaml:template/3
-#: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/datasource
-#: portrait/datasource
-msgid "datasource"
-msgstr "Source de donnée"
-
-#: print/print-apps/demo/config.yaml:template/1
-#: print/print-apps/demo/config.yaml:template/2
-#: print/print-apps/demo/config.yaml:template/3
-#: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/debug
-#: portrait/debug
-msgid "debug"
-msgstr "Debug"
-
-#: print/print-apps/demo/config.yaml:template/1
-#: print/print-apps/demo/config.yaml:template/2
-#: print/print-apps/demo/config.yaml:template/3
-#: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/legend
-#: portrait/legend
-msgid "legend"
-msgstr "Légende"
-
-#: print/print-apps/demo/config.yaml:template/1
-#: print/print-apps/demo/config.yaml:template/2
-#: print/print-apps/demo/config.yaml:template/3
-#: print/print-apps/demo/config.yaml:template/4 A3 A4 l_wmts:map landscape/map
-#: portrait/map
-msgid "map"
-msgstr "Carte"
-
-#: print/print-apps/demo/config.yaml:template/1
-#: print/print-apps/demo/config.yaml:template/2
-#: print/print-apps/demo/config.yaml:template/3
-#: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/northArrow
-#: portrait/northArrow
-msgid "northArrow"
-msgstr "Fléche du nord"
-
-#: print/print-apps/demo/config.yaml:template/1
-#: print/print-apps/demo/config.yaml:template/2
-#: print/print-apps/demo/config.yaml:template/3
-#: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/scalebar
-#: portrait/scalebar
+#: print/print-apps/demo/config.yaml:template/1 A4 portrait/scalebar
+#: print/print-apps/demo/config.yaml:template/2 landscape/scalebar
+#: print/print-apps/demo/config.yaml:template/3 A3
+#: print/print-apps/demo/config.yaml:template/4
 msgid "scalebar"
 msgstr "Bar d'echéles"
 
-#: print/print-apps/demo/config.yaml:template/1
-#: print/print-apps/demo/config.yaml:template/2
-#: print/print-apps/demo/config.yaml:template/3
-#: print/print-apps/demo/config.yaml:template/4 A3 A4 landscape/title
-#: portrait/title
-msgid "title"
-msgstr "Titre"
+#: print/print-apps/demo/config.yaml:template/1 A4 portrait/comments
+#: print/print-apps/demo/config.yaml:template/2 landscape/comments
+#: print/print-apps/demo/config.yaml:template/3 A3
+#: print/print-apps/demo/config.yaml:template/4
+msgid "comments"
+msgstr "Commentaires"
+
+#: print/print-apps/demo/config.yaml:template/1 A4 portrait/northArrow
+#: print/print-apps/demo/config.yaml:template/2 landscape/northArrow
+#: print/print-apps/demo/config.yaml:template/3 A3
+#: print/print-apps/demo/config.yaml:template/4
+msgid "northArrow"
+msgstr "Fléche du nord"
+
+#: print/print-apps/demo/config.yaml:template/1 A4 portrait/datasource
+#: print/print-apps/demo/config.yaml:template/2 landscape/datasource
+#: print/print-apps/demo/config.yaml:template/3 A3
+#: print/print-apps/demo/config.yaml:template/4
+msgid "datasource"
+msgstr "Source de donnée"
+
+#: print/print-apps/demo/config.yaml:template/1 A4 portrait/debug
+#: print/print-apps/demo/config.yaml:template/2 landscape/debug
+#: print/print-apps/demo/config.yaml:template/3 A3
+#: print/print-apps/demo/config.yaml:template/4
+msgid "debug"
+msgstr "Debug"
+
+#: print/print-apps/demo/config.yaml:template/1 A4 portrait/legend
+#: print/print-apps/demo/config.yaml:template/2 landscape/legend
+#: print/print-apps/demo/config.yaml:template/3 A3
+#: print/print-apps/demo/config.yaml:template/4
+msgid "legend"
+msgstr "Légende"
 
 #: print/print-apps/demo/config.yaml:template/2 A4 landscape
 msgid "2 A4 landscape"
@@ -151,514 +717,6 @@ msgstr "A3 portrait"
 #: print/print-apps/demo/config.yaml:template/4 A3 landscape
 msgid "4 A3 landscape"
 msgstr "A3 paysage"
-
-#: 2 theme:Enseignement
-msgid "Enseignement 2"
-msgstr "Enseignement"
-
-#: des eaux group:Gestion theme:Gestion
-msgid "Gestion des eaux"
-msgstr ""
-
-#: functions group:OSM
-msgid "OSM functions"
-msgstr "Fonctions OSM"
-
-#: functions group:OSM mixed
-msgid "OSM functions mixed"
-msgstr "Fonctions OSM mixed"
-
-#: group:Administration theme:Administration
-msgid "Administration"
-msgstr ""
-
-#: group:Cadastre theme:Cadastre
-msgid "Cadastre"
-msgstr ""
-
-#: group:Edit theme:Edit
-msgid "Edit"
-msgstr "Edition"
-
-#: group:Enseignement theme:Enseignement
-msgid "Enseignement"
-msgstr ""
-
-#: group:Equipement theme:Equipement
-msgid "Equipement"
-msgstr ""
-
-#: group:Group
-msgid "Group"
-msgstr "Groupe"
-
-#: group:Layers
-msgid "Layers"
-msgstr "Couches"
-
-#: group:Patrimoine theme:Patrimoine
-msgid "Patrimoine"
-msgstr ""
-
-#: group:Paysage theme:Paysage
-msgid "Paysage"
-msgstr ""
-
-#: group:Restaurants
-msgid "Restaurants"
-msgstr ""
-
-#: group:Transport theme:Transport
-msgid "Transport"
-msgstr ""
-
-#: group:background
-msgid "background"
-msgstr "Fond de carte"
-
-#: group:osm_time
-msgid "osm_time"
-msgstr "Temps OSM"
-
-#: group:test
-msgid "test"
-msgstr "Test"
-
-#: group:test2
-msgid "test2"
-msgstr "Deuxième test"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "access"
-msgstr "Acces"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "aerialway"
-msgstr "Remontée méchanique"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "amenity"
-msgstr "Equipements"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "barrier"
-msgstr "Barière"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "bicycle"
-msgstr "Vélo"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "brand"
-msgstr "Marque"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "building"
-msgstr "Batiment"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "covered"
-msgstr "Couvert"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "denomination"
-msgstr "Dénomination"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema
-#: l_wms.firestations:firestations l_wms.fuel:fuel l_wms.hospitals:hospitals
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.osm_time_r_dp:osm_time
-#: l_wms.osm_time_r_dp_2:osm_time l_wms.osm_time_r_s:osm_time
-#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
-#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
-#: l_wms.police:police l_wms.post_office:post_office
-#: l_wms.zoo:tourism_activity
-msgid "display_name"
-msgstr "Nom"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "ele"
-msgstr "Elévation"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "foot"
-msgstr "Foot"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "highway"
-msgstr "Routes"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "layer"
-msgstr "Couches"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "leisure"
-msgstr "Loisires"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "man_made"
-msgstr "Fabrication humaine"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "motorcar"
-msgstr "Véhicules"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema
-#: l_wms.firestations:firestations l_wms.fuel:fuel l_wms.hospitals:hospitals
-#: l_wms.hotel:hotel l_wms.line:line l_wms.osm_open:osm_open
-#: l_wms.osm_scale:osm_scale l_wms.osm_time_r_dp:osm_time
-#: l_wms.osm_time_r_dp_2:osm_time l_wms.osm_time_r_s:osm_time
-#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
-#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
-#: l_wms.point:point l_wms.police:police l_wms.polygon:polygon
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "name"
-msgstr "Nom"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "natural"
-msgstr "Naturel"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "operator"
-msgstr "Opérateur"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema
-#: l_wms.firestations:firestations l_wms.fuel:fuel l_wms.hospitals:hospitals
-#: l_wms.hotel:hotel l_wms.osm_open:osm_open l_wms.osm_scale:osm_scale
-#: l_wms.osm_time_r_dp:osm_time l_wms.osm_time_r_dp_2:osm_time
-#: l_wms.osm_time_r_s:osm_time l_wms.osm_time_v_dp:osm_time
-#: l_wms.osm_time_v_s:osm_time l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "osm_id"
-msgstr "ID OSM"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "place"
-msgstr "Place"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "population"
-msgstr "Population"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "power"
-msgstr "Energie"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "railway"
-msgstr "Chemins de fer"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "ref"
-msgstr "Réference"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "religion"
-msgstr "Religion"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "shop"
-msgstr "Magasin"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "sport"
-msgstr "Sport"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "surface"
-msgstr "Surface"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "tourism"
-msgstr "Tourism"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "waterway"
-msgstr "Cours d'eau"
-
-#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.cinema:cinema l_wms.fuel:fuel
-#: l_wms.hotel:hotel l_wms.osm_scale:osm_scale l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.zoo:tourism_activity
-msgid "wood"
-msgstr "Bois"
-
-#: l_wms.information:information
-msgid "Cluster_BaseFID"
-msgstr "Grappe base FID"
-
-#: l_wms.information:information
-msgid "Cluster_FeatureCount"
-msgstr "Grappe nombre elements"
-
-#: l_wms.information:information
-msgid "Cluster_Group"
-msgstr "Grappe groupe"
-
-#: l_wms.line:line l_wms.point:point l_wms.polygon:polygon
-msgid "kind"
-msgstr "Sorte"
-
-#: l_wms.osm_open:osm_open
-msgid "open"
-msgstr "Ouvert"
-
-#: l_wms.osm_open:osm_open l_wms.osm_time_r_dp:osm_time
-#: l_wms.osm_time_r_dp_2:osm_time l_wms.osm_time_r_s:osm_time
-#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
-msgid "timestamp"
-msgstr "Datation"
-
-#: l_wms.osm_open:osm_open l_wms.osm_time_r_dp:osm_time
-#: l_wms.osm_time_r_dp_2:osm_time l_wms.osm_time_r_s:osm_time
-#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
-msgid "type"
-msgstr "Type"
-
-#: l_wms:Layer long name very with
-msgid "Layer with very very very very very long name"
-msgstr "Couche avec un nom très très très très très long"
-
-#: l_wms:alpine_hut
-msgid "alpine_hut"
-msgstr "Cabane alpine"
-
-#: l_wms:bank
-msgid "bank"
-msgstr "Banque"
-
-#: l_wms:bus_stop
-msgid "bus_stop"
-msgstr "Arrêt de bus"
-
-#: l_wms:cafe
-msgid "cafe"
-msgstr "Café"
-
-#: l_wms:ch.swisstopo.dreiecksvermaschung
-msgid "ch.swisstopo.dreiecksvermaschung"
-msgstr "MN95 Maillage triangulaire"
-
-#: l_wms:ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung
-msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
-msgstr "Classification des roches"
-
-#: l_wms:ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen
-msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
-msgstr "Groupes lithologiques"
-
-#: l_wms:ch.swisstopo.geologie-gravimetrischer_atlas
-msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
-msgstr "Atlas gravimétrique 1:100000"
-
-#: l_wms:cinema
-msgid "cinema"
-msgstr "Cinéma"
-
-#: l_wms:firestations
-msgid "firestations"
-msgstr "Caserne de pompiers"
-
-#: l_wms:fuel
-msgid "fuel"
-msgstr "Station d'essence"
-
-#: l_wms:hospitals
-msgid "hospitals"
-msgstr "Hôpitals"
-
-#: l_wms:hotel
-msgid "hotel"
-msgstr "Hôtels"
-
-#: l_wms:information
-msgid "information"
-msgstr "Informations"
-
-#: l_wms:line
-msgid "line"
-msgstr "Lignes"
-
-#: l_wms:osm
-msgid "osm"
-msgstr "OSM"
-
-#: l_wms:osm_open
-msgid "osm_open"
-msgstr "Ouverture OSM"
-
-#: l_wms:osm_scale
-msgid "osm_scale"
-msgstr "Échelles OSM"
-
-#: l_wms:osm_time_r_dp
-msgid "osm_time_r_dp"
-msgstr "Temps OSM popup interval"
-
-#: l_wms:osm_time_r_dp_2
-msgid "osm_time_r_dp_2"
-msgstr "Temps OSM popup interval"
-
-#: l_wms:osm_time_r_s
-msgid "osm_time_r_s"
-msgstr "Temps OSM curseur interval"
-
-#: l_wms:osm_time_v_dp
-msgid "osm_time_v_dp"
-msgstr "Temps OSM popup valeur"
-
-#: l_wms:osm_time_v_s
-msgid "osm_time_v_s"
-msgstr "Temps OSM curseur valeur"
-
-#: l_wms:parking
-msgid "parking"
-msgstr "Parking"
-
-#: l_wms:place_of_worship
-msgid "place_of_worship"
-msgstr "Lieux de culte"
-
-#: l_wms:point
-msgid "point"
-msgstr "Point"
-
-#: l_wms:police
-msgid "police"
-msgstr "Police"
-
-#: l_wms:polygon
-msgid "polygon"
-msgstr "Polygon"
-
-#: l_wms:post_office
-msgid "post_office"
-msgstr "Poste"
-
-#: l_wms:restaurant
-msgid "restaurant"
-msgstr "Restaurants"
-
-#: l_wms:two_layers
-msgid "two_layers"
-msgstr "Deux couches"
-
-#: l_wms:zoo
-msgid "zoo"
-msgstr "Zoo"
-
-#: l_wmts:asitvd.fond_couleur
-msgid "asitvd.fond_couleur"
-msgstr "ASIT VD - Fond couleur"
-
-#: l_wmts:asitvd.fond_gris
-msgid "asitvd.fond_gris"
-msgstr "ASIT VD - Fond gris"
-
-#: l_wmts:asitvd.fond_pourortho
-msgid "asitvd.fond_pourortho"
-msgstr "ASIT VD - Fond pour orthophoto"
-
-#: l_wmts:ch.are.alpenkonvention
-msgid "ch.are.alpenkonvention"
-msgstr "Convention des Alpes"
-
-#: l_wmts:ch.astra.ausnahmetransportrouten
-msgid "ch.astra.ausnahmetransportrouten"
-msgstr "Itinéraires convois exceptionnels"
-
-#: theme:OSM
-msgid "OSM"
-msgstr ""
 
 #~ msgid "aeroways10"
 #~ msgstr "Tarmac"
@@ -698,6 +756,121 @@ msgstr ""
 
 #~ msgid "buildings18"
 #~ msgstr "Batiments"
+
+#~ msgid "landuse10"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse11"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse12"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse13"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse14"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse15"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse16"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse17"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse18"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse4"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse5"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse6"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse7"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse8"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse9"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "places0"
+#~ msgstr "Places"
+
+#~ msgid "places1"
+#~ msgstr "Places"
+
+#~ msgid "places10"
+#~ msgstr "Places"
+
+#~ msgid "places11"
+#~ msgstr "Places"
+
+=======
+#~ msgid "aeroways10"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways11"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways12"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways13"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways14"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways15"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways16"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways17"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways18"
+#~ msgstr "Tarmac"
+
+#~ msgid "alpine_hut"
+#~ msgstr "Cabane alpine"
+
+#~ msgid "buildings15"
+#~ msgstr "Batiments"
+
+#~ msgid "buildings16"
+#~ msgstr "Batiments"
+
+#~ msgid "buildings17"
+#~ msgstr "Batiments"
+
+#~ msgid "buildings18"
+#~ msgstr "Batiments"
+
+#~ msgid "cafe"
+#~ msgstr "Café"
+
+#~ msgid "ch.swisstopo.swissnames3d_feature_line"
+#~ msgstr "Noms géographiques swissNAMES3D"
+
+#~ msgid "ch.swisstopo.swissnames3d_feature_point"
+#~ msgstr "Noms géographiques swissNAMES3D"
+
+#~ msgid "ch.swisstopo.swissnames3d_feature_poly"
+#~ msgstr "Noms géographiques swissNAMES3D"
+
+#~ msgid "hotel"
+#~ msgstr "Hôtels"
 
 #~ msgid "landuse10"
 #~ msgstr "Utilisation du sol"
@@ -971,3 +1144,136 @@ msgstr ""
 
 #~ msgid "The demo Web GIS"
 #~ msgstr "Le web SIG de démo"
+=======
+#~ msgid "restaurant"
+#~ msgstr "Restaurants"
+
+#~ msgid "roads10"
+#~ msgstr "Routes"
+
+#~ msgid "roads11"
+#~ msgstr "Routes"
+
+#~ msgid "roads12"
+#~ msgstr "Routes"
+
+#~ msgid "roads13"
+#~ msgstr "Routes"
+
+#~ msgid "roads14"
+#~ msgstr "Routes"
+
+#~ msgid "roads15"
+#~ msgstr "Routes"
+
+#~ msgid "roads16"
+#~ msgstr "Routes"
+
+#~ msgid "roads17"
+#~ msgstr "Routes"
+
+#~ msgid "roads18"
+#~ msgstr "Routes"
+
+#~ msgid "roads5"
+#~ msgstr "Routes"
+
+#~ msgid "roads6"
+#~ msgstr "Routes"
+
+#~ msgid "roads7"
+#~ msgstr "Routes"
+
+#~ msgid "roads8"
+#~ msgstr "Routes"
+
+#~ msgid "roads9"
+#~ msgstr "Routes"
+
+#~ msgid "waterarea10"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea11"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea12"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea13"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea14"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea15"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea16"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea17"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea18"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea4"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea5"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea6"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea7"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea8"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea9"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways10"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways11"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways12"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways13"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways14"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways15"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways16"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways17"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways18"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways6"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways7"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways8"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways9"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "zoo"
+#~ msgstr "Zoo"
+>>>>>>> Remove local hack, be able to edit the code in sigdev
