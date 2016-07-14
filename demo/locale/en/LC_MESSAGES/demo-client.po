@@ -154,7 +154,7 @@ msgstr "Second test"
 
 #: group:Loisirs
 msgid "Loisirs"
-msgstr ""
+msgstr "Hobbies"
 
 #: group:osm_time
 msgid "osm_time"
@@ -184,321 +184,316 @@ msgstr "Cluster Base FID"
 msgid "cinema"
 msgstr "Cinema"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_time_r_s:osm_time
-#: l_wms.osm_scale:osm_scale l_wms.hospitals:hospitals
-#: l_wms.firestations:firestations l_wms.fuel:fuel
-#: l_wms.osm_time_r_dp:osm_time l_wms.osm_time_v_dp:osm_time
-#: l_wms.osm_time_v_s:osm_time l_wms.osm_time_r_dp_2:osm_time2
-msgid "display_name"
-msgstr ""
+#: l_wms:bank
+msgid "bank"
+msgstr "Bank"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_time_r_s:osm_time
-#: l_wms.line:line l_wms.polygon:polygon l_wms.point:point
-#: l_wms.osm_scale:osm_scale l_wms.hospitals:hospitals
-#: l_wms.firestations:firestations l_wms.fuel:fuel
-#: l_wms.osm_time_r_dp:osm_time l_wms.osm_open:osm_open
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_time_r_s:osm_time l_wms.osm_scale:osm_scale
+#: l_wms.hospitals:hospitals l_wms.firestations:firestations l_wms.fuel:fuel
+#: l_wms.osm_time_r_dp:osm_time l_wms.Layer with very long name:bank
 #: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
+#: l_wms.osm_time_r_dp_2:osm_time2
+msgid "display_name"
+msgstr "Display name"
+
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_time_r_s:osm_time l_wms.line:line l_wms.polygon:polygon
+#: l_wms.point:point l_wms.osm_scale:osm_scale l_wms.hospitals:hospitals
+#: l_wms.firestations:firestations l_wms.fuel:fuel
+#: l_wms.osm_time_r_dp:osm_time l_wms.osm_open:osm_open l_wms.Layer with very
+#: long name:bank l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
 #: l_wms.osm_time_r_dp_2:osm_time2
 msgid "name"
 msgstr "Name"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_time_r_s:osm_time
-#: l_wms.osm_scale:osm_scale l_wms.hospitals:hospitals
-#: l_wms.firestations:firestations l_wms.fuel:fuel
-#: l_wms.osm_time_r_dp:osm_time l_wms.osm_open:osm_open
-#: l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_time_r_s:osm_time l_wms.osm_scale:osm_scale
+#: l_wms.hospitals:hospitals l_wms.firestations:firestations l_wms.fuel:fuel
+#: l_wms.osm_time_r_dp:osm_time l_wms.osm_open:osm_open l_wms.Layer with very
+#: long name:bank l_wms.osm_time_v_dp:osm_time l_wms.osm_time_v_s:osm_time
 #: l_wms.osm_time_r_dp_2:osm_time2
 msgid "osm_id"
 msgstr "OSM ID"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "access"
 msgstr "Access"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "aerialway"
 msgstr "Aerialway"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "amenity"
 msgstr "Amenity"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "barrier"
 msgstr "Barrier"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "bicycle"
 msgstr "Bicycle"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "brand"
 msgstr "Brand"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "building"
 msgstr "Building"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "covered"
 msgstr "Covered"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
-#, fuzzy
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "denomination"
 msgstr "Information"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "ele"
 msgstr "Elevation"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "foot"
 msgstr "Foot"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "highway"
 msgstr "Highway"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
-#, fuzzy
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "layer"
-msgstr "Two layer"
+msgstr "Layer"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "leisure"
 msgstr "Leisure"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "man_made"
 msgstr "Man made"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "motorcar"
 msgstr "Motorcar"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "natural"
 msgstr "Natural"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "operator"
 msgstr "Operator"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "population"
 msgstr "Population"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "power"
 msgstr "Power"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "place"
 msgstr "Place"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "railway"
 msgstr "Railway"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "ref"
 msgstr "Ref"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "religion"
 msgstr "Religion"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "shop"
 msgstr "Shop"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "sport"
-msgstr ""
+msgstr "Sport"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "surface"
 msgstr "Surface"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
-#, fuzzy
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "tourism"
 msgstr "Tourism activity"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "waterway"
 msgstr "Waterway"
 
-#: l_wms.cinema:cinema l_wms.bank:bank l_wms.bus_stop:bus_stop
-#: l_wms.entertainment:entertainment l_wms.parking:parking
-#: l_wms.place_of_worship:place_of_worship l_wms.police:police
-#: l_wms.post_office:post_office l_wms.sustenance:sustenance
-#: l_wms.tourism_activity:tourism_activity l_wms.osm_scale:osm_scale
-#: l_wms.fuel:fuel
+#: l_wms.bank:bank l_wms.bus_stop:bus_stop l_wms.entertainment:entertainment
+#: l_wms.parking:parking l_wms.place_of_worship:place_of_worship
+#: l_wms.police:police l_wms.post_office:post_office
+#: l_wms.sustenance:sustenance l_wms.tourism_activity:tourism_activity
+#: l_wms.osm_scale:osm_scale l_wms.fuel:fuel l_wms.Layer with very long
+#: name:bank
 msgid "wood"
 msgstr "Wood"
-
-#: l_wms:bank
-msgid "bank"
-msgstr "Bank"
 
 #: l_wms:bus_stop
 msgid "bus_stop"
@@ -634,7 +629,7 @@ msgstr "OSM time value slider"
 
 #: l_wms:osm_time_r_dp_2
 msgid "osm_time_r_dp_2"
-msgstr "OSM time range picker"
+msgstr "OSM time range picker 2"
 
 #: l_wms:Half query
 msgid "Half query"
