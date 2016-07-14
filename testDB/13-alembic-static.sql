@@ -13,14 +13,14 @@ INSERT INTO main_static.alembic_version (version_num) VALUES ('3f89a7d71a5e');
 -- Running upgrade 3f89a7d71a5e -> 1da396a88908
 
 CREATE TABLE main_static."user" (
-    type VARCHAR(10) NOT NULL, 
-    id SERIAL NOT NULL, 
-    username VARCHAR NOT NULL, 
-    password VARCHAR NOT NULL, 
-    email VARCHAR NOT NULL, 
-    is_password_changed BOOLEAN, 
-    role_name VARCHAR, 
-    PRIMARY KEY (id), 
+    type VARCHAR(10) NOT NULL,
+    id SERIAL NOT NULL,
+    username VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    is_password_changed BOOLEAN,
+    role_name VARCHAR,
+    PRIMARY KEY (id),
     UNIQUE (username)
 );
 
@@ -37,4 +37,3 @@ ALTER TABLE main_static."user" ADD COLUMN temp_password VARCHAR;
 UPDATE main_static.alembic_version SET version_num='5472fbc19f39' WHERE main_static.alembic_version.version_num = '1da396a88908';
 
 COMMIT;
-

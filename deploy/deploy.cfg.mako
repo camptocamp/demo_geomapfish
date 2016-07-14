@@ -1,5 +1,5 @@
 [DEFAULT]
-project = demo 
+project = demo
 
 [main]
 hookdir = %(here)s/hooks/

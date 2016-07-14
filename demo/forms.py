@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
+
 import logging
-import os
 
 from pyramid.i18n import TranslationStringFactory
-from formalchemy import fields
-from formalchemy import FieldSet, Grid
+from formalchemy import FieldSet, Grid  # noqa
 
-from demo import models
-from c2cgeoportal.forms import *
+from demo import models  # noqa
+from c2cgeoportal.forms import *  # noqa
 
 _ = TranslationStringFactory("demo-server")
 log = logging.getLogger(__name__)

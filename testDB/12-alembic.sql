@@ -7,50 +7,50 @@ CREATE TABLE main.alembic_version (
 -- Running upgrade  -> 166ff2dcc48d
 
 CREATE TABLE main.functionality (
-    id SERIAL NOT NULL, 
-    name VARCHAR NOT NULL, 
-    value VARCHAR NOT NULL, 
-    description VARCHAR, 
+    id SERIAL NOT NULL,
+    name VARCHAR NOT NULL,
+    value VARCHAR NOT NULL,
+    description VARCHAR,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE main.treeitem (
-    type VARCHAR(10) NOT NULL, 
-    id SERIAL NOT NULL, 
-    name VARCHAR, 
-    "order" INTEGER NOT NULL, 
-    "metadataURL" VARCHAR, 
+    type VARCHAR(10) NOT NULL,
+    id SERIAL NOT NULL,
+    name VARCHAR,
+    "order" INTEGER NOT NULL,
+    "metadataURL" VARCHAR,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE main.restrictionarea (
-    id SERIAL NOT NULL, 
-    name VARCHAR, 
-    description VARCHAR, 
-    readwrite BOOLEAN, 
+    id SERIAL NOT NULL,
+    name VARCHAR,
+    description VARCHAR,
+    readwrite BOOLEAN,
     PRIMARY KEY (id)
 );
 
 SELECT AddGeometryColumn('main', 'restrictionarea', 'area', 21781, 'POLYGON', 2);
 
 CREATE TABLE main_static.shorturl (
-    id SERIAL NOT NULL, 
-    url VARCHAR(1000), 
-    ref VARCHAR(20) NOT NULL, 
-    creator_email VARCHAR(200), 
-    creation TIMESTAMP WITHOUT TIME ZONE, 
-    last_hit TIMESTAMP WITHOUT TIME ZONE, 
-    nb_hits INTEGER, 
+    id SERIAL NOT NULL,
+    url VARCHAR(1000),
+    ref VARCHAR(20) NOT NULL,
+    creator_email VARCHAR(200),
+    creation TIMESTAMP WITHOUT TIME ZONE,
+    last_hit TIMESTAMP WITHOUT TIME ZONE,
+    nb_hits INTEGER,
     PRIMARY KEY (id)
 );
 
 CREATE UNIQUE INDEX ix_main_static_shorturl_ref ON main_static.shorturl (ref);
 
 CREATE TABLE main.role (
-    id SERIAL NOT NULL, 
-    name VARCHAR NOT NULL, 
-    description VARCHAR, 
-    PRIMARY KEY (id), 
+    id SERIAL NOT NULL,
+    name VARCHAR NOT NULL,
+    description VARCHAR,
+    PRIMARY KEY (id),
     UNIQUE (name)
 );
 
@@ -59,55 +59,55 @@ SELECT AddGeometryColumn('main', 'role', 'extent', 21781, 'POLYGON', 2);
 INSERT INTO main.role (name) VALUES ('role_admin');
 
 CREATE TABLE main.layer (
-    id INTEGER NOT NULL, 
-    public BOOLEAN, 
-    "inMobileViewer" BOOLEAN, 
-    "inDesktopViewer" BOOLEAN, 
-    "isChecked" BOOLEAN, 
-    icon VARCHAR, 
-    "layerType" VARCHAR(12), 
-    url VARCHAR, 
-    "imageType" VARCHAR(10), 
-    style VARCHAR, 
-    dimensions VARCHAR, 
-    "matrixSet" VARCHAR, 
-    "wmsUrl" VARCHAR, 
-    "wmsLayers" VARCHAR, 
-    "queryLayers" VARCHAR, 
-    kml VARCHAR, 
-    "isSingleTile" BOOLEAN, 
-    legend BOOLEAN, 
-    "legendImage" VARCHAR, 
-    "legendRule" VARCHAR, 
-    "isLegendExpanded" BOOLEAN, 
-    "minResolution" FLOAT, 
-    "maxResolution" FLOAT, 
-    disclaimer VARCHAR, 
-    "identifierAttributeField" VARCHAR, 
-    "geoTable" VARCHAR, 
-    "excludeProperties" VARCHAR, 
-    "timeMode" VARCHAR(8), 
-    PRIMARY KEY (id), 
+    id INTEGER NOT NULL,
+    public BOOLEAN,
+    "inMobileViewer" BOOLEAN,
+    "inDesktopViewer" BOOLEAN,
+    "isChecked" BOOLEAN,
+    icon VARCHAR,
+    "layerType" VARCHAR(12),
+    url VARCHAR,
+    "imageType" VARCHAR(10),
+    style VARCHAR,
+    dimensions VARCHAR,
+    "matrixSet" VARCHAR,
+    "wmsUrl" VARCHAR,
+    "wmsLayers" VARCHAR,
+    "queryLayers" VARCHAR,
+    kml VARCHAR,
+    "isSingleTile" BOOLEAN,
+    legend BOOLEAN,
+    "legendImage" VARCHAR,
+    "legendRule" VARCHAR,
+    "isLegendExpanded" BOOLEAN,
+    "minResolution" FLOAT,
+    "maxResolution" FLOAT,
+    disclaimer VARCHAR,
+    "identifierAttributeField" VARCHAR,
+    "geoTable" VARCHAR,
+    "excludeProperties" VARCHAR,
+    "timeMode" VARCHAR(8),
+    PRIMARY KEY (id),
     FOREIGN KEY(id) REFERENCES main.treeitem (id)
 );
 
 CREATE TABLE main.role_restrictionarea (
-    role_id INTEGER NOT NULL, 
-    restrictionarea_id INTEGER NOT NULL, 
-    PRIMARY KEY (role_id, restrictionarea_id), 
-    FOREIGN KEY(role_id) REFERENCES main.role (id), 
+    role_id INTEGER NOT NULL,
+    restrictionarea_id INTEGER NOT NULL,
+    PRIMARY KEY (role_id, restrictionarea_id),
+    FOREIGN KEY(role_id) REFERENCES main.role (id),
     FOREIGN KEY(restrictionarea_id) REFERENCES main.restrictionarea (id)
 );
 
 CREATE TABLE main.tsearch (
-    id SERIAL NOT NULL, 
-    label VARCHAR, 
-    layer_name VARCHAR, 
-    role_id INTEGER, 
-    public BOOLEAN DEFAULT 'true', 
-    ts TSVECTOR, 
-    params VARCHAR, 
-    PRIMARY KEY (id), 
+    id SERIAL NOT NULL,
+    label VARCHAR,
+    layer_name VARCHAR,
+    role_id INTEGER,
+    public BOOLEAN DEFAULT 'true',
+    ts TSVECTOR,
+    params VARCHAR,
+    PRIMARY KEY (id),
     FOREIGN KEY(role_id) REFERENCES main.role (id)
 );
 
@@ -116,81 +116,81 @@ SELECT AddGeometryColumn('main', 'tsearch', 'the_geom', 21781, 'GEOMETRY', 2);
 CREATE INDEX tsearch_ts_idx ON main.tsearch USING gin (ts);
 
 CREATE TABLE main.treegroup (
-    id INTEGER NOT NULL, 
-    PRIMARY KEY (id), 
+    id INTEGER NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY(id) REFERENCES main.treeitem (id)
 );
 
 CREATE TABLE main."user" (
-    type VARCHAR(10) NOT NULL, 
-    id SERIAL NOT NULL, 
-    username VARCHAR NOT NULL, 
-    password VARCHAR NOT NULL, 
-    email VARCHAR NOT NULL, 
-    is_password_changed BOOLEAN, 
-    role_id INTEGER NOT NULL, 
-    PRIMARY KEY (id), 
-    UNIQUE (username), 
+    type VARCHAR(10) NOT NULL,
+    id SERIAL NOT NULL,
+    username VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    is_password_changed BOOLEAN,
+    role_id INTEGER NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE (username),
     FOREIGN KEY(role_id) REFERENCES main.role (id)
 );
 
 INSERT INTO main.user (type, username, email, password, role_id) (SELECT 'user', 'admin', 'info@example.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', r.id FROM main.role AS r WHERE r.name = 'role_admin');
 
 CREATE TABLE main.role_functionality (
-    role_id INTEGER NOT NULL, 
-    functionality_id INTEGER NOT NULL, 
-    PRIMARY KEY (role_id, functionality_id), 
-    FOREIGN KEY(role_id) REFERENCES main.role (id), 
+    role_id INTEGER NOT NULL,
+    functionality_id INTEGER NOT NULL,
+    PRIMARY KEY (role_id, functionality_id),
+    FOREIGN KEY(role_id) REFERENCES main.role (id),
     FOREIGN KEY(functionality_id) REFERENCES main.functionality (id)
 );
 
 CREATE TABLE main.user_functionality (
-    user_id INTEGER NOT NULL, 
-    functionality_id INTEGER NOT NULL, 
-    PRIMARY KEY (user_id, functionality_id), 
-    FOREIGN KEY(user_id) REFERENCES main."user" (id), 
+    user_id INTEGER NOT NULL,
+    functionality_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, functionality_id),
+    FOREIGN KEY(user_id) REFERENCES main."user" (id),
     FOREIGN KEY(functionality_id) REFERENCES main.functionality (id)
 );
 
 CREATE TABLE main.layergroup (
-    id INTEGER NOT NULL, 
-    "isExpanded" BOOLEAN, 
-    "isInternalWMS" BOOLEAN, 
-    "isBaseLayer" BOOLEAN, 
-    PRIMARY KEY (id), 
+    id INTEGER NOT NULL,
+    "isExpanded" BOOLEAN,
+    "isInternalWMS" BOOLEAN,
+    "isBaseLayer" BOOLEAN,
+    PRIMARY KEY (id),
     FOREIGN KEY(id) REFERENCES main.treegroup (id)
 );
 
 CREATE TABLE main.layer_restrictionarea (
-    layer_id INTEGER NOT NULL, 
-    restrictionarea_id INTEGER NOT NULL, 
-    PRIMARY KEY (layer_id, restrictionarea_id), 
-    FOREIGN KEY(layer_id) REFERENCES main.layer (id), 
+    layer_id INTEGER NOT NULL,
+    restrictionarea_id INTEGER NOT NULL,
+    PRIMARY KEY (layer_id, restrictionarea_id),
+    FOREIGN KEY(layer_id) REFERENCES main.layer (id),
     FOREIGN KEY(restrictionarea_id) REFERENCES main.restrictionarea (id)
 );
 
 CREATE TABLE main.layergroup_treeitem (
-    treegroup_id INTEGER NOT NULL, 
-    treeitem_id INTEGER NOT NULL, 
-    PRIMARY KEY (treegroup_id, treeitem_id), 
-    FOREIGN KEY(treegroup_id) REFERENCES main.treegroup (id), 
+    treegroup_id INTEGER NOT NULL,
+    treeitem_id INTEGER NOT NULL,
+    PRIMARY KEY (treegroup_id, treeitem_id),
+    FOREIGN KEY(treegroup_id) REFERENCES main.treegroup (id),
     FOREIGN KEY(treeitem_id) REFERENCES main.treeitem (id)
 );
 
 CREATE TABLE main.theme (
-    id INTEGER NOT NULL, 
-    icon VARCHAR, 
-    "inMobileViewer" BOOLEAN, 
-    "inDesktopViewer" BOOLEAN, 
-    PRIMARY KEY (id), 
+    id INTEGER NOT NULL,
+    icon VARCHAR,
+    "inMobileViewer" BOOLEAN,
+    "inDesktopViewer" BOOLEAN,
+    PRIMARY KEY (id),
     FOREIGN KEY(id) REFERENCES main.treegroup (id)
 );
 
 CREATE TABLE main.theme_functionality (
-    theme_id INTEGER NOT NULL, 
-    functionality_id INTEGER NOT NULL, 
-    PRIMARY KEY (theme_id, functionality_id), 
-    FOREIGN KEY(theme_id) REFERENCES main.theme (id), 
+    theme_id INTEGER NOT NULL,
+    functionality_id INTEGER NOT NULL,
+    PRIMARY KEY (theme_id, functionality_id),
+    FOREIGN KEY(theme_id) REFERENCES main.theme (id),
     FOREIGN KEY(functionality_id) REFERENCES main.functionality (id)
 );
 
@@ -201,54 +201,54 @@ INSERT INTO main.alembic_version (version_num) VALUES ('166ff2dcc48d');
 DROP TABLE main.user_functionality;
 
 CREATE TABLE main.interface (
-    id SERIAL NOT NULL, 
-    name VARCHAR, 
-    description VARCHAR, 
+    id SERIAL NOT NULL,
+    name VARCHAR,
+    description VARCHAR,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE main.interface_layer (
-    interface_id INTEGER NOT NULL, 
-    layer_id INTEGER NOT NULL, 
-    PRIMARY KEY (interface_id, layer_id), 
-    FOREIGN KEY(interface_id) REFERENCES main.interface (id), 
+    interface_id INTEGER NOT NULL,
+    layer_id INTEGER NOT NULL,
+    PRIMARY KEY (interface_id, layer_id),
+    FOREIGN KEY(interface_id) REFERENCES main.interface (id),
     FOREIGN KEY(layer_id) REFERENCES main.layer (id)
 );
 
 CREATE TABLE main.interface_theme (
-    interface_id INTEGER NOT NULL, 
-    theme_id INTEGER NOT NULL, 
-    PRIMARY KEY (interface_id, theme_id), 
-    FOREIGN KEY(interface_id) REFERENCES main.interface (id), 
+    interface_id INTEGER NOT NULL,
+    theme_id INTEGER NOT NULL,
+    PRIMARY KEY (interface_id, theme_id),
+    FOREIGN KEY(interface_id) REFERENCES main.interface (id),
     FOREIGN KEY(theme_id) REFERENCES main.theme (id)
 );
 
 CREATE TABLE main.layerv1 (
-    id INTEGER NOT NULL, 
-    is_checked BOOLEAN, 
-    icon VARCHAR, 
-    layer_type VARCHAR(12), 
-    url VARCHAR, 
-    image_type VARCHAR(10), 
-    style VARCHAR, 
-    dimensions VARCHAR, 
-    matrix_set VARCHAR, 
-    wms_url VARCHAR, 
-    wms_layers VARCHAR, 
-    query_layers VARCHAR, 
-    kml VARCHAR, 
-    is_single_tile BOOLEAN, 
-    legend BOOLEAN, 
-    legend_image VARCHAR, 
-    legend_rule VARCHAR, 
-    is_legend_expanded BOOLEAN, 
-    min_resolution FLOAT, 
-    max_resolution FLOAT, 
-    disclaimer VARCHAR, 
-    identifier_attribute_field VARCHAR, 
-    exclude_properties VARCHAR, 
-    time_mode VARCHAR(8), 
-    PRIMARY KEY (id), 
+    id INTEGER NOT NULL,
+    is_checked BOOLEAN,
+    icon VARCHAR,
+    layer_type VARCHAR(12),
+    url VARCHAR,
+    image_type VARCHAR(10),
+    style VARCHAR,
+    dimensions VARCHAR,
+    matrix_set VARCHAR,
+    wms_url VARCHAR,
+    wms_layers VARCHAR,
+    query_layers VARCHAR,
+    kml VARCHAR,
+    is_single_tile BOOLEAN,
+    legend BOOLEAN,
+    legend_image VARCHAR,
+    legend_rule VARCHAR,
+    is_legend_expanded BOOLEAN,
+    min_resolution FLOAT,
+    max_resolution FLOAT,
+    disclaimer VARCHAR,
+    identifier_attribute_field VARCHAR,
+    exclude_properties VARCHAR,
+    time_mode VARCHAR(8),
+    PRIMARY KEY (id),
     FOREIGN KEY(id) REFERENCES main.layer (id)
 );
 
@@ -337,54 +337,54 @@ ALTER TABLE main.layergroup RENAME "isInternalWMS" TO is_internal_wms;
 ALTER TABLE main.layergroup RENAME "isBaseLayer" TO is_base_layer;
 
 CREATE TABLE main.layer_internal_wms (
-    id INTEGER NOT NULL, 
-    layer VARCHAR, 
-    image_type VARCHAR(10), 
-    style VARCHAR, 
-    time_mode VARCHAR(8), 
-    PRIMARY KEY (id), 
+    id INTEGER NOT NULL,
+    layer VARCHAR,
+    image_type VARCHAR(10),
+    style VARCHAR,
+    time_mode VARCHAR(8),
+    PRIMARY KEY (id),
     FOREIGN KEY(id) REFERENCES main.layer (id)
 );
 
 CREATE TABLE main.layer_external_wms (
-    id INTEGER NOT NULL, 
-    url VARCHAR, 
-    layer VARCHAR, 
-    image_type VARCHAR(10), 
-    style VARCHAR, 
-    is_single_tile BOOLEAN, 
-    time_mode VARCHAR(8), 
-    PRIMARY KEY (id), 
+    id INTEGER NOT NULL,
+    url VARCHAR,
+    layer VARCHAR,
+    image_type VARCHAR(10),
+    style VARCHAR,
+    is_single_tile BOOLEAN,
+    time_mode VARCHAR(8),
+    PRIMARY KEY (id),
     FOREIGN KEY(id) REFERENCES main.layer (id)
 );
 
 CREATE TABLE main.layer_wmts (
-    id INTEGER NOT NULL, 
-    url VARCHAR, 
-    layer VARCHAR, 
-    style VARCHAR, 
-    matrix_set VARCHAR, 
-    PRIMARY KEY (id), 
+    id INTEGER NOT NULL,
+    url VARCHAR,
+    layer VARCHAR,
+    style VARCHAR,
+    matrix_set VARCHAR,
+    PRIMARY KEY (id),
     FOREIGN KEY(id) REFERENCES main.layer (id)
 );
 
 CREATE TABLE main.ui_metadata (
-    id SERIAL NOT NULL, 
-    name VARCHAR, 
-    value VARCHAR, 
-    description VARCHAR, 
-    item_id INTEGER NOT NULL, 
-    PRIMARY KEY (id), 
+    id SERIAL NOT NULL,
+    name VARCHAR,
+    value VARCHAR,
+    description VARCHAR,
+    item_id INTEGER NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY(item_id) REFERENCES main.treeitem (id)
 );
 
 CREATE TABLE main.wmts_dimension (
-    id SERIAL NOT NULL, 
-    name VARCHAR, 
-    value VARCHAR, 
-    description VARCHAR, 
-    layer_id INTEGER NOT NULL, 
-    PRIMARY KEY (id), 
+    id SERIAL NOT NULL,
+    name VARCHAR,
+    value VARCHAR,
+    description VARCHAR,
+    layer_id INTEGER NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY(layer_id) REFERENCES main.layer_wmts (id)
 );
 
@@ -413,10 +413,10 @@ UPDATE main.alembic_version SET version_num='54645a535ad6' WHERE main.alembic_ve
 ALTER TABLE main.theme ADD COLUMN public BOOLEAN DEFAULT 't' NOT NULL;
 
 CREATE TABLE main.restricted_role_theme (
-    role_id INTEGER NOT NULL, 
-    theme_id INTEGER NOT NULL, 
-    PRIMARY KEY (role_id, theme_id), 
-    FOREIGN KEY(role_id) REFERENCES main.role (id), 
+    role_id INTEGER NOT NULL,
+    theme_id INTEGER NOT NULL,
+    PRIMARY KEY (role_id, theme_id),
+    FOREIGN KEY(role_id) REFERENCES main.role (id),
     FOREIGN KEY(theme_id) REFERENCES main.theme (id)
 );
 
@@ -509,28 +509,28 @@ UPDATE main.alembic_version SET version_num='a4f1aac9bda' WHERE main.alembic_ver
 -- Running upgrade a4f1aac9bda -> 116b9b79fc4d
 
 CREATE TABLE main.server_ogc (
-    id SERIAL NOT NULL, 
-    name VARCHAR NOT NULL, 
-    description VARCHAR, 
-    url VARCHAR, 
-    url_wfs VARCHAR, 
-    type VARCHAR, 
-    image_type VARCHAR, 
-    auth VARCHAR, 
-    wfs_support BOOLEAN DEFAULT 'false', 
-    is_single_tile BOOLEAN DEFAULT 'false', 
+    id SERIAL NOT NULL,
+    name VARCHAR NOT NULL,
+    description VARCHAR,
+    url VARCHAR,
+    url_wfs VARCHAR,
+    type VARCHAR,
+    image_type VARCHAR,
+    auth VARCHAR,
+    wfs_support BOOLEAN DEFAULT 'false',
+    is_single_tile BOOLEAN DEFAULT 'false',
     PRIMARY KEY (id)
 );
 
 CREATE TABLE main.layer_wms (
-    id INTEGER NOT NULL, 
-    server_ogc_id INTEGER, 
-    layer VARCHAR, 
-    style VARCHAR, 
-    time_mode VARCHAR DEFAULT 'disabled' NOT NULL, 
-    time_widget VARCHAR DEFAULT 'slider' NOT NULL, 
-    PRIMARY KEY (id), 
-    FOREIGN KEY(id) REFERENCES main.layer (id), 
+    id INTEGER NOT NULL,
+    server_ogc_id INTEGER,
+    layer VARCHAR,
+    style VARCHAR,
+    time_mode VARCHAR DEFAULT 'disabled' NOT NULL,
+    time_widget VARCHAR DEFAULT 'slider' NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY(id) REFERENCES main.layer (id),
     FOREIGN KEY(server_ogc_id) REFERENCES main.server_ogc (id)
 );
 
@@ -569,4 +569,3 @@ DELETE FROM main.alembic_version WHERE main.alembic_version.version_num = '22e6d
 UPDATE main.alembic_version SET version_num='29f2a32859ec' WHERE main.alembic_version.version_num = '116b9b79fc4d';
 
 COMMIT;
-

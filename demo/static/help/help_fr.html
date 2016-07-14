@@ -14,11 +14,11 @@
         <link rel="shortcut icon" type="image/x-icon" href="${request.static_url('sitn:static/images/favico.ico')}">
         <link rel="stylesheet" type="text/css" href="${request.static_url('sitn:static/build/app.css')}" />
         <link rel="stylesheet" type="text/css" href="${request.static_url('sitn:static/css/help.css')}">
-        
+
         <script type="text/javascript" src="${request.static_url('sitn:static/build/app.js')}"></script>
 
         <script type="text/javascript">
-        
+
 var currentTab;
 var init = function() {
     var content_div = document.getElementById('content').childNodes;
@@ -56,13 +56,13 @@ var formValidator = function (x,y) {
     }
     return (true);
 }
-    
+
 var getRaster = function() {
     var x_coordinate = parseFloat(document.getElementById('map_x').value);
     var y_coordinate = parseFloat(document.getElementById('map_y').value);
-    
+
     var validity = formValidator(x_coordinate, y_coordinate);
-    
+
     if (validity == false) {
         return;
     }
@@ -97,7 +97,7 @@ Ext.onReady(function() {
     </head>
 
     <body class="${lang}">
-    
+
     <div id="header-out">
         <table width="100%">
                 <tr>
@@ -171,7 +171,7 @@ Les groupes s'ouvrent et se ferment en cliquant sur le petit triangle (blanc ou 
 <li>Opacité : l'opacité (transparence) de certaines couches de type surfacique peut être modifiée en utilisant ce curseur.</li>
 <li>3D : les couches qui ont cette option peuvent être affichées en 3D dans le moduel Google Earth. Ce module doit au préalable être téléchargé et installé</li>
 </ul>
-</li>	
+</li>
 </ul>
 </li>
 </ul>
@@ -424,7 +424,7 @@ ou à la page des <a href="http://www.ne.ch/neat/site/jsp/rubrique/rubrique.jsp?
 <p><a href="http://www.ne.ch/neat/site/jsp/rubrique/rubrique.jsp?StyleType=bleu&DocId=42927" target="_blank">Cliquer ici</a> pour afficher la page des contacts. </p>
 </div>
 
-    
+
 </div>
 
 <div id="extract">
@@ -614,7 +614,7 @@ function init(){
         &lt;h1&gt;Ceci est ma premi&amp;egrave;re carte&lt;/h1&gt;
 &lt;script type="text/javascript" src="http://sitn.ne.ch/mapfish/apiloader.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
-&lt;/html&gt;	
+&lt;/html&gt;
 </code></pre>
 <h2>3. Créer une fonction Javascript qui initialise la carte</h2>
 <p>Dans l'en-t&ecirc;te (<code>&lt;head&gt;</code>) de votre page HTML, insérer une fonction Javascript qui va créer une carte.</p>
@@ -636,7 +636,7 @@ div: 'map0'
         &lt;h1&gt;Ceci est ma premi&amp;egrave;re carte&lt;/h1&gt;
 &lt;script type="text/javascript" src="http://sitn.ne.ch/mapfish/apiloader.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
-&lt;/html&gt;	
+&lt;/html&gt;
 </code></pre>
 <h2>4. Ajouter une balise <code>&lt;div&gt;</code> o&ugrave; la carte doit s'afficher.</h2>
 <p>Dans la partie <code>&lt;body&gt;</code> dans votre page, ajouter une balise <code>&lt;div&gt;</code> avec <code>id="map0"</code>. Le rendu de la carte se fera ainsi à l'intérieur de cette balise.</p>
@@ -659,7 +659,7 @@ div: 'map0'
 &lt;div id="map0" style="width:500px;height:340px;border:1px solid grey;padding: 0 0 0 0;margin:10px !important;"&gt;&lt;/div&gt;
 &lt;script type="text/javascript" src="http://sitn.ne.ch/mapfish/apiloader.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
-&lt;/html&gt;	
+&lt;/html&gt;
 </code></pre>
 <h2>5. Initialiser la carte</h2>
 <p>Finalement, ajouter <code>onload="init();"</code> à l'intérieur de votre balise <code>&lt;body&gt;</code> afin d'exécuter le Javascript lors du chargement de votre page.</p>
@@ -682,7 +682,7 @@ div: 'map0'
 &lt;div id="map0" style="width:500px;height:340px;border:1px solid grey;padding: 0 0 0 0;margin:10px !important;"&gt;&lt;/div&gt;
 &lt;script type="text/javascript" src="http://sitn.ne.ch/mapfish/apiloader.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
-&lt;/html&gt;	
+&lt;/html&gt;
 </code></pre>
 <h2>6. Tester votre carte</h2>
 <p>Dans votre navigateur: <a href="http://localhost/carte.html>">http://localhost/carte.html</a></p>
@@ -747,16 +747,16 @@ Object options
 </li>
 <li>
 <code class="parametres">layerSwitcher</code>: permet d'afficher l'arbre des couches dans un nouvel onglet (par défaut <code>false</code>, <code>layerSwitcher: true</code> pour l'activer).
-</li>	
+</li>
 <li>
 <code class="parametres">poiInterrogation</code>: permet d'interroger les couches des points d'intérêt. Au moins une de ces couches doit être active (par défaut <code>false</code>, <code>poiInterrogation: true</code> pour l'activer).
-</li>	
+</li>
 <li>
 <code class="parametres">overviewExpanded</code>: permet d'ouvrir / de fermer l'aperçu lors du chargement de la carte (par défaut <code>'on'</code>, <code>overviewExpanded: 'off'</code> pour que l'aperçu soit fermé lors du chargement de la carte).
-</li>	
+</li>
 <li>
 <code class="parametres">layerSwitcherExpanded</code>: permet d'ouvrir / de fermer l'aperçu lors du chargement de la carte (par défaut <code>'off'</code>, <code>layerSwitcherExpanded: 'on'</code> pour que l'arbre des couche soit ouvert lors du chargement de la carte). Attention, n'est pris en compte que si <code>layerSwitcher: true</code>.
-</li>	
+</li>
 </ul>
 <table class="docTable">
 <tr>
@@ -824,7 +824,7 @@ Object options
 <ul>
 <li><code class="parametres"><em>couche</em></code>: nom de la couche sur lequel faire le recentrage.</li>
 <li><code class="parametres"><em>listeID</em></code>: liste identifiants (séparés par une virgule) des objets surlesquels faire le recentrage.</li>
-</ul>	
+</ul>
 </ul>
 </div>
 <div id="exemples">

@@ -1,4 +1,4 @@
-#!/bin/bash    
+#!/bin/bash
 
 cd /var/sig/demo/c2cgeoportal
 

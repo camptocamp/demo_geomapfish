@@ -1,7 +1,7 @@
 #!/bin/sh +e
 #
 # variables set here:
-#   $TARGET: name of the symbolic remote host key (see remote_hosts 
+#   $TARGET: name of the symbolic remote host key (see remote_hosts
 #            section in config file)
 #
 
@@ -20,7 +20,7 @@ psql -c 'GRANT USAGE ON SCHEMA "${schema}" TO "${dbuser}";' ${db}
 psql -c 'GRANT SELECT ON ALL TABLES IN SCHEMA "${schema}" TO "${dbuser}";' ${db}
 
 # The following line works only with Postgres 9.3 and upper.
-# otherwise the schema should be create manually 
+# otherwise the schema should be create manually
 # psql -c 'CREATE SCHEMA IF NOT EXISTS ${schema}_static;' ${db}
 
 # The workaround is to ignore the error

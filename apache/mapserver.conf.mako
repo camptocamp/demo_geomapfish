@@ -1,6 +1,6 @@
 ScriptAlias /${instanceid}/mapserv /usr/lib/cgi-bin/mapserv
 <Location /${instanceid}/mapserv>
-   # If you use tilecache and want to prevent direct WMS access, uncomment 
+   # If you use tilecache and want to prevent direct WMS access, uncomment
    # the following lines:
    Order Deny,Allow
    Deny from all
@@ -14,4 +14,3 @@ ScriptAlias /${instanceid}/mapserv /usr/lib/cgi-bin/mapserv
    SetEnv MS_MAPFILE ${directory}/mapserver/c2cgeoportal.map
    #SetEnv MS_MAPFILE_PATTERN "^${directory}/mapserver/c2cgeoportal.map$"
 </Location>
-
