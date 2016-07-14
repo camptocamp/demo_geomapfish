@@ -254,7 +254,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
 
 
         var gmfModule = angular.module('gmf');
-        gmfModule.constant('angularLocaleScript', '${ request.static_url('demo:static-ngeo/build/angular-locale_{{locale}}.js') }');
+        gmfModule.constant('angularLocaleScript', '${ request.static_url('demo:static-ngeo/build/') }angular-locale_{{locale}}.js');
         var langUrls = {
 ${ ',\n'.join([
     "          '{lang}': '{url}'".format(
