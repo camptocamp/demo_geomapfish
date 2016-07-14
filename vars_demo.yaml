@@ -105,6 +105,10 @@ vars:
             en: english
             de: german
 
+    resourceproxy:
+        targets:
+            point: http://www.openstreetmap.org/node/%s
+
     reset_password:
         # Used to send a confirmation email
         email_from: info@camptocamp.com
@@ -119,14 +123,20 @@ vars:
             The GeoMapfish team
         smtp_server: psemail.epfl.ch
 
-    resourceproxy:
-        targets:
-            point: http://www.openstreetmap.org/node/%s
+    shortener:
+        email_from: info@example.com
+        email_subject: "Geoportal URL"
+        email_body: |
+            Somebody sent you the following link:
+            %(short_url)s
+
+            With the message:
+            %(message)
 
     servers:
-      local: https://{host}
-      instance: https://{host}/{instanceid}
-      tiles: https://{host}/{instanceid}/tiles
+        local: https://{host}
+        instance: https://{host}/{instanceid}
+        tiles: https://{host}/{instanceid}/tiles
 
     headers:
         themes: &headers
@@ -227,6 +237,7 @@ vars:
         hosts: []
 
 update_paths:
+- shortener
 - authtkt
 - checker.defaults
 - checker.all

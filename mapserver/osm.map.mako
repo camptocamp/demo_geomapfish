@@ -949,8 +949,9 @@ LAYER
     END
 END
 
+% for name in ["osm_time", "osm_time2"]:
 LAYER
-    NAME "osm_time"
+    NAME "${name}"
     EXTENT 420000 40500 839000 306400
     TYPE POINT
     STATUS ON
@@ -996,6 +997,7 @@ LAYER
         "wms_timeitem" "timestamp"
     END
 END
+% endfor
 
 LAYER
     NAME "osm_scale"

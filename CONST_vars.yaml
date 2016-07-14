@@ -9,11 +9,12 @@ vars:
     srid: -1
 
     # the Unix user under which the modwsgi daemon processes are executed.
-    modwsgi_user: www-data
+    modwsgi_user: MODWSGI_USER
     # url-path where the instance must respond.
     apache_entry_point: APACHE_ENTRY_POINT
     # Docker base image name (comes from the makefile).
     docker_base: DOCKER_BASE
+    docker: DOCKER
     # database user
     dbuser: www-data
     # database password
@@ -293,15 +294,6 @@ vars:
     - http://d.tiles.{host}/{instanceid}/tiles
     wmtscapabilities_path: WMTSCAPABILITIES_PATH
 
-    # The URL template used to generate the sub domain URL
-    # %(sub)s will be replaced by the sub domain value.
-    #subdomain_url_template: http://%(sub)s.{host}
-    # The used sub domain for the static resources
-    #subdomains: [s1, s2, s3, s4]
-
-    #proxies:
-    #    http: http://someproxy
-
     # Control the HTTP headers
     headers:
         ngeo_index:
@@ -407,8 +399,10 @@ interpreted:
     - python_path
     - directory
     environment:
+    - modwsgi_user
     - instanceid
     - apache_entry_point
+    - docker
     - docker_base
     - development
     - wmtscapabilities_path
