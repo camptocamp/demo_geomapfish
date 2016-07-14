@@ -1048,6 +1048,49 @@ LAYER
     END
 END
 
+<%
+colors = [
+    [100, 160, 235, 140],
+    [500, 242, 243, 159],
+    [2000, 247, 171, 96],
+    [5000, 148, 103, 50],
+]
+nb = 20
+%>
+% for layer in ["aster", "srtm"]:
+LAYER
+    NAME "${layer}"
+% if layer == "aster":
+    GROUP "half_query"
+    TILEINDEX /var/sig/Aster21781/aster.shp
+% else:
+    TILEINDEX /var/sig/SRTM21781/srtm.shp
+% endif
+    TYPE RASTER
+    STATUS ON
+% for i in range(len(colors) - 1):
+<%
+c1 = colors[i]
+c2 = colors[i+1]
+%>
+% for j in range(nb):
+<%
+l1 = c1[0] + (c2[0] - c1[0]) / nb * j
+l2 = c1[0] + (c2[0] - c1[0]) / nb * (j+1)
+r = c1[1] + (c2[1] - c1[1]) / nb * j
+g = c1[2] + (c2[2] - c1[2]) / nb * j
+b = c1[3] + (c2[3] - c1[3]) / nb * j
+%>
+    CLASS
+        EXPRESSION ([pixel] > ${l1} and [pixel] <= ${l2})
+        STYLE
+            COLOR ${r} ${g} ${b}
+        END
+    END
+% endfor
+% endfor
+END
+% endfor
 LAYER
     NAME "osm_open"
     EXTENT 420000 40500 839000 306400
@@ -1091,5 +1134,51 @@ LAYER
         "gml_POINT_type" "point"
         "gml_geometries" "POINT"
         "wfs_enable_request" "*"
+    END
+END
+
+
+LAYER
+    NAME "cinema"
+    GROUP "half_query"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    FILTER ('[amenity]' = 'cinema')
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Cinémas"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+            COLOR 230 0 0
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "Cinémas"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_THE_GEOM_type" "point"
+        "gml_geometries" "THE_GEOM"
     END
 END

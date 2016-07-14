@@ -76,11 +76,11 @@ msgstr ""
 msgid "Length"
 msgstr ""
 
-#: .build/config.yaml:raster/aster
+#: .build/config.yaml:raster/aster l_wms:aster
 msgid "aster"
 msgstr "ASTER"
 
-#: .build/config.yaml:raster/srtm
+#: .build/config.yaml:raster/srtm l_wms:srtm
 msgid "srtm"
 msgstr "SRTM"
 
@@ -635,6 +635,10 @@ msgstr "OSM time value slider"
 #: l_wms:osm_time_r_dp_2
 msgid "osm_time_r_dp_2"
 msgstr "OSM time range picker"
+
+#: l_wms:Half query
+msgid "Half query"
+msgstr ""
 
 #: l_wmts:ch.are.alpenkonvention
 msgid "ch.are.alpenkonvention"
