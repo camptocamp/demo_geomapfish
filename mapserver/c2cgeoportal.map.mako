@@ -29,8 +29,6 @@ MAP
     # MAXSIZE shouldn't be less than 5000 for MF print on A3
     MAXSIZE 5000
 
-    SHAPEPATH '/var/sig/demo/c2cgeoportal'
-
     IMAGECOLOR 255 255 255
     STATUS ON
 
