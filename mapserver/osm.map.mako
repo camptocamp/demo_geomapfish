@@ -3,12 +3,6 @@
 <%!
 columns = 'regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\\"natural\\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way'
 layers = [{
-    "column": "amenity",
-    "value": "cinema",
-    "type": "cinema",
-    "name": u"Cinémas"
-}, {
-
     "column": "tourism",
     "value": "hotel",
     "type": "hotel",
