@@ -144,7 +144,7 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions_requirements.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.1.0.dev12
+REQUIREMENTS ?= c2cgeoportal==2.1.0.dev13
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -161,6 +161,12 @@ OUTPUT_DIR = $(PACKAGE)/static/build
 GIT_REMOTE ?= origin
 GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 
+# Visible web URL
+# The protocol part
+VISIBLE_WEB_PROTOCOL ?= https
+export VISIBLE_WEB_HOST
+export VISIBLE_WEB_PROTOCOL
+
 # ngeo
 ANGULAR_VERSION = 1.5
 ifeq ($(OPERATING_SYSTEM), LINUX)
@@ -171,12 +177,12 @@ endif
 APP_OUTPUT_DIR = $(PACKAGE)/static-ngeo/build
 OL_JS_FILES = $(shell $(FIND) node_modules/openlayers/src/ol -type f -name '*.js' 2> /dev/null)
 NGEO_JS_FILES = $(shell $(FIND) node_modules/ngeo/src -type f -name '*.js' 2> /dev/null)
-APP_JS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/js -type f -name '*.js')
+APP_JS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/js $(PACKAGE)/static-ngeo/components -type f -name '*.js')
 APP_HTML_FILES = $(shell $(FIND) $(PACKAGE)/templates -type f -name '*.html')
 NGEO_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 node_modules/ngeo/src/directives/partials/*.html 2> /dev/null)
 GMF_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 node_modules/ngeo/contribs/gmf/src/directives/partials/*.html 2> /dev/null)
-APP_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 $(PACKAGE)/static-ngeo/js/components/*/*.html 2> /dev/null)
-LESS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/less -type f -name '*.less' 2> /dev/null)
+APP_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 $(PACKAGE)/static-ngeo/components/*/*.html 2> /dev/null)
+LESS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/less $(PACKAGE)/static-ngeo/components -type f -name '*.less' 2> /dev/null)
 NGEO_GMF_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/gmf-icons, .woff .ttf .eot)
 NGEO_FONTAWESOME_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/fontawesome-webfont, .woff .woff2 .ttf .eot)
 NGEO_FONTS = $(NGEO_GMF_FONTS) $(NGEO_FONTAWESOME_FONTS)
@@ -440,7 +446,7 @@ MAKO_FILES = $(shell $(FIND) $(EXTRA_EXCLUDE) $(FIND_OPTS) -name "*.mako" -print
 JINJA_FILES = $(shell $(FIND) $(EXTRA_EXCLUDE) $(FIND_OPTS) -name "*.jinja" -print)
 VARS_FILES += CONST_vars.yaml $(VARS_FILE)
 VARS_DEPENDS += $(VARS_FILES) .build/node_modules.timestamp
-CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid_closure \
+CONFIG_VARS += instanceid sqlalchemy.url schema parentschema enable_admin_interface pyramid_closure \
 	node_modules_path closure_library_path default_locale_name servers layers \
 	available_locale_names cache admin_interface functionalities external_themes_url \
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
@@ -465,13 +471,19 @@ help:
 	@echo  "- cleanall		Remove all the build artefacts"
 	@echo  "- cleanallcache		Remove all the build artefacts and the extra caches (npm and pip)"
 	@echo
-	@echo "Utility targets:"
+	@echo  "Utility targets:"
 	@echo
 	@echo  "- update		Update and clean the project (Git, Node, Pip)"
 	@echo  "- update-git-submodules	Update and clean the Git submodules"
 	@echo  "- update-node-modules	Update node modules (using --force)"
 	@echo  "- upgrade-db		Upgrade the database to the latest version"
 	@echo  "- upgrade		Launch the upgrade process"
+	@echo
+	@echo  "Deploy branch target:"
+	@echo
+	@echo  "- deploy-branch		Deploy the curent branch to demos"
+	@echo  "- remove-branch		Remove the curent branch from demos"
+
 ifdef UTILITY_HELP
 	@echo $(UTILITY_HELP)
 endif
@@ -568,6 +580,23 @@ upgrade-db: alembic.ini alembic_static.ini $(VENV_BIN)/alembic$(PYTHON_BIN_POSTF
 	$(VENV_BIN)/alembic -c alembic.ini upgrade head
 	$(VENV_BIN)/alembic -c alembic_static.ini upgrade head
 
+# Deploy branch
+
+.PHONY: deploy-branch
+deploy-branch:
+	@read -p "Are you sure to deploy the branch in $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH) (Y/n)?" RESP; RESP=`echo $$RESP | tr '[:upper:]' '[:lower:]'`; /usr/bin/test "$$RESP" == "y" -o "$$RESP" == "yes" -o "$$RESP" == ""
+	rm -f $(APACHE_CONF_DIR)/$(GIT_BRANCH).conf
+	rm -rf $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH)
+	mkdir --parents $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH)
+	git clone $(GIT_REMOTE_URL) -b $(GIT_BRANCH) $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH)
+	cd $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH); INSTANCE_ID=$(GIT_BRANCH) APACHE_ENTRY_POINT=/$(GIT_BRANCH)/ $(MAKE) -f $(DEPLOY_BRANCH_MAKEFILE) build
+	@echo Now open $(DEPLOY_BRANCH_BASE_URL)/$(GIT_BRANCH)
+
+.PHONY: remove-branch
+remove-branch:
+	rm -f $(APACHE_CONF_DIR)/$(GIT_BRANCH).conf
+	rm -fr $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH)
+	$(APACHE_GRACEFUL)
 
 # Templates
 
@@ -632,7 +661,8 @@ $(PACKAGE)/locale/$(PACKAGE)-client.pot: \
 		$(I18N_DEPENDENTIES) \
 		$(I18N_SOURCE_FILES) \
 		$(VENV_BIN)/pot-create$(PYTHON_BIN_POSTFIX) \
-		.build/mapserver.timestamp
+		.build/mapserver.timestamp \
+		.build/config.yaml
 	$(PRERULE_CMD)
 	$(VENV_BIN)/pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
 	# removes the always changed date line
@@ -646,7 +676,7 @@ $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-server.po: $(PACKAGE)/locale/$(PACKAG
 	mkdir -p $(dir $@)
 	[ -f $@ ] || msginit --no-translator --input=$< --output-file=$@ -l $*
 	touch --no-create $@
-	msgmerge --backup=none --update $@ $<
+	msgmerge --backup=none --update --sort-output --no-location $@ $<
 
 .PRECIOUS: $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po
 $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po: $(PACKAGE)/locale/$(PACKAGE)-client.pot
@@ -654,7 +684,7 @@ $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po: $(PACKAGE)/locale/$(PACKAG
 	mkdir -p $(dir $@)
 	[ -f $@ ] || msginit --no-translator --input=$< --output-file=$@ -l $*
 	touch --no-create $@
-	msgmerge --backup=none --update $@ $<
+	msgmerge --backup=none --update --sort-output --no-location $@ $<
 
 .PRECIOUS: %.mo
 %.mo: %.po
@@ -795,6 +825,7 @@ node_modules/ngeo/buildtools/mako_build.json: .build/node_modules.timestamp
 	$(PRERULE_CMD)
 	PYTHONIOENCODING=UTF-8 $(VENV_BIN)/mako-render \
 		--var 'src=$(PACKAGE)/static-ngeo/js/**/*.js' \
+		--var 'src_components=$(PACKAGE)/static-ngeo/components/**/*.js' \
 		--var src_set=contribs_gmf \
 		--var entry_point=$(PACKAGE)_$* \
 		--var ngeo_folder=node_modules/ngeo/ \

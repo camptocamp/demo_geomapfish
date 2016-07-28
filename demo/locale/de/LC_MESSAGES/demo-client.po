@@ -9,338 +9,400 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: demo/templates/desktop.html:8
-msgid "Desktop Application"
-msgstr "Desktop-Applikation"
-
-#: demo/templates/desktop.html:33
-msgid "Theme:"
-msgstr "Themen:"
-
-#: demo/templates/desktop.html:34
-msgid "Loading..."
-msgstr "Applikation wird geladen..."
-
-#: demo/templates/desktop.html:128
-msgid "Draw profile line"
-msgstr ""
-
-#: demo/templates/desktop.html:58 demo/templates/desktop.html:86
-#: demo/templates/mobile.html:120 demo/templates/mobile.html:146
-msgid "Login"
-msgstr "Anmelden"
-
-#: demo/templates/desktop.html:62 demo/templates/desktop.html:95
-msgid "Print"
-msgstr "Drucken"
-
-#: demo/templates/desktop.html:107 demo/templates/desktop.html:66
-msgid "Draw & Measure"
-msgstr "Zeichnen und Messen"
-
-#: demo/templates/desktop.html:120 demo/templates/desktop.html:70
-msgid "Profile"
-msgstr ""
-
-#: demo/templates/desktop.html:76
-msgid "Share this map"
-msgstr ""
-
-#: demo/templates/mobile.html:8
-msgid "Mobile Application"
-msgstr "Mobile Applikation"
-
-#: demo/templates/mobile.html:113 demo/templates/mobile.html:76
-msgid "Back"
-msgstr "Zurück"
-
-#: demo/templates/mobile.html:82 demo/templates/mobile.html:97
-msgid "Background"
-msgstr "Hintergrund"
-
-#: demo/templates/mobile.html:104 demo/templates/mobile.html:85
-msgid "Themes"
-msgstr "Themen"
-
-#: demo/templates/mobile.html:119 demo/templates/mobile.html:124
-msgid "Measure tools"
-msgstr "Messwerkzeug"
-
-#: demo/templates/mobile.html:132
-msgid "Coordinate"
-msgstr "Koordinate"
-
-#: demo/templates/mobile.html:141
-msgid "Length"
-msgstr "Länge"
-
-#: .build/config.yaml:raster/aster
-msgid "aster"
-msgstr "ASTER"
-
-#: .build/config.yaml:raster/srtm
-msgid "srtm"
-msgstr "SRTM"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait
 msgid "1 A4 portrait"
 msgstr "1 A4 Hochformat"
 
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/map
-#: print/print-apps/demo/config.yaml:template/2 landscape/map
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "map"
-msgstr "Karte"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/title
-#: print/print-apps/demo/config.yaml:template/2 landscape/title
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "title"
-msgstr "Titel"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/scalebar
-#: print/print-apps/demo/config.yaml:template/2 landscape/scalebar
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "scalebar"
-msgstr "Massstabsbalken"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/comments
-#: print/print-apps/demo/config.yaml:template/2 landscape/comments
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "comments"
-msgstr "Kommentare"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/northArrow
-#: print/print-apps/demo/config.yaml:template/2 landscape/northArrow
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "northArrow"
-msgstr "Nord-Pfeil"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/datasource
-#: print/print-apps/demo/config.yaml:template/2 landscape/datasource
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "datasource"
-msgstr "Datenquelle"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/debug
-#: print/print-apps/demo/config.yaml:template/2 landscape/debug
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "debug"
-msgstr "Debug"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/legend
-#: print/print-apps/demo/config.yaml:template/2 landscape/legend
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "legend"
-msgstr "Legende"
-
-#: print/print-apps/demo/config.yaml:template/2 A4 landscape
 msgid "2 A4 landscape"
 msgstr "2 A4 Querformat"
 
-#: print/print-apps/demo/config.yaml:template/3 A3 portrait
 msgid "3 A3 portrait"
 msgstr "3 A3 Hochformat"
 
-#: print/print-apps/demo/config.yaml:template/4 A3 landscape
 msgid "4 A3 landscape"
 msgstr "4 A3 Querformat"
 
-#~ msgid "Paysage"
-#~ msgstr "Landschaft"
+msgid "Administration"
+msgstr "Administration"
 
-#~ msgid "Gestion des eaux"
-#~ msgstr "Wassermanagement"
+msgid "Back"
+msgstr "Zurück"
 
-#~ msgid "Patrimoine"
-#~ msgstr "Kulturelles Erbe"
+msgid "Background"
+msgstr "Hintergrund"
 
-#~ msgid "Administration"
-#~ msgstr "Administration"
+msgid "Cadastre"
+msgstr "Kataster"
 
-#~ msgid "Cadastre"
-#~ msgstr "Kataster"
+msgid "Cluster_BaseFID"
+msgstr ""
 
-#~ msgid "Transport"
-#~ msgstr "Transport"
+msgid "Cluster_FeatureCount"
+msgstr ""
 
-#~ msgid "Enseignement 2"
-#~ msgstr "Bildungsinstitutionen"
+msgid "Cluster_Group"
+msgstr ""
 
-#~ msgid "Edit"
-#~ msgstr "Editieren"
+msgid "Coordinate"
+msgstr "Koordinate"
 
-#~ msgid "Equipement"
-#~ msgstr "Infrastruktur"
+msgid "Desktop Application"
+msgstr "Desktop-Applikation"
 
-#~ msgid "Enseignement"
-#~ msgstr "Bildung"
+msgid "Draw & Measure"
+msgstr "Zeichnen und Messen"
 
-#~ msgid "Layers"
-#~ msgstr "Ebene"
+msgid "Draw profile line"
+msgstr ""
 
-#~ msgid "Group"
-#~ msgstr "Gruppe"
+msgid "Edit"
+msgstr "Editieren"
 
-#, fuzzy
-#~ msgid "OSM functions mixed"
-#~ msgstr "OSM Funktion"
+msgid "Enseignement"
+msgstr "Bildung"
 
-#~ msgid "background"
-#~ msgstr "Hintergrund"
+msgid "Enseignement 2"
+msgstr "Bildungsinstitutionen"
 
-#~ msgid "test"
-#~ msgstr "test"
+msgid "Equipement"
+msgstr "Infrastruktur"
 
-#~ msgid "test2"
-#~ msgstr "test2"
+msgid "Gestion des eaux"
+msgstr "Wassermanagement"
 
-#~ msgid "osm_time"
-#~ msgstr "OSM Zeit"
+msgid "Group"
+msgstr "Gruppe"
 
-#, fuzzy
-#~ msgid "OSM functions"
-#~ msgstr "OSM Funktion"
+msgid "Half query"
+msgstr ""
 
-#~ msgid "information"
-#~ msgstr "Information"
+msgid "Layer with very very very very very long name"
+msgstr ""
 
-#~ msgid "cinema"
-#~ msgstr "Kino"
+msgid "Layers"
+msgstr "Ebene"
 
-#~ msgid "osm_id"
-#~ msgstr "OSM zeitbezogen"
+msgid "Length"
+msgstr "Länge"
 
-#~ msgid "access"
-#~ msgstr "Zugang"
+msgid "Loading..."
+msgstr "Applikation wird geladen..."
 
-#~ msgid "aerialway"
-#~ msgstr "Luftwege"
+msgid "Login"
+msgstr "Anmelden"
 
-#~ msgid "denomination"
-#~ msgstr "Information"
+msgid "Loisirs"
+msgstr ""
 
-#~ msgid "layer"
-#~ msgstr "Ebene"
+msgid "Measure tools"
+msgstr "Messwerkzeug"
 
-#, fuzzy
-#~ msgid "railway"
-#~ msgstr "Luftwege"
+msgid "Mobile Application"
+msgstr "Mobile Applikation"
 
-#~ msgid "sport"
-#~ msgstr "Transport"
-
-#~ msgid "bank"
-#~ msgstr "leer"
-
-#~ msgid "bus_stop"
-#~ msgstr "Bushaltestelle"
+msgid "OSM"
+msgstr ""
 
 #, fuzzy
-#~ msgid "entertainment"
-#~ msgstr "Bildung"
-
-#~ msgid "parking"
-#~ msgstr "Parkplatz"
-
-#~ msgid "place_of_worship"
-#~ msgstr "Kultstätte"
-
-#~ msgid "police"
-#~ msgstr "Polizei"
-
-#~ msgid "post_office"
-#~ msgstr "Post"
-
-#~ msgid "osm"
-#~ msgstr "OSM"
+msgid "OSM functions"
+msgstr "OSM Funktion"
 
 #, fuzzy
-#~ msgid "osm_time_r_s"
-#~ msgstr "OSM zeitbezogen"
+msgid "OSM functions mixed"
+msgstr "OSM Funktion"
 
-#~ msgid "line"
-#~ msgstr "Linie"
+msgid "Patrimoine"
+msgstr "Kulturelles Erbe"
 
-#~ msgid "polygon"
-#~ msgstr "Polygon"
+msgid "Paysage"
+msgstr "Landschaft"
 
-#~ msgid "point"
-#~ msgstr "Punkt"
+msgid "Print"
+msgstr "Drucken"
 
-#~ msgid "osm_scale"
-#~ msgstr "OSM Skala"
+msgid "Profile"
+msgstr ""
 
-#~ msgid "ch.swisstopo.dreiecksvermaschung"
-#~ msgstr "LV95 Dreiecksvermaschung"
+msgid "Share this map"
+msgstr ""
 
-#~ msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
-#~ msgstr "Gravimetrischer Atlas 1:100000"
+msgid "Theme:"
+msgstr "Themen:"
 
-#~ msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
-#~ msgstr "Lithologie-Hauptgruppen"
+msgid "Themes"
+msgstr "Themen"
 
-#~ msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
-#~ msgstr "Gesteinsklassierung"
+msgid "Transport"
+msgstr "Transport"
 
-#~ msgid "hospitals"
-#~ msgstr "Spital"
+msgid "access"
+msgstr "Zugang"
 
-#~ msgid "firestations"
-#~ msgstr "Feuerwehrstation"
+msgid "accommodation"
+msgstr ""
 
-#~ msgid "fuel"
-#~ msgstr "Tankstelle"
+msgid "aerialway"
+msgstr "Luftwege"
+
+msgid "amenity"
+msgstr ""
+
+msgid "asitvd.fond_couleur"
+msgstr "ASIT VD Basiskarte farbig"
+
+msgid "asitvd.fond_gris"
+msgstr "ASIT VD Basiskarte grau"
+
+msgid "asitvd.fond_pourortho"
+msgstr "ASIT VD Basiskarte Ortho"
+
+msgid "aster"
+msgstr "ASTER"
+
+msgid "background"
+msgstr "Hintergrund"
+
+msgid "bank"
+msgstr "leer"
+
+msgid "barrier"
+msgstr ""
+
+msgid "bicycle"
+msgstr ""
+
+msgid "brand"
+msgstr ""
+
+msgid "building"
+msgstr ""
+
+msgid "bus_stop"
+msgstr "Bushaltestelle"
+
+msgid "ch.are.alpenkonvention"
+msgstr "Alpenkonvention"
+
+msgid "ch.astra.ausnahmetransportrouten"
+msgstr "Ausnahmetransportrouten"
+
+msgid "ch.swisstopo.dreiecksvermaschung"
+msgstr "LV95 Dreiecksvermaschung"
+
+msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
+msgstr "Gesteinsklassierung"
+
+msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
+msgstr "Lithologie-Hauptgruppen"
+
+msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
+msgstr "Gravimetrischer Atlas 1:100000"
+
+msgid "cinema"
+msgstr "Kino"
+
+msgid "comments"
+msgstr "Kommentare"
+
+msgid "covered"
+msgstr ""
+
+msgid "datasource"
+msgstr "Datenquelle"
+
+msgid "debug"
+msgstr "Debug"
+
+msgid "denomination"
+msgstr "Information"
+
+msgid "display_name"
+msgstr ""
+
+msgid "ele"
+msgstr ""
 
 #, fuzzy
-#~ msgid "osm_time_r_dp"
-#~ msgstr "OSM zeitbezogen"
+msgid "entertainment"
+msgstr "Bildung"
 
-#~ msgid "osm_open"
-#~ msgstr "OSM zeitbezogen"
+msgid "firestations"
+msgstr "Feuerwehrstation"
+
+msgid "foot"
+msgstr ""
+
+msgid "fuel"
+msgstr "Tankstelle"
+
+msgid "highway"
+msgstr ""
+
+msgid "hospitals"
+msgstr "Spital"
+
+msgid "information"
+msgstr "Information"
+
+msgid "kind"
+msgstr ""
+
+msgid "layer"
+msgstr "Ebene"
+
+msgid "legend"
+msgstr "Legende"
+
+msgid "leisure"
+msgstr ""
+
+msgid "line"
+msgstr "Linie"
+
+msgid "man_made"
+msgstr ""
+
+msgid "map"
+msgstr "Karte"
+
+msgid "motorcar"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "natural"
+msgstr ""
+
+msgid "northArrow"
+msgstr "Nord-Pfeil"
 
 #, fuzzy
-#~ msgid "open"
-#~ msgstr "OSM Zeit"
+msgid "open"
+msgstr "OSM Zeit"
+
+msgid "operator"
+msgstr ""
+
+msgid "osm"
+msgstr "OSM"
+
+msgid "osm_id"
+msgstr "OSM zeitbezogen"
+
+msgid "osm_open"
+msgstr "OSM zeitbezogen"
+
+msgid "osm_scale"
+msgstr "OSM Skala"
+
+msgid "osm_time"
+msgstr "OSM Zeit"
 
 #, fuzzy
-#~ msgid "two_layers"
-#~ msgstr "Ebene"
+msgid "osm_time_r_dp"
+msgstr "OSM zeitbezogen"
 
 #, fuzzy
-#~ msgid "osm_time_v_dp"
-#~ msgstr "OSM zeitbezogen"
+msgid "osm_time_r_dp_2"
+msgstr "OSM zeitbezogen"
 
 #, fuzzy
-#~ msgid "osm_time_v_s"
-#~ msgstr "OSM zeitbezogen"
+msgid "osm_time_r_s"
+msgstr "OSM zeitbezogen"
 
 #, fuzzy
-#~ msgid "osm_time_r_dp_2"
-#~ msgstr "OSM zeitbezogen"
+msgid "osm_time_v_dp"
+msgstr "OSM zeitbezogen"
 
-#~ msgid "ch.are.alpenkonvention"
-#~ msgstr "Alpenkonvention"
+#, fuzzy
+msgid "osm_time_v_s"
+msgstr "OSM zeitbezogen"
 
-#~ msgid "ch.astra.ausnahmetransportrouten"
-#~ msgstr "Ausnahmetransportrouten"
+msgid "parking"
+msgstr "Parkplatz"
 
-#~ msgid "asitvd.fond_pourortho"
-#~ msgstr "ASIT VD Basiskarte Ortho"
+msgid "place"
+msgstr ""
 
-#~ msgid "asitvd.fond_couleur"
-#~ msgstr "ASIT VD Basiskarte farbig"
+msgid "place_of_worship"
+msgstr "Kultstätte"
 
-#~ msgid "asitvd.fond_gris"
-#~ msgstr "ASIT VD Basiskarte grau"
+msgid "point"
+msgstr "Punkt"
+
+msgid "police"
+msgstr "Polizei"
+
+msgid "polygon"
+msgstr "Polygon"
+
+msgid "population"
+msgstr ""
+
+msgid "post_office"
+msgstr "Post"
+
+msgid "power"
+msgstr ""
+
+#, fuzzy
+msgid "railway"
+msgstr "Luftwege"
+
+msgid "ref"
+msgstr ""
+
+msgid "religion"
+msgstr ""
+
+msgid "scalebar"
+msgstr "Massstabsbalken"
+
+msgid "shop"
+msgstr ""
+
+msgid "sport"
+msgstr "Transport"
+
+msgid "srtm"
+msgstr "SRTM"
+
+msgid "surface"
+msgstr ""
+
+msgid "sustenance"
+msgstr ""
+
+msgid "test"
+msgstr "test"
+
+msgid "test2"
+msgstr "test2"
+
+msgid "timestamp"
+msgstr ""
+
+msgid "title"
+msgstr "Titel"
+
+msgid "tourism"
+msgstr ""
+
+msgid "tourism_activity"
+msgstr ""
+
+#, fuzzy
+msgid "two_layers"
+msgstr "Ebene"
+
+msgid "type"
+msgstr ""
+
+msgid "waterway"
+msgstr ""
+
+msgid "wood"
+msgstr ""
 
 #~ msgid "Restaurants"
 #~ msgstr "Restaurants"

@@ -11,744 +11,707 @@ msgstr ""
 "#-#-#-#-#  demo-db.pot  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: demo/templates/desktop.html:8
-msgid "Desktop Application"
-msgstr "Application bureau"
-
-#: demo/templates/desktop.html:33
-msgid "Theme:"
-msgstr "Thème:"
-
-#: demo/templates/desktop.html:34
-msgid "Loading..."
-msgstr "Chargement..."
-
-#: demo/templates/desktop.html:128
-msgid "Draw profile line"
-msgstr "Dessine la ligne de profile"
-
-#: demo/templates/desktop.html:58 demo/templates/desktop.html:86
-#: demo/templates/mobile.html:120 demo/templates/mobile.html:146
-msgid "Login"
-msgstr "Se connecter"
-
-#: demo/templates/desktop.html:62 demo/templates/desktop.html:95
-msgid "Print"
-msgstr "Impression"
-
-#: demo/templates/desktop.html:107 demo/templates/desktop.html:66
-msgid "Draw & Measure"
-msgstr "Mesure et dessin"
-
-#: demo/templates/desktop.html:120 demo/templates/desktop.html:70
-msgid "Profile"
-msgstr "Profile"
-
-#: demo/templates/desktop.html:76
-msgid "Share this map"
-msgstr "Partager cette carte"
-
-#: demo/templates/mobile.html:8
-msgid "Mobile Application"
-msgstr "Application mobile"
-
-#: demo/templates/mobile.html:113 demo/templates/mobile.html:76
-msgid "Back"
-msgstr "Retour"
-
-#: demo/templates/mobile.html:82 demo/templates/mobile.html:97
-msgid "Background"
-msgstr "Fond de carte"
-
-#: demo/templates/mobile.html:104 demo/templates/mobile.html:85
-msgid "Themes"
-msgstr "Thèmes"
-
-#: demo/templates/mobile.html:119 demo/templates/mobile.html:124
-msgid "Measure tools"
-msgstr "Outils de mesure"
-
-#: demo/templates/mobile.html:132
-msgid "Coordinate"
-msgstr "Coordonnée"
-
-#: demo/templates/mobile.html:141
-msgid "Length"
-msgstr "Longueur"
-
-#: .build/config.yaml:raster/aster
-msgid "aster"
-msgstr "ASTER"
-
-#: .build/config.yaml:raster/srtm
-msgid "srtm"
-msgstr "SRTM"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait
 msgid "1 A4 portrait"
 msgstr "A4 portrait"
 
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/map
-#: print/print-apps/demo/config.yaml:template/2 landscape/map
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "map"
-msgstr "Carte"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/title
-#: print/print-apps/demo/config.yaml:template/2 landscape/title
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "title"
-msgstr "Titre"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/scalebar
-#: print/print-apps/demo/config.yaml:template/2 landscape/scalebar
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "scalebar"
-msgstr "Bar d'echéles"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/comments
-#: print/print-apps/demo/config.yaml:template/2 landscape/comments
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "comments"
-msgstr "Commentaires"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/northArrow
-#: print/print-apps/demo/config.yaml:template/2 landscape/northArrow
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "northArrow"
-msgstr "Fléche du nord"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/datasource
-#: print/print-apps/demo/config.yaml:template/2 landscape/datasource
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "datasource"
-msgstr "Source de donnée"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/debug
-#: print/print-apps/demo/config.yaml:template/2 landscape/debug
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "debug"
-msgstr "Debug"
-
-#: print/print-apps/demo/config.yaml:template/1 A4 portrait/legend
-#: print/print-apps/demo/config.yaml:template/2 landscape/legend
-#: print/print-apps/demo/config.yaml:template/3 A3
-#: print/print-apps/demo/config.yaml:template/4
-msgid "legend"
-msgstr "Légende"
-
-#: print/print-apps/demo/config.yaml:template/2 A4 landscape
 msgid "2 A4 landscape"
 msgstr "A4 paysage"
 
-#: print/print-apps/demo/config.yaml:template/3 A3 portrait
 msgid "3 A3 portrait"
 msgstr "A3 portrait"
 
-#: print/print-apps/demo/config.yaml:template/4 A3 landscape
 msgid "4 A3 landscape"
 msgstr "A3 paysage"
 
 #, fuzzy
-#~ msgid "Administration"
-#~ msgstr "Informations"
+msgid "Administration"
+msgstr "Informations"
+
+msgid "Back"
+msgstr "Retour"
+
+msgid "Background"
+msgstr "Fond de carte"
+
+msgid "Cadastre"
+msgstr ""
+
+msgid "Cluster_BaseFID"
+msgstr "Grappe base FID"
+
+msgid "Cluster_FeatureCount"
+msgstr "Grappe nombre elements"
+
+msgid "Cluster_Group"
+msgstr "Grappe groupe"
+
+msgid "Coordinate"
+msgstr "Coordonnée"
+
+msgid "Desktop Application"
+msgstr "Application bureau"
+
+msgid "Draw & Measure"
+msgstr "Mesure et dessin"
+
+msgid "Draw profile line"
+msgstr "Dessine la ligne de profile"
+
+msgid "Edit"
+msgstr "Edition"
+
+msgid "Enseignement"
+msgstr "Enseignement"
+
+msgid "Enseignement 2"
+msgstr "Enseignement"
 
 #, fuzzy
-#~ msgid "Transport"
-#~ msgstr "Sport"
+msgid "Equipement"
+msgstr "Enseignement"
 
-#~ msgid "Enseignement 2"
-#~ msgstr "Enseignement"
+msgid "Gestion des eaux"
+msgstr ""
 
-#~ msgid "Edit"
-#~ msgstr "Edition"
+msgid "Group"
+msgstr "Groupe"
+
+msgid "Half query"
+msgstr "Partiellement interogable"
+
+msgid "Layer with very very very very very long name"
+msgstr "Couche avec un nom très très très très très long"
+
+msgid "Layers"
+msgstr "Couches"
+
+msgid "Length"
+msgstr "Longueur"
+
+msgid "Loading..."
+msgstr "Chargement..."
+
+msgid "Login"
+msgstr "Se connecter"
+
+msgid "Loisirs"
+msgstr ""
+
+msgid "Measure tools"
+msgstr "Outils de mesure"
+
+msgid "Mobile Application"
+msgstr "Application mobile"
+
+msgid "OSM"
+msgstr ""
+
+msgid "OSM functions"
+msgstr "Fonctions OSM"
+
+msgid "OSM functions mixed"
+msgstr "Fonctions OSM mixed"
+
+msgid "Patrimoine"
+msgstr ""
+
+msgid "Paysage"
+msgstr ""
+
+msgid "Print"
+msgstr "Impression"
+
+msgid "Profile"
+msgstr "Profile"
+
+msgid "Share this map"
+msgstr "Partager cette carte"
+
+msgid "Theme:"
+msgstr "Thème:"
+
+msgid "Themes"
+msgstr "Thèmes"
 
 #, fuzzy
-#~ msgid "Equipement"
-#~ msgstr "Enseignement"
+msgid "Transport"
+msgstr "Sport"
 
-#~ msgid "Enseignement"
-#~ msgstr "Enseignement"
+msgid "access"
+msgstr "Acces"
 
-#~ msgid "Layers"
-#~ msgstr "Couches"
+msgid "accommodation"
+msgstr "Hébergement"
 
-#~ msgid "Group"
-#~ msgstr "Groupe"
+msgid "aerialway"
+msgstr "Remontée méchanique"
 
-#~ msgid "OSM functions mixed"
-#~ msgstr "Fonctions OSM mixed"
+msgid "amenity"
+msgstr "Equipements"
 
-#~ msgid "background"
-#~ msgstr "Fond de carte"
+msgid "asitvd.fond_couleur"
+msgstr "ASIT VD - Fond couleur"
 
-#~ msgid "test"
-#~ msgstr "Test"
+msgid "asitvd.fond_gris"
+msgstr "ASIT VD - Fond gris"
 
-#~ msgid "test2"
-#~ msgstr "Deuxième test"
+msgid "asitvd.fond_pourortho"
+msgstr "ASIT VD - Fond pour orthophoto"
 
-#~ msgid "osm_time"
-#~ msgstr "Temps OSM"
+msgid "aster"
+msgstr "ASTER"
 
-#~ msgid "OSM functions"
-#~ msgstr "Fonctions OSM"
+msgid "background"
+msgstr "Fond de carte"
 
-#~ msgid "information"
-#~ msgstr "Informations"
+msgid "bank"
+msgstr "Vide"
 
-#~ msgid "Cluster_FeatureCount"
-#~ msgstr "Grappe nombre elements"
+msgid "barrier"
+msgstr "Barière"
 
-#~ msgid "Cluster_Group"
-#~ msgstr "Grappe groupe"
+msgid "bicycle"
+msgstr "Vélo"
 
-#~ msgid "Cluster_BaseFID"
-#~ msgstr "Grappe base FID"
+msgid "brand"
+msgstr "Marque"
 
-#~ msgid "cinema"
-#~ msgstr "Cinéma"
+msgid "building"
+msgstr "Batiment"
 
-#~ msgid "display_name"
-#~ msgstr "Nom"
+msgid "bus_stop"
+msgstr "Arrêt de bus"
 
-#~ msgid "name"
-#~ msgstr "Nom"
+msgid "ch.are.alpenkonvention"
+msgstr "Convention des Alpes"
 
-#~ msgid "osm_id"
-#~ msgstr "ID OSM"
+msgid "ch.astra.ausnahmetransportrouten"
+msgstr "Itinéraires convois exceptionnels"
 
-#~ msgid "access"
-#~ msgstr "Acces"
+msgid "ch.swisstopo.dreiecksvermaschung"
+msgstr "MN95 Maillage triangulaire"
 
-#~ msgid "aerialway"
-#~ msgstr "Remontée méchanique"
+msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
+msgstr "Classification des roches"
 
-#~ msgid "amenity"
-#~ msgstr "Equipements"
+msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
+msgstr "Groupes lithologiques"
 
-#~ msgid "barrier"
-#~ msgstr "Barière"
+msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
+msgstr "Atlas gravimétrique 1:100000"
 
-#~ msgid "bicycle"
-#~ msgstr "Vélo"
+msgid "cinema"
+msgstr "Cinéma"
 
-#~ msgid "brand"
-#~ msgstr "Marque"
+msgid "comments"
+msgstr "Commentaires"
 
-#~ msgid "building"
-#~ msgstr "Batiment"
+msgid "covered"
+msgstr "Couvert"
 
-#~ msgid "covered"
-#~ msgstr "Couvert"
+msgid "datasource"
+msgstr "Source de donnée"
 
-#~ msgid "denomination"
-#~ msgstr "Informations"
+msgid "debug"
+msgstr "Debug"
 
-#~ msgid "ele"
-#~ msgstr "Elévation"
+msgid "denomination"
+msgstr "Informations"
 
-#~ msgid "foot"
-#~ msgstr "Foot"
+msgid "display_name"
+msgstr "Nom"
 
-#~ msgid "highway"
-#~ msgstr "Routes"
+msgid "ele"
+msgstr "Elévation"
 
-#~ msgid "layer"
-#~ msgstr "Couches"
+msgid "entertainment"
+msgstr "Divertissement"
 
-#~ msgid "leisure"
-#~ msgstr "Loisires"
+msgid "firestations"
+msgstr "Caserne de pompiers"
 
-#~ msgid "man_made"
-#~ msgstr "Fabrication humaine"
+msgid "foot"
+msgstr "Foot"
 
-#~ msgid "motorcar"
-#~ msgstr "Véhicules"
+msgid "fuel"
+msgstr "Station d'essence"
 
-#~ msgid "natural"
-#~ msgstr "Naturel"
+msgid "highway"
+msgstr "Routes"
 
-#~ msgid "operator"
-#~ msgstr "Opérateur"
+msgid "hospitals"
+msgstr "Hôpitals"
 
-#~ msgid "population"
-#~ msgstr "Population"
+msgid "information"
+msgstr "Informations"
 
-#~ msgid "power"
-#~ msgstr "Energie"
+msgid "kind"
+msgstr "Sorte"
 
-#~ msgid "place"
-#~ msgstr "Place"
+msgid "layer"
+msgstr "Couches"
 
-#~ msgid "railway"
-#~ msgstr "Chemins de fer"
+msgid "legend"
+msgstr "Légende"
 
-#~ msgid "ref"
-#~ msgstr "Réference"
+msgid "leisure"
+msgstr "Loisires"
 
-#~ msgid "religion"
-#~ msgstr "Religion"
+msgid "line"
+msgstr "Lignes"
 
-#~ msgid "shop"
-#~ msgstr "Magasin"
+msgid "man_made"
+msgstr "Fabrication humaine"
 
-#~ msgid "sport"
-#~ msgstr "Sport"
+msgid "map"
+msgstr "Carte"
 
-#~ msgid "surface"
-#~ msgstr "Surface"
+msgid "motorcar"
+msgstr "Véhicules"
 
-#~ msgid "tourism"
-#~ msgstr "Tourism"
+msgid "name"
+msgstr "Nom"
 
-#~ msgid "waterway"
-#~ msgstr "Cours d'eau"
+msgid "natural"
+msgstr "Naturel"
 
-#~ msgid "wood"
-#~ msgstr "Bois"
+msgid "northArrow"
+msgstr "Fléche du nord"
 
-#~ msgid "bank"
-#~ msgstr "Vide"
+msgid "open"
+msgstr "Ouvert"
 
-#~ msgid "bus_stop"
-#~ msgstr "Arrêt de bus"
+msgid "operator"
+msgstr "Opérateur"
 
-#~ msgid "entertainment"
-#~ msgstr "Divertissement"
+msgid "osm"
+msgstr "OSM"
 
-#~ msgid "parking"
-#~ msgstr "Parking"
+msgid "osm_id"
+msgstr "ID OSM"
 
-#~ msgid "place_of_worship"
-#~ msgstr "Lieux de culte"
+msgid "osm_open"
+msgstr "Ouverture OSM"
 
-#~ msgid "police"
-#~ msgstr "Police"
+msgid "osm_scale"
+msgstr "Échelles OSM"
 
-#~ msgid "post_office"
-#~ msgstr "Poste"
+msgid "osm_time"
+msgstr "Temps OSM"
 
-#~ msgid "sustenance"
-#~ msgstr "Nouriture"
+msgid "osm_time_r_dp"
+msgstr "Temps OSM popup interval"
 
-#~ msgid "tourism_activity"
-#~ msgstr "Tourism"
+msgid "osm_time_r_dp_2"
+msgstr "Temps OSM popup interval 2"
 
-#~ msgid "osm"
-#~ msgstr "OSM"
+msgid "osm_time_r_s"
+msgstr "Temps OSM curseur interval"
 
-#~ msgid "osm_time_r_s"
-#~ msgstr "Temps OSM curseur interval"
+msgid "osm_time_v_dp"
+msgstr "Temps OSM popup valeur"
 
-#~ msgid "type"
-#~ msgstr "Type"
+msgid "osm_time_v_s"
+msgstr "Temps OSM curseur valeur"
 
-#~ msgid "timestamp"
-#~ msgstr "Datation"
+msgid "parking"
+msgstr "Parking"
 
-#~ msgid "line"
-#~ msgstr "Lignes"
+msgid "place"
+msgstr "Place"
 
-#~ msgid "kind"
-#~ msgstr "Sorte"
+msgid "place_of_worship"
+msgstr "Lieux de culte"
 
-#~ msgid "polygon"
-#~ msgstr "Polygon"
+msgid "point"
+msgstr "Point"
 
-#~ msgid "point"
-#~ msgstr "Point"
+msgid "police"
+msgstr "Police"
 
-#~ msgid "osm_scale"
-#~ msgstr "Échelles OSM"
+msgid "polygon"
+msgstr "Polygon"
 
-#~ msgid "ch.swisstopo.dreiecksvermaschung"
-#~ msgstr "MN95 Maillage triangulaire"
+msgid "population"
+msgstr "Population"
 
-#~ msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
-#~ msgstr "Atlas gravimétrique 1:100000"
+msgid "post_office"
+msgstr "Poste"
 
-#~ msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
-#~ msgstr "Groupes lithologiques"
+msgid "power"
+msgstr "Energie"
 
-#~ msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
-#~ msgstr "Classification des roches"
+msgid "railway"
+msgstr "Chemins de fer"
 
-#~ msgid "hospitals"
-#~ msgstr "Hôpitals"
+msgid "ref"
+msgstr "Réference"
 
-#~ msgid "firestations"
-#~ msgstr "Caserne de pompiers"
+msgid "religion"
+msgstr "Religion"
 
-#~ msgid "accommodation"
-#~ msgstr "Hébergement"
+msgid "scalebar"
+msgstr "Bar d'echéles"
 
-#~ msgid "fuel"
-#~ msgstr "Station d'essence"
+msgid "shop"
+msgstr "Magasin"
 
-#~ msgid "osm_time_r_dp"
-#~ msgstr "Temps OSM popup interval"
+msgid "sport"
+msgstr "Sport"
 
-#~ msgid "osm_open"
-#~ msgstr "Ouverture OSM"
+msgid "srtm"
+msgstr "SRTM"
 
-#~ msgid "open"
-#~ msgstr "Ouvert"
+msgid "surface"
+msgstr "Surface"
 
-#~ msgid "Layer with very very very very very long name"
-#~ msgstr "Couche avec un nom très très très très très long"
+msgid "sustenance"
+msgstr "Nouriture"
 
-#~ msgid "two_layers"
-#~ msgstr "Deux couches"
+msgid "test"
+msgstr "Test"
 
-#~ msgid "osm_time_v_dp"
-#~ msgstr "Temps OSM popup valeur"
+msgid "test2"
+msgstr "Deuxième test"
 
-#~ msgid "osm_time_v_s"
-#~ msgstr "Temps OSM curseur valeur"
+msgid "timestamp"
+msgstr "Datation"
 
-#~ msgid "osm_time_r_dp_2"
-#~ msgstr "Temps OSM popup interval 2"
+msgid "title"
+msgstr "Titre"
 
-#~ msgid "Half query"
-#~ msgstr "Partiellement interogable"
+msgid "tourism"
+msgstr "Tourism"
 
-#~ msgid "ch.are.alpenkonvention"
-#~ msgstr "Convention des Alpes"
+msgid "tourism_activity"
+msgstr "Tourism"
 
-#~ msgid "ch.astra.ausnahmetransportrouten"
-#~ msgstr "Itinéraires convois exceptionnels"
+msgid "two_layers"
+msgstr "Deux couches"
 
-#~ msgid "asitvd.fond_pourortho"
-#~ msgstr "ASIT VD - Fond pour orthophoto"
+msgid "type"
+msgstr "Type"
 
-#~ msgid "asitvd.fond_couleur"
-#~ msgstr "ASIT VD - Fond couleur"
+msgid "waterway"
+msgstr "Cours d'eau"
 
-#~ msgid "asitvd.fond_gris"
-#~ msgstr "ASIT VD - Fond gris"
+msgid "wood"
+msgstr "Bois"
 
-#~ msgid "zoo"
-#~ msgstr "Zoo"
-
-#~ msgid "waterways9"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways8"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways7"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways6"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways18"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways17"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways16"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways15"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways14"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways13"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways12"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways11"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways10"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea9"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea8"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea7"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea6"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea5"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea4"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea18"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea17"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea16"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea15"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea14"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea13"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea12"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea11"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea10"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "roads9"
-#~ msgstr "Routes"
-
-#~ msgid "roads8"
-#~ msgstr "Routes"
-
-#~ msgid "roads7"
-#~ msgstr "Routes"
-
-#~ msgid "roads6"
-#~ msgstr "Routes"
-
-#~ msgid "roads5"
-#~ msgstr "Routes"
-
-#~ msgid "roads18"
-#~ msgstr "Routes"
-
-#~ msgid "roads17"
-#~ msgstr "Routes"
-
-#~ msgid "roads16"
-#~ msgstr "Routes"
-
-#~ msgid "roads15"
-#~ msgstr "Routes"
-
-#~ msgid "roads14"
-#~ msgstr "Routes"
-
-#~ msgid "roads13"
-#~ msgstr "Routes"
-
-#~ msgid "roads12"
-#~ msgstr "Routes"
-
-#~ msgid "roads11"
-#~ msgstr "Routes"
-
-#~ msgid "roads10"
-#~ msgstr "Routes"
-
-#~ msgid "railways9"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways8"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways18"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways17"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways16"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways15"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways14"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways13"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways12"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways11"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways10"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "places9"
-#~ msgstr "Places"
-
-#~ msgid "places8"
-#~ msgstr "Places"
-
-#~ msgid "places7"
-#~ msgstr "Places"
-
-#~ msgid "places6"
-#~ msgstr "Places"
-
-#~ msgid "places5"
-#~ msgstr "Places"
-
-#~ msgid "places4"
-#~ msgstr "Places"
-
-#~ msgid "places3"
-#~ msgstr "Places"
-
-#~ msgid "places2"
-#~ msgstr "Places"
-
-#~ msgid "places18"
-#~ msgstr "Places"
-
-#~ msgid "places17"
-#~ msgstr "Places"
-
-#~ msgid "places16"
-#~ msgstr "Places"
-
-#~ msgid "places15"
-#~ msgstr "Places"
-
-#~ msgid "places14"
-#~ msgstr "Places"
-
-#~ msgid "places13"
-#~ msgstr "Places"
-
-#~ msgid "places12"
-#~ msgstr "Places"
-
-#~ msgid "hotel"
-#~ msgstr "Hôtels"
-
-#~ msgid "ch.swisstopo.swissnames3d_feature_poly"
-#~ msgstr "Noms géographiques swissNAMES3D"
-
-#~ msgid "ch.swisstopo.swissnames3d_feature_point"
-#~ msgstr "Noms géographiques swissNAMES3D"
-
-#~ msgid "ch.swisstopo.swissnames3d_feature_line"
-#~ msgstr "Noms géographiques swissNAMES3D"
-
-#~ msgid "cafe"
-#~ msgstr "Café"
-
-#~ msgid "places11"
-#~ msgstr "Places"
-
-#~ msgid "places10"
-#~ msgstr "Places"
-
-#~ msgid "places1"
-#~ msgstr "Places"
-
-#~ msgid "places0"
-#~ msgstr "Places"
-
-#~ msgid "landuse9"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse8"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse7"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse6"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse5"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse4"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse18"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse17"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse16"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse15"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse14"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse13"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse12"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse11"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse10"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "buildings18"
-#~ msgstr "Batiments"
-
-#~ msgid "buildings17"
-#~ msgstr "Batiments"
-
-#~ msgid "buildings16"
-#~ msgstr "Batiments"
-
-#~ msgid "buildings15"
-#~ msgstr "Batiments"
-
-#~ msgid "aeroways18"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways17"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways16"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways15"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways14"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways13"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways12"
+#~ msgid "aeroways10"
 #~ msgstr "Tarmac"
 
 #~ msgid "aeroways11"
 #~ msgstr "Tarmac"
 
-#~ msgid "aeroways10"
+#~ msgid "aeroways12"
 #~ msgstr "Tarmac"
+
+#~ msgid "aeroways13"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways14"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways15"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways16"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways17"
+#~ msgstr "Tarmac"
+
+#~ msgid "aeroways18"
+#~ msgstr "Tarmac"
+
+#~ msgid "buildings15"
+#~ msgstr "Batiments"
+
+#~ msgid "buildings16"
+#~ msgstr "Batiments"
+
+#~ msgid "buildings17"
+#~ msgstr "Batiments"
+
+#~ msgid "buildings18"
+#~ msgstr "Batiments"
+
+#~ msgid "cafe"
+#~ msgstr "Café"
+
+#~ msgid "ch.swisstopo.swissnames3d_feature_line"
+#~ msgstr "Noms géographiques swissNAMES3D"
+
+#~ msgid "ch.swisstopo.swissnames3d_feature_point"
+#~ msgstr "Noms géographiques swissNAMES3D"
+
+#~ msgid "ch.swisstopo.swissnames3d_feature_poly"
+#~ msgstr "Noms géographiques swissNAMES3D"
+
+#~ msgid "hotel"
+#~ msgstr "Hôtels"
+
+#~ msgid "landuse10"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse11"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse12"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse13"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse14"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse15"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse16"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse17"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse18"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse4"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse5"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse6"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse7"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse8"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "landuse9"
+#~ msgstr "Utilisation du sol"
+
+#~ msgid "places0"
+#~ msgstr "Places"
+
+#~ msgid "places1"
+#~ msgstr "Places"
+
+#~ msgid "places10"
+#~ msgstr "Places"
+
+#~ msgid "places11"
+#~ msgstr "Places"
+
+#~ msgid "places12"
+#~ msgstr "Places"
+
+#~ msgid "places13"
+#~ msgstr "Places"
+
+#~ msgid "places14"
+#~ msgstr "Places"
+
+#~ msgid "places15"
+#~ msgstr "Places"
+
+#~ msgid "places16"
+#~ msgstr "Places"
+
+#~ msgid "places17"
+#~ msgstr "Places"
+
+#~ msgid "places18"
+#~ msgstr "Places"
+
+#~ msgid "places2"
+#~ msgstr "Places"
+
+#~ msgid "places3"
+#~ msgstr "Places"
+
+#~ msgid "places4"
+#~ msgstr "Places"
+
+#~ msgid "places5"
+#~ msgstr "Places"
+
+#~ msgid "places6"
+#~ msgstr "Places"
+
+#~ msgid "places7"
+#~ msgstr "Places"
+
+#~ msgid "places8"
+#~ msgstr "Places"
+
+#~ msgid "places9"
+#~ msgstr "Places"
+
+#~ msgid "railways10"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways11"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways12"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways13"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways14"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways15"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways16"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways17"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways18"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways8"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "railways9"
+#~ msgstr "Voies ferrées"
+
+#~ msgid "roads10"
+#~ msgstr "Routes"
+
+#~ msgid "roads11"
+#~ msgstr "Routes"
+
+#~ msgid "roads12"
+#~ msgstr "Routes"
+
+#~ msgid "roads13"
+#~ msgstr "Routes"
+
+#~ msgid "roads14"
+#~ msgstr "Routes"
+
+#~ msgid "roads15"
+#~ msgstr "Routes"
+
+#~ msgid "roads16"
+#~ msgstr "Routes"
+
+#~ msgid "roads17"
+#~ msgstr "Routes"
+
+#~ msgid "roads18"
+#~ msgstr "Routes"
+
+#~ msgid "roads5"
+#~ msgstr "Routes"
+
+#~ msgid "roads6"
+#~ msgstr "Routes"
+
+#~ msgid "roads7"
+#~ msgstr "Routes"
+
+#~ msgid "roads8"
+#~ msgstr "Routes"
+
+#~ msgid "roads9"
+#~ msgstr "Routes"
+
+#~ msgid "waterarea10"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea11"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea12"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea13"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea14"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea15"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea16"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea17"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea18"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea4"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea5"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea6"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea7"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea8"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterarea9"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways10"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways11"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways12"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways13"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways14"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways15"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways16"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways17"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways18"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways6"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways7"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways8"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "waterways9"
+#~ msgstr "Cours d'eau"
+
+#~ msgid "zoo"
+#~ msgstr "Zoo"

@@ -41,7 +41,8 @@
         </layout>
     </appender>
 
-    <logger name="org.mapfish" level="${"DEBUG" if development else "ERROR"}" />
+    <logger name="org.mapfish" level="${"DEBUG" if development else "WARN"}" />
+    <logger name="net.sf.jasperreports" level="WARN" />
     <logger name="org.springframework" level="OFF" />
     <!-- Set spec logger to INFO to log all print spec json data -->
     <logger name="org.mapfish.print.servlet.BaseMapServlet.spec" level="OFF" />

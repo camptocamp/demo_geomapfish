@@ -5,18 +5,12 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
 <!DOCTYPE html>
 <html lang="{{mobileCtrl.lang}}" ng-app="demo" ng-controller="MobileController as mainCtrl">
   <head>
-    <title translate>Mobile Application</title>
+    <title>{{'Mobile Application'|translate}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/image/favicon.ico')}"/>
-% if debug:
-    <link rel="stylesheet/less" href="${request.static_url('%s/ngeo/contribs/gmf/less/font.less' % request.registry.settings['node_modules_path'])}" type="text/css">
-    <link rel="stylesheet/less" href="${request.static_url('demo:static-ngeo/less/mobile.less')}" type="text/css">
-    <link rel="stylesheet/less" href="${request.static_url('%s/ngeo/contribs/gmf/less/mobile.less' % request.registry.settings['node_modules_path'])}" type="text/css">
-% else:
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/mobile.css')}" type="text/css">
-% endif
   </head>
   <body ng-class="{'nav-is-visible': mainCtrl.navIsVisible(),
                    'nav-left-is-visible': mainCtrl.leftNavIsVisible(),
@@ -87,6 +81,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         </ul>
         <gmf-layertree
           gmf-layertree-source="mainCtrl.theme"
+          gmf-layertree-dimensions="mainCtrl.dimensions"
           gmf-layertree-map="::mainCtrl.map"
           gmf-layertree-openlinksinnewwindow="true">
         </gmf-layertree>
@@ -173,9 +168,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     </script>
     <script src="${request.static_url('demo:static-ngeo/build/templatecache.js')}"></script>
     <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/less/dist/less.min.js' % request.registry.settings['node_modules_path'])}"></script>
     <script>
-        demo.baseTemplateUrl = '${request.static_url("demo:static-ngeo/js/components")}';
+        demo.baseTemplateUrl = '${request.static_url("demo:static-ngeo/components")}';
     </script>
 % else:
     <script src="${request.static_url('demo:static-ngeo/build/mobile.js')}"></script>
@@ -185,7 +179,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
 
 
         var gmfModule = angular.module('gmf');
-        gmfModule.constant('angularLocaleScript', '${ request.static_url('demo:static-ngeo/build/angular-locale_{{locale}}.js') }');
+        gmfModule.constant('angularLocaleScript', '${request.static_url('demo:static-ngeo/build/')}angular-locale_{{locale}}.js');
         var langUrls = {
 ${ ',\n'.join([
     "          '{lang}': '{url}'".format(

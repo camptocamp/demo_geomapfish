@@ -8,9 +8,6 @@ vars:
 
     mapserver_docker_dbconnection: user={dbuser} password={dbpassword} dbname={db} host={dbhost}
 
-    # the visible host name
-    host: gmf-test.sig.cloud.camptocamp.net
-
     srid: 21781
 
     # all interface used to create the apache rewrite rules
@@ -37,7 +34,7 @@ vars:
         timeout: 86400
 
     tiles_url:
-    - https://{host}/{instanceid}/tiles
+    - '{web_protocol}://{host}/{instanceid}/tiles'
 
     admin_interface:
         # Default values for the admin interface's maps.
@@ -109,29 +106,36 @@ vars:
         targets:
             point: http://www.openstreetmap.org/node/%s
 
-    reset_password:
+    shortener:
         # Used to send a confirmation email
         email_from: info@camptocamp.com
-        email_subject: New password generated for GeoMapFish
+        email_subject: "Geoportal URL"
         email_body: |
             Hello,
 
-            You have asked for an new password,
-            the new generated password is: {password}
-
-            Sincerely yours
-            The GeoMapfish team
-        smtp_server: psemail.epfl.ch
-
-    shortener:
-        email_from: info@example.com
-        email_subject: "Geoportal URL"
-        email_body: |
             Somebody sent you the following link:
             %(short_url)s
 
             With the message:
             %(message)
+
+            Sincerely yours
+            The GeoMapfish team
+        smtp_server: psemail.epfl.ch
+
+    reset_password:
+        # Used to send a confirmation email
+        email_from: info@camptocamp.com
+        email_subject: New password generated for GeoMapFish
+        email_body: |
+            Hello {user},
+
+            You have asked for an new password,
+            the newly generated password is: {password}
+
+            Sincerely yours
+            The GeoMapfish team
+        smtp_server: psemail.epfl.ch
 
     servers:
         local: https://{host}
