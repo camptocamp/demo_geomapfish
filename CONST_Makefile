@@ -1131,6 +1131,11 @@ requirements.txt:
 	for line in $(REQUIREMENTS) ; do echo $$line >> $@; done # one requirement one line
 	sed -e ':a;N;$$!ba;s/-\([re]\)\n/-\1 /g' -i requirements.txt # put "-r blah" on a single line
 
+.build/mapserver.timestamp: \
+		$(MAP_FILES) \
+		apache/mapserver.conf \
+	$(PRERULE_CMD)
+	touch $@
 else
 apache: .build/apache.timestamp
 
