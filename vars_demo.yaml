@@ -45,7 +45,6 @@ vars:
         # The list of functionalities that can be configured
         # through the admin interface.
         available_functionalities:
-        - mobile_default_theme
         - location
 
     functionalities:
@@ -58,7 +57,7 @@ vars:
             - 3 A3 portrait
             - 4 A3 landscape
             default_basemap: asitvd.fond_gris
-            mobile_default_theme:
+            default_theme: Transport
 #            location:
 #            - "'Lausanne': [535436, 155243, 539476, 150443]"
 #            - "'Pully': [539606, 152493, 541106, 150443]"

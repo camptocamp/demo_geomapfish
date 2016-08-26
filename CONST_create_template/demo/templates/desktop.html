@@ -53,12 +53,16 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Login'|translate}}">
               <span class="fa fa-user"></span>
             </button>
-            <button ngeo-btn class="btn btn-default" ng-model="printActive"
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.printPanelActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Print'|translate}}">
               <span class="fa fa-print"></span>
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.drawFeatureActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Draw & Measure'|translate}}">
+              <span class="fa fa-paint-brush"></span>
+            </button>
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.editFeatureActive"
+              data-toggle="tooltip" data-placement="left" data-original-title="{{'Editing'|translate}}">
               <span class="fa fa-pencil"></span>
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.drawProfilePanelActive"
@@ -84,15 +88,15 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               <gmf-authentication></gmf-authentication>
             </div>
           </div>
-          <div ng-show="printActive" class="row">
+          <div ng-show="mainCtrl.printPanelActive" class="row">
             <div class="col-sm-12">
               <div class="tools-content-heading">
                 {{'Print' | translate}}
-                <a class="btn close" ng-click="printActive = false">&times;</a>
+                <a class="btn close" ng-click="mainCtrl.printPanelActive = false">&times;</a>
               </div>
               <gmf-print
                 gmf-print-map="mainCtrl.map"
-                gmf-print-active="printActive">
+                gmf-print-active="mainCtrl.printActive">
               </gmf-print>
             </div>
           </div>
@@ -107,6 +111,25 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
                   gmf-drawfeature-layer="::mainCtrl.drawFeatureLayer"
                   gmf-drawfeature-map="::mainCtrl.map">
               </gmf-drawfeature>
+            </div>
+          </div>
+          <div ng-show="mainCtrl.editFeatureActive" class="row">
+            <div class="col-sm-12">
+              <div class="tools-content-heading">
+                {{'Editing'|translate}}
+                <a class="btn close" ng-click="mainCtrl.editFeatureActive = false">&times;</a>
+              </div>
+              <div ng-switch="mainCtrl.gmfUser.username">
+                <div ng-switch-when="null">
+                  {{'In order to use the editing tool, you must log in first.' | translate}}
+                </div>
+                <gmf-editfeatureselector
+                    ng-switch-default
+                    gmf-editfeatureselector-active="mainCtrl.editFeatureActive"
+                    gmf-editfeatureselector-map="::mainCtrl.map"
+                    gmf-editfeatureselector-vector="::mainCtrl.editFeatureVectorLayer">
+                </gmf-editfeatureselector>
+              </div>
             </div>
           </div>
           <div ng-show="mainCtrl.drawProfilePanelActive" class="row">
@@ -165,12 +188,17 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           </gmf-displayquerywindow>
         </div>
         <gmf-map class="gmf-map" gmf-map-map="mainCtrl.map"
+          gmf-contextualdata=""
+          gmf-contextualdata-map="::mainCtrl.map"
+          gmf-contextualdata-projections="::[21781, 4326]"
           ngeo-map-query=""
           ngeo-map-query-map="::mainCtrl.map"
           ngeo-map-query-active="mainCtrl.queryActive"
+          ngeo-map-query-autoclear="mainCtrl.queryAutoClear"
           ngeo-bbox-query=""
           ngeo-bbox-query-map="::mainCtrl.map"
-          ngeo-bbox-query-active="mainCtrl.queryActive">
+          ngeo-bbox-query-active="mainCtrl.queryActive"
+          ngeo-bbox-query-autoclear="mainCtrl.queryAutoClear">
         </gmf-map>
 
         <!--infobar-->
@@ -222,14 +250,17 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-sanitize/angular-sanitize.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-touch/angular-touch.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-ui-date/dist/date.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-ui-slider/src/slider.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/typeahead.js/dist/typeahead.bundle.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/d3/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-ui-date/dist/date.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-float-thead/angular-floatThead.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/floatthead/dist/jquery.floatThead.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-ui-slider/src/slider.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/proj4/dist/proj4-src.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/d3/d3.min.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
+
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
     <script>
@@ -238,7 +269,9 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('demo:static-ngeo/build/templatecache.js')}"></script>
     <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
     <script>
-        demo.baseTemplateUrl = '${request.static_url("demo:static-ngeo/components")}';
+        demo.componentsBaseTemplateUrl = '${request.static_url("demo:static-ngeo/components")}';
+        demo.partialsBaseTemplateUrl = '${request.static_url("demo:static-ngeo/partials")}';
+        demo.baseTemplateUrl = '${request.static_url("demo:static-ngeo/js")}';
     </script>
 % else:
     <script src="${request.static_url('demo:static-ngeo/build/desktop.js')}"></script>
@@ -271,10 +304,12 @@ ${ ',\n'.join([
         module.constant('gmfPrintUrl', '${request.route_url('printproxy') | n}');
         module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background"}) | n}');
+        module.constant('gmfLayersUrl', 'https://geomapfish-demo.camptocamp.net/2.1/wsgi/layers/');
         module.constant('gmfShortenerCreateUrl', '${request.route_url('shortener_create') | n}');
         module.constant('gmfSearchGroups', ${dumps(fulltextsearch_groups) | n});
         // Requires that the gmfSearchGroups is specified
         module.constant('gmfSearchActions', ['add_theme', 'add_group', 'add_layer']);
+        module.constant('gmfContextualdatacontentTemplateUrl', window.location.pathname + 'contextualdata.html');
       })();
     </script>
   </body>

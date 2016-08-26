@@ -144,7 +144,7 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions_requirements.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.1.0.dev13
+REQUIREMENTS ?= c2cgeoportal==2.1.0.dev14
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -181,7 +181,7 @@ APP_JS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/js $(PACKAGE)/static-ngeo/
 APP_HTML_FILES = $(shell $(FIND) $(PACKAGE)/templates -type f -name '*.html')
 NGEO_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 node_modules/ngeo/src/directives/partials/*.html 2> /dev/null)
 GMF_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 node_modules/ngeo/contribs/gmf/src/directives/partials/*.html 2> /dev/null)
-APP_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 $(PACKAGE)/static-ngeo/components/*/*.html 2> /dev/null)
+APP_DIRECTIVES_PARTIALS_FILES = $(shell find -name $(PACKAGE)/static-ngeo/components $(PACKAGE)/static-ngeo/partials $(PACKAGE)/static-ngeo/js *.html 2> /dev/null)
 LESS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/less $(PACKAGE)/static-ngeo/components -type f -name '*.less' 2> /dev/null)
 NGEO_GMF_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/gmf-icons, .woff .ttf .eot)
 NGEO_FONTAWESOME_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/fontawesome-webfont, .woff .woff2 .ttf .eot)
@@ -213,6 +213,8 @@ NGEO_LIBS_JS_FILES += \
 	node_modules/angular-touch/angular-touch.min.js \
 	node_modules/typeahead.js/dist/typeahead.bundle.min.js \
 	node_modules/angular-ui-date/dist/date.js \
+	node_modules/angular-float-thead/angular-floatThead.js \
+	node_modules/floatthead/dist/jquery.floatThead.min.js \
 	node_modules/angular-ui-slider/src/slider.js \
 	node_modules/proj4/dist/proj4.js \
 	node_modules/angular-gettext/dist/angular-gettext.min.js \
@@ -481,6 +483,7 @@ help:
 	@echo
 	@echo  "Deploy branch target:"
 	@echo
+	@echo  "- theme2fts		Inport the theme in the full-text search"
 	@echo  "- deploy-branch		Deploy the curent branch to demos"
 	@echo  "- remove-branch		Remove the curent branch from demos"
 
@@ -520,6 +523,7 @@ clean: template-clean
 	rm -f apache/mapcache.xml apache/tiles.conf
 	rm -rf $(OUTPUT_DIR)/
 	rm -rf $(APP_OUTPUT_DIR)/
+	rm -f $(PACKAGE)/locale/$(PACKAGE)-*.pot
 # We use the print
 ifdef PRINT_BASE_WAR
 	$(TOMCAT_OUTPUT_CMD_PREFIX) rm -f $(PRINT_OUTPUT)/$(PRINT_WAR)
@@ -549,6 +553,11 @@ else
 	rm -rf $(HOME_DIR).npm
 	rm -rf $(HOME_DIR).cache/pip
 endif
+
+.PHONY: theme2fts
+theme2fts: $(VENV_BIN)/theme2fts$(PYTHON_BIN_POSTFIX) \
+		$(MO_CLIENT_LOCALISATION_FILES)
+	$(VENV_BIN)/theme2fts
 
 .PHONY: flake8
 flake8: $(VENV_BIN)/flake8$(PYTHON_BIN_POSTFIX)
@@ -589,7 +598,7 @@ deploy-branch:
 	rm -rf $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH)
 	mkdir --parents $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH)
 	git clone $(GIT_REMOTE_URL) -b $(GIT_BRANCH) $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH)
-	cd $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH); INSTANCE_ID=$(GIT_BRANCH) APACHE_ENTRY_POINT=/$(GIT_BRANCH)/ $(MAKE) -f $(DEPLOY_BRANCH_MAKEFILE) build
+	cd $(DEPLOY_BRANCH_DIR)/$(GIT_BRANCH); INSTANCE_ID=$(GIT_BRANCH) APACHE_CONF_DIR=$(APACHE_CONF_DIR) APACHE_ENTRY_POINT=/$(GIT_BRANCH)/ $(MAKE) -f $(DEPLOY_BRANCH_MAKEFILE) build
 	@echo Now open $(DEPLOY_BRANCH_BASE_URL)/$(GIT_BRANCH)
 
 .PHONY: remove-branch
@@ -858,10 +867,12 @@ $(APP_OUTPUT_DIR)/templatecache.js: .build/gmftemplatecache.js
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
 	PYTHONIOENCODING=UTF-8 $(VENV_BIN)/mako-render \
-		--var "app=$(PACKAGE)" \
-		--var "partials=$(addprefix ngeo:,$(NGEO_DIRECTIVES_PARTIALS_FILES)) \
-		$(addprefix gmf:,$(GMF_DIRECTIVES_PARTIALS_FILES)) \
-		$(addprefix $(PACKAGE):,$(APP_DIRECTIVES_PARTIALS_FILES))" $< > $@
+		--var "partials=ngeo:node_modules/ngeo/src/directives/partials \
+		gmf:node_modules/ngeo/contribs/gmf/src/directives/partials \
+		$(PACKAGE)_components:$(PACKAGE)/static-ngeo/components \
+		$(PACKAGE)_partials:$(PACKAGE)/static-ngeo/partials \
+		$(PACKAGE)_js:$(PACKAGE)/static-ngeo/js"\
+		--var "app=$(PACKAGE)" $< > $@
 
 .build/externs/angular-$(ANGULAR_VERSION).js:
 	$(PRERULE_CMD)
@@ -1005,6 +1016,7 @@ test-packages: .build/test-packages.timestamp
 
 # Check
 
+$(VENV_BIN)/theme2fts$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 $(VENV_BIN)/flake8$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 
 # Venv
@@ -1131,11 +1143,6 @@ requirements.txt:
 	for line in $(REQUIREMENTS) ; do echo $$line >> $@; done # one requirement one line
 	sed -e ':a;N;$$!ba;s/-\([re]\)\n/-\1 /g' -i requirements.txt # put "-r blah" on a single line
 
-.build/mapserver.timestamp: \
-		$(MAP_FILES) \
-		apache/mapserver.conf \
-	$(PRERULE_CMD)
-	touch $@
 else
 apache: .build/apache.timestamp
 
