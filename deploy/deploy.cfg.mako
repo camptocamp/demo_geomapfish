@@ -26,4 +26,4 @@ dest = /var/www/vhosts/geomapfish-demo/conf/${instanceid}.conf
 content = Include /var/www/vhosts/geomapfish-demo/private/${instanceid}/apache/*.conf
 
 [remote_hosts]
-demo_server = geomapfish-demo.infra.internal
+demo_server = geomapfish-demo-tmp.infra.internal
