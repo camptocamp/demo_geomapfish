@@ -987,7 +987,7 @@ LAYER
         "gml_geometries" "POINT"
         "wfs_enable_request" "*"
 
-        "wms_timeextent" "2006-01-01/2013-12-31/P1M"
+        "wms_timeextent" "2006-01/2013-12/P1M"
         "wms_timeitem" "timestamp"
     END
 END
