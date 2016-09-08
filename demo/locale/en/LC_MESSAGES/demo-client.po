@@ -23,6 +23,16 @@ msgstr "A3 portrait"
 msgid "4 A3 landscape"
 msgstr "A3 landscape"
 
+#, fuzzy
+msgid "Add a layer"
+msgstr "Layer"
+
+msgid "Add a sub theme"
+msgstr ""
+
+msgid "Add a theme"
+msgstr ""
+
 msgid "Administration"
 msgstr ""
 
@@ -34,15 +44,6 @@ msgstr ""
 
 msgid "Cadastre"
 msgstr ""
-
-msgid "Cluster_BaseFID"
-msgstr "Cluster Base FID"
-
-msgid "Cluster_FeatureCount"
-msgstr "Cluster Feature Count"
-
-msgid "Cluster_Group"
-msgstr "Cluster Group"
 
 msgid "Coordinate"
 msgstr ""
@@ -143,17 +144,8 @@ msgstr ""
 msgid "Transport"
 msgstr ""
 
-msgid "access"
-msgstr "Access"
-
 msgid "accommodation"
 msgstr "Accommodation"
-
-msgid "aerialway"
-msgstr "Aerialway"
-
-msgid "amenity"
-msgstr "Amenity"
 
 msgid "asitvd.fond_couleur"
 msgstr "ASIT VD - color background"
@@ -172,18 +164,6 @@ msgstr "Background"
 
 msgid "bank"
 msgstr "Bank"
-
-msgid "barrier"
-msgstr "Barrier"
-
-msgid "bicycle"
-msgstr "Bicycle"
-
-msgid "brand"
-msgstr "Brand"
-
-msgid "building"
-msgstr "Building"
 
 msgid "bus_stop"
 msgstr "Bus stop"
@@ -212,23 +192,11 @@ msgstr "Cinema"
 msgid "comments"
 msgstr "Comments"
 
-msgid "covered"
-msgstr "Covered"
-
 msgid "datasource"
 msgstr "Data source"
 
 msgid "debug"
 msgstr "Debug"
-
-msgid "denomination"
-msgstr "Information"
-
-msgid "display_name"
-msgstr "Display name"
-
-msgid "ele"
-msgstr "Elevation"
 
 msgid "entertainment"
 msgstr "Entertainment"
@@ -236,14 +204,8 @@ msgstr "Entertainment"
 msgid "firestations"
 msgstr "Fire stations"
 
-msgid "foot"
-msgstr "Foot"
-
 msgid "fuel"
 msgstr "Fuel"
-
-msgid "highway"
-msgstr "Highway"
 
 msgid "hospitals"
 msgstr "Hospitals"
@@ -251,56 +213,29 @@ msgstr "Hospitals"
 msgid "information"
 msgstr "Information"
 
-msgid "kind"
-msgstr "Kind"
-
 msgid "last_update_timestamp"
 msgstr "Timestamp"
 
 msgid "last_update_user"
 msgstr "User"
 
-msgid "layer"
-msgstr "Layer"
-
 msgid "legend"
 msgstr "Legend"
-
-msgid "leisure"
-msgstr "Leisure"
 
 msgid "line"
 msgstr "Line"
 
-msgid "man_made"
-msgstr "Man made"
-
 msgid "map"
 msgstr "Map"
-
-msgid "motorcar"
-msgstr "Motorcar"
 
 msgid "name"
 msgstr "Name"
 
-msgid "natural"
-msgstr "Natural"
-
 msgid "northArrow"
 msgstr "North arrow"
 
-msgid "open"
-msgstr "Open"
-
-msgid "operator"
-msgstr "Operator"
-
 msgid "osm"
 msgstr "OSM"
-
-msgid "osm_id"
-msgstr "OSM ID"
 
 msgid "osm_open"
 msgstr "OSM open"
@@ -329,9 +264,6 @@ msgstr "OSM time value slider"
 msgid "parking"
 msgstr "Parking"
 
-msgid "place"
-msgstr "Place"
-
 msgid "place_of_worship"
 msgstr "Place of worship"
 
@@ -344,29 +276,11 @@ msgstr "Police"
 msgid "polygon"
 msgstr "Polygon"
 
-msgid "population"
-msgstr "Population"
-
 msgid "post_office"
 msgstr "Post office"
 
-msgid "power"
-msgstr "Power"
-
-msgid "railway"
-msgstr "Railway"
-
-msgid "ref"
-msgstr "Ref"
-
-msgid "religion"
-msgstr "Religion"
-
 msgid "scalebar"
 msgstr "Scale bar"
-
-msgid "shop"
-msgstr "Shop"
 
 msgid "short_name"
 msgstr "Short name"
@@ -377,14 +291,8 @@ msgstr "Short name 2"
 msgid "short_name3"
 msgstr "Short name 3"
 
-msgid "sport"
-msgstr "Sport"
-
 msgid "srtm"
 msgstr "SRTM"
-
-msgid "surface"
-msgstr "Surface"
 
 msgid "sustenance"
 msgstr "Sustenance"
@@ -395,14 +303,8 @@ msgstr "Test"
 msgid "test2"
 msgstr "Second test"
 
-msgid "timestamp"
-msgstr "Timestamp"
-
 msgid "title"
 msgstr "Title"
-
-msgid "tourism"
-msgstr "Tourism activity"
 
 msgid "tourism_activity"
 msgstr "Tourism activity"
@@ -410,14 +312,20 @@ msgstr "Tourism activity"
 msgid "two_layers"
 msgstr "Two layer"
 
-msgid "type"
-msgstr "Type"
+#~ msgid "Cluster_BaseFID"
+#~ msgstr "Cluster Base FID"
 
-msgid "waterway"
-msgstr "Waterway"
+#~ msgid "Cluster_FeatureCount"
+#~ msgstr "Cluster Feature Count"
 
-msgid "wood"
-msgstr "Wood"
+#~ msgid "Cluster_Group"
+#~ msgstr "Cluster Group"
+
+#~ msgid "access"
+#~ msgstr "Access"
+
+#~ msgid "aerialway"
+#~ msgstr "Aerialway"
 
 #~ msgid "aeroways10"
 #~ msgstr "Aeroways"
@@ -449,6 +357,21 @@ msgstr "Wood"
 #~ msgid "alpine_hut"
 #~ msgstr "Alpine hut"
 
+#~ msgid "amenity"
+#~ msgstr "Amenity"
+
+#~ msgid "barrier"
+#~ msgstr "Barrier"
+
+#~ msgid "bicycle"
+#~ msgstr "Bicycle"
+
+#~ msgid "brand"
+#~ msgstr "Brand"
+
+#~ msgid "building"
+#~ msgstr "Building"
+
 #~ msgid "buildings15"
 #~ msgstr "Buildings"
 
@@ -464,11 +387,32 @@ msgstr "Wood"
 #~ msgid "cafe"
 #~ msgstr "Café"
 
+#~ msgid "covered"
+#~ msgstr "Covered"
+
+#~ msgid "denomination"
+#~ msgstr "Information"
+
+#~ msgid "display_name"
+#~ msgstr "Display name"
+
+#~ msgid "ele"
+#~ msgstr "Elevation"
+
+#~ msgid "foot"
+#~ msgstr "Foot"
+
 #~ msgid "geom"
 #~ msgstr "Geom"
 
+#~ msgid "highway"
+#~ msgstr "Highway"
+
 #~ msgid "hotel"
 #~ msgstr "Hotel"
+
+#~ msgid "kind"
+#~ msgstr "Kind"
 
 #~ msgid "landuse10"
 #~ msgstr "Landuse"
@@ -514,6 +458,30 @@ msgstr "Wood"
 
 #~ msgid "landuse9"
 #~ msgstr "Landuse"
+
+#~ msgid "leisure"
+#~ msgstr "Leisure"
+
+#~ msgid "man_made"
+#~ msgstr "Man made"
+
+#~ msgid "motorcar"
+#~ msgstr "Motorcar"
+
+#~ msgid "natural"
+#~ msgstr "Natural"
+
+#~ msgid "open"
+#~ msgstr "Open"
+
+#~ msgid "operator"
+#~ msgstr "Operator"
+
+#~ msgid "osm_id"
+#~ msgstr "OSM ID"
+
+#~ msgid "place"
+#~ msgstr "Place"
 
 #~ msgid "places0"
 #~ msgstr "Places"
@@ -572,6 +540,15 @@ msgstr "Wood"
 #~ msgid "places9"
 #~ msgstr "Places"
 
+#~ msgid "population"
+#~ msgstr "Population"
+
+#~ msgid "power"
+#~ msgstr "Power"
+
+#~ msgid "railway"
+#~ msgstr "Railway"
+
 #~ msgid "railways10"
 #~ msgstr "Railways"
 
@@ -604,6 +581,12 @@ msgstr "Wood"
 
 #~ msgid "railways9"
 #~ msgstr "Railways"
+
+#~ msgid "ref"
+#~ msgstr "Ref"
+
+#~ msgid "religion"
+#~ msgstr "Religion"
 
 #~ msgid "restaurant"
 #~ msgstr "Restaurant"
@@ -650,6 +633,24 @@ msgstr "Wood"
 #~ msgid "roads9"
 #~ msgstr "Roads"
 
+#~ msgid "shop"
+#~ msgstr "Shop"
+
+#~ msgid "sport"
+#~ msgstr "Sport"
+
+#~ msgid "surface"
+#~ msgstr "Surface"
+
+#~ msgid "timestamp"
+#~ msgstr "Timestamp"
+
+#~ msgid "tourism"
+#~ msgstr "Tourism activity"
+
+#~ msgid "type"
+#~ msgstr "Type"
+
 #~ msgid "waterarea10"
 #~ msgstr "Waterarea"
 
@@ -695,6 +696,9 @@ msgstr "Wood"
 #~ msgid "waterarea9"
 #~ msgstr "Waterarea"
 
+#~ msgid "waterway"
+#~ msgstr "Waterway"
+
 #~ msgid "waterways10"
 #~ msgstr "Waterways"
 
@@ -733,6 +737,9 @@ msgstr "Wood"
 
 #~ msgid "waterways9"
 #~ msgstr "Waterways"
+
+#~ msgid "wood"
+#~ msgstr "Wood"
 
 #~ msgid "zoo"
 #~ msgstr "Zoo"

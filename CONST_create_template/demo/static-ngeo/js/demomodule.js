@@ -15,19 +15,22 @@ goog.require('gmf');
 demo.module = angular.module('demo', [gmf.module.name]);
 
 /**
- * The components template based URL, used as it by the template cache.
+ * The components template based URL, used as is by the template cache.
  * @type {string}
+ * @export
  */
 demo.componentsBaseTemplateUrl = 'demo_components';
 
 /**
- * The template based URL, used to overwrite template from ngeo, used as it by the template cache.
+ * The template based URL, used to overwrite template from ngeo, used as is by the template cache.
  * @type {string}
+ * @export
  */
 demo.partialsBaseTemplateUrl = 'demo_partials';
 
 /**
- * The default template based URL, used as it by the template cache.
+ * The default template based URL, used as is by the template cache.
  * @type {string}
+ * @export
  */
 demo.baseTemplateUrl = 'demo_js';

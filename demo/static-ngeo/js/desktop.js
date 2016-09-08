@@ -28,15 +28,14 @@ goog.require('ngeo.proj.EPSG21781');
  * @export
  */
 demo.DesktopController = function($scope, $injector) {
-  goog.base(
-      this, {
-        srid: 21781,
-        mapViewConfig: {
-          center: [632464, 185457],
-          zoom: 3,
-          resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
-        }
-      }, $scope, $injector);
+  gmf.AbstractDesktopController.call(this, {
+    srid: 21781,
+    mapViewConfig: {
+      center: [632464, 185457],
+      zoom: 3,
+      resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+    }
+  }, $scope, $injector);
 
   /**
    * @type {Array.<string>}
@@ -88,8 +87,15 @@ demo.DesktopController = function($scope, $injector) {
     label: 'WGS84',
     filter: 'ngeoDMSCoordinates:2'
   }];
+
+  // Allow angular-gettext-tools to collect the strings to translate
+  /** @type {angularGettext.Catalog} */
+  var gettextCatalog = $injector.get('gettextCatalog');
+  gettextCatalog.getString('Add a theme');
+  gettextCatalog.getString('Add a sub theme');
+  gettextCatalog.getString('Add a layer');
 };
-goog.inherits(demo.DesktopController, gmf.AbstractDesktopController);
+ol.inherits(demo.DesktopController, gmf.AbstractDesktopController);
 
 
 demo.module.controller('DesktopController', demo.DesktopController);

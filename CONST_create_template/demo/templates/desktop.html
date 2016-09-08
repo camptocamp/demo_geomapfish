@@ -161,7 +161,6 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
       </div>
       <div class="map-container" ng-class="{'infobar-active': mainCtrl.showInfobar}">
         <gmf-search gmf-search-map="mainCtrl.map"
-          class="search"
           gmf-search-datasources="mainCtrl.searchDatasources"
           gmf-search-coordinatesprojections="mainCtrl.searchCoordinatesProjections"
           gmf-search-colorchooser="false"
@@ -175,6 +174,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               <img src="${request.static_url('demo:static-ngeo/image/background-layer-button.png')}" />
             </button>
             <gmf-backgroundlayerselector
+              gmf-backgroundlayerselector-dimensions="::mainCtrl.dimensions"
               gmf-backgroundlayerselector-map="::mainCtrl.map"
               class="dropdown-menu">
             </gmf-backgroundlayerselector>
@@ -270,8 +270,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
     <script>
         demo.componentsBaseTemplateUrl = '${request.static_url("demo:static-ngeo/components")}';
-        demo.partialsBaseTemplateUrl = '${request.static_url("demo:static-ngeo/partials")}';
-        demo.baseTemplateUrl = '${request.static_url("demo:static-ngeo/js")}';
+        // demo.partialsBaseTemplateUrl = '${request.static_url("demo:static-ngeo/partials")}';
+        // demo.baseTemplateUrl = '${request.static_url("demo:static-ngeo/js")}';
     </script>
 % else:
     <script src="${request.static_url('demo:static-ngeo/build/desktop.js')}"></script>
@@ -308,8 +308,12 @@ ${ ',\n'.join([
         module.constant('gmfShortenerCreateUrl', '${request.route_url('shortener_create') | n}');
         module.constant('gmfSearchGroups', ${dumps(fulltextsearch_groups) | n});
         // Requires that the gmfSearchGroups is specified
-        module.constant('gmfSearchActions', ['add_theme', 'add_group', 'add_layer']);
-        module.constant('gmfContextualdatacontentTemplateUrl', window.location.pathname + 'contextualdata.html');
+        module.constant('gmfSearchActions', [
+                {action: 'add_theme', title: 'Add a theme'},
+                {action: 'add_group', title: 'Add a sub theme'},
+                {action: 'add_layer', title: 'Add a layer'}
+        ]);
+        module.constant('gmfContextualdatacontentTemplateUrl', demo.componentsBaseTemplateUrl + '/contextualdata/contextualdata.html');
       })();
     </script>
   </body>

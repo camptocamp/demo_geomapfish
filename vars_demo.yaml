@@ -80,7 +80,9 @@ vars:
     # this application is a child application in a parent/child
     # architecture.
     external_themes_url:
-    external_mapserv_url:
+
+    mapserverproxy:
+        default_ogc_server: Main PNG
 
     layers:
         geometry_validation: True
@@ -135,11 +137,6 @@ vars:
             Sincerely yours
             The GeoMapfish team
         smtp_server: psemail.epfl.ch
-
-    servers:
-        local: https://{host}
-        instance: https://{host}/{instanceid}
-        tiles: https://{host}/{instanceid}/tiles
 
     headers:
         themes: &headers

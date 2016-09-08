@@ -23,6 +23,16 @@ msgstr "A3 portrait"
 msgid "4 A3 landscape"
 msgstr "A3 paysage"
 
+#, fuzzy
+msgid "Add a layer"
+msgstr "Couches"
+
+msgid "Add a sub theme"
+msgstr ""
+
+msgid "Add a theme"
+msgstr ""
+
 msgid "Administration"
 msgstr ""
 
@@ -34,15 +44,6 @@ msgstr "Fond de carte"
 
 msgid "Cadastre"
 msgstr ""
-
-msgid "Cluster_BaseFID"
-msgstr "Grappe base FID"
-
-msgid "Cluster_FeatureCount"
-msgstr "Grappe nombre elements"
-
-msgid "Cluster_Group"
-msgstr "Grappe groupe"
 
 msgid "Coordinate"
 msgstr "Coordonnée"
@@ -143,17 +144,8 @@ msgstr "Thèmes"
 msgid "Transport"
 msgstr ""
 
-msgid "access"
-msgstr "Acces"
-
 msgid "accommodation"
 msgstr "Hébergement"
-
-msgid "aerialway"
-msgstr "Remontée méchanique"
-
-msgid "amenity"
-msgstr "Equipements"
 
 msgid "asitvd.fond_couleur"
 msgstr "ASIT VD - Fond couleur"
@@ -172,18 +164,6 @@ msgstr "Fond de carte"
 
 msgid "bank"
 msgstr "Vide"
-
-msgid "barrier"
-msgstr "Barière"
-
-msgid "bicycle"
-msgstr "Vélo"
-
-msgid "brand"
-msgstr "Marque"
-
-msgid "building"
-msgstr "Batiment"
 
 msgid "bus_stop"
 msgstr "Arrêt de bus"
@@ -212,23 +192,11 @@ msgstr "Cinéma"
 msgid "comments"
 msgstr "Commentaires"
 
-msgid "covered"
-msgstr "Couvert"
-
 msgid "datasource"
 msgstr "Source de donnée"
 
 msgid "debug"
 msgstr "Debug"
-
-msgid "denomination"
-msgstr "Informations"
-
-msgid "display_name"
-msgstr "Nom"
-
-msgid "ele"
-msgstr "Elévation"
 
 msgid "entertainment"
 msgstr "Divertissement"
@@ -236,14 +204,8 @@ msgstr "Divertissement"
 msgid "firestations"
 msgstr "Caserne de pompiers"
 
-msgid "foot"
-msgstr "Foot"
-
 msgid "fuel"
 msgstr "Station d'essence"
-
-msgid "highway"
-msgstr "Routes"
 
 msgid "hospitals"
 msgstr "Hôpitals"
@@ -251,56 +213,29 @@ msgstr "Hôpitals"
 msgid "information"
 msgstr "Informations"
 
-msgid "kind"
-msgstr "Sorte"
-
 msgid "last_update_timestamp"
 msgstr "Datation"
 
 msgid "last_update_user"
 msgstr "User"
 
-msgid "layer"
-msgstr "Couches"
-
 msgid "legend"
 msgstr "Légende"
-
-msgid "leisure"
-msgstr "Loisires"
 
 msgid "line"
 msgstr "Lignes"
 
-msgid "man_made"
-msgstr "Fabrication humaine"
-
 msgid "map"
 msgstr "Carte"
-
-msgid "motorcar"
-msgstr "Véhicules"
 
 msgid "name"
 msgstr "Nom"
 
-msgid "natural"
-msgstr "Naturel"
-
 msgid "northArrow"
 msgstr "Fléche du nord"
 
-msgid "open"
-msgstr "Ouvert"
-
-msgid "operator"
-msgstr "Opérateur"
-
 msgid "osm"
 msgstr "OSM"
-
-msgid "osm_id"
-msgstr "ID OSM"
 
 msgid "osm_open"
 msgstr "Ouverture OSM"
@@ -329,9 +264,6 @@ msgstr "Temps OSM curseur valeur"
 msgid "parking"
 msgstr "Parking"
 
-msgid "place"
-msgstr "Place"
-
 msgid "place_of_worship"
 msgstr "Lieux de culte"
 
@@ -344,29 +276,11 @@ msgstr "Police"
 msgid "polygon"
 msgstr "Polygon"
 
-msgid "population"
-msgstr "Population"
-
 msgid "post_office"
 msgstr "Poste"
 
-msgid "power"
-msgstr "Energie"
-
-msgid "railway"
-msgstr "Chemins de fer"
-
-msgid "ref"
-msgstr "Réference"
-
-msgid "religion"
-msgstr "Religion"
-
 msgid "scalebar"
 msgstr "Bar d'echéles"
-
-msgid "shop"
-msgstr "Magasin"
 
 msgid "short_name"
 msgstr "Nom court"
@@ -377,14 +291,8 @@ msgstr "Nom court 2"
 msgid "short_name3"
 msgstr "Nom court 3"
 
-msgid "sport"
-msgstr "Sport"
-
 msgid "srtm"
 msgstr "SRTM"
-
-msgid "surface"
-msgstr "Surface"
 
 msgid "sustenance"
 msgstr "Nouriture"
@@ -395,14 +303,8 @@ msgstr "Test"
 msgid "test2"
 msgstr "Deuxième test"
 
-msgid "timestamp"
-msgstr "Datation"
-
 msgid "title"
 msgstr "Titre"
-
-msgid "tourism"
-msgstr "Tourism"
 
 msgid "tourism_activity"
 msgstr "Tourism"
@@ -410,14 +312,20 @@ msgstr "Tourism"
 msgid "two_layers"
 msgstr "Deux couches"
 
-msgid "type"
-msgstr "Type"
+#~ msgid "Cluster_BaseFID"
+#~ msgstr "Grappe base FID"
 
-msgid "waterway"
-msgstr "Cours d'eau"
+#~ msgid "Cluster_FeatureCount"
+#~ msgstr "Grappe nombre elements"
 
-msgid "wood"
-msgstr "Bois"
+#~ msgid "Cluster_Group"
+#~ msgstr "Grappe groupe"
+
+#~ msgid "access"
+#~ msgstr "Acces"
+
+#~ msgid "aerialway"
+#~ msgstr "Remontée méchanique"
 
 #~ msgid "aeroways10"
 #~ msgstr "Tarmac"
@@ -446,6 +354,21 @@ msgstr "Bois"
 #~ msgid "aeroways18"
 #~ msgstr "Tarmac"
 
+#~ msgid "amenity"
+#~ msgstr "Equipements"
+
+#~ msgid "barrier"
+#~ msgstr "Barière"
+
+#~ msgid "bicycle"
+#~ msgstr "Vélo"
+
+#~ msgid "brand"
+#~ msgstr "Marque"
+
+#~ msgid "building"
+#~ msgstr "Batiment"
+
 #~ msgid "buildings15"
 #~ msgstr "Batiments"
 
@@ -470,8 +393,29 @@ msgstr "Bois"
 #~ msgid "ch.swisstopo.swissnames3d_feature_poly"
 #~ msgstr "Noms géographiques swissNAMES3D"
 
+#~ msgid "covered"
+#~ msgstr "Couvert"
+
+#~ msgid "denomination"
+#~ msgstr "Informations"
+
+#~ msgid "display_name"
+#~ msgstr "Nom"
+
+#~ msgid "ele"
+#~ msgstr "Elévation"
+
+#~ msgid "foot"
+#~ msgstr "Foot"
+
+#~ msgid "highway"
+#~ msgstr "Routes"
+
 #~ msgid "hotel"
 #~ msgstr "Hôtels"
+
+#~ msgid "kind"
+#~ msgstr "Sorte"
 
 #~ msgid "landuse10"
 #~ msgstr "Utilisation du sol"
@@ -517,6 +461,30 @@ msgstr "Bois"
 
 #~ msgid "landuse9"
 #~ msgstr "Utilisation du sol"
+
+#~ msgid "leisure"
+#~ msgstr "Loisires"
+
+#~ msgid "man_made"
+#~ msgstr "Fabrication humaine"
+
+#~ msgid "motorcar"
+#~ msgstr "Véhicules"
+
+#~ msgid "natural"
+#~ msgstr "Naturel"
+
+#~ msgid "open"
+#~ msgstr "Ouvert"
+
+#~ msgid "operator"
+#~ msgstr "Opérateur"
+
+#~ msgid "osm_id"
+#~ msgstr "ID OSM"
+
+#~ msgid "place"
+#~ msgstr "Place"
 
 #~ msgid "places0"
 #~ msgstr "Places"
@@ -575,6 +543,15 @@ msgstr "Bois"
 #~ msgid "places9"
 #~ msgstr "Places"
 
+#~ msgid "population"
+#~ msgstr "Population"
+
+#~ msgid "power"
+#~ msgstr "Energie"
+
+#~ msgid "railway"
+#~ msgstr "Chemins de fer"
+
 #~ msgid "railways10"
 #~ msgstr "Voies ferrées"
 
@@ -607,6 +584,12 @@ msgstr "Bois"
 
 #~ msgid "railways9"
 #~ msgstr "Voies ferrées"
+
+#~ msgid "ref"
+#~ msgstr "Réference"
+
+#~ msgid "religion"
+#~ msgstr "Religion"
 
 #~ msgid "roads10"
 #~ msgstr "Routes"
@@ -649,6 +632,24 @@ msgstr "Bois"
 
 #~ msgid "roads9"
 #~ msgstr "Routes"
+
+#~ msgid "shop"
+#~ msgstr "Magasin"
+
+#~ msgid "sport"
+#~ msgstr "Sport"
+
+#~ msgid "surface"
+#~ msgstr "Surface"
+
+#~ msgid "timestamp"
+#~ msgstr "Datation"
+
+#~ msgid "tourism"
+#~ msgstr "Tourism"
+
+#~ msgid "type"
+#~ msgstr "Type"
 
 #~ msgid "waterarea10"
 #~ msgstr "Cours d'eau"
@@ -695,6 +696,9 @@ msgstr "Bois"
 #~ msgid "waterarea9"
 #~ msgstr "Cours d'eau"
 
+#~ msgid "waterway"
+#~ msgstr "Cours d'eau"
+
 #~ msgid "waterways10"
 #~ msgstr "Cours d'eau"
 
@@ -733,6 +737,9 @@ msgstr "Bois"
 
 #~ msgid "waterways9"
 #~ msgstr "Cours d'eau"
+
+#~ msgid "wood"
+#~ msgstr "Bois"
 
 #~ msgid "zoo"
 #~ msgstr "Zoo"
