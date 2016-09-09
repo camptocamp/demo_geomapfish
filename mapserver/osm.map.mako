@@ -403,32 +403,10 @@ LAYER
     END
     TOLERANCE 10
     TOLERANCEUNITS pixels
-    CLUSTER
-       MAXDISTANCE 42  # in pixels
-       REGION "ellipse"  # can be rectangle or ellipse
-       GROUP ('[tourism]' = 'information') # a logical expression to specify the grouping condition
-    END
 
     CLASSITEM "tourism"
     CLASS
-        EXPRESSION ([Cluster_FeatureCount] > 1)
-        STYLE
-           SYMBOL 'information'
-           SIZE 30
-        END
-        LABEL
-            TEXT 'x[Cluster_FeatureCount]'
-            SIZE 12
-            OFFSET 24 -30
-            COLOR 35 32 191
-            OUTLINECOLOR 255 255 255
-            OUTLINEWIDTH 4
-            PARTIALS FALSE
-        END
-    END
-    CLASS
         NAME "Informations"
-        EXPRESSION ('[tourism]' = 'information' and [Cluster_FeatureCount] = 1)
         KEYIMAGE symbols/information.png
         STYLE
             SYMBOL "information"
