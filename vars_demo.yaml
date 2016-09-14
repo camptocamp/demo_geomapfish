@@ -73,7 +73,6 @@ vars:
 
         # Functionalities that are made available to Mako templates.
         available_in_templates:
-        - default_basemap
         - location
 
     # Define URLs to the parent application. Only useful if
@@ -232,3 +231,4 @@ update_paths:
 - authtkt
 - checker.defaults
 - admin_interface.available_functionalities
+- functionalities.available_in_templates
