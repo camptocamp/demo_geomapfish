@@ -10,7 +10,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/image/favicon.ico')}"/>
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/desktop.css')}" type="text/css">
   </head>
-  <body ng-class="{'profile-chart-active': !!profileChartActive}">
+  <body ng-class="{'gmf-profile-chart-active': !!profileChartActive}">
     <header>
       <div>
         <img src="${request.static_url('demo:static-ngeo/image/logo.png')}" />
@@ -18,8 +18,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
       </div>
     </header>
     <main>
-      <div class="data-panel" ng-cloak>
-        <div class="header">
+      <div class="gmf-demo-data-panel" ng-cloak>
+        <div class="gmf-demo-header">
           <div class="dropdown">
             <a href class="btn btn-default btn-block btn-primary"
               data-toggle="dropdown">
@@ -36,7 +36,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             </gmf-themeselector>
           </div>
         </div>
-        <div class="content">
+        <div class="gmf-demo-content">
           <gmf-layertree
             gmf-layertree-source="mainCtrl.theme"
             gmf-layertree-dimensions="mainCtrl.dimensions"
@@ -45,9 +45,9 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           </gmf-layertree>
         </div>
       </div>
-      <div class="tools" ngeo-resizemap="mainCtrl.map"
+      <div class="gmf-demo-tools" ngeo-resizemap="mainCtrl.map"
         ngeo-resizemap-state="mainCtrl.toolsActive">
-        <div class="bar">
+        <div class="gmf-demo-bar">
           <div ngeo-btn-group class="btn-group-vertical" ngeo-btn-group-active="mainCtrl.toolsActive">
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.loginActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Login'|translate}}">
@@ -62,7 +62,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               <span class="fa fa-paint-brush"></span>
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.editFeatureActive"
-              data-toggle="tooltip" data-placement="left" data-original-title="{{'Editing'|translate}}">
+              data-toggle="tooltip" data-placement="left" data-original-title="{{'Editing'|translate}}"
+              ng-show="mainCtrl.hasEditableLayers">
               <span class="fa fa-pencil"></span>
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.drawProfilePanelActive"
@@ -78,10 +79,10 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             </button>
           </span>
         </div>
-        <div class="tools-content container-fluid" ng-class="{active: mainCtrl.toolsActive}">
+        <div class="gmf-demo-tools-content container-fluid" ng-class="{'gmf-demo-active': mainCtrl.toolsActive}">
           <div ng-show="mainCtrl.loginActive" class="row">
             <div class="col-sm-12">
-              <div class="tools-content-heading">
+              <div class="gmf-demo-tools-content-heading">
                 {{'Login' | translate}}
                 <a class="btn close" ng-click="mainCtrl.loginActive = false">&times;</a>
               </div>
@@ -90,7 +91,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           </div>
           <div ng-show="mainCtrl.printPanelActive" class="row">
             <div class="col-sm-12">
-              <div class="tools-content-heading">
+              <div class="gmf-demo-tools-content-heading">
                 {{'Print' | translate}}
                 <a class="btn close" ng-click="mainCtrl.printPanelActive = false">&times;</a>
               </div>
@@ -102,7 +103,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           </div>
           <div ng-show="mainCtrl.drawFeatureActive" class="row">
             <div class="col-sm-12">
-              <div class="tools-content-heading">
+              <div class="gmf-demo-tools-content-heading">
                 {{'Draw & Measure'|translate}}
                 <a class="btn close" ng-click="mainCtrl.drawFeatureActive = false">&times;</a>
               </div>
@@ -115,7 +116,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           </div>
           <div ng-show="mainCtrl.editFeatureActive" class="row">
             <div class="col-sm-12">
-              <div class="tools-content-heading">
+              <div class="gmf-demo-tools-content-heading">
                 {{'Editing'|translate}}
                 <a class="btn close" ng-click="mainCtrl.editFeatureActive = false">&times;</a>
               </div>
@@ -134,7 +135,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           </div>
           <div ng-show="mainCtrl.drawProfilePanelActive" class="row">
             <div class="col-sm-12">
-              <div class="tools-content-heading">
+              <div class="gmf-demo-tools-content-heading">
                 {{'Profile'|translate}}
                 <a class="btn close" ng-click="mainCtrl.drawProfilePanelActive = false">&times;</a>
               </div>
@@ -159,14 +160,14 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           </div>
         </div>
       </div>
-      <div class="map-container" ng-class="{'infobar-active': mainCtrl.showInfobar}">
+      <div class="gmf-demo-map-container" ng-class="{'gmf-demo-infobar-active': mainCtrl.showInfobar}">
         <gmf-search gmf-search-map="mainCtrl.map"
           gmf-search-datasources="mainCtrl.searchDatasources"
           gmf-search-coordinatesprojections="mainCtrl.searchCoordinatesProjections"
           gmf-search-colorchooser="false"
           gmf-search-clearbutton="true">
         </gmf-search>
-        <div class="map-bottom-controls">
+        <div class="gmf-demo-map-bottom-controls">
           <div class="gmf-backgroundlayerbutton btn-group dropup">
             <button
                 class="btn btn-default dropdown-toggle"
@@ -202,8 +203,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         </gmf-map>
 
         <!--infobar-->
-        <div class="footer" ng-class="{'active': mainCtrl.showInfobar}">
-          <button class="btn fa map-info ng-cloak" ng-click="mainCtrl.showInfobar = !mainCtrl.showInfobar"
+        <div class="gmf-demo-footer" ng-class="{'gmf-demo-active': mainCtrl.showInfobar}">
+          <button class="btn fa gmf-demo-map-info ng-cloak" ng-click="mainCtrl.showInfobar = !mainCtrl.showInfobar"
                   ng-class="{'fa-angle-double-up': !mainCtrl.showInfobar, 'fa-angle-double-down': mainCtrl.showInfobar}"></button>
 
           <div ngeo-scaleselector="mainCtrl.scaleSelectorValues"
@@ -214,8 +215,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             <gmf-elevationwidget
                 gmf-elevationwidget-map="::mainCtrl.map"
                 gmf-elevationwidget-layers="::mainCtrl.elevationLayers"
-                gmf-elevationwidget-active="mainCtrl.showInfobar"
-                class="elevation">
+                gmf-elevationwidget-active="mainCtrl.showInfobar">
             </gmf-elevationwidget>
             <gmf-mouseposition
                  gmf-mouseposition-map="mainCtrl.map"
@@ -255,11 +255,11 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/angular-float-thead/angular-floatThead.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/floatthead/dist/jquery.floatThead.min.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-ui-slider/src/slider.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/proj4/dist/proj4-src.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/d3/d3.min.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/d3/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
 
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
@@ -314,6 +314,12 @@ ${ ',\n'.join([
                 {action: 'add_layer', title: 'Add a layer'}
         ]);
         module.constant('gmfContextualdatacontentTemplateUrl', demo.componentsBaseTemplateUrl + '/contextualdata/contextualdata.html');
+        module.value('ngeoWfsPermalinkOptions', /** @type {ngeox.WfsPermalinkOptions} */ ({
+            url: '${request.route_url('mapserv_proxy') | n}',
+            wfsTypes: ${json.dumps(wfs_types),
+            defaultFeatureNS: 'http://mapserver.gis.umn.edu/mapserver',
+              defaultFeaturePrefix: 'feature'
+            }));
       })();
     </script>
   </body>

@@ -89,6 +89,7 @@ vars:
         roots_with_prefix:
         - ["{closure_library_path}/closure/goog", "{closure_library_path}/closure/goog"]
         - ["{package}:static-ngeo/js", "{directory}/{package}/static-ngeo/js"]
+        - ["{package}:static-ngeo/components", "{directory}/{package}/static-ngeo/components"]
         - ["{node_modules_path}/openlayers/src", "{node_modules_path}/openlayers/src"]
         - ["{node_modules_path}/openlayers/build", "{node_modules_path}/openlayers/build"]
         - ["{node_modules_path}/ngeo/src", "{node_modules_path}/ngeo/src"]
@@ -218,6 +219,7 @@ vars:
     # Functionalities that are made available to Mako templates.
         available_in_templates:
         - default_basemap
+        - default_theme
 
     # Define URLs to the parent application. Only useful if
     # this application is a child application in a parent/child
@@ -256,7 +258,8 @@ vars:
             de: german
 
     servers:
-        local: http://localhost/{instanceid}/
+        internal: http://localhost/{instanceid}/
+        local: '{web_protocol}://{host}/{instanceid}/'
 
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
@@ -304,6 +307,7 @@ vars:
             lang_files: [ngeo, cgxp-api]
             phantomjs_routes: [desktop]
             forward_headers: []
+            routes_disable: []
             themes:
                 default:
                     params:

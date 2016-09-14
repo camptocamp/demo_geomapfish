@@ -25,14 +25,14 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         gmf-displayquerywindow-defaultcollapsed="false">
       </gmf-displayquerywindow>
       <div
-        class="measure-tools-control"
+        class="gmf-mobile-measure"
         gmf-mobile-measurelength
         gmf-mobile-measurelength-active="mainCtrl.measureLengthActive"
         gmf-mobile-measurelength-decimals="2"
         gmf-mobile-measurelength-map="::mainCtrl.map">
       </div>
       <div
-        class="measure-tools-control"
+        class="gmf-mobile-measure"
         gmf-mobile-measurepoint
         gmf-mobile-measurepoint-active="mainCtrl.measurePointActive"
         gmf-mobile-measurepoint-decimals="2"
@@ -161,11 +161,11 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/floatthead/dist/jquery.floatThead.min.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-ui-slider/src/slider.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/typeahead.js/dist/typeahead.bundle.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/proj4/dist/proj4-src.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/d3/d3.min.js" type="text/javascript' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/d3/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
 
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
@@ -210,6 +210,12 @@ ${ ',\n'.join([
         module.constant('gmfSearchGroups', []);
         // Requires that the gmfSearchGroups is specified
         module.constant('gmfSearchActions', []);
+        module.value('ngeoWfsPermalinkOptions', /** @type {ngeox.WfsPermalinkOptions} */ ({
+              url: '${request.route_url('mapserverproxy') | n}',
+              wfsTypes: ${dumps(wfs_types) | n},
+              defaultFeatureNS: 'http://mapserver.gis.umn.edu/mapserver',
+              defaultFeaturePrefix: 'feature'
+            }));
        })();
     </script>
   </body>

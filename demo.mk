@@ -6,7 +6,7 @@ VARS_FILES += ${VARS_FILE}
 endif
 
 APACHE_VHOST ?= gmfusrgrp_version2-geomapfishtest
-VISIBLE_WEB_HOST ?= gmf-test.sig.cloud.camptocamp.net
+VISIBLE_WEB_HOST ?= testgmf.sig.cloud.camptocamp.net
 
 # Deploy branch
 DEPLOY_BRANCH_DIR ?= /var/www/vhosts/$(APACHE_VHOST)/private/deploybranch
