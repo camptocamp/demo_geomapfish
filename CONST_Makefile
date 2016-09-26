@@ -69,12 +69,12 @@ endif
 export INSTANCE_ID
 
 PIP_CMD ?= $(VENV_BIN)/pip
-PIP_VERSION ?= pip==8.1.2
-SETUPTOOLS_VERSION ?= setuptools==21.1.0
-TILECLOUD_VERSION ?= tilecloud==0.2.dev20150115
-TILECLOUDCHAIN_VERSION ?= tilecloud-chain==1.0.0
-JSTOOLS_VERSION ?= JSTools==0.6
-C2CCSSMIN_VERSION ?= c2c.cssmin==0.7dev6
+PIP_VERSION ?= $(shell grep ^pip== CONST_optional-requirements.txt --colour=never)
+SETUPTOOLS_VERSION ?= $(shell grep ^setuptools== CONST_optional-requirements.txt --colour=never)
+TILECLOUD_VERSION ?= $(shell grep ^tilecloud== CONST_optional-requirements.txt --colour=never)
+TILECLOUDCHAIN_VERSION ?= $(shell grep ^tilecloud-chain== CONST_optional-requirements.txt --colour=never)
+JSTOOLS_VERSION ?= $(shell grep ^JSTools== CONST_optional-requirements.txt --colour=never)
+C2CCSSMIN_VERSION ?= $(shell grep ^c2c.cssmin== CONST_optional-requirements.txt --colour=never)
 
 GIT_MODULES_FOLDER ?= .git/modules/
 
@@ -147,8 +147,12 @@ endif
 BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_RULES)) $(POST_RULES)
 
 # Requirements
-EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions_requirements.txt CONST_fixversions.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.1.0.dev17
+EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py \
+	CONST_versions_requirements.txt \
+	CONST_fixversions.txt \
+	CONST_optional-requirements.txt \
+	$(CONST_REQUIREMENT)
+REQUIREMENTS ?= c2cgeoportal==2.1.0.dev18
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -182,10 +186,13 @@ APP_OUTPUT_DIR = $(PACKAGE)/static-ngeo/build
 OL_JS_FILES = $(shell $(FIND) node_modules/openlayers/src/ol -type f -name '*.js' 2> /dev/null)
 NGEO_JS_FILES = $(shell $(FIND) node_modules/ngeo/src -type f -name '*.js' 2> /dev/null)
 APP_JS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/js $(PACKAGE)/static-ngeo/components -type f -name '*.js')
+APP_JS_MAKO_FILES += $(shell $(FIND) $(PACKAGE)/static-ngeo/js $(PACKAGE)/static-ngeo/components $(FIND_OPTS) -name "*.js.mako" -print)
+APP_JS_JINJA_FILES += $(shell $(FIND) $(PACKAGE)/static-ngeo/js $(PACKAGE)/static-ngeo/components $(FIND_OPTS) -name "*.js.jinja" -print)
+APP_JS_FILES +=  $(APP_JS_MAKO_FILES:.mako=) $(APP_JS_JINJA_FILES:.jinja=)
 APP_HTML_FILES = $(shell $(FIND) $(PACKAGE)/templates -type f -name '*.html')
 NGEO_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 node_modules/ngeo/src/directives/partials/*.html 2> /dev/null)
 GMF_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 node_modules/ngeo/contribs/gmf/src/directives/partials/*.html 2> /dev/null)
-APP_DIRECTIVES_PARTIALS_FILES = $(shell find -name $(PACKAGE)/static-ngeo/components $(PACKAGE)/static-ngeo/partials $(PACKAGE)/static-ngeo/js *.html 2> /dev/null)
+APP_DIRECTIVES_PARTIALS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/components $(PACKAGE)/static-ngeo/partials $(PACKAGE)/static-ngeo/js -type f -name '*.html' 2> /dev/null)
 LESS_FILES = $(shell $(FIND) $(PACKAGE)/static-ngeo/less $(PACKAGE)/static-ngeo/components -type f -name '*.less' 2> /dev/null)
 NGEO_GMF_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/gmf-icons, .woff .ttf .eot)
 NGEO_FONTAWESOME_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/fontawesome-webfont, .woff .woff2 .ttf .eot)
@@ -243,10 +250,10 @@ else
 TOUCHBACK_TXRC = touch --date "$(shell stat -c '%y' $(TX_RC))" $(TX_RC)
 endif
 
-MAP_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map" -print)
-MAP_MAKO_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map.mako" -print)
-MAP_JINJA_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map.jinja" -print)
-MAP_FILES +=  $(MAP_MAKO_FILES:.mako=) $(MAP_JINJA_FILES:.jinja=)
+MAP_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map" -o -name "*.sym" -o -name "*.conf" -print)
+MAP_MAKO_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map.mako" -o -name "*.sym.mako" -o -name "*.conf.mako" -print)
+MAP_JINJA_FILES += $(shell $(FIND) mapserver $(FIND_OPTS) -name "*.map.jinja" -o -name "*.sym.jinja" -o -name "*.conf.jinja" -print)
+MAP_FILES += $(MAP_MAKO_FILES:.mako=) $(MAP_JINJA_FILES:.jinja=)
 
 I18N_SOURCE_FILES += $(APP_HTML_FILES) \
 	$(APP_JS_FILES) \
@@ -730,6 +737,11 @@ $(TX_RC):
 	mkdir -p $(dir $@)
 	$(VENV_BIN)/tx pull -l $* --force
 	$(TOUCHBACK_TXRC)
+	test -s $@
+
+.build/locale/en/LC_MESSAGES/gmf.po:
+	$(PRERULE_CMD)
+	@echo "The en language is the source language, so the file must stay empty"
 
 # ngeo
 
@@ -1025,12 +1037,15 @@ $(VENV_BIN)/flake8$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 
 # Venv
 
-.build/dev-requirements.timestamp: .build/venv.timestamp-noclean CONST_dev-requirements.txt
+.build/dev-requirements.timestamp: .build/venv.timestamp-noclean \
+		CONST_dev-requirements.txt \
+		CONST_dev-fixversions.txt \
+		CONST_optional-requirements.txt
 	$(PRERULE_CMD)
 	$(PIP_CMD) install $(DEV_REQUIREMENTS)
 	touch $@
 
-.build/venv.timestamp-noclean:
+.build/venv.timestamp-noclean: CONST_optional-requirements.txt
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
 	virtualenv --no-site-packages .build/venv

@@ -7,13 +7,13 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
   <head>
     <title>{{'Desktop Application'|translate}}</title>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/image/favicon.ico')}"/>
+    <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/images/favicon.ico')}"/>
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/desktop.css')}" type="text/css">
   </head>
   <body ng-class="{'gmf-profile-chart-active': !!profileChartActive}">
     <header>
       <div>
-        <img src="${request.static_url('demo:static-ngeo/image/logo.png')}" />
+        <img src="${request.static_url('demo:static-ngeo/images/logo.png')}" />
         <span>by Camptocamp</span>
       </div>
     </header>
@@ -30,7 +30,6 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               <span class="caret"></span>
             </a>
             <gmf-themeselector class="dropdown-menu"
-              gmf-themeselector-defaulttheme="OSM"
               gmf-themeselector-currenttheme="mainCtrl.theme"
               gmf-themeselector-filter="::mainCtrl.filter">
             </gmf-themeselector>
@@ -63,7 +62,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.editFeatureActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Editing'|translate}}"
-              ng-show="mainCtrl.hasEditableLayers">
+              ng-show="mainCtrl.hasEditableLayers" ng-cloak>
               <span class="fa fa-pencil"></span>
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.drawProfilePanelActive"
@@ -172,7 +171,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             <button
                 class="btn btn-default dropdown-toggle"
                 data-toggle="dropdown">
-              <img src="${request.static_url('demo:static-ngeo/image/background-layer-button.png')}" />
+              <img src="${request.static_url('demo:static-ngeo/images/background-layer-button.png')}" />
             </button>
             <gmf-backgroundlayerselector
               gmf-backgroundlayerselector-dimensions="::mainCtrl.dimensions"
@@ -260,6 +259,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/d3/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/file-saver/FileSaver.min.js' % request.registry.settings['node_modules_path'])}"></script>
 
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
@@ -293,17 +293,18 @@ ${ ',\n'.join([
         };
 
         var module = angular.module('demo');
+        module.constant('defaultTheme', 'OSM');
         module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
         module.constant('langUrls', langUrls);
         module.constant('cacheVersion', '${get_cache_version()}');
         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
-        module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"partitionlimit": "5", "limit": "30"}) | n}');
+        module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"interface": "desktop", "partitionlimit": "5", "limit": "30"}) | n}');
         module.constant('gmfRasterUrl', '${request.route_url('raster') | n}');
         module.constant('gmfProfileCsvUrl', '${request.route_url('profile.csv') | n}');
         module.constant('gmfProfileJsonUrl', '${request.route_url('profile.json') | n}');
         module.constant('gmfPrintUrl', '${request.route_url('printproxy') | n}');
         module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
-        module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background"}) | n}');
+        module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "desktop", "version": "2", "background": "background"}) | n}');
         module.constant('gmfLayersUrl', 'https://geomapfish-demo.camptocamp.net/2.1/wsgi/layers/');
         module.constant('gmfShortenerCreateUrl', '${request.route_url('shortener_create') | n}');
         module.constant('gmfSearchGroups', ${dumps(fulltextsearch_groups) | n});

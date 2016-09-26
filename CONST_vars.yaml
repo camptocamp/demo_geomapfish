@@ -143,7 +143,7 @@ vars:
         map_y: 5860000
         map_zoom: 10
 
-    # The list of available variable names for the `Metadatas` form.
+    # The list of available variable names for the `UI metadatas` form.
         available_metadata:
         # Layers group
         - name: isExpanded
@@ -182,7 +182,6 @@ vars:
           type: float
         - lastUpdateDateColumn
         - lastUpdateUserColumn
-        - snappingConfig
         # WMTS layers
         - ogcServer
         - layers

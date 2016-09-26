@@ -9,7 +9,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/image/favicon.ico')}"/>
+    <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/images/favicon.ico')}"/>
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/mobile.css')}" type="text/css">
   </head>
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
@@ -100,7 +100,6 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         id="themes"
         class="gmf-mobile-nav-slide"
         data-header-title="{{'Themes' | translate}}"
-        gmf-themeselector-defaulttheme="OSM"
         gmf-themeselector-currenttheme="mainCtrl.theme"
         gmf-themeselector-filter="::mainCtrl.filter"
         gmf-mobile-nav-back-on-click>
@@ -199,13 +198,14 @@ ${ ',\n'.join([
         };
 
         var module = angular.module('demo');
+        module.constant('defaultTheme', 'OSM');
         module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
         module.constant('langUrls', langUrls);
         module.constant('cacheVersion', '${get_cache_version()}');
         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
-        module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"limit": "20"}) | n}');
+        module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"interface": "mobile", "limit": "20"}) | n}');
         module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
-        module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background"}) | n}');
+        module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "mobile", "version": "2", "background": "background"}) | n}');
         module.constant('gmfShortenerCreateUrl', '');
         module.constant('gmfSearchGroups', []);
         // Requires that the gmfSearchGroups is specified
