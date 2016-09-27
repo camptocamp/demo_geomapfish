@@ -172,7 +172,16 @@ msgstr ""
 msgid "Wgs Coord. DMS"
 msgstr ""
 
+msgid "access"
+msgstr "Zugang"
+
 msgid "accommodation"
+msgstr ""
+
+msgid "aerialway"
+msgstr "Luftwege"
+
+msgid "amenity"
 msgstr ""
 
 msgid "asitvd.fond_couleur"
@@ -192,6 +201,18 @@ msgstr "Hintergrund"
 
 msgid "bank"
 msgstr "leer"
+
+msgid "barrier"
+msgstr ""
+
+msgid "bicycle"
+msgstr ""
+
+msgid "brand"
+msgstr ""
+
+msgid "building"
+msgstr ""
 
 msgid "bus_stop"
 msgstr "Bushaltestelle"
@@ -220,11 +241,23 @@ msgstr "Kino"
 msgid "comments"
 msgstr "Kommentare"
 
+msgid "covered"
+msgstr ""
+
 msgid "datasource"
 msgstr "Datenquelle"
 
 msgid "debug"
 msgstr "Debug"
+
+msgid "denomination"
+msgstr "Information"
+
+msgid "display_name"
+msgstr ""
+
+msgid "ele"
+msgstr ""
 
 #, fuzzy
 msgid "entertainment"
@@ -233,8 +266,14 @@ msgstr "Bildung"
 msgid "firestations"
 msgstr "Feuerwehrstation"
 
+msgid "foot"
+msgstr ""
+
 msgid "fuel"
 msgstr "Tankstelle"
+
+msgid "highway"
+msgstr ""
 
 msgid "hospitals"
 msgstr "Spital"
@@ -242,14 +281,23 @@ msgstr "Spital"
 msgid "information"
 msgstr "Information"
 
+msgid "kind"
+msgstr ""
+
 msgid "last_update_timestamp"
 msgstr ""
 
 msgid "last_update_user"
 msgstr ""
 
+msgid "layer"
+msgstr "Ebene"
+
 msgid "legend"
 msgstr "Legende"
+
+msgid "leisure"
+msgstr ""
 
 msgid "line"
 msgstr "Linie"
@@ -267,17 +315,36 @@ msgstr ""
 msgid "line snap tolerance"
 msgstr ""
 
+msgid "man_made"
+msgstr ""
+
 msgid "map"
 msgstr "Karte"
 
+msgid "motorcar"
+msgstr ""
+
 msgid "name"
+msgstr ""
+
+msgid "natural"
 msgstr ""
 
 msgid "northArrow"
 msgstr "Nord-Pfeil"
 
+#, fuzzy
+msgid "open"
+msgstr "OSM Zeit"
+
+msgid "operator"
+msgstr ""
+
 msgid "osm"
 msgstr "OSM"
+
+msgid "osm_id"
+msgstr "OSM zeitbezogen"
 
 msgid "osm_open"
 msgstr "OSM zeitbezogen"
@@ -311,6 +378,9 @@ msgstr "OSM zeitbezogen"
 msgid "parking"
 msgstr "Parkplatz"
 
+msgid "place"
+msgstr ""
+
 msgid "place_of_worship"
 msgstr "Kultstätte"
 
@@ -343,11 +413,30 @@ msgstr ""
 msgid "polygon snap tolerance"
 msgstr ""
 
+msgid "population"
+msgstr ""
+
 msgid "post_office"
 msgstr "Post"
 
+msgid "power"
+msgstr ""
+
+#, fuzzy
+msgid "railway"
+msgstr "Luftwege"
+
+msgid "ref"
+msgstr ""
+
+msgid "religion"
+msgstr ""
+
 msgid "scalebar"
 msgstr "Massstabsbalken"
+
+msgid "shop"
+msgstr ""
 
 msgid "short_name"
 msgstr ""
@@ -358,8 +447,14 @@ msgstr ""
 msgid "short_name3"
 msgstr ""
 
+msgid "sport"
+msgstr "Transport"
+
 msgid "srtm"
 msgstr "SRTM"
+
+msgid "surface"
+msgstr ""
 
 msgid "sustenance"
 msgstr ""
@@ -370,8 +465,14 @@ msgstr "test"
 msgid "test2"
 msgstr "test2"
 
+msgid "timestamp"
+msgstr ""
+
 msgid "title"
 msgstr "Titel"
+
+msgid "tourism"
+msgstr ""
 
 msgid "tourism_activity"
 msgstr ""
@@ -380,14 +481,17 @@ msgstr ""
 msgid "two_layers"
 msgstr "Ebene"
 
+msgid "type"
+msgstr ""
+
+msgid "waterway"
+msgstr ""
+
+msgid "wood"
+msgstr ""
+
 #~ msgid "Restaurants"
 #~ msgstr "Restaurants"
-
-#~ msgid "access"
-#~ msgstr "Zugang"
-
-#~ msgid "aerialway"
-#~ msgstr "Luftwege"
 
 #~ msgid "alpine_hut"
 #~ msgstr "Berghütte"
@@ -395,31 +499,11 @@ msgstr "Ebene"
 #~ msgid "cafe"
 #~ msgstr "Café"
 
-#~ msgid "denomination"
-#~ msgstr "Information"
-
 #~ msgid "hotel"
 #~ msgstr "Hotel"
 
-#~ msgid "layer"
-#~ msgstr "Ebene"
-
-#, fuzzy
-#~ msgid "open"
-#~ msgstr "OSM Zeit"
-
-#~ msgid "osm_id"
-#~ msgstr "OSM zeitbezogen"
-
-#, fuzzy
-#~ msgid "railway"
-#~ msgstr "Luftwege"
-
 #~ msgid "restaurant"
 #~ msgstr "Restaurant"
-
-#~ msgid "sport"
-#~ msgstr "Transport"
 
 #~ msgid "zoo"
 #~ msgstr "Zoo"
