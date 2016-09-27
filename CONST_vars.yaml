@@ -186,6 +186,8 @@ vars:
         - ogcServer
         - layers
         - printLayers
+        - name: snappingConfig
+          type: json
 
     # The list of functionalities that can be configured
     # through the admin interface.
