@@ -67,6 +67,10 @@ endif
 PIP_CMD ?= $(VENV_BIN)/pip
 PIP_VERSION ?= pip==8.1.2
 SETUPTOOLS_VERSION ?= setuptools==21.1.0
+TILECLOUD_VERSION ?= tilecloud==0.2.dev20150115
+TILECLOUDCHAIN_VERSION ?= tilecloud-chain==1.0.0
+JSTOOLS_VERSION ?= JSTools==0.6
+C2CCSSMIN_VERSION ?= c2c.cssmin==0.7dev6
 
 GIT_MODULES_FOLDER ?= .git/modules/
 
@@ -141,18 +145,18 @@ BUILD_RULES ?= $(PRE_RULES) $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_
 
 # Requirements
 EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py CONST_versions.txt $(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.0.0rc6
+REQUIREMENTS ?= c2cgeoportal==2.0.0
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
-DEV_REQUIREMENTS += 'tilecloud-chain>=1.0.0dev'
+DEV_REQUIREMENTS += $(TILECLOUD_VERSION) $(TILECLOUDCHAIN_VERSION)
 endif
 ifeq ($(CGXP), TRUE)
-REQUIREMENTS += JSTools
-DEV_REQUIREMENTS += 'c2c.cssmin>=0.7dev6'
+REQUIREMENTS += $(JSTOOLS_VERSION)
+DEV_REQUIREMENTS += $(C2CCSSMIN_VERSION)
 endif
 ifeq ($(NGEO), TRUE)
-DEV_REQUIREMENTS += http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
+DEV_REQUIREMENTS += https://github.com/google/closure-linter/archive/v2.3.19.tar.gz
 endif
 
 OUTPUT_DIR = $(PACKAGE)/static/build
@@ -211,7 +215,9 @@ NGEO_GMF_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/gmf-icons, .woff .ttf 
 NGEO_FONTAWESOME_FONTS = $(addprefix $(PACKAGE)/static-ngeo/fonts/fontawesome-webfont, .woff .woff2 .ttf .eot)
 NGEO_FONTS = $(NGEO_GMF_FONTS) $(NGEO_FONTAWESOME_FONTS)
 JSON_CLIENT_LOCALISATION_FILES = $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .json, $(LANGUAGES)))
+MO_CLIENT_LOCALISATION_FILES = $(addprefix $(PACKAGE)/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)-client.po, $(LANGUAGES)))
 NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
+	$(MO_CLIENT_LOCALISATION_FILES) \
 	node_modules/ngeo/node_modules/font-awesome \
 	node_modules/ngeo/node_modules/openlayers \
 	node_modules/ngeo/node_modules/bootstrap \
@@ -448,6 +454,7 @@ CONFIG_VARS += sqlalchemy.url schema parentschema enable_admin_interface pyramid
 	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser
 ENVIRONMENT_VARS += INSTANCE_ID=$(INSTANCE_ID) \
 	APACHE_ENTRY_POINT=$(APACHE_ENTRY_POINT) \
+	DOCKER=$(DOCKER) \
 	DOCKER_BASE=$(DOCKER_BASE) \
 	DEVELOPMENT=$(DEVELOPMENT) \
 	PACKAGE=$(PACKAGE)
@@ -644,7 +651,8 @@ $(PACKAGE)/locale/$(PACKAGE)-server.pot: \
 $(PACKAGE)/locale/$(PACKAGE)-client.pot: \
 		lingua-client.cfg \
 		$(I18N_DEPENDENTIES) \
-		$(VENV_BIN)/pot-create$(PYTHON_BIN_POSTFIX)
+		$(VENV_BIN)/pot-create$(PYTHON_BIN_POSTFIX) \
+		.build/mapserver.timestamp
 	$(PRERULE_CMD)
 	$(VENV_BIN)/pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
 	# removes the always changed date line
@@ -657,7 +665,7 @@ $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-server.po: $(PACKAGE)/locale/$(PACKAG
 	mkdir -p $(dir $@)
 	[ -f $@ ] || msginit --no-translator --input=$< --output-file=$@ -l $*
 	touch --no-create $@
-	msgmerge --sort-by-file --backup=none --update $@ $<
+	msgmerge --backup=none --update --sort-output --no-location $@ $<
 
 .PRECIOUS: $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po
 $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po: $(PACKAGE)/locale/$(PACKAGE)-client.pot
@@ -665,7 +673,7 @@ $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po: $(PACKAGE)/locale/$(PACKAG
 	mkdir -p $(dir $@)
 	[ -f $@ ] || msginit --no-translator --input=$< --output-file=$@ -l $*
 	touch --no-create $@
-	msgmerge --sort-by-file --backup=none --update $@ $<
+	msgmerge --backup=none --update --sort-output --no-location $@ $<
 
 .PRECIOUS: %.mo
 %.mo: %.po
@@ -737,7 +745,7 @@ node_modules/%: .build/node_modules.timestamp
 node_modules/ngeo/node_modules/%: node_modules/%
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	ln -s ../../../$< $@
+	[ -e $@ ] || ln -s ../../../$< $@
 	touch --no-create $@
 
 .PRECIOUS: node_modules/font-awesome/fonts/fontawesome-webfont.%
@@ -1075,7 +1083,7 @@ endif # !DOCKER
 print/WEB-INF/lib/jasperreports-functions-$(JASPERREPORTS_VERSION).jar:
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	curl --location --output $@ http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%20$(JASPERREPORTS_VERSION)/jasperreports-functions-$(JASPERREPORTS_VERSION).jar/download
+	curl --location --output $@ http://sourceforge.mirrorservice.org/j/ja/jasperreports/jasperreports/JasperReports%20$(JASPERREPORTS_VERSION)/jasperreports-functions-$(JASPERREPORTS_VERSION).jar
 	unzip -t -q $@
 
 print/WEB-INF/lib/joda-time-1.6.jar:
@@ -1136,15 +1144,24 @@ $(APACHE_CONF_DIR)/$(INSTANCE_ID).conf:
 	echo "Include $(shell pwd)/apache/*.conf" > $@
 
 .build/apache.timestamp: \
+		.build/mapserver.timestamp \
 		.build/config.yaml \
 		$(CONF_FILES) \
 		apache/application.wsgi \
 		$(PY_FILES) \
 		$(TEMPLATES_FILES) \
-		$(APACHE_CONF_DIR)/$(INSTANCE_ID).conf \
 		.build/requirements.timestamp \
 		$(PRINT_OUTPUT_WAR) \
-		development.ini production.ini
+		development.ini production.ini \
+		$(JSON_CLIENT_LOCALISATION_FILES)
+	$(PRERULE_CMD)
+	$(APACHE_GRACEFUL)
+	touch $@
+
+.build/mapserver.timestamp: \
+		$(TEMPLATES_FILES) \
+		apache/mapserver.conf \
+		$(APACHE_CONF_DIR)/$(INSTANCE_ID).conf
 	$(PRERULE_CMD)
 	$(APACHE_GRACEFUL)
 	touch $@
@@ -1183,15 +1200,15 @@ upgrade1: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
 
 .PHONY: upgrade2
 upgrade2: .build/requirements.timestamp project.yaml alembic.ini alembic_static.ini $(UPGRADE_MAKE_FILE)
-	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION} --step 2
+	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} --step 2
 
 .PHONY: upgrade3
 upgrade3: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
-	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION} --step 3
+	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} --step 3
 
 .PHONY: upgrade4
 upgrade4: .build/requirements.timestamp project.yaml $(UPGRADE_MAKE_FILE)
-	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} ${VERSION} --step 4
+	$(VENV_BIN)/c2ctool upgrade $(UPGRADE_MAKE_FILE) ${UPGRADE_ARGS} --step 4
 
 # Docker
 ifeq ($(DOCKER), TRUE)
@@ -1204,11 +1221,11 @@ push_docker:
 .PHONY: testDB
 testDB: testDB/12-alembic.sql testDB/13-alembic-static.sql
 
-testDB/12-alembic.sql: $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX) alembic.ini
+testDB/12-alembic.sql: $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX) alembic.ini CONST_alembic/main/versions/*.py
 	$(PRERULE_CMD)
 	$(VENV_BIN)/alembic -c alembic.ini upgrade --sql head > $@
 
-testDB/13-alembic-static.sql: $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX) alembic_static.ini
+testDB/13-alembic-static.sql: $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX) alembic_static.ini CONST_alembic/static/versions/*.py
 	$(PRERULE_CMD)
 	$(VENV_BIN)/alembic -c alembic_static.ini upgrade --sql head > $@
 endif

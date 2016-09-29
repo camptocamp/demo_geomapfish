@@ -7,6 +7,11 @@ layers = [{
     "value": "cinema",
     "type": "cinema",
     "name": u"Cinémas"
+}, {
+    "column": "tourism",
+    "value": "hotel",
+    "type": "hotel",
+    "name": u"Hotel"
 }]
 %>
 % for layer in layers:
