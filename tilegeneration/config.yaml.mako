@@ -30,29 +30,31 @@ caches:
 #        - tiles9
 
 # this defines some defaults values for all the layers
-layer_default:
-    type: wms
-    grid: swissgrid_005
-    # The minimum resolution to seed, useful to use with mapcache, optional.
-    min_resolution_seed: 5
-    # the URL of the WMS server to used
-    url: http://localhost/${instanceid}/mapserv
-    headers:
-        Host: ${host}
-    # the bbox there we want to generate tiles
-    bbox: [473743, 74095, 850904, 325533]
+defaults:
+    layer: &layer
+        type: wms
+        grid: swissgrid_005
+        # The minimum resolution to seed, useful to use with mapcache, optional.
+        min_resolution_seed: 5
+        # the URL of the WMS server to used
+        url: http://localhost/${instanceid}/mapserv
+        headers:
+            Host: ${host}
+        # the bbox there we want to generate tiles
+        bbox: [473743, 74095, 850904, 325533]
 
-    wmts_style: default
-    # the meta tiles definition [default to off]
-    meta: on
-    # the meta tiles size [default to 8]
-    meta_size: 5
-    # the meta tiles buffer [default to 128]
-    meta_buffer: 128
+        wmts_style: default
+        # the meta tiles definition [default to off]
+        meta: on
+        # the meta tiles size [default to 8]
+        meta_size: 5
+        # the meta tiles buffer [default to 128]
+        meta_buffer: 128
 
 
 layers:
     map:
+        <<: *layer
         layers: default
         # file name extension
         extension: png
@@ -66,6 +68,7 @@ layers:
             size: 921
             hash: 1e3da153be87a493c4c71198366485f290cad43c
     map_jpeg:
+        <<: *layer
         layers: default
         extension: jpeg
         mime_type: image/jpeg
