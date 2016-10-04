@@ -25,8 +25,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               data-toggle="dropdown">
               <span class="fa fa-grid"></span>
               <span translate>Theme:</span>
-              <b ng-if="!mainCtrl.theme.name" translate>Loading...</b>
-              <b ng-if="mainCtrl.theme.name">{{mainCtrl.theme.name|translate}}</b>
+              <b ng-if="!mainCtrl.gmfThemeManager.themeName" translate>Loading...</b>
+              <b ng-if="mainCtrl.gmfThemeManager.themeName">{{mainCtrl.gmfThemeManager.themeName|translate}}</b>
               <span class="caret"></span>
             </a>
             <gmf-themeselector class="dropdown-menu"
@@ -149,7 +149,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
                   </button>
                 </p>
                 <p>
-                  <em ng-if="ctrl.interaction.active" class="text-muted small">
+                  <em translate ng-if="ctrl.interaction.active" class="text-muted small">
                     Draw a line on the map to display the corresponding elevation profile.
                     Use double-click to finish the drawing.
                   </em>
@@ -164,6 +164,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           gmf-search-datasources="mainCtrl.searchDatasources"
           gmf-search-coordinatesprojections="mainCtrl.searchCoordinatesProjections"
           gmf-search-colorchooser="false"
+          gmf-search-placeholder="{{'Search…'|translate}}"
           gmf-search-clearbutton="true">
         </gmf-search>
         <div class="gmf-app-map-bottom-controls">

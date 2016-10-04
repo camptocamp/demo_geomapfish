@@ -182,12 +182,12 @@ vars:
           type: float
         - lastUpdateDateColumn
         - lastUpdateUserColumn
+        - name: snappingConfig
+          type: json
         # WMTS layers
         - ogcServer
         - layers
         - printLayers
-        - name: snappingConfig
-          type: json
 
     # The list of functionalities that can be configured
     # through the admin interface.
