@@ -21,9 +21,8 @@ msgstr "3 A3 Hochformat"
 msgid "4 A3 landscape"
 msgstr "4 A3 Querformat"
 
-#, fuzzy
 msgid "Add a layer"
-msgstr "Ebene"
+msgstr "Einen Layer hinzufügen"
 
 msgid "Add a sub theme"
 msgstr "Unterthema hinzufügen"
@@ -56,6 +55,8 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
+"Zeichnen Sie eineLinie auf der Karte um das entsprechende Höhenprofil an zu zeigen.\n"
+"Benutzen Sie doppelklick um die Linie fertig zu zeichnen."
 
 msgid "Draw profile line"
 msgstr "Profillinie zeichnen"
@@ -63,7 +64,6 @@ msgstr "Profillinie zeichnen"
 msgid "Edit"
 msgstr "Editieren"
 
-#, fuzzy
 msgid "Editing"
 msgstr "Editieren"
 
@@ -124,13 +124,11 @@ msgstr "Mobile Applikation"
 msgid "OSM"
 msgstr "OSM"
 
-#, fuzzy
 msgid "OSM functions"
 msgstr "OSM Funktion"
 
-#, fuzzy
 msgid "OSM functions mixed"
-msgstr "OSM Funktion"
+msgstr "gemischte OSM Funktionen"
 
 msgid "Patrimoine"
 msgstr "Kulturelles Erbe"
@@ -145,7 +143,7 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Search…"
-msgstr ""
+msgstr "Suche..."
 
 msgid "Share this map"
 msgstr "Diese Karte teilen"
@@ -267,9 +265,8 @@ msgstr "Displaynamen"
 msgid "ele"
 msgstr "ele"
 
-#, fuzzy
 msgid "entertainment"
-msgstr "Bildung"
+msgstr "Unterhaltung"
 
 msgid "firestations"
 msgstr "Feuerwehrstation"
@@ -310,9 +307,8 @@ msgstr "Unterhaltung"
 msgid "line"
 msgstr "Linie"
 
-#, fuzzy
 msgid "line snap"
-msgstr "Linie"
+msgstr "Liniesnapping"
 
 msgid "line snap no edge"
 msgstr "Liniensnapping ohne Ecken"
@@ -341,9 +337,8 @@ msgstr "natürlich"
 msgid "northArrow"
 msgstr "Nordpfeil"
 
-#, fuzzy
 msgid "open"
-msgstr "OSM Zeit"
+msgstr "offen"
 
 msgid "operator"
 msgstr "Betreiber"
@@ -363,23 +358,18 @@ msgstr "OSM Skala"
 msgid "osm_time"
 msgstr "OSM Zeit"
 
-#, fuzzy
 msgid "osm_time_r_dp"
 msgstr "OSM zeitbezogen"
 
-#, fuzzy
 msgid "osm_time_r_dp_2"
 msgstr "OSM zeitbezogen"
 
-#, fuzzy
 msgid "osm_time_r_s"
 msgstr "OSM zeitbezogen"
 
-#, fuzzy
 msgid "osm_time_v_dp"
 msgstr "OSM zeitbezogen"
 
-#, fuzzy
 msgid "osm_time_v_s"
 msgstr "OSM zeitbezogen"
 
@@ -395,7 +385,6 @@ msgstr "Kultstätte"
 msgid "point"
 msgstr "Punkt"
 
-#, fuzzy
 msgid "point snap"
 msgstr "Punktsnapping"
 
@@ -408,9 +397,8 @@ msgstr "Polizei"
 msgid "polygon"
 msgstr "Polygon"
 
-#, fuzzy
 msgid "polygon snap"
-msgstr "Polygon"
+msgstr "Polygonsnapping"
 
 msgid "polygon snap no edge"
 msgstr "Polygonsnapping ohne Ecken"
@@ -430,9 +418,8 @@ msgstr "Post"
 msgid "power"
 msgstr "Strom"
 
-#, fuzzy
 msgid "railway"
-msgstr "Luftwege"
+msgstr "Eisenbahn"
 
 msgid "ref"
 msgstr "ref"
@@ -485,9 +472,8 @@ msgstr "Tourismus"
 msgid "tourism_activity"
 msgstr "Touristischeaktivität"
 
-#, fuzzy
 msgid "two_layers"
-msgstr "Ebene"
+msgstr "zwei Ebenen"
 
 msgid "type"
 msgstr "Typ"
@@ -497,21 +483,3 @@ msgstr "Wasserweg"
 
 msgid "wood"
 msgstr "Holz"
-
-#~ msgid "Restaurants"
-#~ msgstr "Restaurants"
-
-#~ msgid "alpine_hut"
-#~ msgstr "Berghütte"
-
-#~ msgid "cafe"
-#~ msgstr "Café"
-
-#~ msgid "hotel"
-#~ msgstr "Hotel"
-
-#~ msgid "restaurant"
-#~ msgstr "Restaurant"
-
-#~ msgid "zoo"
-#~ msgstr "Zoo"
