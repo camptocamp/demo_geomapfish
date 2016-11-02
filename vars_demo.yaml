@@ -122,6 +122,20 @@ vars:
             Sincerely yours
             The GeoMapfish team
         smtp_server: psemail.epfl.ch
+        allowed_hosts:
+        - camptocamp.github.io
+        - gmf-test.sig.cloud.camptocamp.net
+        - testgmf.sig.cloud.camptocamp.net
+        - fredj.github.io
+        - pgiraud.github.io
+        - ger-benjamin.github.io
+        - tsauerwein.github.io
+        - ger-benjamin.github.io
+        - marionb.github.io
+        - adube.github.io
+        - oliviersemet.github.io
+        - localhost
+        - 127.0.0.1
 
     reset_password:
         # Used to send a confirmation email
