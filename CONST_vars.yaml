@@ -151,9 +151,13 @@ vars:
         # Layer
         - name: copyTo
           type: list
-        - legendRule
+        - name: legend
+          type: boolean
         - name: isLegendExpanded
           type: boolean
+        - legendRule
+        - name: legendImage
+          type: url
         - name: iconUrl
           type: url
         - name: metadataUrl
@@ -162,24 +166,14 @@ vars:
         - name: isChecked
           type: boolean
         - identifierAttributeField
-        - name: legend
-          type: url
         - name: maxResolution
           type: float
         - name: minResolution
           type: float
         - name: thumbnail
           type: url
-        - name: wmsUrl
-          type: url
-        - name: wfsUrl
-          type: url
         - queryLayers
         - wmsLayers
-        - name: minResolutionHint
-          type: float
-        - name: maxResolutionHint
-          type: float
         - lastUpdateDateColumn
         - lastUpdateUserColumn
         - name: snappingConfig
@@ -307,7 +301,10 @@ vars:
         defaults:
             fulltextsearch: text to search
             lang_files: [ngeo, cgxp-api]
-            phantomjs_routes: [desktop]
+            phantomjs_routes:
+            - name: desktop
+              query:
+                no_redirect: true
             forward_headers: []
             routes_disable: []
             themes:
@@ -315,11 +312,27 @@ vars:
                     params:
                         version: 2
         all:
-            phantomjs_routes: [desktop, mobile]
+            phantomjs_routes:
+            - name: desktop
+              query:
+                no_redirect: true
+            - name: mobile
+              query:
+                no_redirect: true
+            - name: desktop
+              query:
+                no_redirect: true
+                debug: true
+            - name: mobile
+              query:
+                no_redirect: true
+                debug: true
             routes:
             - name: apijs
             - name: xapijs
             - name: printproxy_capabilities
+            # print V2
+            #- name: printproxy_info
             - name: mapserverproxy
               params:
                 SERVICE: WMS
@@ -337,7 +350,7 @@ vars:
 
     # Check collector configuration
     check_collector:
-        disabled: [checker_main, checker_viewer]
+        disabled: [checker_main, checker_viewer, checker_pdf]
         check_type:
             all:
             - name: checker_routes
@@ -346,6 +359,8 @@ vars:
               display: Errors in the themes
             - name: checker_lang_files
               display: Language files
+            - name: checker_pdf
+              display: Print PDF
             - name: checker_pdf3
               display: Print PDF
             - name: checker_fts

@@ -32,15 +32,29 @@ If you want to keep your CGXP interface you should:
   git mv demo/templates/index.html demo/templates/desktop.html
   git mv demo/templates/viewer.js demo/templates/desktop.js
 
+* In the `demo/templates/desktop.html` file do the following replacement:
+
+    - <script type="text/javascript" src="${request.route_url('viewer', _query=extra_params)}"></script>
+    + <script type="text/javascript" src="${request.route_url('desktop.js', _query=extra_params)}"></script>
+
+* In the `demo/templates/*.js` files remove the following line:
+
+    - OpenLayers.ProxyHost = "${request.route_url('ogcproxy') | n}?url=";
+
+* In the `jsbuild/app.cfg.mako` file do the following replacement:
+
+    - [app.js]
+    + [desktop.js]
+
 * Continue on the step 4., (you should do the step 1.-3. when you want
   to use the ngeo interface)
 
 
 1. Get the new files for ngeo integration:
 
-    cp CONST_create_template/demo_geomapfish/demo/templates/desktop.html demo/templates/
-    cp CONST_create_template/demo_geomapfish/demo/static-ngeo/less/desktop*.less demo/static-ngeo/less
-    cp CONST_create_template/demo_geomapfish/demo/static-ngeo/js/desktop.js demo/static-ngeo/js
+    cp CONST_create_template/demo/templates/desktop.html demo/templates/
+    cp CONST_create_template/demo/static-ngeo/less/desktop*.less demo/static-ngeo/less
+    cp CONST_create_template/demo/static-ngeo/js/desktop.js demo/static-ngeo/js
 
 2. Remove the cgxp interfaces:
 
@@ -127,6 +141,8 @@ If you want to keep your CGXP interface you should:
    + DEPLOY_BRANCH_BASE_URL ?= $(VISIBLE_PROTOCOL)://$(VISIBLE_HOST)
    + DEPLOY_BRANCH_MAKEFILE ?= demo.mk
 
+   Where 'example.com' is the hostname use in the browser to open the application
+
 8. in the apache/wsgi.conf.mako file do the following changes:
 
     -% for interface in interfaces:
@@ -156,6 +172,33 @@ If you want to keep your CGXP interface you should:
 
     -from c2cgeoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
     +from c2cgeoportal.pyramid_ import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
+
+11. The TileCloud chain config file format change a little bit, the main change to do is:
+
+    -layer_default:
+    -    ...
+    +defaults:
+    +    layer: &layer
+    +        ...
+
+    and for all `layers:`
+
+     layers:
+         name:
+    +       <<: *layer
+            ...
+
+    And if the dimensions are a number like 2016 they should be quoted => '2016'.
+
+    example: https://github.com/camptocamp/demo_geomapfish/commit/158c53b5f16c230744f0b101bb3b42a88a0bf969
+
+12. To pre upgrade the database, run:
+
+    .build/venv/bin/alembic --config alembic.ini upgrade 7d271f4527cd
+    .build/venv/bin/treeitem_uniquename
+
+13. In the database we have added some restrictions, have a look here for more informations:
+    https://github.com/camptocamp/c2cgeoportal/issues/2568
 
 
 Version 2.0.0

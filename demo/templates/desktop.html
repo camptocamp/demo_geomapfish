@@ -5,6 +5,14 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
 <!DOCTYPE html>
 <html lang="{{desktopCtrl.lang}}" ng-app="demo" ng-controller="DesktopController as mainCtrl">
   <head>
+% if "no_redirect" not in request.params:
+        <script>
+            if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                window.location = "${request.route_url('mobile', _query=dict(request.GET))}";
+            }
+        </script>
+% endif
+
     <title>{{'Desktop Application'|translate}}</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/images/favicon.ico')}"/>
@@ -304,7 +312,6 @@ ${ ',\n'.join([
         module.constant('gmfProfileCsvUrl', '${request.route_url('profile.csv') | n}');
         module.constant('gmfProfileJsonUrl', '${request.route_url('profile.json') | n}');
         module.constant('gmfPrintUrl', '${request.route_url('printproxy') | n}');
-        module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "desktop", "version": "2", "background": "background"}) | n}');
         module.constant('gmfLayersUrl', 'https://geomapfish-demo.camptocamp.net/2.1/wsgi/layers/');
         module.constant('gmfShortenerCreateUrl', '${request.route_url('shortener_create') | n}');

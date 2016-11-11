@@ -5,6 +5,7 @@ VARS_FILE = vars_demo.yaml
 VARS_FILES += ${VARS_FILE}
 endif
 
+# The hostname use in the browser to open the application
 APACHE_VHOST ?= demo_geomapfish
 INSTANCE_ID ?= demo
 TILECLOUD_CHAIN ?= FALSE

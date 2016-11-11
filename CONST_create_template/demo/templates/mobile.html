@@ -82,7 +82,6 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           </li>
         </ul>
         <gmf-layertree
-          gmf-layertree-source="mainCtrl.theme"
           gmf-layertree-dimensions="mainCtrl.dimensions"
           gmf-layertree-map="::mainCtrl.map"
           gmf-layertree-openlinksinnewwindow="true">
@@ -204,7 +203,6 @@ ${ ',\n'.join([
         module.constant('cacheVersion', '${get_cache_version()}');
         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"interface": "mobile", "limit": "20"}) | n}');
-        module.constant('gmfWmsUrl', '${request.route_url('mapserverproxy') | n}');
         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "mobile", "version": "2", "background": "background"}) | n}');
         module.constant('gmfShortenerCreateUrl', '');
         module.constant('gmfSearchGroups', []);

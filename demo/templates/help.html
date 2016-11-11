@@ -7,11 +7,7 @@
         <meta name="keywords" content="sitn, geoportail">
         <meta name="description" content="Géoportail du SITN">
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-% if request.registry.settings['is_intranet']:
-        <title>Géoportail Intranet du SITN</title>
-% else:
-        <title>Géoportail du SITN</title>
-%endif
+        <title>API help</title>
         <link rel="shortcut icon" type="image/x-icon" href="${request.static_url('sitn:static/images/favico.ico')}">
         <link rel="stylesheet" type="text/css" href="${request.static_url('sitn:static/build/app.css')}" />
         <link rel="stylesheet" type="text/css" href="${request.static_url('sitn:static/css/help.css')}">
@@ -103,11 +99,7 @@ Ext.onReady(function() {
         <table width="100%">
                 <tr>
                   <td align="left" valign="top" style="height: 37px;">
-% if request.registry.settings['is_intranet']:
-                      <img src="${request.static_url('sitn:static/images/banner_intranet_left.png')}" alt="" align="top" /></td>
-% else:
                       <img src="${request.static_url('sitn:static/images/banner_internet_left.png')}" alt="" align="top" /></td>
- %endif
                   <td rowspan="2" valign="top" align="right">
                       <img src="${request.static_url('sitn:static/images/banner_right.png')}" alt="" /></td>
                 </tr>
