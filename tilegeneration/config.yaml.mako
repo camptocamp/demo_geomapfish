@@ -6,7 +6,7 @@ grids:
         # bbox [required]
         bbox: [420000, 30000, 900000, 350000]
         # srs [required]
-        srs: epsg:21781
+        srs: EPSG:21781
 
 caches:
     s3:
@@ -111,6 +111,6 @@ process:
 
 openlayers:
     # srs, center_x, center_y [required]
-    srs: epsg:21781
+    srs: EPSG:21781
     center_x: 600000
     center_y: 200000
