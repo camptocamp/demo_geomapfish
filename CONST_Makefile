@@ -50,6 +50,8 @@ export DEVELOPMENT
 LANGUAGES ?= en fr de
 NGEO_INTERFACES ?= desktop mobile
 CGXP_INTERFACES ?=
+INTERFACES += $(NGEO_INTERFACES) $(CGXP_INTERFACES)
+export INTERFACES
 # Used print version
 PRINT_VERSION ?= 3
 # Enable Docker target
@@ -154,7 +156,7 @@ EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py \
 	CONST_fixversions.txt \
 	CONST_optional-requirements.txt \
 	$(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.1.0.rc4
+REQUIREMENTS ?= c2cgeoportal==2.1.0.dev23
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -224,7 +226,7 @@ NGEO_LIBS_JS_FILES += \
 	node_modules/angular-animate/angular-animate.min.js \
 	node_modules/angular-sanitize/angular-sanitize.min.js \
 	node_modules/angular-touch/angular-touch.min.js \
-	node_modules/typeahead.js/dist/typeahead.bundle.min.js \
+	node_modules/corejs-typeahead/dist/typeahead.bundle.min.js \
 	node_modules/angular-ui-date/dist/date.js \
 	node_modules/angular-float-thead/angular-floatThead.js \
 	node_modules/floatthead/dist/jquery.floatThead.min.js \
@@ -849,7 +851,7 @@ $(PACKAGE)/static-ngeo/fonts/fontawesome-webfont.%: node_modules/font-awesome/fo
 	mkdir -p $(dir $@)
 	cp $< $@
 
-$(APP_OUTPUT_DIR)/%.css: $(PACKAGE)/static-ngeo/less/%-build.less $(LESS_FILES) $(NGEO_FONTS) .build/node_modules.timestamp
+$(APP_OUTPUT_DIR)/%.css: $(PACKAGE)/static-ngeo/less/%.less $(LESS_FILES) $(NGEO_FONTS) .build/node_modules.timestamp
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
 	node_modules/.bin/lessc $(LESS_ARGS) $< $@
@@ -864,8 +866,7 @@ node_modules/ngeo/buildtools/mako_build.json: .build/node_modules.timestamp
 		$(VENV_BIN)/mako-render$(PYTHON_BIN_POSTFIX)
 	$(PRERULE_CMD)
 	PYTHONIOENCODING=UTF-8 $(VENV_BIN)/mako-render \
-		--var 'src=$(PACKAGE)/static-ngeo/js/**/*.js' \
-		--var 'src_components=$(PACKAGE)/static-ngeo/components/**/*.js' \
+		--var 'src=$(PACKAGE)/static-ngeo/js/**/*.js,$(PACKAGE)/static-ngeo/components/**/*.js' \
 		--var src_set=contribs_gmf \
 		--var entry_point=$(PACKAGE)_$* \
 		--var ngeo_folder=node_modules/ngeo/ \
@@ -891,6 +892,7 @@ $(APP_OUTPUT_DIR)/templatecache.js: .build/gmftemplatecache.js
 
 .PRECIOUS: .build/gmftemplatecache.js
 .build/gmftemplatecache.js: node_modules/ngeo/buildtools/templatecache.mako.js \
+		.build/dev-requirements.timestamp \
 		$(VENV_BIN)/mako-render$(PYTHON_BIN_POSTFIX) \
 		$(APP_DIRECTIVES_PARTIALS_FILES) \
 		$(GMF_DIRECTIVES_PARTIALS_FILES) \
