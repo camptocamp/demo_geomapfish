@@ -130,7 +130,7 @@ LAYER
         "gml_exclude_items" "id"
         "gml_types" "auto"
         "gml_featureid" "id"
-        "gml_geom_type" "polygon"
+        "gml_geom_type" "multipolygon"
         "gml_geometries" "geom"
     END
 END
