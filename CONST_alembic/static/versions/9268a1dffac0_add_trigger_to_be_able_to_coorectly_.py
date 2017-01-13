@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2015-2017, Camptocamp SA
+# Copyright (c) 2017, Camptocamp SA
 # All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,47 +27,54 @@
 # of the authors and should not be interpreted as representing official policies,
 # either expressed or implied, of the FreeBSD Project.
 
-"""Add theme to FullTextSearch
+"""Add trigger to be able to correctly change the role name
 
-Revision ID: 53ba1a68d5fe
-Revises: 5109242131ce
-Create Date: 2015-08-05 14:43:30.889188
+Revision ID: 9268a1dffac0
+Revises: 5472fbc19f39
+Create Date: 2017-01-11 11:07:53.042003
 """
 
 from alembic import op, context
-from sqlalchemy import Column, Integer, ForeignKey, Boolean, String
 
 # revision identifiers, used by Alembic.
-revision = '53ba1a68d5fe'
-down_revision = '5109242131ce'
+revision = '9268a1dffac0'
+down_revision = '5472fbc19f39'
+branch_labels = None
+depends_on = None
 
 
 def upgrade():
     schema = context.get_context().config.get_main_option('schema')
+    staticschema = schema + '_static'
 
-    op.add_column('tsearch', Column(
-        'interface_id', Integer,
-        ForeignKey(schema + '.interface.id'),
-        nullable=True
-    ), schema=schema)
-    op.add_column('tsearch', Column('lang', String(2), nullable=True), schema=schema)
-    op.add_column('tsearch', Column('actions', String, nullable=True), schema=schema)
-    op.add_column('tsearch', Column('from_theme', Boolean, server_default='false'), schema=schema)
+    op.execute("""
+CREATE OR REPLACE FUNCTION {staticschema}.on_role_name_change()
+RETURNS trigger AS
+$$
+BEGIN
+IF NEW.name <> OLD.name THEN
+UPDATE {staticschema}."user" SET role_name = NEW.name WHERE role_name = OLD.name;
+END IF;
+RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql""".format(staticschema=staticschema))
 
-    op.create_index(
-        'tsearch_search_index',
-        table_name='tsearch',
-        columns=['ts', 'public', 'role_id', 'interface_id', 'lang'],
-        schema=schema
+    op.execute(
+        'CREATE TRIGGER on_role_name_change AFTER UPDATE ON {schema}.role FOR EACH ROW '
+        'EXECUTE PROCEDURE {staticschema}.on_role_name_change()'.format(
+            staticschema=staticschema, schema=schema
+        )
     )
 
 
 def downgrade():
     schema = context.get_context().config.get_main_option('schema')
+    staticschema = schema + '_static'
 
-    op.drop_index('tsearch_search_index', schema=schema)
-
-    op.drop_column('tsearch', 'interface_id', schema=schema)
-    op.drop_column('tsearch', 'lang', schema=schema)
-    op.drop_column('tsearch', 'actions', schema=schema)
-    op.drop_column('tsearch', 'from_theme', schema=schema)
+    op.execute('DROP TRIGGER on_role_name_change ON {schema}.role'.format(
+        schema=schema
+    ))
+    op.execute('DROP FUNCTION {staticschema}.on_role_name_change()'.format(
+        staticschema=staticschema
+    ))
