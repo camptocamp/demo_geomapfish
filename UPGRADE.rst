@@ -13,6 +13,8 @@ Before the step 3 you should get some files from the create template:
    cp CONST_create_template/demo/templates/desktop.html demo/templates/
    cp CONST_create_template/demo/static-ngeo/js/desktop.js demo/static-ngeo/js/
 
+In the demo/templates/desktop.html and demo/templates/mobile.html files replace the defaultTheme from Demo to OSM.
+
 Before the step 5, complete the files:
 
     demo/locale/*/LC_MESSAGES/demo-client.po
