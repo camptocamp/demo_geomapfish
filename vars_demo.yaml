@@ -45,7 +45,6 @@ vars:
         anonymous:
             print_template:
             - A4 portrait
-            - A3 portrait
             default_basemap: map
             mobile_default_theme:
 #            location:
@@ -66,7 +65,6 @@ vars:
 
         # Functionalities that are made available to Mako templates.
         available_in_templates:
-        - default_basemap
         - location
 
     # Define URLs to the parent application. Only useful if
@@ -91,6 +89,8 @@ vars:
     fulltextsearch:
         languages:
             fr: fr
+            en: english
+            de: german
 
     # For base layers
     tiles_url: http://{host}/{instanceid}/tiles
@@ -139,4 +139,5 @@ update_paths:
 - authtkt
 - checker
 - check_collector.hosts
-- admin_interface
+- admin_interface.available_functionalities
+- functionalities.available_in_templates
