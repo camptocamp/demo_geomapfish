@@ -69,7 +69,7 @@ handlers =
 qualname = demo
 
 [logger_sqlalchemy]
-level = INFO
+level = WARN
 handlers =
 qualname = sqlalchemy.engine
 # "level = INFO" logs SQL queries.

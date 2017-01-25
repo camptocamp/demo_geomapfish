@@ -6,20 +6,24 @@ pyramid.debug_notfound = true
 pyramid.debug_routematch = false
 pyramid.debug_templates = true
 pyramid.includes =
-#    pyramid_debugtoolbar
+    pyramid_debugtoolbar
 mako.directories = demo:templates
     c2cgeoportal:templates
-app.cfg = %(here)s/.build/config.yaml
 authtkt_secret = ${authtkt["secret"]}
 authtkt_cookie_name = ${authtkt["cookie_name"]}
 % if "timeout" in authtkt:
 authtkt_timeout = ${authtkt["timeout"]}
 % endif
+app.cfg = %(here)s/.build/config.yaml
 
 [filter:fanstatic]
 use = egg:fanstatic#fanstatic
 publisher_signature = fanstatic
+% if instanceid == "":
+base_url = /wsgi
+% else:
 base_url = /${instanceid}/wsgi
+% endif
 recompute_hashes = false
 versioning = false
 bottom = true
@@ -65,7 +69,7 @@ handlers =
 qualname = demo
 
 [logger_sqlalchemy]
-level = INFO
+level = WARN
 handlers =
 qualname = sqlalchemy.engine
 # "level = INFO" logs SQL queries.

@@ -7,17 +7,21 @@ pyramid.debug_routematch = false
 pyramid.debug_templates = false
 mako.directories = demo:templates
     c2cgeoportal:templates
-app.cfg = %(here)s/.build/config.yaml
 authtkt_secret = ${authtkt["secret"]}
 authtkt_cookie_name = ${authtkt["cookie_name"]}
 % if "timeout" in authtkt:
 authtkt_timeout = ${authtkt["timeout"]}
 % endif
+app.cfg = %(here)s/.build/config.yaml
 
 [filter:fanstatic]
 use = egg:fanstatic#fanstatic
 publisher_signature = fanstatic
+% if instanceid == "":
+base_url = /wsgi
+% else:
 base_url = /${instanceid}/wsgi
+% endif
 recompute_hashes = false
 versioning = false
 bottom = true
@@ -39,7 +43,7 @@ port = ${waitress_port}
 ###
 
 [loggers]
-keys = root, demo
+keys = root, sqlalchemy, c2cgeoportal, demo
 
 [handlers]
 keys = console
@@ -51,10 +55,23 @@ keys = generic
 level = WARN
 handlers = console
 
+[logger_c2cgeoportal]
+level = WARN
+handlers =
+qualname = c2cgeoportal
+
 [logger_demo]
-level = INFO
+level = WARN
 handlers =
 qualname = demo
+
+[logger_sqlalchemy]
+level = WARN
+handlers =
+qualname = sqlalchemy.engine
+# "level = INFO" logs SQL queries.
+# "level = DEBUG" logs SQL queries and results.
+# "level = WARN" logs neither.  (Recommended for production systems.)
 
 [handler_console]
 class = StreamHandler
