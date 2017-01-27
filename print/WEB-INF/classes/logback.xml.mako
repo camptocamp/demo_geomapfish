@@ -21,9 +21,9 @@
 <configuration>
 
     <appender name="standardOut" class="ch.qos.logback.core.ConsoleAppender">
-        <layout class="ch.qos.logback.classic.PatternLayout">
+        <encoder>
             <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-        </layout>
+        </encoder>
     </appender>
 
     <appender name="File" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -32,18 +32,19 @@
             <!-- daily rollover -->
             <fileNamePattern>logs/${instanceid}.%d{yyyy-MM-dd}.log</fileNamePattern>
 
-            <!-- keep 30 days' worth of history -->
-            <maxHistory>30</maxHistory>
+            <!-- keep 7 days' worth of history -->
+            <maxHistory>7</maxHistory>
         </rollingPolicy>
 
-        <layout class="ch.qos.logback.classic.PatternLayout">
+        <encoder>
             <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-        </layout>
+        </encoder>
     </appender>
 
-    <logger name="org.mapfish" level="${"DEBUG" if development else "WARN"}" />
+    <logger name="org.mapfish" level="${"DEBUG" if development == "TRUE" else "WARN"}" />
     <logger name="net.sf.jasperreports" level="WARN" />
-    <logger name="org.springframework" level="OFF" />
+    <logger name="org.springframework" level="WARN" />
+    <logger name="org.apache" level="WARN" />
     <!-- Set spec logger to INFO to log all print spec json data -->
     <logger name="org.mapfish.print.servlet.BaseMapServlet.spec" level="OFF" />
     <logger name="com.codahale.metrics" level="INFO" />

@@ -4,8 +4,4 @@ PROJECT_NAME=$1
 CODE_DIR=$2
 
 cd $CODE_DIR
-make -f $TARGET.mk cleanall
-make -f $TARGET.mk build
-rm -f demo/locale/demo-client.pot
-make -f $TARGET.mk build
-chmod g+w -R .
+make -f $TARGET.mk template-clean

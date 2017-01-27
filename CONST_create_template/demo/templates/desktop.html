@@ -15,6 +15,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
 
     <title>{{'Desktop Application'|translate}}</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/images/favicon.ico')}"/>
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/desktop.css')}" type="text/css">
   </head>
@@ -308,7 +309,6 @@ ${ ',\n'.join([
         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"interface": "desktop", "partitionlimit": "5", "limit": "30"}) | n}');
         module.constant('gmfRasterUrl', '${request.route_url('raster') | n}');
-        module.constant('gmfProfileCsvUrl', '${request.route_url('profile.csv') | n}');
         module.constant('gmfProfileJsonUrl', '${request.route_url('profile.json') | n}');
         module.constant('gmfPrintUrl', '${request.route_url('printproxy') | n}');
         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "desktop", "version": "2", "background": "background"}) | n}');

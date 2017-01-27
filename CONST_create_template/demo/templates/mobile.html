@@ -35,8 +35,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         class="gmf-mobile-measure"
         gmf-mobile-measurepoint
         gmf-mobile-measurepoint-active="mainCtrl.measurePointActive"
-        gmf-mobile-measurepoint-decimals="2"
-        gmf-mobile-measurepoint-layers="::mainCtrl.elevationLayers"
+        gmf-mobile-measurepoint-coordinateDecimals="2"
+        gmf-mobile-measurepoint-layersconfig="::mainCtrl.elevationLayersConfig"
         gmf-mobile-measurepoint-map="::mainCtrl.map">
       </div>
       <button class="gmf-mobile-nav-trigger gmf-mobile-nav-left-trigger"
@@ -203,6 +203,7 @@ ${ ',\n'.join([
         module.constant('cacheVersion', '${get_cache_version()}');
         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"interface": "mobile", "limit": "20"}) | n}');
+        module.constant('gmfRasterUrl', '${request.route_url('raster') | n}');
         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "mobile", "version": "2", "background": "background"}) | n}');
         module.constant('gmfShortenerCreateUrl', '');
         module.constant('gmfSearchGroups', []);

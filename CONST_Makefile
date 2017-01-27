@@ -50,6 +50,7 @@ export DEVELOPMENT
 LANGUAGES ?= en fr de
 NGEO_INTERFACES ?= desktop mobile
 CGXP_INTERFACES ?=
+CGXP_API ?= TRUE
 INTERFACES += $(NGEO_INTERFACES) $(CGXP_INTERFACES)
 export INTERFACES
 # Used print version
@@ -79,8 +80,12 @@ C2CCSSMIN_VERSION ?= $(shell grep ^c2c.cssmin== CONST_optional-requirements.txt 
 
 GIT_MODULES_FOLDER ?= .git/modules/
 
-ifneq ($(CGXP_INTERFACES), "")
+ifdef CGXP_INTERFACES
 DEFAULT_WEB_RULE += build-cgxp
+else
+ifeq ($(CGXP_API), TRUE)
+DEFAULT_WEB_RULE += build-cgxp
+endif
 endif
 ifneq ($(NGEO_INTERFACES), "")
 DEFAULT_WEB_RULE += build-ngeo
@@ -156,7 +161,7 @@ EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py \
 	CONST_fixversions.txt \
 	CONST_optional-requirements.txt \
 	$(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.1.0.dev25
+REQUIREMENTS ?= c2cgeoportal
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
 ifeq ($(TILECLOUD_CHAIN), TRUE)
@@ -479,7 +484,8 @@ CONFIG_VARS += instanceid sqlalchemy.url schema parentschema enable_admin_interf
 	available_locale_names cache admin_interface functionalities external_themes_url \
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
 	tiles_url checker check_collector default_max_age jsbuild package srid \
-	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser
+	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser \
+	ogcproxy_enable
 C2C_TEMPLATE_CMD = $(ENVIRONMENT_VARS) $(VENV_BIN)/c2c-template --vars $(VARS_FILE)
 MAKE_FILES = $(shell ls -1 *.mk) CONST_Makefile
 
@@ -606,7 +612,7 @@ serve: build development.ini
 
 .PHONY: update-node-modules
 update-node-modules: $(NPM_CMD)
-	$(NPM_CMD) install --force
+	$(NPM_CMD) install --force || sleep 20 || $(NPM_CMD) install --force || sleep 90 || $(NPM_CMD) install --force
 	mkdir -p .build
 	touch .build/node_modules.timestamp
 
@@ -666,9 +672,14 @@ endif
 
 $(VENV_BIN)/c2c-template$(PYTHON_BIN_POSTFIX): .build/requirements.timestamp
 
-.build/config.yaml: $(INSTANCE_ID_MARKER) $(VENV_BIN)/c2c-template$(PYTHON_BIN_POSTFIX) $(VARS_DEPENDS) $(MAKE_FILES)
+$(VENV_BIN)/pykwalify$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
+
+.build/config.yaml: $(INSTANCE_ID_MARKER) $(VENV_BIN)/c2c-template$(PYTHON_BIN_POSTFIX) $(VENV_BIN)/pykwalify$(PYTHON_BIN_POSTFIX) $(VARS_DEPENDS) $(MAKE_FILES)
 	$(PRERULE_CMD)
-	$(C2C_TEMPLATE_CMD) --get-config .build/config.yaml $(CONFIG_VARS)
+	$(C2C_TEMPLATE_CMD) --get-config .build/_config.yaml $(CONFIG_VARS)
+	$(VENV_BIN)/pykwalify --data-file .build/_config.yaml --schema-file CONST_config-schema.yaml
+	mv .build/_config.yaml .build/config.yaml
+	touch $@
 
 # server localisation
 
@@ -752,6 +763,7 @@ $(TX_RC):
 .build/locale/%/LC_MESSAGES/gmf.po: $(TX_DEPENDENCIES)
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
+	sleep 1 # To be sure that the the creation date should be after the .transifexrc file. (the $(TOUCHBACK_TXRC) lost the ms)
 	$(VENV_BIN)/tx pull -l $* --force
 	$(TOUCHBACK_TXRC)
 	test -s $@
@@ -1074,6 +1086,7 @@ $(VENV_BIN)/flake8$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 .build/requirements.timestamp: $(EGGS_DEPENDENCIES)
 	$(PRERULE_CMD)
 	$(PIP_CMD) install $(REQUIREMENTS)
+	$(PIP_CMD) install -e .
 	touch $@
 
 # Print
@@ -1083,7 +1096,7 @@ ifeq ($(DOCKER), TRUE)
 print: print/Dockerfile $(PRINT_REQUIREMENT)
 	docker build -t $(DOCKER_BASE)_print:$(DOCKER_TAG) print
 
-else  # !DOCKER
+else # !DOCKER
 print: $(PRINT_OUTPUT)/$(PRINT_WAR)
 
 $(PRINT_BASE_DIR)/$(PRINT_BASE_WAR): CONST_print_url
@@ -1130,7 +1143,7 @@ endif # !DOCKER
 print/WEB-INF/lib/jasperreports-functions-$(JASPERREPORTS_VERSION).jar:
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	curl --location --output $@ https://heanet.dl.sourceforge.net/project/jasperreports/jasperreports/JasperReports%20$(JASPERREPORTS_VERSION)/jasperreports-functions-$(JASPERREPORTS_VERSION).jar
+	curl --location --output $@ https://kent.dl.sourceforge.net/project/jasperreports/jasperreports/JasperReports%20$(JASPERREPORTS_VERSION)/jasperreports-functions-$(JASPERREPORTS_VERSION).jar
 	unzip -t -q $@
 
 print/WEB-INF/lib/joda-time-1.6.jar:
