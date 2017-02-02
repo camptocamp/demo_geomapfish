@@ -1,4 +1,4 @@
-INSTANCE_ID = 2.1
+INSTANCE_ID = 2.2
 DEVELOPMENT = TRUE
 
 include demo.mk

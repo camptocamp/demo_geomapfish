@@ -19,7 +19,7 @@ restore_tmp = sudo -u postgres pg_restore -Fc -d
 
 [code]
 src = /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/${instanceid}/demo_geomapfish
-dest = /var/www/vhosts/geomapfish-demo/private/${instanceid}
+dest = ${deploy["code_destination"]}
 
 [apache]
 dest = /var/www/vhosts/geomapfish-demo/conf/${instanceid}.conf

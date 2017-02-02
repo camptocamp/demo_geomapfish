@@ -427,6 +427,9 @@ vars:
         raster: *default-headers
         error: *default-headers
 
+    deploy:
+        code_destination: /var/www/vhosts/geomapfish-demo/private/{instanceid}
+
 
 interpreted:
     python:
