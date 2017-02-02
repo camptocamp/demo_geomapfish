@@ -22,8 +22,7 @@ src = /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/${instanceid}/de
 dest = ${deploy["code_destination"]}
 
 [apache]
-dest = /var/www/vhosts/geomapfish-demo/conf/${instanceid}.conf
-content = Include /var/www/vhosts/geomapfish-demo/private/${instanceid}/apache/*.conf
+active = false
 
 [remote_hosts]
 demo_server = geomapfish-demo-tmp.infra.internal
