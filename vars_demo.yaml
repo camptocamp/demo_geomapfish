@@ -2,7 +2,7 @@ extends: CONST_vars.yaml
 
 vars:
     # database name
-    db: demo_geomapfish_2_1
+    db: demo_geomapfish_2_2
     # database schema
     schema: main
 
@@ -60,11 +60,10 @@ vars:
             - 4 A3 landscape
             default_basemap: asitvd.fond_gris
             default_theme: Transport
-#            location:
-#            - "'Lausanne': [535436, 155243, 539476, 150443]"
-#            - "'Pully': [539606, 152493, 541106, 150443]"
-#            - "'Vevey': [551755, 149340, 555995, 145060]"
-
+            filterable_layers:
+            - osm_open
+            - map
+            - ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung
 
         # Functionalities that are accessible to authenticated
         # users with no associated functionalities in the
