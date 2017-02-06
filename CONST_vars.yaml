@@ -179,6 +179,11 @@ vars:
         - name: snappingConfig
           type: json
         - geometry_validation
+        #WMS
+        - name: DirectedFilterAttributes
+          type: list
+        - name: EnumeratedAttributes
+          type: list
         # WMTS layers
         - ogcServer
         - layers
