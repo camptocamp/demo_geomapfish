@@ -23,7 +23,7 @@ MAP
     # change RESOLUTION to some other value, also change
     # DEFRESOLUTION. See
     # http://mapserver.org/development/rfc/ms-rfc-55.html
-    RESOLUTION 72 ## Also set in Openlayers for especially legends
+    RESOLUTION 92 ## Also set in Openlayers for especially legends
     DEFRESOLUTION 72
 
     # MAXSIZE shouldn't be less than 5000 for MF print on A3
