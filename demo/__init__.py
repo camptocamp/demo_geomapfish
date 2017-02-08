@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm.session import sessionmaker
+import sqlahelper
 from pyramid.config import Configurator
 from c2cgeoportal.pyramid_ import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
 from c2cgeoportal.lib.authentication import create_authentication
@@ -18,6 +21,14 @@ def main(global_config, **settings):
     config.include("c2cgeoportal")
 
     config.add_translation_dirs("demo:locale/")
+
+    osm_engine = create_engine(config.get_settings().get("dbsessions").get("osm").get("url"))
+    sqlahelper.add_engine(osm_engine, "osm")
+    print 111
+    osm_session = sessionmaker()
+    from c2cgeoportal.models import DBSessions
+    print osm_session
+    DBSessions["osm"] = osm_session(bind=osm_engine)
 
     # scan view decorator for adding routes
     config.scan()

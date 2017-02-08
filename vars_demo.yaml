@@ -84,8 +84,20 @@ vars:
     mapserverproxy:
         default_ogc_server: Main PNG
 
+    dbsessions:
+        osm:
+            url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/osm
+
     layers:
         geometry_validation: True
+        enum:
+            buildings18: &osm_type
+                dbsession: osm
+                attributes:
+                    type:
+                        table: swiss_points
+            landuse18: *osm_type
+            osm_open: *osm_type
 
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.

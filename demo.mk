@@ -15,4 +15,6 @@ GIT_REMOTE_URL ?= git@github.com:camptocamp/demo.git
 DEPLOY_BRANCH_BASE_URL ?= $(VISIBLE_PROTOCOL)://$(VISIBLE_HOST)
 DEPLOY_BRANCH_MAKEFILE ?= demo.mk
 
+CONFIG_VARS += dbsessions
+
 include CONST_Makefile
