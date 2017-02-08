@@ -1,4 +1,4 @@
 #!/bin/sh -ex
 
 cd ${deploy["code_destination"]}
-make -f $TARGET.mk build
+make -f $TARGET.mk build -j2
