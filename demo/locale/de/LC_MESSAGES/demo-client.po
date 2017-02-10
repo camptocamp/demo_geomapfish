@@ -86,6 +86,9 @@ msgstr "Infrastruktur"
 msgid "External"
 msgstr "Extern"
 
+msgid "Filters"
+msgstr ""
+
 msgid "Gestion des eaux"
 msgstr "Wassermanagement"
 
@@ -142,6 +145,12 @@ msgstr "OSM Funktion"
 
 msgid "OSM functions mixed"
 msgstr "gemischte OSM Funktionen"
+
+msgid "OSM map"
+msgstr ""
+
+msgid "OSM map WMS"
+msgstr ""
 
 #, fuzzy
 msgid "ObjectEditing"
@@ -381,16 +390,32 @@ msgstr "OSM Skala"
 msgid "osm_time"
 msgstr "OSM Zeit"
 
+#, fuzzy
+msgid "osm_time_d_year_mounth"
+msgstr "OSM zeitbezogen"
+
 msgid "osm_time_r_dp"
 msgstr "OSM zeitbezogen"
 
 msgid "osm_time_r_dp_2"
 msgstr "OSM zeitbezogen"
 
+#, fuzzy
+msgid "osm_time_r_mounth_year"
+msgstr "OSM zeitbezogen"
+
 msgid "osm_time_r_s"
 msgstr "OSM zeitbezogen"
 
+#, fuzzy
+msgid "osm_time_r_year_mounth"
+msgstr "OSM zeitbezogen"
+
 msgid "osm_time_v_dp"
+msgstr "OSM zeitbezogen"
+
+#, fuzzy
+msgid "osm_time_v_mounth_year"
 msgstr "OSM zeitbezogen"
 
 msgid "osm_time_v_s"
