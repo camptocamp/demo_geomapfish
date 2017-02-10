@@ -196,6 +196,7 @@ vars:
         - default_theme
         - print_template
         - mapserver_substitution
+        - filterable_layers
 
     functionalities:
     # Functionalities that are accessible to anonymous
