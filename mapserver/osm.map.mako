@@ -921,7 +921,15 @@ LAYER
     END
 END
 
-% for name in ["osm_time", "osm_time2"]:
+<%!
+time_layers = [
+    ("osm_time", "2006-01/2013-12/P1M"),
+    ("osm_time2", "2006-01/2013-12/P1M"),
+    ("osm_time_year_mounth", "2006/2013/P1M"),
+    ("osm_time_mount_year", "2006-01/2013-12/P1Y"),
+]
+%>
+% for name, extent in time_layers:
 LAYER
     NAME "${name}"
     EXTENT 420000 40500 839000 306400
@@ -965,7 +973,7 @@ LAYER
         "gml_geometries" "POINT"
         "wfs_enable_request" "*"
 
-        "wms_timeextent" "2006-01/2013-12/P1M"
+        "wms_timeextent" "extent"
         "wms_timeitem" "timestamp"
     END
 END
