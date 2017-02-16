@@ -973,7 +973,7 @@ LAYER
         "gml_geometries" "POINT"
         "wfs_enable_request" "*"
 
-        "wms_timeextent" "extent"
+        "wms_timeextent" "${extent}"
         "wms_timeitem" "timestamp"
     END
 END
