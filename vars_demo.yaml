@@ -251,9 +251,6 @@ vars:
                         layers: []
                     legend: {}
 
-    # The deploy directory
-    directory: /var/www/vhosts/geomapfish-demo/private/2.2/
-
 update_paths:
 - shortener
 - authtkt
