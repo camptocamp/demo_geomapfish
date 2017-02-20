@@ -25,5 +25,4 @@ dest = ${deploy["code_destination"]}
 active = false
 
 [remote_hosts]
-demo = c2cpc.camptocamp.com
-prod = c2cpc.camptocamp.com
+demo_server = geomapfish-demo-tmp.infra.internal
