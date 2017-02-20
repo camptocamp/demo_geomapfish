@@ -204,6 +204,7 @@ ${ ',\n'.join([
         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"interface": "mobile", "limit": "20"}) | n}');
         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "mobile", "version": "2", "background": "background"}) | n}');
+        module.constant('gmfRasterUrl', '${request.route_url('raster') | n}');
         module.constant('gmfShortenerCreateUrl', '');
         module.constant('gmfSearchGroups', []);
         // Requires that the gmfSearchGroups is specified

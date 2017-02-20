@@ -312,7 +312,7 @@ ${ ',\n'.join([
         module.constant('gmfProfileJsonUrl', '${request.route_url('profile.json') | n}');
         module.constant('gmfPrintUrl', '${request.route_url('printproxy') | n}');
         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "desktop", "version": "2", "background": "background"}) | n}');
-        module.constant('gmfLayersUrl', 'https://geomapfish-demo.camptocamp.net/2.1/wsgi/layers/');
+        module.constant('gmfLayersUrl', '${request.route_url('layers_root', _query={}) | n}');
         module.constant('gmfShortenerCreateUrl', '${request.route_url('shortener_create') | n}');
         module.constant('gmfSearchGroups', ${dumps(fulltextsearch_groups) | n});
         // Requires that the gmfSearchGroups is specified

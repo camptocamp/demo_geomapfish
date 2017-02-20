@@ -240,6 +240,10 @@ vars:
                         layers: []
                     legend: {}
 
+    deploy:
+        code_source: /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/{instanceid}/demo_geomapfish
+        code_destination: /var/www/vhosts/geomapfish-demo/private/{instanceid}
+
 update_paths:
 - shortener
 - authtkt
