@@ -969,8 +969,8 @@ LAYER
         "gml_include_items" "all"
         "gml_types" "auto"
         "gml_featureid" "osm_id"
-        "gml_POINT_type" "point"
-        "gml_geometries" "POINT"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
         "wfs_enable_request" "*"
 
         "wms_timeextent" "${extent}"
@@ -1022,8 +1022,8 @@ LAYER
         "gml_include_items" "all"
         "gml_types" "auto"
         "gml_featureid" "osm_id"
-        "gml_POINT_type" "point"
-        "gml_geometries" "POINT"
+        "gml_way_type" "point"
+        "gml_geometries" "way"
         "wfs_enable_request" "*"
     END
 END
@@ -1111,8 +1111,8 @@ LAYER
         "gml_include_items" "all"
         "gml_types" "auto"
         "gml_featureid" "osm_id"
-        "gml_POINT_type" "point"
-        "gml_geometries" "POINT"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
         "wfs_enable_request" "*"
     END
 END
@@ -1158,7 +1158,29 @@ LAYER
         "gml_include_items" "all"
         "gml_types" "auto"
         "gml_featureid" "osm_id"
-        "gml_THE_GEOM_type" "point"
-        "gml_geometries" "THE_GEOM"
+        "gml_way_type" "point"
+        "gml_geometries" "way"
+    END
+END
+LAYER
+    NAME "buildings_query"
+    TYPE POLYGON
+    EXTENT 420000 40500 839000 306400
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    METADATA
+        "wms_title" "Buildings"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geometry_type" "polygon"
+        "gml_geometries" "geometry"
     END
 END
