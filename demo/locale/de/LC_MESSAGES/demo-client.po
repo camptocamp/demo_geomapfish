@@ -45,6 +45,9 @@ msgstr "Kataster"
 msgid "Coordinate"
 msgstr "Koordinate"
 
+msgid "Demo"
+msgstr ""
+
 msgid "Desktop Application"
 msgstr "Desktop-Applikation"
 
@@ -136,9 +139,6 @@ msgstr ""
 
 msgid "Multi-Polygon Query2 pas éditable mais queryable"
 msgstr ""
-
-msgid "OSM"
-msgstr "OSM"
 
 msgid "OSM functions"
 msgstr "OSM Funktion"
@@ -237,11 +237,18 @@ msgstr "leer"
 msgid "barrier"
 msgstr "Barriere"
 
+msgid "bench"
+msgstr ""
+
 msgid "bicycle"
 msgstr "Velo"
 
 msgid "brand"
 msgstr "Marke"
+
+#, fuzzy
+msgid "buffer_stop"
+msgstr "Bushaltestelle"
 
 msgid "building"
 msgstr "Gebäude"
@@ -276,6 +283,9 @@ msgstr "Kommentare"
 msgid "covered"
 msgstr "bedeckt"
 
+msgid "crossing"
+msgstr ""
+
 msgid "datasource"
 msgstr "Datenquelle"
 
@@ -289,6 +299,9 @@ msgid "display_name"
 msgstr "Displaynamen"
 
 msgid "district"
+msgstr ""
+
+msgid "drinking_water"
 msgstr ""
 
 msgid "ele"
@@ -305,6 +318,9 @@ msgstr "Feuerwehrstation"
 
 msgid "foot"
 msgstr "Fuss"
+
+msgid "fountain"
+msgstr ""
 
 msgid "fuel"
 msgstr "Tankstelle"
@@ -335,6 +351,9 @@ msgstr "Legende"
 
 msgid "leisure"
 msgstr "Unterhaltung"
+
+msgid "level_crossing"
+msgstr ""
 
 msgid "line"
 msgstr "Linie"
@@ -421,8 +440,14 @@ msgstr "OSM zeitbezogen"
 msgid "osm_time_v_s"
 msgstr "OSM zeitbezogen"
 
+msgid "other"
+msgstr ""
+
 msgid "parking"
 msgstr "Parkplatz"
+
+msgid "picnic_site"
+msgstr ""
 
 msgid "place"
 msgstr "Platz"
@@ -460,6 +485,10 @@ msgstr "Toleranz vom Polygonsnapping"
 msgid "population"
 msgstr "Bevölkerung"
 
+#, fuzzy
+msgid "post_box"
+msgstr "Post"
+
 msgid "post_office"
 msgstr "Post"
 
@@ -469,11 +498,17 @@ msgstr "Strom"
 msgid "railway"
 msgstr "Eisenbahn"
 
+msgid "recycling"
+msgstr ""
+
 msgid "ref"
 msgstr "ref"
 
 msgid "religion"
 msgstr "Religion"
+
+msgid "restaurant"
+msgstr ""
 
 msgid "scalebar"
 msgstr "Massstabsbalken"
@@ -520,6 +555,12 @@ msgstr "Tourismus"
 msgid "tourism_activity"
 msgstr "Touristischeaktivität"
 
+msgid "traffic_signals"
+msgstr ""
+
+msgid "turning_circle"
+msgstr ""
+
 msgid "two_layers"
 msgstr "zwei Ebenen"
 
@@ -531,3 +572,6 @@ msgstr "Wasserweg"
 
 msgid "wood"
 msgstr "Holz"
+
+#~ msgid "OSM"
+#~ msgstr "OSM"

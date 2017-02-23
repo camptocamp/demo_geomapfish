@@ -1,44 +1,39 @@
 # A compose file for development.
+version: '2'
+services:
 % if dbhost == "db":
-db:
-  build: testDB
-  environment:
-    POSTGRES_USER: ${dbuser}
-    POSTGRES_DB: ${db}
-    POSTGRES_PASSWORD: ${dbpassword}
-% if development == "TRUE":
-  ports:
-  - 15432:5432
-%endif
+  db:
+    build: testDB
+    environment:
+      POSTGRES_USER: ${dbuser}
+      POSTGRES_DB: ${db}
+      POSTGRES_PASSWORD: ${dbpassword}
+    #ports:
+    #  - 15432:5432
 %endif
 
-print:
-  image: ${docker_base}_print:latest
-  links:
-  - mapserver
-% if development == "TRUE":
-  ports:
-  - 8280:8080
-%endif
+  print:
+    image: ${docker_base}_print:latest
+    links:
+      - mapserver
+    #ports:
+    #  - 8280:8080
 
-mapserver:
-  image: ${docker_base}_mapserver:latest
+  mapserver:
+    image: ${docker_base}_mapserver:latest
 % if dbhost == "db":
-  links:
-  - db
+    links:
+      - db
 % endif
-% if development == "TRUE":
-  ports:
-  - 8380:80
-%endif
+    #ports:
+    #  - 8380:80
 
-wsgi:
-  image: ${docker_base}_wsgi:latest
-  links:
-  - mapserver
-  - print
+  wsgi:
+    image: ${docker_base}_wsgi:latest
+    links:
+      - mapserver
 % if dbhost == "db":
-  - db
+      - db
 % endif
-  ports:
-  - 8480:80
+    ports:
+      - 8480:80

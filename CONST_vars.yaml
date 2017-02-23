@@ -32,6 +32,9 @@ vars:
     schema: main
     # database parent schema
     parentschema: ""
+
+    dbsessions: {}
+
     # apache/mapserver.conf "Allow" statement
     mapserv_allow: |
         Allow from 127.0.0.1 ::1
@@ -153,41 +156,43 @@ vars:
           type: boolean
         - name: isLegendExpanded
           type: boolean
-        - legendRule
+        - name: legendRule
         - name: legendImage
           type: url
         - name: iconUrl
           type: url
         - name: metadataUrl
           type: url
-        - disclaimer
+        - name: disclaimer
         - name: isChecked
           type: boolean
-        - identifierAttributeField
+        - name: identifierAttributeField
         - name: maxResolution
           type: float
         - name: minResolution
+          type: float
+        - name: opacity
           type: float
         - name: thumbnail
           type: url
         - name: copyable
           type: boolean
-        - queryLayers
-        - wmsLayers
-        - lastUpdateDateColumn
-        - lastUpdateUserColumn
+        - name: queryLayers
+        - name: wmsLayers
+        - name: lastUpdateDateColumn
+        - name: lastUpdateUserColumn
         - name: snappingConfig
           type: json
-        - geometry_validation
-        #WMS
-        - name: DirectedFilterAttributes
+        - name: geometry_validation
+        # WMS
+        - name: directedFilterAttributes
           type: list
-        - name: EnumeratedAttributes
+        - name: enumeratedAttributes
           type: list
         # WMTS layers
-        - ogcServer
-        - layers
-        - printLayers
+        - name: ogcServer
+        - name: layers
+        - name: printLayers
 
     # The list of functionalities that can be configured
     # through the admin interface.
@@ -217,7 +222,7 @@ vars:
     # Functionalities that are accessible to authenticated
     # users with no associated functionalities in the
     # database.
-        registered:
+        registered: {}
 
     # Functionalities that are made available to Mako templates.
         available_in_templates:
@@ -270,14 +275,18 @@ vars:
 
     # Used by enumeration in the query builder
     layers:
+        geometry_validation: True
 
     # Used to send an email on password reset
-    reset_password:
+    reset_password: {}
 
     # The shortner base configuration
     shortener:
         # The base of created URL
         base_url:  '{web_protocol}://{host}{apache_entry_point}s/'
+        allowed_hosts:
+        - {host}
+
 
     # Define whether the MapServer proxy should hide the OGC capabilities.
     hide_capabilities: false
@@ -312,31 +321,31 @@ vars:
             lang_files: [ngeo, cgxp-api]
             phantomjs_routes:
             - name: desktop
-              param:
-                no_redirect: true
+              params:
+                no_redirect: "true"
             forward_headers: []
             routes_disable: []
             themes:
                 default:
                     params:
-                        version: 2
+                        version: "2"
         all:
             phantomjs_routes:
             - name: desktop
-              param:
-                no_redirect: true
+              params:
+                no_redirect: "true"
             - name: mobile
-              param:
-                no_redirect: true
+              params:
+                no_redirect: "true"
             # phamtomjs 2.5 is required
 #            - name: desktop
-#              param:
-#                no_redirect: true
-#                debug: true
+#              params:
+#                no_redirect: "true"
+#                debug: "true"
 #            - name: mobile
-#              param:
-#                no_redirect: true
-#                debug: true
+#              params:
+#                no_redirect: "true"
+#                debug: "true"
             routes:
             - name: apijs
             - name: xapijs
@@ -394,7 +403,7 @@ vars:
 
     # What web page is authorized to use the API
     authorized_referers:
-    - '{web_protocol}://{host}/{instanceid}'
+    - '{web_protocol}://{host}{apache_entry_point}'
 
     # Hooks that can be called at different moments in the life of the
     # application. The value is the full python name
@@ -426,15 +435,12 @@ vars:
         themes: *default-headers
         mapserver:
             <<: *default-headers
-            access_control_allow_origin: "*"
+            access_control_allow_origin: ["*"]
         layers: *default-headers
         print: *default-headers
         profile: *default-headers
         raster: *default-headers
         error: *default-headers
-
-    deploy:
-        code_destination: /var/www/vhosts/geomapfish-demo/private/{instanceid}
 
 
 interpreted:

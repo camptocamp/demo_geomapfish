@@ -161,7 +161,7 @@ EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py \
 	CONST_fixversions.txt \
 	CONST_optional-requirements.txt \
 	$(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.2.0.dev4
+REQUIREMENTS ?= c2cgeoportal==2.2.0.dev6
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_fixversions.txt
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
@@ -186,7 +186,7 @@ export VISIBLE_WEB_HOST
 export VISIBLE_WEB_PROTOCOL
 
 # ngeo
-ANGULAR_VERSION = 1.5
+ANGULAR_VERSION = 1.6
 ifeq ($(OPERATING_SYSTEM), LINUX)
 NPM_CMD = node_modules/.bin/npm
 else
@@ -241,7 +241,7 @@ NGEO_LIBS_JS_FILES += \
 	node_modules/angular-gettext/dist/angular-gettext.min.js \
 	node_modules/angular-dynamic-locale/dist/tmhDynamicLocale.min.js \
 	node_modules/bootstrap/dist/js/bootstrap.min.js \
-	node_modules/d3/d3.min.js
+	node_modules/d3/build/d3.min.js
 NGEO_PROJECT_LIBS_JS_FILES ?=
 ifeq ($(OPERATING_SYSTEM),WINDOWS)
 COMPILE_CATALOG = node_modules/ngeo/buildtools/compile-catalog.js
@@ -486,7 +486,7 @@ CONFIG_VARS += instanceid sqlalchemy.url schema parentschema enable_admin_interf
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
 	tiles_url checker check_collector default_max_age jsbuild package srid \
 	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser \
-	ogcproxy_enable
+	ogcproxy_enable dbsessions
 C2C_TEMPLATE_CMD = $(ENVIRONMENT_VARS) $(VENV_BIN)/c2c-template --vars $(VARS_FILE)
 MAKE_FILES = $(shell ls -1 *.mk) CONST_Makefile
 
@@ -764,12 +764,25 @@ $(TX_RC):
 .build/locale/%/LC_MESSAGES/gmf.po: $(TX_DEPENDENCIES)
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	sleep 1 # To be sure that the the creation date should be after the .transifexrc file. (the $(TOUCHBACK_TXRC) lost the ms)
-	$(VENV_BIN)/tx pull -l $* --force
+	sleep 1 # To be sure that the creation date should be after the .transifexrc file. (the $(TOUCHBACK_TXRC) lost the ms)
+	$(VENV_BIN)/tx pull --language $* --resource ngeo.gmf-$(TX_VERSION) --force
+	$(TOUCHBACK_TXRC)
+	test -s $@
+
+.PRECIOUS: .build/locale/%/LC_MESSAGES/ngeo.po
+.build/locale/%/LC_MESSAGES/ngeo.po: $(TX_DEPENDENCIES)
+	$(PRERULE_CMD)
+	mkdir -p $(dir $@)
+	sleep 1 # To be sure that the creation date should be after the .transifexrc file. (the $(TOUCHBACK_TXRC) lost the ms)
+	$(VENV_BIN)/tx pull --language $* --resource ngeo.ngeo-$(TX_VERSION) --force
 	$(TOUCHBACK_TXRC)
 	test -s $@
 
 .build/locale/en/LC_MESSAGES/gmf.po:
+	$(PRERULE_CMD)
+	@echo "The en language is the source language, so the file must stay empty"
+
+.build/locale/en/LC_MESSAGES/ngeo.po:
 	$(PRERULE_CMD)
 	@echo "The en language is the source language, so the file must stay empty"
 
@@ -790,11 +803,15 @@ $(COMPILE_CATALOG): .build/node_modules.timestamp
 .PRECIOUS: $(APP_OUTPUT_DIR)/%.json
 $(APP_OUTPUT_DIR)/%.json: $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-client.po \
 		.build/locale/%/LC_MESSAGES/gmf.po \
+		.build/locale/%/LC_MESSAGES/ngeo.po \
 		$(COMPILE_CATALOG) \
 		.build/node_modules.timestamp
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	node $(COMPILE_CATALOG) .build/locale/$*/LC_MESSAGES/gmf.po $< > $@
+	node $(COMPILE_CATALOG) \
+		.build/locale/$*/LC_MESSAGES/gmf.po \
+		.build/locale/$*/LC_MESSAGES/ngeo.po \
+		$< > $@
 
 $(APP_OUTPUT_DIR)/angular-locale_%.js: node_modules/ngeo/github_versions
 	mkdir -p $(dir $@)
@@ -923,17 +940,17 @@ $(APP_OUTPUT_DIR)/templatecache.js: .build/gmftemplatecache.js
 .build/externs/angular-$(ANGULAR_VERSION).js: node_modules/ngeo/github_versions
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/`grep ^closure-compiler= $< | cut --delimiter = --fields 2`/contrib/externs/angular-$(ANGULAR_VERSION).js
+	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-$(ANGULAR_VERSION).js
 
 .build/externs/angular-$(ANGULAR_VERSION)-q_templated.js: node_modules/ngeo/github_versions
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/`grep ^closure-compiler= $< | cut --delimiter = --fields 2`/contrib/externs/angular-$(ANGULAR_VERSION)-q_templated.js
+	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-$(ANGULAR_VERSION)-q_templated.js
 
 .build/externs/angular-$(ANGULAR_VERSION)-http-promise_templated.js: node_modules/ngeo/github_versions
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/`grep ^closure-compiler= $< | cut --delimiter = --fields 2`/contrib/externs/angular-$(ANGULAR_VERSION)-http-promise_templated.js
+	curl --max-redirs 0 --location --output $@ https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/angular-$(ANGULAR_VERSION)-http-promise_templated.js
 
 .build/externs/jquery-1.9.js: node_modules/ngeo/github_versions
 	$(PRERULE_CMD)
@@ -1080,6 +1097,7 @@ $(VENV_BIN)/flake8$(PYTHON_BIN_POSTFIX): .build/dev-requirements.timestamp
 .build/venv.timestamp-noclean: CONST_optional-requirements.txt
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
+	rm --recursive --force .build/venv
 	virtualenv --no-site-packages .build/venv
 	$(PIP_CMD) install '$(PIP_VERSION)' '$(SETUPTOOLS_VERSION)'
 	touch $@
@@ -1144,7 +1162,7 @@ endif # !DOCKER
 print/WEB-INF/lib/jasperreports-functions-$(JASPERREPORTS_VERSION).jar:
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
-	curl --location --output $@ https://kent.dl.sourceforge.net/project/jasperreports/jasperreports/JasperReports%20$(JASPERREPORTS_VERSION)/jasperreports-functions-$(JASPERREPORTS_VERSION).jar
+	curl --location --output $@ http://central.maven.org/maven2/net/sf/jasperreports/jasperreports/$(JASPERREPORTS_VERSION)/jasperreports-$(JASPERREPORTS_VERSION).jar
 	unzip -t -q $@
 
 print/WEB-INF/lib/joda-time-1.6.jar:
@@ -1247,7 +1265,7 @@ $(UPGRADE_MAKE_FILE):
 	@echo "The file '$(UPGRADE_MAKE_FILE)' cannot be found,"
 	@echo "this probably mean that you Makefile is not named '<instanceid>.mk'."
 	@echo "To solve this you can rename your Makefile or add in your Makefile"
-	@echo "`UPGRADE_MAKE_FILE = <your_makefile_name>`."
+	@echo "\`UPGRADE_MAKE_FILE = <your_makefile_name>\`."
 	exit 1
 
 $(VENV_BIN)/c2ctool$(PYTHON_BIN_POSTFIX): .build/requirements.timestamp $(VENV_BIN)/alembic$(PYTHON_BIN_POSTFIX)
@@ -1306,8 +1324,9 @@ $(WMTSCAPABILITIES_FILE): tilegeneration/config.yaml .build/dev-requirements.tim
 	$(VENV_BIN)/generate_controller --capabilities
 
 # Version
-$(VENV_BIN)/version.py$(PYTHON_BIN_POSTFIX): .build/requirements.timestamp
+$(VENV_BIN)/gen-version$(PYTHON_BIN_POSTFIX): .build/requirements.timestamp
 
+.PHONY: $(PACKAGE)/version.py
 $(PACKAGE)/version.py: $(VENV_BIN)/gen-version$(PYTHON_BIN_POSTFIX)
 	@echo "# Auto-generated file. Do not Edit!" > $@
 	@$(VENV_BIN)/gen-version >> $@

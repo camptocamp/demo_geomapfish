@@ -186,6 +186,10 @@ vars:
             - http://127.0.0.1:3000
             - http://127.0.0.1
             - "*"
+        index: *headers
+        api: *headers
+        error: *headers
+        config: *headers
         mapserver: *headers
         fulltextsearch: *headers
         print: *headers
@@ -253,9 +257,14 @@ vars:
                         layers: []
                     legend: {}
 
+    deploy:
+        code_source: /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/{instanceid}/demo_geomapfish
+        code_destination: /var/www/vhosts/geomapfish-demo/private/{instanceid}
+
 update_paths:
 - shortener
 - authtkt
+- fulltextsearch
 - checker.defaults
 - admin_interface.available_functionalities
 - functionalities.available_in_templates

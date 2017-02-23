@@ -163,7 +163,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/d3/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/d3/build/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
 
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
@@ -203,8 +203,8 @@ ${ ',\n'.join([
         module.constant('cacheVersion', '${get_cache_version()}');
         module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
         module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"interface": "mobile", "limit": "20"}) | n}');
-        module.constant('gmfRasterUrl', '${request.route_url('raster') | n}');
         module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"interface": "mobile", "version": "2", "background": "background"}) | n}');
+        module.constant('gmfRasterUrl', '${request.route_url('raster') | n}');
         module.constant('gmfShortenerCreateUrl', '');
         module.constant('gmfSearchGroups', []);
         // Requires that the gmfSearchGroups is specified

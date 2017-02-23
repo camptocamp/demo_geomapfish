@@ -47,6 +47,9 @@ msgstr ""
 msgid "Coordinate"
 msgstr "Coordonnée"
 
+msgid "Demo"
+msgstr ""
+
 msgid "Desktop Application"
 msgstr "Application bureau"
 
@@ -137,9 +140,6 @@ msgid "Multi-Polygon Query pas éditable mais queryable"
 msgstr ""
 
 msgid "Multi-Polygon Query2 pas éditable mais queryable"
-msgstr ""
-
-msgid "OSM"
 msgstr ""
 
 msgid "OSM functions"
@@ -238,11 +238,18 @@ msgstr "Vide"
 msgid "barrier"
 msgstr "Barière"
 
+msgid "bench"
+msgstr ""
+
 msgid "bicycle"
 msgstr "Vélo"
 
 msgid "brand"
 msgstr "Marque"
+
+#, fuzzy
+msgid "buffer_stop"
+msgstr "Arrêt de bus"
 
 msgid "building"
 msgstr "Batiment"
@@ -277,6 +284,9 @@ msgstr "Commentaires"
 msgid "covered"
 msgstr "Couvert"
 
+msgid "crossing"
+msgstr ""
+
 msgid "datasource"
 msgstr "Source de donnée"
 
@@ -290,6 +300,9 @@ msgid "display_name"
 msgstr "Nom"
 
 msgid "district"
+msgstr ""
+
+msgid "drinking_water"
 msgstr ""
 
 msgid "ele"
@@ -306,6 +319,9 @@ msgstr "Caserne de pompiers"
 
 msgid "foot"
 msgstr "Foot"
+
+msgid "fountain"
+msgstr ""
 
 msgid "fuel"
 msgstr "Station d'essence"
@@ -336,6 +352,9 @@ msgstr "Légende"
 
 msgid "leisure"
 msgstr "Loisires"
+
+msgid "level_crossing"
+msgstr ""
 
 msgid "line"
 msgstr "Lignes"
@@ -418,8 +437,14 @@ msgstr "Temps OSM valeur mois année"
 msgid "osm_time_v_s"
 msgstr "Temps OSM curseur valeur"
 
+msgid "other"
+msgstr ""
+
 msgid "parking"
 msgstr "Parking"
+
+msgid "picnic_site"
+msgstr ""
 
 msgid "place"
 msgstr "Place"
@@ -457,6 +482,10 @@ msgstr "Magnetisme polygon avec tolerance"
 msgid "population"
 msgstr "Population"
 
+#, fuzzy
+msgid "post_box"
+msgstr "Poste"
+
 msgid "post_office"
 msgstr "Poste"
 
@@ -466,11 +495,17 @@ msgstr "Energie"
 msgid "railway"
 msgstr "Chemins de fer"
 
+msgid "recycling"
+msgstr ""
+
 msgid "ref"
 msgstr "Réference"
 
 msgid "religion"
 msgstr "Religion"
+
+msgid "restaurant"
+msgstr ""
 
 msgid "scalebar"
 msgstr "Bar d'echéles"
@@ -516,6 +551,12 @@ msgstr "Tourism"
 
 msgid "tourism_activity"
 msgstr "Tourism"
+
+msgid "traffic_signals"
+msgstr ""
+
+msgid "turning_circle"
+msgstr ""
 
 msgid "two_layers"
 msgstr "Deux couches"

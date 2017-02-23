@@ -18,7 +18,7 @@ createdb = sudo -u postgres createdb
 restore_tmp = sudo -u postgres pg_restore -Fc -d
 
 [code]
-src = /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/${instanceid}/demo_geomapfish
+src = ${deploy["code_source"]}
 dest = ${deploy["code_destination"]}
 
 [apache]

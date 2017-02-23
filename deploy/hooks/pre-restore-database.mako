@@ -8,11 +8,11 @@
 DATABASES=$@
 
 cd ${deploy["code_destination"]}
-make -f $TARGET.mk cleanall
+make -f $TARGET.mk clean
 
 # Apache must be stopped to prevent database connection during
 # databases / tables restore.
-sudo apache2ctl stop
+sudo service apache2 stop
 
 if psql --list --tuples-only | cut --delimiter='|' --fields=1 | grep --quiet --fixed-strings $DATABASES; then
     printf ""
