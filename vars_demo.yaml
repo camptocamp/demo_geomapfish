@@ -64,6 +64,7 @@ vars:
             - osm_open
             - map
             - ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung
+            - osm_time_r_dp_2
 
         # Functionalities that are accessible to authenticated
         # users with no associated functionalities in the
@@ -98,6 +99,7 @@ vars:
                         table: swiss_points
             landuse18: *osm_type
             osm_open: *osm_type
+            osm_time_r_dp_2: *osm_type
 
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
