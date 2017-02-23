@@ -92,14 +92,11 @@ vars:
     layers:
         geometry_validation: True
         enum:
-            buildings18: &osm_type
+            osm_open: &osm_type
                 dbsession: osm
                 attributes:
                     type:
                         table: swiss_points
-            landuse18: *osm_type
-            osm_open: *osm_type
-            osm_time_r_dp_2: *osm_type
 
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
