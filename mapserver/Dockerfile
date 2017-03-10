@@ -1,4 +1,4 @@
-FROM camptocamp/mapserver:latest
+FROM camptocamp/mapserver:c2c-dev
 MAINTAINER Camptocamp "info@camptocamp.com"
 
 COPY . /etc/mapserver/
