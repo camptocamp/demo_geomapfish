@@ -5,8 +5,5 @@ vars:
     dbhost: db
     mapserver_connection: '{{getenv "DB_CONNECTION"}}'
 
-    mapserverproxy:
-        mapserv_url: http://mapserver/
-
 update_paths:
 - mapserverproxy
