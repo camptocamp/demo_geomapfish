@@ -1,12 +1,13 @@
 Build
 =====
+make template-clean
 make build
 docker push camptocamp/demo-geomapfish_mapserver
 
 Run
 ===
 docker pull camptocamp/demo-geomapfish_mapserver
-docker run --detach --publish=8380:80 camptocamp/demo-geomapfish_mapserver
+docker run --detach --publish=8380:80 --hostname=db:10.27.70.154 --volume=/var/sig:/var/sig camptocamp/demo-geomapfish_mapserver
 
 Test
 ====
