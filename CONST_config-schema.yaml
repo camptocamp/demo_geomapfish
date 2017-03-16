@@ -104,14 +104,25 @@ mapping:
                     config: *header
                     api: *header
                     themes: *header
+                    fulltextsearch: *header
                     mapserver: *header
+                    tinyows: *header
                     layers: *header
                     print: *header
                     profile: *header
                     raster: *header
-                    shortner: *header
-                    fulltextsearch: *header
+                    shortener: *header
+                    echo: *header
+                    csvecho: *header
+                    exportgpxkml: *header
                     error: *header
+
+            urllogin:
+                type: map
+                required: True
+                mapping:
+                    rc4_key:
+                        type: str
 
             cache:
                 type: map
