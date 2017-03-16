@@ -188,12 +188,16 @@ vars:
         error: *headers
         config: *headers
         mapserver: *headers
+        tinyows: *headers
         fulltextsearch: *headers
         print: *headers
         layers: *headers
         raster: *headers
+        echo: *headers
+        csvecho: *headers
+        exportgpxkml: *headers
         profile: *headers
-        shortner: *headers
+        shortener: *headers
         login:
             access_control_max_age: 30
             access_control_allow_origin:
