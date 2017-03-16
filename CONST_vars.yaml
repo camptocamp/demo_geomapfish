@@ -170,17 +170,16 @@ vars:
           type: url
         - name: copyable
           type: boolean
-        - queryLayers
-        - wmsLayers
         - lastUpdateDateColumn
         - lastUpdateUserColumn
         - name: snappingConfig
           type: json
         - geometry_validation
         # WMTS layers
-        - ogcServer
-        - layers
-        - printLayers
+        - name: ogcServer
+        - name: printLayers
+        - name: queryLayers
+        - name: wmsLayers
 
     # The list of functionalities that can be configured
     # through the admin interface.
@@ -215,6 +214,7 @@ vars:
         available_in_templates:
         - default_basemap
         - default_theme
+        - print_template
 
     # Define URLs to the parent application. Only useful if
     # this application is a child application in a parent/child
@@ -261,7 +261,7 @@ vars:
     raster: {}
 
     # Used by enumeration in the query builder
-    layers:
+    layers: {}
 
     # Used to send an email on password reset
     reset_password:
@@ -287,6 +287,8 @@ vars:
     - '{web_protocol}:://c.tiles.{host}/{instanceid}/tiles'
     - '{web_protocol}:://d.tiles.{host}/{instanceid}/tiles'
     wmtscapabilities_path: WMTSCAPABILITIES_PATH
+
+    ogcproxy_enable: False
 
     # Control the HTTP headers
     headers:

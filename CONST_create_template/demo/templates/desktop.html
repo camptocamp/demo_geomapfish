@@ -5,14 +5,19 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
 <!DOCTYPE html>
 <html lang="{{desktopCtrl.lang}}" ng-app="demo" ng-controller="DesktopController as mainCtrl">
   <head>
-% if "no_redirect" not in request.params:
-        <script>
-            if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                window.location = "${request.route_url('mobile', _query=dict(request.GET))}";
-            }
-        </script>
-% endif
-
+    % if "no_redirect" not in request.params:
+        % if debug:
+    <script>
+        window.CLOSURE_BASE_PATH = '';
+        window.CLOSURE_NO_DEPS = true;
+    </script>
+        % endif
+    <script>
+                if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                    window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
+                }
+    </script>
+    % endif
     <title>{{'Desktop Application'|translate}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
@@ -188,9 +193,11 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               class="dropdown-menu">
             </gmf-backgroundlayerselector>
           </div>
-          <gmf-disclaimer
-            gmf-disclaimer-map="::mainCtrl.map">
-          </gmf-disclaimer>
+          <div class="gmf-app-map-messages">
+            <gmf-disclaimer
+              gmf-disclaimer-map="::mainCtrl.map">
+            </gmf-disclaimer>
+          </div>
           <gmf-displayquerywindow
             gmf-displayquerywindow-featuresstyle="::mainCtrl.queryFeatureStyle"
             gmf-displayquerywindow-desktop="true">
@@ -247,11 +254,6 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         ngeo-resizemap-state="profileChartActive">
       </gmf-profile>
     </footer>
-% if debug:
-    <script>
-        window.CLOSURE_BASE_PATH = '';
-        window.CLOSURE_NO_DEPS = true;
-    </script>
     <script src="${request.static_url('%s/jquery/dist/jquery.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/ngeo/third-party/jquery-ui/jquery-ui.min.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular/angular.js' % request.registry.settings['node_modules_path'])}"></script>
