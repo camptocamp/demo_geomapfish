@@ -11,13 +11,13 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         window.CLOSURE_BASE_PATH = '';
         window.CLOSURE_NO_DEPS = true;
     </script>
-        % endif
     <script>
                 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
                     window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
                 }
-    </script>
+            </script>
     % endif
+    
     <title>{{'Desktop Application'|translate}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
