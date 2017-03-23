@@ -16,6 +16,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     request_get_no_redirect = request.GET
     request_get_no_redirect['no_redirect'] = u''
   %>
+
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
                    'gmf-mobile-nav-left-is-visible': mainCtrl.leftNavIsVisible(),
                    'gmf-mobile-nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
@@ -50,6 +51,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
       <gmf-search gmf-search-map="mainCtrl.map"
         gmf-search-datasources="mainCtrl.searchDatasources"
         gmf-search-clearbutton="true"
+        gmf-search-placeholder="{{'Search…'|translate}}"
         gmf-search-coordinatesprojections="mainCtrl.searchCoordinatesProjections"
         gmf-search-listeners="::mainCtrl.searchListeners">
       </gmf-search>
