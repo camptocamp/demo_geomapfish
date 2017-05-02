@@ -13,10 +13,10 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/mobile.css')}" type="text/css">
   </head>
   <%
-    request_get_no_redirect = request.GET
-    request_get_no_redirect['no_redirect'] = u''
+    no_redirect_query = dict(request.GET)
+    no_redirect_query['no_redirect'] = u''
   %>
-
+    
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
                    'gmf-mobile-nav-left-is-visible': mainCtrl.leftNavIsVisible(),
                    'gmf-mobile-nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
@@ -73,7 +73,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         <gmf-disclaimer gmf-disclaimer-map="::mainCtrl.map"></gmf-disclaimer>
         <div class="alert alert-info alert-dismissible fade in hidden-xs" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="{{'Close' | translate}}"><span aria-hidden="true" class="fa fa-times"></span></button>
-          <span>{{"You're using the mobile version. Check out the" | translate}} <a href="${request.route_url('desktop', _query=dict(request_get_no_redirect)) | n}">{{'standard version' | translate}}</a>.</span>
+          <span>{{"You're using the mobile version. Check out the" | translate}} <a href="${request.route_url('desktop', _query=no_redirect_query) | n}">{{'standard version' | translate}}</a>.</span>
         </div>
       </div>
     </main>
