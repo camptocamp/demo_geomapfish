@@ -8,7 +8,7 @@
 DATABASES=$@
 
 cd ${deploy["code_destination"]}
-make -f $TARGET.mk clean
+make -f $TARGET.mk cleanall
 
 # Apache must be stopped to prevent database connection during
 # databases / tables restore.
