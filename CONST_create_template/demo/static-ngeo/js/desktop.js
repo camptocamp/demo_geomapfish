@@ -14,6 +14,8 @@ goog.provide('demo_desktop');
 goog.require('demo');
 goog.require('gmf.AbstractDesktopController');
 /** @suppress {extraRequire} */
+goog.require('ngeo.googlestreetviewComponent');
+/** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG2056');
 /** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG21781');

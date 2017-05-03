@@ -3,7 +3,7 @@ from json import dumps
 from c2cgeoportal.lib.cacheversion import get_cache_version
 %>
 <!DOCTYPE html>
-<html lang="{{mobileCtrl.lang}}" ng-app="demo" ng-controller="MobileController as mainCtrl">
+<html lang="{{mainCtrl.lang}}" ng-app="demo" ng-controller="MobileController as mainCtrl">
   <head>
     <title>{{'Mobile Application'|translate}}</title>
     <meta charset="utf-8">
@@ -11,7 +11,20 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/images/favicon.ico')}"/>
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/mobile.css')}" type="text/css">
+    <script>
+      if (!window.requestAnimationFrame) {
+        alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
+            + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. Vous allez être redirigé.\n\n'
+            + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. Sie werden weitergeleitet.');
+        window.location = 'http://geomapfish.org/'
+      }
+    </script>
   </head>
+  <%
+    no_redirect_query = dict(request.GET)
+    no_redirect_query['no_redirect'] = u''
+  %>
+    
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
                    'gmf-mobile-nav-left-is-visible': mainCtrl.leftNavIsVisible(),
                    'gmf-mobile-nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
@@ -46,6 +59,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
       <gmf-search gmf-search-map="mainCtrl.map"
         gmf-search-datasources="mainCtrl.searchDatasources"
         gmf-search-clearbutton="true"
+        gmf-search-placeholder="{{'Search…'|translate}}"
         gmf-search-coordinatesprojections="mainCtrl.searchCoordinatesProjections"
         gmf-search-listeners="::mainCtrl.searchListeners">
       </gmf-search>
@@ -65,9 +79,9 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
       </button>
       <div class="gmf-app-map-messages">
         <gmf-disclaimer gmf-disclaimer-map="::mainCtrl.map"></gmf-disclaimer>
-        <div class="alert alert-info alert-dismissible fade in visible-sm" role="alert">
+        <div class="alert alert-info alert-dismissible fade in hidden-xs" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="{{'Close' | translate}}"><span aria-hidden="true" class="fa fa-times"></span></button>
-          <span>{{"You're using the mobile version. Check out the" | translate}} <a href="http://camptocamp.github.io/ngeo/master/examples/contribs/gmf/demos/desktop/">{{'standard version' | translate}}</a>.</span>
+          <span>{{"You're using the mobile version. Check out the" | translate}} <a href="${request.route_url('desktop', _query=no_redirect_query) | n}">{{'standard version' | translate}}</a>.</span>
         </div>
       </div>
     </main>
@@ -147,7 +161,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         gmf-mobile-nav-back="authCtrl.gmfUser.username !== null">
       </gmf-authentication>
     </nav>
-% if debug:
+    % if debug:
     <script>
         window.CLOSURE_BASE_PATH = '';
         window.CLOSURE_NO_DEPS = true;
