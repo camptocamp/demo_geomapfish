@@ -3,25 +3,33 @@ from json import dumps
 from c2cgeoportal.lib.cacheversion import get_cache_version
 %>
 <!DOCTYPE html>
-<html lang="{{desktopCtrl.lang}}" ng-app="demo" ng-controller="DesktopController as mainCtrl">
+<html lang="{{mainCtrl.lang}}" ng-app="demo" ng-controller="DesktopController as mainCtrl">
   <head>
-% if "no_redirect" not in request.params:
-        <script>
-            if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
-            }
-        </script>
-% endif
+    % if "no_redirect" not in request.params:
+            <script>
+                if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                    window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
+                }
+            </script>
+    % endif
 
     <title>{{'Desktop Application'|translate}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/images/favicon.ico')}"/>
     <link rel="stylesheet" href="${request.static_url('demo:static-ngeo/build/desktop.css')}" type="text/css">
+    <script>
+      if (!window.requestAnimationFrame) {
+        alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
+            + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. Vous allez être redirigé.\n\n'
+            + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. Sie werden weitergeleitet.');
+        window.location = 'http://geomapfish.org/'
+      }
+    </script>
   </head>
   <body ng-class="{'gmf-profile-chart-active': !!profileChartActive}">
     <header>
-      <div>
+      <div class="logo">
         <img src="${request.static_url('demo:static-ngeo/images/logo.png')}" />
         <span>by Camptocamp</span>
       </div>
@@ -67,6 +75,10 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Draw & Measure'|translate}}">
               <span class="fa fa-paint-brush"></span>
             </button>
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.filterSelectorActive"
+              data-toggle="tooltip" data-placement="left" data-original-title="{{'Filter'|translate}}">
+              <span class="fa fa-filter"></span>
+            </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.editFeatureActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Editing'|translate}}"
               ng-show="mainCtrl.hasEditableLayers" ng-cloak>
@@ -75,6 +87,10 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.drawProfilePanelActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Profile'|translate}}">
               <span class="fa fa-area-chart"></span>
+            </button>
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.googleStreetViewActive"
+              data-toggle="tooltip" data-placement="left" data-original-title="{{'Street View'|translate}}">
+              <span class="fa fa-street-view"></span>
             </button>
           </div>
           <br/>
@@ -85,7 +101,9 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             </button>
           </span>
         </div>
-        <div class="gmf-app-tools-content container-fluid" ng-class="{'gmf-app-active': mainCtrl.toolsActive}">
+        <div
+            class="gmf-app-tools-content container-fluid"
+            ng-class="{'gmf-app-active': mainCtrl.toolsActive,'gmf-app-googlestreetview-active': mainCtrl.googleStreetViewActive }">
           <div ng-show="mainCtrl.loginActive" class="row">
             <div class="col-sm-12">
               <div class="gmf-app-tools-content-heading">
@@ -118,6 +136,19 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
                   gmf-drawfeature-layer="::mainCtrl.drawFeatureLayer"
                   gmf-drawfeature-map="::mainCtrl.map">
               </gmf-drawfeature>
+            </div>
+          </div>
+          <div ng-show="mainCtrl.filterSelectorActive" class="row">
+            <div class="col-sm-12">
+              <div class="gmf-app-tools-content-heading">
+                {{'Filter'|translate}}
+                <a class="btn close" ng-click="mainCtrl.filterSelectorActive = false">&times;</a>
+              </div>
+              <gmf-filterselector
+                  active="mainCtrl.filterSelectorActive"
+                  map="mainCtrl.map"
+                  tool-group="mainCtrl.mapToolsGroup">
+              </gmf-filterselector>
             </div>
           </div>
           <div ng-show="mainCtrl.editFeatureActive" class="row">
@@ -162,6 +193,19 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
                   </em>
                 </p>
               </div>
+            </div>
+          </div>
+          <div ng-show="mainCtrl.googleStreetViewActive" class="row">
+            <div class="col-sm-12">
+              <div class="gmf-app-tools-content-heading">
+                {{'Street View'|translate}}
+                <a class="btn close" ng-click="mainCtrl.googleStreetViewActive = false">&times;</a>
+              </div>
+              <ngeo-googlestreetview
+                  active="mainCtrl.googleStreetViewActive"
+                  feature-style="mainCtrl.googleStreetViewStyle"
+                  map="mainCtrl.map">
+              </ngeo-googlestreetview>
             </div>
           </div>
         </div>
@@ -248,7 +292,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         ngeo-resizemap-state="profileChartActive">
       </gmf-profile>
     </footer>
-% if debug:
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCYnqxEQA5sz13sWSgMr97ejzvUeGP8gz4"></script>
+    % if debug:
     <script>
         window.CLOSURE_BASE_PATH = '';
         window.CLOSURE_NO_DEPS = true;
