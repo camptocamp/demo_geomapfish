@@ -24,10 +24,8 @@ def main(global_config, **settings):
 
     osm_engine = create_engine(config.get_settings().get("dbsessions").get("osm").get("url"))
     sqlahelper.add_engine(osm_engine, "osm")
-    print 111
     osm_session = sessionmaker()
     from c2cgeoportal.models import DBSessions
-    print osm_session
     DBSessions["osm"] = osm_session(bind=osm_engine)
 
     # scan view decorator for adding routes
