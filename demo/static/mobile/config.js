@@ -54,7 +54,7 @@ var WMTS_OPTIONS = {
 };
 
 var WMTSASITVD_OPTIONS2 = {
-    url: "http://ows.asitvd.ch/wmts/",
+    url: "https://ows.asitvd.ch/wmts/",
     displayInLayerSwitcher: false,
     requestEncoding: 'REST',
     buffer: 0,
