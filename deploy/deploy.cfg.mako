@@ -10,7 +10,7 @@ hookdir = %(here)s/hooks/
 active = false
 
 [databases]
-names = $${db}
+names = ${db}
 psql = sudo -u postgres psql
 dump = sudo -u postgres pg_dump -Fc
 createdb = sudo -u postgres createdb
