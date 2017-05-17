@@ -17,7 +17,8 @@ createdb = sudo -u postgres createdb
 restore_tmp = sudo -u postgres pg_restore -Fc -d
 
 [code]
-dir = /var/www/c2cgeoportal_mapfish/private/c2cgeoportal
+src = /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/2.2/demo_geomapfish
+dest = /var/www/vhosts/geomapfish-demo/private/2.2
 
 [apache]
 dest = /var/www/c2cgeoportal_mapfish/conf/c2cgeoportal.conf
