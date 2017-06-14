@@ -24,7 +24,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     no_redirect_query = dict(request.GET)
     no_redirect_query['no_redirect'] = u''
   %>
-
+    
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
                    'gmf-mobile-nav-left-is-visible': mainCtrl.leftNavIsVisible(),
                    'gmf-mobile-nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
@@ -41,7 +41,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         class="gmf-mobile-measure"
         gmf-mobile-measurelength
         gmf-mobile-measurelength-active="mainCtrl.measureLengthActive"
-        gmf-mobile-measurelength-decimals="2"
+        gmf-mobile-measurelength-precision="2"
         gmf-mobile-measurelength-map="::mainCtrl.map">
       </div>
       <div
@@ -81,7 +81,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         <gmf-disclaimer gmf-disclaimer-map="::mainCtrl.map"></gmf-disclaimer>
         <div class="alert alert-info alert-dismissible fade in hidden-xs" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="{{'Close' | translate}}"><span aria-hidden="true" class="fa fa-times"></span></button>
-          <span>{{"You're using the mobile version. Check out the" | translate}} <a href="${request.route_url('desktop', _query=no_redirect_query) | n}">{{'standard version' | translate}}</a>.</span>
+          <span>{{"You're using the mobile application. Check out the" | translate}} <a href="${request.route_url('desktop', _query=no_redirect_query) | n}">{{'standard application' | translate}}</a>.</span>
         </div>
       </div>
     </main>
@@ -182,6 +182,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/d3/build/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/moment/min/moment.min.js' % request.registry.settings['node_modules_path'])}"></script>
 
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>

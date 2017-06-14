@@ -161,7 +161,7 @@ EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py \
 	CONST_fixversions.txt \
 	CONST_optional-requirements.txt \
 	$(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.2.0.dev10
+REQUIREMENTS ?= c2cgeoportal==2.2.0rc1
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_fixversions.txt
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
@@ -272,12 +272,15 @@ I18N_SOURCE_FILES += $(APP_HTML_FILES) \
 	$(APP_JS_FILES) \
 	$(APP_DIRECTIVES_PARTIALS_FILES) \
 	.build/config.yaml
-ifeq ($(DOCKER),FALSE)
+ifeq ($(DOCKER), FALSE)
 # The theme from the database
 I18N_SOURCE_FILES += development.ini
 endif
-I18N_DEPENDENCIES += $(MAP_FILES) \
-	project.yaml
+I18N_DEPENDENCIES += $(VENV_BIN)/pot-create$(PYTHON_BIN_POSTFIX)
+ifeq (${MAPSERVER}, TRUE)
+I18N_DEPENDENCIES += .build/mapserver.timestamp
+endif
+
 
 # CGXP
 JSBUILD_MAIN_FILES = $(shell $(FIND) $(PACKAGE)/static/lib/cgxp $(PACKAGE)/static/js -name "*.js" -print 2> /dev/null)
@@ -615,8 +618,8 @@ serve: build development.ini
 	$(VENV_BIN)/pserve --reload --monitor-restart development.ini
 
 .PHONY: update-node-modules
-update-node-modules: $(NPM_CMD)
-	$(NPM_CMD) install --force || sleep 20 || $(NPM_CMD) install --force || sleep 90 || $(NPM_CMD) install --force
+update-node-modules:
+	npm install --force
 	mkdir -p .build
 	touch .build/node_modules.timestamp
 
@@ -709,13 +712,7 @@ $(PACKAGE)/locale/$(PACKAGE)-$(L10N_SERVER_POSTFIX).pot: \
 	[ ! -f $@ ] || chmod go+r $@
 
 .PRECIOUS: $(PACKAGE)/locale/$(PACKAGE)-$(L10N_CLIENT_POSTFIX).pot
-$(PACKAGE)/locale/$(PACKAGE)-$(L10N_CLIENT_POSTFIX).pot: \
-		lingua-client.cfg \
-		$(I18N_DEPENDENCIES) \
-		$(I18N_SOURCE_FILES) \
-		$(VENV_BIN)/pot-create$(PYTHON_BIN_POSTFIX) \
-		.build/mapserver.timestamp \
-		.build/config.yaml
+$(PACKAGE)/locale/$(PACKAGE)-$(L10N_CLIENT_POSTFIX).pot: lingua-client.cfg $(I18N_DEPENDENCIES) $(I18N_SOURCE_FILES)
 	$(PRERULE_CMD)
 	rm -f $@ # Because of WindowsError, thus only problematic on Windows
 	$(VENV_BIN)/pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
@@ -763,7 +760,7 @@ $(TX_RC):
 .tx/config: .tx/CONST_config_mako $(VENV_BIN)/mako-render$(PYTHON_BIN_POSTFIX) .build/requirements.timestamp
 	$(PRERULE_CMD)
 	PYTHONIOENCODING=UTF-8 $(VENV_BIN)/mako-render \
-		--var "tx_version=$(TX_VERSION)" --var "tx_host=$(TX_HOST)" $< > $@
+		--var "tx_version=$(TX_VERSION)" --var "tx_host=$(TX_HOST)" --var "languages=$(LANGUAGES)" $< > $@
 
 .PRECIOUS: .build/locale/%/LC_MESSAGES/gmf.po
 .build/locale/%/LC_MESSAGES/gmf.po: $(TX_DEPENDENCIES)
@@ -818,9 +815,9 @@ $(APP_OUTPUT_DIR)/%.json: $(PACKAGE)/locale/%/LC_MESSAGES/$(PACKAGE)-$(L10N_CLIE
 		.build/locale/$*/LC_MESSAGES/ngeo.po \
 		$< > $@
 
-$(APP_OUTPUT_DIR)/angular-locale_%.js: node_modules/ngeo/github_versions
+$(APP_OUTPUT_DIR)/angular-locale_%.js: node_modules/ngeo/github_versions language_mapping
 	mkdir -p $(dir $@)
-	wget -O $@ https://raw.githubusercontent.com/angular/angular.js/`grep ^angular.js= $< | cut --delimiter = --fields 2`/src/ngLocale/angular-locale_$*.js
+	wget -O $@ https://raw.githubusercontent.com/angular/angular.js/`grep ^angular.js= $< | cut --delimiter = --fields 2`/src/ngLocale/angular-locale_`(grep $* language_mapping || echo $*) | cut -d = -f 2`.js
 
 $(APP_OUTPUT_DIR)/%.js: .build/%.js .build/node_modules.timestamp $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES)
 	$(PRERULE_CMD)
@@ -905,6 +902,7 @@ node_modules/ngeo/buildtools/mako_build.json: .build/node_modules.timestamp
 		--var src_set=contribs_gmf \
 		--var entry_point=$(PACKAGE)_$* \
 		--var ngeo_folder=node_modules/ngeo/ \
+		$(MAKO_BUILD_ARGS) \
 		--var generate_exports=true $< > $@
 
 .PRECIOUS: .build/%.js
@@ -971,19 +969,11 @@ else
 	touch $@
 endif
 
-$(NPM_CMD):
-	$(PRERULE_CMD)
-ifeq ($(OPERATING_SYSTEM), LINUX)
-	npm install npm || sleep 20 || npm install npm || sleep 90 || npm install npm
-else
-	touch $@
-endif
-
-.build/node_modules.timestamp: package.json $(NPM_CMD)
+.build/node_modules.timestamp: package.json
 	$(PRERULE_CMD)
 	mkdir -p $(dir $@)
 ifneq ($(NGEO_INTERFACES), "")
-	$(NPM_CMD) install || sleep 20 || $(NPM_CMD) install || sleep 90 || $(NPM_CMD) install
+	npm install || sleep 20 || npm install || sleep 90 || npm install
 endif
 	touch $@
 
@@ -1012,7 +1002,7 @@ update:
 	git submodule foreach git submodule foreach git clean -fd
 ifneq ($(NGEO_INTERFACES), "")
 	rm -f .build/node_modules.timestamp
-	$(NPM_CMD) install --force
+	npm install --force
 	touch .build/node_modules.timestamp
 endif
 	@echo After that you should launch the `build` task.

@@ -52,11 +52,9 @@ templates:
             - !restrictUris
                 matchers:
                 - !localMatch
-                  pathRegex: '/${__import__('re').escape(instanceid)}/wsgi/mapserv_proxy'
+                  pathRegex: /${__import__('re').escape(instanceid)}/wsgi/mapserv_proxy
                 - !localMatch
-                  pathRegex: '/${__import__('re').escape(instanceid)}/tiles/.*'
-                - !localMatch
-                  pathRegex: '/2\.0/tiles/.*'
+                  pathRegex: /${__import__('re').escape(instanceid)}/tiles/.*
                 - !localMatch
                   reject: true
                 - !ipMatch
@@ -129,7 +127,7 @@ templates:
             scalebar: *scalebar
             map: !map
                 <<: *map
-                width: 800
-                height: 460
+                width: 1150
+                height: 673
             datasource: *datasource
         processors: *processors
