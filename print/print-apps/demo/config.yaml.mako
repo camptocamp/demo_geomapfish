@@ -56,6 +56,8 @@ templates:
                 - !localMatch
                   pathRegex: /${__import__('re').escape(instanceid)}/tiles/.*
                 - !localMatch
+                  pathRegex: /2\.[0-9]+/tiles/.*
+                - !localMatch
                   reject: true
                 - !ipMatch
                   ip: 10.0.0.0
