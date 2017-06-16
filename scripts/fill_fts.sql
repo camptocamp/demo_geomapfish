@@ -1,4 +1,4 @@
-CREATE EXTENSION dblink;
+CREATE EXTENSION IF NOT EXISTS dblink;
 
 INSERT INTO main.tsearch
 (the_geom, layer_name, label, public, role_id, ts)
