@@ -1,5 +1,5 @@
 INSTANCE_ID = llienher
 DEVELOPMENT = TRUE
-#REQUIREMENTS = -e ../../c2cgeoportal
+#REQUIREMENTS = -e ../c2cgeoportal
 
 include demo.mk
