@@ -369,6 +369,7 @@ ${ ',\n'.join([
                 {action: 'add_layer', title: 'Add a layer'}
         ]);
         module.constant('gmfContextualdatacontentTemplateUrl', demo.componentsBaseTemplateUrl + '/contextualdata/contextualdata.html');
+        module.value('ngeoMeasureDecimals', 0);
         module.value('ngeoWfsPermalinkOptions', /** @type {ngeox.WfsPermalinkOptions} */ ({
               url: '${request.route_url('mapserverproxy') | n}',
               wfsTypes: ${dumps(wfs_types) | n},
