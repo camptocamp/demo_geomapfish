@@ -23,7 +23,7 @@ def add_localizer(event):
 
     def auto_translate(string):
         result = localizer.translate(tsf1(string))
-        return (localizer.translate(tsf2(string)) if result == string else result)
+        return localizer.translate(tsf2(string)) if result == string else result
 
     request.localizer = localizer
     request.translate = auto_translate
