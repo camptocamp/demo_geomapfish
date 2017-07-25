@@ -13,7 +13,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             </script>
     % endif
     
-    <title>{{'Desktop Application'|translate}}</title>
+    <title ng-bind-template="{{'Desktop Application'|translate}}">GeoMapFish</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="shortcut icon" href="${request.static_url('demo:static-ngeo/images/favicon.ico')}"/>
@@ -42,8 +42,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
               data-toggle="dropdown">
               <span class="fa fa-grid"></span>
               <span translate>Theme:</span>
-              <b ng-if="!mainCtrl.gmfThemeManager.themeName" translate>Loading...</b>
-              <b ng-if="mainCtrl.gmfThemeManager.themeName">{{mainCtrl.gmfThemeManager.themeName|translate}}</b>
+              <b ng-if="!mainCtrl.gmfThemeManager.getThemeName()" translate>Loading...</b>
+              <b ng-if="mainCtrl.gmfThemeManager.getThemeName()">{{mainCtrl.gmfThemeManager.getThemeName()|translate}}</b>
               <span class="caret"></span>
             </a>
             <gmf-themeselector class="dropdown-menu"
@@ -241,7 +241,11 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             gmf-displayquerywindow-desktop="true">
           </gmf-displayquerywindow>
         </div>
-        <gmf-map class="gmf-map" gmf-map-map="mainCtrl.map"
+        <gmf-map
+          class="gmf-map"
+          gmf-map-map="mainCtrl.map"
+          gmf-map-manage-resize="mainCtrl.manageResize"
+          gmf-map-resize-transition="mainCtrl.resizeTransition"
           gmf-contextualdata=""
           gmf-contextualdata-map="::mainCtrl.map"
           gmf-contextualdata-projections="::[21781, 4326]"
@@ -369,7 +373,6 @@ ${ ',\n'.join([
                 {action: 'add_layer', title: 'Add a layer'}
         ]);
         module.constant('gmfContextualdatacontentTemplateUrl', demo.componentsBaseTemplateUrl + '/contextualdata/contextualdata.html');
-        module.value('ngeoMeasureDecimals', 0);
         module.value('ngeoWfsPermalinkOptions', /** @type {ngeox.WfsPermalinkOptions} */ ({
               url: '${request.route_url('mapserverproxy') | n}',
               wfsTypes: ${dumps(wfs_types) | n},
