@@ -221,8 +221,17 @@ msgstr "Coordonée WGS DMS"
 msgid "You're using the mobile application. Check out the"
 msgstr "Vous utilisez la version mobile. Passer à la"
 
+msgid "access"
+msgstr "Accès"
+
 msgid "accommodation"
 msgstr "Hébergement"
+
+msgid "aerialway"
+msgstr "Remontée méchanique"
+
+msgid "amenity"
+msgstr "Equipements"
 
 msgid "asitvd.fond_couleur"
 msgstr "ASIT VD - Fond couleur"
@@ -242,11 +251,23 @@ msgstr "Fond de carte"
 msgid "bank"
 msgstr "Vide"
 
+msgid "barrier"
+msgstr "Barière"
+
 msgid "bench"
 msgstr "Banc"
 
+msgid "bicycle"
+msgstr "Vélo"
+
+msgid "brand"
+msgstr "Marque"
+
 msgid "buffer_stop"
 msgstr "Arrêt tempon"
+
+msgid "building"
+msgstr "Batiment"
 
 msgid "bus_stop"
 msgstr "Arrêt de bus"
@@ -275,6 +296,9 @@ msgstr "Cinéma"
 msgid "comments"
 msgstr "Commentaires"
 
+msgid "covered"
+msgstr "Couvert"
+
 msgid "crossing"
 msgstr "Intersection"
 
@@ -284,11 +308,20 @@ msgstr "Source de donnée"
 msgid "debug"
 msgstr "Debug"
 
+msgid "denomination"
+msgstr "Informations"
+
+msgid "display_name"
+msgstr "Nom"
+
 msgid "district"
 msgstr "District"
 
 msgid "drinking_water"
 msgstr "Eau potable"
+
+msgid "ele"
+msgstr "Elévation"
 
 msgid "entertainment"
 msgstr "Divertissement"
@@ -298,6 +331,9 @@ msgstr "Filtres"
 
 msgid "firestations"
 msgstr "Caserne de pompiers"
+
+msgid "foot"
+msgstr "Foot"
 
 msgid "fountain"
 msgstr "Fontaines"
@@ -311,6 +347,9 @@ msgstr "Correcte"
 msgid "height"
 msgstr "Hauteur"
 
+msgid "highway"
+msgstr "Routes"
+
 msgid "hospitals"
 msgstr "Hôpitaux"
 
@@ -320,14 +359,23 @@ msgstr "Informations"
 msgid "internal_id"
 msgstr "Identifiant externe"
 
+msgid "kind"
+msgstr "Type"
+
 msgid "last_update_timestamp"
 msgstr "Data de mise à jours"
 
 msgid "last_update_user"
 msgstr "User"
 
+msgid "layer"
+msgstr "Couches"
+
 msgid "legend"
 msgstr "Légende"
+
+msgid "leisure"
+msgstr "Loisirs"
 
 msgid "level_crossing"
 msgstr "Passages à niveau"
@@ -347,11 +395,20 @@ msgstr "Magetisme ligne sans point"
 msgid "line snap tolerance"
 msgstr "Magetisme ligne avec tolerance"
 
+msgid "man_made"
+msgstr "Fabrication humaine"
+
 msgid "map"
 msgstr "Carte"
 
+msgid "motorcar"
+msgstr "Véhicules"
+
 msgid "name"
 msgstr "Nom"
+
+msgid "natural"
+msgstr "Naturel"
 
 msgid "no_wfs"
 msgstr "Pas de WFS"
@@ -359,8 +416,17 @@ msgstr "Pas de WFS"
 msgid "northArrow"
 msgstr "Fléche du nord"
 
+msgid "open"
+msgstr "Ouvert"
+
+msgid "operator"
+msgstr "Opérateur"
+
 msgid "osm"
 msgstr "OSM"
+
+msgid "osm_id"
+msgstr "ID OSM"
 
 msgid "osm_open"
 msgstr "Ouverture OSM"
@@ -407,6 +473,9 @@ msgstr "Parking"
 msgid "picnic_site"
 msgstr "Site de picnic"
 
+msgid "place"
+msgstr "Place"
+
 msgid "place_of_worship"
 msgstr "Lieux de culte"
 
@@ -437,20 +506,38 @@ msgstr "Magnétisme polygon sans point"
 msgid "polygon snap tolerance"
 msgstr "Magnétisme polygon avec tolerance"
 
+msgid "population"
+msgstr "Population"
+
 msgid "post_box"
 msgstr "Boîte postale"
 
 msgid "post_office"
 msgstr "Poste"
 
+msgid "power"
+msgstr "Energie"
+
+msgid "railway"
+msgstr "Chemins de fer"
+
 msgid "recycling"
 msgstr "Recyclage"
+
+msgid "ref"
+msgstr "Réference"
+
+msgid "religion"
+msgstr "Religion"
 
 msgid "restaurant"
 msgstr "Restaurants"
 
 msgid "scalebar"
 msgstr "Barre d'échelle"
+
+msgid "shop"
+msgstr "Magasin"
 
 msgid "short_name"
 msgstr "Nom court"
@@ -461,12 +548,18 @@ msgstr "Nom court 2"
 msgid "short_name3"
 msgstr "Nom court 3"
 
+msgid "sport"
+msgstr "Sport"
+
 msgid "srtm"
 msgstr "SRTM"
 
 #, fuzzy
 msgid "standard application"
 msgstr "Application bureau"
+
+msgid "surface"
+msgstr "Surface"
 
 msgid "sustenance"
 msgstr "Nouriture"
@@ -477,8 +570,14 @@ msgstr "Test"
 msgid "test2"
 msgstr "Deuxième test"
 
+msgid "timestamp"
+msgstr "Datation"
+
 msgid "title"
 msgstr "Titre"
+
+msgid "tourism"
+msgstr "Tourisme"
 
 msgid "tourism_activity"
 msgstr "Tourisme"
@@ -492,6 +591,15 @@ msgstr "Rond-point interne"
 msgid "two_layers"
 msgstr "Deux couches"
 
+msgid "type"
+msgstr "Type"
+
+msgid "waterway"
+msgstr "Cours d'eau"
+
+msgid "wood"
+msgstr "Bois"
+
 #~ msgid "Cluster_BaseFID"
 #~ msgstr "Grappe base FID"
 
@@ -500,12 +608,6 @@ msgstr "Deux couches"
 
 #~ msgid "Cluster_Group"
 #~ msgstr "Grappe groupe"
-
-#~ msgid "access"
-#~ msgstr "Accès"
-
-#~ msgid "aerialway"
-#~ msgstr "Remontée méchanique"
 
 #~ msgid "aeroways10"
 #~ msgstr "Tarmac"
@@ -534,21 +636,6 @@ msgstr "Deux couches"
 #~ msgid "aeroways18"
 #~ msgstr "Tarmac"
 
-#~ msgid "amenity"
-#~ msgstr "Equipements"
-
-#~ msgid "barrier"
-#~ msgstr "Barière"
-
-#~ msgid "bicycle"
-#~ msgstr "Vélo"
-
-#~ msgid "brand"
-#~ msgstr "Marque"
-
-#~ msgid "building"
-#~ msgstr "Batiment"
-
 #~ msgid "buildings15"
 #~ msgstr "Batiments"
 
@@ -573,29 +660,8 @@ msgstr "Deux couches"
 #~ msgid "ch.swisstopo.swissnames3d_feature_poly"
 #~ msgstr "Noms géographiques swissNAMES3D"
 
-#~ msgid "covered"
-#~ msgstr "Couvert"
-
-#~ msgid "denomination"
-#~ msgstr "Informations"
-
-#~ msgid "display_name"
-#~ msgstr "Nom"
-
-#~ msgid "ele"
-#~ msgstr "Elévation"
-
-#~ msgid "foot"
-#~ msgstr "Foot"
-
-#~ msgid "highway"
-#~ msgstr "Routes"
-
 #~ msgid "hotel"
 #~ msgstr "Hôtels"
-
-#~ msgid "kind"
-#~ msgstr "Type"
 
 #~ msgid "landuse10"
 #~ msgstr "Utilisation du sol"
@@ -641,33 +707,6 @@ msgstr "Deux couches"
 
 #~ msgid "landuse9"
 #~ msgstr "Utilisation du sol"
-
-#~ msgid "layer"
-#~ msgstr "Couches"
-
-#~ msgid "leisure"
-#~ msgstr "Loisirs"
-
-#~ msgid "man_made"
-#~ msgstr "Fabrication humaine"
-
-#~ msgid "motorcar"
-#~ msgstr "Véhicules"
-
-#~ msgid "natural"
-#~ msgstr "Naturel"
-
-#~ msgid "open"
-#~ msgstr "Ouvert"
-
-#~ msgid "operator"
-#~ msgstr "Opérateur"
-
-#~ msgid "osm_id"
-#~ msgstr "ID OSM"
-
-#~ msgid "place"
-#~ msgstr "Place"
 
 #~ msgid "places0"
 #~ msgstr "Places"
@@ -726,15 +765,6 @@ msgstr "Deux couches"
 #~ msgid "places9"
 #~ msgstr "Places"
 
-#~ msgid "population"
-#~ msgstr "Population"
-
-#~ msgid "power"
-#~ msgstr "Energie"
-
-#~ msgid "railway"
-#~ msgstr "Chemins de fer"
-
 #~ msgid "railways10"
 #~ msgstr "Voies ferrées"
 
@@ -767,12 +797,6 @@ msgstr "Deux couches"
 
 #~ msgid "railways9"
 #~ msgstr "Voies ferrées"
-
-#~ msgid "ref"
-#~ msgstr "Réference"
-
-#~ msgid "religion"
-#~ msgstr "Religion"
 
 #~ msgid "roads10"
 #~ msgstr "Routes"
@@ -816,26 +840,8 @@ msgstr "Deux couches"
 #~ msgid "roads9"
 #~ msgstr "Routes"
 
-#~ msgid "shop"
-#~ msgstr "Magasin"
-
-#~ msgid "sport"
-#~ msgstr "Sport"
-
 #~ msgid "standard version"
 #~ msgstr "version standard"
-
-#~ msgid "surface"
-#~ msgstr "Surface"
-
-#~ msgid "timestamp"
-#~ msgstr "Datation"
-
-#~ msgid "tourism"
-#~ msgstr "Tourisme"
-
-#~ msgid "type"
-#~ msgstr "Type"
 
 #~ msgid "waterarea10"
 #~ msgstr "Cours d'eau"
@@ -882,9 +888,6 @@ msgstr "Deux couches"
 #~ msgid "waterarea9"
 #~ msgstr "Cours d'eau"
 
-#~ msgid "waterway"
-#~ msgstr "Cours d'eau"
-
 #~ msgid "waterways10"
 #~ msgstr "Cours d'eau"
 
@@ -923,9 +926,6 @@ msgstr "Deux couches"
 
 #~ msgid "waterways9"
 #~ msgstr "Cours d'eau"
-
-#~ msgid "wood"
-#~ msgstr "Bois"
 
 #~ msgid "zoo"
 #~ msgstr "Zoo"
