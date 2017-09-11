@@ -52,7 +52,7 @@ templates:
             - !restrictUris
                 matchers:
                 - !localMatch
-                  pathRegex: /${__import__('re').escape(instanceid)}/wsgi/mapserv_proxy
+                  pathRegex: /${__import__('re').escape(instanceid)}/wsgi/.*
                 - !localMatch
                   pathRegex: /${__import__('re').escape(instanceid)}/tiles/.*
                 - !localMatch

@@ -24,7 +24,7 @@
         This file is intentionally left empty.  Other plugins/configurations can add a file with the same name and the beans
         in that file will override the beans defined in the other default spring configuration files
     -->
-    <bean id="jobManager" class="org.mapfish.print.servlet.job.ThreadPoolJobManager">
+    <bean id="jobManager" class="org.mapfish.print.servlet.job.impl.ThreadPoolJobManager">
         <property name="maxNumberOfRunningPrintJobs" value="1" />
         <property name="maxNumberOfWaitingJobs" value="5000" />
         <!-- Timeout for print jobs in seconds -->
