@@ -7,7 +7,8 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
   <head>
     % if "no_redirect" not in request.params:
             <script>
-                if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                var small_screen = window.matchMedia ? window.matchMedia('(max-width: 1024px)') : false;
+                if (small_screen && (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)) {
                     window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
                 }
             </script>
@@ -41,9 +42,14 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
             <a href class="btn btn-default btn-block btn-primary"
               data-toggle="dropdown">
               <span class="fa fa-grid"></span>
-              <span translate>Theme:</span>
-              <b ng-if="!mainCtrl.gmfThemeManager.getThemeName()" translate>Loading...</b>
-              <b ng-if="mainCtrl.gmfThemeManager.getThemeName()">{{mainCtrl.gmfThemeManager.getThemeName()|translate}}</b>
+              <span ng-if="mainCtrl.gmfThemeManager.modeFlush">
+                <span translate>Theme:</span>
+                <b ng-if="!mainCtrl.gmfThemeManager.getThemeName()" translate>Loading...</b>
+                <b ng-if="mainCtrl.gmfThemeManager.getThemeName()">{{mainCtrl.gmfThemeManager.getThemeName()|translate}}</b>
+              </span>
+              <span ng-if="!mainCtrl.gmfThemeManager.modeFlush">
+                <b ng-if="!mainCtrl.gmfThemeManager.themeName" translate>Themes</b>
+              </span>
               <span class="caret"></span>
             </a>
             <gmf-themeselector class="dropdown-menu"
@@ -303,23 +309,24 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         window.CLOSURE_NO_DEPS = true;
     </script>
     <script src="${request.static_url('%s/jquery/dist/jquery.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/ngeo/third-party/jquery-ui/jquery-ui.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/ngeo/third-party/jquery-ui/jquery-ui.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular/angular.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-sanitize/angular-sanitize.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-touch/angular-touch.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/corejs-typeahead/dist/typeahead.bundle.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-ui-date/dist/date.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-float-thead/angular-floatThead.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/floatthead/dist/jquery.floatThead.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/floatthead/dist/jquery.floatThead.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-ui-slider/src/slider.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/corejs-typeahead/dist/typeahead.bundle.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/file-saver/FileSaver.min.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/d3/build/d3.min.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/moment/min/moment.min.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/jsts/dist/jsts.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/d3/build/d3.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/moment/moment.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/file-saver/FileSaver.js' % request.registry.settings['node_modules_path'])}"></script>
 
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
