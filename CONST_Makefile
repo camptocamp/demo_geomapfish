@@ -163,7 +163,7 @@ EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py \
 	CONST_fixversions.txt \
 	CONST_optional-requirements.txt \
 	$(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.2.0.dev16
+REQUIREMENTS ?= c2cgeoportal==2.2.0
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_fixversions.txt
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
