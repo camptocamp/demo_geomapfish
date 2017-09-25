@@ -79,7 +79,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
       <button ngeo-mobile-geolocation=""
         ngeo-mobile-geolocation-map="::mainCtrl.map"
         ngeo-mobile-geolocation-options="::mainCtrl.mobileGeolocationOptions">
-        <span class="fa fa-dot-circle-o"></span>
+        <span class="fa fa-location-arrow"></span>
       </button>
       <div class="gmf-app-map-messages">
         <gmf-disclaimer gmf-disclaimer-map="::mainCtrl.map"></gmf-disclaimer>
@@ -189,6 +189,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/d3/build/d3.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/moment/moment.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/file-saver/FileSaver.js' % request.registry.settings['node_modules_path'])}"></script>
+
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
     <script>
