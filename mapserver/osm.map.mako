@@ -237,6 +237,41 @@ LAYER
 END
 
 LAYER
+    NAME "many_attributes"
+    EXTENT 473743 74095 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,name AS name2,name AS name3,name AS name4,name AS name5,name AS name6,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point WHERE name is not NULL) AS foo USING UNIQUE osm_id USING srid=21781"
+    PROCESSING "NATIVE_FILTER=highway = 'bus_stop'"
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+
+    CLASS
+        NAME "Arrêt de bus"
+        KEYIMAGE symbols/busstop.png
+        STYLE
+            SYMBOL "busstop"
+            SIZE 30
+        END
+    END
+    METADATA
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
+
+LAYER
     NAME "bus_stop"
     EXTENT 473743 74095 839000 306400
     TYPE POINT
