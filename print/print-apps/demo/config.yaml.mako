@@ -52,6 +52,12 @@ templates:
             - !restrictUris
                 matchers:
                 - !localMatch
+                  pathRegex: /${__import__('re').escape(instanceid)}/wsgi/proj/.*
+                - !localMatch
+                  pathRegex: /${__import__('re').escape(instanceid)}/wsgi/static/.*
+                - !localMatch
+                  pathRegex: /${__import__('re').escape(instanceid)}/wsgi/static-ngeo/.*
+                - !localMatch
                   pathRegex: /${__import__('re').escape(instanceid)}/wsgi/mapserv_proxy
                 - !localMatch
                   pathRegex: /${__import__('re').escape(instanceid)}/tiles/.*
