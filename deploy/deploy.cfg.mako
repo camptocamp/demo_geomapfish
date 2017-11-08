@@ -25,6 +25,5 @@ dest = /var/www/c2cgeoportal_mapfish/conf/c2cgeoportal.conf
 content = Include /var/www/c2cgeoportal_mapfish/private/c2cgeoportal/apache/*.conf
 
 [remote_hosts]
-demo = c2cpc.camptocamp.com
-prod = c2cpc.camptocamp.com
+demo_server = geomapfish-demo-tmp.infra.internal
 
