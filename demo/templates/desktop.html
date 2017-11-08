@@ -5,13 +5,14 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
 <!DOCTYPE html>
 <html lang="{{desktopCtrl.lang}}" ng-app="demo" ng-controller="DesktopController as mainCtrl">
   <head>
-% if "no_redirect" not in request.params:
-        <script>
-          if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-              window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
-          }
-        </script>
-% endif
+    % if "no_redirect" not in request.params:
+            <script>
+                if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                    window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
+                }
+            </script>
+    % endif
+    
     <title>{{'Desktop Application'|translate}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
@@ -47,7 +48,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
           <gmf-layertree
             gmf-layertree-dimensions="mainCtrl.dimensions"
             gmf-layertree-map="::mainCtrl.map"
-            gmf-layertree-openlinksinnewwindow="true">
+            gmf-layertree-openlinksinnewwindow="::true">
           </gmf-layertree>
         </div>
       </div>
@@ -248,7 +249,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         ngeo-resizemap-state="profileChartActive">
       </gmf-profile>
     </footer>
-% if debug:
+    % if debug:
     <script>
         window.CLOSURE_BASE_PATH = '';
         window.CLOSURE_NO_DEPS = true;

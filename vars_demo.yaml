@@ -123,7 +123,6 @@ vars:
 
             Sincerely yours
             The GeoMapfish team
-        smtp_server: psemail.epfl.ch
         allowed_hosts:
         - camptocamp.github.io
         - gmf-test.sig.cloud.camptocamp.net
@@ -151,7 +150,9 @@ vars:
 
             Sincerely yours
             The GeoMapfish team
-        smtp_server: psemail.epfl.ch
+
+    smtp:
+        host: psemail.epfl.ch
 
     headers:
         themes: &headers
