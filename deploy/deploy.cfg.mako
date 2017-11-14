@@ -21,8 +21,7 @@ src = /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/2.2/demo_geomapf
 dest = /var/www/vhosts/geomapfish-demo/private/2.2
 
 [apache]
-dest = /var/www/c2cgeoportal_mapfish/conf/c2cgeoportal.conf
-content = Include /var/www/c2cgeoportal_mapfish/private/c2cgeoportal/apache/*.conf
+active = false
 
 [remote_hosts]
 demo_server = geomapfish-demo-tmp.infra.internal
