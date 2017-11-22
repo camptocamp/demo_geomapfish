@@ -264,6 +264,9 @@ vars:
     # Used by enumeration in the query builder
     layers: {}
 
+    # Used by reset_password and shortener to send emails
+    smtp: {}
+
     # Used to send an email on password reset
     reset_password:
 
@@ -283,10 +286,10 @@ vars:
 
     # For base layers
     tiles_url:
-    - '{web_protocol}:://a.tiles.{host}/{instanceid}/tiles'
-    - '{web_protocol}:://b.tiles.{host}/{instanceid}/tiles'
-    - '{web_protocol}:://c.tiles.{host}/{instanceid}/tiles'
-    - '{web_protocol}:://d.tiles.{host}/{instanceid}/tiles'
+    - '{web_protocol}://a.tiles.{host}/{instanceid}/tiles'
+    - '{web_protocol}://b.tiles.{host}/{instanceid}/tiles'
+    - '{web_protocol}://c.tiles.{host}/{instanceid}/tiles'
+    - '{web_protocol}://d.tiles.{host}/{instanceid}/tiles'
     wmtscapabilities_path: WMTSCAPABILITIES_PATH
 
     ogcproxy_enable: False
