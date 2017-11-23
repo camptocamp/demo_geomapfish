@@ -1,6 +1,25 @@
 This file includes migration steps for each release of c2cgeoportal.
 
 
+Version 2.2.0
+=============
+
+1. In your vars file verify (you can compare what you have with the 2.2 documentation):
+
+   In the vars/layers/enum parameter (used for the `Query builder`), the
+   `table` parameter is now under the `attributes` parameters. Not more under
+   the layer directly.
+
+   In the vars/checker/all/phantomjs_routes/*, the parameter `param` must be
+   renomed to 'params'. Also, all `true` value muste be replaced by the value
+   `"true"` (with quotes).
+
+   If you use the `pdfreports` functionnality. You should use a yaml template
+   to describe the /vars/pdfreport/defaults configuration for layers
+   (containing `srs` and `check_credentials`). Also, the `defaults` parameter
+   must be renamed to `layer-defaults`.
+
+
 Version 2.1.5
 =============
 
@@ -281,6 +300,27 @@ add it in the `.gitignore` (at step 3).
 13. In the PDF report we now make a list id ids, then we should change:
     - The `paramID` is replaced by a `ids` and it should be a `!stringArray`.
     - In the `spec` template the `id` is renamed to `ids` and will be a list.
+
+
+Version 1.6.12
+==============
+
+1. In the `vars_demo.yaml` file, remove:
+
+   - smtp_server: smtp.example.com
+
+  from the reset_password configuration node.
+
+  and add this line to the parent node:
+
+   + smtp:
+   +     host: smtp.example.com
+
+     reset_password:
+        ...
+
+Check the documentation if you need ssl, startls, username and password for
+your SMTP service.
 
 
 Version 1.6.8
