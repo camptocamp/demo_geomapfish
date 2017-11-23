@@ -7,7 +7,7 @@ endif
 
 APACHE_VHOST ?= gmfusrgrp_version2-geomapfishtest
 VISIBLE_WEB_HOST ?= testgmf.sig.cloud.camptocamp.net
-CGXP_INTERFACES ?= routing
+CGXP_INTERFACES ?= edit routing
 
 # Deploy branch
 DEPLOY_BRANCH_DIR ?= /var/www/vhosts/$(APACHE_VHOST)/private/deploybranch

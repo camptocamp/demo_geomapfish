@@ -85,7 +85,9 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         <gmf-disclaimer gmf-disclaimer-map="::mainCtrl.map"></gmf-disclaimer>
         <div class="alert alert-info alert-dismissible fade in hidden-xs" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="{{'Close' | translate}}"><span aria-hidden="true" class="fa fa-times"></span></button>
-          <span>{{"You're using the mobile application. Check out the" | translate}} <a href="${request.route_url('desktop', _query=no_redirect_query) | n}">{{'standard application' | translate}}</a>.</span>
+          <span translate
+            translate-params-url="'${request.route_url('desktop', _query=no_redirect_query) | n}'">
+            You're using the mobile application. Check out the <a href="{{url}}">standard application</a>.</span>
         </div>
       </div>
     </main>
@@ -106,7 +108,7 @@ from c2cgeoportal.lib.cacheversion import get_cache_version
         <gmf-layertree
           gmf-layertree-dimensions="mainCtrl.dimensions"
           gmf-layertree-map="::mainCtrl.map"
-          gmf-layertree-openlinksinnewwindow="true">
+          gmf-layertree-openlinksinnewwindow="::true">
         </gmf-layertree>
       </div>
       <gmf-backgroundlayerselector
