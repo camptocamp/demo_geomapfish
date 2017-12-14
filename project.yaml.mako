@@ -10,7 +10,16 @@ template_vars:
   apache_vhost: demo_geomapfish
 managed_files: []
 unmanaged_files:
-  - demo_geomapfish/templates/mobile.html
-  - demo_geomapfish/templates/desktop.html
-  - demo_geomapfish/static-ngeo/js/mobile.js
-  - demo_geomapfish/static-ngeo/js/desktop.js
+  - geoportal/demo_geoportal/static-ngeo/js/desktop.js
+  - geoportal/demo_geoportal/static-ngeo/js/mobile.js
+  - geoportal/demo_geoportal/static-ngeo/less/desktop.less
+  - geoportal/demo_geoportal/static-ngeo/less/mobile.less
+  - geoportal/demo_geoportal/templates/desktop.html
+  - geoportal/demo_geoportal/templates/mobile.html
+  - geoportal/demo_geoportal/templates/api/api.js
+  - geoportal/demo_geoportal/templates/api/apihelp.html
+  - geoportal/demo_geoportal/templates/api/mapconfig.js
+  - geoportal/demo_geoportal/templates/api/xapi.js
+  - geoportal/demo_geoportal/templates/api/xapihelp.html
+  - geoportal/demo_geoportal/static-ngeo/components/README.md
+  - print/print-apps/demo/.*
