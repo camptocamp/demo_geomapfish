@@ -25,4 +25,4 @@ dest = ${deploy["code_destination"]}
 active = false
 
 [remote_hosts]
-demo_server = geomapfish-demo-tmp.infra.internal
+demo_server = geomapfish-demo.camptocamp.net
