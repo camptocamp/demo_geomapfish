@@ -204,6 +204,9 @@ msgstr "Swissgrid (LV03)"
 msgid "Test aus Olten"
 msgstr ""
 
+msgid "Testsearchtheme"
+msgstr ""
+
 msgid "Theme:"
 msgstr "Themen:"
 
@@ -219,7 +222,9 @@ msgstr "Wgs Koord."
 msgid "Wgs Coord. DMS"
 msgstr "Wgs. Koord. DMS"
 
-msgid "You're using the mobile application. Check out the"
+msgid ""
+"You're using the mobile application. Check out the <a href="
+"\"{{url}}\">standard application</a>."
 msgstr ""
 
 msgid "access"
@@ -292,6 +297,9 @@ msgstr "Lithologie-Hauptgruppen"
 msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
 msgstr "Gravimetrischer Atlas 1:100000"
 
+msgid "check"
+msgstr ""
+
 msgid "cinema"
 msgstr "Kino"
 
@@ -306,6 +314,12 @@ msgstr ""
 
 msgid "datasource"
 msgstr "Datenquelle"
+
+msgid "date"
+msgstr ""
+
+msgid "datetime"
+msgstr ""
 
 msgid "debug"
 msgstr "Debug"
@@ -362,12 +376,6 @@ msgstr "Extern"
 msgid "kind"
 msgstr "Art"
 
-msgid "last_update_timestamp"
-msgstr "zuletzt aktualisierter Zeitstempel"
-
-msgid "last_update_user"
-msgstr "zuletzt aktualisierter Nutzer"
-
 msgid "layer"
 msgstr "Ebene"
 
@@ -395,8 +403,14 @@ msgstr "Lininesnapping ohne Vertex"
 msgid "line snap tolerance"
 msgstr "Toleranz vom Lininesnapping"
 
+msgid "long wms-t layer name name name name name name name"
+msgstr ""
+
 msgid "man_made"
 msgstr "von Hand gemacht"
+
+msgid "many_attributes"
+msgstr ""
 
 msgid "map"
 msgstr "Karte"
@@ -405,6 +419,26 @@ msgid "motorcar"
 msgstr "Auto"
 
 msgid "name"
+msgstr "Namen"
+
+#, fuzzy
+msgid "name2"
+msgstr "Namen"
+
+#, fuzzy
+msgid "name3"
+msgstr "Namen"
+
+#, fuzzy
+msgid "name4"
+msgstr "Namen"
+
+#, fuzzy
+msgid "name5"
+msgstr "Namen"
+
+#, fuzzy
+msgid "name6"
 msgstr "Namen"
 
 msgid "natural"
@@ -559,10 +593,6 @@ msgstr "Transport"
 msgid "srtm"
 msgstr "SRTM"
 
-#, fuzzy
-msgid "standard application"
-msgstr "Desktop-Applikation"
-
 msgid "surface"
 msgstr "Oberfläche"
 
@@ -574,6 +604,10 @@ msgstr "Test"
 
 msgid "test2"
 msgstr "Test2"
+
+#, fuzzy
+msgid "time"
+msgstr "OSM Zeit"
 
 msgid "timestamp"
 msgstr "Zeitstempel"
@@ -607,3 +641,13 @@ msgstr "Holz"
 
 #~ msgid "OSM"
 #~ msgstr "OSM"
+
+#~ msgid "last_update_timestamp"
+#~ msgstr "zuletzt aktualisierter Zeitstempel"
+
+#~ msgid "last_update_user"
+#~ msgstr "zuletzt aktualisierter Nutzer"
+
+#, fuzzy
+#~ msgid "standard application"
+#~ msgstr "Desktop-Applikation"
