@@ -1,9 +1,10 @@
 # Translators:
 # Elisabeth Leu <elisabeth.leu@camptocamp.com>, 2017
+# Wolfgang Kaltz <wolfgang.kaltz@camptocamp.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Elisabeth Leu <elisabeth.leu@camptocamp.com>, 2017\n"
+"Last-Translator: Wolfgang Kaltz <wolfgang.kaltz@camptocamp.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/camptocamp/teams/36764/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,7 +38,7 @@ msgstr "Alternative Desktop-Applikation"
 
 #: contribs/gmf/apps/mobile_alt/index.html:4
 msgid "Alternative Mobile Application"
-msgstr ""
+msgstr "Alternative Mobile Applikation"
 
 #: contribs/gmf/apps/mobile/index.html:125
 #: contribs/gmf/apps/mobile/index.html:88
@@ -56,7 +57,7 @@ msgstr "Hintergrund"
 #: contribs/gmf/apps/mobile/index.html:79
 #: contribs/gmf/apps/mobile_alt/index.html:80
 msgid "Close"
-msgstr "Schließen"
+msgstr "Schliessen"
 
 #: contribs/gmf/apps/mobile/index.html:144
 #: contribs/gmf/apps/mobile_alt/index.html:145
@@ -112,12 +113,12 @@ msgstr "Höhe (SRTM)"
 #: contribs/gmf/apps/desktop_alt/index.html:100
 #: contribs/gmf/apps/desktop_alt/index.html:169
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: contribs/gmf/apps/desktop/index.html:157
 #: contribs/gmf/apps/desktop_alt/index.html:187
 msgid "In order to use the editing tool, you must log in first."
-msgstr "Sie müssen eingeloggt sein um das Editier-Werkzeug zu verwenden."
+msgstr "Sie müssen eingeloggt sein, um das Editier-Werkzeug zu verwenden."
 
 #: contribs/gmf/apps/desktop_alt/js/controller.js:133
 msgid "Learning [merged]"
@@ -144,7 +145,7 @@ msgstr "Lade..."
 #: contribs/gmf/apps/mobile_alt/index.html:133
 #: contribs/gmf/apps/mobile_alt/index.html:159
 msgid "Login"
-msgstr "Login"
+msgstr "Anmelden"
 
 #: contribs/gmf/apps/mobile/index.html:131
 #: contribs/gmf/apps/mobile/index.html:136
@@ -176,7 +177,7 @@ msgstr "Objektbasierte Editierung - Bearbeitung"
 
 #: contribs/gmf/apps/oeview/index.html:4
 msgid "ObjectEditing - Viewer Application"
-msgstr ""
+msgstr "Objectbasierte Editierung - Ansicht"
 
 #: contribs/gmf/apps/desktop/index.html:114
 #: contribs/gmf/apps/desktop/index.html:64
@@ -216,7 +217,7 @@ msgstr "Diese Karte teilen"
 #: contribs/gmf/apps/desktop_alt/index.html:113
 #: contribs/gmf/apps/desktop_alt/index.html:227
 msgid "Street View"
-msgstr ""
+msgstr "Street View"
 
 #: contribs/gmf/apps/desktop/contextualdata.html:3
 #: contribs/gmf/apps/oeedit/contextualdata.html:3
@@ -259,3 +260,5 @@ msgid ""
 "You're using the mobile application. Check out the <a "
 "href=\"{{url}}\">standard application</a>."
 msgstr ""
+"Sie verwenden die mobile Applikation. Wechsel zur <a href=\"{{url"
+"}}\">Standard-Applikation.</a>"

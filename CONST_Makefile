@@ -164,7 +164,7 @@ EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py \
 	CONST_fixversions.txt \
 	CONST_optional-requirements.txt \
 	$(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.2.2.dev2
+REQUIREMENTS ?= c2cgeoportal==2.2.2.dev3
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_fixversions.txt
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
@@ -250,7 +250,8 @@ NGEO_LIBS_JS_FILES += \
 	node_modules/jsts/dist/jsts.min.js \
 	node_modules/moment/min/moment.min.js \
 	node_modules/url-polyfill/url-polyfill.min.js \
-	node_modules/ngeo/third-party/jquery-ui/jquery-ui.min.js
+	node_modules/ngeo/third-party/jquery-ui/jquery-ui.min.js \
+	node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js
 NGEO_PROJECT_LIBS_JS_FILES ?=
 ifeq ($(OPERATING_SYSTEM),WINDOWS)
 COMPILE_CATALOG = node_modules/ngeo/buildtools/compile-catalog.js
