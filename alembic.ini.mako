@@ -1,32 +1,20 @@
-# A generic, single database configuration.
+[DEFAULT]
+script_location = /opt/alembic
 
-[alembic]
-# path to migration scripts
-script_location = CONST_alembic/main
-
-# template used to generate migration files
-# file_template = %%(rev)s_%%(slug)s
-
-# max length of characters to apply to the
-# "slug" field
-#truncate_slug_length = 40
-
-# set to 'true' to run the environment during
-# the 'revision' command, regardless of autogenerate
-# revision_environment = false
-
-# set to 'true' to allow .pyc and .pyo files without
-# a source .py file to be detected as revisions in the
-# versions/ directory
-# sourceless = false
-
-# overriden from the SQLALCHEMY_URL environment variable
 sqlalchemy.url = ${sqlalchemy["url"]}
 version_table = c2cgeoportal_version
+srid = 21781
+
+[main]
 version_table_schema = ${schema}
 schema = ${schema}
-parentschema = ${parentschema}
-srid = 21781
+version_locations = /opt/alembic/main/
+
+[static]
+version_table_schema = ${schema}_static
+main_schema = ${schema}
+static_schema = ${schema}_static
+version_locations = /opt/alembic/static/
 
 # Logging configuration
 [loggers]

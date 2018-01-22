@@ -1,0 +1,272 @@
+extends: CONST_vars.yaml
+
+vars:
+    # database name
+    db: demo_geomapfish_2_2
+    # database schema
+    schema: main
+
+    mapserver_docker_dbconnection: user={dbuser} password={dbpassword} dbname={db} host={dbhost}
+
+    srid: 21781
+
+    # all interface used to create the apache rewrite rules
+    interfaces:
+    - main
+    - mobile
+    - old
+    - edit
+    - routing
+
+    # The application's default language. This is the language used by
+    # the application if no specific language is specified in the URLs.
+    # This also defines the language used for the text search.
+    default_locale_name: fr
+
+    # The set of languages supported by the applications.
+    available_locale_names:
+    - en
+    - fr
+    - de
+
+    default_interface: desktop
+
+    authtkt:
+        # One day
+        timeout: 86400
+
+    tiles_url:
+    - '{web_protocol}://{host}/{instanceid}/tiles'
+
+    admin_interface:
+        # Default values for the admin interface's maps.
+        map_x: 740000
+        map_y: 5860000
+        map_zoom: 10
+
+        # The list of functionalities that can be configured
+        # through the admin interface.
+        available_functionalities:
+        - location
+
+    functionalities:
+        # Functionalities that are accessible to anonymous
+        # users.
+        anonymous:
+            print_template:
+            - 1 A4 portrait
+            - 2 A4 landscape
+            - 3 A3 portrait
+            - 4 A3 landscape
+            default_basemap: asitvd.fond_gris
+            default_theme: Transport
+            filterable_layers:
+            - osm_open
+            - OSM map
+            - osm_time_r_dp_2
+
+        # Functionalities that are accessible to authenticated
+        # users with no associated functionalities in the
+        # database.
+        registered:
+            print_template:
+            - 1 A4 portrait
+
+        # Functionalities that are made available to Mako templates.
+        available_in_templates:
+        - location
+
+    # Define URLs to the parent application. Only useful if
+    # this application is a child application in a parent/child
+    # architecture.
+    external_themes_url:
+
+    mapserverproxy:
+        default_ogc_server: Main PNG
+
+    dbsessions:
+        osm:
+            url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/osm
+
+    layers:
+        geometry_validation: True
+        enum:
+            osm_open: &osm_type
+                dbsession: osm
+                attributes:
+                    type:
+                        table: swiss_points
+
+    # The "raster web services" configuration. See the "raster"
+    # chapter in the integrator documentation.
+    raster:
+        srtm:
+            file: /var/sig/SRTM21781/srtm.shp
+            round: 1
+        aster:
+            file: /var/sig/Aster21781/aster.shp
+            round: 1
+
+    fulltextsearch:
+        languages:
+            fr: fr
+            en: english
+            de: german
+
+    resourceproxy:
+        targets:
+            point: http://www.openstreetmap.org/node/%s
+
+    shortener:
+        # Used to send a confirmation email
+        email_from: info@camptocamp.com
+        email_subject: "Geoportal URL"
+        email_body: |
+            Hello,
+
+            Somebody sent you the following link:
+            %(short_url)s
+
+            With the message:
+            %(message)s
+
+            Sincerely yours
+            The GeoMapfish team
+        smtp_server: psemail.epfl.ch
+        allowed_hosts:
+        - camptocamp.github.io
+        - gmf-test.sig.cloud.camptocamp.net
+        - testgmf.sig.cloud.camptocamp.net
+        - geomapfish-demo.camptocamp.net
+        - fredj.github.io
+        - pgiraud.github.io
+        - ger-benjamin.github.io
+        - tsauerwein.github.io
+        - ger-benjamin.github.io
+        - marionb.github.io
+        - adube.github.io
+        - localhost
+        - 127.0.0.1
+
+    reset_password:
+        # Used to send a confirmation email
+        email_from: info@camptocamp.com
+        email_subject: New password generated for GeoMapFish
+        email_body: |
+            Hello {user},
+
+            You have asked for an new password,
+            the newly generated password is: {password}
+
+            Sincerely yours
+            The GeoMapfish team
+        smtp_server: psemail.epfl.ch
+
+    headers:
+        themes: &headers
+            access_control_max_age: 30
+            access_control_allow_origin:
+            - https://camptocamp.github.io
+            - https://gmf-test.sig.cloud.camptocamp.net
+            - https://testgmf.sig.cloud.camptocamp.net
+            - https://geomapfish-demo.camptocamp.net
+            - https://fredj.github.io
+            - https://pgiraud.github.io
+            - https://ger-benjamin.github.io
+            - https://tsauerwein.github.io
+            - https://ger-benjamin.github.io
+            - https://marionb.github.io
+            - https://adube.github.io
+            - http://localhost:3000
+            - http://localhost
+            - http://127.0.0.1:3000
+            - http://127.0.0.1
+            - "*"
+        index: *headers
+        api: *headers
+        error: *headers
+        config: *headers
+        mapserver: *headers
+        tinyows: *headers
+        fulltextsearch: *headers
+        print: *headers
+        layers: *headers
+        raster: *headers
+        echo: *headers
+        csvecho: *headers
+        exportgpxkml: *headers
+        profile: *headers
+        shortener: *headers
+        login:
+            access_control_max_age: 30
+            access_control_allow_origin:
+            - https://camptocamp.github.io
+            - https://gmf-test.sig.cloud.camptocamp.net
+            - https://testgmf.sig.cloud.camptocamp.net
+            - https://geomapfish-demo.camptocamp.net
+            - https://fredj.github.io
+            - https://pgiraud.github.io
+            - https://ger-benjamin.github.io
+            - https://tsauerwein.github.io
+            - https://ger-benjamin.github.io
+            - https://marionb.github.io
+            - https://adube.github.io
+            - http://localhost:3000
+            - http://localhost
+            - http://127.0.0.1:3000
+            - http://127.0.0.1
+
+    authorized_referers:
+    - https://camptocamp.github.io/
+    - https://gmf-test.sig.cloud.camptocamp.net/
+    - https://testgmf.sig.cloud.camptocamp.net/
+    - https://geomapfish-demo.camptocamp.net/
+    - https://fredj.github.io/
+    - https://pgiraud.github.io/
+    - https://ger-benjamin.github.io/
+    - https://tsauerwein.github.io/
+    - https://ger-benjamin.github.io/
+    - https://marionb.github.io/
+    - https://adube.github.io/
+    - http://localhost:3000/
+    - http://localhost/
+    - http://127.0.0.1:3000/
+    - http://127.0.0.1/
+
+    access_control_allow_origin:
+    - https://camptocamp.github.io
+
+    # Checker configuration
+    checker:
+        fulltextsearch: 
+            search: pau
+        print:
+            spec:
+                layout: "1 A4 portrait"
+                outputFormat: "pdf"
+                attributes:
+                    title: ""
+                    comments: ""
+                    datasource: []
+                    map:
+                        projection: "EPSG:21781"
+                        dpi: 254
+                        rotation: 0
+                        center: [600000, 200000]
+                        scale: 100000
+                        longitudeFirst: true
+                        layers: []
+                    legend: {}
+
+    deploy:
+        code_source: /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/{instanceid}/demo_geomapfish
+        code_destination: /var/www/vhosts/geomapfish-demo/private/{instanceid}
+
+update_paths:
+- shortener
+- authtkt
+- fulltextsearch
+- checker.fulltextsearch
+- checker.print
+- admin_interface.available_functionalities
+- functionalities.available_in_templates

@@ -2,7 +2,7 @@
 project_folder: demo_geomapfish
 project_package: ${package}
 host: ${host}
-checker_path: /${instanceid}/wsgi/check_collector?
+checker_path: /c2c/health_check?
 template_vars:
   package: ${package}
   srid: ${srid}

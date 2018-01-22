@@ -1,18 +1,16 @@
-sudo: false
+---
 
-git:
-    submodules: false
+sudo: false
 
 language: node_js
 
 node_js:
-- '6'
-- '8'
+  - '6'
 
 addons:
   apt:
     packages:
-    - python-virtualenv
+      - python-virtualenv
 
 script:
-- make -f travis.mk checks
+  - make checks

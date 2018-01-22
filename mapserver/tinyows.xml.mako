@@ -1,11 +1,9 @@
 <tinyows
-    online_resource="http://${host}/${instanceid}/wsgi/tinyows_proxy"
+    online_resource="http://${host}/wsgi/tinyows_proxy"
     schema_dir="/usr/share/tinyows/schema/"
-    check_schema="0">
-<!--
     log="tinyows.log"
-    log_level="1">
--->
+    log_level="1"
+    check_schema="0">
 
   <contact
       name="GeoMapFish"
@@ -23,14 +21,16 @@
       port="${dbport}"
       dbname="${db}" />
 
+<!--
   <layer
       retrievable="1"
       writable="1"
       ns_prefix="tows"
       ns_uri="http://www.tinyows.org/"
-      schema="edit"
       name="point"
+      schema="edit"
+      table="point"
       title="Points"
       pkey="id" />
-
+-->
 </tinyows>

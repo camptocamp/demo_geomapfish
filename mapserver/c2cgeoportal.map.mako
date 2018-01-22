@@ -14,7 +14,7 @@
 #
 
 MAP
-    NAME "geoportal"
+    NAME "demo"
 
     EXTENT 420000 40500 839000 306400
     UNITS METERS
@@ -64,7 +64,7 @@ MAP
         METADATA
             "wms_title" "Démo du c2cgeoportal"
             "wms_abstract" "Des exemples de couches à partir de données OpenData de différentes villes françaises et suisse."
-            "wms_onlineresource" "http://${host}/${instanceid}/wsgi/mapserv_proxy"
+            "wms_onlineresource" "http://${host}${entry_point}/mapserv_proxy"
             "ows_srs" "EPSG:21781"
             "wms_encoding" "UTF-8"
             "wms_enable_request" "*"

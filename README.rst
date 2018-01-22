@@ -1,4 +1,4 @@
-prospection_demo_c2cgp project
+demo_geomapfish project
 ===================
 
 Read the `Documentation <http://docs.camptocamp.net/c2cgeoportal/>`_
@@ -6,17 +6,17 @@ Read the `Documentation <http://docs.camptocamp.net/c2cgeoportal/>`_
 Checkout
 --------
 
-.. code:: bash
+.. prompt:: bash
 
    git clone git@github.com:camptocamp/demo_geomapfish.git
 
 Build
 -----
 
-.. code:: bash
+.. prompt:: bash
 
-  cd prospection_demo_c2cgp
+  cd demo_geomapfish
 
-  make -f <user>.mk build
+  make build
 
 .. Feel free to add project-specific things.
