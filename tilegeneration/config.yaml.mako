@@ -37,7 +37,7 @@ defaults:
         # The minimum resolution to seed, useful to use with mapcache, optional.
         min_resolution_seed: 5
         # the URL of the WMS server to used
-        url: http://localhost/${instanceid}/mapserv
+        url: http://localhost${entry_point}/mapserv
         headers:
             Host: ${host}
         # the bbox there we want to generate tiles
@@ -88,7 +88,7 @@ generation:
     maxconsecutive_errors: 10
 
 apache:
-    location: /${instanceid}/tiles
+    location: ${entry_point}/tiles
 
 mapcache:
     config_file: apache/mapcache.xml
