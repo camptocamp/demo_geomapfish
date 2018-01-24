@@ -13,4 +13,5 @@ addons:
       - python-virtualenv
 
 script:
+  - pip install netifaces
   - ./docker-run make checks
