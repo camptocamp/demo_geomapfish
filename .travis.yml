@@ -13,4 +13,4 @@ addons:
       - python-virtualenv
 
 script:
-  - make checks
+  - ./docker-run make checks
