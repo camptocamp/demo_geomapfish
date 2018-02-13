@@ -1,33 +1,30 @@
 /**
  * Application entry point.
  *
- * This file defines the "demo_mobile" Closure namespace, which is be used as the
- * Closure entry point (see "closure_entry_point" in the "build.json" file).
- *
  * This file includes `goog.require`'s for all the components/directives used
  * by the HTML page and the controller to provide the configuration.
  */
-goog.provide('demo.MobileController');
-goog.provide('demo_mobile');
+goog.provide('demo.mobile.Controller');
 
 goog.require('demo');
-goog.require('gmf.AbstractMobileController');
+goog.require('gmf.controllers.AbstractMobileController');
 /** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG2056');
 /** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG21781');
+goog.require('ol');
 
 
 /**
  * @param {angular.Scope} $scope Scope.
  * @param {angular.$injector} $injector Main injector.
  * @constructor
- * @extends {gmf.AbstractMobileController}
+ * @extends {gmf.controllers.AbstractMobileController}
  * @ngInject
  * @export
  */
-demo.MobileController = function($scope, $injector) {
-  gmf.AbstractMobileController.call(this, {
+demo.mobile.Controller = function($scope, $injector) {
+  gmf.controllers.AbstractMobileController.call(this, {
     autorotate: false,
     srid: 21781,
     mapViewConfig: {
@@ -38,7 +35,7 @@ demo.MobileController = function($scope, $injector) {
   }, $scope, $injector);
 
   /**
-   * @type {Array.<gmf.MobileMeasurePointController.LayerConfig>}
+   * @type {Array.<gmf.mobile.measure.pointComponent.LayerConfig>}
    * @export
    */
   this.elevationLayersConfig = [
@@ -47,13 +44,19 @@ demo.MobileController = function($scope, $injector) {
   ];
 
   /**
+   * @type {number}
+   * @export
+   */
+  this.searchDelay = 50;
+
+  /**
    * @type {Array.<string>}
    * @export
    */
   this.searchCoordinatesProjections = ['EPSG:21781', 'EPSG:2056', 'EPSG:4326'];
 
 };
-ol.inherits(demo.MobileController, gmf.AbstractMobileController);
+ol.inherits(demo.mobile.Controller, gmf.controllers.AbstractMobileController);
 
 
-demo.module.controller('MobileController', demo.MobileController);
+demo.module.controller('MobileController', demo.mobile.Controller);

@@ -5,14 +5,11 @@
  */
 goog.provide('demo');
 
-/** @suppress {extraRequire} */
-goog.require('gmf');
-
 
 /**
  * @type {!angular.Module}
  */
-demo.module = angular.module('demo', [gmf.module.name]);
+demo.module = angular.module('demo', []);
 
 /**
  * The components template based URL, used as is by the template cache.

@@ -10,6 +10,7 @@ template_vars:
   apache_vhost: demo_geomapfish
 managed_files: []
 unmanaged_files:
+  - geoportal/demo_geoportal/static-ngeo/js/demomodule.js
   - geoportal/demo_geoportal/static-ngeo/js/desktop.js
   - geoportal/demo_geoportal/static-ngeo/js/mobile.js
   - geoportal/demo_geoportal/static-ngeo/less/desktop.less

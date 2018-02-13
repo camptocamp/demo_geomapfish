@@ -1,5 +1,6 @@
 [app:app]
 use = egg:demo_geoportal
+filter-with = proxy-prefix
 pyramid.reload_templates = false
 pyramid.debug_authorization = false
 pyramid.debug_notfound = false
@@ -15,6 +16,9 @@ authtkt_timeout = ${authtkt["timeout"]}
 app.cfg = %(here)s/config.yaml
 
 c2c.base_path = /c2c
+
+[filter:proxy-prefix]
+use = egg:PasteDeploy#prefix
 
 [pipeline:main]
 pipeline =

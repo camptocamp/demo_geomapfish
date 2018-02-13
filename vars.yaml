@@ -1,14 +1,6 @@
 extends: CONST_vars.yaml
 
 vars:
-    # database name
-    dbhost: localhost
-    db: demo_geomapfish_2_3
-    # database schema
-    schema: main
-
-    mapserver_docker_dbconnection: user={dbuser} password={dbpassword} dbname={db} host={dbhost}
-
     srid: 21781
 
     # all interface used to create the apache rewrite rules
@@ -35,9 +27,6 @@ vars:
     authtkt:
         # One day
         timeout: 86400
-
-    tiles_url:
-    - '{web_protocol}://{host}/{instanceid}/tiles'
 
     admin_interface:
         # Default values for the admin interface's maps.
@@ -126,10 +115,10 @@ vars:
             Hello,
 
             Somebody sent you the following link:
-            %(short_url)s
+            {short_url}
 
             With the message:
-            %(message)s
+            {message}
 
             Sincerely yours
             The GeoMapfish team
@@ -259,10 +248,6 @@ vars:
                         layers: []
                     legend: {}
 
-    deploy:
-        code_source: /var/www/vhosts/gmfusrgrp_version2-geomapfishtest/private/{instanceid}/demo_geomapfish
-        code_destination: /var/www/vhosts/geomapfish-demo/private/{instanceid}
-
 update_paths:
 - shortener
 - authtkt
@@ -271,3 +256,7 @@ update_paths:
 - checker.print
 - admin_interface.available_functionalities
 - functionalities.available_in_templates
+
+no_interpreted:
+- shortener.email_body
+- reset_password.email_body

@@ -1,37 +1,38 @@
 /**
  * Application entry point.
  *
- * This file defines the "demo_desktop" Closure namespace, which is be used as
- * the Closure entry point (see "closure_entry_point" in the "build.json"
- * file).
- *
  * This file includes `goog.require`'s for all the components/directives used
  * by the HTML page and the controller to provide the configuration.
  */
 goog.provide('demo.desktop.Controller');
-goog.provide('demo.DesktopController')
-goog.provide('demo_desktop');
 
 goog.require('demo');
-goog.require('gmf.AbstractDesktopController');
-/** @suppress {extraRequire} */
-goog.require('ngeo.googlestreetview.module');
+goog.require('gmf.controllers.AbstractDesktopController');
 /** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG2056');
 /** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG21781');
+
+/** @suppress {extraRequire} */
+goog.require('ngeo.googlestreetview.component');
+goog.require('ol');
+
+demo.desktop.module = angular.module('AppDesktop', [
+  demo.module.name,
+  gmf.controllers.AbstractDesktopController.module.name,
+]);
 
 
 /**
  * @param {angular.Scope} $scope Scope.
  * @param {angular.$injector} $injector Main injector.
  * @constructor
- * @extends {gmf.AbstractDesktopController}
+ * @extends {gmf.controllers.AbstractDesktopController}
  * @ngInject
  * @export
  */
-demo.DesktopController = function($scope, $injector) {
-  gmf.AbstractDesktopController.call(this, {
+demo.desktop.Controller = function($scope, $injector) {
+  gmf.controllers.AbstractDesktopController.call(this, {
     srid: 21781,
     mapViewConfig: {
       center: [632464, 185457],
@@ -39,6 +40,12 @@ demo.DesktopController = function($scope, $injector) {
       resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
     }
   }, $scope, $injector);
+
+  /**
+   * @type {number}
+   * @export
+   */
+  this.searchDelay = 50;
 
   /**
    * @type {Array.<string>}
@@ -98,7 +105,7 @@ demo.DesktopController = function($scope, $injector) {
   gettextCatalog.getString('Add a sub theme');
   gettextCatalog.getString('Add a layer');
 };
-ol.inherits(demo.DesktopController, gmf.AbstractDesktopController);
+ol.inherits(demo.desktop.Controller, gmf.controllers.AbstractDesktopController);
 
 
-demo.module.controller('DesktopController', demo.DesktopController);
+demo.desktop.module.controller('DesktopController', demo.desktop.Controller);

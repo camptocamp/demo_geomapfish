@@ -9,7 +9,11 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
             <script>
                 var small_screen = window.matchMedia ? window.matchMedia('(max-width: 1024px)') : false;
                 if (small_screen && (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)) {
+    % if "themes" in request.matchdict:
+                    window.location = "${request.route_url('mobiletheme', themes=request.matchdict['themes'], _query=dict(request.GET)) | n}";
+    % else:
                     window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
+    % endif
                 }
             </script>
     % endif
@@ -44,8 +48,8 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
               <span class="fa fa-grid"></span>
               <span ng-if="mainCtrl.gmfThemeManager.modeFlush">
                 <span translate>Theme:</span>
-                <b ng-if="!mainCtrl.gmfThemeManager.getThemeName()" translate>Loading...</b>
-                <b ng-if="mainCtrl.gmfThemeManager.getThemeName()">{{mainCtrl.gmfThemeManager.getThemeName()|translate}}</b>
+                <b ng-if="mainCtrl.gmfThemeManager.isLoading()" translate>Loading...</b>
+                <b ng-if="!mainCtrl.gmfThemeManager.isLoading()">{{mainCtrl.gmfThemeManager.getThemeName()|translate}}</b>
               </span>
               <span ng-if="!mainCtrl.gmfThemeManager.modeFlush">
                 <b ng-if="!mainCtrl.gmfThemeManager.themeName" translate>Themes</b>
@@ -116,7 +120,9 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
                 {{'Login' | translate}}
                 <a class="btn close" ng-click="mainCtrl.loginActive = false">&times;</a>
               </div>
-              <gmf-authentication></gmf-authentication>
+              <gmf-authentication
+                  gmf-authentication-force-password-change="::true">
+              </gmf-authentication>
             </div>
           </div>
           <div ng-show="mainCtrl.printPanelActive" class="row">
@@ -221,9 +227,10 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
           gmf-search-datasources="::mainCtrl.searchDatasources"
           gmf-search-coordinatesprojections="::mainCtrl.searchCoordinatesProjections"
           gmf-search-placeholder="{{'Search…'|translate}}"
+          gmf-search-delay="mainCtrl.searchDelay"
           gmf-search-clearbutton="::true">
         </gmf-search>
-        <gmf-displaywindow
+        <ngeo-displaywindow
           content="mainCtrl.displaywindowContent"
           desktop="true"
           height="mainCtrl.displaywindowHeight"
@@ -231,7 +238,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
           title="mainCtrl.displaywindowTitle"
           url="mainCtrl.displaywindowUrl"
           width="mainCtrl.displaywindowWidth"
-        ></gmf-displaywindow>
+        ></ngeo-displaywindow>
         <div class="gmf-app-map-bottom-controls">
           <div class="gmf-backgroundlayerbutton btn-group dropup">
             <button
@@ -297,7 +304,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
           </div>
         </div>
       </div>
-      <ngeo-modal ng-model="mainCtrl.modalShareShown" ngeo-modal-destroy-content-on-hide="true">
+      <ngeo-modal ng-model="mainCtrl.modalShareShown">
         <gmf-share gmf-share-email="true"/>
       </ngeo-modal>
     </main>
@@ -319,6 +326,8 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
     </script>
     <script src="${request.static_url('%s/jquery/dist/jquery.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/ngeo/third-party/jquery-ui/jquery-ui.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/jquery-ui-touch-punch/jquery.ui.touch-punch.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/jquery-datetimepicker/build/jquery.datetimepicker.full.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular/angular.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/angular-sanitize/angular-sanitize.js' % request.registry.settings['node_modules_path'])}"></script>
@@ -336,6 +345,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/d3/build/d3.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/moment/moment.js' % request.registry.settings['node_modules_path'])}"></script>
     <script src="${request.static_url('%s/file-saver/FileSaver.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/url-polyfill/url-polyfill.js' % request.registry.settings['node_modules_path'])}"></script>
 
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
@@ -356,7 +366,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
       (function() {        var urlElements = window.location.pathname.split('/');
 
 
-        var gmfModule = angular.module('gmf');
+        var gmfModule = angular.module('gmfDefaultConfig');
         gmfModule.constant('angularLocaleScript', '${request.static_url('demo_geoportal:static-ngeo/build/')}angular-locale_{{locale}}.js');
         var langUrls = {
 ${ ',\n'.join([
@@ -368,7 +378,7 @@ ${ ',\n'.join([
 ]) | n}
         };
 
-        var module = angular.module('demo');
+        var module = angular.module('AppDesktop');
         module.constant('defaultTheme', 'Demo');
         module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
         module.constant('langUrls', langUrls);
