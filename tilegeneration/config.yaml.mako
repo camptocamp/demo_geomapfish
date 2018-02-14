@@ -91,7 +91,7 @@ apache:
     location: ${entry_point}/tiles
 
 mapcache:
-    config_file: apache/mapcache.xml
+    config_file: mapcache/mapcache.xml
     memcache_host: localhost
     memcache_port: 11211
 

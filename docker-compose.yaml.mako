@@ -34,6 +34,18 @@ services:
       - 8380:80
 % endif
 
+  mapcache:
+    image: camptocamp/mapcache:1.6
+    volumes_from:
+      - config:ro
+% if development == "TRUE":
+    ports:
+      - 8480:80
+% endif
+
+  memcached:
+    image: memcached:1.5
+
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
     ports:
