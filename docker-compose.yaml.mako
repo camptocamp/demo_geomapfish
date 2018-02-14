@@ -2,6 +2,9 @@
 # A compose file for development.
 version: '2'
 services:
+  config:
+    image: ${docker_base}-config:${docker_tag}
+
 % if development == "TRUE":
   db:
     image: ${docker_base}-testdb:${docker_tag}
@@ -21,7 +24,9 @@ services:
 % endif
 
   mapserver:
-    image: ${docker_base}-mapserver:${docker_tag}
+    image: camptocamp/mapserver:7.0
+    volumes_from:
+      - config:ro
 % if development == "TRUE":
     ports:
       - 8380:80

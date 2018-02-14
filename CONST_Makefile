@@ -47,6 +47,7 @@ endif
 WEB_RULE ?= $(DEFAULT_WEB_RULE)
 
 DEFAULT_BUILD_RULES ?= /build/geoportal-docker.timestamp \
+	/build/config-docker.timestamp \
 	project.yaml \
 	alembic.ini \
 	alembic.yaml \
@@ -71,9 +72,6 @@ DEFAULT_BUILD_RULES += tilegeneration/config.yaml
 endif
 ifeq ($(PRINT), TRUE)
 DEFAULT_BUILD_RULES += /build/print-docker.timestamp
-endif
-ifeq ($(MAPSERVER), TRUE)
-DEFAULT_BUILD_RULES += /build/mapserver-docker.timestamp
 endif
 ifeq (${DEVELOPMENT}, TRUE)
 DEFAULT_BUILD_RULES += /build/testdb-docker.timestamp
@@ -694,13 +692,13 @@ print-docker: /build/print-docker.timestamp
 
 docker-compose-build.yaml: /build/requirements.timestamp
 
-.PHONY: mapserver-docker
-mapserver-docker: /build/mapserver-docker.timestamp
+.PHONY: config-docker
+config-docker: /build/config-docker.timestamp
 
-/build/mapserver-docker.timestamp: $(shell docker-required --path mapserver) \
+/build/config-docker.timestamp: $(shell docker-required --path .) \
 		mapserver/mapserver.map
 	$(PRERULE_CMD)
-	docker build -t $(DOCKER_BASE)-mapserver:$(DOCKER_TAG) mapserver
+	docker build -t $(DOCKER_BASE)-config:$(DOCKER_TAG) config
 	touch $@
 
 mapserver/mapserver.map:
