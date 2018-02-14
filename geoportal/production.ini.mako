@@ -19,6 +19,7 @@ c2c.base_path = /c2c
 
 [filter:proxy-prefix]
 use = egg:PasteDeploy#prefix
+prefix = %(VISIBLE_ENTRY_POINT)
 
 [pipeline:main]
 pipeline =

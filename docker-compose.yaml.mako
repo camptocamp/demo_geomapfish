@@ -42,7 +42,7 @@ services:
       PGSCHEMA_STATIC: main_static
       VISIBLE_WEB_HOST: localhost:8080
       VISIBLE_WEB_PROTOCOL: http
-      VISIBLE_ENTRY_POINT: /sbrunner-docker
+      VISIBLE_ENTRY_POINT: /sbrunner
       TINYOWS_URL: http://tinyows/
       MAPSERVER_URL: http://mapserver/
       PRINT_URL: http://print:8080/print/
