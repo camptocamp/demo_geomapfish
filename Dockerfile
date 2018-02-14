@@ -9,5 +9,8 @@ VOLUME /etc/mapserver
 COPY mapcache /mapcache
 VOLUME /mapcache
 
+COPY tilegeneration /tilecloudchain
+VOLUME /tilecloudchain
+
 COPY print/print-app /usr/local/tomcat/webapps/ROOT/print-app
 VOLUME /usr/local/tomcat/webapps/ROOT/print-app

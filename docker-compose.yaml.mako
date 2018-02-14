@@ -47,7 +47,12 @@ services:
     image: memcached:1.5
 
   redis:
-    image redis:3.2
+    image: redis:3.2
+
+  tilecloudchain:
+    image: camptocamp/tilecloud.chain:1.4.0
+    volumes_from:
+      - config:ro
 
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
