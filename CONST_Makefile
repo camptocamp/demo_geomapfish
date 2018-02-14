@@ -70,9 +70,6 @@ endif
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 DEFAULT_BUILD_RULES += tilegeneration/config.yaml
 endif
-ifeq ($(PRINT), TRUE)
-DEFAULT_BUILD_RULES += /build/print-docker.timestamp
-endif
 ifeq (${DEVELOPMENT}, TRUE)
 DEFAULT_BUILD_RULES += /build/testdb-docker.timestamp
 endif
@@ -676,16 +673,6 @@ $(CSS_XAPI_OUTPUT): \
 /build/requirements.timestamp: /build/venv.timestamp-noclean geoportal/setup.py
 	$(PRERULE_CMD)
 	$(VENV_BIN)/pip install --editable=commons --editable=geoportal
-	touch $@
-
-# Print
-
-.PHONY: print-docker
-print-docker: /build/print-docker.timestamp
-
-/build/print-docker.timestamp: $(shell docker-required --path print)
-	$(PRERULE_CMD)
-	docker build -t $(DOCKER_BASE)-print:$(DOCKER_TAG) print
 	touch $@
 
 # Docker

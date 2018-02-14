@@ -17,7 +17,9 @@ services:
 % endif
 
   print:
-    image: ${docker_base}-print:${docker_tag}
+    image: camptocamp/mapfish_print:3.12
+    volumes_from:
+      - config:ro
 % if development == "TRUE":
     ports:
       - 8280:8080
