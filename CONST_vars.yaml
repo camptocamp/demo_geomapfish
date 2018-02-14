@@ -144,7 +144,14 @@ vars:
   #   arguments:
   #   url: 127.0.0.1:11211
   cache:
-    backend: dogpile.cache.memory
+    backend: dogpile.cache.redis
+    arguments:
+      host: '{REDIS_HOST}'
+      port: '{REDIS_PORT}'
+      db: 0
+      redis_expiration_time: 60*60/24 # one day
+      distributed_lock: True
+
 
   admin_interface:
     # Default values for the admin interface's maps.

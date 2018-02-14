@@ -46,6 +46,9 @@ services:
   memcached:
     image: memcached:1.5
 
+  redis:
+    image redis:3.2
+
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
     ports:
@@ -59,6 +62,8 @@ services:
       PGDATABASE: demo_geomapfish_2_3
       PGSCHEMA: main
       PGSCHEMA_STATIC: main_static
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
       VISIBLE_WEB_HOST: localhost:8080
       VISIBLE_WEB_PROTOCOL: http
       VISIBLE_ENTRY_POINT: /sbrunner
