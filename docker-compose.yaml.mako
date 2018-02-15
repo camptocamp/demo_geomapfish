@@ -17,7 +17,7 @@ services:
 % endif
 
   print:
-    image: camptocamp/mapfish_print:3.12
+    image: camptocamp/mapfish_print:3.12.1
     volumes_from:
       - config:ro
 % if development == "TRUE":
@@ -50,7 +50,7 @@ services:
     image: redis:3.2
 
   tilecloudchain:
-    image: camptocamp/tilecloud.chain:1.4.0
+    image: camptocamp/tilecloud-chain:1.4.0.dev11
     volumes_from:
       - config:ro
 
