@@ -39,7 +39,7 @@ defaults:
         # the URL of the WMS server to used
         url: http://localhost${entry_point}/mapserv
         headers:
-            Host: ${host}
+            Host: '${host}'
         # the bbox there we want to generate tiles
         bbox: [473743, 74095, 850904, 325533]
 
@@ -86,9 +86,6 @@ generation:
 
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
-
-apache:
-    location: ${entry_point}/tiles
 
 mapcache:
     config_file: mapcache/mapcache.xml

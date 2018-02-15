@@ -369,7 +369,7 @@ yamllint: $(YAML_FILES)
 .PHONY: clean
 clean: template-clean
 	rm --recursive --force /build/*.timestamp \
-		apache/mapcache.xml apache/tiles.conf \
+		mapcache/mapcache.xml apache/tiles.conf \
 		mapserver/mapserver.map \
 		$(OUTPUT_DIR)/ \
 		$(APP_OUTPUT_DIR)/ \
@@ -683,9 +683,10 @@ docker-compose-build.yaml: /build/requirements.timestamp
 config-docker: /build/config-docker.timestamp
 
 /build/config-docker.timestamp: $(shell docker-required --path .) \
-		mapserver/mapserver.map
+		mapserver/mapserver.map \
+		mapcache/mapcache.xml
 	$(PRERULE_CMD)
-	docker build -t $(DOCKER_BASE)-config:$(DOCKER_TAG) config
+	docker build -t $(DOCKER_BASE)-config:$(DOCKER_TAG) .
 	touch $@
 
 mapserver/mapserver.map:
@@ -756,5 +757,12 @@ upgrade%: project.yaml
 	c2cupgrade $(UPGRADE_ARGS) --step $*
 
 # Tilecloud chain
+mapcache/mapcache.xml: tilegeneration/config.yaml
+	$(PRERULE_CMD)
+	mkdir --parent $(dir $@)
+	generate_controller --mapcache
+
 $(WMTSCAPABILITIES_FILE): tilegeneration/config.yaml
+	$(PRERULE_CMD)
+	mkdir --parent $(dir $@)
 	generate_controller --capabilities

@@ -491,3 +491,5 @@ runtime_environment:
   - TINYOWS_URL
   - MAPSERVER_URL
   - PRINT_URL
+  - REDIS_HOST
+  - REDIS_PORT

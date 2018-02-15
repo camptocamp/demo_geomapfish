@@ -137,6 +137,11 @@ mapping:
           backend:
             required: True
             type: str
+          arguments:
+            type: map
+            mapping:
+              regex;.+:
+                type: any
       admin_interface:
         type: map
         required: True

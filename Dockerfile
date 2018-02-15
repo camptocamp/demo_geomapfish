@@ -12,5 +12,5 @@ VOLUME /mapcache
 COPY tilegeneration /tilecloudchain
 VOLUME /tilecloudchain
 
-COPY print/print-app /usr/local/tomcat/webapps/ROOT/print-app
+COPY print/print-apps /usr/local/tomcat/webapps/ROOT/print-apps
 VOLUME /usr/local/tomcat/webapps/ROOT/print-app
