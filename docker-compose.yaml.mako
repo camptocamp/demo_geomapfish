@@ -56,8 +56,10 @@ services:
 
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
+% if development == "TRUE":
     ports:
-      - 8180:80
+      - 8280:80
+% endif
     environment:
       PGHOST: 172.17.0.1
       PGHOST_SLAVE: 172.17.0.1
@@ -78,3 +80,9 @@ services:
 % if development == "TRUE":
       GUNICORN_PARAMS: -b :80 --worker-class=gthread --threads=10 --workers=5 --access-logfile=-
 % endif
+  front:
+    image: nginx:1
+    volumes_from:
+      - config:ro
+    ports:
+      - 8180:80

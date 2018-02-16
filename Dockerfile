@@ -1,6 +1,6 @@
 FROM tianon/true
 
-COPY nginx /etc/nginx/cond.d
+COPY front /etc/nginx/cond.d
 VOLUME /etc/nginx/cond.d
 
 COPY mapserver /etc/mapserver
@@ -13,4 +13,4 @@ COPY tilegeneration /tilecloudchain
 VOLUME /tilecloudchain
 
 COPY print/print-apps /usr/local/tomcat/webapps/ROOT/print-apps
-VOLUME /usr/local/tomcat/webapps/ROOT/print-app
+VOLUME /usr/local/tomcat/webapps/ROOT/print-apps
