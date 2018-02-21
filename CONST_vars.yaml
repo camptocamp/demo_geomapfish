@@ -493,3 +493,7 @@ runtime_environment:
   - PRINT_URL
   - REDIS_HOST
   - REDIS_PORT
+
+runtime_postprocess:
+  - expression: int({})
+  - vars: cache.arguments.port
