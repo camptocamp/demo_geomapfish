@@ -34,6 +34,11 @@ services:
       - 8380:80
 % endif
 
+  qgisserver:
+    image: camptocamp/geomapfish-qgisserver
+    volumes_from:
+      - config:ro
+
   mapcache:
     image: camptocamp/mapcache:1.6
     volumes_from:

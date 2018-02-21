@@ -6,6 +6,9 @@ VOLUME /etc/nginx/cond.d
 COPY mapserver /etc/mapserver
 VOLUME /etc/mapserver
 
+COPY qgisserver /project
+VOLUME /project
+
 COPY mapcache /mapcache
 VOLUME /mapcache
 
