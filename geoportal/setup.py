@@ -12,7 +12,7 @@ setup(
     url='http://www.demo.com/',
     install_requires=[
         'c2cgeoportal_geoportal',
-        'demo_commons',
+        'c2cgeoportal_admin',
     ],
     packages=find_packages(),
     include_package_data=True,
