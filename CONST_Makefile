@@ -683,6 +683,7 @@ docker-compose-build.yaml: /build/requirements.timestamp
 config-docker: /build/config-docker.timestamp
 
 /build/config-docker.timestamp: $(shell docker-required --path .) \
+		print/print-apps/$(PACKAGE)/config.yaml \
 		mapserver/mapserver.map \
 		mapcache/mapcache.xml
 	$(PRERULE_CMD)

@@ -5,16 +5,12 @@ services:
   config:
     image: ${docker_base}-config:${docker_tag}
 
-% if development == "TRUE":
   db:
     image: ${docker_base}-testdb:${docker_tag}
     environment:
-      POSTGRES_DB: geomapfish
+      PGDATABASE: demo_geomapfish_2_3
       POSTGRES_USER: www-data
       POSTGRES_PASSWORD: www-data
-    ports:
-      - 15432:5432
-% endif
 
   print:
     image: camptocamp/mapfish_print:3.12.1
@@ -66,8 +62,8 @@ services:
       - 8280:80
 % endif
     environment:
-      PGHOST: 172.17.0.1
-      PGHOST_SLAVE: 172.17.0.1
+      PGHOST: db
+      PGHOST_SLAVE: db
       PGPORT: 5432
       PGUSER: www-data
       PGPASSWORD: www-data
@@ -85,6 +81,8 @@ services:
 % if development == "TRUE":
       GUNICORN_PARAMS: -b :80 --worker-class=gthread --threads=10 --workers=5 --access-logfile=-
 % endif
+    ports:
+      - 8181:80
   front:
     image: nginx:1
     volumes_from:

@@ -16,6 +16,7 @@ def main(global_config, **settings):
     )
 
     config.include('c2cgeoportal_geoportal')
+    config.include('c2cgeoportal_admin')
 
     config.add_translation_dirs('demo_geoportal:locale/')
 
