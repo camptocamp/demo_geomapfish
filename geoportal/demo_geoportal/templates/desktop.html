@@ -3,7 +3,7 @@ from json import dumps
 from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
 %>
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-app="demo" ng-controller="DesktopController as mainCtrl">
+<html lang="{{mainCtrl.lang}}" ng-app="AppDesktop" ng-controller="DesktopController as mainCtrl">
   <head>
     % if "no_redirect" not in request.params:
             <script>
