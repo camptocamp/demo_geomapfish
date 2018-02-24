@@ -2,6 +2,7 @@
 *.pyc
 *.pyo
 __pycache__/
+/.tx
 /project.yaml
 /docker-compose.yaml
 /docker-compose-build.yaml
@@ -16,6 +17,9 @@ __pycache__/
 /mapserver/demo.map
 /mapserver/tinyows.xml
 /mapserver/replace_db.sh
+/mapserver/edit.map
+/mapserver/osm.map
+/mapserver/private.map
 /geoportal/jsbuild/app.cfg
 /geoportal/Dockerfile
 /geoportal/development.ini
