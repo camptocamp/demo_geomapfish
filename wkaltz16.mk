@@ -1,0 +1,5 @@
+INSTANCE_ID = wkaltz16
+DEVELOPMENT = TRUE
+PRINT_VERSION = NONE
+
+include demo.mk
