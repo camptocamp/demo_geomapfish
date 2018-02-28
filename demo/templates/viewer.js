@@ -65,7 +65,7 @@ Ext.onReady(function() {
     }, WMTS_BASE_OPTIONS);
 
     var WMTSASITVD_OPTIONS = Ext.applyIf({
-        url: "http://ows.asitvd.ch/wmts/",
+        url: "https://ows.asitvd.ch/wmts/",
         attribution: OpenLayers.i18n("© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"),
         dimensions: ['DIM1','ELEVATION'],
         params: {
