@@ -77,7 +77,6 @@ LAYER
 
     METADATA
         "wms_title" "Line"
-
         "gml_include_items" "all"
         "gml_exclude_items" "id"
         "gml_types" "auto"
@@ -96,7 +95,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.polygon AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=21781"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom, g.last_update_timestamp, g.check FROM edit.polygon AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=21781"
     LABELITEM "name"
     PROJECTION
       "init=epsg:21781"
@@ -125,10 +124,11 @@ LAYER
 
     METADATA
         "wms_title" "Polygon"
-
         "gml_include_items" "all"
-        "gml_exclude_items" "id"
-        "gml_types" "auto"
+        "gml_id_type" "Integer"
+        "gml_name_type" "Character"
+        "gml_last_update_timestamp_type" "Date"
+        "gml_check_type" "Boolean"
         "gml_featureid" "id"
         "gml_geom_type" "multipolygon"
         "gml_geometries" "geom"
