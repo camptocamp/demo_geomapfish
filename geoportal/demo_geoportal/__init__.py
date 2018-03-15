@@ -7,7 +7,8 @@ from demo_geoportal.resources import Root
 
 
 def main(global_config, **settings):
-    """ This function returns a Pyramid WSGI application.
+    """
+    This function returns a Pyramid WSGI application.
     """
     config = Configurator(
         root_factory=Root, settings=settings,
@@ -16,7 +17,6 @@ def main(global_config, **settings):
     )
 
     config.include('c2cgeoportal_geoportal')
-    config.include('c2cgeoportal_admin')
 
     config.add_translation_dirs('demo_geoportal:locale/')
 

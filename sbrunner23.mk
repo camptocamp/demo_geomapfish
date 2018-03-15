@@ -1,4 +1,4 @@
-INSTANCE_ID = sbrunner22
+INSTANCE_ID = sbrunner23
 DEVELOPMENT = TRUE
 #REQUIREMENTS = -e ../c2cgeoportal
 

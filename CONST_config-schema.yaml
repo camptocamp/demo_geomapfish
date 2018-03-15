@@ -10,12 +10,19 @@ mapping:
     type: seq
     required: True
     sequence:
-      - type: str
+      - type: map
+        mapping:
+          name:
+            type: str
+            required: True
+          default:
+            type: str
   interpreted:
-    type: seq
+    type: map
     required: True
-    sequence:
-      - type: any
+    mapping:
+      regex;(.+):
+        type: any
   postprocess:
     type: seq
     required: True
@@ -188,6 +195,10 @@ mapping:
                     type: str
                     required: True
                   type:
+                    type: str
+                  regex:
+                    type: str
+                  error_message:
                     type: str
           available_functionalities:
             type: seq

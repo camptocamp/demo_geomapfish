@@ -3,7 +3,7 @@ from json import dumps
 from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
 %>
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-app="demo" ng-controller="DesktopController as mainCtrl">
+<html lang="{{mainCtrl.lang}}" ng-app="AppDesktop" ng-controller="DesktopController as mainCtrl">
   <head>
     % if "no_redirect" not in request.params:
             <script>
@@ -120,9 +120,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
                 {{'Login' | translate}}
                 <a class="btn close" ng-click="mainCtrl.loginActive = false">&times;</a>
               </div>
-              <gmf-authentication
-                  gmf-authentication-force-password-change="::true">
-              </gmf-authentication>
+              <gmf-authentication></gmf-authentication>
             </div>
           </div>
           <div ng-show="mainCtrl.printPanelActive" class="row">
@@ -247,7 +245,6 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
               <img src="${request.static_url('demo_geoportal:static-ngeo/images/background-layer-button.png')}" />
             </button>
             <gmf-backgroundlayerselector
-              gmf-backgroundlayerselector-dimensions="::mainCtrl.dimensions"
               gmf-backgroundlayerselector-map="::mainCtrl.map"
               class="dropdown-menu">
             </gmf-backgroundlayerselector>
@@ -306,6 +303,21 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
       </div>
       <ngeo-modal ng-model="mainCtrl.modalShareShown">
         <gmf-share gmf-share-email="true"/>
+      </ngeo-modal>
+      <ngeo-modal
+          ngeo-modal-closable="false"
+          ng-model="mainCtrl.userMustChangeItsPassword()"
+          ng-model-options="{getterSetter: true}">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            {{'You must change your password' | translate}}
+          </h4>
+        </div>
+        <div class="modal-body" translate>
+          <gmf-authentication
+            gmf-authentication-force-password-change="::true">
+          </gmf-authentication>
+        </div>
       </ngeo-modal>
     </main>
     <footer>
@@ -366,7 +378,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
       (function() {        var urlElements = window.location.pathname.split('/');
 
 
-        var gmfModule = angular.module('gmfDefaultConfig');
+        var gmfModule = angular.module('GmfAbstractAppControllerModule');
         gmfModule.constant('angularLocaleScript', '${request.static_url('demo_geoportal:static-ngeo/build/')}angular-locale_{{locale}}.js');
         var langUrls = {
 ${ ',\n'.join([

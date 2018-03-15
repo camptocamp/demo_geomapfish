@@ -46,8 +46,8 @@ CLIENT_CHECK_RULE ?= lint-ngeo
 endif
 WEB_RULE ?= $(DEFAULT_WEB_RULE)
 
-DEFAULT_BUILD_RULES ?= /build/geoportal-docker.timestamp \
-	/build/config-docker.timestamp \
+DEFAULT_BUILD_RULES += geoportal-docker \
+	config-docker \
 	project.yaml \
 	alembic.ini \
 	alembic.yaml \
@@ -67,11 +67,8 @@ endif
 
 
 # Make rules
-ifeq ($(TILECLOUD_CHAIN), TRUE)
-DEFAULT_BUILD_RULES += tilegeneration/config.yaml
-endif
 ifeq (${DEVELOPMENT}, TRUE)
-DEFAULT_BUILD_RULES += /build/testdb-docker.timestamp
+DEFAULT_BUILD_RULES += testdb-docker
 endif
 
 BUILD_RULES ?= $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_RULES))
@@ -273,7 +270,8 @@ else
 CSS_XAPI_FILES := $(DEFAULT_CSS_XAPI_FILES)
 endif
 
-VALIDATE_PY_FOLDERS = geoportal/$(PACKAGE)_geoportal/*.py geoportal/$(PACKAGE)_geoportal/lib \
+VALIDATE_PY_FOLDERS = admin/$(PACKAGE)_admin \
+	geoportal/$(PACKAGE)_geoportal/*.py geoportal/$(PACKAGE)_geoportal/lib \
 	geoportal/$(PACKAGE)_geoportal/scripts geoportal/$(PACKAGE)_geoportal/views
 VALIDATE_PY_TEST_FOLDERS = geoportal/$(PACKAGE)_geoportal/tests
 
@@ -282,7 +280,7 @@ SPHINX_FILES = $(shell find doc -name "*.rst" -print)
 
 # Server localisation
 ifdef CGXP_INTERFACES
-SERVER_LOCALISATION_SOURCES_FILES += geopoertal/$(PACKAGE)_geoportal/models.py $(shell find geoportal/$(PACKAGE)_geoportal/templates -type f -name '*.html')
+SERVER_LOCALISATION_SOURCES_FILES += geoportal/$(PACKAGE)_geoportal/models.py $(shell find geoportal/$(PACKAGE)_geoportal/templates -type f -name '*.html')
 SERVER_LOCALISATION_RULES = $(addprefix /build/lang-server-, $(LANGUAGES))
 endif
 
@@ -312,10 +310,17 @@ MAKE_FILES = $(wildcard *.mk) CONST_Makefile
 
 .PHONY: help
 help:
+	echo BUILD_RULES
+	echo $(BUILD_RULES)
+	echo DISABLE_BUILD_RULES
+	echo $(DISABLE_BUILD_RULES)
+	echo DEFAULT_BUILD_RULES
+	echo $(DEFAULT_BUILD_RULES)
 	@echo  "Usage: make <target>"
 	@echo
 	@echo  "Main targets:"
 	@echo
+	@echo  "- docker-build   	Pull all the needed Docker images, build all (Outside Docker)"
 	@echo  "- build			Build and configure the project"
 	@echo  "- checks		Perform a number of checks on the code"
 	@echo  "- serve			Run the development server (Pserve)"
@@ -349,6 +354,12 @@ ifdef SECONDARY_HELP
 endif
 	@echo
 
+.PHONY: docker-build
+docker-build:
+	docker pull camptocamp/geomapfish-build:${MAJOR_VERSION}
+	for image in `find -name Dockerfile -o -name Dockerfile.mako | xargs grep --no-filename FROM | awk '{print $$2}' | sort -u`; do docker pull $$image; done
+	./docker-run make build
+
 .PHONY: build
 build: $(BUILD_RULES)
 
@@ -360,7 +371,11 @@ checks: flake8 $(CLIENT_CHECK_RULE) $(NGEO_OUTPUT_JS_INTERFACES_FILES) $(NGEO_OU
 git-attributes:
 	git --no-pager diff --check `git log --oneline | tail -1 | cut --fields=1 --delimiter=' '`
 
-YAML_FILES ?= $(filter-out ./tilegeneration/config.yaml ./geoportal/config.yaml ./alembic.yaml,$(shell find -name .build -prune -or -name cgxp -prune -or \( -name "*.yml" -or -name "*.yaml" \) -print))
+YAML_FILES ?= $(filter-out ./tilegeneration/config.yaml ./geoportal/config.yaml ./alembic.yaml,$(shell find \
+	-name .build -prune -or \
+	-name cgxp -prune -or \
+	-name node_modules -prune -or \
+	\( -name "*.yml" -or -name "*.yaml" \) -print))
 .PHONY: yamllint
 yamllint: $(YAML_FILES)
 	yamllint --strict --config-file=yamllint.yaml -s $(YAML_FILES)
@@ -368,13 +383,13 @@ yamllint: $(YAML_FILES)
 .PHONY: clean
 clean: template-clean
 	rm --recursive --force /build/*.timestamp \
-		mapcache/mapcache.xml apache/tiles.conf \
-		mapserver/mapserver.map \
+		apache/mapcache.xml apache/tiles.conf \
 		$(OUTPUT_DIR)/ \
 		$(APP_OUTPUT_DIR)/ \
 		geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)-*.pot \
 		alembic.yaml \
-		.UPGRADE*
+		.UPGRADE* \
+		mapcache
 ifeq ($(TILECLOUD_CHAIN_LOCAL), TRUE)
 	rm --force $(WMTSCAPABILITIES_FILE)
 endif
@@ -420,7 +435,7 @@ upgrade-db: alembic.ini alembic.yaml
 
 .PHONY: template-clean
 template-clean:
-	rm --force .build/c2ctemplate-cache.json \
+	rm --force /build/c2ctemplate-cache.json \
 		$(ALL_MAKO_FILES:.mako=) \
 		$(ALL_JINJA_FILES:.jinja=) \
 		geoportal/config.yaml
@@ -679,30 +694,17 @@ $(CSS_XAPI_OUTPUT): \
 docker-compose-build.yaml: /build/requirements.timestamp
 
 .PHONY: config-docker
-config-docker: /build/config-docker.timestamp
-
-/build/config-docker.timestamp: $(shell docker-required --path .) \
+config-docker: $(shell docker-required --path .) \
 		print/print-apps/$(PACKAGE)/config.yaml \
-		mapserver/mapserver.map \
-		mapcache/mapcache.xml
-	$(PRERULE_CMD)
+		apache/mapcache.xml
 	docker build -t $(DOCKER_BASE)-config:$(DOCKER_TAG) .
-	touch $@
-
-mapserver/mapserver.map:
-	$(PRERULE_CMD)
-	echo 'INCLUDE "c2cgeoportal.map"' > $@
 
 .PHONY: geoportal-docker
-geoportal-docker: /build/geoportal-docker.timestamp
-
-/build/geoportal-docker.timestamp: $(shell docker-required --path geoportal) \
+geoportal-docker: $(shell docker-required --path geoportal) \
 		$(SERVER_LOCALISATION_RULES) \
 		$(WEB_RULE) \
 		geoportal/config.yaml
-	$(PRERULE_CMD)
 	docker build --tag=$(DOCKER_BASE)-geoportal:$(DOCKER_TAG) --build-arg="GIT_HASH=$(GIT_HASH)" geoportal
-	touch $@
 
 .PHONY: push-docker
 push-docker:
@@ -717,6 +719,7 @@ alembic.yaml: vars_testdb.yaml vars.yaml CONST_vars.yaml
 
 testdb/11-schemas.sql: vars_testdb.yaml testdb/11-schemas.sql_mako vars.yaml CONST_vars.yaml
 	$(PRERULE_CMD)
+	rm -f testdb/11-schemas.sql.mako
 	ln -s 11-schemas.sql_mako testdb/11-schemas.sql.mako
 	c2c-template --vars $< --engine mako --files testdb/11-schemas.sql.mako
 	rm testdb/11-schemas.sql.mako
@@ -730,13 +733,9 @@ testdb/13-alembic-static.sql: alembic.ini alembic.yaml $(shell ls -1 /opt/alembi
 	alembic --name=static upgrade --sql head > $@
 
 .PHONY: testdb-docker
-testdb-docker: /build/testdb-docker.timestamp
-
-/build/testdb-docker.timestamp: testdb/11-schemas.sql testdb/12-alembic.sql testdb/13-alembic-static.sql \
+testdb-docker: testdb/11-schemas.sql testdb/12-alembic.sql testdb/13-alembic-static.sql \
 		$(shell docker-required --path testdb)
-	$(PRERULE_CMD)
-	docker build -t $(DOCKER_BASE)-testdb:$(DOCKER_TAG) testdb
-	touch $@
+	docker build --tag=$(DOCKER_BASE)-testdb:$(DOCKER_TAG) testdb
 
 # Upgrade
 
@@ -751,7 +750,8 @@ upgrade%: project.yaml
 	c2cupgrade $(UPGRADE_ARGS) --step $*
 
 # Tilecloud chain
-mapcache/mapcache.xml: tilegeneration/config.yaml
+
+apache/mapcache.xml: tilegeneration/config.yaml
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
 	generate_controller --mapcache

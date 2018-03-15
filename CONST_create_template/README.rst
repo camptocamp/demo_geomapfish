@@ -17,6 +17,11 @@ Build
 
   cd demo_geomapfish
 
-  make build
+  ./docker-run make --makefile=<user.mk> build
+
+  make build-local-venv[-windows] print
+
+  sudo apache2ctl graceful
+
 
 .. Feel free to add project-specific things.

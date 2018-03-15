@@ -3,7 +3,7 @@ from json import dumps
 from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
 %>
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-app="demo" ng-controller="MobileController as mainCtrl">
+<html lang="{{mainCtrl.lang}}" ng-app="AppMobile" ng-controller="MobileController as mainCtrl">
   <head>
     <title ng-bind-template="{{'Mobile Application'|translate}}">GeoMapFish</title>
     <meta charset="utf-8">
@@ -125,7 +125,6 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         id="background"
         class="gmf-mobile-nav-slide"
         data-header-title="{{'Background' | translate}}"
-        gmf-backgroundlayerselector-dimensions="::mainCtrl.dimensions"
         gmf-backgroundlayerselector-map="::mainCtrl.map"
         gmf-backgroundlayerselector-select="mainCtrl.hideNav()">
       </gmf-backgroundlayerselector>
@@ -177,6 +176,22 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         gmf-mobile-nav-back="authCtrl.gmfUser.username !== null">
       </gmf-authentication>
     </nav>
+    <ngeo-modal
+        ngeo-modal-closable="false"
+        ng-model="mainCtrl.userMustChangeItsPassword()"
+        ng-model-options="{getterSetter: true}">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{'You must change your password' | translate}}
+        </h4>
+      </div>
+      <div class="modal-body" translate>
+        <gmf-authentication
+          gmf-authentication-force-password-change="::true">
+        </gmf-authentication>
+      </div>
+    </ngeo-modal>
+
     % if debug:
     <script>
         window.CLOSURE_BASE_PATH = '';
@@ -224,7 +239,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
       (function() {        var urlElements = window.location.pathname.split('/');
 
 
-        var gmfModule = angular.module('gmfDefaultConfig');
+        var gmfModule = angular.module('GmfAbstractAppControllerModule');
         gmfModule.constant('angularLocaleScript', '${request.static_url('demo_geoportal:static-ngeo/build/')}angular-locale_{{locale}}.js');
         var langUrls = {
 ${ ',\n'.join([
@@ -236,7 +251,7 @@ ${ ',\n'.join([
 ]) | n}
         };
 
-        var module = angular.module('demo');
+        var module = angular.module('AppMobile');
         module.constant('defaultTheme', 'Demo');
         module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
         module.constant('langUrls', langUrls);

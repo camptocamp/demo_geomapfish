@@ -8,3 +8,4 @@ template_vars:
   package: demo
   srid: 21781
   extent: 489246,78873,837119,296543
+  apache_vhost: demo_geomapfish

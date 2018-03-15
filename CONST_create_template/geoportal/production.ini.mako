@@ -26,50 +26,40 @@ pipeline =
 ###
 
 [loggers]
-keys = root, sqlalchemy, gunicorn.access, gunicorn.error, c2cgeoportal_commons, c2cgeoportal_geoportal, demo_commons, demo_geoportal
+keys = root, sqlalchemy, c2cgeoportal_commons, c2cgeoportal_geoportal, c2cgeoportal_admin, demo_geoportal
 
 [handlers]
-keys = console, logstash, json
+keys = console
 
 [formatters]
 keys = generic
 
 [logger_root]
-level = %(OTHER_LOG_LEVEL)s
+level = WARN
 handlers = console
 
 [logger_c2cgeoportal_commons]
-level = %(C2CGEOPORTAL_LOG_LEVEL)s
+level = WARN
 handlers =
 qualname = c2cgeoportal_commons
 
 [logger_c2cgeoportal_geoportal]
-level = %(C2CGEOPORTAL_LOG_LEVEL)s
+level = WARN
 handlers =
 qualname = c2cgeoportal_geoportal
 
-[logger_demo_commons]
-level = %(LOG_LEVEL)s
+[logger_c2cgeoportal_admin]
+level = WARN
 handlers =
-qualname = demo_commons
+qualname = c2cgeoportal_admin
 
 [logger_demo_geoportal]
-level = %(LOG_LEVEL)s
+level = INFO
 handlers =
 qualname = demo_geoportal
 
-[logger_gunicorn.access]
-level = %(GUNICORN_ACCESS_LOG_LEVEL)s
-handlers =
-qualname = gunicorn.access
-
-[logger_gunicorn.error]
-level = %(GUNICORN_LOG_LEVEL)s
-handlers =
-qualname = gunicorn.error
-
 [logger_sqlalchemy]
-level = %(SQL_LOG_LEVEL)s
+level = WARN
 handlers =
 qualname = sqlalchemy.engine
 # "level = INFO" logs SQL queries.
@@ -84,13 +74,3 @@ formatter = generic
 
 [formatter_generic]
 format = %(asctime)s %(levelname)-5.5s [%(name)s][%(thread)s] %(message)s
-
-[handler_logstash]
-class = c2cwsgiutils.pyramid_logging.PyramidCeeSysLogHandler
-args = [("%(LOG_HOST)s", %(LOG_PORT)s)]
-level = NOTSET
-
-[handler_json]
-class = c2cwsgiutils.pyramid_logging.JsonLogHandler
-args = (sys.stdout,)
-level = NOTSET

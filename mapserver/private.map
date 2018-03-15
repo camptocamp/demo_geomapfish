@@ -1,0 +1,112 @@
+LAYER
+    NAME "hospitals"
+    GROUP "private"
+    EXTENT 420000 40500 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=www-data password=www-data dbname=demo_geomapfish_2_3 host=172.17.0.1"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_hospitals WHERE ST_Contains((SELECT ST_Collect(ra.area) FROM main.restrictionarea AS ra, main.role_restrictionarea AS rra, main.layer_restrictionarea AS lra, main.treeitem AS la WHERE rra.role_id = %role_id% AND rra.restrictionarea_id = ra.id AND lra.restrictionarea_id = ra.id AND lra.layer_id = la.id AND la.name =  'hospitals'), geom)) AS foo USING UNIQUE osm_id USING srid=21781"
+    VALIDATION
+        "default_role_id" "-1"
+"role_id" "^-?[0-9]*$"
+
+    END
+    LABELITEM "name"
+    PROJECTION
+      "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Hôpital"
+        KEYIMAGE "symbols/hospital-2.png"
+        STYLE
+            SYMBOL "hospital"
+            SIZE 30
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+            COLOR 230 0 0
+        END
+        LABEL
+            SIZE 10
+            COLOR 56 117 215
+            OUTLINECOLOR 255 255 255
+            OFFSET 0 10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "Hospitals"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
+LAYER
+    NAME "firestations"
+    GROUP "private"
+    EXTENT 420000 40500 839000 306400
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=www-data password=www-data dbname=demo_geomapfish_2_3 host=172.17.0.1"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE %role_id% IN (SELECT rra.role_id FROM main.restrictionarea AS ra, main.role_restrictionarea AS rra, main.layer_restrictionarea AS lra, main.treeitem AS la WHERE rra.restrictionarea_id = ra.id AND lra.restrictionarea_id = ra.id AND lra.layer_id = la.id AND la.name =  'firestations')) AS foo USING UNIQUE osm_id USING srid=21781"
+    VALIDATION
+        "default_role_id" "-1"
+"role_id" "^-?[0-9]*$"
+
+    END
+    LABELITEM "name"
+    PROJECTION
+      "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Casernes de pompiers"
+        KEYIMAGE "symbols/firemen.png"
+        STYLE
+            WIDTH 1
+            OUTLINECOLOR 128 0 0
+            MAXSCALEDENOM 15000
+        END
+        STYLE
+            WIDTH 1
+            COLOR 228 0 0
+            OPACITY 60
+            MAXSCALEDENOM 10000
+        END
+        STYLE
+            SYMBOL "firemen"
+            GEOMTRANSFORM "centroid"
+            SIZE 30
+        END
+        LABEL
+            SIZE 10
+            COLOR 128 0 0
+            OUTLINECOLOR 255 255 255
+            OUTLINEWIDTH 2
+            OFFSET 0 10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "Firestations"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "polygon"
+        "gml_geometries" "geom"
+    END
+END

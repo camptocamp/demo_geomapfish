@@ -1,6 +1,6 @@
 ---
 
-extends: vars.yaml
+extends: vars_nondocker.yaml
 
 vars:
   # sqlalchemy schema
