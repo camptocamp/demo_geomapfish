@@ -12,11 +12,10 @@ mapping:
     sequence:
       - type: str
   interpreted:
-    type: map
+    type: seq
     required: True
-    mapping:
-      regex;(.+):
-        type: any
+    sequence:
+      - type: any
   postprocess:
     type: seq
     required: True

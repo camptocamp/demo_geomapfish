@@ -13,4 +13,6 @@ DEPLOY_BRANCH_MAKEFILE ?= demo.mk
 
 CONFIG_VARS += dbsessions
 
+UPGRADE_ARGS += --nondocker --new-makefile=sbrunner.mk
+
 include CONST_Makefile
