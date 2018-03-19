@@ -46,7 +46,7 @@ CLIENT_CHECK_RULE ?= lint-ngeo
 endif
 WEB_RULE ?= $(DEFAULT_WEB_RULE)
 
-DEFAULT_BUILD_RULES += geoportal-docker \
+DEFAULT_BUILD_RULES ?= geoportal-docker \
 	config-docker \
 	project.yaml \
 	alembic.ini \
@@ -59,6 +59,7 @@ WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-$(ENVIRONEMENT).xml
 export WMTSCAPABILITIES_PATH
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 WMTSCAPABILITIES_FILE ?= /var/sig/tiles/$(WMTSCAPABILITIES_PATH)
+MAPCACHE_FILE ?= mapcache/mapcache.xml
 DEFAULT_BUILD_RULES += tilegeneration/config.yaml
 ifeq ($(TILECLOUD_CHAIN_LOCAL), TRUE)
 DEFAULT_BUILD_RULES += $(WMTSCAPABILITIES_FILE)
@@ -310,12 +311,6 @@ MAKE_FILES = $(wildcard *.mk) CONST_Makefile
 
 .PHONY: help
 help:
-	echo BUILD_RULES
-	echo $(BUILD_RULES)
-	echo DISABLE_BUILD_RULES
-	echo $(DISABLE_BUILD_RULES)
-	echo DEFAULT_BUILD_RULES
-	echo $(DEFAULT_BUILD_RULES)
 	@echo  "Usage: make <target>"
 	@echo
 	@echo  "Main targets:"
@@ -383,7 +378,7 @@ yamllint: $(YAML_FILES)
 .PHONY: clean
 clean: template-clean
 	rm --recursive --force /build/*.timestamp \
-		apache/mapcache.xml apache/tiles.conf \
+		$(MAPCACHE_FILE) \
 		$(OUTPUT_DIR)/ \
 		$(APP_OUTPUT_DIR)/ \
 		geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)-*.pot \
@@ -696,7 +691,7 @@ docker-compose-build.yaml: /build/requirements.timestamp
 .PHONY: config-docker
 config-docker: $(shell docker-required --path .) \
 		print/print-apps/$(PACKAGE)/config.yaml \
-		apache/mapcache.xml
+		$(MAPCACHE_FILE)
 	docker build -t $(DOCKER_BASE)-config:$(DOCKER_TAG) .
 
 .PHONY: geoportal-docker
@@ -719,7 +714,7 @@ alembic.yaml: vars_testdb.yaml vars.yaml CONST_vars.yaml
 
 testdb/11-schemas.sql: vars_testdb.yaml testdb/11-schemas.sql_mako vars.yaml CONST_vars.yaml
 	$(PRERULE_CMD)
-	rm -f testdb/11-schemas.sql.mako
+	rm --force testdb/11-schemas.sql.mako
 	ln -s 11-schemas.sql_mako testdb/11-schemas.sql.mako
 	c2c-template --vars $< --engine mako --files testdb/11-schemas.sql.mako
 	rm testdb/11-schemas.sql.mako
@@ -751,7 +746,7 @@ upgrade%: project.yaml
 
 # Tilecloud chain
 
-apache/mapcache.xml: tilegeneration/config.yaml
+$(MAPCACHE_FILE): tilegeneration/config.yaml
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
 	generate_controller --mapcache

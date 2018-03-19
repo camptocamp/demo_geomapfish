@@ -13,7 +13,7 @@ services:
   db:
     image: ${docker_base}-testdb:${docker_tag}
     environment:
-      POSTGRES_DB: geomapfish-fhg
+      POSTGRES_DB: geomapfish
       POSTGRES_USER: www-data
       POSTGRES_PASSWORD: www-data
 % if development == "TRUE":

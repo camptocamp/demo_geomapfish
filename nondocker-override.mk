@@ -20,10 +20,16 @@ CONF_FILES_MAKO = $(shell ls -1 apache/*.conf.mako 2> /dev/null)
 CONF_FILES_JINJA = $(shell ls -1 apache/*.conf.jinja 2> /dev/null)
 CONF_FILES += $(shell ls -1 apache/*.conf 2> /dev/null) $(CONF_FILES_MAKO:.mako=) $(CONF_FILES_JINJA:.jinja=)
 
+DEFAULT_BUILD_RULES ?= geoportal-docker \
+	config-docker \
+	project.yaml \
+	alembic.ini \
+	alembic.yaml
+
 TILECLOUD_CHAIN ?= TRUE
 ifeq ($(TILECLOUD_CHAIN), TRUE)
-CONF_FILES += apache/tiles.conf apache/mapcache.xml
-DEFAULT_BUILD_RULES += apache/tiles.conf
+MAPCACHE_FILE = apache/mapcache.xml
+CONF_FILES += $(MAPCACHE_FILE)
 endif
 
 UPGRADE_ARGS += --nondocker --makefile=$(firstword $(MAKEFILE_LIST))
@@ -40,19 +46,9 @@ apache/mapcache.xml: tilegeneration/config.yaml
 	$(PRERULE_CMD)
 	generate_controller --generate-mapcache-config
 
-apache/tiles.conf: tilegeneration/config.yaml apache/mapcache.xml
-	$(PRERULE_CMD)
-	generate_controller --generate-apache-config
-
-/build/print-docker.timestamp:
+config-docker:
 	$(PRERULE_CMD)
 	@echo "Nothing to do for $@"
-	touch $@
-
-/build/mapserver-docker.timestamp:
-	$(PRERULE_CMD)
-	@echo "Nothing to do fo $@"
-	touch $@
 
 node_modules/%: /usr/lib/node_modules/%
 	$(PRERULE_CMD)
@@ -60,7 +56,7 @@ node_modules/%: /usr/lib/node_modules/%
 	rm -rf $@
 	cp -r $< $@
 
-/build/wsgi-docker.timestamp: \
+geoportal-docker: \
 		node_modules/ngeo/src \
 		node_modules/ngeo/contribs/gmf/src \
 		node_modules/openlayers/src \
@@ -86,9 +82,7 @@ node_modules/%: /usr/lib/node_modules/%
 		$(CONF_FILES)
 	$(PRERULE_CMD)
 	@echo "Nothing to do for $@"
-	touch $@
 
-/build/testdb-docker.timestamp:
+testdb-docker:
 	$(PRERULE_CMD)
 	@echo "Nothing to do for $@"
-	touch $@

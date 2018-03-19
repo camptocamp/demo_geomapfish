@@ -27,7 +27,7 @@
          </params>
       </getmap>
       <http>
-         <url>http://localhost{VISIBLE_ENTRY_POINT}/mapserv</url>
+         <url>http://localhost//mapserv</url>
          <headers>
             <Host>example.com</Host>
          </headers>
@@ -43,7 +43,7 @@
          </params>
       </getmap>
       <http>
-         <url>http://localhost{VISIBLE_ENTRY_POINT}/mapserv</url>
+         <url>http://localhost//mapserv</url>
          <headers>
             <Host>example.com</Host>
          </headers>

@@ -21,7 +21,7 @@ vars:
   docker_services:
     db:
       environment:
-        POSTGRES_DB: geomapfish11
+        POSTGRES_DB: geomapfish
         POSTGRES_USER: www-data
         POSTGRES_PASSWORD: www-data
     geoportal:
@@ -35,7 +35,7 @@ vars:
         PGPORT: 5432
         PGUSER: www-data
         PGPASSWORD: www-data
-        PGDATABASE: geomapfish22
+        PGDATABASE: geomapfish
         PGSCHEMA: main
         PGSCHEMA_STATIC: main_static
         TINYOWS_URL: http://tinyows/
@@ -505,9 +505,8 @@ runtime_environment:
   - VISIBLE_WEB_HOST
   - name: VISIBLE_WEB_PROTOCOL
     default: https
-  - VISIBLE_ENTRY_POINT
-#  - name: VISIBLE_ENTRY_POINT
-#    default: /
+  - name: VISIBLE_ENTRY_POINT
+    default: /
   - PGHOST
   - PGHOST_SLAVE
   - name: PGPORT

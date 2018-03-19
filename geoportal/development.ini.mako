@@ -39,22 +39,22 @@ level = WARN
 handlers = console
 
 [logger_c2cgeoportal_commons]
-level = %(C2CGEOPORTAL_LOG_LEVEL)s
+level = INFO
 handlers =
 qualname = c2cgeoportal_commons
 
 [logger_c2cgeoportal_geoportal]
-level = %(C2CGEOPORTAL_LOG_LEVEL)s
+level = INFO
 handlers =
 qualname = c2cgeoportal_geoportal
 
 [logger_c2cgeoportal_admin]
-level = %(C2CGEOPORTAL_LOG_LEVEL)s
+level = INFO
 handlers =
 qualname = c2cgeoportal_admin
 
 [logger_demo_geoportal]
-level = %(LOG_LEVEL)s
+level = DEBUG
 handlers =
 qualname = demo_geoportal
 
