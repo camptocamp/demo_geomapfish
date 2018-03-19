@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import logging
+import distutils.core
 from pyramid.config import Configurator
 from c2cgeoportal_geoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
 from c2cgeoportal_geoportal.lib.authentication import create_authentication
 from demo_geoportal.resources import Root
+
+
+LOG = logging.getLogger(__name__)
 
 
 def main(global_config, **settings):
@@ -16,7 +21,9 @@ def main(global_config, **settings):
         authentication_policy=create_authentication(settings)
     )
 
+    distutils.core._setup_stop_after = 'config'
     config.include('c2cgeoportal_geoportal')
+    distutils.core._setup_stop_after = None
 
     config.add_translation_dirs('demo_geoportal:locale/')
 
