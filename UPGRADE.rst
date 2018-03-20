@@ -4,6 +4,17 @@ https://camptocamp.github.io/c2cgeoportal/master/developer/build_release.html
 Do the upgrade in your home folder:
 https://camptocamp.github.io/c2cgeoportal/master/integrator/upgrade_application.html
 
-Before the step 5, complete the files:
+After upgrade:
 
-    demo/locale/*/LC_MESSAGES/demo-client.po
+run:
+./docker-run make -f sbrunner23.mk update-po
+
+complete the files:
+    geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
+
+run:
+git add geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
+git commit -m "Update the localisation"
+
+run:
+./docker-run make -f sbrunner23.mk theme2fts
