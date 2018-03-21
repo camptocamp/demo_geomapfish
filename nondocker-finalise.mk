@@ -150,9 +150,9 @@ ifeq ($(OPERATING_SYSTEM), WINDOWS)
 	.build/venv/Scripts/python -m pip install `./get-pip-dependencies pyramid-closure c2cgeoportal Shapely`
 	.build/venv/Scripts/python -m pip install wheels/Shapely-1.5.13-cp27-none-win32.whl
 else
-	.build/venv/bin/python -m pip install c2cwsgiutils==1.7.2
-	.build/venv/bin/python -m pip install `./get-pip-dependencies pyramid-closure c2cgeoportal-commons c2cgeoportal-geoportal c2cgeoportal-admin GDAL flake8-mypy mypy c2cwsgiutils pygraphviz linesman`
+	.build/venv/bin/python -m pip install `./get-pip-dependencies pyramid-closure c2cgeoportal-commons c2cgeoportal-geoportal c2cgeoportal-admin GDAL flake8-mypy mypy`
 endif
+	rm --force --recursive c2cgeoportal_commons c2cgeoportal_geoportal c2cgeoportal_admin
 	./docker-run cp -r /opt/c2cgeoportal_commons c2cgeoportal_commons
 	./docker-run cp -r /opt/c2cgeoportal_geoportal c2cgeoportal_geoportal
 	./docker-run cp -r /opt/c2cgeoportal_admin c2cgeoportal_admin

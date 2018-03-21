@@ -65,8 +65,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         <div class="gmf-app-content">
           <gmf-layertree
             gmf-layertree-dimensions="mainCtrl.dimensions"
-            gmf-layertree-map="::mainCtrl.map"
-            gmf-layertree-openlinksinnewwindow="::true">
+            gmf-layertree-map="::mainCtrl.map">
           </gmf-layertree>
         </div>
       </div>
@@ -223,10 +222,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
       <div class="gmf-app-map-container" ng-class="{'gmf-app-infobar-active': mainCtrl.showInfobar}">
         <gmf-search gmf-search-map="::mainCtrl.map"
           gmf-search-datasources="::mainCtrl.searchDatasources"
-          gmf-search-coordinatesprojections="::mainCtrl.searchCoordinatesProjections"
-          gmf-search-placeholder="{{'Search…'|translate}}"
-          gmf-search-delay="mainCtrl.searchDelay"
-          gmf-search-clearbutton="::true">
+          gmf-search-coordinatesprojections="::mainCtrl.searchCoordinatesProjections">
         </gmf-search>
         <ngeo-displaywindow
           content="mainCtrl.displaywindowContent"
@@ -305,7 +301,6 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         <gmf-share gmf-share-email="true"/>
       </ngeo-modal>
       <ngeo-modal
-          ngeo-modal-closable="false"
           ng-model="mainCtrl.userMustChangeItsPassword()"
           ng-model-options="{getterSetter: true}">
         <div class="modal-header">

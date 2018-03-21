@@ -105,7 +105,7 @@ ifneq ($(TOMCAT_STOP_COMMAND),)
 	$(TOMCAT_STOP_COMMAND)
 endif
 	$(TOMCAT_OUTPUT_CMD_PREFIX) rm -f $(PRINT_OUTPUT)/$(PRINT_WAR)
-	$(TOMCAT_OUTPUT_CMD_PREFIX) rm -rf $(PRINT_OUTPUT)/$(PRINT_WAR:.war=)
+	$(TOMCAT_OUTPUT_CMD_PREFIX) rm -rf $(PRINT_OUTPUT)/$(PRINT_WAR:.war=) 2> /dev/null || true
 ifeq ($(OPERATING_SYSTEM), WINDOWS)
 	mv print/tmp/$(PRINT_WAR) $(PRINT_OUTPUT)
 	cd print && rm -fd tmp
@@ -147,6 +147,7 @@ ifeq ($(OPERATING_SYSTEM), WINDOWS)
 else
 	.build/venv/bin/python -m pip install `./get-pip-dependencies pyramid-closure c2cgeoportal-commons c2cgeoportal-geoportal c2cgeoportal-admin GDAL flake8-mypy mypy`
 endif
+	rm --force --recursive c2cgeoportal_commons c2cgeoportal_geoportal c2cgeoportal_admin
 	./docker-run cp -r /opt/c2cgeoportal_commons c2cgeoportal_commons
 	./docker-run cp -r /opt/c2cgeoportal_geoportal c2cgeoportal_geoportal
 	./docker-run cp -r /opt/c2cgeoportal_admin c2cgeoportal_admin

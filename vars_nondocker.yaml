@@ -12,8 +12,6 @@ vars:
   mapserv_allow: |
     Allow from 127.0.0.1 ::1
     Require ip 127.0.0.1 ::1
-  host_forward_host:
-    - localhost
   waitress_port: 5000
   node_modules_path: "{directory}{ps}node_modules"
   tinyowsproxy:
@@ -29,6 +27,9 @@ vars:
     - '{web_protocol}:://a.tiles.{host}/{instanceid}/tiles'
     - '{web_protocol}:://b.tiles.{host}/{instanceid}/tiles'
     - '{web_protocol}:://c.tiles.{host}/{instanceid}/tiles'
+
+  host_forward_host:
+    - localhost
 
   cache:
     backend: dogpile.cache.memory_pickle

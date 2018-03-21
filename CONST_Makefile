@@ -2,6 +2,13 @@ GEOMAPFISH_VERSION ?= 2.3
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
+VISIBLE_WEB_HOST ?= example.com
+VISIBLE_WEB_PROTOCOL ?= https
+VISIBLE_ENTRY_POINT ?= /
+export VISIBLE_WEB_HOST
+export VISIBLE_WEB_PROTOCOL
+export VISIBLE_ENTRY_POINT
+
 MAPSERVER ?= TRUE
 
 ifeq ($(DEBUG), TRUE)
@@ -9,7 +16,6 @@ PRERULE_CMD ?= @echo "Build \033[1;34m$@\033[0m due modification on \033[1;34m$?
 endif
 
 VENV_BIN ?= /build/venv/bin
-HOME_DIR ?= $(HOME)/
 # Use TileCloud chain
 TILECLOUD_CHAIN ?= TRUE
 TILECLOUD_CHAIN_LOCAL ?= FALSE
@@ -328,10 +334,8 @@ help:
 	@echo  "- update		Update and clean the project (Git, Node, Pip)"
 	@echo  "- upgrade-db		Upgrade the database to the latest version"
 	@echo  "- upgrade		Launch the upgrade process"
-	@echo
-	@echo  "Deploy branch target:"
-	@echo
-	@echo  "- theme2fts		Inport the theme in the full-text search"
+	@echo  "- theme2fts		Import the theme in the full-text search"
+	@echo  "- update-po		Update the localisations files"
 
 ifdef UTILITY_HELP
 	@echo $(UTILITY_HELP)
@@ -400,8 +404,8 @@ clean-all: clean
 
 .PHONY: clean-all-cache
 clean-all-cache: cleanall
-	rm  --recursive --force $(HOME_DIR).npm \
-		$(HOME_DIR).cache/pip
+	rm  --recursive --force $(HOME)/.npm \
+		$(HOME)/.cache/pip
 
 .PHONY: theme2fts
 theme2fts: $(CLIENT_LOCALISATION_RULES) /build/requirements.timestamp
