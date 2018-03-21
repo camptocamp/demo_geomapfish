@@ -408,7 +408,7 @@ clean-all-cache: cleanall
 		$(HOME)/.cache/pip
 
 .PHONY: theme2fts
-theme2fts: $(CLIENT_LOCALISATION_RULES) /build/requirements.timestamp
+theme2fts: $(CLIENT_LOCALISATION_RULES)
 	theme2fts
 
 .PHONY: flake8
@@ -467,8 +467,7 @@ geoportal/config.yaml: /build/c2ctemplate-cache.json
 .PRECIOUS: geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).pot
 geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).pot: \
 		lingua-server.cfg \
-		$(SERVER_LOCALISATION_SOURCES_FILES) \
-		/build/requirements.timestamp
+		$(SERVER_LOCALISATION_SOURCES_FILES)
 	$(PRERULE_CMD)
 	rm -f $@ # Because of WindowsError, thus only problematic on Windows
 	pot-create --keyword _ --config $< --output $@ $(SERVER_LOCALISATION_SOURCES_FILES) || true
@@ -479,8 +478,7 @@ geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX
 
 .PRECIOUS: geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).pot
 geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).pot: \
-		lingua-client.cfg $(I18N_DEPENDENCIES) $(I18N_SOURCE_FILES) \
-		/build/requirements.timestamp
+		lingua-client.cfg $(I18N_DEPENDENCIES) $(I18N_SOURCE_FILES)
 	$(PRERULE_CMD)
 	rm -f $@ # Because of WindowsError, thus only problematic on Windows
 	pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
