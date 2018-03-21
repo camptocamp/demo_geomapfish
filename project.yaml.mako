@@ -8,7 +8,8 @@ template_vars:
   srid: ${srid}
   extent: 489246, 78873, 837119, 296543
   apache_vhost: demo_geomapfish
-managed_files: []
+managed_files:
+  - apache/application.wsgi.mako
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/js/demomodule.js
   - geoportal/demo_geoportal/static-ngeo/js/desktop.js
