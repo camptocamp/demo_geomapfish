@@ -25,13 +25,8 @@ __pycache__/
 /print/WEB-INF/lib/*.jar
 /print/WEB-INF/classes/logback.xml
 /print/print-apps/demo/config.yaml
-/mapserver/mapserver.map
-/mapserver/demo.map
-/mapserver/edit.map
-/mapserver/osm.map
-/mapserver/private.map
+/mapserver/*.map
 /mapserver/tinyows.xml
-/mapserver/replace_db.sh
 /tilegeneration/config.yaml
 /geoportal/jsbuild/app.cfg
 /geoportal/Dockerfile
