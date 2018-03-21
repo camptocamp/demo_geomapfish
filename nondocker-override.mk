@@ -6,8 +6,10 @@ CONFIG_VARS += instanceid
 MODWSGI_USER ?= www-data
 export MODWSGI_USER
 export INSTANCE_ID
-VISIBLE_ENTRY_POINT = /$(INSTANCE_ID)/
+VISIBLE_ENTRY_POINT ?= /$(INSTANCE_ID)/
+VISIBLE_WEB_PROTOCOL ?= https
 export VISIBLE_ENTRY_POINT
+export VISIBLE_WEB_PROTOCOL
 
 ADDITIONAL_MAKO_FILES += $(shell find print $(FIND_OPTS) -name "*.mako" -print) \
 	$(shell find apache $(FIND_OPTS) -name "*.mako" -print) \
