@@ -14,8 +14,6 @@ authtkt_timeout = ${authtkt["timeout"]}
 % endif
 app.cfg = %(here)s/config.yaml
 
-c2c.base_path = /c2c
-
 [pipeline:main]
 pipeline =
     app
@@ -26,7 +24,7 @@ pipeline =
 ###
 
 [loggers]
-keys = root, sqlalchemy, c2cgeoportal_commons, c2cgeoportal_geoportal, c2cgeoportal_admin, demo_geoportal
+keys = root, sqlalchemy, c2cgeoportal_commons, c2cgeoportal_geoportal, c2cgeoportal_admin, demo_geoportal, c2cwsgiutils
 
 [handlers]
 keys = console
@@ -57,6 +55,11 @@ qualname = c2cgeoportal_admin
 level = INFO
 handlers =
 qualname = demo_geoportal
+
+[logger_c2cwsgiutils]
+level = INFO
+handlers =
+qualname = c2cwsgiutils
 
 [logger_sqlalchemy]
 level = WARN

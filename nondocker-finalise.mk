@@ -13,6 +13,7 @@ ifeq ($(DEBUG), TRUE)
 PRERULE_CMD ?= @echo "Build \033[1;34m$@\033[0m due modification on \033[1;34m$?\033[0m" 1>&2; ls -t --full-time --reverse $? $@ 1>&2 || true
 endif
 
+
 # Print
 
 PRINT_WAR ?= print-$(INSTANCE_ID).war
