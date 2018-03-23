@@ -1,6 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
+"POT-Creation-Date: 2018-03-23 10:45+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -75,12 +76,6 @@ msgstr "Edition"
 
 msgid "Editing"
 msgstr "Edition"
-
-msgid "Elevation (Aster)"
-msgstr "Altitude (Aster)"
-
-msgid "Elevation (SRTM)"
-msgstr "Altitude (SRTM)"
 
 msgid "Enseignement"
 msgstr "Enseignement"
@@ -178,9 +173,6 @@ msgstr "Impression"
 msgid "Profile"
 msgstr "Profile"
 
-msgid "Search…"
-msgstr "Recherche…"
-
 msgid "Share this map"
 msgstr "Partager cette carte"
 
@@ -199,9 +191,6 @@ msgstr "Magnétisme avec tollérance"
 msgid "Street View"
 msgstr "Street View"
 
-msgid "Swiss grid (LV03)"
-msgstr "Grille suisse (LV03)"
-
 msgid "Test aus Olten"
 msgstr ""
 
@@ -217,14 +206,15 @@ msgstr "Thèmes"
 msgid "Transport"
 msgstr "Transport"
 
-msgid "Wgs Coord."
-msgstr "Coordonées WGS"
+msgid "You must change your password"
+msgstr ""
 
-msgid "Wgs Coord. DMS"
-msgstr "Coordonée WGS DMS"
-
-msgid "You're using the mobile application. Check out the"
-msgstr "Vous utilisez la version mobile. Passer à la"
+#, fuzzy
+msgid ""
+"You're using the mobile application. Check out the <a href="
+"\"{{url}}\">standard application</a>."
+msgstr "Vous utilisez la version mobile. Passer à l'<a href="
+"\"{{url}}\">application standard</a>."
 
 msgid "access"
 msgstr "Accès"
@@ -295,6 +285,9 @@ msgstr "Groupes lithologiques"
 msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
 msgstr "Atlas gravimétrique 1:100000"
 
+msgid "check"
+msgstr "Coche"
+
 msgid "cinema"
 msgstr "Cinéma"
 
@@ -309,6 +302,12 @@ msgstr "Intersection"
 
 msgid "datasource"
 msgstr "Source de donnée"
+
+msgid "date"
+msgstr "Date"
+
+msgid "datetime"
+msgstr "Date heure"
 
 msgid "debug"
 msgstr "Debug"
@@ -364,12 +363,6 @@ msgstr "Identifiant externe"
 msgid "kind"
 msgstr "Type"
 
-msgid "last_update_timestamp"
-msgstr "Data de mise à jours"
-
-msgid "last_update_user"
-msgstr "User"
-
 msgid "layer"
 msgstr "Couches"
 
@@ -415,21 +408,6 @@ msgstr "Véhicules"
 msgid "name"
 msgstr "Nom"
 
-msgid "name2"
-msgstr "Nom 2"
-
-msgid "name3"
-msgstr "Nom 3"
-
-msgid "name4"
-msgstr "Nom 4"
-
-msgid "name5"
-msgstr "Nom 5"
-
-msgid "name6"
-msgstr "Nom 6"
-
 msgid "natural"
 msgstr "Naturel"
 
@@ -438,9 +416,6 @@ msgstr "Pas de WFS"
 
 msgid "northArrow"
 msgstr "Fléche du nord"
-
-msgid "open"
-msgstr "Ouvert"
 
 msgid "operator"
 msgstr "Opérateur"
@@ -577,23 +552,14 @@ msgstr "Sport"
 msgid "srtm"
 msgstr "SRTM"
 
-msgid "standard application"
-msgstr "Application bureau"
-
 msgid "surface"
 msgstr "Surface"
 
 msgid "sustenance"
 msgstr "Nouriture"
 
-msgid "test"
-msgstr "Test"
-
-msgid "test2"
-msgstr "Deuxième test"
-
-msgid "timestamp"
-msgstr "Datation"
+msgid "time"
+msgstr "Temps"
 
 msgid "title"
 msgstr "Titre"
@@ -613,9 +579,6 @@ msgstr "Rond-point interne"
 msgid "two_layers"
 msgstr "Deux couches"
 
-msgid "type"
-msgstr "Type"
-
 msgid "waterway"
 msgstr "Cours d'eau"
 
@@ -630,6 +593,24 @@ msgstr "Bois"
 
 #~ msgid "Cluster_Group"
 #~ msgstr "Grappe groupe"
+
+#~ msgid "Elevation (Aster)"
+#~ msgstr "Altitude (Aster)"
+
+#~ msgid "Elevation (SRTM)"
+#~ msgstr "Altitude (SRTM)"
+
+#~ msgid "Search…"
+#~ msgstr "Recherche…"
+
+#~ msgid "Swiss grid (LV03)"
+#~ msgstr "Grille suisse (LV03)"
+
+#~ msgid "Wgs Coord."
+#~ msgstr "Coordonées WGS"
+
+#~ msgid "Wgs Coord. DMS"
+#~ msgstr "Coordonée WGS DMS"
 
 #~ msgid "aeroways10"
 #~ msgstr "Tarmac"
@@ -732,6 +713,30 @@ msgstr "Bois"
 
 #~ msgid "landuse9"
 #~ msgstr "Utilisation du sol"
+
+#~ msgid "last_update_timestamp"
+#~ msgstr "Data de mise à jours"
+
+#~ msgid "last_update_user"
+#~ msgstr "User"
+
+#~ msgid "name2"
+#~ msgstr "Nom 2"
+
+#~ msgid "name3"
+#~ msgstr "Nom 3"
+
+#~ msgid "name4"
+#~ msgstr "Nom 4"
+
+#~ msgid "name5"
+#~ msgstr "Nom 5"
+
+#~ msgid "name6"
+#~ msgstr "Nom 6"
+
+#~ msgid "open"
+#~ msgstr "Ouvert"
 
 #~ msgid "places0"
 #~ msgstr "Places"
@@ -865,8 +870,23 @@ msgstr "Bois"
 #~ msgid "roads9"
 #~ msgstr "Routes"
 
+#~ msgid "standard application"
+#~ msgstr "Application bureau"
+
 #~ msgid "standard version"
 #~ msgstr "version standard"
+
+#~ msgid "test"
+#~ msgstr "Test"
+
+#~ msgid "test2"
+#~ msgstr "Deuxième test"
+
+#~ msgid "timestamp"
+#~ msgstr "Datation"
+
+#~ msgid "type"
+#~ msgstr "Type"
 
 #~ msgid "waterarea10"
 #~ msgstr "Cours d'eau"

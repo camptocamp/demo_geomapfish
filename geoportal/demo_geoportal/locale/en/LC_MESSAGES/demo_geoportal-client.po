@@ -1,6 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
+"POT-Creation-Date: 2018-03-23 10:45+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -71,12 +72,6 @@ msgid "Edit"
 msgstr ""
 
 msgid "Editing"
-msgstr ""
-
-msgid "Elevation (Aster)"
-msgstr ""
-
-msgid "Elevation (SRTM)"
 msgstr ""
 
 msgid "Enseignement"
@@ -175,9 +170,6 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-msgid "Search…"
-msgstr ""
-
 msgid "Share this map"
 msgstr ""
 
@@ -196,9 +188,6 @@ msgstr ""
 msgid "Street View"
 msgstr ""
 
-msgid "Swiss grid (LV03)"
-msgstr ""
-
 msgid "Test aus Olten"
 msgstr ""
 
@@ -214,13 +203,12 @@ msgstr ""
 msgid "Transport"
 msgstr ""
 
-msgid "Wgs Coord."
+msgid "You must change your password"
 msgstr ""
 
-msgid "Wgs Coord. DMS"
-msgstr ""
-
-msgid "You're using the mobile application. Check out the"
+msgid ""
+"You're using the mobile application. Check out the <a href="
+"\"{{url}}\">standard application</a>."
 msgstr ""
 
 msgid "access"
@@ -292,6 +280,9 @@ msgstr "Main lithological groups"
 msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
 msgstr "Gravimetric Atlas 1:100000"
 
+msgid "check"
+msgstr "Check"
+
 msgid "cinema"
 msgstr "Cinema"
 
@@ -306,6 +297,12 @@ msgstr "Crossing"
 
 msgid "datasource"
 msgstr "Data source"
+
+msgid "date"
+msgstr "Date"
+
+msgid "datetime"
+msgstr "Date time"
 
 msgid "debug"
 msgstr "Debug"
@@ -361,12 +358,6 @@ msgstr "Internal ID"
 msgid "kind"
 msgstr "Kind"
 
-msgid "last_update_timestamp"
-msgstr "Timestamp"
-
-msgid "last_update_user"
-msgstr "User"
-
 msgid "layer"
 msgstr "Layer"
 
@@ -412,21 +403,6 @@ msgstr "Motorcar"
 msgid "name"
 msgstr "Name"
 
-msgid "name2"
-msgstr "Name 2"
-
-msgid "name3"
-msgstr "Name 3"
-
-msgid "name4"
-msgstr "Name 4"
-
-msgid "name5"
-msgstr "Name 5"
-
-msgid "name6"
-msgstr "Name 6"
-
 msgid "natural"
 msgstr "Natural"
 
@@ -435,9 +411,6 @@ msgstr "No WFS"
 
 msgid "northArrow"
 msgstr "North arrow"
-
-msgid "open"
-msgstr "Open"
 
 msgid "operator"
 msgstr "Operator"
@@ -574,23 +547,14 @@ msgstr "Sport"
 msgid "srtm"
 msgstr "SRTM"
 
-msgid "standard application"
-msgstr "Standard version"
-
 msgid "surface"
 msgstr "Surface"
 
 msgid "sustenance"
 msgstr "Sustenance"
 
-msgid "test"
-msgstr "Test"
-
-msgid "test2"
-msgstr "Second test"
-
-msgid "timestamp"
-msgstr "Timestamp"
+msgid "time"
+msgstr "Time"
 
 msgid "title"
 msgstr "Title"
@@ -609,9 +573,6 @@ msgstr "Turning circle"
 
 msgid "two_layers"
 msgstr "Two layer"
-
-msgid "type"
-msgstr "Type"
 
 msgid "waterway"
 msgstr "Waterway"
@@ -726,6 +687,30 @@ msgstr "Wood"
 
 #~ msgid "landuse9"
 #~ msgstr "Landuse"
+
+#~ msgid "last_update_timestamp"
+#~ msgstr "Timestamp"
+
+#~ msgid "last_update_user"
+#~ msgstr "User"
+
+#~ msgid "name2"
+#~ msgstr "Name 2"
+
+#~ msgid "name3"
+#~ msgstr "Name 3"
+
+#~ msgid "name4"
+#~ msgstr "Name 4"
+
+#~ msgid "name5"
+#~ msgstr "Name 5"
+
+#~ msgid "name6"
+#~ msgstr "Name 6"
+
+#~ msgid "open"
+#~ msgstr "Open"
 
 #~ msgid "places0"
 #~ msgstr "Places"
@@ -858,6 +843,21 @@ msgstr "Wood"
 
 #~ msgid "roads9"
 #~ msgstr "Roads"
+
+#~ msgid "standard application"
+#~ msgstr "Standard version"
+
+#~ msgid "test"
+#~ msgstr "Test"
+
+#~ msgid "test2"
+#~ msgstr "Second test"
+
+#~ msgid "timestamp"
+#~ msgstr "Timestamp"
+
+#~ msgid "type"
+#~ msgstr "Type"
 
 #~ msgid "waterarea10"
 #~ msgstr "Waterarea"
