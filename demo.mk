@@ -2,7 +2,7 @@ ifdef VARS_FILE
 VARS_FILES += ${VARS_FILE} vars.yaml vars_nondocker.yaml
 else
 VARS_FILE = vars_nondocker.yaml
-VARS_FILES += ${VARS_FILE}
+VARS_FILES += ${VARS_FILE} vars.yaml
 endif
 APACHE_VHOST = geomapfish-demo
 export VISIBLE_WEB_HOST=geomapfish-demo.camptocamp.com

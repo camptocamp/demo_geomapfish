@@ -168,7 +168,10 @@ vars:
       The GeoMapfish team
 
   smtp:
-    host: psemail.epfl.ch
+    host: email-smtp.eu-west-1.amazonaws.com
+    ssl: True
+    user: head -n 3 /var/sig/amazonses_smtp.txt | tail -n 1
+    password: tail -n 1 /var/sig/amazonses_smtp.txt
 
   headers:
     themes: &headers
@@ -270,6 +273,11 @@ vars:
     db:
       environment:
         POSTGRES_DB: demo_geomapfish_2_3_sdfg
+
+interpreted:
+  bash:
+    - smtp.user
+    - smtp.password
 
 update_paths:
   - shortener
