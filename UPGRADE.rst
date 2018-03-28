@@ -1,3 +1,5 @@
+The argument `--share /var/sig/` is required on most of docker-run commands.
+
 Start to create a new c2cgeoportal development release:
 https://camptocamp.github.io/c2cgeoportal/master/developer/build_release.html
 
