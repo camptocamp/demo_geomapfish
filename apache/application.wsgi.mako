@@ -4,11 +4,6 @@ import re
 import os
 from logging.config import fileConfig
 
-os.environ['SENTRY_URL'] = 'https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@sentry.camptocamp.com/14'
-os.environ['SENTRY_CLIENT_ENVIRONMENT'] = '${instanceid}'
-os.environ['SENTRY_CLIENT_RELEASE'] = '2.3'
-os.environ['SENTRY_TAG_SERVICE'] = 'wsgi'
-
 root = "${project_directory}"
 
 sys.path = ["${python_path}"] + sys.path

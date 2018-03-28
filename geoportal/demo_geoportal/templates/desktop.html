@@ -101,6 +101,10 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Street View'|translate}}">
               <span class="fa fa-street-view"></span>
             </button>
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.importDataSourceActive"
+                    data-toggle="tooltip" data-placement="left" data-original-title="{{'Import Layer'|translate}}">
+              <span class="fa fa-upload"></span>
+            </button>
           </div>
           <br/>
           <br/>
@@ -217,6 +221,17 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
               </ngeo-googlestreetview>
             </div>
           </div>
+          <div ng-show="mainCtrl.importDataSourceActive" class="row">
+            <div class="col-sm-12">
+              <div class="gmf-app-tools-content-heading">
+                {{'Import Layer'|translate}}
+                <a class="btn close" ng-click="mainCtrl.importDataSource = false">&times;</a>
+              </div>
+              <gmf-importdatasource
+                      map="mainCtrl.map">
+              </gmf-importdatasource>
+            </div>
+          </div>
         </div>
       </div>
       <div class="gmf-app-map-container" ng-class="{'gmf-app-infobar-active': mainCtrl.showInfobar}">
@@ -308,7 +323,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
             {{'You must change your password' | translate}}
           </h4>
         </div>
-        <div class="modal-body" translate>
+        <div class="modal-body">
           <gmf-authentication
             gmf-authentication-force-password-change="::true">
           </gmf-authentication>

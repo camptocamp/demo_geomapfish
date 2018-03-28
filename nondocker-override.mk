@@ -2,7 +2,7 @@
 
 DEPLOY ?= TRUE
 ENVIRONEMENT ?= INSTANCE_ID
-CONFIG_VARS += instanceid host
+CONFIG_VARS += instanceid
 MODWSGI_USER ?= www-data
 export MODWSGI_USER
 export INSTANCE_ID
@@ -73,7 +73,7 @@ geoportal-docker: \
 		node_modules/floatthead/dist/jquery.floatThead.min.js \
 		node_modules/proj4/dist/proj4.js \
 		node_modules/d3/build/d3.min.js \
-		node_modules/file-saver/FileSaver.min.js \
+		node_modules/file-saver/dist/FileSaver.min.js \
 		node_modules/corejs-typeahead/dist/typeahead.bundle.min.js \
 		node_modules/jsts/dist/jsts.min.js \
 		node_modules/moment/min/moment.min.js \

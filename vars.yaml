@@ -141,7 +141,7 @@ vars:
       - 127.0.0.1
 
   reset_password:
-    # Used to send a confirmation email
+    # Used to send a reset password email
     email_from: info@camptocamp.com
     email_subject: New password generated for GeoMapFish
     email_body: |
@@ -152,6 +152,21 @@ vars:
 
       Sincerely yours
       The GeoMapfish team
+
+  welcome_email:
+    # Used to send a welcome email for new user
+    email_from: info@camptocamp.com
+    email_subject: Welcome to GeoMapFish
+    email_body: |
+      Hello {user},
+
+      You have a new account on GeoMapFish: https://geomapfish-demo.camptocamp.com/2.3
+      Your user name is: {user}
+      Your password is: {password}
+
+      Sincerely yours
+      The GeoMapfish team
+
   smtp:
     host: psemail.epfl.ch
 
@@ -269,3 +284,4 @@ update_paths:
 no_interpreted:
   - shortener.email_body
   - reset_password.email_body
+  - welcome_email.email_body

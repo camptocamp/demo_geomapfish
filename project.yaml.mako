@@ -1,9 +1,7 @@
 ---
 project_folder: demo_geomapfish
 project_package: ${package}
-checker_url: https://localhost/${instanceid}/wsgi/c2c/health_check?
-checker_headers:
-  Host: ${host}
+checker_url: https://${host}/${instanceid}/wsgi/c2c/health_check?max_level=9
 template_vars:
   package: ${package}
   srid: ${srid}
