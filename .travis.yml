@@ -5,7 +5,7 @@ sudo: false
 addons:
   apt:
     packages:
-      - python-netifaces
+      - python3-netifaces
 
 script:
   - ./docker-run make checks
