@@ -4,7 +4,10 @@ https://camptocamp.github.io/c2cgeoportal/master/developer/build_release.html
 Do the upgrade in your home folder:
 https://camptocamp.github.io/c2cgeoportal/master/integrator/upgrade_application.html
 
-And add the argument `--share /var/sig/` to the docker-run commands.
+And add the argument `--share /var/sig/` to the `docker-run` commands.
+
+=> use the command:
+./docker-run --share=/var/sig --home make --makefile=sbrunner23.mk upgrade
 
 
 After upgrade:

@@ -10,13 +10,13 @@ Checkout
 
    git clone git@github.com:camptocamp/demo_geomapfish.git
 
+  cd demo_geomapfish
+
 Build
 -----
 
 .. code::
 
-  cd demo_geomapfish
-
-  ./docker-run make --makefile=<user.mk> build
+  ./docker-run --share=/var/sig make --makefile=<user.mk> build
 
   FINALISE=TRUE make --makefile=<user.mk> build
