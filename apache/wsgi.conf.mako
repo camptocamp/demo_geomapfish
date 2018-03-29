@@ -18,8 +18,6 @@ RewriteEngine on
 # http://code.google.com/p/modwsgi/wiki/FrequentlyAskedQuestions#Access_Control_Mechanisms
 WSGIPassAuthorization On
 
-RewriteRule ^${apache_entry_point}?$ /${instanceid}/wsgi [PT]
-RewriteRule ^${apache_entry_point}theme/(.+)$ /${instanceid}/wsgi/theme/$1 [PT]
 
 RewriteRule ^${apache_entry_point}?$ /${instanceid}/wsgi [PT]
 RewriteRule ^${apache_entry_point}/theme/(.+)$ /${instanceid}/wsgi/theme/$1 [PT]
