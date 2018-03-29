@@ -8,4 +8,8 @@ addons:
       - python3-netifaces
 
 script:
-  - ./docker-run make checks
+  - echo test >> /var/sig/amazonses_smtp.txt
+  - echo test >> /var/sig/amazonses_smtp.txt
+  - echo test >> /var/sig/amazonses_smtp.txt
+  - echo test >> /var/sig/amazonses_smtp.txt
+  - ./docker-run --share=/var/sig make --makefile=demo.mk checks
