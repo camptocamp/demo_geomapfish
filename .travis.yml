@@ -2,5 +2,10 @@
 
 sudo: false
 
+addons:
+  apt:
+    packages:
+      - python-netifaces
+
 script:
   - ./docker-run make checks
