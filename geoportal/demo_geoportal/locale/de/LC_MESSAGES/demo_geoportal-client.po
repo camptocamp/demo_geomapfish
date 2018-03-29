@@ -23,7 +23,7 @@ msgid "4 A3 landscape"
 msgstr "4 A3 Querformat"
 
 msgid "Add a layer"
-msgstr "Einen Layer hinzufügen"
+msgstr "Eine Ebene hinzufügen"
 
 msgid "Add a sub theme"
 msgstr "Unterthema hinzufügen"
@@ -44,13 +44,13 @@ msgid "Cadastre"
 msgstr "Kataster"
 
 msgid "Close"
-msgstr ""
+msgstr "Schliessen"
 
 msgid "Coordinate"
-msgstr "Koordinate"
+msgstr "Koordinaten"
 
 msgid "Demo"
-msgstr ""
+msgstr "Demo"
 
 msgid "Desktop Application"
 msgstr "Desktop-Applikation"
@@ -62,9 +62,9 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
-"Zeichnen Sie eineLinie auf der Karte um das entsprechende Höhenprofil an zu "
+"Zeichnen Sie eine Linie auf der Karte um das entsprechende Höhenprofil an zu "
 "zeigen.\n"
-"Benutzen Sie doppelklick um die Linie fertig zu zeichnen."
+"Benutzen Sie Doppelklick um die Linie fertig zu zeichnen."
 
 msgid "Draw profile line"
 msgstr "Profillinie zeichnen"
@@ -88,13 +88,13 @@ msgid "External"
 msgstr "Extern"
 
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 msgid "Filters"
-msgstr ""
+msgstr "Einfache Filter"
 
 msgid "Filters mixed"
-msgstr ""
+msgstr "Komplexe Filter"
 
 msgid "Gestion des eaux"
 msgstr "Wassermanagement"
@@ -106,13 +106,13 @@ msgid "Half query"
 msgstr "Halbe Abfrage"
 
 msgid "In order to use the editing tool, you must log in first."
-msgstr "Um das Editierwerkzeug zu benutzen müssen Sie sich zuerst anmelden"
+msgstr "Um das Editierwerkzeug zu benutzen, müssen Sie sich zuerst anmelden."
 
 msgid "Layer with very very very very very long name"
-msgstr "Ebene mit sehr sehr sehr sehr sehr langem Name"
+msgstr "Ebene mit sehr sehr sehr sehr sehr langem Namen"
 
 msgid "Layers"
-msgstr "Ebene"
+msgstr "Ebenen"
 
 msgid "Length"
 msgstr "Länge"
@@ -130,31 +130,31 @@ msgid "Measure tools"
 msgstr "Messwerkzeug"
 
 msgid "Mobile Application"
-msgstr "Mobile Applikation"
+msgstr "Mobile Anwendung"
 
 msgid "Multi-Line pas éditable mais queryable"
-msgstr ""
+msgstr "Multilinie ist nicht editierbar, aber abfragbar"
 
 msgid "Multi-Point pas éditable mais queryable"
-msgstr ""
+msgstr "Multipunkt ist nicht editierbar, aber abfragbar"
 
 msgid "Multi-Polygon Query pas éditable mais queryable"
-msgstr ""
+msgstr "Multipolygon Query ist nicht editierbar, aber abfragbar"
 
 msgid "Multi-Polygon Query2 pas éditable mais queryable"
-msgstr ""
+msgstr "Multipolygon Query2 ist nicht editierbar, aber abfragbar"
 
 msgid "OSM functions"
 msgstr "OSM Funktion"
 
 msgid "OSM functions mixed"
-msgstr "gemischte OSM Funktionen"
+msgstr "Gemischte OSM Funktionen"
 
 msgid "OSM map"
-msgstr ""
+msgstr "OSM Karte"
 
 msgid "OSM map WMS"
-msgstr ""
+msgstr "OSM Karte WMS"
 
 #, fuzzy
 msgid "ObjectEditing"
@@ -179,25 +179,25 @@ msgid "Snapping"
 msgstr "Snapping"
 
 msgid "Snapping no edge"
-msgstr "Kein Ecken snapping"
+msgstr "Kein Ecken-Snapping"
 
 msgid "Snapping no vertex"
-msgstr "kein Vertex snapping"
+msgstr "kein Vertex-Snapping"
 
 msgid "Snapping tollerance"
-msgstr "Snappingtoleranz"
+msgstr "Snapping-Toleranz"
 
 msgid "Street View"
-msgstr ""
+msgstr "Street View"
 
 msgid "Test aus Olten"
 msgstr ""
 
 msgid "Testsearchtheme"
-msgstr ""
+msgstr "Test Suchthema"
 
 msgid "Theme:"
-msgstr "Themen:"
+msgstr "Thema:"
 
 msgid "Themes"
 msgstr "Themen"
@@ -206,12 +206,14 @@ msgid "Transport"
 msgstr "Transport"
 
 msgid "You must change your password"
-msgstr ""
+msgstr "Sie müssen Ihr Passwort ändern"
 
 msgid ""
 "You're using the mobile application. Check out the <a href="
 "\"{{url}}\">standard application</a>."
 msgstr ""
+"Sie verwenden die mobile Anwendung. Hier <a href="
+"\"{{url}}\">erreichen Sie die Standardanwendung</a>."
 
 msgid "access"
 msgstr "Zugang"
@@ -241,13 +243,13 @@ msgid "background"
 msgstr "Hintergrund"
 
 msgid "bank"
-msgstr "leer"
+msgstr "Bank"
 
 msgid "barrier"
 msgstr "Barriere"
 
 msgid "bench"
-msgstr ""
+msgstr "Sitzbank"
 
 msgid "bicycle"
 msgstr "Velo"
@@ -257,7 +259,7 @@ msgstr "Marke"
 
 #, fuzzy
 msgid "buffer_stop"
-msgstr "Bushaltestelle"
+msgstr "Prellbock"
 
 msgid "building"
 msgstr "Gebäude"
@@ -284,7 +286,7 @@ msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
 msgstr "Gravimetrischer Atlas 1:100000"
 
 msgid "check"
-msgstr ""
+msgstr "Auswahl"
 
 msgid "cinema"
 msgstr "Kino"
@@ -296,31 +298,31 @@ msgid "covered"
 msgstr "bedeckt"
 
 msgid "crossing"
-msgstr ""
+msgstr "Kreuzung"
 
 msgid "datasource"
 msgstr "Datenquelle"
 
 msgid "date"
-msgstr ""
+msgstr "Datum"
 
 msgid "datetime"
-msgstr ""
+msgstr "Datum und Zeit"
 
 msgid "debug"
 msgstr "Debug"
 
 msgid "denomination"
-msgstr "Information"
+msgstr "Bezeichnung"
 
 msgid "display_name"
-msgstr "Displaynamen"
+msgstr "Anzeigename"
 
 msgid "district"
-msgstr ""
+msgstr "Bezirk"
 
 msgid "drinking_water"
-msgstr ""
+msgstr "Trinkwasser"
 
 msgid "ele"
 msgstr "ele"
@@ -335,16 +337,16 @@ msgid "foot"
 msgstr "Fuss"
 
 msgid "fountain"
-msgstr ""
+msgstr "Brunnen"
 
 msgid "fuel"
 msgstr "Tankstelle"
 
 msgid "good"
-msgstr ""
+msgstr "Gut"
 
 msgid "height"
-msgstr ""
+msgstr "Höhe"
 
 msgid "highway"
 msgstr "Autobahn"
@@ -357,7 +359,7 @@ msgstr "Information"
 
 #, fuzzy
 msgid "internal_id"
-msgstr "Extern"
+msgstr "Interne ID"
 
 msgid "kind"
 msgstr "Art"
@@ -372,31 +374,31 @@ msgid "leisure"
 msgstr "Unterhaltung"
 
 msgid "level_crossing"
-msgstr ""
+msgstr "Bahnübergang"
 
 msgid "line"
 msgstr "Linie"
 
 msgid "line snap"
-msgstr "Liniesnapping"
+msgstr "Linie-Snapping"
 
 msgid "line snap no edge"
-msgstr "Liniensnapping ohne Ecken"
+msgstr "Linien-Snapping ohne Ecken"
 
 msgid "line snap no vertex"
-msgstr "Lininesnapping ohne Vertex"
+msgstr "Linien-Snapping ohne Vertex"
 
 msgid "line snap tolerance"
-msgstr "Toleranz vom Lininesnapping"
+msgstr "Toleranz des Linien-Snappings"
 
 msgid "long wms-t layer name name name name name name name"
-msgstr ""
+msgstr "Lange WMS-T Ebenebezeichnung lang lang lang lang lang"
 
 msgid "man_made"
 msgstr "von Hand gemacht"
 
 msgid "many_attributes"
-msgstr ""
+msgstr "Viele Eigenschaften"
 
 msgid "map"
 msgstr "Karte"
@@ -405,13 +407,13 @@ msgid "motorcar"
 msgstr "Auto"
 
 msgid "name"
-msgstr "Namen"
+msgstr "Name"
 
 msgid "natural"
 msgstr "natürlich"
 
 msgid "no_wfs"
-msgstr ""
+msgstr "Kein WFS"
 
 msgid "northArrow"
 msgstr "Nordpfeil"
@@ -423,10 +425,10 @@ msgid "osm"
 msgstr "OSM"
 
 msgid "osm_id"
-msgstr "OSM zeitbezogen"
+msgstr "OSM ID"
 
 msgid "osm_open"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Offen"
 
 msgid "osm_scale"
 msgstr "OSM Skala"
@@ -436,43 +438,43 @@ msgstr "OSM Zeit"
 
 #, fuzzy
 msgid "osm_time_d_year_mounth"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitwert Jahr Monat"
 
 msgid "osm_time_r_dp"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitintervall Popup"
 
 msgid "osm_time_r_dp_2"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitintervall 2 Popup"
 
 #, fuzzy
 msgid "osm_time_r_mounth_year"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitintervall Monat Jahr"
 
 msgid "osm_time_r_s"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitintervall Zeiger"
 
 #, fuzzy
 msgid "osm_time_r_year_mounth"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitintervall Jahr Monat"
 
 msgid "osm_time_v_dp"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitwert Popup"
 
 #, fuzzy
 msgid "osm_time_v_mounth_year"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitwert Monat Jahr"
 
 msgid "osm_time_v_s"
-msgstr "OSM zeitbezogen"
+msgstr "OSM Zeitwert Zeiger"
 
 msgid "other"
-msgstr ""
+msgstr "Andere"
 
 msgid "parking"
 msgstr "Parkplatz"
 
 msgid "picnic_site"
-msgstr ""
+msgstr "Picknickplatz"
 
 msgid "place"
 msgstr "Platz"
@@ -484,10 +486,10 @@ msgid "point"
 msgstr "Punkt"
 
 msgid "point snap"
-msgstr "Punktsnapping"
+msgstr "Punkt-Snapping"
 
 msgid "point snap tolerance"
-msgstr "Toleranz vom Pubktsnapping"
+msgstr "Toleranz des Punkt-Snappings"
 
 msgid "police"
 msgstr "Polizei"
@@ -496,26 +498,26 @@ msgid "polygon"
 msgstr "Polygon"
 
 msgid "polygon snap"
-msgstr "Polygonsnapping"
+msgstr "Polygon-Snapping"
 
 msgid "polygon snap no edge"
-msgstr "Polygonsnapping ohne Ecken"
+msgstr "Polygon-Snapping ohne Ecken"
 
 msgid "polygon snap no vertex"
-msgstr "Polygonsnapping ohne Vertex"
+msgstr "Polygon-Snapping ohne Vertex"
 
 msgid "polygon snap tolerance"
-msgstr "Toleranz vom Polygonsnapping"
+msgstr "Toleranz des Polygonsnappings"
 
 msgid "population"
 msgstr "Bevölkerung"
 
 #, fuzzy
 msgid "post_box"
-msgstr "Post"
+msgstr "Postfach"
 
 msgid "post_office"
-msgstr "Post"
+msgstr "Poststelle"
 
 msgid "power"
 msgstr "Strom"
@@ -524,7 +526,7 @@ msgid "railway"
 msgstr "Eisenbahn"
 
 msgid "recycling"
-msgstr ""
+msgstr "Sammelstelle"
 
 msgid "ref"
 msgstr "ref"
@@ -533,7 +535,7 @@ msgid "religion"
 msgstr "Religion"
 
 msgid "restaurant"
-msgstr ""
+msgstr "Restaurant"
 
 msgid "scalebar"
 msgstr "Massstabsbalken"
@@ -542,16 +544,16 @@ msgid "shop"
 msgstr "Laden"
 
 msgid "short_name"
-msgstr "Kurznamen"
+msgstr "Kurzname"
 
 msgid "short_name2"
-msgstr "Kurznamen2"
+msgstr "Kurzname2"
 
 msgid "short_name3"
-msgstr "Kurznamen3"
+msgstr "Kurzname3"
 
 msgid "sport"
-msgstr "Transport"
+msgstr "Sport"
 
 msgid "srtm"
 msgstr "SRTM"
@@ -564,7 +566,7 @@ msgstr "Unterhalt"
 
 #, fuzzy
 msgid "time"
-msgstr "OSM Zeit"
+msgstr "Zeit"
 
 msgid "title"
 msgstr "Titel"
@@ -573,13 +575,13 @@ msgid "tourism"
 msgstr "Tourismus"
 
 msgid "tourism_activity"
-msgstr "Touristischeaktivität"
+msgstr "Touristische Aktivität"
 
 msgid "traffic_signals"
-msgstr ""
+msgstr "Lichtsignal"
 
 msgid "turning_circle"
-msgstr ""
+msgstr "Kreisverkehr"
 
 msgid "two_layers"
 msgstr "zwei Ebenen"
