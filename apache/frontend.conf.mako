@@ -14,3 +14,5 @@
     Header set Access-Control-Allow-Headers "Content-Type"
     Header merge Cache-Control "public"
 </LocationMatch>
+
+ProxyPreserveHost Off
