@@ -1,6 +1,6 @@
 ---
 
-sudo: false
+sudo: required
 
 addons:
   apt:
@@ -8,9 +8,9 @@ addons:
       - python3-netifaces
 
 script:
-  - mkdir -p /var/sig
-  - echo test >> /var/sig/amazonses_smtp.txt
-  - echo test >> /var/sig/amazonses_smtp.txt
-  - echo test >> /var/sig/amazonses_smtp.txt
-  - echo test >> /var/sig/amazonses_smtp.txt
+  - sudo mkdir -p /var/sig
+  - sudo echo test >> /var/sig/amazonses_smtp.txt
+  - sudo echo test >> /var/sig/amazonses_smtp.txt
+  - sudo echo test >> /var/sig/amazonses_smtp.txt
+  - sudo echo test >> /var/sig/amazonses_smtp.txt
   - ./docker-run --share=/var/sig make --makefile=demo.mk checks
