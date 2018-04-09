@@ -8,6 +8,7 @@ addons:
       - python3-netifaces
 
 script:
+  - mkdir -f /var/sig
   - echo test >> /var/sig/amazonses_smtp.txt
   - echo test >> /var/sig/amazonses_smtp.txt
   - echo test >> /var/sig/amazonses_smtp.txt
