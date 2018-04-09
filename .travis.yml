@@ -9,7 +9,7 @@ addons:
 
 script:
   - sudo mkdir -p /var/sig
-  - sudo chmod +rw /var/sig
+  - sudo chmod go+rw /var/sig
   - echo test >> /var/sig/amazonses_smtp.txt
   - echo test >> /var/sig/amazonses_smtp.txt
   - echo test >> /var/sig/amazonses_smtp.txt
