@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.3
+GEOMAPFISH_VERSION ?= 2.3.0.dev9
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -142,7 +142,7 @@ NGEO_LIBS_JS_FILES += \
 	/usr/lib/node_modules/floatthead/dist/jquery.floatThead.min.js \
 	/usr/lib/node_modules/proj4/dist/proj4.js \
 	/usr/lib/node_modules/d3/build/d3.min.js \
-	/usr/lib/node_modules/file-saver/dist/FileSaver.min.js \
+	/usr/lib/node_modules/file-saver/FileSaver.min.js \
 	/usr/lib/node_modules/corejs-typeahead/dist/typeahead.bundle.min.js \
 	/usr/lib/node_modules/jsts/dist/jsts.min.js \
 	/usr/lib/node_modules/moment/min/moment.min.js \
@@ -323,7 +323,8 @@ CONFIG_VARS += sqlalchemy.url sqlalchemy_slave.url schema schema_static enable_a
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
 	tiles_url checker check_collector default_max_age jsbuild package srid \
 	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser \
-	ogcproxy_enable dbsessions urllogin host_forward_host smtp c2c.base_path welcome_email host
+	ogcproxy_enable dbsessions urllogin host_forward_host smtp c2c.base_path welcome_email host \
+	lingua_extractor
 MAKE_FILES = $(wildcard *.mk) CONST_Makefile
 
 # Disabling Make built-in rules to speed up execution time

@@ -102,3 +102,31 @@ openlayers:
     srs: EPSG:21781
     center_x: 600000
     center_y: 200000
+
+metadata:
+    title: Some title
+    abstract: Some abstract
+    servicetype: OGC WMTS
+    keywords:
+    - some
+    - keywords
+    fees: None
+    access_constraints: None
+
+provider:
+    name: The provider name
+    url: The provider URL
+    contact:
+        name: The contact name
+        position: The position name
+        info:
+            phone:
+                voice: +41 11 222 33 44
+                fax: +41 11 222 33 44
+            address:
+                delivery: Address delivery
+                city: Berne
+                area: BE
+                postal_code: 3000
+                country: Switzerland
+                email: info@example.com
