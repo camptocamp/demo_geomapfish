@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-23 10:45+0000\n"
+"POT-Creation-Date: 2018-04-11 10:11+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -75,6 +75,12 @@ msgstr "Editieren"
 msgid "Editing"
 msgstr "Editieren"
 
+msgid "Elevation (Aster)"
+msgstr "Erhöhung (Aster)"
+
+msgid "Elevation (SRTM)"
+msgstr "Erhöhung (SRTM)"
+
 msgid "Enseignement"
 msgstr "Bildung"
 
@@ -104,6 +110,9 @@ msgstr "Gruppe"
 
 msgid "Half query"
 msgstr "Halbe Abfrage"
+
+msgid "Import Layer"
+msgstr ""
 
 msgid "In order to use the editing tool, you must log in first."
 msgstr "Um das Editierwerkzeug zu benutzen, müssen Sie sich zuerst anmelden."
@@ -190,6 +199,12 @@ msgstr "Snapping-Toleranz"
 msgid "Street View"
 msgstr "Street View"
 
+msgid "Swiss grid (LV03)"
+msgstr "Swissgrid (LV03)"
+
+msgid "Test"
+msgstr ""
+
 msgid "Test aus Olten"
 msgstr ""
 
@@ -205,6 +220,12 @@ msgstr "Themen"
 msgid "Transport"
 msgstr "Transport"
 
+msgid "Wgs Coord."
+msgstr "Wgs Koord."
+
+msgid "Wgs Coord. DMS"
+msgstr "Wgs. Koord. DMS"
+
 msgid "You must change your password"
 msgstr "Sie müssen Ihr Passwort ändern"
 
@@ -212,8 +233,8 @@ msgid ""
 "You're using the mobile application. Check out the <a href="
 "\"{{url}}\">standard application</a>."
 msgstr ""
-"Sie verwenden die mobile Anwendung. Hier <a href="
-"\"{{url}}\">erreichen Sie die Standardanwendung</a>."
+"Sie verwenden die mobile Anwendung. Hier <a href=\"{{url}}\">erreichen Sie "
+"die Standardanwendung</a>."
 
 msgid "access"
 msgstr "Zugang"
@@ -223,6 +244,33 @@ msgstr "Unterkunft"
 
 msgid "aerialway"
 msgstr "Luftwege"
+
+msgid "aeroways10"
+msgstr ""
+
+msgid "aeroways11"
+msgstr ""
+
+msgid "aeroways12"
+msgstr ""
+
+msgid "aeroways13"
+msgstr ""
+
+msgid "aeroways14"
+msgstr ""
+
+msgid "aeroways15"
+msgstr ""
+
+msgid "aeroways16"
+msgstr ""
+
+msgid "aeroways17"
+msgstr ""
+
+msgid "aeroways18"
+msgstr ""
 
 msgid "amenity"
 msgstr "Annehmlichkeit"
@@ -262,6 +310,18 @@ msgid "buffer_stop"
 msgstr "Prellbock"
 
 msgid "building"
+msgstr "Gebäude"
+
+msgid "buildings15"
+msgstr "Gebäude"
+
+msgid "buildings16"
+msgstr "Gebäude"
+
+msgid "buildings17"
+msgstr "Gebäude"
+
+msgid "buildings18"
 msgstr "Gebäude"
 
 msgid "bus_stop"
@@ -354,6 +414,9 @@ msgstr "Autobahn"
 msgid "hospitals"
 msgstr "Spital"
 
+msgid "hotel"
+msgstr ""
+
 msgid "information"
 msgstr "Information"
 
@@ -363,6 +426,51 @@ msgstr "Interne ID"
 
 msgid "kind"
 msgstr "Art"
+
+msgid "landuse10"
+msgstr ""
+
+msgid "landuse11"
+msgstr ""
+
+msgid "landuse12"
+msgstr ""
+
+msgid "landuse13"
+msgstr ""
+
+msgid "landuse14"
+msgstr ""
+
+msgid "landuse15"
+msgstr ""
+
+msgid "landuse16"
+msgstr ""
+
+msgid "landuse17"
+msgstr ""
+
+msgid "landuse18"
+msgstr ""
+
+msgid "landuse4"
+msgstr ""
+
+msgid "landuse5"
+msgstr ""
+
+msgid "landuse6"
+msgstr ""
+
+msgid "landuse7"
+msgstr ""
+
+msgid "landuse8"
+msgstr ""
+
+msgid "landuse9"
+msgstr ""
 
 msgid "layer"
 msgstr "Ebene"
@@ -409,6 +517,21 @@ msgstr "Auto"
 msgid "name"
 msgstr "Name"
 
+msgid "name2"
+msgstr "Name 2"
+
+msgid "name3"
+msgstr "Name 3"
+
+msgid "name4"
+msgstr "Name 4"
+
+msgid "name5"
+msgstr "Name 5"
+
+msgid "name6"
+msgstr "Name 6"
+
 msgid "natural"
 msgstr "natürlich"
 
@@ -417,6 +540,9 @@ msgstr "Kein WFS"
 
 msgid "northArrow"
 msgstr "Nordpfeil"
+
+msgid "open"
+msgstr "offen"
 
 msgid "operator"
 msgstr "Betreiber"
@@ -436,9 +562,15 @@ msgstr "OSM Skala"
 msgid "osm_time"
 msgstr "OSM Zeit"
 
-#, fuzzy
+msgid "osm_time2"
+msgstr "OSM Zeit 2"
+
 msgid "osm_time_d_year_mounth"
 msgstr "OSM Zeitwert Jahr Monat"
+
+#, fuzzy
+msgid "osm_time_mount_year"
+msgstr "OSM Zeitintervall Monat Jahr"
 
 msgid "osm_time_r_dp"
 msgstr "OSM Zeitintervall Popup"
@@ -467,6 +599,9 @@ msgstr "OSM Zeitwert Monat Jahr"
 msgid "osm_time_v_s"
 msgstr "OSM Zeitwert Zeiger"
 
+msgid "osm_time_year_mounth"
+msgstr "OSM Zeit Jahr Monat"
+
 msgid "other"
 msgstr "Andere"
 
@@ -481,6 +616,63 @@ msgstr "Platz"
 
 msgid "place_of_worship"
 msgstr "Kultstätte"
+
+msgid "places0"
+msgstr "Platz"
+
+msgid "places1"
+msgstr "Platz"
+
+msgid "places10"
+msgstr "Platz"
+
+msgid "places11"
+msgstr "Platz"
+
+msgid "places12"
+msgstr "Platz"
+
+msgid "places13"
+msgstr "Platz"
+
+msgid "places14"
+msgstr "Platz"
+
+msgid "places15"
+msgstr "Platz"
+
+msgid "places16"
+msgstr "Platz"
+
+msgid "places17"
+msgstr "Platz"
+
+msgid "places18"
+msgstr "Platz"
+
+msgid "places2"
+msgstr "Platz"
+
+msgid "places3"
+msgstr "Platz"
+
+msgid "places4"
+msgstr "Platz"
+
+msgid "places5"
+msgstr "Platz"
+
+msgid "places6"
+msgstr "Platz"
+
+msgid "places7"
+msgstr "Platz"
+
+msgid "places8"
+msgstr "Platz"
+
+msgid "places9"
+msgstr "Platz"
 
 msgid "point"
 msgstr "Punkt"
@@ -525,6 +717,39 @@ msgstr "Strom"
 msgid "railway"
 msgstr "Eisenbahn"
 
+msgid "railways10"
+msgstr "Eisenbahn"
+
+msgid "railways11"
+msgstr "Eisenbahn"
+
+msgid "railways12"
+msgstr "Eisenbahn"
+
+msgid "railways13"
+msgstr "Eisenbahn"
+
+msgid "railways14"
+msgstr "Eisenbahn"
+
+msgid "railways15"
+msgstr "Eisenbahn"
+
+msgid "railways16"
+msgstr "Eisenbahn"
+
+msgid "railways17"
+msgstr "Eisenbahn"
+
+msgid "railways18"
+msgstr "Eisenbahn"
+
+msgid "railways8"
+msgstr "Eisenbahn"
+
+msgid "railways9"
+msgstr "Eisenbahn"
+
 msgid "recycling"
 msgstr "Sammelstelle"
 
@@ -536,6 +761,48 @@ msgstr "Religion"
 
 msgid "restaurant"
 msgstr "Restaurant"
+
+msgid "roads10"
+msgstr ""
+
+msgid "roads11"
+msgstr ""
+
+msgid "roads12"
+msgstr ""
+
+msgid "roads13"
+msgstr ""
+
+msgid "roads14"
+msgstr ""
+
+msgid "roads15"
+msgstr ""
+
+msgid "roads16"
+msgstr ""
+
+msgid "roads17"
+msgstr ""
+
+msgid "roads18"
+msgstr ""
+
+msgid "roads5"
+msgstr ""
+
+msgid "roads6"
+msgstr ""
+
+msgid "roads7"
+msgstr ""
+
+msgid "roads8"
+msgstr ""
+
+msgid "roads9"
+msgstr ""
 
 msgid "scalebar"
 msgstr "Massstabsbalken"
@@ -568,6 +835,9 @@ msgstr "Unterhalt"
 msgid "time"
 msgstr "Zeit"
 
+msgid "timestamp"
+msgstr "Zeitstempel"
+
 msgid "title"
 msgstr "Titel"
 
@@ -586,17 +856,98 @@ msgstr "Kreisverkehr"
 msgid "two_layers"
 msgstr "zwei Ebenen"
 
+msgid "type"
+msgstr "Typ"
+
+msgid "waterarea10"
+msgstr "Wasserweg"
+
+msgid "waterarea11"
+msgstr "Wasserweg"
+
+msgid "waterarea12"
+msgstr "Wasserweg"
+
+msgid "waterarea13"
+msgstr "Wasserweg"
+
+msgid "waterarea14"
+msgstr "Wasserweg"
+
+msgid "waterarea15"
+msgstr "Wasserweg"
+
+msgid "waterarea16"
+msgstr "Wasserweg"
+
+msgid "waterarea17"
+msgstr "Wasserweg"
+
+msgid "waterarea18"
+msgstr "Wasserweg"
+
+msgid "waterarea4"
+msgstr "Wasserweg"
+
+msgid "waterarea5"
+msgstr "Wasserweg"
+
+msgid "waterarea6"
+msgstr "Wasserweg"
+
+msgid "waterarea7"
+msgstr "Wasserweg"
+
+msgid "waterarea8"
+msgstr "Wasserweg"
+
+msgid "waterarea9"
+msgstr "Wasserweg"
+
 msgid "waterway"
+msgstr "Wasserweg"
+
+msgid "waterways10"
+msgstr "Wasserweg"
+
+msgid "waterways11"
+msgstr "Wasserweg"
+
+msgid "waterways12"
+msgstr "Wasserweg"
+
+msgid "waterways13"
+msgstr "Wasserweg"
+
+msgid "waterways14"
+msgstr "Wasserweg"
+
+msgid "waterways15"
+msgstr "Wasserweg"
+
+msgid "waterways16"
+msgstr "Wasserweg"
+
+msgid "waterways17"
+msgstr "Wasserweg"
+
+msgid "waterways18"
+msgstr "Wasserweg"
+
+msgid "waterways6"
+msgstr "Wasserweg"
+
+msgid "waterways7"
+msgstr "Wasserweg"
+
+msgid "waterways8"
+msgstr "Wasserweg"
+
+msgid "waterways9"
 msgstr "Wasserweg"
 
 msgid "wood"
 msgstr "Holz"
-
-#~ msgid "Elevation (Aster)"
-#~ msgstr "Erhöhung (Aster)"
-
-#~ msgid "Elevation (SRTM)"
-#~ msgstr "Erhöhung (SRTM)"
 
 #~ msgid "OSM"
 #~ msgstr "OSM"
@@ -604,23 +955,11 @@ msgstr "Holz"
 #~ msgid "Search…"
 #~ msgstr "Suche..."
 
-#~ msgid "Swiss grid (LV03)"
-#~ msgstr "Swissgrid (LV03)"
-
-#~ msgid "Wgs Coord."
-#~ msgstr "Wgs Koord."
-
-#~ msgid "Wgs Coord. DMS"
-#~ msgstr "Wgs. Koord. DMS"
-
 #~ msgid "last_update_timestamp"
 #~ msgstr "zuletzt aktualisierter Zeitstempel"
 
 #~ msgid "last_update_user"
 #~ msgstr "zuletzt aktualisierter Nutzer"
-
-#~ msgid "open"
-#~ msgstr "offen"
 
 #, fuzzy
 #~ msgid "standard application"
@@ -631,9 +970,3 @@ msgstr "Holz"
 
 #~ msgid "test2"
 #~ msgstr "Test2"
-
-#~ msgid "timestamp"
-#~ msgstr "Zeitstempel"
-
-#~ msgid "type"
-#~ msgstr "Typ"

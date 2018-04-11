@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-23 10:45+0000\n"
+"POT-Creation-Date: 2018-04-11 10:11+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -77,6 +77,12 @@ msgstr "Edition"
 msgid "Editing"
 msgstr "Edition"
 
+msgid "Elevation (Aster)"
+msgstr "Altitude (Aster)"
+
+msgid "Elevation (SRTM)"
+msgstr "Altitude (SRTM)"
+
 msgid "Enseignement"
 msgstr "Enseignement"
 
@@ -106,6 +112,9 @@ msgstr "Groupe"
 
 msgid "Half query"
 msgstr "Partiellement interogable"
+
+msgid "Import Layer"
+msgstr "Import une couche"
 
 msgid "In order to use the editing tool, you must log in first."
 msgstr "Pour pouvoir éditer vous devez d'abord être connecté."
@@ -191,8 +200,14 @@ msgstr "Magnétisme avec tollérance"
 msgid "Street View"
 msgstr "Street View"
 
+msgid "Swiss grid (LV03)"
+msgstr "Grille suisse (LV03)"
+
+msgid "Test"
+msgstr "Test"
+
 msgid "Test aus Olten"
-msgstr ""
+msgstr "Test sur Olten"
 
 msgid "Testsearchtheme"
 msgstr "Test recherche theme"
@@ -206,15 +221,21 @@ msgstr "Thèmes"
 msgid "Transport"
 msgstr "Transport"
 
-msgid "You must change your password"
-msgstr ""
+msgid "Wgs Coord."
+msgstr "Coordonées WGS"
 
-#, fuzzy
+msgid "Wgs Coord. DMS"
+msgstr "Coordonée WGS DMS"
+
+msgid "You must change your password"
+msgstr "Vous devez changer votre mot de passe"
+
 msgid ""
 "You're using the mobile application. Check out the <a href="
 "\"{{url}}\">standard application</a>."
-msgstr "Vous utilisez la version mobile. Passer à l'<a href="
-"\"{{url}}\">application standard</a>."
+msgstr ""
+"Vous utilisez l'application mobile. Passer à l'<a href=\"{{url}}\">application "
+"standard</a>."
 
 msgid "access"
 msgstr "Accès"
@@ -224,6 +245,33 @@ msgstr "Hébergement"
 
 msgid "aerialway"
 msgstr "Remontée méchanique"
+
+msgid "aeroways10"
+msgstr "Tarmac"
+
+msgid "aeroways11"
+msgstr "Tarmac"
+
+msgid "aeroways12"
+msgstr "Tarmac"
+
+msgid "aeroways13"
+msgstr "Tarmac"
+
+msgid "aeroways14"
+msgstr "Tarmac"
+
+msgid "aeroways15"
+msgstr "Tarmac"
+
+msgid "aeroways16"
+msgstr "Tarmac"
+
+msgid "aeroways17"
+msgstr "Tarmac"
+
+msgid "aeroways18"
+msgstr "Tarmac"
 
 msgid "amenity"
 msgstr "Equipements"
@@ -263,6 +311,18 @@ msgstr "Arrêt tempon"
 
 msgid "building"
 msgstr "Batiment"
+
+msgid "buildings15"
+msgstr "Batiments"
+
+msgid "buildings16"
+msgstr "Batiments"
+
+msgid "buildings17"
+msgstr "Batiments"
+
+msgid "buildings18"
+msgstr "Batiments"
 
 msgid "bus_stop"
 msgstr "Arrêt de bus"
@@ -354,6 +414,9 @@ msgstr "Routes"
 msgid "hospitals"
 msgstr "Hôpitaux"
 
+msgid "hotel"
+msgstr "Hôtels"
+
 msgid "information"
 msgstr "Informations"
 
@@ -362,6 +425,51 @@ msgstr "Identifiant externe"
 
 msgid "kind"
 msgstr "Type"
+
+msgid "landuse10"
+msgstr "Utilisation du sol"
+
+msgid "landuse11"
+msgstr "Utilisation du sol"
+
+msgid "landuse12"
+msgstr "Utilisation du sol"
+
+msgid "landuse13"
+msgstr "Utilisation du sol"
+
+msgid "landuse14"
+msgstr "Utilisation du sol"
+
+msgid "landuse15"
+msgstr "Utilisation du sol"
+
+msgid "landuse16"
+msgstr "Utilisation du sol"
+
+msgid "landuse17"
+msgstr "Utilisation du sol"
+
+msgid "landuse18"
+msgstr "Utilisation du sol"
+
+msgid "landuse4"
+msgstr "Utilisation du sol"
+
+msgid "landuse5"
+msgstr "Utilisation du sol"
+
+msgid "landuse6"
+msgstr "Utilisation du sol"
+
+msgid "landuse7"
+msgstr "Utilisation du sol"
+
+msgid "landuse8"
+msgstr "Utilisation du sol"
+
+msgid "landuse9"
+msgstr "Utilisation du sol"
 
 msgid "layer"
 msgstr "Couches"
@@ -408,6 +516,21 @@ msgstr "Véhicules"
 msgid "name"
 msgstr "Nom"
 
+msgid "name2"
+msgstr "Nom 2"
+
+msgid "name3"
+msgstr "Nom 3"
+
+msgid "name4"
+msgstr "Nom 4"
+
+msgid "name5"
+msgstr "Nom 5"
+
+msgid "name6"
+msgstr "Nom 6"
+
 msgid "natural"
 msgstr "Naturel"
 
@@ -416,6 +539,9 @@ msgstr "Pas de WFS"
 
 msgid "northArrow"
 msgstr "Fléche du nord"
+
+msgid "open"
+msgstr "Ouvert"
 
 msgid "operator"
 msgstr "Opérateur"
@@ -435,8 +561,16 @@ msgstr "Échelles OSM"
 msgid "osm_time"
 msgstr "Temps OSM"
 
+#, fuzzy
+msgid "osm_time2"
+msgstr "Temps OSM"
+
 msgid "osm_time_d_year_mounth"
 msgstr "Temps OSM caleur année mois"
+
+#, fuzzy
+msgid "osm_time_mount_year"
+msgstr "Temps OSM interval mois année"
 
 msgid "osm_time_r_dp"
 msgstr "Temps OSM popup interval"
@@ -462,6 +596,10 @@ msgstr "Temps OSM valeur mois année"
 msgid "osm_time_v_s"
 msgstr "Temps OSM curseur valeur"
 
+#, fuzzy
+msgid "osm_time_year_mounth"
+msgstr "Temps OSM caleur année mois"
+
 msgid "other"
 msgstr "Autres"
 
@@ -476,6 +614,63 @@ msgstr "Place"
 
 msgid "place_of_worship"
 msgstr "Lieux de culte"
+
+msgid "places0"
+msgstr "Places"
+
+msgid "places1"
+msgstr "Places"
+
+msgid "places10"
+msgstr "Places"
+
+msgid "places11"
+msgstr "Places"
+
+msgid "places12"
+msgstr "Places"
+
+msgid "places13"
+msgstr "Places"
+
+msgid "places14"
+msgstr "Places"
+
+msgid "places15"
+msgstr "Places"
+
+msgid "places16"
+msgstr "Places"
+
+msgid "places17"
+msgstr "Places"
+
+msgid "places18"
+msgstr "Places"
+
+msgid "places2"
+msgstr "Places"
+
+msgid "places3"
+msgstr "Places"
+
+msgid "places4"
+msgstr "Places"
+
+msgid "places5"
+msgstr "Places"
+
+msgid "places6"
+msgstr "Places"
+
+msgid "places7"
+msgstr "Places"
+
+msgid "places8"
+msgstr "Places"
+
+msgid "places9"
+msgstr "Places"
 
 msgid "point"
 msgstr "Point"
@@ -519,6 +714,39 @@ msgstr "Energie"
 msgid "railway"
 msgstr "Chemins de fer"
 
+msgid "railways10"
+msgstr "Voies ferrées"
+
+msgid "railways11"
+msgstr "Voies ferrées"
+
+msgid "railways12"
+msgstr "Voies ferrées"
+
+msgid "railways13"
+msgstr "Voies ferrées"
+
+msgid "railways14"
+msgstr "Voies ferrées"
+
+msgid "railways15"
+msgstr "Voies ferrées"
+
+msgid "railways16"
+msgstr "Voies ferrées"
+
+msgid "railways17"
+msgstr "Voies ferrées"
+
+msgid "railways18"
+msgstr "Voies ferrées"
+
+msgid "railways8"
+msgstr "Voies ferrées"
+
+msgid "railways9"
+msgstr "Voies ferrées"
+
 msgid "recycling"
 msgstr "Recyclage"
 
@@ -530,6 +758,48 @@ msgstr "Religion"
 
 msgid "restaurant"
 msgstr "Restaurants"
+
+msgid "roads10"
+msgstr "Routes"
+
+msgid "roads11"
+msgstr "Routes"
+
+msgid "roads12"
+msgstr "Routes"
+
+msgid "roads13"
+msgstr "Routes"
+
+msgid "roads14"
+msgstr "Routes"
+
+msgid "roads15"
+msgstr "Routes"
+
+msgid "roads16"
+msgstr "Routes"
+
+msgid "roads17"
+msgstr "Routes"
+
+msgid "roads18"
+msgstr "Routes"
+
+msgid "roads5"
+msgstr "Routes"
+
+msgid "roads6"
+msgstr "Routes"
+
+msgid "roads7"
+msgstr "Routes"
+
+msgid "roads8"
+msgstr "Routes"
+
+msgid "roads9"
+msgstr "Routes"
 
 msgid "scalebar"
 msgstr "Barre d'échelle"
@@ -561,6 +831,9 @@ msgstr "Nouriture"
 msgid "time"
 msgstr "Temps"
 
+msgid "timestamp"
+msgstr "Datation"
+
 msgid "title"
 msgstr "Titre"
 
@@ -579,7 +852,94 @@ msgstr "Rond-point interne"
 msgid "two_layers"
 msgstr "Deux couches"
 
+msgid "type"
+msgstr "Type"
+
+msgid "waterarea10"
+msgstr "Cours d'eau"
+
+msgid "waterarea11"
+msgstr "Cours d'eau"
+
+msgid "waterarea12"
+msgstr "Cours d'eau"
+
+msgid "waterarea13"
+msgstr "Cours d'eau"
+
+msgid "waterarea14"
+msgstr "Cours d'eau"
+
+msgid "waterarea15"
+msgstr "Cours d'eau"
+
+msgid "waterarea16"
+msgstr "Cours d'eau"
+
+msgid "waterarea17"
+msgstr "Cours d'eau"
+
+msgid "waterarea18"
+msgstr "Cours d'eau"
+
+msgid "waterarea4"
+msgstr "Cours d'eau"
+
+msgid "waterarea5"
+msgstr "Cours d'eau"
+
+msgid "waterarea6"
+msgstr "Cours d'eau"
+
+msgid "waterarea7"
+msgstr "Cours d'eau"
+
+msgid "waterarea8"
+msgstr "Cours d'eau"
+
+msgid "waterarea9"
+msgstr "Cours d'eau"
+
 msgid "waterway"
+msgstr "Cours d'eau"
+
+msgid "waterways10"
+msgstr "Cours d'eau"
+
+msgid "waterways11"
+msgstr "Cours d'eau"
+
+msgid "waterways12"
+msgstr "Cours d'eau"
+
+msgid "waterways13"
+msgstr "Cours d'eau"
+
+msgid "waterways14"
+msgstr "Cours d'eau"
+
+msgid "waterways15"
+msgstr "Cours d'eau"
+
+msgid "waterways16"
+msgstr "Cours d'eau"
+
+msgid "waterways17"
+msgstr "Cours d'eau"
+
+msgid "waterways18"
+msgstr "Cours d'eau"
+
+msgid "waterways6"
+msgstr "Cours d'eau"
+
+msgid "waterways7"
+msgstr "Cours d'eau"
+
+msgid "waterways8"
+msgstr "Cours d'eau"
+
+msgid "waterways9"
 msgstr "Cours d'eau"
 
 msgid "wood"
@@ -594,62 +954,8 @@ msgstr "Bois"
 #~ msgid "Cluster_Group"
 #~ msgstr "Grappe groupe"
 
-#~ msgid "Elevation (Aster)"
-#~ msgstr "Altitude (Aster)"
-
-#~ msgid "Elevation (SRTM)"
-#~ msgstr "Altitude (SRTM)"
-
 #~ msgid "Search…"
 #~ msgstr "Recherche…"
-
-#~ msgid "Swiss grid (LV03)"
-#~ msgstr "Grille suisse (LV03)"
-
-#~ msgid "Wgs Coord."
-#~ msgstr "Coordonées WGS"
-
-#~ msgid "Wgs Coord. DMS"
-#~ msgstr "Coordonée WGS DMS"
-
-#~ msgid "aeroways10"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways11"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways12"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways13"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways14"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways15"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways16"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways17"
-#~ msgstr "Tarmac"
-
-#~ msgid "aeroways18"
-#~ msgstr "Tarmac"
-
-#~ msgid "buildings15"
-#~ msgstr "Batiments"
-
-#~ msgid "buildings16"
-#~ msgstr "Batiments"
-
-#~ msgid "buildings17"
-#~ msgstr "Batiments"
-
-#~ msgid "buildings18"
-#~ msgstr "Batiments"
 
 #~ msgid "cafe"
 #~ msgstr "Café"
@@ -666,209 +972,11 @@ msgstr "Bois"
 #~ msgid "filters"
 #~ msgstr "Filtres"
 
-#~ msgid "hotel"
-#~ msgstr "Hôtels"
-
-#~ msgid "landuse10"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse11"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse12"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse13"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse14"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse15"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse16"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse17"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse18"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse4"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse5"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse6"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse7"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse8"
-#~ msgstr "Utilisation du sol"
-
-#~ msgid "landuse9"
-#~ msgstr "Utilisation du sol"
-
 #~ msgid "last_update_timestamp"
 #~ msgstr "Data de mise à jours"
 
 #~ msgid "last_update_user"
 #~ msgstr "User"
-
-#~ msgid "name2"
-#~ msgstr "Nom 2"
-
-#~ msgid "name3"
-#~ msgstr "Nom 3"
-
-#~ msgid "name4"
-#~ msgstr "Nom 4"
-
-#~ msgid "name5"
-#~ msgstr "Nom 5"
-
-#~ msgid "name6"
-#~ msgstr "Nom 6"
-
-#~ msgid "open"
-#~ msgstr "Ouvert"
-
-#~ msgid "places0"
-#~ msgstr "Places"
-
-#~ msgid "places1"
-#~ msgstr "Places"
-
-#~ msgid "places10"
-#~ msgstr "Places"
-
-#~ msgid "places11"
-#~ msgstr "Places"
-
-#~ msgid "places12"
-#~ msgstr "Places"
-
-#~ msgid "places13"
-#~ msgstr "Places"
-
-#~ msgid "places14"
-#~ msgstr "Places"
-
-#~ msgid "places15"
-#~ msgstr "Places"
-
-#~ msgid "places16"
-#~ msgstr "Places"
-
-#~ msgid "places17"
-#~ msgstr "Places"
-
-#~ msgid "places18"
-#~ msgstr "Places"
-
-#~ msgid "places2"
-#~ msgstr "Places"
-
-#~ msgid "places3"
-#~ msgstr "Places"
-
-#~ msgid "places4"
-#~ msgstr "Places"
-
-#~ msgid "places5"
-#~ msgstr "Places"
-
-#~ msgid "places6"
-#~ msgstr "Places"
-
-#~ msgid "places7"
-#~ msgstr "Places"
-
-#~ msgid "places8"
-#~ msgstr "Places"
-
-#~ msgid "places9"
-#~ msgstr "Places"
-
-#~ msgid "railways10"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways11"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways12"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways13"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways14"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways15"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways16"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways17"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways18"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways8"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "railways9"
-#~ msgstr "Voies ferrées"
-
-#~ msgid "roads10"
-#~ msgstr "Routes"
-
-#~ msgid "roads11"
-#~ msgstr "Routes"
-
-#~ msgid "roads12"
-#~ msgstr "Routes"
-
-#~ msgid "roads13"
-#~ msgstr "Routes"
-
-#~ msgid "roads14"
-#~ msgstr "Routes"
-
-#~ msgid "roads15"
-#~ msgstr "Routes"
-
-#~ msgid "roads16"
-#~ msgstr "Routes"
-
-#~ msgid "roads17"
-#~ msgstr "Routes"
-
-#~ msgid "roads18"
-#~ msgstr "Routes"
-
-#~ msgid "roads5"
-#~ msgstr "Routes"
-
-#~ msgid "roads6"
-#~ msgstr "Routes"
-
-#~ msgid "roads7"
-#~ msgstr "Routes"
-
-#~ msgid "roads8"
-#~ msgstr "Routes"
-
-#~ msgid "roads9"
-#~ msgstr "Routes"
 
 #~ msgid "standard application"
 #~ msgstr "Application bureau"
@@ -881,96 +989,6 @@ msgstr "Bois"
 
 #~ msgid "test2"
 #~ msgstr "Deuxième test"
-
-#~ msgid "timestamp"
-#~ msgstr "Datation"
-
-#~ msgid "type"
-#~ msgstr "Type"
-
-#~ msgid "waterarea10"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea11"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea12"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea13"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea14"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea15"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea16"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea17"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea18"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea4"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea5"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea6"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea7"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea8"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterarea9"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways10"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways11"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways12"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways13"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways14"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways15"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways16"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways17"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways18"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways6"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways7"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways8"
-#~ msgstr "Cours d'eau"
-
-#~ msgid "waterways9"
-#~ msgstr "Cours d'eau"
 
 #~ msgid "zoo"
 #~ msgstr "Zoo"
