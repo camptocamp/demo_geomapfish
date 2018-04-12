@@ -139,9 +139,6 @@ vars:
         - testgmf.sig.cloud.camptocamp.net
         - geomapfish-demo.camptocamp.net
         - fredj.github.io
-        - pgiraud.github.io
-        - ger-benjamin.github.io
-        - tsauerwein.github.io
         - ger-benjamin.github.io
         - marionb.github.io
         - adube.github.io
@@ -173,9 +170,6 @@ vars:
             - https://testgmf.sig.cloud.camptocamp.net
             - https://geomapfish-demo.camptocamp.net
             - https://fredj.github.io
-            - https://pgiraud.github.io
-            - https://ger-benjamin.github.io
-            - https://tsauerwein.github.io
             - https://ger-benjamin.github.io
             - https://marionb.github.io
             - https://adube.github.io
@@ -207,9 +201,6 @@ vars:
             - https://testgmf.sig.cloud.camptocamp.net
             - https://geomapfish-demo.camptocamp.net
             - https://fredj.github.io
-            - https://pgiraud.github.io
-            - https://ger-benjamin.github.io
-            - https://tsauerwein.github.io
             - https://ger-benjamin.github.io
             - https://marionb.github.io
             - https://adube.github.io
@@ -220,13 +211,7 @@ vars:
 
     authorized_referers:
     - https://camptocamp.github.io/
-    - https://gmf-test.sig.cloud.camptocamp.net/
-    - https://testgmf.sig.cloud.camptocamp.net/
-    - https://geomapfish-demo.camptocamp.net/
     - https://fredj.github.io/
-    - https://pgiraud.github.io/
-    - https://ger-benjamin.github.io/
-    - https://tsauerwein.github.io/
     - https://ger-benjamin.github.io/
     - https://marionb.github.io/
     - https://adube.github.io/
@@ -270,3 +255,4 @@ update_paths:
 - checker.defaults
 - admin_interface.available_functionalities
 - functionalities.available_in_templates
+- authorized_referers
