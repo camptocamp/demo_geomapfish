@@ -231,9 +231,6 @@ vars:
 
   authorized_referers:
     - https://camptocamp.github.io/
-    - https://gmf-test.sig.cloud.camptocamp.net/
-    - https://testgmf.sig.cloud.camptocamp.net/
-    - https://geomapfish-demo.camptocamp.com/
     - https://fredj.github.io/
     - https://pgiraud.github.io/
     - https://ger-benjamin.github.io/
@@ -290,6 +287,7 @@ update_paths:
   - admin_interface.available_functionalities
   - functionalities.available_in_templates
   - docker_services.db.environment
+  - authorized_referers
 
 no_interpreted:
   - shortener.email_body
