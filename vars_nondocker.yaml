@@ -9,14 +9,23 @@ vars:
   modwsgi_user: '{MODWSGI_USER}'
   dbhost: '{DOCKER_HOST_}'
   dbhost_slave: '{DOCKER_HOST_}'
-  adrs4: "' '.join([__import__('netifaces').ifaddresses(iface)[2][0]['addr'] \
+  adrs4: "' '.join(['{}/{}'.format(__import__('netifaces').ifaddresses(iface)[2][0]['addr'], \
+    __import__('netifaces').ifaddresses(iface)[2][0]['netmask']) \
     for iface in __import__('netifaces').interfaces() if 2 in __import__('netifaces').ifaddresses(iface)])"
-  adrs6: "' '.join([__import__('netifaces').ifaddresses(iface)[10][0]['addr'].split('%')[0] \
+  adrs6: "' '.join(['{}/{}'.format(__import__('netifaces').ifaddresses(iface)[10][0]['addr'].split('%')[0], \
+    __import__('netifaces').ifaddresses(iface)[10][0]['netmask']) \
     for iface in __import__('netifaces').interfaces() if 10 in __import__('netifaces').ifaddresses(iface)])"
   mapserv_allow: |
     Allow from {ADDRESSES} {adrs4} {adrs6}
     Require ip {ADDRESSES} {adrs4} {adrs6}
   waitress_port: 5000
+
+  # used for the "node_modules" and "closure" static views
+  closure_library_path: 'process.stdout.write("{project_directory}" +
+    require("@camptocamp/closure-util").getLibraryPath().substring(4))'
+  node_modules_path: "{project_directory}{ps}node_modules"
+  app_path: '{project_directory}'
+
   node_modules_path: "{project_directory}{ps}node_modules"
   tinyowsproxy:
     tinyows_url: http://localhost/{instanceid}/tinyows
@@ -64,6 +73,11 @@ interpreted:
   python:
     - adrs4
     - adrs6
+  node:
+    vars:
+      - closure_library_path
+    cmd: ["node", "-e"]
+    ignore_error: true
 
 update_paths:
   - checker.phantomjs

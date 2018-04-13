@@ -8,6 +8,8 @@ from demo_geoportal.resources import Root
 
 
 def main(global_config, **settings):
+    del global_config  # Unused
+
     """
     This function returns a Pyramid WSGI application.
     """
