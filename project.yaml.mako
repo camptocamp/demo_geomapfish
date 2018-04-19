@@ -1,8 +1,7 @@
 ---
 project_folder: demo_geomapfish
 project_package: ${package}
-host: ${host}
-checker_path: /c2c/health_check?
+checker_url: https://${host}${entry_point}c2c/health_check?max_level=9
 template_vars:
   package: ${package}
   srid: ${srid}
@@ -10,17 +9,18 @@ template_vars:
   apache_vhost: demo_geomapfish
 managed_files: []
 unmanaged_files:
-  - geoportal/demo_geoportal/static-ngeo/js/demomodule.js
-  - geoportal/demo_geoportal/static-ngeo/js/desktop.js
-  - geoportal/demo_geoportal/static-ngeo/js/mobile.js
-  - geoportal/demo_geoportal/static-ngeo/less/desktop.less
-  - geoportal/demo_geoportal/static-ngeo/less/mobile.less
-  - geoportal/demo_geoportal/templates/desktop.html
-  - geoportal/demo_geoportal/templates/mobile.html
-  - geoportal/demo_geoportal/templates/api/api.js
-  - geoportal/demo_geoportal/templates/api/apihelp.html
-  - geoportal/demo_geoportal/templates/api/mapconfig.js
-  - geoportal/demo_geoportal/templates/api/xapi.js
-  - geoportal/demo_geoportal/templates/api/xapihelp.html
-  - geoportal/demo_geoportal/static-ngeo/components/README.md
+  - geoportal/demo_geoportal/static-ngeo/js/demomodule\.js
+  - geoportal/demo_geoportal/static-ngeo/js/desktop\.js
+  - geoportal/demo_geoportal/static-ngeo/js/mobile\.js
+  - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
+  - geoportal/demo_geoportal/static-ngeo/less/mobile\.less
+  - geoportal/demo_geoportal/static-ngeo/components/contextualdata/contextualdata\.html
+  - geoportal/demo_geoportal/templates/desktop\.html
+  - geoportal/demo_geoportal/templates/mobile\.html
+  - geoportal/demo_geoportal/templates/api/api\.js
+  - geoportal/demo_geoportal/templates/api/apihelp\.html
+  - geoportal/demo_geoportal/templates/api/mapconfig\.js
+  - geoportal/demo_geoportal/templates/api/xapi\.js
+  - geoportal/demo_geoportal/templates/api/xapihelp\.html
+  - geoportal/demo_geoportal/static-ngeo/components/README\.md
   - print/print-apps/demo/.*
