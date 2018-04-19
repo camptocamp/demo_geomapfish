@@ -31,7 +31,7 @@ services:
 % endif
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver
+    image: camptocamp/qgis-server:bugfix_owslib
     volumes_from:
       - config:ro
 
