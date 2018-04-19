@@ -8,7 +8,6 @@ template_vars:
   extent: 489246, 78873, 837119, 296543
   apache_vhost: demo_geomapfish
 managed_files:
-  - vars_nondocker\.yaml
   - deploy/deploy\.cfg\.mako
   - apache/application\.wsgi\.mako
 unmanaged_files:
