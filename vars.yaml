@@ -1,6 +1,6 @@
 ---
 
-extends: CONST_vars.yaml
+extends: vars_nondocker.yaml
 
 vars:
   srid: 21781
@@ -272,6 +272,10 @@ vars:
     db:
       environment:
         POSTGRES_DB: demo_geomapfish_2_3_sdfg
+
+  deploy:
+    code_source: /var/www/vhosts/geomapfish-demo/private/demo_geomapfish/
+    code_destination: /var/www/vhosts/geomapfish-demo/private/demo_geomapfish/
 
 interpreted:
   bash:

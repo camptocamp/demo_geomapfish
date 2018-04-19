@@ -1,10 +1,12 @@
 ---
 
-extends: vars.yaml
+extends: CONST_vars.yaml
 
 vars:
   instance: '{INSTANCE_ID}'
   instanceid: '{instance}'
+  python_path: "{project_directory}/.build/venv/lib/python{EXTERNAL_PYTHON_VERSION_MAJOR}.\
+    {EXTERNAL_PYTHON_VERSION_MINOR}/site-packages"
   apache_entry_point: '{entry_point}'
   modwsgi_user: '{MODWSGI_USER}'
   dbhost: '{DOCKER_HOST_}'
@@ -12,11 +14,9 @@ vars:
   adrs4: "' '.join(['{}/{}'.format(__import__('netifaces').ifaddresses(iface)[2][0]['addr'], \
     __import__('netifaces').ifaddresses(iface)[2][0]['netmask']) \
     for iface in __import__('netifaces').interfaces() if 2 in __import__('netifaces').ifaddresses(iface)])"
-  adrs6: "' '.join([__import__('netifaces').ifaddresses(iface)[10][0]['addr'].split('%')[0] \
+  adrs6: "' '.join(['{}/{}'.format(__import__('netifaces').ifaddresses(iface)[10][0]['addr'].split('%')[0], \
+    __import__('netifaces').ifaddresses(iface)[10][0]['netmask'].split('/')[-1]) \
     for iface in __import__('netifaces').interfaces() if 10 in __import__('netifaces').ifaddresses(iface)])"
-#  adrs6: "' '.join(['{}/{}'.format(__import__('netifaces').ifaddresses(iface)[10][0]['addr'].split('%')[0], \
-#    __import__('netifaces').ifaddresses(iface)[10][0]['netmask']) \
-#    for iface in __import__('netifaces').interfaces() if 10 in __import__('netifaces').ifaddresses(iface)])"
   mapserv_allow: |
     Allow from {ADDRESSES} {adrs4} {adrs6}
     Require ip {ADDRESSES} {adrs4} {adrs6}
@@ -28,7 +28,6 @@ vars:
   node_modules_path: "{project_directory}{ps}node_modules"
   app_path: '{project_directory}'
 
-  node_modules_path: "{project_directory}{ps}node_modules"
   tinyowsproxy:
     tinyows_url: http://localhost/{instanceid}/tinyows
   print_url: http://localhost:8080/print-{instanceid}/print/{package}
@@ -67,10 +66,6 @@ vars:
       - display: Main
         url: '{web_protocol}://{host}/{instanceid}/wsgi'
 
-  deploy:
-    code_source: /var/www/vhosts/geomapfish-demo/private/demo_geomapfish/
-    code_destination: /var/www/vhosts/geomapfish-demo/private/demo_geomapfish/
-
 interpreted:
   python:
     - adrs4
@@ -104,3 +99,5 @@ environment:
   - TINYOWS_URL
   - MAPSERVER_URL
   - PRINT_URL
+  - EXTERNAL_PYTHON_VERSION_MAJOR
+  - EXTERNAL_PYTHON_VERSION_MINOR

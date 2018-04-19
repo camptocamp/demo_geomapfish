@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.3.0rc1
+GEOMAPFISH_VERSION ?= 2.3.0.dev13
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -44,6 +44,23 @@ DOCKER_BASE ?= camptocamp/demo
 export DOCKER_BASE
 DOCKER_TAG ?= latest
 export DOCKER_TAG
+
+PGHOST ?= localhost
+export PGHOST
+PGHOST_SLAVE ?= localhost
+export PGHOST_SLAVE
+PGPORT ?= 5432
+export PGPORT
+PGUSER ?= www-data
+export PGUSER
+PGPASSWORD ?= www-data
+export PGPASSWORD
+PGDATABASE ?= geomapfish
+export PGDATABASE
+PGSCHEMA ?= main
+export PGSCHEMA
+PGSCHEMA_STATIC ?= main_static
+export PGSCHEMA_STATIC
 
 DEFAULT_WEB_RULE += $(JSBUILD_OUTPUT_FILES) $(CSS_CGXP_OUTPUT)
 ifneq ($(NGEO_INTERFACES), "")
@@ -432,7 +449,7 @@ clean-all-cache: cleanall
 .PHONY: theme2fts
 theme2fts: /build/requirements.timestamp geoportal/config.yaml \
 		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).mo, $(LANGUAGES)))
-	theme2fts
+	$(VENV_BIN)/python /usr/local/bin/theme2fts
 
 .PHONY: flake8
 flake8:
@@ -501,7 +518,7 @@ geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX
 		lingua-client.cfg $(I18N_DEPENDENCIES) $(I18N_SOURCE_FILES)
 	$(PRERULE_CMD)
 	rm -f $@ # Because of WindowsError, thus only problematic on Windows
-	pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
+	$(VENV_BIN)/python /usr/local/bin/pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
 	chmod go+r $@
 
 .PHONY: update-po
@@ -670,6 +687,8 @@ endif
 
 geoportal/$(PACKAGE)_geoportal/static/lib/cgxp/: cgxp_revision
 	$(PRERULE_CMD)
+	# Sometimes we have an empty directory
+	rmdir $@ || true
 	if [ ! -e $@ ]; then git clone $(CGXP_GIT_ARGS) $(CGXP_GIT_REMOTE) $@; fi
 	cd $@ && git fetch
 	cd $@ && git reset --hard $(shell cat $<)
@@ -788,7 +807,7 @@ upgrade: project.yaml
 	c2cupgrade $(UPGRADE_ARGS)
 
 .PHONY: upgrade%
-upgrade%: project.yaml
+upgrade%:
 	c2cupgrade $(UPGRADE_ARGS) --step $*
 
 # Tilecloud chain

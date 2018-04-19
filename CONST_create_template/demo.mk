@@ -1,14 +1,13 @@
 ifdef VARS_FILE
 VARS_FILES += ${VARS_FILE} vars_nondocker.yaml vars.yaml
 else
-VARS_FILE = vars_nondocker.yaml
-VARS_FILES += ${VARS_FILE} vars.yaml
+VARS_FILE = vars.yaml
+VARS_FILES += ${VARS_FILE} vars_nondocker.yaml
 endif
-
-INSTANCE_ID ?= main
 
 # The hostname use in the browser to open the application
 APACHE_VHOST ?= demo_geomapfish
+INSTANCE_ID ?= demo
 TILECLOUD_CHAIN ?= TRUE
 
 # Deploy branch
