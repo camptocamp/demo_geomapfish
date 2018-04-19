@@ -1,13 +1,17 @@
-FROM camptocamp/geomapfish-build:${geomapfish_version}
+FROM tianon/true:latest
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
-COPY . /app
-WORKDIR /app
+COPY mapserver /etc/mapserver
+VOLUME /etc/mapserver
 
-ARG GIT_HASH
+#COPY qgisserver /project
+#VOLUME /project
 
-RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=/app/ && \
-    c2cwsgiutils_genversion.py $GIT_HASH
+COPY mapcache /mapcache
+VOLUME /mapcache
 
-ENTRYPOINT []
-CMD ["c2cwsgiutils_run"]
+COPY tilegeneration /tilecloudchain
+VOLUME /tilecloudchain
+
+COPY print/print-apps /usr/local/tomcat/webapps/ROOT/print-apps
+VOLUME /usr/local/tomcat/webapps/ROOT/print-apps
