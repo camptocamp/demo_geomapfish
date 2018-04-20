@@ -1,4 +1,0 @@
-FROM tianon/true
-
-COPY . /etc/nginx/cond.d
-VOLUME /etc/nginx/cond.d
