@@ -8,11 +8,14 @@ goog.provide('demo.mobile.Controller');
 
 goog.require('demo');
 goog.require('gmf.controllers.AbstractMobileController');
-/** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG2056');
-/** @suppress {extraRequire} */
 goog.require('ngeo.proj.EPSG21781');
 goog.require('ol');
+
+demo.mobile.module = angular.module('AppMobile', [
+  demo.module.name,
+  gmf.controllers.AbstractMobileController.module.name,
+]);
 
 
 /**
@@ -44,19 +47,13 @@ demo.mobile.Controller = function($scope, $injector) {
   ];
 
   /**
-   * @type {number}
-   * @export
-   */
-  this.searchDelay = 50;
-
-  /**
    * @type {Array.<string>}
    * @export
    */
-  this.searchCoordinatesProjections = ['EPSG:21781', 'EPSG:2056', 'EPSG:4326'];
+  this.searchCoordinatesProjections = [ngeo.proj.EPSG21781, ngeo.proj.EPSG2056, 'EPSG:4326'];
 
 };
 ol.inherits(demo.mobile.Controller, gmf.controllers.AbstractMobileController);
 
 
-demo.module.controller('MobileController', demo.mobile.Controller);
+demo.mobile.module.controller('MobileController', demo.mobile.Controller);

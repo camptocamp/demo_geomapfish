@@ -1,6 +1,13 @@
-GEOMAPFISH_VERSION ?= 2.3
+GEOMAPFISH_VERSION ?= 2.3.0.dev13
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
+
+VISIBLE_WEB_HOST ?= example.com
+VISIBLE_WEB_PROTOCOL ?= https
+VISIBLE_ENTRY_POINT ?= /
+export VISIBLE_WEB_HOST
+export VISIBLE_WEB_PROTOCOL
+export VISIBLE_ENTRY_POINT
 
 MAPSERVER ?= TRUE
 
@@ -9,7 +16,6 @@ PRERULE_CMD ?= @echo "Build \033[1;34m$@\033[0m due modification on \033[1;34m$?
 endif
 
 VENV_BIN ?= /build/venv/bin
-HOME_DIR ?= $(HOME)/
 # Use TileCloud chain
 TILECLOUD_CHAIN ?= TRUE
 TILECLOUD_CHAIN_LOCAL ?= FALSE
@@ -39,6 +45,23 @@ export DOCKER_BASE
 DOCKER_TAG ?= latest
 export DOCKER_TAG
 
+PGHOST ?= localhost
+export PGHOST
+PGHOST_SLAVE ?= localhost
+export PGHOST_SLAVE
+PGPORT ?= 5432
+export PGPORT
+PGUSER ?= www-data
+export PGUSER
+PGPASSWORD ?= www-data
+export PGPASSWORD
+PGDATABASE ?= geomapfish
+export PGDATABASE
+PGSCHEMA ?= main
+export PGSCHEMA
+PGSCHEMA_STATIC ?= main_static
+export PGSCHEMA_STATIC
+
 DEFAULT_WEB_RULE += $(JSBUILD_OUTPUT_FILES) $(CSS_CGXP_OUTPUT)
 ifneq ($(NGEO_INTERFACES), "")
 DEFAULT_WEB_RULE += $(NGEO_OUTPUT_FILES)
@@ -46,8 +69,8 @@ CLIENT_CHECK_RULE ?= lint-ngeo
 endif
 WEB_RULE ?= $(DEFAULT_WEB_RULE)
 
-DEFAULT_BUILD_RULES ?= /build/geoportal-docker.timestamp \
-	/build/config-docker.timestamp \
+DEFAULT_BUILD_RULES ?= docker-build-geoportal \
+	docker-build-config \
 	project.yaml \
 	alembic.ini \
 	alembic.yaml \
@@ -59,6 +82,7 @@ WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-$(ENVIRONEMENT).xml
 export WMTSCAPABILITIES_PATH
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 WMTSCAPABILITIES_FILE ?= /var/sig/tiles/$(WMTSCAPABILITIES_PATH)
+MAPCACHE_FILE ?= mapcache/mapcache.xml
 DEFAULT_BUILD_RULES += tilegeneration/config.yaml
 ifeq ($(TILECLOUD_CHAIN_LOCAL), TRUE)
 DEFAULT_BUILD_RULES += $(WMTSCAPABILITIES_FILE)
@@ -67,11 +91,8 @@ endif
 
 
 # Make rules
-ifeq ($(TILECLOUD_CHAIN), TRUE)
-DEFAULT_BUILD_RULES += tilegeneration/config.yaml
-endif
 ifeq (${DEVELOPMENT}, TRUE)
-DEFAULT_BUILD_RULES += /build/testdb-docker.timestamp
+DEFAULT_BUILD_RULES += docker-build-testdb
 endif
 
 BUILD_RULES ?= $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_RULES))
@@ -83,34 +104,46 @@ GIT_REMOTE ?= origin
 GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH ?= $(shell git rev-parse HEAD)
 
-# ngeo
+# $(NGEO_PACKAGE)
+ES6 ?= FALSE
+ifeq ($(ES6), FALSE)
+NGEO_PACKAGE = ngeo
+else
+NGEO_PACKAGE = ngeo-es6
+endif
 ANGULAR_VERSION = 1.6
 APP_OUTPUT_DIR = geoportal/$(PACKAGE)_geoportal/static-ngeo/build
-GCC_JS_FILES = $(shell find /usr/lib/node_modules/openlayers/src/ol /usr/lib/node_modules/ngeo/src /usr/lib/node_modules/ol-cesium/src -type f -name '*.js' 2> /dev/null)
+GCC_JS_FILES = $(shell find /usr/lib/node_modules/openlayers/src/ol /usr/lib/node_modules/$(NGEO_PACKAGE)/src /usr/lib/node_modules/ol-cesium/src -type f -name '*.js' 2> /dev/null)
 APP_JS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components -type f -name '*.js' 2> /dev/null)
 APP_JS_MAKO_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components $(FIND_OPTS) -name "*.js.mako" -print 2> /dev/null)
 APP_JS_JINJA_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components $(FIND_OPTS) -name "*.js.jinja" -print 2> /dev/null)
 APP_JS_FILES +=  $(APP_JS_MAKO_FILES:.mako=) $(APP_JS_JINJA_FILES:.jinja=)
+ifneq ($(ES6), FALSE)
+APP_HTML_FILES += $(addprefix geoportal/$(PACKAGE)_geoportal/static-ngeo/js/apps/, $(addsuffix .html, $(NGEO_INTERFACES)))
+APP_DIRECTIVES_PARTIALS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/partials geoportal/$(PACKAGE)_geoportal/static-ngeo/js -type f -name '*.html' 2> /dev/null)
+else
 APP_HTML_FILES += $(addprefix geoportal/$(PACKAGE)_geoportal/templates/, $(addsuffix .html, $(NGEO_INTERFACES)))
-NGEO_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 /usr/lib/node_modules/ngeo/src/directives/partials/*.html 2> /dev/null)
-GMF_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 /usr/lib/node_modules/ngeo/contribs/gmf/src/directives/partials/*.html 2> /dev/null)
+NGEO_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 /usr/lib/node_modules/$(NGEO_PACKAGE)/src/directives/partials/*.html 2> /dev/null)
+GMF_DIRECTIVES_PARTIALS_FILES = $(shell ls -1 /usr/lib/node_modules/$(NGEO_PACKAGE)/contribs/gmf/src/directives/partials/*.html 2> /dev/null)
 APP_DIRECTIVES_PARTIALS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/components geoportal/$(PACKAGE)_geoportal/static-ngeo/partials geoportal/$(PACKAGE)_geoportal/static-ngeo/js -type f -name '*.html' 2> /dev/null)
+endif
 LESS_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/less geoportal/$(PACKAGE)_geoportal/static-ngeo/components -type f -name '*.less' 2> /dev/null)
 NGEO_GMF_FONTS = $(addprefix geoportal/$(PACKAGE)_geoportal/static-ngeo/fonts/gmf-icons, .woff .ttf .eot)
 NGEO_FONTAWESOME_FONTS = $(addprefix geoportal/$(PACKAGE)_geoportal/static-ngeo/fonts/fontawesome-webfont, .woff .woff2 .ttf .eot)
 NGEO_FONTS = $(NGEO_GMF_FONTS) $(NGEO_FONTAWESOME_FONTS)
 JSON_CLIENT_LOCALISATION_FILES = $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .json, $(LANGUAGES)))
-L10N_CLIENT_POSTFIX=client
-L10N_SERVER_POSTFIX=server
+L10N_CLIENT_POSTFIX ?= client
+L10N_SERVER_POSTFIX ?= server
 CLIENT_LOCALISATION_RULES = $(addprefix /build/lang-client-, $(LANGUAGES))
 ANGULAR_LOCALES_FILES = $(addprefix $(APP_OUTPUT_DIR)/angular-locale_, $(addsuffix .js, $(LANGUAGES)))
+NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
+	$(ANGULAR_LOCALES_FILES)
+ifeq ($(ES6), FALSE)
 NGEO_OUTPUT_JS_INTERFACES_FILES = $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .js, $(NGEO_INTERFACES)))
 NGEO_OUTPUT_CSS_INTERFACES_FILES = $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .css, $(NGEO_INTERFACES)))
-NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
-	$(APP_OUTPUT_DIR)/templatecache.js \
-	$(NGEO_OUTPUT_JS_INTERFACES_FILES) \
+NGEO_OUTPUT_FILES += $(NGEO_OUTPUT_JS_INTERFACES_FILES) \
 	$(NGEO_OUTPUT_CSS_INTERFACES_FILES) \
-	$(ANGULAR_LOCALES_FILES)
+	$(APP_OUTPUT_DIR)/templatecache.js
 NGEO_LIBS_JS_FILES += \
 	/usr/lib/node_modules/jquery/dist/jquery.min.js \
 	/usr/lib/node_modules/angular/angular.min.js \
@@ -131,9 +164,12 @@ NGEO_LIBS_JS_FILES += \
 	/usr/lib/node_modules/jsts/dist/jsts.min.js \
 	/usr/lib/node_modules/moment/min/moment.min.js \
 	/usr/lib/node_modules/url-polyfill/url-polyfill.min.js \
-	/usr/lib/node_modules/ngeo/third-party/jquery-ui/jquery-ui.min.js \
-	/usr/lib/node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js
-NGEO_PROJECT_LIBS_JS_FILES ?=
+	/usr/lib/node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js \
+	/usr/lib/node_modules/$(NGEO_PACKAGE)/third-party/jquery-ui/jquery-ui.min.js \
+	/usr/lib/node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js
+else
+NGEO_OUTPUT_FILES += .build/apps.timestamp
+endif
 
 # i18n
 I18N_SOURCE_FILES += $(APP_HTML_FILES) \
@@ -142,7 +178,7 @@ I18N_SOURCE_FILES += $(APP_HTML_FILES) \
 	geoportal/config.yaml
 # The theme from the database
 I18N_SOURCE_FILES += geoportal/development.ini
-I18N_DEPENDENCIES += project.yaml
+I18N_DEPENDENCIES += project.yaml /build/requirements.timestamp
 
 
 # CGXP
@@ -273,7 +309,8 @@ else
 CSS_XAPI_FILES := $(DEFAULT_CSS_XAPI_FILES)
 endif
 
-VALIDATE_PY_FOLDERS = geoportal/$(PACKAGE)_geoportal/*.py geoportal/$(PACKAGE)_geoportal/lib \
+VALIDATE_PY_FOLDERS = admin/$(PACKAGE)_admin \
+	geoportal/$(PACKAGE)_geoportal/*.py geoportal/$(PACKAGE)_geoportal/lib \
 	geoportal/$(PACKAGE)_geoportal/scripts geoportal/$(PACKAGE)_geoportal/views
 VALIDATE_PY_TEST_FOLDERS = geoportal/$(PACKAGE)_geoportal/tests
 
@@ -282,7 +319,7 @@ SPHINX_FILES = $(shell find doc -name "*.rst" -print)
 
 # Server localisation
 ifdef CGXP_INTERFACES
-SERVER_LOCALISATION_SOURCES_FILES += geopoertal/$(PACKAGE)_geoportal/models.py $(shell find geoportal/$(PACKAGE)_geoportal/templates -type f -name '*.html')
+SERVER_LOCALISATION_SOURCES_FILES += geoportal/$(PACKAGE)_geoportal/models.py $(shell find geoportal/$(PACKAGE)_geoportal/templates -type f -name '*.html')
 SERVER_LOCALISATION_RULES = $(addprefix /build/lang-server-, $(LANGUAGES))
 endif
 
@@ -304,7 +341,8 @@ CONFIG_VARS += sqlalchemy.url sqlalchemy_slave.url schema schema_static enable_a
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
 	tiles_url checker check_collector default_max_age jsbuild package srid \
 	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser \
-	ogcproxy_enable dbsessions urllogin host_forward_host smtp
+	ogcproxy_enable dbsessions urllogin host_forward_host smtp c2c.base_path welcome_email host \
+	lingua_extractor
 MAKE_FILES = $(wildcard *.mk) CONST_Makefile
 
 # Disabling Make built-in rules to speed up execution time
@@ -316,6 +354,7 @@ help:
 	@echo
 	@echo  "Main targets:"
 	@echo
+	@echo  "- docker-build   	Pull all the needed Docker images, build all (Outside Docker)"
 	@echo  "- build			Build and configure the project"
 	@echo  "- checks		Perform a number of checks on the code"
 	@echo  "- serve			Run the development server (Pserve)"
@@ -328,10 +367,8 @@ help:
 	@echo  "- update		Update and clean the project (Git, Node, Pip)"
 	@echo  "- upgrade-db		Upgrade the database to the latest version"
 	@echo  "- upgrade		Launch the upgrade process"
-	@echo
-	@echo  "Deploy branch target:"
-	@echo
-	@echo  "- theme2fts		Inport the theme in the full-text search"
+	@echo  "- theme2fts		Import the theme in the full-text search"
+	@echo  "- update-po		Update the localisations files"
 
 ifdef UTILITY_HELP
 	@echo $(UTILITY_HELP)
@@ -349,18 +386,32 @@ ifdef SECONDARY_HELP
 endif
 	@echo
 
+.PHONY: docker-build
+docker-build:
+	docker pull camptocamp/geomapfish-build:${MAJOR_VERSION}
+	for image in `find -name Dockerfile -o -name Dockerfile.mako | xargs grep --no-filename FROM | awk '{print $$2}' | sort -u`; do docker pull $$image; done
+	./docker-run make build
+
 .PHONY: build
 build: $(BUILD_RULES)
 
 .PHONY: checks
-checks: flake8 $(CLIENT_CHECK_RULE) $(NGEO_OUTPUT_JS_INTERFACES_FILES) $(NGEO_OUTPUT_CSS_INTERFACES_FILES) \
-	git-attributes yamllint
+checks: flake8 $(CLIENT_CHECK_RULE)	git-attributes yamllint
+ifeq ($(ES6), FALSE)
+checks: $(NGEO_OUTPUT_JS_INTERFACES_FILES) $(NGEO_OUTPUT_CSS_INTERFACES_FILES)
+else
+checks: .build/apps.timestamp
+endif
 
 .PHONY: git-attributes
 git-attributes:
 	git --no-pager diff --check `git log --oneline | tail -1 | cut --fields=1 --delimiter=' '`
 
-YAML_FILES ?= $(filter-out ./tilegeneration/config.yaml ./geoportal/config.yaml ./alembic.yaml,$(shell find -name .build -prune -or -name cgxp -prune -or \( -name "*.yml" -or -name "*.yaml" \) -print))
+YAML_FILES ?= $(filter-out ./tilegeneration/config.yaml ./geoportal/config.yaml ./alembic.yaml,$(shell find \
+	-name .build -prune -or \
+	-name cgxp -prune -or \
+	-name node_modules -prune -or \
+	\( -name "*.yml" -or -name "*.yaml" \) -print))
 .PHONY: yamllint
 yamllint: $(YAML_FILES)
 	yamllint --strict --config-file=yamllint.yaml -s $(YAML_FILES)
@@ -368,13 +419,15 @@ yamllint: $(YAML_FILES)
 .PHONY: clean
 clean: template-clean
 	rm --recursive --force /build/*.timestamp \
-		mapcache/mapcache.xml apache/tiles.conf \
-		mapserver/mapserver.map \
+		$(MAPCACHE_FILE) \
 		$(OUTPUT_DIR)/ \
 		$(APP_OUTPUT_DIR)/ \
 		geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)-*.pot \
 		alembic.yaml \
-		.UPGRADE*
+		.UPGRADE* \
+		mapcache \
+		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).mo, $(LANGUAGES))) \
+		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).mo, $(LANGUAGES)))
 ifeq ($(TILECLOUD_CHAIN_LOCAL), TRUE)
 	rm --force $(WMTSCAPABILITIES_FILE)
 endif
@@ -390,12 +443,13 @@ clean-all: clean
 
 .PHONY: clean-all-cache
 clean-all-cache: cleanall
-	rm  --recursive --force $(HOME_DIR).npm \
-		$(HOME_DIR).cache/pip
+	rm  --recursive --force $(HOME)/.npm \
+		$(HOME)/.cache/pip
 
 .PHONY: theme2fts
-theme2fts: $(CLIENT_LOCALISATION_RULES)
-	theme2fts
+theme2fts: /build/requirements.timestamp geoportal/config.yaml \
+		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).mo, $(LANGUAGES)))
+	$(VENV_BIN)/python /usr/local/bin/theme2fts
 
 .PHONY: flake8
 flake8:
@@ -420,7 +474,7 @@ upgrade-db: alembic.ini alembic.yaml
 
 .PHONY: template-clean
 template-clean:
-	rm --force .build/c2ctemplate-cache.json \
+	rm --force /build/c2ctemplate-cache.json \
 		$(ALL_MAKO_FILES:.mako=) \
 		$(ALL_JINJA_FILES:.jinja=) \
 		geoportal/config.yaml
@@ -452,14 +506,11 @@ geoportal/config.yaml: /build/c2ctemplate-cache.json
 
 .PRECIOUS: geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).pot
 geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).pot: \
-		lingua-server.cfg \
+		lingua-server.cfg /build/requirements.timestamp \
 		$(SERVER_LOCALISATION_SOURCES_FILES)
 	$(PRERULE_CMD)
 	rm -f $@ # Because of WindowsError, thus only problematic on Windows
 	pot-create --keyword _ --config $< --output $@ $(SERVER_LOCALISATION_SOURCES_FILES) || true
-	# removes the always changed date line
-	[ ! -f $@ ] || sed -i '/^"POT-Creation-Date: /d' $@
-	[ ! -f $@ ] || sed -i '/^"PO-Revision-Date: /d' $@
 	[ ! -f $@ ] || chmod go+r $@
 
 .PRECIOUS: geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).pot
@@ -467,41 +518,33 @@ geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX
 		lingua-client.cfg $(I18N_DEPENDENCIES) $(I18N_SOURCE_FILES)
 	$(PRERULE_CMD)
 	rm -f $@ # Because of WindowsError, thus only problematic on Windows
-	pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
-	# removes the always changed date line
-	sed -i '/^"POT-Creation-Date: /d' $@
-	sed -i '/^"PO-Revision-Date: /d' $@
+	$(VENV_BIN)/python /usr/local/bin/pot-create --config $< --output $@ $(I18N_SOURCE_FILES)
 	chmod go+r $@
 
 .PHONY: update-po
 update-po: \
-	$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).po, $(LANGUAGES))) \
-	$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po, $(LANGUAGES)))
+	$(CLIENT_LOCALISATION_RULES) \
+	$(SERVER_LOCALISATION_RULES)
 
-.PRECIOUS: geoportal/$(PACKAGE)_geoportal/locale/%/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).po
-geoportal/$(PACKAGE)_geoportal/locale/%/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).po: \
+.PRECIOUS: /build/lang-server-%
+/build/lang-server-%: \
 		geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).pot
 	$(PRERULE_CMD)
 	mkdir --parent geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/
-	[ -f $@ ] || [ ! -f $< ] || msginit --no-translator --input=$< --output-file=$@ -l $*
-	touch --no-create $@
-	[ ! -f $< ] || msgmerge --backup=none --update --sort-output --no-location $@ $<
-	touch /build/lang-server-$*
+	[ -f geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).po ] || [ ! -f $< ] || msginit --no-translator --input=$< --output-file=geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).po -l $*
+	touch --no-create geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).po
+	[ ! -f $< ] || msgmerge --backup=none --update --sort-output --no-location geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).po $<
+	touch geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).po
 
-.PRECIOUS: geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po
-geoportal/$(PACKAGE)_geoportal/locale/%/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po: \
+.PRECIOUS: /build/lang-client-%
+/build/lang-client-%: \
 		geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).pot
 	$(PRERULE_CMD)
 	mkdir --parent geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/
-	[ -f $@ ] || msginit --no-translator --input=$< --output-file=$@ -l $*
-	touch --no-create $@
-	msgmerge --backup=none --update --sort-output --no-location $@ $<
-	touch /build/lang-client-$*
-
-.PRECIOUS: /build/lang-%
-/build/lang-%:
-	$(PRERULE_CMD)
-	touch $@
+	[ -f geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po ] || msginit --no-translator --input=$< --output-file=geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po -l $*
+	touch --no-create geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po
+	msgmerge --backup=none --update --sort-output --no-location geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po $<
+	touch geoportal/$(PACKAGE)_geoportal/locale/$*/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po
 
 .PRECIOUS: %.mo
 %.mo: %.po
@@ -515,7 +558,8 @@ geoportal/$(PACKAGE)_geoportal/locale/%/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_
 build-ngeo: $(NGEO_OUTPUT_FILES)
 
 .PRECIOUS: $(APP_OUTPUT_DIR)/%.json
-$(APP_OUTPUT_DIR)/%.json: /build/lang-client-% \
+$(APP_OUTPUT_DIR)/%.json: \
+		geoportal/$(PACKAGE)_geoportal/locale/%/LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).po \
 		/opt/c2cgeoportal_geoportal/c2cgeoportal_geoportal/locale/%/LC_MESSAGES/gmf.po \
 		/opt/c2cgeoportal_geoportal/c2cgeoportal_geoportal/locale/%/LC_MESSAGES/ngeo.po
 	$(PRERULE_CMD)
@@ -528,19 +572,21 @@ $(APP_OUTPUT_DIR)/%.json: /build/lang-client-% \
 /opt/c2cgeoportal_geoportal/c2cgeoportal_geoportal/locale/en/LC_MESSAGES/%.po:
 	echo "Nothing to do for $@"
 
-$(APP_OUTPUT_DIR)/angular-locale_%.js: /usr/lib/node_modules/ngeo/github_versions language_mapping
+$(APP_OUTPUT_DIR)/angular-locale_%.js: /usr/lib/node_modules/$(NGEO_PACKAGE)/github_versions language_mapping
 	mkdir --parent $(dir $@)
 	rm --force $@
 	cp /opt/angular-locale/angular-locale_`(grep $* language_mapping || echo $*) | cut --delimiter = --fields 2 | tr --delete '\r\n'`.js $@
 
+ifeq ($(ES6), FALSE)
 $(APP_OUTPUT_DIR)/%.js: /build/%.js $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES)
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
 	awk 'FNR==1{print ""}1' $(NGEO_LIBS_JS_FILES) $(NGEO_PROJECT_LIBS_JS_FILES) $< > $@
 	sed -i '/^\/\/# sourceMappingURL=.*\.map$$/d' $@
+endif
 
 .PRECIOUS: geoportal/$(PACKAGE)_geoportal/static-ngeo/fonts/gmf-icons.%
-geoportal/$(PACKAGE)_geoportal/static-ngeo/fonts/gmf-icons.%: /usr/lib/node_modules/ngeo/contribs/gmf/fonts/gmf-icons.%
+geoportal/$(PACKAGE)_geoportal/static-ngeo/fonts/gmf-icons.%: /usr/lib/node_modules/$(NGEO_PACKAGE)/contribs/gmf/fonts/gmf-icons.%
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
 	cp $< $@
@@ -551,6 +597,7 @@ geoportal/$(PACKAGE)_geoportal/static-ngeo/fonts/fontawesome-webfont.%: /usr/lib
 	mkdir --parent $(dir $@)
 	cp $< $@
 
+ifeq ($(ES6), FALSE)
 $(APP_OUTPUT_DIR)/%.css: \
 		geoportal/$(PACKAGE)_geoportal/static-ngeo/less/%.less \
 		$(LESS_FILES) \
@@ -559,19 +606,27 @@ $(APP_OUTPUT_DIR)/%.css: \
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
 	lessc $(LESS_ARGS) $< $@
+endif
 
-$(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/ngeo/third-party/jquery-ui/images/
+ifeq ($(ES6), FALSE)
+$(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/$(NGEO_PACKAGE)/third-party/jquery-ui/images/
+else
+$(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/jquery-ui/themes/base/images
+endif
+	$(PRERULE_CMD)
 	mkdir --parent $@
 	cp -r $</* $@
 
+ifeq ($(ES6), FALSE)
+
 .PRECIOUS: /build/%.json
-/build/%.json: /usr/lib/node_modules/ngeo/buildtools/mako_build.json
+/build/%.json: /usr/lib/node_modules/$(NGEO_PACKAGE)/buildtools/mako_build.json
 	$(PRERULE_CMD)
 	PYTHONIOENCODING=UTF-8 mako-render \
 		--var 'src=geoportal/$(PACKAGE)_geoportal/static-ngeo/js/*.js,geoportal/$(PACKAGE)_geoportal/static-ngeo/components/**/*.js' \
 		--var src_set=contribs_gmf \
 		--var entry_point=$(PACKAGE).$*.Controller \
-		--var ngeo_folder=/usr/lib/node_modules/ngeo/ \
+		--var ngeo_folder=/usr/lib/node_modules/$(NGEO_PACKAGE)/ \
 		$(MAKO_BUILD_ARGS) \
 		--var generate_exports=true $< | \
 		sed 's/\.build\/externs/\/opt\/googleclosurecompiler-externs/g' | \
@@ -586,7 +641,7 @@ $(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/ngeo/third-party/jquery-ui/imag
 		/opt/googleclosurecompiler-externs/angular-$(ANGULAR_VERSION)-http-promise_templated.js \
 		/opt/googleclosurecompiler-externs/jquery-1.9.js
 	$(PRERULE_CMD)
-	node /usr/lib/node_modules/ngeo/buildtools/build.js --config=$< --output=$@
+	node /usr/lib/node_modules/$(NGEO_PACKAGE)/buildtools/build.js --config=$< --output=$@
 
 $(APP_OUTPUT_DIR)/templatecache.js: /build/gmftemplatecache.js
 	$(PRERULE_CMD)
@@ -594,18 +649,33 @@ $(APP_OUTPUT_DIR)/templatecache.js: /build/gmftemplatecache.js
 	cp $< $@
 
 .PRECIOUS: /build/gmftemplatecache.js
-/build/gmftemplatecache.js: /usr/lib/node_modules/ngeo/buildtools/templatecache.mako.js \
+/build/gmftemplatecache.js: /usr/lib/node_modules/$(NGEO_PACKAGE)/buildtools/templatecache.mako.js \
 		$(APP_DIRECTIVES_PARTIALS_FILES) \
 		$(GMF_DIRECTIVES_PARTIALS_FILES) \
 		$(NGEO_DIRECTIVES_PARTIALS_FILES)
 	$(PRERULE_CMD)
 	PYTHONIOENCODING=UTF-8 mako-render \
-		--var "partials=ngeo:/usr/lib/node_modules/ngeo/src \
-		gmf:/usr/lib/node_modules/ngeo/contribs/gmf/src \
+		--var "partials=$(NGEO_PACKAGE):/usr/lib/node_modules/$(NGEO_PACKAGE)/src \
+		gmf:/usr/lib/node_modules/$(NGEO_PACKAGE)/contribs/gmf/src \
 		$(PACKAGE)_components:geoportal/$(PACKAGE)_geoportal/static-ngeo/components \
 		$(PACKAGE)_partials:geoportal/$(PACKAGE)_geoportal/static-ngeo/partials \
 		$(PACKAGE)_js:geoportal/$(PACKAGE)_geoportal/static-ngeo/js" \
 		--var "app=$(PACKAGE)" $< > $@
+
+else
+
+.PRECIOUS: .build/apps.timestamp
+.build/apps.timestamp: $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
+		$(APP_HTML_FILES) webpack.apps.js \
+		.build/node_modules.timestamp
+		$(LESS_FILES) \
+		$(NGEO_FONTS) \
+		$(APP_OUTPUT_DIR)/images/
+	$(PRERULE_CMD)
+	NODE_ENV=prod node_modules/.bin/webpack
+	touch $@
+
+endif
 
 /build/eslint.timestamp: $(APP_JS_FILES)
 	$(PRERULE_CMD)
@@ -617,6 +687,8 @@ $(APP_OUTPUT_DIR)/templatecache.js: /build/gmftemplatecache.js
 
 geoportal/$(PACKAGE)_geoportal/static/lib/cgxp/: cgxp_revision
 	$(PRERULE_CMD)
+	# Sometimes we have an empty directory
+	rmdir $@ || true
 	if [ ! -e $@ ]; then git clone $(CGXP_GIT_ARGS) $(CGXP_GIT_REMOTE) $@; fi
 	cd $@ && git fetch
 	cd $@ && git reset --hard $(shell cat $<)
@@ -678,31 +750,22 @@ $(CSS_XAPI_OUTPUT): \
 
 docker-compose-build.yaml: /build/requirements.timestamp
 
-.PHONY: config-docker
-config-docker: /build/config-docker.timestamp
-
-/build/config-docker.timestamp: $(shell docker-required --path .) \
+.PHONY: docker-build-config
+docker-build-config: $(shell docker-required --path .) \
 		print/print-apps/$(PACKAGE)/config.yaml \
-		mapserver/mapserver.map \
-		mapcache/mapcache.xml
-	$(PRERULE_CMD)
+		$(MAPCACHE_FILE)
 	docker build -t $(DOCKER_BASE)-config:$(DOCKER_TAG) .
-	touch $@
 
-mapserver/mapserver.map:
-	$(PRERULE_CMD)
-	echo 'INCLUDE "c2cgeoportal.map"' > $@
-
-.PHONY: geoportal-docker
-geoportal-docker: /build/geoportal-docker.timestamp
-
-/build/geoportal-docker.timestamp: $(shell docker-required --path geoportal) \
-		$(SERVER_LOCALISATION_RULES) \
+.PHONY: docker-build-geoportal
+docker-build-geoportal: $(shell docker-required --path geoportal) \
 		$(WEB_RULE) \
+		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).mo, $(LANGUAGES))) \
 		geoportal/config.yaml
-	$(PRERULE_CMD)
 	docker build --tag=$(DOCKER_BASE)-geoportal:$(DOCKER_TAG) --build-arg="GIT_HASH=$(GIT_HASH)" geoportal
-	touch $@
+ifdef CGXP_INTERFACES
+docker-build-geoportal: $(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).mo, $(LANGUAGES)))
+endif
+
 
 .PHONY: push-docker
 push-docker:
@@ -717,6 +780,7 @@ alembic.yaml: vars_testdb.yaml vars.yaml CONST_vars.yaml
 
 testdb/11-schemas.sql: vars_testdb.yaml testdb/11-schemas.sql_mako vars.yaml CONST_vars.yaml
 	$(PRERULE_CMD)
+	rm --force testdb/11-schemas.sql.mako
 	ln -s 11-schemas.sql_mako testdb/11-schemas.sql.mako
 	c2c-template --vars $< --engine mako --files testdb/11-schemas.sql.mako
 	rm testdb/11-schemas.sql.mako
@@ -729,14 +793,10 @@ testdb/13-alembic-static.sql: alembic.ini alembic.yaml $(shell ls -1 /opt/alembi
 	$(PRERULE_CMD)
 	alembic --name=static upgrade --sql head > $@
 
-.PHONY: testdb-docker
-testdb-docker: /build/testdb-docker.timestamp
-
-/build/testdb-docker.timestamp: testdb/11-schemas.sql testdb/12-alembic.sql testdb/13-alembic-static.sql \
+.PHONY: docker-build-testdb
+docker-build-testdb: testdb/11-schemas.sql testdb/12-alembic.sql testdb/13-alembic-static.sql \
 		$(shell docker-required --path testdb)
-	$(PRERULE_CMD)
-	docker build -t $(DOCKER_BASE)-testdb:$(DOCKER_TAG) testdb
-	touch $@
+	docker build --tag=$(DOCKER_BASE)-testdb:$(DOCKER_TAG) testdb
 
 # Upgrade
 
@@ -747,11 +807,12 @@ upgrade: project.yaml
 	c2cupgrade $(UPGRADE_ARGS)
 
 .PHONY: upgrade%
-upgrade%: project.yaml
+upgrade%:
 	c2cupgrade $(UPGRADE_ARGS) --step $*
 
 # Tilecloud chain
-mapcache/mapcache.xml: tilegeneration/config.yaml
+
+$(MAPCACHE_FILE): tilegeneration/config.yaml
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
 	generate_controller --mapcache

@@ -65,8 +65,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         <div class="gmf-app-content">
           <gmf-layertree
             gmf-layertree-dimensions="mainCtrl.dimensions"
-            gmf-layertree-map="::mainCtrl.map"
-            gmf-layertree-openlinksinnewwindow="::true">
+            gmf-layertree-map="::mainCtrl.map">
           </gmf-layertree>
         </div>
       </div>
@@ -102,6 +101,10 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Street View'|translate}}">
               <span class="fa fa-street-view"></span>
             </button>
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.importDataSourceActive"
+                    data-toggle="tooltip" data-placement="left" data-original-title="{{'Import Layer'|translate}}">
+              <span class="fa fa-upload"></span>
+            </button>
           </div>
           <br/>
           <br/>
@@ -120,9 +123,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
                 {{'Login' | translate}}
                 <a class="btn close" ng-click="mainCtrl.loginActive = false">&times;</a>
               </div>
-              <gmf-authentication
-                  gmf-authentication-force-password-change="::true">
-              </gmf-authentication>
+              <gmf-authentication></gmf-authentication>
             </div>
           </div>
           <div ng-show="mainCtrl.printPanelActive" class="row">
@@ -220,15 +221,23 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
               </ngeo-googlestreetview>
             </div>
           </div>
+          <div ng-show="mainCtrl.importDataSourceActive" class="row">
+            <div class="col-sm-12">
+              <div class="gmf-app-tools-content-heading">
+                {{'Import Layer'|translate}}
+                <a class="btn close" ng-click="mainCtrl.importDataSourceActive = false">&times;</a>
+              </div>
+              <gmf-importdatasource
+                      map="mainCtrl.map">
+              </gmf-importdatasource>
+            </div>
+          </div>
         </div>
       </div>
       <div class="gmf-app-map-container" ng-class="{'gmf-app-infobar-active': mainCtrl.showInfobar}">
         <gmf-search gmf-search-map="::mainCtrl.map"
           gmf-search-datasources="::mainCtrl.searchDatasources"
-          gmf-search-coordinatesprojections="::mainCtrl.searchCoordinatesProjections"
-          gmf-search-placeholder="{{'Search…'|translate}}"
-          gmf-search-delay="mainCtrl.searchDelay"
-          gmf-search-clearbutton="::true">
+          gmf-search-coordinatesprojections="::mainCtrl.searchCoordinatesProjections">
         </gmf-search>
         <ngeo-displaywindow
           content="mainCtrl.displaywindowContent"
@@ -247,7 +256,6 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
               <img src="${request.static_url('demo_geoportal:static-ngeo/images/background-layer-button.png')}" />
             </button>
             <gmf-backgroundlayerselector
-              gmf-backgroundlayerselector-dimensions="::mainCtrl.dimensions"
               gmf-backgroundlayerselector-map="::mainCtrl.map"
               class="dropdown-menu">
             </gmf-backgroundlayerselector>
@@ -305,7 +313,22 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         </div>
       </div>
       <ngeo-modal ng-model="mainCtrl.modalShareShown">
-        <gmf-share gmf-share-email="true"/>
+        <gmf-share gmf-share-email="true"></gmf-share>
+      </ngeo-modal>
+      <ngeo-modal
+          ngeo-modal-closable="false"
+          ng-model="mainCtrl.userMustChangeItsPassword()"
+          ng-model-options="{getterSetter: true}">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            {{'You must change your password' | translate}}
+          </h4>
+        </div>
+        <div class="modal-body">
+          <gmf-authentication
+            gmf-authentication-force-password-change="::true">
+          </gmf-authentication>
+        </div>
       </ngeo-modal>
     </main>
     <footer>

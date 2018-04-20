@@ -18,6 +18,32 @@ vars:
   # Docker base image name (comes from the makefile).
   docker_base: '{DOCKER_BASE}'
   docker_tag: '{DOCKER_TAG}'
+  docker_services:
+    db:
+      environment:
+        POSTGRES_DB: geomapfish
+        POSTGRES_USER: www-data
+        POSTGRES_PASSWORD: www-data
+    geoportal:
+      port: 80
+      environment:
+        VISIBLE_WEB_HOST: localhost:80
+        VISIBLE_WEB_PROTOCOL: https
+        VISIBLE_ENTRY_POINT: /
+        PGHOST: 172.17.0.1
+        PGHOST_SLAVE: 172.17.0.1
+        PGPORT: 5432
+        PGUSER: www-data
+        PGPASSWORD: www-data
+        PGDATABASE: geomapfish
+        PGSCHEMA: main
+        PGSCHEMA_STATIC: main_static
+        TINYOWS_URL: http://tinyows/
+        MAPSERVER_URL: http://mapserver/
+        PRINT_URL: http://print:8080/print/
+        REDIS_HOST: redis
+        REDIS_PORT: 6379
+
   # database user
   dbuser: '{PGUSER}'
   # database password
@@ -63,9 +89,7 @@ vars:
     AND lra.layer_id = la.id AND la.name = "
   enable_admin_interface: True
 
-  directory: __import__('os').getcwd()
   project_directory: '{PROJECT_DIRECTORY}'
-  python_path: '{PYTHON_PATH}'
   ps: __import__('os').path.sep
 
   # Authentication settings
@@ -84,12 +108,13 @@ vars:
 
   # For debug mode
   jsbuild:
-    config: "{directory}/jsbuild/app.cfg"
-    root_dir: "{directory}"
+    config: /src/jsbuild/app.cfg
+    root_dir: /src
 
   # used for the "node_modules" and "closure" static views
-  closure_library_path: 'process.stdout.write(require("@camptocamp/closure-util").getLibraryPath())'
-  node_modules_path: "/usr/lib/node_modules"
+  closure_library_path: process.stdout.write(require("@camptocamp/closure-util").getLibraryPath())
+  node_modules_path: /usr/lib/node_modules
+  app_path: /app
 
   # pyramid_closure configuration
   # Each item in the roots_with_prefix array is an array with two elements. The
@@ -99,13 +124,27 @@ vars:
   # the HTML page.
   pyramid_closure:
     roots_with_prefix:
-      - ["{closure_library_path}/closure/goog", "{closure_library_path}/closure/goog"]
-      - ["{package}_geoportal:static-ngeo/js", "/app/{package}_geoportal/static-ngeo/js"]
-      - ["{package}_geoportal:static-ngeo/components", "/app/{package}_geoportal/static-ngeo/components"]
-      - ["{node_modules_path}{ps}openlayers/src", "{node_modules_path}{ps}openlayers/src"]
-      - ["{node_modules_path}{ps}openlayers/build", "{node_modules_path}{ps}openlayers/build"]
-      - ["{node_modules_path}{ps}ngeo/src", "{node_modules_path}{ps}ngeo/src"]
-      - ["{node_modules_path}{ps}ngeo/contribs/gmf/src", "{node_modules_path}{ps}ngeo/contribs/gmf/src"]
+      -
+        - "{closure_library_path}/closure/goog"
+        - "{closure_library_path}/closure/goog"
+      -
+        - "{package}_geoportal:static-ngeo/js"
+        - "{app_path}/geoportal/{package}_geoportal/static-ngeo/js"
+      -
+        - "{package}_geoportal:static-ngeo/components"
+        - "{app_path}/geoportal/{package}_geoportal/static-ngeo/components"
+      -
+        - "{node_modules_path}{ps}openlayers/src"
+        - "{node_modules_path}{ps}openlayers/src"
+      -
+        - "{node_modules_path}{ps}openlayers/build"
+        - "{node_modules_path}{ps}openlayers/build"
+      -
+        - "{node_modules_path}{ps}ngeo/src"
+        - "{node_modules_path}{ps}ngeo/src"
+      -
+        - "{node_modules_path}{ps}ngeo/contribs/gmf/src"
+        - "{node_modules_path}{ps}ngeo/contribs/gmf/src"
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -149,15 +188,16 @@ vars:
       host: '{REDIS_HOST}'
       port: '{REDIS_PORT}'
       db: 0
-      redis_expiration_time: 86400 # one day
+      redis_expiration_time: 86400  # One day
       distributed_lock: True
-
 
   admin_interface:
     # Default values for the admin interface's maps.
     map_x: 740000
     map_y: 5860000
     map_zoom: 10
+
+    layer_tree_max_nodes: 1000
 
     # The list of available variable names for the `Metadatas` form.
     available_metadata:
@@ -264,17 +304,27 @@ vars:
     # to the TinyOWS proxy url (e.g. when the service is also used without
     # the proxy), the proxy can replace the original `online_resource`
     # url with the proxy url.
-    # proxy_online_resource: http://{host}{entry_point}/tinyows_proxy
-    # online_resource: http://localhost{entry_point}/tinyows
+    # proxy_online_resource: http://{host}{entry_point}tinyows_proxy
+    # online_resource: http://localhost{entry_point}tinyows
 
     # When running a c2cgeoportal appl. in debug mode (with `make serve`)
     # the host has to be set explicitly in a vhost environment.
     # tinyows_host: {host}
 
   resourceproxy:
-    # list of urls from which it is safe to load content
-    targets:
+    # List of urls from which it is safe to load content
+    targets: {}
     #   exempletargetname: http://www.camptocamp.com/?param1=%s&param2=%s
+
+  # List of allowed headers
+  allowed_headers:
+    - Cache-Control
+    - Content-Encoding
+    - Content-Language
+    - Content-Type
+    - Date
+    - ETag
+    - Vary
 
   fulltextsearch:
     defaultlimit: 30
@@ -308,7 +358,7 @@ vars:
   # The shortener base configuration
   shortener:
     # The base of created URL
-    base_url: '{web_protocol}://{host}{entry_point}/s/'
+    base_url: '{web_protocol}://{host}{entry_point}s/'
     allowed_hosts:
       - '{host}'
 
@@ -331,6 +381,8 @@ vars:
 
   ogcproxy_enable: false
 
+  lingua_extractor: {}
+
   # Control the HTTP headers
   headers:
     index: &header
@@ -347,7 +399,7 @@ vars:
     themes: &auth_header
       access_control_max_age: 600  # 10 minutes
       access_control_allow_origin:
-        - "{web_protocol}://{host}/"
+        - "{web_protocol}://{host}"
         - "*"
     config: *auth_header
     print: *auth_header
@@ -359,7 +411,7 @@ vars:
     login:
       access_control_max_age: 600  # 10 minutes
       access_control_allow_origin:
-        - "{web_protocol}://{host}/"
+        - "{web_protocol}://{host}"
 
   # Checker configuration
   checker:
@@ -420,13 +472,15 @@ vars:
       interfaces: {}
     print:
       spec: {}
-      level: 1
+      level: 3
 
   # Check collector configuration
   check_collector:
-    hosts: []
+    hosts:
+      - display: Main
+        url: '{web_protocol}://{host}{entry_point}'
     max_level: 1
-    level: 1
+    level: 10
 
   # What web page is authorized to use the API
   authorized_referers:
@@ -444,6 +498,10 @@ vars:
   # Statistics are disabled by default
   stats: {}
 
+  # The c2cwsgiutils base path
+  c2c:
+    base_path: /c2c
+
   db_chooser:
     # List of {method path} regexes to force the usage of the master, even for GET and OPTIONS
     # This supersedes the slave list.
@@ -458,7 +516,6 @@ interpreted:
   python:
     - authtkt.secret
     - ps
-    - directory
     - interfaces
   node:
     vars:
@@ -474,25 +531,35 @@ environment:
   - WMTSCAPABILITIES_PATH
   - BUILD_VOLUME_NAME
   - PROJECT_DIRECTORY
-  - PYTHON_PATH
 
 runtime_environment:
   - VISIBLE_WEB_HOST
-  - VISIBLE_WEB_PROTOCOL
-  - VISIBLE_ENTRY_POINT
+  - name: VISIBLE_WEB_PROTOCOL
+    default: https
+  - name: VISIBLE_ENTRY_POINT
+    default: /
   - PGHOST
   - PGHOST_SLAVE
-  - PGPORT
+  - name: PGPORT
+    default: '5432'
   - PGUSER
   - PGPASSWORD
-  - PGDATABASE
-  - PGSCHEMA
-  - PGSCHEMA_STATIC
-  - TINYOWS_URL
-  - MAPSERVER_URL
-  - PRINT_URL
-  - REDIS_HOST
-  - REDIS_PORT
+  - name: PGDATABASE
+    default: geomapfish
+  - name: PGSCHEMA
+    default: main
+  - name: PGSCHEMA_STATIC
+    default: main_static
+  - name: TINYOWS_URL
+    default: http://tinyows/
+  - name: MAPSERVER_URL
+    default: http://mapserver/
+  - name: PRINT_URL
+    default: http://print:8080/print/
+  - name: REDIS_HOST
+    default: undefined  # no error if absent
+  - name: REDIS_PORT
+    default: '6372'
 
 runtime_postprocess:
   - expression: int({})

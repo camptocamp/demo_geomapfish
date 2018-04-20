@@ -15,8 +15,6 @@ authtkt_timeout = ${authtkt["timeout"]}
 % endif
 app.cfg = %(here)s/config.yaml
 
-c2c.base_path = /c2c
-
 [filter:proxy-prefix]
 use = egg:PasteDeploy#prefix
 prefix = %(VISIBLE_ENTRY_POINT)s
@@ -31,7 +29,7 @@ pipeline =
 ###
 
 [loggers]
-keys = root, sqlalchemy, gunicorn.access, gunicorn.error, c2cgeoportal_commons, c2cgeoportal_geoportal, demo_geoportal
+keys = root, sqlalchemy, gunicorn.access, gunicorn.error, c2cgeoportal_commons, c2cgeoportal_geoportal, c2cgeoportal_admin, demo_geoportal, c2cwsgiutils
 
 [handlers]
 keys = console, logstash, json
@@ -53,10 +51,20 @@ level = %(C2CGEOPORTAL_LOG_LEVEL)s
 handlers =
 qualname = c2cgeoportal_geoportal
 
+[logger_c2cgeoportal_admin]
+level = %(C2CGEOPORTAL_LOG_LEVEL)s
+handlers =
+qualname = c2cgeoportal_admin
+
 [logger_demo_geoportal]
 level = %(LOG_LEVEL)s
 handlers =
 qualname = demo_geoportal
+
+[logger_c2cwsgiutils]
+level = %(LOG_LEVEL)s
+handlers =
+qualname = c2cwsgiutils
 
 [logger_gunicorn.access]
 level = %(GUNICORN_ACCESS_LOG_LEVEL)s

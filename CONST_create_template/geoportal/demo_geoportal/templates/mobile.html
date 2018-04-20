@@ -3,7 +3,7 @@ from json import dumps
 from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
 %>
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-app="demo" ng-controller="MobileController as mainCtrl">
+<html lang="{{mainCtrl.lang}}" ng-app="AppMobile" ng-controller="MobileController as mainCtrl">
   <head>
     <title ng-bind-template="{{'Mobile Application'|translate}}">GeoMapFish</title>
     <meta charset="utf-8">
@@ -45,14 +45,12 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         class="gmf-mobile-measure"
         gmf-mobile-measurelength
         gmf-mobile-measurelength-active="mainCtrl.measureLengthActive"
-        gmf-mobile-measurelength-precision="2"
         gmf-mobile-measurelength-map="::mainCtrl.map">
       </div>
       <div
         class="gmf-mobile-measure"
         gmf-mobile-measurepoint
         gmf-mobile-measurepoint-active="mainCtrl.measurePointActive"
-        gmf-mobile-measurepoint-coordinateDecimals="2"
         gmf-mobile-measurepoint-layersconfig="::mainCtrl.elevationLayersConfig"
         gmf-mobile-measurepoint-map="::mainCtrl.map">
       </div>
@@ -62,11 +60,8 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
       </button>
       <gmf-search gmf-search-map="::mainCtrl.map"
         gmf-search-datasources="::mainCtrl.searchDatasources"
-        gmf-search-clearbutton="::true"
-        gmf-search-placeholder="{{'Search…'|translate}}"
         gmf-search-coordinatesprojections="::mainCtrl.searchCoordinatesProjections"
-        gmf-search-listeners="::mainCtrl.searchListeners"
-        gmf-search-delay="mainCtrl.searchDelay">
+        gmf-search-listeners="::mainCtrl.searchListeners">
       </gmf-search>
       <button class="gmf-mobile-nav-trigger gmf-mobile-nav-right-trigger"
         ng-click="mainCtrl.toggleRightNavVisibility()">
@@ -117,15 +112,13 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         </ul>
         <gmf-layertree
           gmf-layertree-dimensions="mainCtrl.dimensions"
-          gmf-layertree-map="::mainCtrl.map"
-          gmf-layertree-openlinksinnewwindow="::true">
+          gmf-layertree-map="::mainCtrl.map">
         </gmf-layertree>
       </div>
       <gmf-backgroundlayerselector
         id="background"
         class="gmf-mobile-nav-slide"
         data-header-title="{{'Background' | translate}}"
-        gmf-backgroundlayerselector-dimensions="::mainCtrl.dimensions"
         gmf-backgroundlayerselector-map="::mainCtrl.map"
         gmf-backgroundlayerselector-select="mainCtrl.hideNav()">
       </gmf-backgroundlayerselector>
@@ -177,6 +170,21 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         gmf-mobile-nav-back="authCtrl.gmfUser.username !== null">
       </gmf-authentication>
     </nav>
+    <ngeo-modal
+        ng-model="mainCtrl.userMustChangeItsPassword()"
+        ng-model-options="{getterSetter: true}">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{'You must change your password' | translate}}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <gmf-authentication
+          gmf-authentication-force-password-change="::true">
+        </gmf-authentication>
+      </div>
+    </ngeo-modal>
+
     % if debug:
     <script>
         window.CLOSURE_BASE_PATH = '';
@@ -208,7 +216,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
     <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
     <script src="${request.route_url('deps.js')}"></script>
     <script>
-        goog.require('demo_mobile');
+        goog.require('demo.mobile.Controller');
     </script>
     <script src="${request.static_url('demo_geoportal:static-ngeo/build/templatecache.js')}"></script>
     <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
@@ -224,7 +232,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
       (function() {        var urlElements = window.location.pathname.split('/');
 
 
-        var gmfModule = angular.module('gmfDefaultConfig');
+        var gmfModule = angular.module('GmfAbstractAppControllerModule');
         gmfModule.constant('angularLocaleScript', '${request.static_url('demo_geoportal:static-ngeo/build/')}angular-locale_{{locale}}.js');
         var langUrls = {
 ${ ',\n'.join([
@@ -236,7 +244,7 @@ ${ ',\n'.join([
 ]) | n}
         };
 
-        var module = angular.module('demo');
+        var module = angular.module('AppMobile');
         module.constant('defaultTheme', 'Demo');
         module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
         module.constant('langUrls', langUrls);

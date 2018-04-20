@@ -10,7 +10,13 @@ mapping:
     type: seq
     required: True
     sequence:
-      - type: str
+      - type: map
+        mapping:
+          name:
+            type: str
+            required: True
+          default:
+            type: str
   interpreted:
     type: map
     required: True
@@ -38,11 +44,17 @@ mapping:
       package:
         type: str
         required: True
+      host:
+        type: str
+        required: True
       enable_admin_interface:
         type: bool
         required: True
       ogcproxy_enable:
         type: bool
+        required: True
+      c2c.base_path:
+        type: str
         required: True
       sqlalchemy.url:
         type: str
@@ -166,6 +178,8 @@ mapping:
         type: map
         required: True
         mapping:
+          layer_tree_max_nodes:
+            type: int
           map_base_layer:
             type: str
           map_x:
@@ -189,6 +203,10 @@ mapping:
                     type: str
                     required: True
                   type:
+                    type: str
+                  regex:
+                    type: str
+                  error_message:
                     type: str
           available_functionalities:
             type: seq
@@ -286,15 +304,35 @@ mapping:
       reset_password:
         type: map
         required: True
-        mapping:
+        mapping: &send_email
           email_from:
+            required: True
             type: str
           email_body:
+            required: True
             type: str
           email_subject:
+            required: True
             type: str
-          smtp_server:
+      welcome_email:
+        type: map
+        required: True
+        mapping: *send_email
+      smtp:
+        type: map
+        mapping:
+          host:
             type: str
+            required: True
+          ssl:
+            type: bool
+          user:
+            type: str
+          password:
+            type: str
+          starttls:
+            type: bool
+
       servers:
         <<: *free_dict
         required: True
@@ -309,6 +347,7 @@ mapping:
         type: map
         required: True
         mapping:
+          <<: *send_email
           base_url:
             type: str
             required: True
@@ -316,19 +355,26 @@ mapping:
             type: seq
             sequence:
               - type: str
-          email_from:
-            type: str
-          email_subject:
-            type: str
-          email_body:
-            type: str
-          smtp_server:
-            type: str
           length:
             type: int
       hide_capabilities:
         type: bool
         required: True
+      resourceproxy:
+        type: map
+        required: True
+        mapping:
+          targets:
+            type: map
+            required: True
+            mapping:
+              regex;(.+):
+                type: str
+          allowed_headers:
+            type: seq
+            sequence:
+              - type: str
+                unique: yes
       print_url:
         type: str
         required: True
@@ -384,6 +430,28 @@ mapping:
         type: seq
         sequence:
           - type: str
+
+      lingua_extractor:
+        type: map
+        mapping:
+          host_map:
+            type: map
+            mapping:
+              regex;(.+):
+                type: map
+                mapping:
+                  netloc:
+                    type: str
+                  scheme:
+                    type: str
+                  verify:
+                    type: any
+                  headers:
+                    type: map
+                    mapping:
+                      regex;(.+):
+                        type: str
+
       checker:
         type: map
         required: True

@@ -7,4 +7,4 @@ from pyramid.i18n import TranslationStringFactory
 from c2cgeoportal_commons.models.main import *  # noqa
 
 _ = TranslationStringFactory('demo-server')
-log = logging.getLogger(__name__)
+LOG = logging.getLogger(__name__)

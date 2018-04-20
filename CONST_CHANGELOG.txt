@@ -3,17 +3,34 @@ This file includes migration steps for each release of c2cgeoportal.
 Version 2.3.0
 =============
 
-For non Docker upgrade have a look on the nondocker_CHANGELOG
+Informations
+------------
 
 1. The structure of the project change:
    * The package name become `demo_geoportal`.
    * The package is in the folder `geoportal`.
-   * The models will be in `commons/demo_commons`.
 
-2. In the file `Makefile` replace `vars_demo.yaml` by `vars.yaml`.
+2. The `shortener.email_body` in the vars files use now the template syntax.
 
-3. The `checker` section of the file `vars.yaml` should be rewritten like it's in `CONST_create_template/vars.yaml`.
+3. Update access control list (ACL) in root context to allow user with role 'role_admin' to access views
+   requiring 'admin' permission.
 
-4. In the file `project.yaml.mako` the checker path should we set to `/c2c/health_check?`.
+   edit 'geoportal/demo_geoportal/resources.py' file, Root class __acl__ attribute should look so:
 
-5. The `shortener.email_body` in the vars files use now the template syntax.
+   '''...
+   from pyramid.security import Allow, ALL_PERMISSIONS
+   ...
+
+   class Root:
+       __acl__ = [
+           (Allow, 'role_admin', ALL_PERMISSIONS),
+       ]
+   ...'''
+
+Changes to apply
+----------------
+
+1. Rename your l10n files with e.-g.:
+
+   mv geoportal/demo_geoportal/locale/fr/LC_MESSAGES/demo{,_geoportal}-client.po
+   mv geoportal/demo_geoportal/locale/fr/LC_MESSAGES/demo{,_geoportal}-server.po

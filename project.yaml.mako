@@ -1,7 +1,9 @@
 ---
 project_folder: demo_geomapfish
 project_package: ${package}
-checker_url: https://${host}${entry_point}c2c/health_check?max_level=9
+checker_url: https://172.17.0.1/docker/c2c/health_check?max_level=9
+checker_headers:
+  Host: geomapfish-demo.camptocamp.com
 template_vars:
   package: ${package}
   srid: ${srid}
