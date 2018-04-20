@@ -268,11 +268,6 @@ vars:
             layers: []
           legend: {}
 
-  docker_services:
-    db:
-      environment:
-        POSTGRES_DB: demo_geomapfish_2_3_sdfg
-
   deploy:
     code_source: /var/www/vhosts/geomapfish-demo/private/demo_geomapfish/
     code_destination: /var/www/vhosts/geomapfish-demo/private/demo_geomapfish/
