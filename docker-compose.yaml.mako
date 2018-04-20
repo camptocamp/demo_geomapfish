@@ -22,7 +22,8 @@ ${service_defaults('print', 8080)}\
 ${service_defaults('mapserver', 80)}\
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver
+    #image: camptocamp/geomapfish-qgisserver
+    image: camptocamp/qgis-server:bugfix_owslib
     volumes_from:
       - config:ro
 ${service_defaults('mapserver', 80)}

@@ -26,8 +26,10 @@ vars:
 
   docker_services:
     geoportal:
+      port: 8480
       environment:
-        PGDATABASE: demo_geomapfish_2_3
+        PGDATABASE: demo_geomapfish_2_3_bak
+        VISIBLE_ENTRY_POINT: /docker/
 
   authtkt:
     # One day

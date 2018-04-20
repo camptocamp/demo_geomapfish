@@ -339,6 +339,7 @@ vars:
     internal: http://localhost/
     local: '{web_protocol}://{host}{entry_point}'
     mapserver: '{MAPSERVER_URL}'
+    qgisserver: '{QGISSERVER_URL}'
 
   host_forward_host: []
 
