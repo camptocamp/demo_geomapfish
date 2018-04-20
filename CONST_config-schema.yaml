@@ -92,6 +92,23 @@ mapping:
           root_dir:
             type: str
             required: True
+      closure_library_path:
+        type: str
+        required: True
+      node_modules_path:
+        type: str
+        required: True
+      pyramid_closure:
+        type: map
+        required: True
+        mapping:
+          roots_with_prefix:
+            type: seq
+            required: True
+            sequence:
+              - type: seq
+                sequence:
+                  - type: str
       default_locale_name:
         type: str
         pattern: '[a-z][a-z]'
@@ -102,58 +119,6 @@ mapping:
         sequence:
           - type: str
             pattern: '[a-z][a-z]'
-      interfaces:
-        required: True
-        type: seq
-        sequence:
-          - type: str
-      default_interface:
-        required: True
-        type: str
-      interfaces_config:
-        required: True
-        type: map
-        mapping:
-          regex;.+:
-            type: map
-            mapping:
-              constants:
-                required: True
-                type: map
-                mapping:
-                  regex;.+:
-                    type: any
-              routes:
-                required: True
-                type: map
-                mapping:
-                  regex;.+:
-                    type: str
-              static:
-                type: map
-                mapping:
-                  regex;.+:
-                    type: str
-              fulltextsearch_params:
-                required: True
-                type: map
-                mapping:
-                  regex;.+:
-                    type: scalar
-              tree_params:
-                type: map
-                mapping:
-                  regex;.+:
-                    type: scalar
-              wfs_permalink:
-                type: map
-                mapping:
-                  regex;.+:
-                    type: any
-              redirect_interface:
-                type: str
-              do_redirect:
-                type: bool
       authorized_referers:
         type: seq
         sequence:
@@ -243,8 +208,6 @@ mapping:
                     type: str
                   error_message:
                     type: str
-                  translate:
-                    type: bool
           available_functionalities:
             type: seq
             required: True

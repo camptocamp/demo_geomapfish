@@ -10,7 +10,7 @@ Checkout
 
    git clone git@github.com:camptocamp/demo_geomapfish.git
 
-  cd demo_geomapfish
+   cd demo_geomapfish
 
 Build
 -----
@@ -19,6 +19,12 @@ Build
 
   ./docker-run make --makefile=<user.mk> build
 
-  FINALISE=TRUE make --makefile=<user.mk> build
+Run
+---
+
+.. code::
+
+   docker-compose up
+
 
 .. Feel free to add project-specific things.

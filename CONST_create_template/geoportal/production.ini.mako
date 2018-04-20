@@ -1,5 +1,6 @@
 [app:app]
 use = egg:demo_geoportal
+filter-with = proxy-prefix
 pyramid.reload_templates = false
 pyramid.debug_authorization = false
 pyramid.debug_notfound = false
@@ -14,6 +15,10 @@ authtkt_timeout = ${authtkt["timeout"]}
 % endif
 app.cfg = %(here)s/config.yaml
 
+[filter:proxy-prefix]
+use = egg:PasteDeploy#prefix
+prefix = %(VISIBLE_ENTRY_POINT)s
+
 [pipeline:main]
 pipeline =
     app
@@ -24,45 +29,55 @@ pipeline =
 ###
 
 [loggers]
-keys = root, sqlalchemy, c2cgeoportal_commons, c2cgeoportal_geoportal, c2cgeoportal_admin, demo_geoportal, c2cwsgiutils
+keys = root, sqlalchemy, gunicorn.access, gunicorn.error, c2cgeoportal_commons, c2cgeoportal_geoportal, c2cgeoportal_admin, demo_geoportal, c2cwsgiutils
 
 [handlers]
-keys = console
+keys = console, logstash, json
 
 [formatters]
 keys = generic
 
 [logger_root]
-level = WARN
+level = %(OTHER_LOG_LEVEL)s
 handlers = console
 
 [logger_c2cgeoportal_commons]
-level = WARN
+level = %(C2CGEOPORTAL_LOG_LEVEL)s
 handlers =
 qualname = c2cgeoportal_commons
 
 [logger_c2cgeoportal_geoportal]
-level = WARN
+level = %(C2CGEOPORTAL_LOG_LEVEL)s
 handlers =
 qualname = c2cgeoportal_geoportal
 
 [logger_c2cgeoportal_admin]
-level = WARN
+level = %(C2CGEOPORTAL_LOG_LEVEL)s
 handlers =
 qualname = c2cgeoportal_admin
 
 [logger_demo_geoportal]
-level = INFO
+level = %(LOG_LEVEL)s
 handlers =
 qualname = demo_geoportal
 
 [logger_c2cwsgiutils]
-level = INFO
+level = %(LOG_LEVEL)s
 handlers =
 qualname = c2cwsgiutils
 
+[logger_gunicorn.access]
+level = %(GUNICORN_ACCESS_LOG_LEVEL)s
+handlers =
+qualname = gunicorn.access
+
+[logger_gunicorn.error]
+level = %(GUNICORN_LOG_LEVEL)s
+handlers =
+qualname = gunicorn.error
+
 [logger_sqlalchemy]
-level = WARN
+level = %(SQL_LOG_LEVEL)s
 handlers =
 qualname = sqlalchemy.engine
 # "level = INFO" logs SQL queries.
@@ -77,3 +92,13 @@ formatter = generic
 
 [formatter_generic]
 format = %(asctime)s %(levelname)-5.5s [%(name)s][%(thread)s] %(message)s
+
+[handler_logstash]
+class = c2cwsgiutils.pyramid_logging.PyramidCeeSysLogHandler
+args = [("%(LOG_HOST)s", %(LOG_PORT)s)]
+level = NOTSET
+
+[handler_json]
+class = c2cwsgiutils.pyramid_logging.JsonLogHandler
+args = (sys.stdout,)
+level = NOTSET

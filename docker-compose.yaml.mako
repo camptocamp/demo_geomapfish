@@ -20,11 +20,11 @@ ${service_defaults('print', 8080)}\
       - config:rw
 ${service_defaults('mapserver', 80)}\
 
-##  qgisserver:
-##    image: camptocamp/geomapfish-qgisserver
-##    volumes_from:
-##      - config:ro
-##${service_defaults('mapserver', 80)}
+  qgisserver:
+    image: camptocamp/geomapfish-qgisserver
+    volumes_from:
+      - config:ro
+${service_defaults('mapserver', 80)}
 
   mapcache:
     image: camptocamp/mapcache:1.6
@@ -40,21 +40,12 @@ ${service_defaults('mapserver', 11211)}\
     image: redis:3.2
 ${service_defaults('mapserver', 6379)}\
 
-  tilecloudchain:
-    image: camptocamp/tilecloud-chain:1.5.0
-    volumes_from:
-      - config:ro
-${service_defaults('mapserver', 80)}\
+#  tilecloudchain:
+#    image: camptocamp/tilecloud-chain:1.5.0
+#    volumes_from:
+#      - config:ro
+#${service_defaults('mapserver', 80)}\
 
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
-${service_defaults('geoportal', 80)}\
-
-  front:
-    image: haproxy:1.8
-    volumes_from:
-      - config:ro
-    volumes:
-      - /dev/log:/dev/log:rw
-    command: ["haproxy", "-f", "/etc/haproxy"]
-${service_defaults('front', 80, True)}
+${service_defaults('geoportal', 80, True)}\

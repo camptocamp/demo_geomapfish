@@ -1,18 +1,41 @@
+<%
+from json import dumps
+from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
+%>
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-app="Appdesktop" ng-controller="DesktopController as mainCtrl" ng-strict-di>
+<html lang="{{mainCtrl.lang}}" ng-app="AppDesktop" ng-controller="DesktopController as mainCtrl">
   <head>
+    % if "no_redirect" not in request.params:
+            <script>
+                var small_screen = window.matchMedia ? window.matchMedia('(max-width: 1024px)') : false;
+                if (small_screen && (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)) {
+    % if "themes" in request.matchdict:
+                    window.location = "${request.route_url('mobiletheme', themes=request.matchdict['themes'], _query=dict(request.GET)) | n}";
+    % else:
+                    window.location = "${request.route_url('mobile', _query=dict(request.GET)) | n}";
+    % endif
+                }
+            </script>
+    % endif
+
     <title ng-bind-template="{{'Desktop Application'|translate}}">GeoMapFish</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <link rel="shortcut icon" href="<%=require("./image/favicon.ico")%>" />
-    <% for (var css in htmlWebpackPlugin.files.css) { %>
-    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
-    <% } %>
+    <link rel="shortcut icon" href="${request.static_url('demo_geoportal:static-ngeo/images/favicon.ico')}"/>
+    <link rel="stylesheet" href="${request.static_url('demo_geoportal:static-ngeo/build/desktop.css')}" type="text/css">
+    <script>
+      if (!window.requestAnimationFrame) {
+        alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
+            + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. Vous allez être redirigé.\n\n'
+            + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. Sie werden weitergeleitet.');
+        window.location = 'http://geomapfish.org/'
+      }
+    </script>
   </head>
   <body ng-class="{'gmf-profile-chart-active': !!profileChartActive}">
     <header>
       <div class="logo">
-        <img src="<%=require("./image/logo.png")%>" />
+        <img src="${request.static_url('demo_geoportal:static-ngeo/images/logo.png')}" />
         <span>by Camptocamp</span>
       </div>
     </header>
@@ -230,7 +253,7 @@
             <button
                 class="btn btn-default dropdown-toggle"
                 data-toggle="dropdown">
-              <img src="<%=require('./image/background-layer-button.png')%>" alt="" />
+              <img src="${request.static_url('demo_geoportal:static-ngeo/images/background-layer-button.png')}" />
             </button>
             <gmf-backgroundlayerselector
               gmf-backgroundlayerselector-map="::mainCtrl.map"
@@ -319,9 +342,93 @@
       </gmf-profile>
     </footer>
     <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCYnqxEQA5sz13sWSgMr97ejzvUeGP8gz4"></script>
-    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
-    <% } %>
-    <script src="dynamic.js?interface=desktop"></script>
+    % if debug:
+    <script>
+        window.CLOSURE_BASE_PATH = '';
+        window.CLOSURE_NO_DEPS = true;
+    </script>
+    <script src="${request.static_url('%s/jquery/dist/jquery.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/ngeo/third-party/jquery-ui/jquery-ui.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/jquery-ui-touch-punch/jquery.ui.touch-punch.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/jquery-datetimepicker/build/jquery.datetimepicker.full.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular/angular.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-sanitize/angular-sanitize.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-touch/angular-touch.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-ui-date/dist/date.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-float-thead/angular-floatThead.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/floatthead/dist/jquery.floatThead.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-ui-slider/src/slider.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/corejs-typeahead/dist/typeahead.bundle.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/jsts/dist/jsts.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/d3/build/d3.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/moment/moment.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/file-saver/FileSaver.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script src="${request.static_url('%s/url-polyfill/url-polyfill.js' % request.registry.settings['node_modules_path'])}"></script>
+
+    <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
+    <script src="${request.route_url('deps.js')}"></script>
+    <script>
+        goog.require('demo.desktop.Controller');
+    </script>
+    <script src="${request.static_url('demo_geoportal:static-ngeo/build/templatecache.js')}"></script>
+    <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
+    <script>
+        demo.componentsBaseTemplateUrl = '${request.static_url("demo_geoportal:static-ngeo/components")}';
+        // demo.partialsBaseTemplateUrl = '${request.static_url("demo_geoportal:static-ngeo/partials")}';
+        // demo.baseTemplateUrl = '${request.static_url("demo_geoportal:static-ngeo/js")}';
+    </script>
+% else:
+    <script src="${request.static_url('demo_geoportal:static-ngeo/build/desktop.js')}"></script>
+% endif
+    <script>
+      (function() {        var urlElements = window.location.pathname.split('/');
+
+
+        var gmfModule = angular.module('GmfAbstractAppControllerModule');
+        gmfModule.constant('angularLocaleScript', '${request.static_url('demo_geoportal:static-ngeo/build/')}angular-locale_{{locale}}.js');
+        var langUrls = {
+${ ',\n'.join([
+    "          '{lang}': '{url}'".format(
+        lang=lang,
+        url=request.static_url('demo_geoportal:static-ngeo/build/{lang}.json'.format(lang=lang))
+    )
+    for lang in request.registry.settings["available_locale_names"]
+]) | n}
+        };
+
+        var module = angular.module('AppDesktop');
+        module.constant('defaultTheme', 'Demo');
+        module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
+        module.constant('langUrls', langUrls);
+        module.constant('cacheVersion', '${get_cache_version()}');
+        module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
+        module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"limit": "30", "partitionlimit": "5", "interface": "desktop"}) | n}');
+        module.constant('gmfRasterUrl', '${request.route_url('raster') | n}');
+        module.constant('gmfProfileJsonUrl', '${request.route_url('profile.json') | n}');
+        module.constant('gmfPrintUrl', '${request.route_url('printproxy') | n}');
+        module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background", "interface": "desktop"}) | n}');
+        module.constant('gmfLayersUrl', '${request.route_url('layers_root', _query={}) | n}');
+        module.constant('gmfShortenerCreateUrl', '${request.route_url('shortener_create') | n}');
+        module.constant('gmfSearchGroups', ${dumps(fulltextsearch_groups) | n});
+        // Requires that the gmfSearchGroups is specified
+        module.constant('gmfSearchActions', [
+                {action: 'add_theme', title: 'Add a theme'},
+                {action: 'add_group', title: 'Add a sub theme'},
+                {action: 'add_layer', title: 'Add a layer'}
+        ]);
+        module.constant('gmfContextualdatacontentTemplateUrl', demo.componentsBaseTemplateUrl + '/contextualdata/contextualdata.html');
+        module.value('ngeoWfsPermalinkOptions', /** @type {ngeox.WfsPermalinkOptions} */ ({
+              url: '${request.route_url('mapserverproxy') | n}',
+              wfsTypes: ${dumps(wfs_types) | n},
+              defaultFeatureNS: 'http://mapserver.gis.umn.edu/mapserver',
+              defaultFeaturePrefix: 'feature'
+            }));
+      })();
+    </script>
   </body>
 </html>

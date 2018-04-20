@@ -1,21 +1,15 @@
----
-
-extends: vars_nondocker.yaml
+extends: CONST_vars.yaml
 
 vars:
   srid: 21781
 
   # all interface used to create the apache rewrite rules
   interfaces:
-    - desktop
+    - main
     - mobile
     - old
     - edit
     - routing
-    - desktop_alt
-    - mobile_alt
-    - oeview
-    - oeedit
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -30,106 +24,11 @@ vars:
 
   default_interface: desktop
 
-  interfaces_config:
-    default: &interface
-      constants: &constants
-        defaultTheme: Demo
-        defaultLang: en
-        gmfSearchGroups: [osm, district]
-        sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@sentry.camptocamp.com/14
-        gmfSearchActions:
-          - action: add_theme
-            title: Add a theme
-          - action: add_group
-            title: Add a sub theme
-          - action: add_layer
-            title: Add a layer
-        gmfExternalOGCServers:
-          - name: Swiss Topo WMS
-            type: WMS
-            url: https://wms.geo.admin.ch/?lang=fr
-          - name: Swiss Topo WMTS
-            type: WMTS
-            url: https://wmts.geo.admin.ch/1.0.0/WMTSCapabilities.xml?lang=fr
-          - name: ASIT VD
-            type: WMTS
-            url: https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml
-      fulltextsearch_params:
-        limit: 30
-        partitionlimit: 5
-      routes: &routes
-        authenticationBaseUrl: base
-        fulltextsearchUrl: fulltextsearch
-        gmfLayersUrl: layers_root
-        gmfRasterUrl: raster
-        gmfProfileCsvUrl: profile.csv
-        gmfShortenerCreateUrl: shortener_create
-      static:
-        assetsBaseUrl: '{package}_geoportal:static-ngeo/'
-      wfs_permalink:
-        wfsTypes:
-          - featureType: fuel
-            label: display_name
-          - featureType: osm_scale
-            label: display_name
-        defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
-        defaultFeaturePrefix: feature
-    mobile:
-      <<: *interface
-      redirect_interface: desktop
-    mobile_alt:
-      <<: *interface
-      constants:
-        <<: *constants
-        gmfTreeManagerModeFlush: false
-        # FIXME: gmfSearchActions: []
-    desktop:
-      <<: *interface
-      redirect_interface: mobile
-      do_redirect: True
-      routes:
-        <<: *routes
-        gmfProfileJsonUrl: profile.json
-        gmfPrintUrl: printproxy
-    desktop_alt:
-      <<: *interface
-      constants:
-        <<: *constants
-        gmfPrintOptions: {scaleInput: true}
-        gmfTreeManagerModeFlush: false
-        ngeoRoutingOptions:
-          - backendUrl: https://routing.osm.ch/
-          - profiles:
-              - label: Car
-                profile: routed-car
-              - label: Bike (City)
-                profile: routed-bike
-              - label: Bike (Touring)
-                profile: routed-bike-touring
-              - label: Foot
-                profile: routed-foot
-              - label: Hiking
-                profile: routed-hiking
-        ngeoNominatimSearchDefaultParams:
-          - countrycodes: CH
-      routes:
-        <<: *routes
-        gmfProfileJsonUrl: profile.json
-        gmfPrintUrl: printproxy
-    oeview:
-      <<: *interface
-      # FIXME: gmfContextualdatacontentTemplateUrl
-      routes:
-        <<: *routes
-        gmfProfileJsonUrl: profile.json
-        gmfPrintUrl: printproxy
-    oeedit:
-      <<: *interface
-      # FIXME: gmfContextualdatacontentTemplateUrl
-      routes:
-        <<: *routes
-        gmfProfileJsonUrl: profile.json
-        gmfPrintUrl: printproxy
+  docker_services:
+    port: 8480
+    geoportal:
+      environment:
+        PGDATABASE: demo_geomapfish_2_3
 
   authtkt:
     # One day
@@ -236,7 +135,7 @@ vars:
       - camptocamp.github.io
       - gmf-test.sig.cloud.camptocamp.net
       - testgmf.sig.cloud.camptocamp.net
-      - geomapfish-demo.camptocamp.com
+      - geomapfish-demo.camptocamp.net
       - fredj.github.io
       - pgiraud.github.io
       - ger-benjamin.github.io
@@ -248,7 +147,7 @@ vars:
       - 127.0.0.1
 
   reset_password:
-    # Used to send a reset password email
+    # Used to send a confirmation email
     email_from: info@camptocamp.com
     email_subject: New password generated for GeoMapFish
     email_body: |
@@ -275,10 +174,7 @@ vars:
       The GeoMapfish team
 
   smtp:
-    host: email-smtp.eu-west-1.amazonaws.com
-    ssl: True
-    user: head -n 3 amazonses_smtp.txt | tail -n 1
-    password: tail -n 1 amazonses_smtp.txt
+    host: psemail.epfl.ch
 
   headers:
     themes: &headers
@@ -287,12 +183,18 @@ vars:
         - https://camptocamp.github.io
         - https://gmf-test.sig.cloud.camptocamp.net
         - https://testgmf.sig.cloud.camptocamp.net
-        - https://geomapfish-demo.camptocamp.com
+        - https://geomapfish-demo.camptocamp.net
         - https://fredj.github.io
+        - https://pgiraud.github.io
+        - https://ger-benjamin.github.io
+        - https://tsauerwein.github.io
         - https://ger-benjamin.github.io
         - https://marionb.github.io
+        - https://adube.github.io
         - http://localhost:3000
+        - http://localhost
         - http://127.0.0.1:3000
+        - http://127.0.0.1
         - "*"
     index: *headers
     api: *headers
@@ -315,27 +217,42 @@ vars:
         - https://camptocamp.github.io
         - https://gmf-test.sig.cloud.camptocamp.net
         - https://testgmf.sig.cloud.camptocamp.net
-        - https://geomapfish-demo.camptocamp.com
+        - https://geomapfish-demo.camptocamp.net
         - https://fredj.github.io
+        - https://pgiraud.github.io
+        - https://ger-benjamin.github.io
+        - https://tsauerwein.github.io
         - https://ger-benjamin.github.io
         - https://marionb.github.io
+        - https://adube.github.io
         - http://localhost:3000
+        - http://localhost
         - http://127.0.0.1:3000
+        - http://127.0.0.1
 
   authorized_referers:
     - https://camptocamp.github.io/
+    - https://gmf-test.sig.cloud.camptocamp.net/
+    - https://testgmf.sig.cloud.camptocamp.net/
+    - https://geomapfish-demo.camptocamp.net/
     - https://fredj.github.io/
+    - https://pgiraud.github.io/
+    - https://ger-benjamin.github.io/
+    - https://tsauerwein.github.io/
     - https://ger-benjamin.github.io/
     - https://marionb.github.io/
+    - https://adube.github.io/
     - http://localhost:3000/
+    - http://localhost/
     - http://127.0.0.1:3000/
+    - http://127.0.0.1/
 
   access_control_allow_origin:
     - https://camptocamp.github.io
 
   # Checker configuration
   checker:
-    fulltextsearch:
+    fulltextsearch: 
       search: pau
     print:
       spec:
@@ -355,30 +272,17 @@ vars:
             layers: []
           legend: {}
 
-  deploy:
-    code_source: /var/www/vhosts/geomapfish-demo/private/demo_geomapfish/
-    code_destination: /var/www/vhosts/geomapfish-demo/private/demo_geomapfish/
-
-interpreted:
-  bash:
-    - smtp.user
-    - smtp.password
-
 update_paths:
-  - admin_interface.available_functionalities
-  - authorized_referers
+  - shortener
   - authtkt
-  - check_collector.disabled
-  - check_collector.hosts
+  - fulltextsearch
   - checker.fulltextsearch
   - checker.print
-  - docker_services.db.environment
-  - fulltextsearch
+  - admin_interface.available_functionalities
   - functionalities.available_in_templates
-  - interfaces_theme
-  - shortener
+  - docker_services.geoportal.environment
 
 no_interpreted:
-  - reset_password.email_body
   - shortener.email_body
+  - reset_password.email_body
   - welcome_email.email_body

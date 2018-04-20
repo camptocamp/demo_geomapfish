@@ -39,10 +39,10 @@ defaults:
         # The minimum resolution to seed, useful to use with mapcache, optional.
         # min_resolution_seed: 1
         # the URL of the WMS server to used
-        url: http://localhost${entry_point}mapserv
+        url: http://mapserver/
         # Set the headers to get the right virtual host, and don't get any cached result
         headers:
-            Host: ${host}
+            Host: '${host}'
             Cache-Control: no-cache, no-store
             Pragma: no-cache
         # file name extension
@@ -107,12 +107,8 @@ generation:
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
 
-apache:
-    location: ${entry_point}tiles
-
 mapcache:
-    config_file: apache/mapcache.xml
-    location: ${entry_point}mapcache
+    config_file: mapcache/mapcache.xml
     memcache_host: localhost
     memcache_port: 11211
 
