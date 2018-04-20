@@ -25,7 +25,6 @@ vars:
   default_interface: desktop
 
   docker_services:
-    port: 8480
     geoportal:
       environment:
         PGDATABASE: demo_geomapfish_2_3
