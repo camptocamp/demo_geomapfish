@@ -13,37 +13,27 @@
 # /mapserv?service=wms&version=1.1.1&request=getfeatureinfo&bbox=-180,-90,180,90&layers=countries&query_layers=countries&width=600&height=400&srs=EPSG:4326&format=image/png&x=180&y=90&info_format=application/vnd.ogc.gml
 #
 
-<%!
-from c2cgeoportal_geoportal.lib import confd_env
-%>
-
 MAP
     NAME "demo"
 
-    # For Windows users: uncomment this line and adapt it to your
-    # own mapserver's nad folder (use regular slash "/")
-    # CONFIG "PROJ_LIB" "C:/path/to/ms4w/proj/nad"
-
-    EXTENT 489246 78873 837119 296543 ## should be defined for better performance
+    EXTENT 420000 40500 839000 306400
     UNITS METERS
 
-    # RESOLUTION and DEFRESOLUTION default to 96. If you
+    # RESOLUTION and DEFRESOLUTION default to 72. If you
     # change RESOLUTION to some other value, also change
     # DEFRESOLUTION. See
     # http://mapserver.org/development/rfc/ms-rfc-55.html
-    RESOLUTION 96 ## Also set in Openlayers especially for legends
-    DEFRESOLUTION 96
+    RESOLUTION 72 ## Also set in Openlayers for especially legends
+    DEFRESOLUTION 72
 
-    # MAXSIZE should not be less than 5000 for MF print on A3
+    # MAXSIZE shouldn't be less than 5000 for MF print on A3
     MAXSIZE 5000
-
-    SHAPEPATH '/var/sig/demo'
 
     IMAGECOLOR 255 255 255
     STATUS ON
 
     FONTSET "fonts.conf"
-    #SYMBOLSET "symbole.sym"
+    SYMBOLSET "symbols.sym"
 
     OUTPUTFORMAT
         NAME jpeg
@@ -72,18 +62,19 @@ MAP
 
     WEB
         METADATA
-            "wms_title" "changeme"
-            "wms_abstract" "changeme"
-            "wms_onlineresource" "http://${host | confd_env}${entry_point | confd_env}/mapserv_proxy"
-            "wms_srs" "EPSG:21781"
+            "wms_title" "Démo du c2cgeoportal"
+            "wms_abstract" "Des exemples de couches à partir de données OpenData de différentes villes françaises et suisse."
+            "wms_onlineresource" "http://${host}${entry_point}/mapserv_proxy"
+            "ows_srs" "EPSG:21781"
             "wms_encoding" "UTF-8"
             "wms_enable_request" "*"
-            "wfs_enable_request" "!*"
+            "wfs_enable_request" "*"
             "wfs_encoding" "UTF-8"
         END
     END
 
     LEGEND
+        KEYSIZE 20 25
         LABEL
             ENCODING "UTF-8"
             TYPE TRUETYPE
@@ -92,6 +83,9 @@ MAP
         END
     END
 
-    INCLUDE "demo.map"
-
+    # OSM
+    INCLUDE "osm.map"
+    INCLUDE "edit.map"
+    INCLUDE "private.map"
+    INCLUDE "osm-basemap.map"
 END

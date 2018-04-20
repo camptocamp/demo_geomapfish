@@ -1,7 +1,7 @@
 ---
 
 vars:
-  # is in development mode
+  # is in developement mode
   development: '{DEVELOPMENT}'
   # the package name
   package: demo
@@ -14,7 +14,6 @@ vars:
   host: '{VISIBLE_WEB_HOST}'
   web_protocol: '{VISIBLE_WEB_PROTOCOL}'
   entry_point: '{VISIBLE_ENTRY_POINT}'
-  dev_server_port: '{DEV_SERVER_PORT}'
 
   # Docker base image name (comes from the makefile).
   docker_base: '{DOCKER_BASE}'
@@ -26,6 +25,7 @@ vars:
         POSTGRES_USER: www-data
         POSTGRES_PASSWORD: www-data
     geoportal:
+      port: 80
       environment:
         VISIBLE_WEB_HOST: localhost:80
         VISIBLE_WEB_PROTOCOL: https
@@ -43,8 +43,6 @@ vars:
         PRINT_URL: http://print:8080/print/
         REDIS_HOST: redis
         REDIS_PORT: 6379
-    front:
-      port: 80
 
   # database user
   dbuser: '{PGUSER}'
@@ -113,6 +111,41 @@ vars:
     config: /src/jsbuild/app.cfg
     root_dir: /src
 
+  # used for the "node_modules" and "closure" static views
+  closure_library_path: process.stdout.write(require("@camptocamp/closure-util").getLibraryPath())
+  node_modules_path: /usr/lib/node_modules
+  app_path: /app
+
+  # pyramid_closure configuration
+  # Each item in the roots_with_prefix array is an array with two elements. The
+  # first element is the path pyramid_closure passed to request.static_url. The
+  # second element is the file system path where js source files are searched.
+  # For this to work window.CLOSURE_BASE_PATH being set to the empty string in
+  # the HTML page.
+  pyramid_closure:
+    roots_with_prefix:
+      -
+        - "{closure_library_path}/closure/goog"
+        - "{closure_library_path}/closure/goog"
+      -
+        - "{package}_geoportal:static-ngeo/js"
+        - "{app_path}/geoportal/{package}_geoportal/static-ngeo/js"
+      -
+        - "{package}_geoportal:static-ngeo/components"
+        - "{app_path}/geoportal/{package}_geoportal/static-ngeo/components"
+      -
+        - "{node_modules_path}{ps}openlayers/src"
+        - "{node_modules_path}{ps}openlayers/src"
+      -
+        - "{node_modules_path}{ps}openlayers/build"
+        - "{node_modules_path}{ps}openlayers/build"
+      -
+        - "{node_modules_path}{ps}ngeo/src"
+        - "{node_modules_path}{ps}ngeo/src"
+      -
+        - "{node_modules_path}{ps}ngeo/contribs/gmf/src"
+        - "{node_modules_path}{ps}ngeo/contribs/gmf/src"
+
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
   # This also defines the language used for the text search.
@@ -128,9 +161,6 @@ vars:
   interfaces: __import__('os').environ.get("INTERFACES").split(" ")
 
   default_interface: desktop
-
-  interfaces_theme:
-    desktop: desktop
 
   # The dogpile.cache configuration.
   #
@@ -190,7 +220,6 @@ vars:
       - name: metadataUrl
         type: url
       - name: disclaimer
-        translate: True
       - name: isChecked
         type: boolean
       - name: identifierAttributeField
@@ -263,6 +292,9 @@ vars:
       - open_panel
 
   urllogin: {}
+
+  mapserverproxy:
+    default_ogc_server: source for image/png
 
   tinyowsproxy:
     # URL to internal TinyOWS instance
@@ -396,10 +428,10 @@ vars:
           params:
             no_redirect: "true"
           level: 1
-          # - name: mobile
-          #   params:
-          #     no_redirect: "true"
-          #   level: 3
+        - name: mobile
+          params:
+            no_redirect: "true"
+          level: 3
           # - name: desktop
           #   params:
           #     no_redirect: "true"
@@ -485,6 +517,11 @@ interpreted:
     - authtkt.secret
     - ps
     - interfaces
+  node:
+    vars:
+      - closure_library_path
+    cmd: ["node", "-e"]
+    ignore_error: true
 
 environment:
   - GEOMAPFISH_VERSION
@@ -494,7 +531,6 @@ environment:
   - WMTSCAPABILITIES_PATH
   - BUILD_VOLUME_NAME
   - PROJECT_DIRECTORY
-  - DEV_SERVER_PORT
 
 runtime_environment:
   - VISIBLE_WEB_HOST
