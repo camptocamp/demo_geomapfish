@@ -1,6 +1,0 @@
-sudo -u postgres pg_dump --schema-only --dbname=demo_geomapfish_2_3 --schema=geodata > 15-schema-geodata.sql
-sudo -u postgres pg_dump --schema-only --dbname=demo_geomapfish_2_3 --schema=edit > 16-schema-edit.sql
-sudo -u postgres pg_dump --data-only --dbname=demo_geomapfish_2_3 --schema=main > 18-data-main.sql
-sudo -u postgres pg_dump --data-only --dbname=demo_geomapfish_2_3 --schema=main_static > 19-data-main-static.sql
-#sudo -u postgres pg_dump --format=c --table=planet_osm_point --dbname=osm > osm.dump
-sudo -u postgres pg_dump --insert --table=planet_osm_point --dbname=osm > osm.sql

@@ -172,8 +172,8 @@ vars:
   smtp:
     host: email-smtp.eu-west-1.amazonaws.com
     ssl: True
-    user: head -n 3 /var/sig/amazonses_smtp.txt | tail -n 1
-    password: tail -n 1 /var/sig/amazonses_smtp.txt
+    user: head -n 3 amazonses_smtp.txt | tail -n 1
+    password: tail -n 1 amazonses_smtp.txt
 
   headers:
     themes: &headers

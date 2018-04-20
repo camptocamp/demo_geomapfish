@@ -17,7 +17,9 @@ Build
 
 .. code::
 
-  ./docker-run --share=/var/sig make --makefile=<user.mk> build
+  make --makefile=<user.mk> secrets
+
+  ./docker-run make --makefile=<user.mk> build
 
   FINALISE=TRUE make --makefile=<user.mk> build
 

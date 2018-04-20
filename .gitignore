@@ -7,6 +7,7 @@ __pycache__/
 /docker-compose.yaml
 /docker-compose-build.yaml
 /alembic.yaml
+/testdb/README
 /testdb/11-schemas.sql
 /testdb/12-alembic.sql
 /testdb/13-alembic-static.sql
@@ -56,3 +57,5 @@ __pycache__/
 /node_modules
 /package-lock.json
 /.upgrade.yaml
+/amazonses_smtp.txt
+/secrets.bz2
