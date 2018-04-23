@@ -39,6 +39,7 @@ vars:
         PGSCHEMA_STATIC: main_static
         TINYOWS_URL: http://tinyows/
         MAPSERVER_URL: http://mapserver/
+        QGISSERVER_URL: http://qgisserver/
         PRINT_URL: http://print:8080/print/
         REDIS_HOST: redis
         REDIS_PORT: 6379
@@ -556,6 +557,8 @@ runtime_environment:
     default: http://tinyows/
   - name: MAPSERVER_URL
     default: http://mapserver/
+  - name: QGISSERVER_URL
+    default: http://qgisserver/
   - name: PRINT_URL
     default: http://print:8080/print/
   - name: REDIS_HOST
