@@ -34,3 +34,6 @@ Changes to apply
 
    mv geoportal/demo_geoportal/locale/fr/LC_MESSAGES/demo{,_geoportal}-client.po
    mv geoportal/demo_geoportal/locale/fr/LC_MESSAGES/demo{,_geoportal}-server.po
+
+2. If you have some custom Angular components you should follow these instructions:
+   https://github.com/camptocamp/ngeo/blob/master/docs/how_to_migrate_from_2.2_to_2.3.md

@@ -1,7 +1,3 @@
-<%
-from json import dumps
-from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
-%>
 <!DOCTYPE html>
 <html lang="{{mainCtrl.lang}}" ng-app="AppMobile" ng-controller="MobileController as mainCtrl">
   <head>
@@ -10,19 +6,10 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="${request.static_url('demo_geoportal:static-ngeo/images/favicon.ico')}"/>
-    <link rel="stylesheet" href="${request.static_url('demo_geoportal:static-ngeo/build/mobile.css')}" type="text/css">
-    <script>
-      if (!window.requestAnimationFrame) {
-        alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
-            + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. Vous allez être redirigé.\n\n'
-            + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. Sie werden weitergeleitet.');
-        window.location = 'http://geomapfish.org/'
-      }
-    </script>
+    <link rel="shortcut icon" href="/${instance}/wsgi/static-ngeo/BUSTING_VERSION/images/favicon.ico')}"/>
   </head>
   <%
-    no_redirect_query = dict(request.GET)
+    no_redirect_query = dict({} if request is None else request.GET)
     no_redirect_query['no_redirect'] = u''
   %>
 
@@ -91,7 +78,7 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         <div class="alert alert-info alert-dismissible fade in hidden-xs" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="{{'Close' | translate}}"><span aria-hidden="true" class="fa fa-times"></span></button>
           <span translate
-            translate-params-url="'${request.route_url('desktop', _query=no_redirect_query) | n}'">
+            translate-params-url="'${'' if request is None else request.route_url('desktop', _query=no_redirect_query) | n}'">
             You're using the mobile application. Check out the <a href="{{url}}">standard application</a>.</span>
         </div>
       </div>
@@ -184,87 +171,6 @@ from c2cgeoportal_geoportal.lib.cacheversion import get_cache_version
         </gmf-authentication>
       </div>
     </ngeo-modal>
-
-    % if debug:
-    <script>
-        window.CLOSURE_BASE_PATH = '';
-        window.CLOSURE_NO_DEPS = true;
-    </script>
-    <script src="${request.static_url('%s/jquery/dist/jquery.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/ngeo/third-party/jquery-ui/jquery-ui.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/jquery-ui-touch-punch/jquery.ui.touch-punch.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/jquery-datetimepicker/build/jquery.datetimepicker.full.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular/angular.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-animate/angular-animate.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-sanitize/angular-sanitize.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-touch/angular-touch.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-ui-date/dist/date.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-float-thead/angular-floatThead.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/floatthead/dist/jquery.floatThead.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-ui-slider/src/slider.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/corejs-typeahead/dist/typeahead.bundle.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/proj4/dist/proj4-src.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-gettext/dist/angular-gettext.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/angular-dynamic-locale/dist/tmhDynamicLocale.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/bootstrap/dist/js/bootstrap.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/jsts/dist/jsts.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/d3/build/d3.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/moment/moment.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/file-saver/FileSaver.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script src="${request.static_url('%s/url-polyfill/url-polyfill.js' % request.registry.settings['node_modules_path'])}"></script>
-
-    <script src="${request.static_url('%s/closure/goog/base.js' % request.registry.settings['closure_library_path'])}"></script>
-    <script src="${request.route_url('deps.js')}"></script>
-    <script>
-        goog.require('demo.mobile.Controller');
-    </script>
-    <script src="${request.static_url('demo_geoportal:static-ngeo/build/templatecache.js')}"></script>
-    <script src="${request.static_url('%s/ngeo/utils/watchwatchers.js' % request.registry.settings['node_modules_path'])}"></script>
-    <script>
-        demo.componentsBaseTemplateUrl = '${request.static_url("demo_geoportal:static-ngeo/components")}';
-        // demo.partialsBaseTemplateUrl = '${request.static_url("demo_geoportal:static-ngeo/partials")}';
-        // demo.baseTemplateUrl = '${request.static_url("demo_geoportal:static-ngeo/js")}';
-    </script>
-% else:
-    <script src="${request.static_url('demo_geoportal:static-ngeo/build/mobile.js')}"></script>
-% endif
-    <script>
-      (function() {        var urlElements = window.location.pathname.split('/');
-
-
-        var gmfModule = angular.module('GmfAbstractAppControllerModule');
-        gmfModule.constant('angularLocaleScript', '${request.static_url('demo_geoportal:static-ngeo/build/')}angular-locale_{{locale}}.js');
-        var langUrls = {
-${ ',\n'.join([
-    "          '{lang}': '{url}'".format(
-        lang=lang,
-        url=request.static_url('demo_geoportal:static-ngeo/build/{lang}.json'.format(lang=lang))
-    )
-    for lang in request.registry.settings["available_locale_names"]
-]) | n}
-        };
-
-        var module = angular.module('AppMobile');
-        module.constant('defaultTheme', 'Demo');
-        module.constant('defaultLang', '${request.registry.settings["default_locale_name"]}');
-        module.constant('langUrls', langUrls);
-        module.constant('cacheVersion', '${get_cache_version()}');
-        module.constant('authenticationBaseUrl', '${request.route_url('base') | n}');
-        module.constant('fulltextsearchUrl', '${request.route_url('fulltextsearch', _query={"limit": "20", "interface": "mobile"}) | n}');
-        module.constant('gmfTreeUrl', '${request.route_url('themes', _query={"version": "2", "background": "background", "interface": "mobile"}) | n}');
-        module.constant('gmfLayersUrl', '${request.route_url('layers_root') | n}');
-        module.constant('gmfRasterUrl', '${request.route_url('raster') | n}');
-        module.constant('gmfShortenerCreateUrl', '');
-        module.constant('gmfSearchGroups', []);
-        // Requires that the gmfSearchGroups is specified
-        module.constant('gmfSearchActions', []);
-        module.value('ngeoWfsPermalinkOptions', /** @type {ngeox.WfsPermalinkOptions} */ ({
-              url: '${request.route_url('mapserverproxy') | n}',
-              wfsTypes: ${dumps(wfs_types) | n},
-              defaultFeatureNS: 'http://mapserver.gis.umn.edu/mapserver',
-              defaultFeaturePrefix: 'feature'
-            }));
-       })();
-    </script>
+    <script src="/${instance}/wsgi/dynamic.js?interface=mobile"></script>
   </body>
 </html>
