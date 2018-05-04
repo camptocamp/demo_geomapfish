@@ -1,39 +1,26 @@
 /**
+ * @module demo.desktop.Controller
+ */
+/**
  * Application entry point.
  *
  * This file includes `goog.require`'s for all the components/directives used
  * by the HTML page and the controller to provide the configuration.
  */
-goog.provide('demo.desktop.Controller');
 
-goog.require('demo');
-goog.require('gmf.controllers.AbstractDesktopController');
-goog.require('gmf.import.module');
-goog.require('ngeo.googlestreetview.module');
-goog.require('ngeo.proj.EPSG2056');
-goog.require('ngeo.proj.EPSG21781');
-goog.require('ol');
+import gmfControllersAbstractDesktopController from 'gmf/controllers/AbstractDesktopController.js';
+import 'gmf/controllers/desktop.less';
+import demoBase from '../demomodule.js';
+import ngeoProjEPSG2056 from 'ngeo/proj/EPSG2056.js';
+import ngeoProjEPSG21781 from 'ngeo/proj/EPSG21781.js';
+import * as olBase from 'ol/index.js';
 
-demo.desktop.module = angular.module('AppDesktop', [
-  demo.module.name,
-  gmf.controllers.AbstractDesktopController.module.name,
-  ngeo.googlestreetview.module.name,
-  gmf.import.module.name,
-]);
-
-demo.desktop.module.value('gmfExternalOGCServers', [{
-  'name': 'Swiss Topo WMS',
-  'type': 'WMS',
-  'url': 'https://wms.geo.admin.ch/?lang=fr'
-}, {
-  'name': 'ASIT VD',
-  'type': 'WMTS',
-  'url': 'https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml'
-}, {
-  'name': 'Swiss Topo WMTS',
-  'type': 'WMTS',
-  'url': 'https://wmts.geo.admin.ch/1.0.0/WMTSCapabilities.xml?lang=fr'
-}]);
+if (!window.requestAnimationFrame) {
+  alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
+    + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. Vous allez être redirigé.\n\n'
+    + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. Sie werden weitergeleitet.');
+  window.location = 'http://geomapfish.org/';
+}
 
 /**
  * @param {angular.Scope} $scope Scope.
@@ -43,8 +30,8 @@ demo.desktop.module.value('gmfExternalOGCServers', [{
  * @ngInject
  * @export
  */
-demo.desktop.Controller = function($scope, $injector) {
-  gmf.controllers.AbstractDesktopController.call(this, {
+const exports = function($scope, $injector) {
+  gmfControllersAbstractDesktopController.call(this, {
     srid: 21781,
     mapViewConfig: {
       center: [632464, 185457],
@@ -57,7 +44,7 @@ demo.desktop.Controller = function($scope, $injector) {
    * @type {Array.<string>}
    * @export
    */
-  this.searchCoordinatesProjections = [ngeo.proj.EPSG21781, ngeo.proj.EPSG2056, 'EPSG:4326'];
+  this.searchCoordinatesProjections = [ngeoProjEPSG21781, ngeoProjEPSG2056, 'EPSG:4326'];
 
   /**
    * @type {!Array.<number>}
@@ -91,11 +78,11 @@ demo.desktop.Controller = function($scope, $injector) {
    * @export
    */
   this.mousePositionProjections = [{
-    code: ngeo.proj.EPSG2056,
+    code: ngeoProjEPSG2056,
     label: 'CH1903+ / LV95',
     filter: 'ngeoNumberCoordinates::{x}, {y} m'
   }, {
-    code: ngeo.proj.EPSG21781,
+    code: ngeoProjEPSG21781,
     label: 'CH1903 / LV03',
     filter: 'ngeoNumberCoordinates::{x}, {y} m'
   }, {
@@ -111,7 +98,14 @@ demo.desktop.Controller = function($scope, $injector) {
   gettextCatalog.getString('Add a sub theme');
   gettextCatalog.getString('Add a layer');
 };
-ol.inherits(demo.desktop.Controller, gmf.controllers.AbstractDesktopController);
 
+olBase.inherits(exports, gmfControllersAbstractDesktopController);
 
-demo.desktop.module.controller('DesktopController', demo.desktop.Controller);
+exports.module = angular.module('AppDesktop', [
+  demoBase.module.name,
+  gmfControllersAbstractDesktopController.module.name,
+]);
+
+exports.module.controller('DesktopController', exports);
+
+export default exports;
