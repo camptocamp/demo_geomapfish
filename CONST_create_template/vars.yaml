@@ -22,44 +22,44 @@ vars:
   default_interface: desktop
 
   authtkt:
-    # One day
-    timeout: 86400
+  # One day
+  timeout: 86400
 
   admin_interface:
-    # Default values for the admin interface's maps.
-    map_x: 740000
-    map_y: 5860000
-    map_zoom: 10
+  # Default values for the admin interface's maps.
+  map_x: 740000
+  map_y: 5860000
+  map_zoom: 10
 
   functionalities:
-    # Functionalities that are accessible to anonymous
-    # users.
-    anonymous:
-      print_template:
-        - 1 A4 portrait
-        - 2 A4 landscape
-        - 3 A3 portrait
-        - 4 A3 landscape
-      default_basemap: map
+  # Functionalities that are accessible to anonymous
+  # users.
+  anonymous:
+    print_template:
+      - 1 A4 portrait
+      - 2 A4 landscape
+      - 3 A3 portrait
+      - 4 A3 landscape
+    default_basemap: map
 
-      # The name of the theme to use as the default theme.
-      # The default theme is the theme loaded when no
-      # theme name is specified in the mobile app URL. If unset
-      # then there is no default theme, and no theme information
-      # will be passed to the config.js template.
-      default_theme:
+    # The name of the theme to use as the default theme.
+    # The default theme is the theme loaded when no
+    # theme name is specified in the mobile app URL. If unset
+    # then there is no default theme, and no theme information
+    # will be passed to the config.js template.
+    default_theme:
 
-    # Functionalities that are accessible to authenticated
-    # users with no associated functionalities in the
-    # database.
-    registered: {}
+  # Functionalities that are accessible to authenticated
+  # users with no associated functionalities in the
+  # database.
+  registered: {}
 
-    # Functionalities that are made available to Mako templates.
-    available_in_templates:
-      - default_basemap
+  # Functionalities that are made available to Mako templates.
+  available_in_templates:
+    - default_basemap
 
   layers:
-    geometry_validation: True
+  geometry_validation: True
 
   # For base layers
   tiles_url:
@@ -75,95 +75,95 @@ vars:
   # subdomains: [s1, s2, s3]
 
   fulltextsearch:
-    languages:
-      fr: french
-      en: english
-      de: german
+  languages:
+    fr: french
+    en: english
+    de: german
 
   # proxies:
   #   http: http://someproxy
 
   shortener:
-    # Used to send a confirmation email
-    email_from: info@example.com
-    email_subject: "Geoportal URL"
-    email_body: |
-      Hello,
+  # Used to send a confirmation email
+  email_from: info@example.com
+  email_subject: "Geoportal URL"
+  email_body: |
+    Hello,
 
-      Somebody sent you the following link:
-      {short_url}
+    Somebody sent you the following link:
+    {short_url}
 
-      With the message:
-      {message}
+    With the message:
+    {message}
 
-      Sincerely yours
-      The GeoMapfish team
+    Sincerely yours
+    The GeoMapfish team
 
   smtp:
-    # Used to send email from various feature
-    host: smtp.example.com
-    ssl: true
-    user: <username>
-    password: <password>
-    starttls: false
+  # Used to send email from various feature
+  host: smtp.example.com
+  ssl: true
+  user: <username>
+  password: <password>
+  starttls: false
 
   reset_password:
-    # Used to send a reset password email
-    email_from: info@camptocamp.com
-    email_subject: New password generated for GeoMapFish
-    email_body: |
-      Hello {user},
+  # Used to send a reset password email
+  email_from: info@camptocamp.com
+  email_subject: New password generated for GeoMapFish
+  email_body: |
+    Hello {user},
 
-      You have asked for an new password,
-      the newly generated password is: {password}
+    You have asked for an new password,
+    the newly generated password is: {password}
 
-      Sincerely yours
-      The GeoMapfish team
+    Sincerely yours
+    The GeoMapfish team
 
   welcome_email:
-    # Used to send a welcome email for new user
-    email_from: info@camptocamp.com
-    email_subject: Welcome to GeoMapFish
-    email_body: |
-      Hello {user},
+  # Used to send a welcome email for new user
+  email_from: info@camptocamp.com
+  email_subject: Welcome to GeoMapFish
+  email_body: |
+    Hello {user},
 
-      You have a new account on GeoMapFish: https://geomapfish-demo.camptocamp.com/2.3
-      Your user name is: {user}
-      Your password is: {password}
+    You have a new account on GeoMapFish: https://geomapfish-demo.camptocamp.com/2.3
+    Your user name is: {user}
+    Your password is: {password}
 
-      Sincerely yours
-      The GeoMapfish team
+    Sincerely yours
+    The GeoMapfish team
 
   # Checker configuration
   checker:
-    fulltextsearch:
-      search: text to search
-    print:
-      spec:
-        layout: "1 A4 portrait"
-        outputFormat: "pdf"
-        attributes:
-          title: ""
-          comments: ""
-          datasource: []
-          map:
-            projection: "EPSG:21781"
-            dpi: 254
-            rotation: 0
-            center: [600000, 200000]
-            scale: 100000
-            longitudeFirst: true
-            layers: []
-          legend: {}
+  fulltextsearch:
+    search: text to search
+  print:
+    spec:
+    layout: "1 A4 portrait"
+    outputFormat: "pdf"
+    attributes:
+      title: ""
+      comments: ""
+      datasource: []
+      map:
+      projection: "EPSG:21781"
+      dpi: 254
+      rotation: 0
+      center: [600000, 200000]
+      scale: 100000
+      longitudeFirst: true
+      layers: []
+      legend: {}
 
   check_collector:
-    hosts: []
-    # - display: Child:
-    #   url: {web_protocol}://{host}/child/wsgi
+  hosts: []
+  #   - display: Child:
+  #   url: {web_protocol}://{host}/child/wsgi
 
   deploy:
-    code_source: /var/www/c2cgeoportal_mapfish/private/c2cgeoportal
-    code_destination: /var/www/c2cgeoportal_mapfish/private/c2cgeoportal
+  code_source: /var/www/c2cgeoportal_mapfish/private/c2cgeoportal
+  code_destination: /var/www/c2cgeoportal_mapfish/private/c2cgeoportal
 
 update_paths:
   - shortener
