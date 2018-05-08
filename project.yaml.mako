@@ -15,7 +15,7 @@ unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/less/mobile\.less
   - geoportal/demo_geoportal/static-ngeo/components/contextualdata/contextualdata\.html
   - geoportal/demo_geoportal/static-ngeo/components/README\.md
-  - geoportal/demo_geoportal/static-ngeo/js/apps/Controller*\.js
+  - geoportal/demo_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/demo_geoportal/static-ngeo/js/apps/desktop\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/mobile\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/image/.*
