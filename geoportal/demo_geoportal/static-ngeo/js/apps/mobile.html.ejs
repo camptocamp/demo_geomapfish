@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-app="AppMobile" ng-controller="MobileController as mainCtrl">
+<html lang="{{mainCtrl.lang}}" ng-app="Appmobile" ng-controller="MobileController as mainCtrl" ng-strict-di>
   <head>
     <title ng-bind-template="{{'Mobile Application'|translate}}">GeoMapFish</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="/${instance}/wsgi/static-ngeo/BUSTING_VERSION/images/favicon.ico')}"/>
+    <link rel="shortcut icon" href="<%=require("./image/favicon.ico")%>" />
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+    <% } %>
   </head>
-  <%
-    no_redirect_query = dict({} if request is None else request.GET)
-    no_redirect_query['no_redirect'] = u''
-  %>
-
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
                    'gmf-mobile-nav-left-is-visible': mainCtrl.leftNavIsVisible(),
                    'gmf-mobile-nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
@@ -78,7 +76,7 @@
         <div class="alert alert-info alert-dismissible fade in hidden-xs" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="{{'Close' | translate}}"><span aria-hidden="true" class="fa fa-times"></span></button>
           <span translate
-            translate-params-url="'${'' if request is None else request.route_url('desktop', _query=no_redirect_query) | n}'">
+            translate-params-url="::mainCtrl.redirectUrl">
             You're using the mobile application. Check out the <a href="{{url}}">standard application</a>.</span>
         </div>
       </div>
@@ -171,6 +169,9 @@
         </gmf-authentication>
       </div>
     </ngeo-modal>
-    <script src="/${instance}/wsgi/dynamic.js?interface=mobile"></script>
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <% } %>
+    <script src="dynamic.js?interface=mobile"></script>
   </body>
 </html>
