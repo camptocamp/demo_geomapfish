@@ -150,6 +150,10 @@ mapping:
                 mapping:
                   regex;.+:
                     type: any
+              redirect_interface:
+                type: str
+              do_redirect:
+                type: bool
       authorized_referers:
         type: seq
         sequence:
@@ -239,6 +243,8 @@ mapping:
                     type: str
                   error_message:
                     type: str
+                  translate:
+                    type: bool
           available_functionalities:
             type: seq
             required: True
