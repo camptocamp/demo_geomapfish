@@ -22,6 +22,10 @@ WSGIPassAuthorization On
 RewriteRule ^${apache_entry_point}?$ /${instanceid}/wsgi [PT]
 RewriteRule ^${apache_entry_point}theme/(.+)$ /${instanceid}/wsgi/theme/$1 [PT]
 
+RewriteRule ^${apache_entry_point}dynamic.js?$ /${instanceid}/wsgi/dynamic.js [PT]
+RewriteRule ^${apache_entry_point}.+/dynamic.js$ /${instanceid}/wsgi/dynamic.js [PT]
+RewriteRule ^${apache_entry_point}.+/theme/dynamic.js$ /${instanceid}/wsgi/dynamic.js [PT]
+
 % for interface in interfaces:
 RewriteRule ^${apache_entry_point}${interface}/?$ /${instanceid}/wsgi/${interface} [PT]
 RewriteRule ^${apache_entry_point}${interface}/theme/(.+)$ /${instanceid}/wsgi/${interface}/theme/$1 [PT]

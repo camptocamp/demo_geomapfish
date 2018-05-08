@@ -32,70 +32,6 @@ msgstr "Unterthema hinzufügen"
 msgid "Add a theme"
 msgstr "Thema hinzufügen"
 
-#: contribs/gmf/apps/desktop_alt/index.html:4
-msgid "Alternative Desktop Application"
-msgstr "Alternative Desktop-Applikation"
-
-#: contribs/gmf/apps/mobile_alt/index.html:4
-msgid "Alternative Mobile Application"
-msgstr "Alternative Mobile-Applikation"
-
-#: contribs/gmf/apps/mobile/index.html:118
-#: contribs/gmf/apps/mobile/index.html:83
-#: contribs/gmf/apps/mobile_alt/index.html:126
-#: contribs/gmf/apps/mobile_alt/index.html:90
-msgid "Back"
-msgstr "Zurück"
-
-#: contribs/gmf/apps/mobile/index.html:103
-#: contribs/gmf/apps/mobile/index.html:89
-#: contribs/gmf/apps/mobile_alt/index.html:111
-#: contribs/gmf/apps/mobile_alt/index.html:96
-msgid "Background"
-msgstr "Hintergrund"
-
-#: contribs/gmf/apps/mobile/index.html:74
-#: contribs/gmf/apps/mobile_alt/index.html:81
-msgid "Close"
-msgstr "Schliessen"
-
-#: contribs/gmf/apps/mobile/index.html:137
-#: contribs/gmf/apps/mobile_alt/index.html:145
-msgid "Coordinate"
-msgstr "Koordinate"
-
-#: contribs/gmf/apps/desktop/index.html:4
-msgid "Desktop Application"
-msgstr "Desktop-Applikation"
-
-#: contribs/gmf/apps/desktop/index.html:118
-#: contribs/gmf/apps/desktop/index.html:58
-#: contribs/gmf/apps/desktop_alt/index.html:134
-#: contribs/gmf/apps/desktop_alt/index.html:56
-msgid "Draw & Measure"
-msgstr "Zeichnen & Messen"
-
-#: contribs/gmf/apps/desktop/index.html:177
-#: contribs/gmf/apps/desktop_alt/index.html:194
-msgid ""
-"Draw a line on the map to display the corresponding elevation profile.\n"
-"                    Use double-click to finish the drawing."
-msgstr ""
-"Zeichnen Sie eine Linie auf die Karte um das dazugehörige Höhenprofil anzuzeigen.\n"
-"Ein Doppelklick beendet das Zeichnen der Linie."
-
-#: contribs/gmf/apps/desktop/index.html:171
-#: contribs/gmf/apps/desktop_alt/index.html:187
-msgid "Draw profile line"
-msgstr "Profil-Linie zeichnen"
-
-#: contribs/gmf/apps/desktop/index.html:144
-#: contribs/gmf/apps/desktop/index.html:66
-#: contribs/gmf/apps/desktop_alt/index.html:160
-#: contribs/gmf/apps/desktop_alt/index.html:64
-msgid "Editing"
-msgstr "Editieren"
-
 #: contribs/gmf/apps/desktop/contextualdata.html:35
 #: contribs/gmf/apps/oeedit/contextualdata.html:35
 #: contribs/gmf/apps/oeview/contextualdata.html:35
@@ -108,62 +44,9 @@ msgstr "Höhe (Aster)"
 msgid "Elevation (SRTM)"
 msgstr "Höhe (SRTM)"
 
-#: contribs/gmf/apps/desktop/index.html:131
-#: contribs/gmf/apps/desktop/index.html:62
-#: contribs/gmf/apps/desktop_alt/index.html:147
-#: contribs/gmf/apps/desktop_alt/index.html:60
-msgid "Filter"
-msgstr "Filter"
-
-#: contribs/gmf/apps/desktop/index.html:201
-#: contribs/gmf/apps/desktop/index.html:79
-#: contribs/gmf/apps/desktop_alt/index.html:218
-#: contribs/gmf/apps/desktop_alt/index.html:77
-msgid "Import Layer"
-msgstr "Ebene importieren"
-
-#: contribs/gmf/apps/desktop/index.html:149
-#: contribs/gmf/apps/desktop_alt/index.html:165
-msgid "In order to use the editing tool, you must log in first."
-msgstr "Sie müssen angemeldet sein, um das Editier-Werkzeug zu verwenden."
-
 #: contribs/gmf/apps/desktop_alt/Controller.js:121
 msgid "Learning [merged]"
 msgstr "Lernen [kombiniert]"
-
-#: contribs/gmf/apps/mobile/index.html:146
-#: contribs/gmf/apps/mobile_alt/index.html:154
-msgid "Length"
-msgstr "Länge"
-
-#: contribs/gmf/apps/desktop/index.html:25
-#: contribs/gmf/apps/desktop_alt/index.html:22
-#: contribs/gmf/apps/oeedit/index.html:24
-#: contribs/gmf/apps/oeview/index.html:24
-msgid "Loading..."
-msgstr "Lade..."
-
-#: contribs/gmf/apps/desktop/index.html:50
-#: contribs/gmf/apps/desktop/index.html:97
-#: contribs/gmf/apps/desktop_alt/index.html:48
-#: contribs/gmf/apps/desktop_alt/index.html:99
-#: contribs/gmf/apps/mobile/index.html:125
-#: contribs/gmf/apps/mobile/index.html:151
-#: contribs/gmf/apps/mobile_alt/index.html:133
-#: contribs/gmf/apps/mobile_alt/index.html:159
-msgid "Login"
-msgstr "Login"
-
-#: contribs/gmf/apps/mobile/index.html:124
-#: contribs/gmf/apps/mobile/index.html:129
-#: contribs/gmf/apps/mobile_alt/index.html:132
-#: contribs/gmf/apps/mobile_alt/index.html:137
-msgid "Measure tools"
-msgstr "Messen"
-
-#: contribs/gmf/apps/mobile/index.html:4
-msgid "Mobile Application"
-msgstr "Mobile Applikation"
 
 #: contribs/gmf/apps/desktop_alt/Controller.js:120
 msgid "OSM_time (merged)"
@@ -173,77 +56,11 @@ msgstr "OSM Zeitlayer (kombiniert)"
 msgid "OSM_time_merged"
 msgstr "OSM Zeitlayer kombiniert"
 
-#: contribs/gmf/apps/oeedit/index.html:55
-#: contribs/gmf/apps/oeedit/index.html:73
-msgid "Object Editing"
-msgstr "Objektbasierte Editierung"
-
-#: contribs/gmf/apps/oeedit/index.html:4
-msgid "ObjectEditing - Edit Application"
-msgstr "Objektbasierte Editierung - Bearbeitung"
-
-#: contribs/gmf/apps/oeview/index.html:4
-msgid "ObjectEditing - Viewer Application"
-msgstr "Objektbasierte Editierung - Ansicht"
-
-#: contribs/gmf/apps/desktop/index.html:106
-#: contribs/gmf/apps/desktop/index.html:54
-#: contribs/gmf/apps/desktop_alt/index.html:111
-#: contribs/gmf/apps/desktop_alt/index.html:52
-msgid "Print"
-msgstr "Drucken"
-
-#: contribs/gmf/apps/desktop/index.html:163
-#: contribs/gmf/apps/desktop/index.html:71
-#: contribs/gmf/apps/desktop_alt/index.html:179
-#: contribs/gmf/apps/desktop_alt/index.html:69
-msgid "Profile"
-msgstr "Profil"
-
-#: contribs/gmf/apps/oeedit/index.html:51
-#: contribs/gmf/apps/oeedit/index.html:64
-msgid "Query"
-msgstr "Abfrage"
-
-#: contribs/gmf/apps/desktop_alt/index.html:229
-#: contribs/gmf/apps/desktop_alt/index.html:81
-msgid "Routing"
-msgstr "Routing"
-
-#: contribs/gmf/apps/desktop/index.html:85
-#: contribs/gmf/apps/desktop_alt/index.html:87
-msgid "Share this map"
-msgstr "Diese Karte teilen"
-
-#: contribs/gmf/apps/desktop/index.html:188
-#: contribs/gmf/apps/desktop/index.html:75
-#: contribs/gmf/apps/desktop_alt/index.html:205
-#: contribs/gmf/apps/desktop_alt/index.html:73
-msgid "Street View"
-msgstr "Street View"
-
 #: contribs/gmf/apps/desktop/contextualdata.html:3
 #: contribs/gmf/apps/oeedit/contextualdata.html:3
 #: contribs/gmf/apps/oeview/contextualdata.html:3
 msgid "Swiss grid (LV03)"
 msgstr "Swiss Grid (LV03)"
-
-#: contribs/gmf/apps/desktop/index.html:24
-#: contribs/gmf/apps/oeedit/index.html:23
-#: contribs/gmf/apps/oeview/index.html:23
-msgid "Theme:"
-msgstr "Thema:"
-
-#: contribs/gmf/apps/desktop/index.html:29
-#: contribs/gmf/apps/desktop_alt/index.html:26
-#: contribs/gmf/apps/mobile/index.html:110
-#: contribs/gmf/apps/mobile/index.html:92
-#: contribs/gmf/apps/mobile_alt/index.html:118
-#: contribs/gmf/apps/mobile_alt/index.html:99
-#: contribs/gmf/apps/oeedit/index.html:28
-#: contribs/gmf/apps/oeview/index.html:28
-msgid "Themes"
-msgstr "Themen"
 
 #: contribs/gmf/apps/desktop/contextualdata.html:11
 #: contribs/gmf/apps/oeedit/contextualdata.html:11
@@ -256,21 +73,3 @@ msgstr "WGS84-Koord."
 #: contribs/gmf/apps/oeview/contextualdata.html:19
 msgid "Wgs Coord. DMS"
 msgstr "WGS84-Koord. Grad, Min., Sek."
-
-#: contribs/gmf/apps/desktop/index.html:298
-#: contribs/gmf/apps/mobile/index.html:160
-msgid "You must change your password"
-msgstr "Sie müssen Ihr Passwort ändern."
-
-#: contribs/gmf/apps/mobile/index.html:75
-#: contribs/gmf/apps/mobile_alt/index.html:82
-msgid ""
-"You're using the mobile application. Check out the <a "
-"href=\"{{url}}\">standard application</a>."
-msgstr ""
-"Sie verwenden die mobile Applikation. Wechsel zur <a href=\"{{url"
-"}}\">Standard-Applikation.</a>"
-
-#: contribs/gmf/apps/desktop_alt/index.html:124
-msgid "debug"
-msgstr "debug"
