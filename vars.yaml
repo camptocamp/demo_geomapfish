@@ -92,6 +92,7 @@ vars:
       constants:
         <<: *constants
         gmfTreeManagerModeFlush: false
+        pytreeLidarProfileJsonUrl: https://sitn.ne.ch/pytree/pytree_dev/
         ngeoRoutingOptions:
           - backendUrl: https://routing.osm.ch/
           - profiles:
