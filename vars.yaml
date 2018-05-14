@@ -49,7 +49,6 @@ vars:
           - name: ASIT VD
             type: WMTS
             url: https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml
-        ravenUrl: https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@sentry.camptocamp.com/14
       fulltextsearch_params:
         limit: 30
         partitionlimit: 5
@@ -61,7 +60,7 @@ vars:
         gmfProfileCsvUrl: profile.csv
         gmfShortenerCreateUrl: shortener_create
       static:
-        assetsBaseUrl: '{package}:static-ngeo/'
+        assetsBaseUrl: '{package}_geoportal:static-ngeo/'
       wfs_permalink:
         wfsTypes:
           - featureType: fuel
@@ -92,7 +91,6 @@ vars:
       constants:
         <<: *constants
         gmfTreeManagerModeFlush: false
-        pytreeLidarProfileJsonUrl: https://sitn.ne.ch/pytree/pytree_dev/
         ngeoRoutingOptions:
           - backendUrl: https://routing.osm.ch/
           - profiles:
