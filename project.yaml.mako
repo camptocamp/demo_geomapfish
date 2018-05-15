@@ -18,6 +18,10 @@ unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/demo_geoportal/static-ngeo/js/apps/desktop\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/mobile\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/desktop_alt\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/mobile_alt\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/oeview\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/oeedit\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/image/.*
   - geoportal/demo_geoportal/templates/api/api\.js
   - geoportal/demo_geoportal/templates/api/apihelp\.html
