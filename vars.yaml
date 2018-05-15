@@ -7,11 +7,15 @@ vars:
 
   # all interface used to create the apache rewrite rules
   interfaces:
-    - main
+    - desktop
     - mobile
     - old
     - edit
     - routing
+    - desktop_alt
+    - mobile_alt
+    - oeview
+    - oeedit
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
