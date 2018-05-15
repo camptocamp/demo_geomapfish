@@ -1115,7 +1115,8 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
-    DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''https://geomapfish-demo.camptocamp.com/2.2/wsgi/resourceproxy?target=point&values='||osm_id||''',''OSM'',800,500)\">Open</a>' AS open,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
+    DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''https://example.com'',''OSM'',460,210)\">Open</a>' AS open,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
+##    DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''https://geomapfish-demo.camptocamp.com/2.2/wsgi/resourceproxy?target=point&values='||osm_id||''',''OSM'',800,500)\">Open</a>' AS open,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     EXTENT 473743 74095 839000 306400
     PROJECTION
