@@ -287,16 +287,10 @@ vars:
         - https://testgmf.sig.cloud.camptocamp.net
         - https://geomapfish-demo.camptocamp.com
         - https://fredj.github.io
-        - https://pgiraud.github.io
-        - https://ger-benjamin.github.io
-        - https://tsauerwein.github.io
         - https://ger-benjamin.github.io
         - https://marionb.github.io
-        - https://adube.github.io
         - http://localhost:3000
-        - http://localhost
         - http://127.0.0.1:3000
-        - http://127.0.0.1
         - "*"
     index: *headers
     api: *headers
@@ -321,30 +315,18 @@ vars:
         - https://testgmf.sig.cloud.camptocamp.net
         - https://geomapfish-demo.camptocamp.com
         - https://fredj.github.io
-        - https://pgiraud.github.io
-        - https://ger-benjamin.github.io
-        - https://tsauerwein.github.io
         - https://ger-benjamin.github.io
         - https://marionb.github.io
-        - https://adube.github.io
         - http://localhost:3000
-        - http://localhost
         - http://127.0.0.1:3000
-        - http://127.0.0.1
 
   authorized_referers:
     - https://camptocamp.github.io/
     - https://fredj.github.io/
-    - https://pgiraud.github.io/
-    - https://ger-benjamin.github.io/
-    - https://tsauerwein.github.io/
     - https://ger-benjamin.github.io/
     - https://marionb.github.io/
-    - https://adube.github.io/
     - http://localhost:3000/
-    - http://localhost/
     - http://127.0.0.1:3000/
-    - http://127.0.0.1/
 
   access_control_allow_origin:
     - https://camptocamp.github.io
