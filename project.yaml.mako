@@ -10,6 +10,7 @@ template_vars:
 managed_files:
   - deploy/deploy\.cfg\.mako
   - apache/application\.wsgi\.mako
+  - geoportal/demo_geoportal/__init__\.py
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
   - geoportal/demo_geoportal/static-ngeo/less/mobile\.less
