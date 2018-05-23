@@ -129,7 +129,7 @@ CLIENT_LOCALISATION_RULES = $(addprefix /build/lang-client-, $(LANGUAGES))
 ANGULAR_LOCALES_FILES = $(addprefix $(APP_OUTPUT_DIR)/angular-locale_, $(addsuffix .js, $(LANGUAGES)))
 NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
 	$(ANGULAR_LOCALES_FILES)
-NGEO_OUTPUT_FILES += /build/apps.timestamp
+NGEO_OUTPUT_FILES += $(addprefix /build/apps., $(addsuffix .timestamp, $(NGEO_INTERFACES)))
 
 ifdef CI
 WEBPACK_ARGS ?= --debug
@@ -568,7 +568,7 @@ $(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/jquery-ui/themes/base/images
 	cp -r $</* $@
 
 .PRECIOUS: /build/apps.timestamp
-/build/apps.timestamp: $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
+/build/apps.%.timestamp: $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
 		$(APP_HTML_FILES) webpack.apps.js webpack.config.js \
 		$(LESS_FILES) \
 		$(NGEO_FONTS) \
@@ -577,7 +577,7 @@ $(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/jquery-ui/themes/base/images
 	# Workaround to make Webpack working for ol/index.js
 	if [ -e node_modules ]; then mv node_modules node_modules_bak; fi
 	ln --symbolic /usr/lib/node_modules/ .
-	THEME=desktop webpack $(WEBPACK_ARGS)
+	INTERFACE=$* webpack $(WEBPACK_ARGS)
 	rm node_modules
 	if [ -e node_modules_bak ]; then mv node_modules_bak node_modules; fi
 	touch $@
