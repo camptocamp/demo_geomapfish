@@ -85,6 +85,7 @@ vars:
       <<: *interface
       constants:
         <<: *constants
+        gmfPrintOptions: {scaleInput: true}
         gmfTreeManagerModeFlush: false
         ngeoRoutingOptions:
           - backendUrl: https://routing.osm.ch/
@@ -172,6 +173,9 @@ vars:
   # The used sub domain for the static resources
   # Do not works with pyramid debug toolbar
   # subdomains: [s1, s2, s3]
+
+  mapserverproxy:
+    default_ogc_server: source for image/png
 
   fulltextsearch:
     languages:
@@ -267,6 +271,7 @@ vars:
 update_paths:
   - shortener
   - fulltextsearch
+  - authorized_referers
   - authtkt
   - admin_interface
   - checker.fulltextsearch

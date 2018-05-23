@@ -1,14 +1,14 @@
-GEOMAPFISH_VERSION ?= 2.3.0.dev19
+GEOMAPFISH_VERSION ?= 2.3.0.dev20
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
-VISIBLE_WEB_HOST ?= example.com
 VISIBLE_WEB_PROTOCOL ?= https
 VISIBLE_WEB_PORT ?= 443
 VISIBLE_ENTRY_POINT ?= /
 export VISIBLE_WEB_HOST
 export VISIBLE_WEB_PROTOCOL
 export VISIBLE_ENTRY_POINT
+DEV_SERVER_PORT ?= 8081
 export DEV_SERVER_PORT
 
 MAPSERVER ?= TRUE
@@ -338,7 +338,7 @@ help:
 	@echo  "- docker-build   	Pull all the needed Docker images, build all (Outside Docker)"
 	@echo  "- build			Build and configure the project"
 	@echo  "- checks		Perform a number of checks on the code"
-	@echo  "- serve			Run the development server (Pserve)"
+	@echo  "- serve			Run the development server (Outside Docker)"
 	@echo  "- clean			Remove generated files"
 	@echo  "- clean-all		Remove all the build artifacts"
 	@echo  "- clean-all-cache	Remove all the build artifacts and the extra caches (npm and pip)"
@@ -575,16 +575,17 @@ $(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/jquery-ui/themes/base/images
 		$(APP_OUTPUT_DIR)/images/
 	$(PRERULE_CMD)
 	# Workaround to make Webpack working for ol/index.js
-	rm --force --recursive node_modules
+	if [ -e node_modules ]; then mv node_modules node_modules_bak; fi
 	ln --symbolic /usr/lib/node_modules/ .
-	webpack $(WEBPACK_ARGS)
-	rm --force node_modules
+	THEME=desktop webpack $(WEBPACK_ARGS)
+	rm node_modules
+	if [ -e node_modules_bak ]; then mv node_modules_bak node_modules; fi
 	touch $@
 
 .PHONY: serve
-serve: build
-	NODE_ENV=dev node_modules/.bin/webpack-dev-server --port $(DEV_SERVER_PORT) -d --watch --progress \
-		--public $(VISIBLE_WEB_HOST):$(VISIBLE_WEB_PORT)
+serve:
+	node_modules/.bin/webpack-dev-server --port=$(DEV_SERVER_PORT) -d --watch --progress \
+		--public=$(VISIBLE_WEB_HOST):$(VISIBLE_WEB_PORT) --mode=development --inline=false
 
 /build/eslint.timestamp: $(APP_JS_FILES)
 	$(PRERULE_CMD)
