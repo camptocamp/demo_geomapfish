@@ -7,6 +7,7 @@ endif
 
 # The hostname use in the browser to open the application
 APACHE_VHOST ?= demo_geomapfish
+VISIBLE_WEB_HOST ?= demo.com
 INSTANCE_ID ?= demo
 TILECLOUD_CHAIN ?= TRUE
 
