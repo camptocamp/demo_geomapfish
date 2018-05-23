@@ -6,7 +6,7 @@ VARS_FILES += ${VARS_FILE} vars_nondocker.yaml
 endif
 APACHE_VHOST = geomapfish-demo
 INSTANCE_ID ?= demo
-export VISIBLE_WEB_HOST=geomapfish-demo.camptocamp.com
+VISIBLE_WEB_HOST ?= geomapfish-demo.camptocamp.com
 
 PGDATABASE ?= demo_geomapfish_2_3
 export PGDATABASE
