@@ -10,8 +10,6 @@ template_vars:
   extent: 489246, 78873, 837119, 296543
   apache_vhost: demo_geomapfish
 managed_files:
-  - deploy/deploy\.cfg\.mako
-  - apache/application\.wsgi\.mako
   - geoportal/demo_geoportal/__init__\.py
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
