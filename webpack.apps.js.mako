@@ -56,7 +56,7 @@ const rules = [
 module.exports = {
   output: {
     path: path.resolve(__dirname, 'geoportal/demo_geoportal/static-ngeo/build/'),
-    publicPath: dev ? '/${instanceid}/dev/' : '/${instanceid}/wsgi/static-ngeo/UNUSED_CACHE_VERSION/build/'
+    publicPath: dev ? '/${instance}/dev/' : '${entry_point}static-ngeo/UNUSED_CACHE_VERSION/build/'
   },
   entry: entry,
   module: {

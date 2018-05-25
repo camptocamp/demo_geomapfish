@@ -24,7 +24,6 @@ ENV NODE_PATH=/usr/lib/node_modules \
     PGSCHEMA_STATIC=main_static \
     TINYOWS_URL=http://tinyows/ \
     MAPSERVER_URL=http://mapserver/ \
-    QGISSERVER_URL=http://qgisserver/ \
     PRINT_URL=http://print:8080/print/
 
 ENTRYPOINT []

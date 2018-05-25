@@ -24,12 +24,113 @@ vars:
 
   default_interface: desktop
 
+  interfaces_config:
+    default: &interface
+      constants: &constants
+        defaultTheme: Demo
+        defaultLang: en
+        gmfSearchGroups: [osm, district]
+        gmfSearchActions:
+          - action: add_theme
+            title: Add a theme
+          - action: add_group
+            title: Add a sub theme
+          - action: add_layer
+            title: Add a layer
+        gmfExternalOGCServers:
+          - name: Swiss Topo WMS
+            type: WMS
+            url: https://wms.geo.admin.ch/?lang=fr
+          - name: Swiss Topo WMTS
+            type: WMTS
+            url: https://wmts.geo.admin.ch/1.0.0/WMTSCapabilities.xml?lang=fr
+          - name: ASIT VD
+            type: WMTS
+            url: https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml
+      fulltextsearch_params:
+        limit: 30
+        partitionlimit: 5
+      routes: &routes
+        authenticationBaseUrl: base
+        fulltextsearchUrl: fulltextsearch
+        gmfLayersUrl: layers_root
+        gmfRasterUrl: raster
+        gmfProfileCsvUrl: profile.csv
+        gmfShortenerCreateUrl: shortener_create
+      static:
+        assetsBaseUrl: '{package}_geoportal:static-ngeo/'
+      wfs_permalink:
+        wfsTypes:
+          - featureType: fuel
+            label: display_name
+          - featureType: osm_scale
+            label: display_name
+        defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
+        defaultFeaturePrefix: feature
+    mobile:
+      <<: *interface
+      redirect_interface: desktop
+    mobile_alt:
+      <<: *interface
+      constants:
+        <<: *constants
+        gmfTreeManagerModeFlush: false
+        # FIXME: gmfSearchActions: []
+    desktop:
+      <<: *interface
+      redirect_interface: mobile
+      do_redirect: True
+      routes:
+        <<: *routes
+        gmfProfileJsonUrl: profile.json
+        gmfPrintUrl: printproxy
+    desktop_alt:
+      <<: *interface
+      constants:
+        <<: *constants
+        gmfPrintOptions: {scaleInput: true}
+        gmfTreeManagerModeFlush: false
+        ngeoRoutingOptions:
+          - backendUrl: https://routing.osm.ch/
+          - profiles:
+              - label: Car
+                profile: routed-car
+              - label: Bike (City)
+                profile: routed-bike
+              - label: Bike (Touring)
+                profile: routed-bike-touring
+              - label: Foot
+                profile: routed-foot
+              - label: Hiking
+                profile: routed-hiking
+        ngeoNominatimSearchDefaultParams:
+          - countrycodes: CH
+      routes:
+        <<: *routes
+        gmfProfileJsonUrl: profile.json
+        gmfPrintUrl: printproxy
+    oeview:
+      <<: *interface
+      # FIXME: gmfContextualdatacontentTemplateUrl
+      routes:
+        <<: *routes
+        gmfProfileJsonUrl: profile.json
+        gmfPrintUrl: printproxy
+    oeedit:
+      <<: *interface
+      # FIXME: gmfContextualdatacontentTemplateUrl
+      routes:
+        <<: *routes
+        gmfProfileJsonUrl: profile.json
+        gmfPrintUrl: printproxy
+
   docker_services:
     geoportal:
-      port: 8480
       environment:
         PGDATABASE: demo_geomapfish_2_3_bak
         VISIBLE_ENTRY_POINT: /docker/
+    front:
+      port: 8480
 
   authtkt:
     # One day
@@ -274,16 +375,20 @@ vars:
           legend: {}
 
 update_paths:
-  - shortener
+  - admin_interface.available_functionalities
+  - authorized_referers
   - authtkt
-  - fulltextsearch
+  - check_collector.disabled
+  - check_collector.hosts
   - checker.fulltextsearch
   - checker.print
-  - admin_interface.available_functionalities
-  - functionalities.available_in_templates
   - docker_services.geoportal.environment
+  - fulltextsearch
+  - functionalities.available_in_templates
+  - interfaces_theme
+  - shortener
 
 no_interpreted:
-  - shortener.email_body
   - reset_password.email_body
+  - shortener.email_body
   - welcome_email.email_body

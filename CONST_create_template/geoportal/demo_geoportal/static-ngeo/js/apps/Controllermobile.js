@@ -1,22 +1,26 @@
 /**
+ * @module demo.mobile.Controller
+ */
+/**
  * Application entry point.
  *
  * This file includes `goog.require`'s for all the components/directives used
  * by the HTML page and the controller to provide the configuration.
  */
-goog.provide('demo.mobile.Controller');
 
-goog.require('demo');
-goog.require('gmf.controllers.AbstractMobileController');
-goog.require('ngeo.proj.EPSG2056');
-goog.require('ngeo.proj.EPSG21781');
-goog.require('ol');
+import gmfControllersAbstractMobileController from 'gmf/controllers/AbstractMobileController.js';
+import 'gmf/controllers/mobile.less';
+import demoBase from '../demomodule.js';
+import ngeoProjEPSG2056 from 'ngeo/proj/EPSG2056.js';
+import ngeoProjEPSG21781 from 'ngeo/proj/EPSG21781.js';
+import * as olBase from 'ol/index.js';
 
-demo.mobile.module = angular.module('AppMobile', [
-  demo.module.name,
-  gmf.controllers.AbstractMobileController.module.name,
-]);
-
+if (!window.requestAnimationFrame) {
+  alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
+    + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. Vous allez être redirigé.\n\n'
+    + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. Sie werden weitergeleitet.');
+  window.location = 'http://geomapfish.org/';
+}
 
 /**
  * @param {angular.Scope} $scope Scope.
@@ -26,8 +30,8 @@ demo.mobile.module = angular.module('AppMobile', [
  * @ngInject
  * @export
  */
-demo.mobile.Controller = function($scope, $injector) {
-  gmf.controllers.AbstractMobileController.call(this, {
+const exports = function($scope, $injector) {
+  gmfControllersAbstractMobileController.call(this, {
     autorotate: false,
     srid: 21781,
     mapViewConfig: {
@@ -50,10 +54,17 @@ demo.mobile.Controller = function($scope, $injector) {
    * @type {Array.<string>}
    * @export
    */
-  this.searchCoordinatesProjections = [ngeo.proj.EPSG21781, ngeo.proj.EPSG2056, 'EPSG:4326'];
+  this.searchCoordinatesProjections = [ngeoProjEPSG21781, ngeoProjEPSG2056, 'EPSG:4326'];
 
 };
-ol.inherits(demo.mobile.Controller, gmf.controllers.AbstractMobileController);
 
+olBase.inherits(exports, gmfControllersAbstractMobileController);
 
-demo.mobile.module.controller('MobileController', demo.mobile.Controller);
+exports.module = angular.module('Appmobile', [
+  demoBase.module.name,
+  gmfControllersAbstractMobileController.module.name,
+]);
+
+exports.module.controller('MobileController', exports);
+
+export default exports;
