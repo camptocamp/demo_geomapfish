@@ -1,33 +1,27 @@
 /**
- * @fileoverview This file provides the "demo" namespace, which is the
+ * This file provides the "demo" namespace, which is the
  * application's main namespace. And it defines the application's Angular
  * module.
  */
-goog.provide('demo');
 
+/**
+ * @module demo
+ */
+const exports = {};
+
+import ngeoUtils from 'ngeo/utils.js';
 
 /**
  * @type {!angular.Module}
  */
-demo.module = angular.module('demo', []);
+exports.module = angular.module('demo', []);
 
-/**
- * The components template based URL, used as is by the template cache.
- * @type {string}
- * @export
- */
-demo.componentsBaseTemplateUrl = 'demo_components';
+exports.module.config(['$compileProvider', function($compileProvider) {
+  if (!('debug' in ngeoUtils.decodeQueryString(window.location.search))) {
+    // Disable the debug info
+    $compileProvider.debugInfoEnabled(false);
+  }
+}]);
 
-/**
- * The template based URL, used to overwrite template from ngeo, used as is by the template cache.
- * @type {string}
- * @export
- */
-demo.partialsBaseTemplateUrl = 'demo_partials';
 
-/**
- * The default template based URL, used as is by the template cache.
- * @type {string}
- * @export
- */
-demo.baseTemplateUrl = 'demo_js';
+export default exports;

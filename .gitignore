@@ -13,10 +13,10 @@ __pycache__/
 /tilegeneration/config.yaml
 /print/print-apps/demo/config.yaml
 /mapserver/mapserver.map.tmpl
-/mapserver/osm.map
-/mapserver/private.map
 /mapserver/*.map.tmpl
 /mapserver/tinyows.xml
+/mapserver/osm.map
+/mapserver/private.map
 /geoportal/jsbuild/app.cfg
 /geoportal/Dockerfile
 /geoportal/development.ini
@@ -27,7 +27,10 @@ __pycache__/
 /geoportal/demo_geoportal/locale/*/LC_MESSAGES/*.mo
 /geoportal/demo_geoportal/locale/demo_geoportal-*.pot
 /geoportal/demo_geoportal/static-ngeo/build/
+/geoportal/demo_geoportal/static-ngeo/js/apps/desktop.html
+/geoportal/demo_geoportal/static-ngeo/js/apps/mobile.html
 /geoportal/demo_geoportal/static-ngeo/fonts/gmf-icons.*
 /geoportal/demo_geoportal/static-ngeo/fonts/fontawesome-webfont.*
 /geoportal/demo_geoportal/static/build/
+/webpack.apps.js
 /.upgrade.yaml

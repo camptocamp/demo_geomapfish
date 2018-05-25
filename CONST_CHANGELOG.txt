@@ -7,15 +7,20 @@ Informations
 ------------
 
 1. The structure of the project change:
-   * The package name become `demo_geoportal`.
+   * The package name becomes `demo_geoportal`.
    * The package is in the folder `geoportal`.
 
-2. The `shortener.email_body` in the vars files use now the template syntax.
+2. All the images will be moved from `geoportal/demo_geoportal/static-ngeo/images`
+   to `geoportal/demo_geoportal/static-ngeo/js/apps/image`, this is required for the apps.
+   If some images are used directly by the apps (e.g. the theme icons) they should be moved back to their
+   original folder.
 
-3. Update access control list (ACL) in root context to allow user with role 'role_admin' to access views
+3. The `shortener.email_body` in the vars files now uses the template syntax.
+
+4. Update access control list (ACL) in root context to allow users with role 'role_admin' to access views
    requiring 'admin' permission.
 
-   edit 'geoportal/demo_geoportal/resources.py' file, Root class __acl__ attribute should look so:
+   edit 'geoportal/demo_geoportal/resources.py' file, Root class __acl__ attribute should look like:
 
    '''...
    from pyramid.security import Allow, ALL_PERMISSIONS
@@ -34,3 +39,6 @@ Changes to apply
 
    mv geoportal/demo_geoportal/locale/fr/LC_MESSAGES/demo{,_geoportal}-client.po
    mv geoportal/demo_geoportal/locale/fr/LC_MESSAGES/demo{,_geoportal}-server.po
+
+2. If you have some custom Angular components you should follow these instructions:
+   https://github.com/camptocamp/ngeo/blob/master/docs/how_to_migrate_from_2.2_to_2.3.md
