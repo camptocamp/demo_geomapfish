@@ -8,6 +8,7 @@ ARG GIT_HASH
 
 RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=/app/ && \
     python -m compileall -q /app/${package}_geoportal -x /app/${package}_geoportal/static.* && \
+    mv eval_templates.sh /bin/ && \
     c2cwsgiutils_genversion.py $GIT_HASH
 
 ENV NODE_PATH=/usr/lib/node_modules \
@@ -27,4 +28,4 @@ ENV NODE_PATH=/usr/lib/node_modules \
     PRINT_URL=http://print:8080/print/
 
 ENTRYPOINT []
-CMD ["c2cwsgiutils_run"]
+CMD ["/bin/eval_templates.sh", "c2cwsgiutils_run"]

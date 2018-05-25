@@ -322,6 +322,6 @@
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
     <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% } %>
-    <script src="dynamic.js?interface=desktop"></script>
+    <script src="${'$'}{VISIBLE_ENTRY_POINT}dynamic.js?interface=desktop"></script>
   </body>
 </html>
