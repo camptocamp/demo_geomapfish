@@ -14,6 +14,5 @@ DEPLOY_BRANCH_MAKEFILE ?= demo.mk
 CONFIG_VARS += dbsessions
 
 VISIBLE_WEB_HOST ?= geomapfish-demo.camptocamp.com
-VISIBLE_ENTRY_POINT ?= /docker/
 
 include CONST_Makefile
