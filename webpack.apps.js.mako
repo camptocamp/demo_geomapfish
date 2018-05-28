@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-
 const INTERFACE_THEME = ${__import__('json').dumps(interfaces_theme)};
 
 const plugins = [];
@@ -18,14 +17,14 @@ process.traceDeprecation = true;
 const name = process.env.INTERFACE;
 process.env.THEME = INTERFACE_THEME[name];
 
-entry[name] = path.resolve(__dirname, 'geoportal/demo_geoportal/static-ngeo/js/apps/Controller' + name + '.js');
+entry[name] = path.resolve(__dirname, 'geoportal/${package}_geoportal/static-ngeo/js/apps/Controller' + name + '.js');
 plugins.push(
   new HtmlWebpackPlugin({
     inject: false,
-    template: '/src/geoportal/demo_geoportal/static-ngeo/js/apps/' + name + '.html.ejs',
+    template: '/src/geoportal/${package}_geoportal/static-ngeo/js/apps/' + name + '.html.ejs',
     chunksSortMode: 'manual',
     filename: name + '.html',
-    chunks: ['commons', name],
+    chunks: [name],
   })
 );
 
@@ -60,12 +59,6 @@ module.exports = {
     publicPath: dev ? '/${instanceid}/dev/' : '/${instanceid}/wsgi/static-ngeo/UNUSED_CACHE_VERSION/build/'
   },
   entry: entry,
-/*  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      name: 'commons',
-    }
-  },*/
   module: {
     rules
   },
