@@ -23,6 +23,13 @@ Build
 
   ./docker-run make build
 
+If you want to work on your own instance, create a ${USER}.mk file like that:
+
+.. script::
+
+  INSTANCE=myUserName
+  include Makefile
+
 .. Feel free to add project-specific things.
 
 
@@ -40,3 +47,10 @@ Then, to start:
 .. script::
 
   docker-compose up
+
+If the project is configured with a global front (for being able the run more than one instance at the same
+time:
+
+.. script::
+
+  (cd global-front; docker-compose -p global up --build)

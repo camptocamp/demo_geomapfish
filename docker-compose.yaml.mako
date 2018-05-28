@@ -22,8 +22,7 @@ ${service_defaults('print', 8080)}\
 ${service_defaults('mapserver', 80)}\
 
   qgisserver:
-    #image: camptocamp/geomapfish-qgisserver
-    image: camptocamp/qgis-server:bugfix_owslib
+    image: camptocamp/qgis-server:latest
     volumes_from:
       - config:ro
 ${service_defaults('mapserver', 80)}
@@ -61,4 +60,19 @@ ${service_defaults('geoportal', 80)}\
     volumes:
       - /dev/log:/dev/log:rw
     command: ["haproxy", "-f", "/etc/haproxy"]
-${service_defaults('front', 80, True)}
+${service_defaults('front', 80, not docker_global_front)}
+%if docker_global_front:
+    networks:
+      default: {}
+      global:
+        aliases:
+          - ${instance}
+%endif
+
+%if docker_global_front:
+networks:
+  default: {}
+  global:
+    external:
+      name: global_default
+%endif
