@@ -30,6 +30,7 @@ vars:
         defaultTheme: Demo
         defaultLang: en
         gmfSearchGroups: [osm, district]
+        sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@sentry.camptocamp.com/14
         gmfSearchActions:
           - action: add_theme
             title: Add a theme
