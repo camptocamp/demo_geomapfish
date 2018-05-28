@@ -364,17 +364,20 @@ interpreted:
     - smtp.password
 
 update_paths:
-  - shortener
+  - admin_interface.available_functionalities
+  - authorized_referers
   - authtkt
-  - fulltextsearch
+  - check_collector.disabled
+  - check_collector.hosts
   - checker.fulltextsearch
   - checker.print
-  - admin_interface.available_functionalities
-  - functionalities.available_in_templates
   - docker_services.db.environment
-  - authorized_referers
+  - fulltextsearch
+  - functionalities.available_in_templates
+  - interfaces_theme
+  - shortener
 
 no_interpreted:
-  - shortener.email_body
   - reset_password.email_body
+  - shortener.email_body
   - welcome_email.email_body

@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.3.0.dev20
+GEOMAPFISH_VERSION ?= 2.3.0
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -107,7 +107,7 @@ GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH ?= $(shell git rev-parse HEAD)
 
 # ngeo
-NODE_ENV=production
+NODE_ENV ?= production
 export NODE_ENV
 ANGULAR_VERSION = 1.6
 APP_OUTPUT_DIR = geoportal/$(PACKAGE)_geoportal/static-ngeo/build
@@ -129,7 +129,7 @@ CLIENT_LOCALISATION_RULES = $(addprefix /build/lang-client-, $(LANGUAGES))
 ANGULAR_LOCALES_FILES = $(addprefix $(APP_OUTPUT_DIR)/angular-locale_, $(addsuffix .js, $(LANGUAGES)))
 NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
 	$(ANGULAR_LOCALES_FILES)
-NGEO_OUTPUT_FILES += $(addprefix /build/apps., $(addsuffix .timestamp, $(NGEO_INTERFACES)))
+NGEO_OUTPUT_FILES += /build/apps.timestamp
 
 ifdef CI
 WEBPACK_ARGS ?= --debug
@@ -567,15 +567,20 @@ $(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/jquery-ui/themes/base/images
 	mkdir --parent $@
 	cp -r $</* $@
 
+
 .PRECIOUS: /build/apps.timestamp
+/build/apps.timestamp: webpack.apps.js $(addprefix /build/apps., $(addsuffix .timestamp, $(NGEO_INTERFACES)))
+	touch $@
+
+.PRECIOUS: /build/apps.%.timestamp
 /build/apps.%.timestamp: $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
-		$(APP_HTML_FILES) webpack.apps.js webpack.config.js \
-		$(LESS_FILES) \
-		$(NGEO_FONTS) \
-		$(APP_OUTPUT_DIR)/images/
+			$(APP_HTML_FILES) webpack.config.js \
+			$(LESS_FILES) \
+			$(NGEO_FONTS) \
+			$(APP_OUTPUT_DIR)/images/
 	$(PRERULE_CMD)
 	# Workaround to make Webpack working for ol/index.js
-	if [ -e node_modules ]; then mv node_modules node_modules_bak; fi
+	if [ -e node_modules ]; then rm --force node_modules_bak; mv node_modules node_modules_bak; fi
 	ln --symbolic /usr/lib/node_modules/ .
 	INTERFACE=$* webpack $(WEBPACK_ARGS)
 	rm node_modules
