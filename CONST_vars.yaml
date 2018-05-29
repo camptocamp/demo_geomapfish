@@ -28,7 +28,7 @@ vars:
         POSTGRES_PASSWORD: www-data
     geoportal:
       environment:
-        VISIBLE_WEB_HOST: localhost:80
+        VISIBLE_WEB_HOST: geomapfish-demo.camptocamp.com
         VISIBLE_WEB_PROTOCOL: https
         VISIBLE_ENTRY_POINT: '{DOCKER_ENTRY_POINT}'
         PGHOST: 172.17.0.1
