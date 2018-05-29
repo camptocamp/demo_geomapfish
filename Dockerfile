@@ -4,8 +4,8 @@ LABEL maintainer Camptocamp "info@camptocamp.com"
 COPY mapserver /etc/mapserver
 VOLUME /etc/mapserver
 
-#COPY qgisserver /project
-#VOLUME /project
+COPY qgisserver /project
+VOLUME /project
 
 COPY mapcache /mapcache
 VOLUME /mapcache
