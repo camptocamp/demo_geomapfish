@@ -41,11 +41,11 @@ ${service_defaults('mapserver', 11211)}\
     image: redis:3.2
 ${service_defaults('mapserver', 6379)}\
 
-#  tilecloudchain:
-#    image: camptocamp/tilecloud-chain:1.5.0
-#    volumes_from:
-#      - config:ro
-#${service_defaults('mapserver', 80)}\
+  tilecloudchain:
+    image: camptocamp/tilecloud-chain:1.5.0
+    volumes_from:
+      - config:ro
+${service_defaults('mapserver', 80)}\
 
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
