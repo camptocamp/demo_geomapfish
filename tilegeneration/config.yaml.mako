@@ -74,12 +74,8 @@ generation:
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
 
-apache:
-    location: ${entry_point}tiles
-
 mapcache:
-    config_file: apache/mapcache.xml
-    location: ${entry_point}mapcache
+    config_file: mapcache/mapcache.xml
     memcache_host: localhost
     memcache_port: 11211
 

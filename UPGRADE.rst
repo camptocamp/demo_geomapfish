@@ -13,7 +13,7 @@ And add the argument `--share /var/sig/` to the `docker-run` commands.
 After upgrade:
 
 run:
-./docker-run make -f sbrunner23.mk update-po
+./docker-run make update-po
 
 complete the files:
     geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
@@ -23,4 +23,4 @@ git add geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
 git commit -m "Update the localisation"
 
 run:
-./docker-run make -f sbrunner23.mk theme2fts
+./docker-run make theme2fts
