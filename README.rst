@@ -10,16 +10,14 @@ Checkout
 
    git clone git@github.com:camptocamp/demo_geomapfish.git
 
-  cd demo_geomapfish
+   cd demo_geomapfish
 
 Build
 -----
 
 .. script::
 
-  make --makefile=<user.mk> secrets
-
-  ./docker-run make --makefile=<user.mk> build
+  make secrets
 
   ./docker-run make build
 
