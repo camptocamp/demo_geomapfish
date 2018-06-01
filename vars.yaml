@@ -36,7 +36,7 @@ vars:
         defaultTheme: Demo
         defaultLang: en
         gmfSearchGroups: [osm, district]
-        sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@sentry.camptocamp.com/14
+        sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
         gmfSearchActions:
           - action: add_theme
             title: Add a theme
@@ -77,11 +77,25 @@ vars:
     mobile:
       <<: *interface
       redirect_interface: desktop
+      constants:
+        <<: *constants
+        sentryOptions:
+          release: 2.3
+          environment: '{instance}'
+          tags:
+            service: js
+            interface: mobile
     mobile_alt:
       <<: *interface
       constants:
         <<: *constants
         gmfTreeManagerModeFlush: false
+        sentryOptions:
+          release: 2.3
+          environment: '{instance}'
+          tags:
+            service: js
+            interface: mobile_alt
         # FIXME: gmfSearchActions: []
     desktop:
       <<: *interface
@@ -91,6 +105,14 @@ vars:
         <<: *routes
         gmfProfileJsonUrl: profile.json
         gmfPrintUrl: printproxy
+      constants:
+        <<: *constants
+        sentryOptions:
+          release: 2.3
+          environment: '{instance}'
+          tags:
+            service: js
+            interface: desktop
     desktop_alt:
       <<: *interface
       constants:
@@ -112,6 +134,12 @@ vars:
                 profile: routed-hiking
         ngeoNominatimSearchDefaultParams:
           - countrycodes: CH
+        sentryOptions:
+          release: 2.3
+          environment: '{instance}'
+          tags:
+            service: js
+            interface: desktop_alt
       routes:
         <<: *routes
         gmfProfileJsonUrl: profile.json
@@ -123,6 +151,14 @@ vars:
         <<: *routes
         gmfProfileJsonUrl: profile.json
         gmfPrintUrl: printproxy
+      constants:
+        <<: *constants
+        sentryOptions:
+          release: 2.3
+          environment: '{instance}'
+          tags:
+            service: js
+            interface: oeview
     oeedit:
       <<: *interface
       # FIXME: gmfContextualdatacontentTemplateUrl
@@ -130,6 +166,14 @@ vars:
         <<: *routes
         gmfProfileJsonUrl: profile.json
         gmfPrintUrl: printproxy
+      constants:
+        <<: *constants
+        sentryOptions:
+          release: 2.3
+          environment: '{instance}'
+          tags:
+            service: js
+            interface: oeedit
 
   authtkt:
     # One day
