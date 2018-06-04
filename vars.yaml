@@ -171,6 +171,9 @@ vars:
 
 #  docker_global_front: True
   docker_services:
+    config:
+      environment:
+        PGDATABASE: demo_geomapfish_2_3_bak
     geoportal:
       environment:
         PGDATABASE: demo_geomapfish_2_3_bak
@@ -427,6 +430,7 @@ update_paths:
   - check_collector.hosts
   - checker.fulltextsearch
   - checker.print
+  - docker_services.config.environment
   - docker_services.geoportal.environment
   - fulltextsearch
   - functionalities.available_in_templates
