@@ -169,7 +169,7 @@ vars:
             service: js
             interface: oeedit
 
-  docker_global_front: True
+#  docker_global_front: True
   docker_services:
     geoportal:
       environment:

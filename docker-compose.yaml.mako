@@ -25,7 +25,7 @@ ${service_defaults('mapserver', 80)}\
     image: camptocamp/qgis-server:latest
     volumes_from:
       - config:ro
-${service_defaults('mapserver', 80)}
+${service_defaults('qgisserver', 80)}
 
   mapcache:
     image: camptocamp/mapcache:1.6
