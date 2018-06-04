@@ -8,6 +8,7 @@ services:
 
   config:
     image: ${docker_base}-config:${docker_tag}
+${service_defaults('config')}\
 
   print:
     image: camptocamp/mapfish_print:3.12.1
@@ -19,6 +20,7 @@ ${service_defaults('print', 8080)}\
     image: camptocamp/mapserver:7.0
     volumes_from:
       - config:rw
+    entrypoint: []
 ${service_defaults('mapserver', 80)}\
 
   qgisserver:
