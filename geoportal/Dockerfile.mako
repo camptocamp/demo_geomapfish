@@ -24,8 +24,7 @@ ARG GIT_HASH
 
 RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=/app/ && \
     python -m compileall -q /app/${package}_geoportal -x /app/${package}_geoportal/static.* && \
-    mv eval_templates.sh /bin/ && \
     c2cwsgiutils_genversion.py $GIT_HASH
 
-ENTRYPOINT []
-CMD ["/bin/eval_templates.sh", "c2cwsgiutils_run"]
+ENTRYPOINT [ "/usr/bin/eval-templates" ]
+CMD ["c2cwsgiutils_run"]

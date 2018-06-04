@@ -290,7 +290,7 @@
         </div>
       </div>
       <ngeo-modal ng-model="mainCtrl.modalShareShown">
-        <gmf-share gmf-share-email="true"></gmf-share>
+        <gmf-share ng-if="mainCtrl.modalShareShown" gmf-share-email="true"></gmf-share>
       </ngeo-modal>
       <ngeo-modal
           ngeo-modal-closable="false"
@@ -322,6 +322,6 @@
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
     <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% } %>
-    <script src="dynamic.js?interface=desktop"></script>
+    <script src="${htmlWebpackPlugin.options.vars.entry_point}dynamic.js?interface=desktop"></script>
   </body>
 </html>
