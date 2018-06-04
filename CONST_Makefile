@@ -464,11 +464,11 @@ endif
 
 %: %.mako /build/c2ctemplate-cache.json
 	$(PRERULE_CMD)
-	c2c-template --cache /build/c2ctemplate-cache.json --engine mako --files $<
+	c2c-template --runtime-environment-pattern '$${{'{{'}}{}}}'  --cache /build/c2ctemplate-cache.json --engine mako --files $<
 
 %: %.jinja /build/c2ctemplate-cache.json
 	$(PRERULE_CMD)
-	c2c-template --cache /build/c2ctemplate-cache.json --engine jinja --files $<
+	c2c-template --cache /build/c2ctemplate-cache.json --engine jinja --runtime-environment-pattern '$${{'{{'}}{}}}' --files $<
 
 geoportal/config.yaml: /build/c2ctemplate-cache.json
 	$(PRERULE_CMD)
