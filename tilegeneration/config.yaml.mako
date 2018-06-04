@@ -14,7 +14,7 @@ caches:
         bucket: camptocamp-gmf-demo-tiles
         folder: ''
         # for GetCapabilities
-        http_url: ${web_protocol}://${host}${entry_point}tiles/
+        http_url: '${web_protocol}://${host}${entry_point}tiles/'
 
 # this defines some defaults values for all the layers
 defaults:
