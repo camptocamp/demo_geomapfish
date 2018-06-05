@@ -49,7 +49,7 @@ templates:
         httpProcessors:
           - !mapUri
             mapping:
-              (https?)://${__import__('re').escape(host)}/(.*): "http://127.0.0.1/$2"
+              (https?)://${host}/(.*): "http://127.0.0.1/$2"
           - !forwardHeaders
             matchers:
               - !localMatch {}
