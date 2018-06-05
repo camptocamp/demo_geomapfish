@@ -1,7 +1,8 @@
 #!/bin/bash -e
 
-find /etc /mapcache -name '*.tmpl' -print | while read file
+find /etc /mapcache /project /usr/local/tomcat/webapps/ROOT/print-apps -name '*.tmpl' -print | while read file
 do
+    echo "Evaluating template '${file}'"
     envsubst < ${file} > ${file%.tmpl}
 done
 
