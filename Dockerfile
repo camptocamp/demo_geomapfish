@@ -12,8 +12,8 @@ COPY bin/* /usr/bin/
 COPY mapserver /etc/mapserver
 VOLUME /etc/mapserver
 
-#COPY qgisserver /project
-#VOLUME /project
+COPY qgisserver /project
+VOLUME /project
 
 COPY mapcache /mapcache
 VOLUME /mapcache
