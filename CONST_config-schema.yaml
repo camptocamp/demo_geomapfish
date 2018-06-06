@@ -155,6 +155,8 @@ mapping:
                                     required: True
                                 type:
                                     type: str
+                                translate:
+                                    type: bool
                     available_functionalities:
                         type: seq
                         required: True
@@ -296,6 +298,22 @@ mapping:
             hide_capabilities:
                 type: bool
                 required: True
+            resourceproxy:
+                type: map
+                required: True
+                mapping:
+                    targets:
+                        type: map
+                        required: True
+                        mapping:
+                            regex;(.+):
+                                type: str
+                    allowed_headers:
+                        type: seq
+                        sequence:
+                        - type: str
+                          unique: yes
+
             print_url:
                 type: str
                 required: True
