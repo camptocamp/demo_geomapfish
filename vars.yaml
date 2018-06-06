@@ -177,6 +177,10 @@ vars:
     geoportal:
       environment:
         PGDATABASE: demo_geomapfish_2_3_bak
+    tilecloudchain:
+      environment:
+        AWS_ACCESS_KEY_ID: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
+        AWS_SECRET_ACCESS_KEY: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
     front:
       port: 8480
 
@@ -324,7 +328,10 @@ vars:
       The GeoMapfish team
 
   smtp:
-    host: psemail.epfl.ch
+    host: email-smtp.eu-west-1.amazonaws.com
+    ssl: True
+    user: grep 'SMTP Username' amazonses_smtp.txt|awk -F= '{ print $2 }'
+    password: grep 'SMTP Password' amazonses_smtp.txt|awk -F= '{ print $2 }'
 
   headers:
     themes: &headers
@@ -432,6 +439,7 @@ update_paths:
   - checker.print
   - docker_services.config.environment
   - docker_services.geoportal.environment
+  - docker_services.tilecloudchain.environment
   - fulltextsearch
   - functionalities.available_in_templates
   - interfaces_theme
@@ -441,3 +449,15 @@ no_interpreted:
   - reset_password.email_body
   - shortener.email_body
   - welcome_email.email_body
+  - smtp.user
+  - smtp.password
+  - docker_services.tilecloudchain.environment.AWS_ACCESS_KEY_ID
+  - docker_services.tilecloudchain.environment.AWS_SECRET_ACCESS_KEY
+
+
+interpreted:
+  bash:
+    - smtp.user
+    - smtp.password
+    - docker_services.tilecloudchain.environment.AWS_ACCESS_KEY_ID
+    - docker_services.tilecloudchain.environment.AWS_SECRET_ACCESS_KEY
