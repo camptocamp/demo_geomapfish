@@ -369,6 +369,8 @@ vars:
   pdfreport:
     print_url: '{PRINT_URL}'
 
+  wmtscapabilities_path: '{WMTSCAPABILITIES_PATH}'
+
   ogcproxy_enable: false
 
   lingua_extractor: {}

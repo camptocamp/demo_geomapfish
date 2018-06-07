@@ -15,6 +15,7 @@ caches:
         folder: ''
         # for GetCapabilities
         http_url: '${web_protocol}://${host}${entry_point}'
+        wmtscapabilities_file: ${wmtscapabilities_path}
 
 # this defines some defaults values for all the layers
 defaults:
