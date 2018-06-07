@@ -14,7 +14,7 @@ caches:
         bucket: camptocamp-gmf-demo-tiles
         folder: ''
         # for GetCapabilities
-        http_url: '${web_protocol}://${host}${entry_point}tiles/'
+        http_url: '${web_protocol}://${host}${entry_point}'
 
 # this defines some defaults values for all the layers
 defaults:
@@ -24,7 +24,7 @@ defaults:
         # The minimum resolution to seed, useful to use with mapcache, optional.
         min_resolution_seed: 5
         # the URL of the WMS server to used
-        url: http://localhost${entry_point}mapserv
+        url: ${mapserver_url}
         headers:
             Host: '${host}'
         # the bbox there we want to generate tiles
@@ -74,8 +74,16 @@ generation:
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
 
+apache:
+    expires: 8  # 8 hours
+
+server:
+    mapcache_base: '${mapcache_url}'
+    wmts_path: tiles
+    static_path: static_tiles
+
 mapcache:
-    config_file: mapcache/mapcache.xml
+    config_file: mapcache/mapcache.xml.tmpl
     memcache_host: localhost
     memcache_port: 11211
 

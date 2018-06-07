@@ -20,6 +20,8 @@ ${service_defaults('print', 8080)}\
     image: camptocamp/mapserver:7.0
     volumes_from:
       - config:rw
+    volumes:
+      - /var/sig:/var/sig:ro
     entrypoint: []
 ${service_defaults('mapserver', 80)}\
 
@@ -37,17 +39,27 @@ ${service_defaults('mapserver', 80)}\
 
   memcached:
     image: memcached:1.5
-${service_defaults('mapserver', 11211)}\
+${service_defaults('memcached', 11211)}\
 
   redis:
     image: redis:3.2
-${service_defaults('mapserver', 6379)}\
+${service_defaults('redis', 6379)}\
 
   tilecloudchain:
-    image: camptocamp/tilecloud-chain:1.5.0
+    image: camptocamp/tilecloud-chain:1.6
     volumes_from:
       - config:ro
-${service_defaults('mapserver', 80)}\
+${service_defaults('tilecloudchain', 80)}\
+
+  tilesgeneration:
+    image: camptocamp/tilecloud-chain:1.6
+    volumes_from:
+      - config:ro
+${service_defaults('tilecloudchain')}\
+    entrypoint:
+      - bash
+      - -c
+      - sleep infinity
 
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}

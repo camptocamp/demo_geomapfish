@@ -18,3 +18,5 @@ CONFIG_VARS += dbsessions
 VISIBLE_WEB_HOST ?= geomapfish-demo.camptocamp.com
 
 include CONST_Makefile
+
+secrets.tar.bz2.gpg: amazonses_smtp.txt amazonses_s3.txt
