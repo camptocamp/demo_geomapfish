@@ -20,6 +20,8 @@ ${service_defaults('print', 8080)}\
     image: camptocamp/mapserver:7.0
     volumes_from:
       - config:rw
+    volumes:
+      - /var/sig:/var/sig:ro
     entrypoint: []
 ${service_defaults('mapserver', 80)}\
 
