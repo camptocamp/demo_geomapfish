@@ -13,6 +13,9 @@ DEPLOY_BRANCH_MAKEFILE ?= demo.mk
 DOCKER_WEB_HOST ?= geomapfish-demo.camptocamp.com
 DOCKER_ENTRY_POINT ?= /docker/
 
+WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-docker.xml
+export WMTSCAPABILITIES_PATH
+
 CONFIG_VARS += dbsessions
 
 VISIBLE_WEB_HOST ?= geomapfish-demo.camptocamp.com
