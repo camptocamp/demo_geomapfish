@@ -20,11 +20,11 @@ ${service_defaults('print', 8080)}\
       - config:rw
 ${service_defaults('mapserver', 80)}\
 
-##  qgisserver:
-##    image: camptocamp/geomapfish-qgisserver
-##    volumes_from:
-##      - config:ro
-##${service_defaults('mapserver', 80)}
+  qgisserver:
+    image: camptocamp/geomapfish-qgisserver
+    volumes_from:
+      - config:ro
+${service_defaults('mapserver', 80)}
 
   mapcache:
     image: camptocamp/mapcache:1.6
