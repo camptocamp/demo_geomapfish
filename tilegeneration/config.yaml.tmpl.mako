@@ -75,13 +75,11 @@ generation:
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
 
-apache:
-    expires: 8  # 8 hours
-
 server:
     mapcache_base: '${mapcache_url}'
     wmts_path: tiles
     static_path: static_tiles
+    expires: 8  # 8 hours
 
 mapcache:
     config_file: mapcache/mapcache.xml.tmpl

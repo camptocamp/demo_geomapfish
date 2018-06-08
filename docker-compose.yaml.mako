@@ -35,7 +35,7 @@ ${service_defaults('qgisserver', 80)}
     image: camptocamp/mapcache:1.6
     volumes_from:
       - config:ro
-${service_defaults('mapserver', 80)}\
+${service_defaults('mapcache', 80)}\
 
   memcached:
     image: memcached:1.5
@@ -51,7 +51,7 @@ ${service_defaults('redis', 6379)}\
       - config:ro
 ${service_defaults('tilecloudchain', 80)}\
 
-  tilesgeneration:
+  tilegeneration:
     image: camptocamp/tilecloud-chain:1.6
     volumes_from:
       - config:ro

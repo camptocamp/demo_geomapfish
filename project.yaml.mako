@@ -9,6 +9,8 @@ template_vars:
   apache_vhost: demo_geomapfish
 managed_files:
   - geoportal/demo_geoportal/__init__\.py
+  - Dockerfile
+  - .gitignore
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
   - geoportal/demo_geoportal/static-ngeo/less/mobile\.less

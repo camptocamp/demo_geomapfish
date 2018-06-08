@@ -11,7 +11,8 @@ __pycache__/
 /testdb/13-alembic-static.sql
 /mapcache/
 /tilegeneration/config.yaml.tmpl
-/print/print-apps/demo/config.yaml.tmpl
+/tilegeneration/config.yaml.mako
+/print/print-apps/demo/config.yaml.mako
 /mapserver/mapserver.map.tmpl
 /mapserver/*.map.tmpl
 /mapserver/tinyows.xml
@@ -31,8 +32,7 @@ __pycache__/
 /geoportal/demo_geoportal/static-ngeo/fonts/fontawesome-webfont.*
 /geoportal/demo_geoportal/static/build/
 /node_modules
-/amazonses_s3.txt
-/amazonses_smtp.txt
 /webpack.apps.js
 /.upgrade.yaml
-/values.yaml
+/amazonses_s3.txt
+/amazonses_smtp.txt

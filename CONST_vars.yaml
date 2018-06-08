@@ -35,6 +35,7 @@ vars:
         PGUSER: www-data
         PGPASSWORD: www-data
         PGDATABASE: geomapfish
+        GEOPORTAL_INTERNAL_URL: 'http://geoportal/'
         MAPCACHE_URL: http://mapcache/
         MAPSERVER_URL: http://mapserver/
     db:
@@ -64,6 +65,7 @@ vars:
       environment:
         VISIBLE_ENTRY_POINT: '{docker_entry_point}'
         TILEGENERATION_CONFIGFILE: /etc/tilegeneration/config.yaml
+        C2C_BASE_PATH: /c2c_tiles
     front:
       port: 80
 
@@ -361,14 +363,18 @@ vars:
 
   # For print proxy
   print_url: '{PRINT_URL}'
-
   mapserver_url: '{MAPSERVER_URL}'
-
   mapcache_url: '{MAPCACHE_URL}'
 
   pdfreport:
-    print_url: '{PRINT_URL}'
+    print_url: '{print_url}'
 
+  # For base layers
+  tiles_url:
+    - '{web_protocol}://a.tiles.{host}/tiles'
+    - '{web_protocol}://b.tiles.{host}/tiles'
+    - '{web_protocol}://c.tiles.{host}/tiles'
+    - '{web_protocol}://d.tiles.{host}/tiles'
   wmtscapabilities_path: '{WMTSCAPABILITIES_PATH}'
 
   ogcproxy_enable: false
@@ -549,12 +555,12 @@ runtime_environment:
     default: http://mapserver/
   - name: PRINT_URL
     default: http://print:8080/print/
+  - name: MAPCACHE_URL
+    default: http://mapcache/
   - name: REDIS_HOST
     default: undefined  # no error if absent
   - name: REDIS_PORT
     default: '6372'
-  - name: MAPCACHE_URL
-    default: http://mapcache/
 
 runtime_postprocess:
   - expression: int({})

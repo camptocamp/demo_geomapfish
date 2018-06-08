@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.3.0.dev22
+GEOMAPFISH_VERSION ?= 2.3.1.dev1
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -93,7 +93,7 @@ export WMTSCAPABILITIES_PATH
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 WMTSCAPABILITIES_FILE ?= /var/sig/tiles/$(WMTSCAPABILITIES_PATH)
 MAPCACHE_FILE ?= mapcache/mapcache.xml.tmpl
-TILEGENERATION_CONFIG_FILE = tilegeneration/config.yaml.tmpl
+TILEGENERATION_CONFIG_FILE ?= tilegeneration/config.yaml.tmpl
 DEFAULT_BUILD_RULES += $(TILEGENERATION_CONFIG_FILE)
 ifeq ($(TILECLOUD_CHAIN_LOCAL), TRUE)
 DEFAULT_BUILD_RULES += $(WMTSCAPABILITIES_FILE)
@@ -304,8 +304,8 @@ endif
 
 # Print
 PRINT_BASE_DIR ?= print
-I18N_SOURCE_FILES += print/print-apps/$(PACKAGE)/config.yaml
-I18N_SOURCE_FILES += print/print-apps/$(PACKAGE)/config.yaml.tmpl
+PRINT_CONFIG_FILE ?= print/print-apps/$(PACKAGE)/config.yaml.tmpl
+I18N_SOURCE_FILES += $(PRINT_CONFIG_FILE)
 
 PY_FILES = $(shell find $(PACKAGE) -type f -name '*.py' -print)
 
@@ -318,7 +318,7 @@ VARS_DEPENDS += $(VARS_FILES)
 CONFIG_VARS += sqlalchemy.url sqlalchemy_slave.url schema schema_static enable_admin_interface \
 	default_locale_name servers layers available_locale_names cache admin_interface functionalities \
 	raster shortener hide_capabilities mapserverproxy tinyowsproxy resourceproxy print_url \
-	checker check_collector default_max_age jsbuild package srid \
+	tiles_url checker check_collector default_max_age jsbuild package srid \
 	reset_password fulltextsearch headers authorized_referers hooks stats db_chooser \
 	ogcproxy_enable dbsessions urllogin host_forward_host smtp c2c.base_path welcome_email host \
 	lingua_extractor interfaces_config interfaces default_interface
@@ -687,6 +687,7 @@ docker-compose-build.yaml: /build/requirements.timestamp
 
 .PHONY: docker-build-config
 docker-build-config: $(shell docker-required --path .) \
+		$(PRINT_CONFIG_FILE) \
 		$(MAPCACHE_FILE)
 	docker build -t $(DOCKER_BASE)-config:$(DOCKER_TAG) .
 
@@ -750,7 +751,7 @@ upgrade%:
 $(MAPCACHE_FILE): $(TILEGENERATION_CONFIG_FILE)
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
-#	generate_controller --config=$< --mapcache
+	generate_controller --config=$< --mapcache
 
 $(WMTSCAPABILITIES_FILE): $(TILEGENERATION_CONFIG_FILE)
 	$(PRERULE_CMD)
