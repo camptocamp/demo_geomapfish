@@ -441,7 +441,7 @@ LAYER
 
     CLASSITEM "tourism"
     CLASS
-        NAME "Informations"
+        NAME "Information"
         KEYIMAGE symbols/information.png
         STYLE
             SYMBOL "information"

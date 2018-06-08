@@ -75,6 +75,12 @@ generation:
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
 
+sqs:
+    # The region where the SQS queue is
+    region: eu-west-1
+    # The SQS queue name, it should already exists
+    queue: the_name
+
 server:
     mapcache_base: '${mapcache_url}'
     wmts_path: tiles
@@ -83,6 +89,7 @@ server:
 
 mapcache:
     config_file: mapcache/mapcache.xml.tmpl
+    location: ''
     memcache_host: localhost
     memcache_port: 11211
 

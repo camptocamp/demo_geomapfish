@@ -1,3 +1,5 @@
+---
+
 extends: CONST_vars.yaml
 
 vars:
@@ -90,7 +92,7 @@ vars:
           tags:
             service: js
             interface: mobile_alt
-        # FIXME: gmfSearchActions: []
+            # FIXME: gmfSearchActions: []
     desktop:
       <<: *interface
       redirect_interface: mobile
@@ -169,7 +171,7 @@ vars:
             service: js
             interface: oeedit
 
-#  docker_global_front: True
+  # docker_global_front: True
   docker_services:
     config:
       environment:
@@ -181,6 +183,15 @@ vars:
       environment:
         AWS_ACCESS_KEY_ID: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
         AWS_SECRET_ACCESS_KEY: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
+    ssh:
+      port: 222
+      environment:
+        GITHUB_TOKEN: a3cc544e30cdc254c6a4117b11663f064c2ca08b
+        GITHUB_ORG: camptocamp
+        GITHUB_TEAM: demo_geomapfish_ssh
+        PROJECT_NAME: demo_geomapfish
+        DISABLE_SSH: False
+
     front:
       port: 8480
 
@@ -409,7 +420,7 @@ vars:
 
   # Checker configuration
   checker:
-    fulltextsearch: 
+    fulltextsearch:
       search: pau
     print:
       spec:
