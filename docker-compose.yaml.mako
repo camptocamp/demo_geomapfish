@@ -76,13 +76,6 @@ ${service_defaults('geoportal', 80)}\
       - head
 ${service_defaults('geoportal')}\
 
-  ssh:
-    image: camptocamp/sftp-private:3.0
-    volumes:
-      - /var/sig:/var/sig:ro
-${service_defaults('ssh', 22)}\
-
-
   front:
     image: haproxy:1.8
     volumes_from:
