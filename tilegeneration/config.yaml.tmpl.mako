@@ -90,8 +90,8 @@ server:
 mapcache:
     config_file: mapcache/mapcache.xml.tmpl
     location: ''
-    memcache_host: localhost
-    memcache_port: 11211
+    memcache_host: '${memcached_host}'
+    memcache_port: '${memcached_port}'
 
 process:
     optipng_test:
