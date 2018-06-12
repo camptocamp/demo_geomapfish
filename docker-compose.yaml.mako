@@ -51,15 +51,15 @@ ${service_defaults('redis', 6379)}\
       - config:ro
 ${service_defaults('tilecloudchain', 80)}\
 
-  tilegeneration:
+  tilegeneration_slave:
     image: camptocamp/tilecloud-chain:1.6
     volumes_from:
       - config:ro
 ${service_defaults('tilecloudchain')}\
-    entrypoint:
-      - bash
-      - -c
-      - sleep infinity
+    command:
+      - generate_tiles
+      - --role=slave
+      - --daemon
 
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
@@ -67,13 +67,25 @@ ${service_defaults('tilecloudchain')}\
       - /var/sig:/var/sig:ro
 ${service_defaults('geoportal', 80)}\
 
+  alembic:
+    image: ${docker_base}-geoportal:${docker_tag}
+    command:
+      - alembic
+      - --name=static
+      - upgrade
+      - head
+${service_defaults('geoportal')}\
+
   front:
     image: haproxy:1.8
     volumes_from:
       - config:ro
     volumes:
       - /dev/log:/dev/log:rw
-    command: ["haproxy", "-f", "/etc/haproxy"]
+    command:
+      - haproxy
+      - -f
+      - /etc/haproxy
 ${service_defaults('front', 80, not docker_global_front)}
 %if docker_global_front:
     networks:
