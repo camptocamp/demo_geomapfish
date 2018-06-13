@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.3.1.dev1
+GEOMAPFISH_VERSION ?= 2.3.1.dev2
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -723,11 +723,11 @@ testdb/11-schemas.sql: $(ALEMBIC_YAML_FILE) testdb/11-schemas.sql_mako vars.yaml
 
 testdb/12-alembic.sql: geoportal/alembic.ini geoportal/alembic.yaml $(shell ls -1 /opt/alembic/main/*.py)
 	$(PRERULE_CMD)
-	alembic --name=main upgrade --sql head > $@
+	alembic --config=$< --name=main upgrade --sql head > $@
 
 testdb/13-alembic-static.sql: geoportal/alembic.ini geoportal/alembic.yaml $(shell ls -1 /opt/alembic/static/*.py)
 	$(PRERULE_CMD)
-	alembic --name=static upgrade --sql head > $@
+	alembic --config=$< --name=static upgrade --sql head > $@
 
 .PHONY: docker-build-testdb
 docker-build-testdb: testdb/11-schemas.sql testdb/12-alembic.sql testdb/13-alembic-static.sql \

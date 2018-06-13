@@ -1,53 +1,72 @@
 grids:
     # grid name, I just recommends to add the min resolution because it's common to not generate all the layers at the same resolution.
-    swissgrid_005:
+    swissgrid_05:
         # resolutions [required]
-        resolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+        resolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5]
         # bbox [required]
         bbox: [420000, 30000, 900000, 350000]
         # srs [required]
         srs: EPSG:21781
 
 caches:
+    local:
+        type: filesystem
+        folder: /var/sig/tiles
+        wmtscapabilities_file: ${wmtscapabilities_path}
+        # for GetCapabilities
+        http_url: ${web_protocol}://${host}${entry_point}
     s3:
         type: s3
-        bucket: camptocamp-gmf-demo-tiles
+        bucket: tiles
         folder: ''
         # for GetCapabilities
-        http_url: '${web_protocol}://${host}${entry_point}'
-        wmtscapabilities_file: ${wmtscapabilities_path}
+        http_url: https://%(host)s/%(bucket)s/%(folder)s/
+        cache_control: 'public, max-age=14400'
+        hosts:
+        - wmts0.<host>
 
 # this defines some defaults values for all the layers
 defaults:
     layer: &layer
         type: wms
-        grid: swissgrid_005
+        grid: swissgrid_05
         # The minimum resolution to seed, useful to use with mapcache, optional.
-        min_resolution_seed: 5
+        # min_resolution_seed: 1
         # the URL of the WMS server to used
         url: ${mapserver_url}
+        # Set the headers to get the right virtual host, and don't get any cached result
         headers:
             Host: '${host}'
+            Cache-Control: no-cache, no-store
+            Pragma: no-cache
+        # file name extension
+        extension: png
         # the bbox there we want to generate tiles
-        bbox: [473743, 74095, 850904, 325533]
+        #bbox: [493000, 114000, 586000, 204000]
 
+        # mime type used for the WMS request and the WMTS capabilities generation
+        mime_type: image/png
         wmts_style: default
+        # the WMTS dimensions definition [default to []]
+        #dimensions:
+        #    -   name: DATE
+        #        # the default value for the WMTS capabilities
+        #        default: 2012
+        #        # the generated value
+        #        value: 2012
+        #        # all the available values in the WMTS capabilities
+        #        values: [2012]
         # the meta tiles definition [default to off]
         meta: on
         # the meta tiles size [default to 8]
-        meta_size: 5
+        meta_size: 8
         # the meta tiles buffer [default to 128]
         meta_buffer: 128
-
-
-layers:
-    map:
-        <<: *layer
-        layers: default
-        # file name extension
-        extension: png
-        # mime type used for the WMS request and the WMTS capabilities generation
-        mime_type: image/png
+        # connexion an sql to get geometries (in column named geom) where we want to generate tiles
+        # Warn: too complex result can slow down the application
+#    connection: user=www-data password=www-data dbname=<db> host=localhost
+#    geoms:
+#        -   sql: <column> AS geom FROM <table>
         # size and hash used to detect empty tiles and metatiles [optional, default to None]
         empty_metatile_detection:
             size: 740
@@ -55,9 +74,14 @@ layers:
         empty_tile_detection:
             size: 921
             hash: 1e3da153be87a493c4c71198366485f290cad43c
-    map_jpeg:
+
+layers:
+    plan:
         <<: *layer
-        layers: default
+        layers: plan
+    ortho:
+        <<: *layer
+        layers: ortho
         extension: jpeg
         mime_type: image/jpeg
         # no buffer needed on rater sources
@@ -70,7 +94,9 @@ layers:
             hash: 2892fea0a474228f5d66a534b0b5231d923696da
 
 generation:
-    default_cache: s3
+    default_cache: local
+    # used to allowed only a specific user to generate tiles (for rights issue)
+    authorised_user: www-data
 
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
@@ -79,7 +105,7 @@ sqs:
     # The region where the SQS queue is
     region: eu-west-1
     # The SQS queue name, it should already exists
-    queue: the_name
+    queue: '${tilegeneration_sqs_queue}'
 
 server:
     mapcache_base: '${mapcache_url}'
