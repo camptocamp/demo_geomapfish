@@ -72,7 +72,7 @@ layers:
         empty_tile_detection:
             size: 921
             hash: 1e3da153be87a493c4c71198366485f290cad43c
-     map_jpeg:
+    map_jpeg:
         <<: *layer
         layers: default
         extension: jpeg
