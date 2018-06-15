@@ -41,6 +41,12 @@ ${service_defaults('mapcache', 80)}\
     image: memcached:1.5
 ${service_defaults('memcached', 11211)}\
 
+  tinyows:
+    image: camptocamp/tinyows
+    volumes_from:
+      - config:ro
+${service_defaults('tinyows', 80)}\
+
   redis:
     image: redis:3.2
 ${service_defaults('redis', 6379)}\

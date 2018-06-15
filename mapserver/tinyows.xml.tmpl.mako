@@ -21,7 +21,6 @@
       port="${dbport}"
       dbname="${db}" />
 
-<!--
   <layer
       retrievable="1"
       writable="1"
@@ -32,5 +31,26 @@
       table="point"
       title="Points"
       pkey="id" />
--->
+
+  <layer
+      retrievable="1"
+      writable="1"
+      ns_prefix="tows"
+      ns_uri="http://www.tinyows.org/"
+      name="line"
+      schema="edit"
+      table="line"
+      title="Lines"
+      pkey="id" />
+
+  <layer
+      retrievable="1"
+      writable="1"
+      ns_prefix="tows"
+      ns_uri="http://www.tinyows.org/"
+      name="polygon"
+      schema="edit"
+      table="polygon"
+      title="Polygons"
+      pkey="id" />
 </tinyows>
