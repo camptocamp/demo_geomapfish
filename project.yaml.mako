@@ -10,7 +10,8 @@ template_vars:
 managed_files:
   - geoportal/demo_geoportal/__init__\.py
   - Dockerfile
-  - .gitignore
+  - \.gitignore
+  - spell-ignore-words\.txt
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
   - geoportal/demo_geoportal/static-ngeo/less/mobile\.less
