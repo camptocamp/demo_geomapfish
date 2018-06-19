@@ -8,11 +8,11 @@ LAYER
   PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
   CONNECTION "${mapserver_connection}"
   # Example data for secured layer by restriction area
-  DATA "geometrie FROM (SELECT geo.* FROM geodata.table AS geo WHERE ST_Contains((${mapfile_data_subselect} 'layer_name'), ST_SetSRID(geo.geometrie, 21781))) as foo using unique id using srid=21781"
+  DATA "geometry FROM (SELECT geo.* FROM geodata.table AS geo WHERE ST_Contains((${mapfile_data_subselect} 'layer_name'), ST_SetSRID(geo.geometry, 21781))) as foo using unique id using srid=21781"
   # Example data for secured layer by role (without any area)
-  #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=21781"
+  #DATA "geometry FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'layer_name')) as foo USING UNIQUE gid USING srid=21781"
   # Example data for public layer
-  #DATA "geometrie FROM (SELECT geo.geom as geom FROM geodata.table AS geo) AS foo USING UNIQUE gid USING srid=21781"
+  #DATA "geometry FROM (SELECT geo.geom as geom FROM geodata.table AS geo) AS foo USING UNIQUE gid USING srid=21781"
   METADATA
     "wms_title" "layer_name" # For WMS
     "wms_srs" "EPSG:21781" # For WMS

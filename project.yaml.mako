@@ -11,6 +11,8 @@ managed_files:
   - deploy/deploy\.cfg\.mako
   - apache/application\.wsgi\.mako
   - geoportal/demo_geoportal/__init__\.py
+  - \.gitignore
+  - spell-ignore-words\.txt
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
   - geoportal/demo_geoportal/static-ngeo/less/mobile\.less
