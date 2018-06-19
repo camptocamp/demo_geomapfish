@@ -46,10 +46,8 @@ vars:
         POSTGRES_DB: geomapfish
         POSTGRES_USER: www-data
         POSTGRES_PASSWORD: www-data
-    geoportal:
-      environment:
-        VISIBLE_WEB_HOST: '{docker_host}'
-        VISIBLE_WEB_PROTOCOL: '{docker_web_protocol}'
+    geoportal-build:
+      environment: &geo-run-env
         VISIBLE_ENTRY_POINT: '{docker_entry_point}'
         PGHOST: 172.17.0.1
         PGHOST_SLAVE: 172.17.0.1
@@ -59,16 +57,28 @@ vars:
         PGDATABASE: geomapfish
         PGSCHEMA: main
         PGSCHEMA_STATIC: main_static
+    geoportal:
+      environment:
+        <<: *geo-run-env
+        VISIBLE_WEB_HOST: '{docker_host}'
+        VISIBLE_WEB_PROTOCOL: '{docker_web_protocol}'
         TINYOWS_URL: http://tinyows/
         MAPSERVER_URL: http://mapserver/
         PRINT_URL: http://print:8080/print/
         REDIS_HOST: redis
         REDIS_PORT: 6379
+        C2C_REDIS_URL: redis://redis:6379
+        C2C_BROADCAST_PREFIX: broadcast_geoportal_
     tilecloudchain:
       environment:
         VISIBLE_ENTRY_POINT: '{docker_entry_point}'
         TILEGENERATION_CONFIGFILE: /etc/tilegeneration/config.yaml
         C2C_BASE_PATH: /c2c_tiles
+        C2C_REDIS_URL: redis://redis:6379
+        C2C_BROADCAST_PREFIX: broadcast_tilecloudchain_
+    print:
+      environment:
+        CATALINA_OPTS: -Xmx1024m
     front:
       port: 80
 
@@ -204,6 +214,8 @@ vars:
     available_metadata:
       # Layers group
       - name: isExpanded
+        type: boolean
+      - name: printNativeAngle
         type: boolean
       # Layer
       - name: copyTo  # V1
@@ -368,6 +380,7 @@ vars:
   print_url: '{PRINT_URL}'
   mapserver_url: '{MAPSERVER_URL}'
   mapcache_url: '{MAPCACHE_URL}'
+  devserver_url: '{DEVSERVER_URL}'
   memcached_host: '{MEMCACHED_HOST}'
   memcached_port: '{MEMCACHED_PORT}'
   tilegeneration_sqs_queue: '{TILEGENERATION_SQS_QUEUE}'
@@ -390,6 +403,7 @@ vars:
   # Control the HTTP headers
   headers:
     index: &header
+      cache_control_max_age: 600  # 10 minutes
       access_control_max_age: 600  # 10 minutes
       access_control_allow_origin:
         - "*"
@@ -401,6 +415,7 @@ vars:
     exportgpxkml: *header
     error: *header
     themes: &auth_header
+      cache_control_max_age: 600  # 10 minutes
       access_control_max_age: 600  # 10 minutes
       access_control_allow_origin:
         - "{web_protocol}://{host}"
@@ -413,6 +428,7 @@ vars:
     layers: *auth_header
     shortener: *auth_header
     login:
+      cache_control_max_age: 600  # 10 minutes
       access_control_max_age: 600  # 10 minutes
       access_control_allow_origin:
         - "{web_protocol}://{host}"
@@ -553,6 +569,8 @@ runtime_environment:
     default: http://print:8080/print/
   - name: MAPCACHE_URL
     default: http://mapcache/
+  - name: DEVSERVER_URL
+    default: http://webpack-dev-server:8080
   - name: REDIS_HOST
     default: redis
   - name: REDIS_PORT

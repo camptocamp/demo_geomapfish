@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const INTERFACE_THEME = ${__import__('json').dumps(interfaces_theme)};
+const INTERFACE_THEME = ${__import__('ujson').dumps(interfaces_theme)};
 
 const plugins = [];
 const entry = {};
@@ -17,11 +17,11 @@ process.traceDeprecation = true;
 const name = process.env.INTERFACE;
 process.env.THEME = INTERFACE_THEME[name];
 
-entry[name] = path.resolve(__dirname, 'geoportal/${package}_geoportal/static-ngeo/js/apps/Controller' + name + '.js');
+entry[name] = '${package}/apps/Controller' + name + '.js';
 plugins.push(
   new HtmlWebpackPlugin({
     inject: false,
-    template: '/src/geoportal/${package}_geoportal/static-ngeo/js/apps/' + name + '.html.ejs',
+    template: path.resolve(__dirname, '${package}_geoportal/static-ngeo/js/apps/' + name + '.html.ejs'),
     chunksSortMode: 'manual',
     filename: name + '.html',
     chunks: [name],
@@ -41,7 +41,7 @@ const babelPresets = [['env',{
 
 // Transform code to ES2015 and annotate injectable functions with an $inject array.
 const projectRule = {
-  test: /geoportal\/demo_geoportal\/static-ngeo\/js\/.*\.js$/,
+  test: /demo_geoportal\/static-ngeo\/js\/.*\.js$/,
   use: {
     loader: 'babel-loader',
     options: {
@@ -60,8 +60,8 @@ devServer = dev && !noDevServer;
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, 'geoportal/demo_geoportal/static-ngeo/build/'),
-    publicPath: devServer ? '/${instance}/dev/' : '${entry_point}static-ngeo/UNUSED_CACHE_VERSION/build/'
+    path: path.resolve(__dirname, 'demo_geoportal/static-ngeo/build/'),
+    publicPath: devServer ? '${entry_point}dev/' : '${entry_point}static-ngeo/UNUSED_CACHE_VERSION/build/'
   },
   entry: entry,
   module: {
@@ -70,7 +70,7 @@ module.exports = {
   plugins: plugins,
   resolve: {
     alias: {
-      demo: path.resolve(__dirname, 'geoportal/demo_geoportal/static-ngeo/js'),
+      demo: path.resolve(__dirname, 'demo_geoportal/static-ngeo/js'),
     }
   }
 };

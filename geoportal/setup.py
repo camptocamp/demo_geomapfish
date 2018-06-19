@@ -22,7 +22,6 @@ setup(
             'main = demo_geoportal:main',
         ],
         'console_scripts': [
-            'create_db = demo_geoportal.scripts.create_db:main',
         ],
     },
 )

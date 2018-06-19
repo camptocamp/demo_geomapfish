@@ -4,6 +4,7 @@
 # The project Docker compose file for development.
 
 version: '2'
+
 services:
 
   config:
@@ -11,7 +12,7 @@ services:
 ${service_defaults('config')}\
 
   print:
-    image: camptocamp/mapfish_print:3.12.1
+    image: camptocamp/mapfish_print:3.14
     volumes_from:
       - config:ro
 ${service_defaults('print', 8080)}\
@@ -39,6 +40,9 @@ ${service_defaults('mapcache', 80)}\
 
   memcached:
     image: memcached:1.5
+    command:
+      - memcached
+      - --memory-limit=512
 ${service_defaults('memcached', 11211)}\
 
   tinyows:
@@ -49,6 +53,16 @@ ${service_defaults('tinyows', 80)}\
 
   redis:
     image: redis:3.2
+    command:
+      - redis-server
+      - --save
+      - ''
+      - --appendonly
+      - 'no'
+      - --maxmemory
+      - 512mb
+      - --maxmemory-policy
+      - allkeys-lru
 ${service_defaults('redis', 6379)}\
 
   tilecloudchain:
@@ -83,7 +97,7 @@ ${service_defaults('geoportal', 80)}\
 ${service_defaults('geoportal')}\
 
   front:
-    image: haproxy:1.8
+    image: haproxy:1.8.8
     volumes_from:
       - config:ro
     volumes:
@@ -92,7 +106,7 @@ ${service_defaults('geoportal')}\
       - haproxy
       - -f
       - /etc/haproxy
-${service_defaults('front', 80, not docker_global_front)}
+${service_defaults('front', 80, True, docker_global_front)}
 %if docker_global_front:
     networks:
       default: {}

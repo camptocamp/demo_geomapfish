@@ -5,6 +5,7 @@ __pycache__/
 /project.yaml
 /docker-compose.yaml
 /docker-compose-build.yaml
+/docker-compose-dev.yaml
 /geoportal/alembic.yaml
 /testdb/11-schemas.sql
 /testdb/12-alembic.sql
@@ -15,7 +16,8 @@ __pycache__/
 /print/print-apps/demo/config.yaml.mako
 /mapserver/mapserver.map.tmpl
 /mapserver/*.map.tmpl
-/mapserver/tinyows.xml
+/mapserver/tinyows.xml.mako
+/mapserver/tinyows.xml.tmpl
 /geoportal/jsbuild/app.cfg
 /geoportal/Dockerfile
 /geoportal/development.ini
@@ -31,8 +33,8 @@ __pycache__/
 /geoportal/demo_geoportal/static-ngeo/fonts/gmf-icons.*
 /geoportal/demo_geoportal/static-ngeo/fonts/fontawesome-webfont.*
 /geoportal/demo_geoportal/static/build/
-/node_modules
-/webpack.apps.js
+/geoportal/node_modules
+/geoportal/webpack.apps.js
 /.upgrade.yaml
 /amazonses_s3.txt
 /amazonses_smtp.txt
