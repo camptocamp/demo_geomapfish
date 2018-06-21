@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.3.1.dev3
+GEOMAPFISH_VERSION ?= 2.3.1.dev4
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -8,6 +8,7 @@ export DEV_SERVER_PORT
 INSTANCE ?= main
 export INSTANCE
 
+DOCKER ?= TRUE
 ifeq ($(INSTANCE), main)
 DOCKER_ENTRY_POINT ?= /
 else
@@ -604,14 +605,11 @@ $(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/jquery-ui/themes/base/images
 	ln --symbolic /usr/lib/node_modules/ geoportal/
 	(cd geoportal; INTERFACE=$* webpack $(WEBPACK_ARGS))
 	rm geoportal/node_modules
+ifeq ($(DOCKER), TRUE)
 	mv $(APP_OUTPUT_DIR)/$*.html $(APP_OUTPUT_DIR)/$*.html.tmpl
 	ls -1 $(APP_OUTPUT_DIR)/$*.*.css|while read file; do mv $${file} $${file}.tmpl; done
+endif
 	touch $@
-
-.PHONY: serve
-serve-%:
-	(cd geoportal; INTERFACE=$* ../node_modules/.bin/webpack-dev-server --port=$(DEV_SERVER_PORT) -d --watch --progress \
-		--public=$(VISIBLE_WEB_HOST):$(VISIBLE_WEB_PORT) --mode=development --inline=false)
 
 /build/eslint.timestamp: $(APP_JS_FILES)
 	$(PRERULE_CMD)
@@ -690,14 +688,14 @@ docker-compose-build.yaml: /build/requirements.timestamp
 docker-build-config: $(shell docker-required --path .) \
 		$(PRINT_CONFIG_FILE) \
 		$(MAPCACHE_FILE)
-	docker build -t $(DOCKER_BASE)-config:$(DOCKER_TAG) .
+	docker build --tag=$(DOCKER_BASE)-config:$(DOCKER_TAG) .
 
 .PHONY: docker-build-geoportal
 docker-build-geoportal: $(shell docker-required --path geoportal) \
 		$(WEB_RULE) \
 		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).mo, $(LANGUAGES))) \
 		geoportal/config.yaml
-	docker build --tag=$(DOCKER_BASE)-geoportal:$(DOCKER_TAG) --build-arg="GIT_HASH=$(GIT_HASH)" geoportal
+	docker build --tag=$(DOCKER_BASE)-geoportal:$(DOCKER_TAG) --build-arg=GIT_HASH=$(GIT_HASH) geoportal
 ifdef CGXP_INTERFACES
 docker-build-geoportal: $(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_SERVER_POSTFIX).mo, $(LANGUAGES)))
 endif
