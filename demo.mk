@@ -8,6 +8,9 @@ APACHE_VHOST = geomapfish-demo
 INSTANCE_ID ?= demo
 VISIBLE_WEB_HOST ?= geomapfish-demo.camptocamp.com
 
+DEV_SERVER_PORT ?= 808
+export DEV_SERVER_PORT
+
 PGDATABASE ?= demo_geomapfish_2_3
 export PGDATABASE
 
