@@ -9,7 +9,6 @@ template_vars:
   apache_vhost: demo_geomapfish
 managed_files:
   - geoportal/demo_geoportal/__init__\.py
-  - Dockerfile
   - \.gitignore
   - spell-ignore-words\.txt
 unmanaged_files:

@@ -14,7 +14,6 @@ vars:
   host: '{VISIBLE_WEB_HOST}'
   web_protocol: '{VISIBLE_WEB_PROTOCOL}'
   entry_point: '{VISIBLE_ENTRY_POINT}'
-  dev_server_port: '{DEV_SERVER_PORT}'
   docker_entry_point: '{DOCKER_ENTRY_POINT}'
   docker_host: '{DOCKER_WEB_HOST}'
   docker_web_protocol: '{DOCKER_WEB_PROTOCOL}'
@@ -60,6 +59,13 @@ vars:
     geoportal:
       environment:
         <<: *geo-run-env
+        GUNICORN_PARAMS:
+          --bind=:8080
+          --worker-class=gthread
+          --threads=10
+          --workers=5
+          --timeout=60
+          --worker-connections=1000
         VISIBLE_WEB_HOST: '{docker_host}'
         VISIBLE_WEB_PROTOCOL: '{docker_web_protocol}'
         TINYOWS_URL: http://tinyows/
@@ -72,6 +78,12 @@ vars:
         C2C_BROADCAST_PREFIX: broadcast_geoportal_
     tilecloudchain:
       environment:
+        GUNICORN_PARAMS:
+          --bind=:8080
+          --worker-class=gthread
+          --threads=10
+          --workers=5
+          --worker-connections=1000
         VISIBLE_ENTRY_POINT: '{docker_entry_point}'
         TILEGENERATION_CONFIGFILE: /etc/tilegeneration/config.yaml
         C2C_BASE_PATH: /c2c_tiles
@@ -540,7 +552,6 @@ environment:
   - WMTSCAPABILITIES_PATH
   - BUILD_VOLUME_NAME
   - PROJECT_DIRECTORY
-  - DEV_SERVER_PORT
   - INSTANCE
 
 runtime_environment:

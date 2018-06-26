@@ -9,10 +9,12 @@ services:
 
   config:
     image: ${docker_base}-config:${docker_tag}
+    user: www-data
 ${service_defaults('config')}\
 
   print:
     image: camptocamp/mapfish_print:3.14
+    user: www-data
     volumes_from:
       - config:ro
 ${service_defaults('print', 8080)}\
@@ -40,6 +42,7 @@ ${service_defaults('mapcache', 80)}\
 
   memcached:
     image: memcached:1.5
+    user: www-data
     command:
       - memcached
       - --memory-limit=512
@@ -53,6 +56,7 @@ ${service_defaults('tinyows', 80)}\
 
   redis:
     image: redis:3.2
+    user: www-data
     command:
       - redis-server
       - --save
@@ -67,12 +71,14 @@ ${service_defaults('redis', 6379)}\
 
   tilecloudchain:
     image: camptocamp/tilecloud-chain:1.6
+    user: www-data
     volumes_from:
       - config:ro
-${service_defaults('tilecloudchain', 80)}\
+${service_defaults('tilecloudchain', 8080)}\
 
   tilegeneration_slave:
     image: camptocamp/tilecloud-chain:1.6
+    user: www-data
     volumes_from:
       - config:ro
 ${service_defaults('tilecloudchain')}\
@@ -83,12 +89,14 @@ ${service_defaults('tilecloudchain')}\
 
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
+    user: www-data
     volumes:
       - /var/sig:/var/sig:ro
 ${service_defaults('geoportal', 80)}\
 
   alembic:
     image: ${docker_base}-geoportal:${docker_tag}
+    user: www-data
     command:
       - alembic
       - --name=static
