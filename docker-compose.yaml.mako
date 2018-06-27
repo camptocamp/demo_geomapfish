@@ -75,6 +75,7 @@ ${service_defaults('redis', 6379)}\
     volumes_from:
       - config:ro
 ${service_defaults('tilecloudchain', 8080)}\
+      - SENTRY_TAG_SERVICE=tilecloudchain
 
   tilegeneration_slave:
     image: camptocamp/tilecloud-chain:1.6
@@ -82,6 +83,7 @@ ${service_defaults('tilecloudchain', 8080)}\
     volumes_from:
       - config:ro
 ${service_defaults('tilecloudchain')}\
+      - SENTRY_TAG_SERVICE=tilegeneration_slave
     command:
       - generate_tiles
       - --role=slave

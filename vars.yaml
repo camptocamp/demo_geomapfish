@@ -26,6 +26,9 @@ vars:
 
   default_interface: desktop
 
+  sentry_private_url: https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@sentry.camptocamp.com/14
+  sentry_release: 2.3
+
   interfaces_config:
     default: &interface
       constants: &constants
@@ -76,7 +79,7 @@ vars:
       constants:
         <<: *constants
         sentryOptions:
-          release: 2.3
+          release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
@@ -87,7 +90,7 @@ vars:
         <<: *constants
         gmfTreeManagerModeFlush: false
         sentryOptions:
-          release: 2.3
+          release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
@@ -104,7 +107,7 @@ vars:
       constants:
         <<: *constants
         sentryOptions:
-          release: 2.3
+          release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
@@ -131,7 +134,7 @@ vars:
         ngeoNominatimSearchDefaultParams:
           - countrycodes: CH
         sentryOptions:
-          release: 2.3
+          release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
@@ -150,7 +153,7 @@ vars:
       constants:
         <<: *constants
         sentryOptions:
-          release: 2.3
+          release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
@@ -165,7 +168,7 @@ vars:
       constants:
         <<: *constants
         sentryOptions:
-          release: 2.3
+          release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
@@ -180,19 +183,25 @@ vars:
     geoportal:
       environment:
         PGDATABASE: demo_geomapfish_2_3_bak
+        SENTRY_URL: '{sentry_private_url}'
+        SENTRY_CLIENT_ENVIRONMENT: '{instance}'
+        SENTRY_CLIENT_RELEASE: '{sentry_release}'
+        SENTRY_TAG_SERVICE: wsgi
     tilecloudchain:
       environment:
         AWS_ACCESS_KEY_ID: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
         AWS_SECRET_ACCESS_KEY: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
-    ssh:
-      port: 222
+        SENTRY_URL: '{sentry_private_url}'
+        SENTRY_CLIENT_ENVIRONMENT: '{instance}'
+        SENTRY_CLIENT_RELEASE: '{sentry_release}'
+    print:
       environment:
-        GITHUB_TOKEN: a3cc544e30cdc254c6a4117b11663f064c2ca08b
-        GITHUB_ORG: camptocamp
-        GITHUB_TEAM: demo_geomapfish_ssh
-        PROJECT_NAME: demo_geomapfish
-        DISABLE_SSH: False
-
+        CATALINA_OPTS: >-
+          -Xmx1024m
+          -Dsentry.dsn={sentry_private_url}
+          -Dsentry.release={sentry_release}
+          -Dsentry.environment={instance}
+          -Dsentry.tags=print
     front:
       port: 8480
 
