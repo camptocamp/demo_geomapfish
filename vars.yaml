@@ -27,7 +27,7 @@ vars:
   default_interface: desktop
 
   sentry_private_url: https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@sentry.camptocamp.com/14
-  sentry_release: 2.3
+  sentry_release: __import__('pkg_resources').get_distribution('c2cgeoportal_commons').version[:5]
 
   interfaces_config:
     default: &interface
@@ -487,6 +487,8 @@ no_interpreted:
 
 
 interpreted:
+  python:
+    - sentry_release
   bash:
     - smtp.user
     - smtp.password
