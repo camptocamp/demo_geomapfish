@@ -5,6 +5,8 @@ VARS_FILE = vars.yaml
 VARS_FILES += ${VARS_FILE}
 endif
 
+NGEO_INTERFACES ?= desktop mobile desktop_alt mobile_alt oeview oeedit
+
 # Deploy branch
 DEPLOY_BRANCH_DIR ?= /var/www/vhosts/$(APACHE_VHOST)/private/deploybranch
 GIT_REMOTE_URL ?= git@github.com:camptocamp/demo.git
