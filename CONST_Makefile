@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.3.1
+GEOMAPFISH_VERSION ?= 2.3.2.dev3
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -16,8 +16,6 @@ DOCKER_WEB_PROTOCOL ?= https
 export DOCKER_ENTRY_POINT
 export DOCKER_WEB_HOST
 export DOCKER_WEB_PROTOCOL
-
-MAPSERVER ?= TRUE
 
 ifeq ($(DEBUG), TRUE)
 PRERULE_CMD ?= @echo "Build \033[1;34m$@\033[0m due modification on \033[1;34m$?\033[0m" 1>&2; ls -t --full-time --reverse $? $@ 1>&2 || true
@@ -45,7 +43,7 @@ CGXP_API ?= TRUE
 CGXP_XAPI ?= FALSE
 INTERFACES += $(NGEO_INTERFACES) $(CGXP_INTERFACES)
 export INTERFACES
-# Used print version
+# Use print
 PRINT ?= TRUE
 # Enable Docker target
 DOCKER_BASE ?= camptocamp/demo
@@ -117,6 +115,8 @@ GIT_HASH ?= $(shell git rev-parse HEAD)
 # ngeo
 NODE_ENV ?= production
 export NODE_ENV
+NO_DEV_SERVER ?= TRUE
+export NO_DEV_SERVER
 ANGULAR_VERSION = 1.6
 APP_OUTPUT_DIR = geoportal/$(PACKAGE)_geoportal/static-ngeo/build
 GCC_JS_FILES = $(shell find /usr/lib/node_modules/openlayers/src/ol /usr/lib/node_modules/ngeo/src /usr/lib/node_modules/ol-cesium/src -type f -name '*.js' 2> /dev/null)
@@ -156,8 +156,8 @@ I18N_DEPENDENCIES += project.yaml /build/requirements.timestamp
 
 
 # Alembic
-
-ALEMBIC_YAML_FILE ?= vars_testdb.yaml
+ALEMBIC_YAML_FILE ?= $(VARS_FILE)
+export ALEMBIC_YAML_FILE
 
 # CGXP
 JSBUILD_MAIN_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static/lib/cgxp geoportal/$(PACKAGE)_geoportal/static/js -name "*.js" -print 2> /dev/null)
@@ -302,9 +302,11 @@ SERVER_LOCALISATION_RULES = $(addprefix /build/lang-server-, $(LANGUAGES))
 endif
 
 # Print
+ifeq ($(PRINT), TRUE)
 PRINT_BASE_DIR ?= print
 PRINT_CONFIG_FILE ?= print/print-apps/$(PACKAGE)/config.yaml.tmpl
 I18N_SOURCE_FILES += $(PRINT_CONFIG_FILE)
+endif
 
 PY_FILES = $(shell find $(PACKAGE) -type f -name '*.py' -print)
 
@@ -392,11 +394,15 @@ checks: flake8 $(CLIENT_CHECK_RULE) git-attributes yamllint spell
 git-attributes:
 	git --no-pager diff --check `git log --oneline | tail -1 | cut --fields=1 --delimiter=' '`
 
-YAML_FILES ?= $(filter-out ./tilegeneration/config.yaml ./geoportal/config.yaml ./geoportal/alembic.yaml,$(shell find \
-	-name .build -prune -or \
-	-name cgxp -prune -or \
-	-name node_modules -prune -or \
-	\( -name "*.yml" -or -name "*.yaml" \) -print))
+YAML_FILES ?= $(filter-out ./tilegeneration/config.yaml ./geoportal/config.yaml \
+	./qgisserver/geomapfish.yaml ./geoportal/alembic.yaml \
+	./docker-compose-dev.yaml ./docker-compose.yaml, \
+	$(shell find \
+		-name .build -prune -or \
+		-name cgxp -prune -or \
+		-name node_modules -prune -or \
+		\( -name "*.yml" -or -name "*.yaml" \) -print \
+	))
 .PHONY: yamllint
 yamllint: $(YAML_FILES)
 	yamllint --strict --config-file=yamllint.yaml -s $(YAML_FILES)
@@ -407,7 +413,7 @@ spell:
 		$(shell find -name node_modules -prune -or -name .git -prune -or -name '__pycache__' -prune \
 		-or -name 'build' -prune -or -name '.build' -prune -or -name 'cgxp' -prune -or -name 'c2cgeoportal_*' -prune \
 		-or \( -type f -and -not -name '*.png' -and -not -name '*.mo' -and -not -name '*.po*' \
-		-and -not -name 'CONST_Makefile' \) -print)
+		-and -not -name 'CONST_Makefile' -and -not -name 'package-lock.json' \) -print)
 
 .PHONY: clean
 clean: template-clean
@@ -417,6 +423,7 @@ clean: template-clean
 		$(APP_OUTPUT_DIR)/ \
 		geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)-*.pot \
 		geoportal/alembic.yaml \
+		qgisserver/geomapfish.yaml \
 		.UPGRADE* \
 		mapcache \
 		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).mo, $(LANGUAGES))) \
@@ -456,8 +463,8 @@ lint-ngeo: /build/eslint.timestamp
 
 .PHONY: upgrade-db
 upgrade-db: geoportal/alembic.ini geoportal/alembic.yaml
-	alembic --name=main upgrade head
-	alembic --name=static upgrade head
+	alembic --config=$< --name=main upgrade head
+	alembic --config=$< --name=static upgrade head
 
 # Templates
 
@@ -491,6 +498,13 @@ geoportal/config.yaml: /build/c2ctemplate-cache.json
 	c2c-template --cache /build/c2ctemplate-cache.json --get-config /build/_config.yaml $(CONFIG_VARS)
 	pykwalify --data-file /build/_config.yaml --schema-file CONST_config-schema.yaml
 	mv /build/_config.yaml $@
+	touch $@
+
+qgisserver/geomapfish.yaml: /build/c2ctemplate-cache.json
+	$(PRERULE_CMD)
+	mkdir --parent $(dir $@)
+	c2c-template --cache /build/c2ctemplate-cache.json --get-config $@ \
+		sqlalchemy_slave.url schema schema_static srid
 	touch $@
 
 # server localisation
@@ -685,7 +699,8 @@ docker-compose-build.yaml: /build/requirements.timestamp
 .PHONY: docker-build-config
 docker-build-config: $(shell docker-required --path .) \
 		$(PRINT_CONFIG_FILE) \
-		$(MAPCACHE_FILE)
+		$(MAPCACHE_FILE) \
+		qgisserver/geomapfish.yaml
 	docker build --tag=$(DOCKER_BASE)-config:$(DOCKER_TAG) .
 
 .PHONY: docker-build-geoportal
@@ -701,16 +716,15 @@ endif
 
 .PHONY: push-docker
 push-docker:
-	docker push $(DOCKER_BASE)-print:$(DOCKER_TAG)
+	docker push $(DOCKER_BASE)-config:$(DOCKER_TAG)
 	docker push $(DOCKER_BASE)-geoportal:$(DOCKER_TAG)
-	docker push $(DOCKER_BASE)-mapserver:$(DOCKER_TAG)
 
 geoportal/alembic.yaml: $(ALEMBIC_YAML_FILE) vars.yaml CONST_vars.yaml
 	$(PRERULE_CMD)
 	c2c-template --vars $< --get-config /build/_alembic.yaml srid schema schema_static sqlalchemy.url cache
 	mv /build/_alembic.yaml $@
 
-testdb/11-schemas.sql: $(ALEMBIC_YAML_FILE) testdb/11-schemas.sql_mako vars.yaml CONST_vars.yaml
+testdb/11-schemas.sql: vars_alembic.yaml $(ALEMBIC_YAML_FILE) testdb/11-schemas.sql_mako vars.yaml CONST_vars.yaml
 	$(PRERULE_CMD)
 	rm --force testdb/11-schemas.sql.mako
 	ln -s 11-schemas.sql_mako testdb/11-schemas.sql.mako
@@ -769,3 +783,17 @@ secrets:
 	gpg --output secrets.tar.bz2 --decrypt secrets.tar.bz2.gpg
 	tar -jxf secrets.tar.bz2
 	rm secrets.tar.bz2
+
+# QGIS
+
+.PHONY: edit-qgis-project
+edit-qgis-project:
+	IP=$$(ip addr show dev $$(route | grep default | awk '{print $$(NF)}' | head -1)  | awk '$$1 ~ /^inet/ { sub("/.*", "", $$2); print $$2 }' | head -1); \
+	docker run -ti \
+		--add-host=db:$$IP \
+		--volume $$PWD/qgisserver:/etc/qgisserver \
+		--volume /tmp/.X11-unix:/tmp/.X11-unix \
+		--volume $$HOME:$$HOME \
+		--env DISPLAY=unix$${DISPLAY} \
+		--env "PGSERVICEFILE=$$HOME/.pg_service.conf" \
+		--rm camptocamp/qgis-server:3.2 /usr/local/bin/start-client

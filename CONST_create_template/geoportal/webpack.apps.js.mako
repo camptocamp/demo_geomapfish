@@ -55,6 +55,9 @@ const rules = [
 const noDevServer = process.env['NO_DEV_SERVER'] == 'TRUE';
 devServer = dev && !noDevServer;
 
+console.log("Use dev mode: " + dev)
+console.log("Use dev server mode: " + devServer)
+
 module.exports = {
   output: {
     path: path.resolve(__dirname, 'demo_geoportal/static-ngeo/build/'),
@@ -65,4 +68,9 @@ module.exports = {
     rules
   },
   plugins: plugins,
+  resolve: {
+    alias: {
+      demo: path.resolve(__dirname, 'demo_geoportal/static-ngeo/js'),
+    }
+  },
 };
