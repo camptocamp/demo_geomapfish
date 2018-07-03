@@ -16,6 +16,13 @@ vars:
     - mobile_alt
     - oeview
     - oeedit
+  interfaces_theme:
+    desktop: desktop
+    desktop_alt: desktop
+    mobile: mobile
+    mobile_alt: mobile
+    oeview: desktop
+    oeedit: desktop
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
