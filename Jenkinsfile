@@ -5,7 +5,7 @@ import static com.camptocamp.utils.*
 dockerBuild {
     stage('Build') {
         checkout scm
-        sh 'make -j2 build'
+        sh './docker-run make -j2 build'
     }
     stage('Test') {
         checkout scm

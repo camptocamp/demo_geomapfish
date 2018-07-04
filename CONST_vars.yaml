@@ -75,6 +75,7 @@ vars:
         DEVSERVER_URL: http://webpack-dev-server:8080${entry_point}
         REDIS_HOST: redis
         REDIS_PORT: 6379
+        C2C_BASE_PATH: /c2c
         C2C_REDIS_URL: redis://redis:6379
         C2C_BROADCAST_PREFIX: broadcast_geoportal_
     tilecloudchain:

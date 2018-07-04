@@ -30,7 +30,8 @@ vars:
 
   default_interface: desktop
 
-  sentry_private_url: https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@sentry.camptocamp.com/14
+  sentry_private_url: "https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@\
+sentry.camptocamp.com/14"
   sentry_release: __import__('pkg_resources').get_distribution('c2cgeoportal_commons').version[:5]
 
   interfaces_config:
@@ -191,6 +192,10 @@ vars:
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
         SENTRY_TAG_SERVICE: wsgi
+        C2C_SECRET: adminc2c
+        C2C_LOG_VIEW_ENABLED: TRUE
+        C2C_SQL_PROFILER_ENABLED: TRUE
+        C2C_DEBUG_VIEW_ENABLED: TRUE
     qgisserver:
       environment:
         GEOMAPFISH_OGCSERVER: QGIS server
@@ -201,6 +206,10 @@ vars:
         SENTRY_URL: '{sentry_private_url}'
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
+        C2C_SECRET: adminc2c
+        C2C_LOG_VIEW_ENABLED: TRUE
+        C2C_SQL_PROFILER_ENABLED: TRUE
+        C2C_DEBUG_VIEW_ENABLED: TRUE
     print:
       environment:
         CATALINA_OPTS: >-
@@ -363,7 +372,7 @@ vars:
 
   headers:
     themes: &headers
-      cache_control_max_age: 600 # 10 minutes
+      cache_control_max_age: 600  # 10 minutes
       access_control_max_age: 30
       access_control_allow_origin:
         - https://camptocamp.github.io
@@ -398,7 +407,7 @@ vars:
     profile: *headers
     shortener: *headers
     login:
-      cache_control_max_age: 600 # 10 minutes
+      cache_control_max_age: 600  # 10 minutes
       access_control_max_age: 30
       access_control_allow_origin:
         - https://camptocamp.github.io
