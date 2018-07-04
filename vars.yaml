@@ -191,6 +191,10 @@ vars:
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
         SENTRY_TAG_SERVICE: wsgi
+        C2C_SECRET: adminc2c
+        C2C_LOG_VIEW_ENABLED: TRUE
+        C2C_SQL_PROFILER_ENABLED: TRUE
+        C2C_DEBUG_VIEW_ENABLED: TRUE
     qgisserver:
       environment:
         GEOMAPFISH_OGCSERVER: QGIS server
@@ -201,6 +205,10 @@ vars:
         SENTRY_URL: '{sentry_private_url}'
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
+        C2C_SECRET: adminc2c
+        C2C_LOG_VIEW_ENABLED: TRUE
+        C2C_SQL_PROFILER_ENABLED: TRUE
+        C2C_DEBUG_VIEW_ENABLED: TRUE
     print:
       environment:
         CATALINA_OPTS: >-
