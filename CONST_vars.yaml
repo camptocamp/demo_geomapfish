@@ -36,7 +36,7 @@ vars:
         PGDATABASE: geomapfish
         GEOPORTAL_INTERNAL_URL: http://geoportal/
         MAPCACHE_URL: http://mapcache/mapcache/
-        MAPSERVER_URL: http://mapserver/
+        MAPSERVER_URL: http://mapserver:8080/
         MEMCACHED_HOST: memcached
         MEMCACHED_PORT: 11211
         TILEGENERATION_SQS_QUEUE: '<queue_name>'
@@ -65,11 +65,12 @@ vars:
           --threads=10
           --workers=5
           --timeout=60
-          --worker-connections=1000
+          --max-requests=1000
+          --max-requests-jitter=100
         VISIBLE_WEB_HOST: '{docker_host}'
         VISIBLE_WEB_PROTOCOL: '{docker_web_protocol}'
-        TINYOWS_URL: http://tinyows/
-        MAPSERVER_URL: http://mapserver/
+        TINYOWS_URL: http://tinyows:8080/
+        MAPSERVER_URL: http://mapserver:8080/
         PRINT_URL: http://print:8080/print/
         DEVSERVER_URL: http://webpack-dev-server:8080${entry_point}
         REDIS_HOST: redis
@@ -83,7 +84,8 @@ vars:
           --worker-class=gthread
           --threads=10
           --workers=5
-          --worker-connections=1000
+          --max-requests=1000
+          --max-requests-jitter=100
         VISIBLE_ENTRY_POINT: '{docker_entry_point}'
         TILEGENERATION_CONFIGFILE: /etc/tilegeneration/config.yaml
         C2C_BASE_PATH: /c2c_tiles
@@ -111,6 +113,8 @@ vars:
   schema: '{PGSCHEMA}'
   # sqlalchemy static schema
   schema_static: '{PGSCHEMA_STATIC}'
+
+  alembic_yaml_file: '{ALEMBIC_YAML_FILE}'
 
   dbsessions: {}
 
@@ -553,6 +557,7 @@ environment:
   - BUILD_VOLUME_NAME
   - PROJECT_DIRECTORY
   - INSTANCE
+  - ALEMBIC_YAML_FILE
 
 runtime_environment:
   - name: VISIBLE_WEB_HOST
@@ -580,7 +585,7 @@ runtime_environment:
   - name: PRINT_URL
     default: http://print:8080/print/
   - name: MAPCACHE_URL
-    default: http://mapcache/
+    default: http://mapcache:8080/
   - name: DEVSERVER_URL
     default: http://webpack-dev-server:8080/
   - name: REDIS_HOST

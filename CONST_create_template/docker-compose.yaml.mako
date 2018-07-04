@@ -20,30 +20,35 @@ ${service_defaults('print', 8080)}\
 
   mapserver:
     image: camptocamp/mapserver:7.0
+    user: www-data
     volumes_from:
       - config:rw
     volumes:
       - /var/sig:/var/sig:ro
     entrypoint: []
-${service_defaults('mapserver', 80)}\
+${service_defaults('mapserver', 8080)}\
 
 ##  qgisserver:
-##    image: camptocamp/qgis-server:latest
+##    image: camptocamp/geomapfish-qgisserver:gmf2.3-qgis3.2
+##    user: www-data
 ##    volumes_from:
 ##      - config:ro
-##${service_defaults('qgisserver', 80)}
+##${service_defaults('qgisserver', 8080)}
 
   tinyows:
     image: camptocamp/tinyows
+    user: www-data
     volumes_from:
       - config:ro
-${service_defaults('tinyows', 80)}\
+    entrypoint: []
+${service_defaults('tinyows', 8080)}\
 
   mapcache:
     image: camptocamp/mapcache:1.6
+    user: www-data
     volumes_from:
       - config:ro
-${service_defaults('mapcache', 80)}\
+${service_defaults('mapcache', 8080)}\
 
   memcached:
     image: memcached:1.5
@@ -70,12 +75,14 @@ ${service_defaults('redis', 6379)}\
 
   tilecloudchain:
     image: camptocamp/tilecloud-chain:1.6
+    user: www-data
     volumes_from:
       - config:ro
-${service_defaults('tilecloudchain', 80)}\
+${service_defaults('tilecloudchain', 8080)}\
 
   tilegeneration_slave:
     image: camptocamp/tilecloud-chain:1.6
+    user: www-data
     volumes_from:
       - config:ro
 ${service_defaults('tilecloudchain')}\

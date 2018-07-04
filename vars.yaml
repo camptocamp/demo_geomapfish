@@ -191,6 +191,9 @@ vars:
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
         SENTRY_TAG_SERVICE: wsgi
+    qgisserver:
+      environment:
+        GEOMAPFISH_OGCSERVER: QGIS server
     tilecloudchain:
       environment:
         AWS_ACCESS_KEY_ID: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
