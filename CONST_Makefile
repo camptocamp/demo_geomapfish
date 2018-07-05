@@ -796,4 +796,4 @@ edit-qgis-project:
 		--volume $$HOME:$$HOME \
 		--env DISPLAY=unix$${DISPLAY} \
 		--env "PGSERVICEFILE=$$HOME/.pg_service.conf" \
-		--rm camptocamp/qgis-server:3.2 /usr/local/bin/start-client
+		--rm camptocamp/qgis-server:3.2 /usr/local/bin/start-client qgisserver/project.qgs
