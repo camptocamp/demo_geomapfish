@@ -100,6 +100,9 @@ mapping:
                             access_control_max_age:
                                 required: True
                                 type: int
+                            cache_control_max_age:
+                                required: True
+                                type: int
                     index: *header
                     config: *header
                     api: *header
@@ -162,6 +165,13 @@ mapping:
                         required: True
                         sequence:
                         -   type: str
+            http_options:
+                type: map
+                required: False
+                mapping:
+                    disable_ssl_certificate_validation:
+                        type: bool
+                        required: False
             layers:
                 type: map
                 required: True
@@ -426,6 +436,9 @@ mapping:
 
                             regex;(.+):
                                 type: any
+                    rewrite_as_http_localhost:
+                        type: bool
+                        required: False
             check_collector:
                 type: map
                 required: True

@@ -150,6 +150,8 @@ vars:
         # Layers group
         - name: isExpanded
           type: boolean
+        - name: printNativeAngle
+          type: boolean
         # Layer
         - name: copy_to  # V1
         - name: copyable
@@ -183,6 +185,7 @@ vars:
         - name: lastUpdateUserColumn
         - name: snappingConfig
           type: json
+        - name: geotablePrimaryKey
         - name: geometry_validation  # V1
           type: boolean
         - name: excludeProperties  # not yet used
@@ -242,6 +245,10 @@ vars:
     # this application is a child application in a parent/child
     # architecture.
     external_themes_url:
+
+    # Available options for http sessions created within c2cgeoportal
+    http_options:
+        disable_ssl_certificate_validation: False
 
     urllogin: {}
 
@@ -338,6 +345,7 @@ vars:
     # Control the HTTP headers
     headers:
         index: &header
+            cache_control_max_age: 600 # 10 minutes
             access_control_max_age: 600 # 10 minutes
             access_control_allow_origin:
             - "*"
@@ -349,6 +357,7 @@ vars:
         exportgpxkml: *header
         error: *header
         themes: &auth_header
+            cache_control_max_age: 600 # 10 minutes
             access_control_max_age: 600 # 10 minutes
             access_control_allow_origin:
             - "{web_protocol}://{host}"
@@ -361,6 +370,7 @@ vars:
         layers: *auth_header
         shortener: *auth_header
         login:
+            cache_control_max_age: 600 # 10 minutes
             access_control_max_age: 600 # 10 minutes
             access_control_allow_origin:
             - "{web_protocol}://{host}"
@@ -417,6 +427,7 @@ vars:
             routes:
             - name: apijs
             - name: printproxy_capabilities
+        rewrite_as_http_localhost: True
 
     # Check collector configuration
     check_collector:

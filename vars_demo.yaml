@@ -163,6 +163,7 @@ vars:
 
     headers:
         themes: &headers
+            cache_control_max_age: 30
             access_control_max_age: 30
             access_control_allow_origin:
             - https://camptocamp.github.io
@@ -194,6 +195,7 @@ vars:
         profile: *headers
         shortener: *headers
         login:
+            cache_control_max_age: 30
             access_control_max_age: 30
             access_control_allow_origin:
             - https://camptocamp.github.io
