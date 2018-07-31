@@ -26,7 +26,6 @@ vars:
       constants: &constants
         defaultTheme: Demo
         defaultLang: en
-        gmfSearchGroups: [osm, district]
         gmfSearchActions:
           - action: add_theme
             title: Add a theme
@@ -49,7 +48,6 @@ vars:
         partitionlimit: 5
       routes: &routes
         authenticationBaseUrl: base
-        fulltextsearchUrl: fulltextsearch
         gmfLayersUrl: layers_root
         gmfRasterUrl: raster
         gmfProfileCsvUrl: profile.csv
@@ -67,6 +65,9 @@ vars:
     mobile:
       <<: *interface
       redirect_interface: desktop
+      constants:
+        <<: *constants
+        gmfSearchGroups: []
     mobile_alt:
       <<: *interface
       constants:
@@ -77,6 +78,9 @@ vars:
       <<: *interface
       redirect_interface: mobile
       do_redirect: True
+      constants:
+        <<: *constants
+        gmfSearchGroups: []
       routes:
         <<: *routes
         gmfProfileJsonUrl: profile.json
@@ -289,6 +293,23 @@ update_paths:
   - docker_services.tilecloudchain.environment
   - fulltextsearch
   - functionalities.available_in_templates
+  - headers.index
+  - headers.api
+  - headers.profile
+  - headers.raster
+  - headers.echo
+  - headers.csvecho
+  - headers.exportgpxkml
+  - headers.error
+  - headers.themes
+  - headers.config
+  - headers.print
+  - headers.fulltextsearch
+  - headers.mapserver
+  - headers.tinyows
+  - headers.layers
+  - headers.shortener
+  - headers.login
   - interfaces_theme
   - shortener
 
