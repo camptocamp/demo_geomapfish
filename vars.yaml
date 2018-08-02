@@ -39,7 +39,6 @@ sentry.camptocamp.com/14"
       constants: &constants
         defaultTheme: Demo
         defaultLang: en
-        gmfSearchGroups: [osm, district]
         sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
         gmfSearchActions:
           - action: add_theme
@@ -83,6 +82,7 @@ sentry.camptocamp.com/14"
       redirect_interface: desktop
       constants:
         <<: *constants
+        gmfSearchGroups: []
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
@@ -111,6 +111,7 @@ sentry.camptocamp.com/14"
         gmfPrintUrl: printproxy
       constants:
         <<: *constants
+        gmfSearchGroups: []
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
@@ -491,6 +492,23 @@ update_paths:
   - docker_services.tilecloudchain.environment
   - fulltextsearch
   - functionalities.available_in_templates
+  - headers.index
+  - headers.api
+  - headers.profile
+  - headers.raster
+  - headers.echo
+  - headers.csvecho
+  - headers.exportgpxkml
+  - headers.error
+  - headers.themes
+  - headers.config
+  - headers.print
+  - headers.fulltextsearch
+  - headers.mapserver
+  - headers.tinyows
+  - headers.layers
+  - headers.shortener
+  - headers.login
   - interfaces_theme
   - shortener
 

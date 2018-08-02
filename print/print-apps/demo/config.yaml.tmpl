@@ -62,11 +62,11 @@ templates:
               - X-Request-ID
           - !restrictUris
             matchers:
+              - !localMatch
+                reject: true
               - !hostnameMatch
                 host: geoportal
                 port: 8080
-              - !localMatch
-                reject: true
               - !ipMatch
                 ip: 10.0.0.0
                 mask: 255.0.0.0
