@@ -322,8 +322,8 @@ vars:
   smtp:
     host: email-smtp.eu-west-1.amazonaws.com
     ssl: True
-    user: head -n 3 amazonses_smtp.txt | tail -n 1
-    password: tail -n 1 amazonses_smtp.txt
+    user: head -n 2 amazonses_smtp.txt | tail -n 1 | awk -F = '{print($2)};'
+    password: tail -n 1 amazonses_smtp.txt | awk -F = '{print($2)};'
 
   headers:
     themes: &headers
