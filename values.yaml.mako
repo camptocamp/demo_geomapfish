@@ -1,5 +1,10 @@
 # A helm values file to be used with this chart:
 # https://github.com/camptocamp/private-geo-charts/tree/master/c2cgeoportal
+image:
+  repositoryPrefix: camptocamp/demo
+  tag: latest
+  pullPolicy: Always
+
 tilecloudchain:
   s3:
     enabled: true
@@ -8,3 +13,6 @@ tilecloudchain:
 
 qgisserver:
   enabled: true
+
+postgresql:
+  database: ${docker_services['config']['environment']['PGDATABASE']}
