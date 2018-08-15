@@ -199,6 +199,7 @@ sentry.camptocamp.com/14"
         C2C_DEBUG_VIEW_ENABLED: TRUE
     qgisserver:
       environment:
+        PGDATABASE: demo_geomapfish_2_3_bak
         GEOMAPFISH_OGCSERVER: QGIS server
     tilecloudchain:
       environment:
