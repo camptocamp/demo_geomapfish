@@ -17,6 +17,7 @@ ${service_defaults('config')}\
     user: www-data
     volumes_from:
       - config:ro
+    mem_limit: 1G
 ${service_defaults('print', 8080)}\
 
   mapserver:
@@ -27,13 +28,15 @@ ${service_defaults('print', 8080)}\
     volumes:
       - /var/sig:/var/sig:ro
     entrypoint: []
+    mem_limit: 64M
 ${service_defaults('mapserver', 8080)}\
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver:gmf2.3-qgis3.2
+    image: camptocamp/geomapfish-qgisserver:gmf2.3-qgismaster
     user: www-data
     volumes_from:
       - config:ro
+    mem_limit: 256M
 ${service_defaults('qgisserver', 8080)}
 
   tinyows:
@@ -41,6 +44,7 @@ ${service_defaults('qgisserver', 8080)}
     user: www-data
     volumes_from:
       - config:ro
+    mem_limit: 32M
 ${service_defaults('tinyows', 8080)}\
 
   mapcache:
@@ -48,6 +52,7 @@ ${service_defaults('tinyows', 8080)}\
     user: www-data
     volumes_from:
       - config:ro
+    mem_limit: 32M
 ${service_defaults('mapcache', 8080)}\
 
   memcached:
@@ -56,6 +61,7 @@ ${service_defaults('mapcache', 8080)}\
     command:
       - memcached
       - --memory-limit=512
+    mem_limit: 600M
 ${service_defaults('memcached', 11211)}\
 
   redis:
@@ -71,6 +77,7 @@ ${service_defaults('memcached', 11211)}\
       - 512mb
       - --maxmemory-policy
       - allkeys-lru
+    mem_limit: 600M
 ${service_defaults('redis', 6379)}\
 
   tilecloudchain:
@@ -78,6 +85,7 @@ ${service_defaults('redis', 6379)}\
     user: www-data
     volumes_from:
       - config:ro
+    mem_limit: 128M
 ${service_defaults('tilecloudchain', 8080)}\
       - SENTRY_TAG_SERVICE=tilecloudchain
 
@@ -86,6 +94,7 @@ ${service_defaults('tilecloudchain', 8080)}\
     user: www-data
     volumes_from:
       - config:ro
+    mem_limit: 64M
 ${service_defaults('tilecloudchain')}\
       - SENTRY_TAG_SERVICE=tilegeneration_slave
     command:
@@ -98,6 +107,7 @@ ${service_defaults('tilecloudchain')}\
     user: www-data
     volumes:
       - /var/sig:/var/sig:ro
+    mem_limit: 256M
 ${service_defaults('geoportal', 80)}\
 
   alembic:
@@ -120,6 +130,7 @@ ${service_defaults('geoportal')}\
       - haproxy
       - -f
       - /etc/haproxy
+    mem_limit: 8M
 ${service_defaults('front', 80, True, docker_global_front)}
 %if docker_global_front:
     networks:

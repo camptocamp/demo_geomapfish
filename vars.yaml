@@ -187,6 +187,14 @@ sentry.camptocamp.com/14"
         TILEGENERATION_SQS_QUEUE: geomapfish-demo-stretch
     geoportal:
       environment:
+        GUNICORN_PARAMS:
+          --bind=:8080
+          --worker-class=gthread
+          --threads=10
+          --workers=1
+          --timeout=60
+          --max-requests=1000
+          --max-requests-jitter=100
         PGDATABASE: demo_geomapfish_2_3_bak
         SENTRY_URL: '{sentry_private_url}'
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
@@ -202,6 +210,14 @@ sentry.camptocamp.com/14"
         GEOMAPFISH_OGCSERVER: QGIS server
     tilecloudchain:
       environment:
+        GUNICORN_PARAMS:
+          --bind=:8080
+          --worker-class=gthread
+          --threads=10
+          --workers=1
+          --timeout=60
+          --max-requests=1000
+          --max-requests-jitter=100
         AWS_ACCESS_KEY_ID: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
         AWS_SECRET_ACCESS_KEY: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
         SENTRY_URL: '{sentry_private_url}'
