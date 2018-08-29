@@ -110,6 +110,22 @@ sentry.camptocamp.com/14"
         gmfPrintUrl: printproxy
       constants:
         <<: *constants
+        gmfPrintOptions:
+          legend:
+            # See:
+            # https://www.mapserver.org/development/rfc/ms-rfc-101.html
+            # https://docs.qgis.org/testing/en/docs/user_manual/working_with_ogc/server/services.html#getlegendgraphics
+            useBbox: true
+            label:
+              qgis: false
+            params:
+              # See:
+              # https://docs.qgis.org/testing/en/docs/user_manual/working_with_ogc/server/services.html#getlegendgraphics
+              qgis:
+                LAYERFONTFAMILY: DejaVu Sans
+                ITEMFONTFAMILY: DejaVu Sans
+                LAYERFONTSIZE: '10'
+                ITEMFONTSIZE: '8'
         gmfSearchGroups: []
         sentryOptions:
           release: '{sentry_release}'
@@ -121,7 +137,14 @@ sentry.camptocamp.com/14"
       <<: *interface
       constants:
         <<: *constants
-        gmfPrintOptions: {scaleInput: true}
+        ngeoQueryOptions:
+          tolerance: 20
+          limit: 5
+          queryCountFirst: true
+        gmfPrintOptions:
+          scaleInput: true
+          gmfPrintOptions:
+            useBbox: false
         gmfTreeManagerModeFlush: false
         ngeoRoutingOptions:
           - backendUrl: https://routing.osm.ch/
