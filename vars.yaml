@@ -231,6 +231,7 @@ sentry.camptocamp.com/14"
       environment:
         PGDATABASE: demo_geomapfish_2_3_bak
         GEOMAPFISH_OGCSERVER: QGIS server
+        QGIS_PROJECT_FILE: /etc/qgisserver/project.qgz
     tilecloudchain:
       environment:
         GUNICORN_PARAMS:
