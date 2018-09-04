@@ -2,7 +2,7 @@
 # https://github.com/camptocamp/private-geo-charts/tree/master/c2cgeoportal
 image:
   repositoryPrefix: camptocamp/demo
-  tag: latest
+  tag: stable
   pullPolicy: Always
 
 tilecloudchain:
