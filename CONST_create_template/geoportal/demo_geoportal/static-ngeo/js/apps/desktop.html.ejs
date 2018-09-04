@@ -323,6 +323,12 @@
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
     <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% } %>
-    <script src="${htmlWebpackPlugin.options.vars.entry_point}dynamic.js?interface=desktop"></script>
+    <script>
+    document.write(
+      '<script src="${htmlWebpackPlugin.options.vars.entry_point}dynamic.js?' +
+      'interface=desktop&' +
+      'query=' + encodeURIComponent(document.location.search) +
+      '"><' + '/script>');
+    </script>
   </body>
 </html>
