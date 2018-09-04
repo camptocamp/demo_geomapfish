@@ -377,15 +377,11 @@ sentry.camptocamp.com/14"
       The GeoMapfish team
     allowed_hosts:
       - camptocamp.github.io
-      - gmf-test.sig.cloud.camptocamp.net
-      - testgmf.sig.cloud.camptocamp.net
-      - geomapfish-demo.camptocamp.net
+      - geomapfish-demo.camptocamp.com
       - fredj.github.io
-      - pgiraud.github.io
       - ger-benjamin.github.io
-      - tsauerwein.github.io
-      - ger-benjamin.github.io
-      - marionb.github.io
+      - arnaud-morvan.github.io
+      - julsbreakdown.github.io
       - adube.github.io
       - localhost
       - 127.0.0.1
@@ -429,15 +425,11 @@ sentry.camptocamp.com/14"
       access_control_max_age: 30
       access_control_allow_origin:
         - https://camptocamp.github.io
-        - https://gmf-test.sig.cloud.camptocamp.net
-        - https://testgmf.sig.cloud.camptocamp.net
-        - https://geomapfish-demo.camptocamp.net
+        - https://geomapfish-demo.camptocamp.com
         - https://fredj.github.io
-        - https://pgiraud.github.io
         - https://ger-benjamin.github.io
-        - https://tsauerwein.github.io
-        - https://ger-benjamin.github.io
-        - https://marionb.github.io
+        - https://arnaud-morvan.github.io
+        - https://julsbreakdown.github.io
         - https://adube.github.io
         - http://localhost:3000
         - http://localhost
@@ -464,15 +456,11 @@ sentry.camptocamp.com/14"
       access_control_max_age: 30
       access_control_allow_origin:
         - https://camptocamp.github.io
-        - https://gmf-test.sig.cloud.camptocamp.net
-        - https://testgmf.sig.cloud.camptocamp.net
-        - https://geomapfish-demo.camptocamp.net
+        - https://geomapfish-demo.camptocamp.com
         - https://fredj.github.io
-        - https://pgiraud.github.io
         - https://ger-benjamin.github.io
-        - https://tsauerwein.github.io
-        - https://ger-benjamin.github.io
-        - https://marionb.github.io
+        - https://arnaud-morvan.github.io
+        - https://julsbreakdown.github.io
         - https://adube.github.io
         - http://localhost:3000
         - http://localhost
@@ -481,15 +469,12 @@ sentry.camptocamp.com/14"
 
   authorized_referers:
     - https://camptocamp.github.io/
-    - https://gmf-test.sig.cloud.camptocamp.net/
-    - https://testgmf.sig.cloud.camptocamp.net/
-    - https://geomapfish-demo.camptocamp.net/
+    - https://geomapfish-demo.camptocamp.com/
     - https://fredj.github.io/
     - https://pgiraud.github.io/
     - https://ger-benjamin.github.io/
-    - https://tsauerwein.github.io/
-    - https://ger-benjamin.github.io/
-    - https://marionb.github.io/
+    - https://arnaud-morvan.github.io
+    - https://julsbreakdown.github.io
     - https://adube.github.io/
     - http://localhost:3000/
     - http://localhost/
