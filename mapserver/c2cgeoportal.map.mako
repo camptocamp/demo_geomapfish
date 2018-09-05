@@ -64,8 +64,7 @@ MAP
         METADATA
             "wms_title" "Démo du c2cgeoportal"
             "wms_abstract" "Des exemples de couches à partir de données OpenData de différentes villes françaises et suisse."
-            "wms_onlineresource" "https://${host}/${instanceid}/wsgi/mapserv_proxy"
-            "wfs_onlineresource" "https://${host}/${instanceid}/wsgi/mapserv_proxy"
+            "ows_onlineresource" "https://${host}/${instanceid}/wsgi/mapserv_proxy"
             "ows_srs" "EPSG:21781"
             "wms_encoding" "UTF-8"
             "wms_enable_request" "*"
