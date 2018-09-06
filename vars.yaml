@@ -215,7 +215,7 @@ sentry.camptocamp.com/14"
   docker_services:
     config:
       environment:
-        PGDATABASE: demo_geomapfish_2_3_bak
+        PGDATABASE: '{DOCKER_DATABASE}'
         TILEGENERATION_SQS_QUEUE: geomapfish-demo-stretch
     geoportal:
       environment:
@@ -227,7 +227,7 @@ sentry.camptocamp.com/14"
           --timeout=60
           --max-requests=1000
           --max-requests-jitter=100
-        PGDATABASE: demo_geomapfish_2_3_bak
+        PGDATABASE: '{DOCKER_DATABASE}'
         SENTRY_URL: '{sentry_private_url}'
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
@@ -238,7 +238,7 @@ sentry.camptocamp.com/14"
         C2C_DEBUG_VIEW_ENABLED: TRUE
     qgisserver:
       environment:
-        PGDATABASE: demo_geomapfish_2_3_bak
+        PGDATABASE: '{DOCKER_DATABASE}'
         GEOMAPFISH_OGCSERVER: QGIS server
         QGIS_PROJECT_FILE: /etc/qgisserver/project.qgz
     tilecloudchain:
@@ -269,7 +269,7 @@ sentry.camptocamp.com/14"
           -Dsentry.environment={instance}
           -Dsentry.tags=print
     front:
-      port: 8480
+      port: '{DOCKER_PORT}'
 
   authtkt:
     # One day
@@ -567,3 +567,7 @@ interpreted:
     - smtp.password
     - docker_services.tilecloudchain.environment.AWS_ACCESS_KEY_ID
     - docker_services.tilecloudchain.environment.AWS_SECRET_ACCESS_KEY
+
+environment:
+  - DOCKER_PORT
+  - DOCKER_DATABASE

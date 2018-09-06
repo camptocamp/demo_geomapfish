@@ -7,20 +7,13 @@ endif
 
 NGEO_INTERFACES ?= desktop mobile desktop_alt mobile_alt oeview oeedit
 
-# Deploy branch
-DEPLOY_BRANCH_DIR ?= /var/www/vhosts/$(APACHE_VHOST)/private/deploybranch
-GIT_REMOTE_URL ?= git@github.com:camptocamp/demo.git
-DEPLOY_BRANCH_BASE_URL ?= $(VISIBLE_PROTOCOL)://$(VISIBLE_HOST)
-DEPLOY_BRANCH_MAKEFILE ?= demo.mk
-DOCKER_WEB_HOST ?= geomapfish-demo.camptocamp.com
-DOCKER_ENTRY_POINT ?= /docker/
+DOCKER_WEB_HOST ?= geomapfish-demo-dc.camptocamp.com
+DOCKER_DATABASE ?= demo_geomapfish
+export DOCKER_DATABASE
+export DOCKER_PORT
 
 WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-docker.xml
 export WMTSCAPABILITIES_PATH
-
-CONFIG_VARS += dbsessions
-
-VISIBLE_WEB_HOST ?= geomapfish-demo.camptocamp.com
 
 include CONST_Makefile
 
