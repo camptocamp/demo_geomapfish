@@ -217,6 +217,9 @@ sentry.camptocamp.com/14"
       environment:
         PGDATABASE: demo_geomapfish_2_3_bak
         TILEGENERATION_SQS_QUEUE: geomapfish-demo-stretch
+    geoportal-build:
+      environment:
+        PGDATABASE: demo_geomapfish_2_3_bak
     geoportal:
       environment:
         GUNICORN_PARAMS:
@@ -521,6 +524,7 @@ update_paths:
   - checker.routes
   - checker.themes
   - docker_services.config.environment
+  - docker_services.geoportal-build.environment
   - docker_services.db.environment
   - docker_services.geoportal.environment
   - docker_services.qgisserver.environment
