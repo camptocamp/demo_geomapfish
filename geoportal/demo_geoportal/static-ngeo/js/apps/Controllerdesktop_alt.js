@@ -8,8 +8,8 @@
  * by the HTML page and the controller to provide the configuration.
  */
 
+import './sass/desktop_alt.scss';
 import gmfControllersAbstractDesktopController from 'gmf/controllers/AbstractDesktopController.js';
-import './less/main.less';
 import demoBase from '../demomodule.js';
 import gmfImportModule from 'gmf/import/module.js';
 import ngeoGooglestreetviewModule from 'ngeo/googlestreetview/module.js';
@@ -78,6 +78,12 @@ const exports = function($scope, $injector, ngeoFile, gettext, $q) {
    * @export
    */
   this.elevationLayers = ['srtm'];
+
+  /**
+   * @type {Object.<string, gmf.raster.component.LayerConfig>}
+   * @export
+   */
+  this.elevationLayersConfig = {};
 
   /**
    * @type {Object.<string, gmfx.ProfileLineConfiguration>}

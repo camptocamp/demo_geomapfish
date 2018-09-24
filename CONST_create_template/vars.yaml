@@ -238,7 +238,7 @@ vars:
       {message}
 
       Sincerely yours
-      The GeoMapfish team
+      The GeoMapFish team
 
   smtp:
     # Used to send email from various feature
@@ -259,7 +259,7 @@ vars:
       the newly generated password is: {password}
 
       Sincerely yours
-      The GeoMapfish team
+      The GeoMapFish team
 
   welcome_email:
     # Used to send a welcome email for new user
@@ -268,12 +268,12 @@ vars:
     email_body: |
       Hello {user},
 
-      You have a new account on GeoMapFish: https://geomapfish-demo.camptocamp.com/2.3
+      You have a new account on GeoMapFish: https://geomapfish-demo-ci.camptocamp.com/2.4
       Your user name is: {user}
       Your password is: {password}
 
       Sincerely yours
-      The GeoMapfish team
+      The GeoMapFish team
 
   docker_services:
     qgisserver:
@@ -301,6 +301,8 @@ vars:
             longitudeFirst: true
             layers: []
           legend: {}
+    phantomjs:
+      disable: [desktop, mobile]
 
   check_collector:
     hosts: []
@@ -324,7 +326,9 @@ update_paths:
   - checker.themes
   - docker_services.config.environment
   - docker_services.db.environment
+  - docker_services.geoportal-build.environment
   - docker_services.geoportal.environment
+  - docker_services.mapserver.environment
   - docker_services.qgisserver.environment
   - docker_services.tilecloudchain.environment
   - docker_services.print.environment
@@ -349,6 +353,7 @@ update_paths:
   - headers.shortener
   - headers.login
   - interfaces_theme
+  - servers
   - shortener
 
 no_interpreted:

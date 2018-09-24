@@ -5,6 +5,9 @@ VARS_FILE = vars.yaml
 VARS_FILES += ${VARS_FILE}
 endif
 
+PGSCHEMA ?= main
+PGSCHEMA_STATIC ?= main_static
+
 NGEO_INTERFACES ?= desktop mobile desktop_alt mobile_alt oeview oeedit
 
 DOCKER_WEB_HOST ?= geomapfish-demo-dc.camptocamp.com

@@ -78,6 +78,7 @@ vars:
         DEVSERVER_HOST: webpack-dev-server:8080
         REDIS_HOST: redis
         REDIS_PORT: 6379
+        C2C_REQUESTS_DEFAULT_TIMEOUT: 30
         C2C_REDIS_URL: redis://redis:6379
         C2C_BROADCAST_PREFIX: broadcast_geoportal_
         PGOPTIONS: '-c statement_timeout=30000'
@@ -101,6 +102,7 @@ vars:
           --max-requests-jitter=100
         VISIBLE_ENTRY_POINT: '{docker_entry_point}'
         TILEGENERATION_CONFIGFILE: /etc/tilegeneration/config.yaml
+        C2C_REQUESTS_DEFAULT_TIMEOUT: 30
         C2C_BASE_PATH: /c2c_tiles
         C2C_REDIS_URL: redis://redis:6379
         C2C_BROADCAST_PREFIX: broadcast_tilecloudchain_
@@ -203,14 +205,6 @@ vars:
   interfaces: __import__('os').environ.get("INTERFACES").split(" ")
 
   default_interface: desktop
-
-  interfaces_theme:
-    desktop: desktop
-    desktop_alt: desktop
-    mobile: mobile
-    mobile_alt: mobile
-    oeview: desktop
-    oeedit: desktop
 
   # The dogpile.cache configuration.
   #
@@ -627,9 +621,9 @@ runtime_environment:
   - name: PGSCHEMA_STATIC
     default: main_static
   - name: TINYOWS_URL
-    default: http://tinyows:8080/
+    default: http://tinyows/
   - name: MAPSERVER_URL
-    default: http://mapserver:8080/
+    default: http://mapserver/
   - name: PRINT_URL
     default: http://print:8080/print/
   - name: MAPCACHE_URL

@@ -9,7 +9,7 @@
  */
 
 import gmfControllersAbstractMobileController from 'gmf/controllers/AbstractMobileController.js';
-import 'gmf/controllers/mobile.less';
+import 'gmf/controllers/mobile.scss';
 import demoBase from '../demomodule.js';
 import ngeoProjEPSG2056 from 'ngeo/proj/EPSG2056.js';
 import ngeoProjEPSG21781 from 'ngeo/proj/EPSG21781.js';

@@ -9,7 +9,7 @@
  */
 
 import gmfControllersAbstractDesktopController from 'gmf/controllers/AbstractDesktopController.js';
-import './less/main.less';
+import './sass/main.scss';
 import demoBase from '../demomodule.js';
 import gmfObjecteditingModule from 'gmf/objectediting/module.js';
 import ngeoMiscToolActivate from 'ngeo/misc/ToolActivate.js';
