@@ -243,7 +243,11 @@ sentry.camptocamp.com/14"
       environment:
         PGDATABASE: '{DOCKER_DATABASE}'
         GEOMAPFISH_OGCSERVER: QGIS server
+        # Single QGIS project files
         QGIS_PROJECT_FILE: /etc/qgisserver/project.qgz
+        # Multiple QGIS project files
+        # QGIS_PROJECT_FILE:
+        # GEOMAPFISH_ACCESSCONTROL_CONFIG: /etc/qgisserver/accesscontrol_config.yaml
     tilecloudchain:
       environment:
         GUNICORN_PARAMS:
