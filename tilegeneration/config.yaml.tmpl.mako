@@ -15,7 +15,6 @@ caches:
         folder: ''
         # for GetCapabilities
         http_url: '${web_protocol}://${host}${entry_point}'
-        wmtscapabilities_file: ${wmtscapabilities_path}
         cache_control: 'public, max-age=14400'
 
 # this defines some defaults values for all the layers
@@ -133,29 +132,16 @@ openlayers:
     center_y: 200000
 
 metadata:
-    title: Some title
-    abstract: Some abstract
+    title: Camptocamp GeoMapFish demo
+    abstract: Camptocamp GeoMapFish demo
     servicetype: OGC WMTS
     keywords:
-    - some
-    - keywords
+    - camptocamp
+    - geomapfish
+    - demo
     fees: None
     access_constraints: None
 
 provider:
-    name: The provider name
-    url: The provider URL
-    contact:
-        name: The contact name
-        position: The position name
-        info:
-            phone:
-                voice: +41 11 222 33 44
-                fax: +41 11 222 33 44
-            address:
-                delivery: Address delivery
-                city: Berne
-                area: BE
-                postal_code: 3000
-                country: Switzerland
-                email: info@example.com
+    name: Camptocamp
+    url: https://www.camptocamp.com/solutions/business/
