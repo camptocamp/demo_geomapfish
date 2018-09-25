@@ -433,10 +433,7 @@ vars:
 
   # For base layers
   tiles_url:
-    - '{web_protocol}://a.tiles.{host}/tiles'
-    - '{web_protocol}://b.tiles.{host}/tiles'
-    - '{web_protocol}://c.tiles.{host}/tiles'
-    - '{web_protocol}://d.tiles.{host}/tiles'
+    - '{web_protocol}://{host}/{instance}/tiles/'
   wmtscapabilities_path: '{WMTSCAPABILITIES_PATH}'
 
   ogcproxy_enable: false
@@ -461,6 +458,14 @@ vars:
         Referrer-Policy: same-origin
         Content-Security-Policy: "default-src 'self'; \
             script-src 'self' 'unsafe-inline'; \
+            style-src 'self' 'unsafe-inline'; \
+            img-src * data:; \
+            worker-src 'self' blob:"
+    - pattern: '^/apihelp.html'
+      headers:
+        Referrer-Policy: same-origin
+        Content-Security-Policy: "default-src 'self'; \
+            script-src 'self' 'unsafe-inline' 'unsafe-eval'; \
             style-src 'self' 'unsafe-inline'; \
             img-src * data:; \
             worker-src 'self' blob:"
