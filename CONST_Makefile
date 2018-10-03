@@ -161,7 +161,7 @@ EGGS_DEPENDENCIES += .build/venv.timestamp-noclean setup.py \
 	CONST_fixversions.txt \
 	CONST_optional-requirements.txt \
 	$(CONST_REQUIREMENT)
-REQUIREMENTS ?= c2cgeoportal==2.2.5
+REQUIREMENTS ?= c2cgeoportal==2.2.6
 REQUIREMENTS += -r $(CONST_REQUIREMENT)
 DEV_REQUIREMENTS += -r CONST_fixversions.txt
 DEV_REQUIREMENTS += -r CONST_dev-requirements.txt
@@ -1230,6 +1230,8 @@ $(APACHE_CONF_DIR)/$(INSTANCE_ID).conf:
 
 .build/mapserver.timestamp: \
 		$(MAP_FILES) \
+		apache/application.wsgi \
+		apache/wsgi.conf \
 		apache/mapserver.conf \
 		$(APACHE_CONF_DIR)/$(INSTANCE_ID).conf
 	$(PRERULE_CMD)
