@@ -95,7 +95,6 @@ vars:
           tags:
             service: js
             interface: mobile_alt
-        # FIXME: gmfSearchActions: []
     desktop:
       <<: *interface
       redirect_interface: mobile
@@ -106,6 +105,23 @@ vars:
         gmfPrintUrl: printproxy
       constants:
         <<: *constants
+        gmfPrintOptions:
+          legend:
+            # See:
+            # https://www.mapserver.org/development/rfc/ms-rfc-101.html
+            # https://docs.qgis.org/testing/en/docs/user_manual/working_with_ogc/server/services.html#getlegendgraphics
+            useBbox: true
+            label:
+              qgis: false
+            params:
+              # See:
+              # https://docs.qgis.org/testing/en/docs/user_manual/working_with_ogc/server/services.html#getlegendgraphics
+              qgis:
+                LAYERFONTFAMILY: DejaVu Sans
+                ITEMFONTFAMILY: DejaVu Sans
+                LAYERFONTSIZE: '10'
+                ITEMFONTSIZE: '8'
+
         gmfSearchGroups: []
         sentryOptions:
           release: 2.3
@@ -117,7 +133,14 @@ vars:
       <<: *interface
       constants:
         <<: *constants
-        gmfPrintOptions: {scaleInput: true}
+        ngeoQueryOptions:
+          tolerance: 20
+          limit: 5
+          queryCountFirst: true
+        gmfPrintOptions:
+          scaleInput: true
+          gmfPrintOptions:
+            useBbox: false
         gmfTreeManagerModeFlush: false
         ngeoRoutingOptions:
           - backendUrl: https://routing.osm.ch/
@@ -134,6 +157,15 @@ vars:
                 profile: routed-hiking
         ngeoNominatimSearchDefaultParams:
           - countrycodes: CH
+        ngeoWfsPermalinkOptions:
+          url: https://geomapfish-demo.camptocamp.com/docker/mapserv_proxy?ogcserver=QGIS%20server
+          wfsTypes:
+            - featureType: osm_hospitals
+              label: name
+            - featureType: osm_firestations
+              label: name
+          defaultFeatureNS: http://www.qgis.org/gml
+          defaultFeaturePrefix: feature
         sentryOptions:
           release: 2.3
           environment: '{instance}'
@@ -275,7 +307,7 @@ vars:
       {message}
 
       Sincerely yours
-      The GeoMapfish team
+      The GeoMapFish team
     allowed_hosts:
       - camptocamp.github.io
       - gmf-test.sig.cloud.camptocamp.net
@@ -302,7 +334,7 @@ vars:
       the newly generated password is: {password}
 
       Sincerely yours
-      The GeoMapfish team
+      The GeoMapFish team
 
   welcome_email:
     # Used to send a welcome email for new user
@@ -316,7 +348,7 @@ vars:
       Your password is: {password}
 
       Sincerely yours
-      The GeoMapfish team
+      The GeoMapFish team
 
   smtp:
     host: email-smtp.eu-west-1.amazonaws.com
@@ -326,7 +358,7 @@ vars:
 
   headers:
     themes: &headers
-      cache_control_max_age: 600 # 10 minutes
+      cache_control_max_age: 600
       access_control_max_age: 30
       access_control_allow_origin:
         - https://camptocamp.github.io
@@ -355,7 +387,7 @@ vars:
     profile: *headers
     shortener: *headers
     login:
-      cache_control_max_age: 600 # 10 minutes
+      cache_control_max_age: 600
       access_control_max_age: 30
       access_control_allow_origin:
         - https://camptocamp.github.io
@@ -449,6 +481,7 @@ update_paths:
   - headers.shortener
   - headers.login
   - interfaces_theme
+  - servers
   - shortener
 
 no_interpreted:
