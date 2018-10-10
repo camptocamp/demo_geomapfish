@@ -42,7 +42,7 @@ help:
 	@echo  "Main targets:"
 	@echo
 	@echo  "- build			Build and configure the project"
-	@echo  "- clean-all		Remove all the build artefacts"
+	@echo  "- clean-all		Remove all the build artifacts"
 
 .PHONY: clean-all
 clean-all:
