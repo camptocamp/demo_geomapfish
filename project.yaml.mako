@@ -1,7 +1,7 @@
 ---
 project_folder: demo_geomapfish
 project_package: ${package}
-checker_url: http://172.17.0.1:8181/sbrunner24/c2c/health_check?max_level=9
+checker_url: ${docker_web_protocol}://${docker_host}${docker_entry_point}c2c/health_check?max_level=9
 template_vars:
   package: ${package}
   srid: ${srid}
