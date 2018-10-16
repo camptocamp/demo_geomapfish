@@ -278,6 +278,9 @@ sentry.camptocamp.com/14"
     # One day
     timeout: 86400
 
+  urllogin:
+    aes_key: foobarfoobar1234
+
   admin_interface:
     # Default values for the admin interface's maps.
     map_x: 740000
