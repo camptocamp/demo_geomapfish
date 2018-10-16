@@ -219,7 +219,7 @@ sentry.camptocamp.com/14"
         TILEGENERATION_SQS_QUEUE: geomapfish-demo-stretch
     geoportal-build:
       environment:
-        PGDATABASE: demo_geomapfish_2_3_bak
+        PGDATABASE: '{DOCKER_DATABASE}'
     geoportal:
       environment:
         GUNICORN_PARAMS:
