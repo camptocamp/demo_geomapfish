@@ -86,6 +86,7 @@ vars:
             interface: mobile
     mobile_alt:
       <<: *interface
+      redirect_interface: desktop_alt
       constants:
         <<: *constants
         gmfTreeManagerModeFlush: false
