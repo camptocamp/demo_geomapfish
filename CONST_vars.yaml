@@ -246,6 +246,8 @@ vars:
     # The list of available variable names for the `Metadatas` form.
     available_metadata:
       # Layers group
+      - name: exclusiveGroup
+        type: boolean
       - name: isExpanded
         type: boolean
       - name: printNativeAngle
@@ -292,6 +294,10 @@ vars:
       - name: directedFilterAttributes
         type: list
       - name: enumeratedAttributes
+        type: list
+      - name: readonlyAttributes
+        type: list
+      - name: attributesOrder
         type: list
       # WMTS layers
       - name: ogcServer

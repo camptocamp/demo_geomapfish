@@ -8,7 +8,7 @@
  * by the HTML page and the controller to provide the configuration.
  */
 
-import './sass/main.scss';
+import './sass/desktop_alt.scss';
 import gmfControllersAbstractDesktopController from 'gmf/controllers/AbstractDesktopController.js';
 import demoBase from '../demomodule.js';
 import gmfImportModule from 'gmf/import/module.js';
