@@ -190,6 +190,8 @@ sentry.camptocamp.com/14"
         gmfPrintUrl: printproxy
       constants:
         <<: *constants
+        gmfPermalinkOptions:
+          pointRecenterZoom: 10
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
@@ -545,6 +547,7 @@ update_paths:
   - docker_services.front
   - fulltextsearch
   - functionalities.available_in_templates
+  - global_headers
   - headers.index
   - headers.api
   - headers.profile
