@@ -11,9 +11,15 @@
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
   </head>
+
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
                    'gmf-mobile-nav-left-is-visible': mainCtrl.leftNavIsVisible(),
                    'gmf-mobile-nav-right-is-visible': mainCtrl.rightNavIsVisible()}">
+  <div ng-show="mainCtrl.loading" class="loading-mask">
+    <i class="fa fa-spinner fa-spin spinner-loading-mask"></i>
+    &nbsp;
+    <img src="<%=require("./image/logo.png")%>" />
+  </div>
     <main ng-class="{'gmf-search-is-active': mainCtrl.searchOverlayVisible}">
       <gmf-map
         gmf-map-map="mainCtrl.map"
@@ -21,7 +27,8 @@
         gmf-map-resize-transition="mainCtrl.resizeTransition"
         ngeo-map-query=""
         ngeo-map-query-map="::mainCtrl.map"
-        ngeo-map-query-active="mainCtrl.queryActive"></gmf-map>
+        ngeo-map-query-active="mainCtrl.queryActive">
+      </gmf-map>
       <gmf-displayquerywindow
         gmf-displayquerywindow-featuresstyle="::mainCtrl.queryFeatureStyle"
         gmf-displayquerywindow-defaultcollapsed="false">
@@ -154,6 +161,7 @@
         </ul>
       </div>
       <gmf-authentication id="login" class="gmf-mobile-nav-slide" data-header-title="{{'Login' | translate}}"
+        gmf-authentication-info-message="mainCtrl.loginInfoMessage"
         gmf-mobile-nav-back="authCtrl.gmfUser.username !== null">
       </gmf-authentication>
     </nav>
@@ -171,7 +179,7 @@
         </gmf-authentication>
       </div>
     </ngeo-modal>
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,default-3.6"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,default-3.6,Array.prototype.includes"></script>
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
     <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% } %>
