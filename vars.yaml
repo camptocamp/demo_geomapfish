@@ -9,6 +9,7 @@ vars:
   interfaces:
     - desktop
     - mobile
+    - api
     - old
     - edit
     - routing
@@ -213,6 +214,17 @@ sentry.camptocamp.com/14"
           tags:
             service: js
             interface: oeedit
+    api:
+      <<: *interface
+      constants:
+        <<: *constants
+        gmfSearchGroups: []
+        sentryOptions:
+          release: '{sentry_release}'
+          environment: '{instance}'
+          tags:
+            service: js
+            interface: api
 
   # docker_global_front: True
   docker_services:
