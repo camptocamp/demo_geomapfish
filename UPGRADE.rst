@@ -7,20 +7,37 @@ https://camptocamp.github.io/c2cgeoportal/master/integrator/upgrade_application.
 And add the argument `--share /var/sig/` to the `docker-run` commands.
 
 => use the command:
-./docker-run --home make --makefile=<makefile> upgrade
+
+.. code::
+
+   ./docker-run --home make --makefile=<makefile> upgrade
 
 
 After upgrade:
 
 run:
-./docker-run make update-po
 
-complete the files:
-    geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
+.. code::
 
-run:
-git add geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
-git commit -m "Update the localisation"
+   ./docker-run make update-po
+
+complete the files:  geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
 
 run:
-./docker-run make theme2fts
+
+.. code::
+
+   git add geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
+   git commit -m "Update the localisation"
+
+run:
+
+.. code::
+
+   ./docker-run make theme2fts
+
+When it's working publish it to the main demo:
+
+.. code::
+
+   /scripts/publish <instance>
