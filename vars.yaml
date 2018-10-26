@@ -9,7 +9,7 @@ vars:
   interfaces:
     - desktop
     - mobile
-    - api
+    - iframe_api
     - old
     - edit
     - routing
@@ -214,7 +214,7 @@ sentry.camptocamp.com/14"
           tags:
             service: js
             interface: oeedit
-    api:
+    iframe_api:
       <<: *interface
       constants:
         <<: *constants
@@ -224,7 +224,7 @@ sentry.camptocamp.com/14"
           environment: '{instance}'
           tags:
             service: js
-            interface: api
+            interface: iframe_api
 
   # docker_global_front: True
   docker_services:
