@@ -162,7 +162,7 @@ sentry.camptocamp.com/14"
               - label: Hiking
                 profile: routed-hiking
         ngeoNominatimSearchDefaultParams:
-          - countrycodes: CH
+          countrycodes: CH
         ngeoWfsPermalinkOptions:
           url: https://geomapfish-demo-dc.camptocamp.com/docker/mapserv_proxy?ogcserver=QGIS%20server
           wfsTypes:
@@ -289,7 +289,7 @@ sentry.camptocamp.com/14"
           -Dsentry.dsn={sentry_private_url}
           -Dsentry.release={sentry_release}
           -Dsentry.environment={instance}
-          -Dsentry.tags=print
+          -Dsentry.tags=service:print
     front:
       port: '{DOCKER_PORT}'
 

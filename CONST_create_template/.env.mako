@@ -1,1 +1,1 @@
-COMPOSE_PROJECT_NAME=demo_${instanceid}
+COMPOSE_PROJECT_NAME=demo_${instance}
