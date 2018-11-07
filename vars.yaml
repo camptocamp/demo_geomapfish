@@ -67,6 +67,7 @@ sentry.camptocamp.com/14"
         gmfRasterUrl: raster
         gmfProfileCsvUrl: profile.csv
         gmfShortenerCreateUrl: shortener_create
+        gmfPermalinkOgcserverUrl: mapserverproxy
       static:
         assetsBaseUrl: '{package}_geoportal:static-ngeo/'
       wfs_permalink:
