@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.3
+GEOMAPFISH_VERSION ?= 2.3.4.66
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -81,6 +81,7 @@ DEFAULT_BUILD_RULES ?= docker-build-geoportal \
 	geoportal/alembic.ini \
 	geoportal/alembic.yaml \
 	docker-compose.yaml \
+	.env \
 	docker-compose-build.yaml \
 	docker-compose-dev.yaml
 
@@ -90,6 +91,11 @@ export WMTSCAPABILITIES_PATH
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 WMTSCAPABILITIES_FILE ?= /var/sig/tiles/$(WMTSCAPABILITIES_PATH)
 MAPCACHE_FILE ?= mapcache/mapcache.xml.tmpl
+GEN_MAPCACHE_ARGS ?= --generate-mapcache-config
+ifeq ($(DOCKER), TRUE)
+GEN_MAPCACHE_ARGS += --mapcache-version=1.6
+endif
+
 TILEGENERATION_CONFIG_FILE ?= tilegeneration/config.yaml.tmpl
 DEFAULT_BUILD_RULES += $(TILEGENERATION_CONFIG_FILE)
 ifeq ($(TILECLOUD_CHAIN_LOCAL), TRUE)
@@ -120,13 +126,13 @@ export NO_DEV_SERVER
 ANGULAR_VERSION = 1.6
 APP_OUTPUT_DIR = geoportal/$(PACKAGE)_geoportal/static-ngeo/build
 GCC_JS_FILES = $(shell find /usr/lib/node_modules/openlayers/src/ol /usr/lib/node_modules/ngeo/src /usr/lib/node_modules/ol-cesium/src -type f -name '*.js' 2> /dev/null)
-APP_JS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components -type f -name '*.js' 2> /dev/null)
-APP_JS_MAKO_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components $(FIND_OPTS) -name "*.js.mako" -print 2> /dev/null)
-APP_JS_JINJA_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components $(FIND_OPTS) -name "*.js.jinja" -print 2> /dev/null)
+APP_JS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js -type f -name '*.js' 2> /dev/null)
+APP_JS_MAKO_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js $(FIND_OPTS) -name "*.js.mako" -print 2> /dev/null)
+APP_JS_JINJA_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js $(FIND_OPTS) -name "*.js.jinja" -print 2> /dev/null)
 APP_JS_FILES +=  $(APP_JS_MAKO_FILES:.mako=) $(APP_JS_JINJA_FILES:.jinja=)
 APP_HTML_FILES += $(addprefix geoportal/$(PACKAGE)_geoportal/static-ngeo/js/apps/, $(addsuffix .html.ejs, $(NGEO_INTERFACES)))
-APP_DIRECTIVES_PARTIALS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/components geoportal/$(PACKAGE)_geoportal/static-ngeo/partials geoportal/$(PACKAGE)_geoportal/static-ngeo/js -type f -name '*.html' 2> /dev/null)
-LESS_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/less geoportal/$(PACKAGE)_geoportal/static-ngeo/components -type f -name '*.less' 2> /dev/null)
+APP_DIRECTIVES_PARTIALS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js -type f -name '*.html' 2> /dev/null)
+LESS_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/less -type f -name '*.less' 2> /dev/null)
 NGEO_GMF_FONTS = $(addprefix geoportal/$(PACKAGE)_geoportal/static-ngeo/fonts/gmf-icons, .woff .ttf .eot)
 NGEO_FONTAWESOME_FONTS = $(addprefix geoportal/$(PACKAGE)_geoportal/static-ngeo/fonts/fontawesome-webfont, .woff .woff2 .ttf .eot)
 NGEO_FONTS = $(NGEO_GMF_FONTS) $(NGEO_FONTAWESOME_FONTS)
@@ -315,7 +321,6 @@ ALL_MAKO_FILES = $(shell find $(FIND_OPTS) -name "*.mako" -print)
 ALL_JINJA_FILES = $(shell find $(FIND_OPTS) -name "*.jinja" -print)
 EXTRA_EXCLUDE = $(foreach ELEM, print mapfile jsbuild tilegeneration,-path ./$(ELEM) -prune -o)
 VARS_FILES += CONST_vars.yaml $(VARS_FILE)
-VARS_DEPENDS += $(VARS_FILES)
 CONFIG_VARS += sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \
 	sqlalchemy.use_batch_mode sqlalchemy_slave.url sqlalchemy_slave.pool_recycle sqlalchemy_slave.pool_size \
 	sqlalchemy_slave.max_overflow sqlalchemy_slave.use_batch_mode schema schema_static enable_admin_interface \
@@ -325,7 +330,6 @@ CONFIG_VARS += sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlal
 	reset_password fulltextsearch global_headers headers authorized_referers hooks stats db_chooser \
 	ogcproxy_enable dbsessions urllogin host_forward_host smtp c2c.base_path welcome_email host \
 	lingua_extractor interfaces_config interfaces default_interface devserver_url
-MAKE_FILES = $(wildcard *.mk) CONST_Makefile
 
 # Secrets
 
@@ -460,7 +464,7 @@ clean-all: clean
 		node_modules  # for nondocker
 
 .PHONY: clean-all-cache
-clean-all-cache: cleanall
+clean-all-cache: clean-all
 	rm  --recursive --force $(HOME)/.npm \
 		$(HOME)/.cache/pip
 
@@ -493,7 +497,16 @@ template-clean:
 		$(ALL_JINJA_FILES:.jinja=) \
 		geoportal/config.yaml
 
-/build/c2ctemplate-cache.json: .config $(VARS_DEPENDS) $(MAKE_FILES)
+/build/makefile-%:
+	$(PRERULE_CMD)
+	rm -f /build/makefile-*
+	touch $@
+
+/build/c2ctemplate-cache.json: \
+		.config \
+		$(VARS_FILES) \
+		$(MAKEFILE_LIST) \
+		/build/makefile-$(firstword $(MAKEFILE_LIST))
 	$(PRERULE_CMD)
 ifeq ($(origin VARS_FILE), undefined)
 	@echo "Error: the variable VARS_FILE is required."
@@ -630,14 +643,15 @@ $(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/jquery-ui/themes/base/images
 			$(NGEO_FONTS) \
 			$(APP_OUTPUT_DIR)/images/
 	$(PRERULE_CMD)
-	# Workaround to make Webpack working for ol/index.js
-	rm --force geoportal/node_modules
-	ln --symbolic /usr/lib/node_modules/ geoportal/
+	rm --force $(APP_OUTPUT_DIR)/$*.*
 	(cd geoportal; INTERFACE=$* webpack $(WEBPACK_ARGS))
-	rm geoportal/node_modules
 ifeq ($(DOCKER), TRUE)
 	mv $(APP_OUTPUT_DIR)/$*.html $(APP_OUTPUT_DIR)/$*.html.tmpl
+ifeq ($(NODE_ENV), development)
+	mv $(APP_OUTPUT_DIR)/$*.css $(APP_OUTPUT_DIR)/$*.css.tmpl
+else
 	ls -1 $(APP_OUTPUT_DIR)/$*.*.css|while read file; do mv $${file} $${file}.tmpl; done
+endif
 endif
 	touch $@
 
@@ -781,7 +795,7 @@ upgrade%:
 $(MAPCACHE_FILE): $(TILEGENERATION_CONFIG_FILE)
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
-	generate_controller --config=$< --mapcache
+	generate_controller --config=$< $(GEN_MAPCACHE_ARGS)
 
 $(WMTSCAPABILITIES_FILE): $(TILEGENERATION_CONFIG_FILE)
 	$(PRERULE_CMD)
