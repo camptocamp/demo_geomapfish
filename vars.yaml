@@ -286,6 +286,9 @@ vars:
     aster:
       file: /var/sig/Aster21781/aster.shp
       round: 1
+    srtm-partial:
+      file: /var/sig/SRTM21781/N46E006.bt
+      round: 1
 
   fulltextsearch:
     languages:
