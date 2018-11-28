@@ -277,6 +277,7 @@ sentry.camptocamp.com/14"
           --max-requests-jitter=100
         AWS_ACCESS_KEY_ID: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
         AWS_SECRET_ACCESS_KEY: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
+        C2C_REQUESTS_DEFAULT_TIMEOUT: 120
         SENTRY_URL: '{sentry_private_url}'
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
