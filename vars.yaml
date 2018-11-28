@@ -247,6 +247,7 @@ sentry.camptocamp.com/14"
           --max-requests=1000
           --max-requests-jitter=100
         PGDATABASE: '{DOCKER_DATABASE}'
+        PRINT_URL: https://mutualized-print.paas-ch-2.camptocamp.com/print/demo_geomapfish_24/
         SENTRY_URL: '{sentry_private_url}'
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
@@ -501,22 +502,21 @@ sentry.camptocamp.com/14"
         - http://127.0.0.1
 
   authorized_referers:
-    - https://camptocamp.github.io/
-    - https://geomapfish-demo-dc.camptocamp.com/
-    - https://fredj.github.io/
-    - https://pgiraud.github.io/
-    - https://ger-benjamin.github.io/
+    - https://camptocamp.github.io
+    - https://geomapfish-demo-dc.camptocamp.com
+    - https://fredj.github.io
+    - https://ger-benjamin.github.io
     - https://arnaud-morvan.github.io
     - https://julsbreakdown.github.io
-    - https://adube.github.io/
+    - https://adube.github.io
     - https://localhost:3000
     - https://localhost
     - https://127.0.0.1:3000
     - https://127.0.0.1
-    - http://localhost:3000/
-    - http://localhost/
-    - http://127.0.0.1:3000/
-    - http://127.0.0.1/
+    - http://localhost:3000
+    - http://localhost
+    - http://127.0.0.1:3000
+    - http://127.0.0.1
 
   access_control_allow_origin:
     - https://camptocamp.github.io

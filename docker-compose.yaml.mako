@@ -12,15 +12,6 @@ services:
     user: www-data
 ${service_defaults('config')}\
 
-  print:
-    image: camptocamp/mapfish_print:3.16
-    user: www-data
-    restart: unless-stopped
-    volumes_from:
-      - config:ro
-    mem_limit: 1G
-${service_defaults('print', 8080)}\
-
   mapserver:
     image: camptocamp/mapserver:7.2
     user: www-data
