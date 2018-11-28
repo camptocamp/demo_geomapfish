@@ -247,7 +247,7 @@ sentry.camptocamp.com/14"
           --max-requests=1000
           --max-requests-jitter=100
         PGDATABASE: '{DOCKER_DATABASE}'
-        PRINT_URL: https://mutualized-print.paas-ch-2.camptocamp.com/print/demo_geomapfish_24/
+        PRINT_URL: https://mutualized-print.paas-ch-3.camptocamp.com/print/demo_geomapfish_24/
         SENTRY_URL: '{sentry_private_url}'
         SENTRY_CLIENT_ENVIRONMENT: '{instance}'
         SENTRY_CLIENT_RELEASE: '{sentry_release}'
