@@ -1,9 +1,11 @@
 'use strict';
 
-const commons = require('ngeo/buildtools/webpack.commons');
+const commons = require('ngeo/buildtools/webpack.commons.js');
 const SassPlugin = require('ngeo/buildtools/webpack.plugin.js');
 
-const config = commons.config;
+const config = commons.config({
+  cacheDirectory: '/build/hard-source-cache/[confighash]',
+}, '/build/bable-loader-cache/');
 
 for (const plugin of config.plugins) {
   if (plugin instanceof SassPlugin) {

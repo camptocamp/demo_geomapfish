@@ -1,5 +1,5 @@
 /**
- * @module demo.mobile_alt.Controller
+ * @module demo.iframe_api.Controller
  */
 /**
  * Application entry point.
@@ -8,16 +8,12 @@
  * by the HTML page and the controller to provide the configuration.
  */
 
-import gmfControllersAbstractMobileController from 'gmf/controllers/AbstractMobileController.js';
-import './sass/mobile_alt.scss';
+import 'gmf/controllers/iframe_api.scss';
+import gmfControllersAbstractAPIController from 'gmf/controllers/AbstractAPIController.js';
 import demoBase from '../demomodule.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 import {inherits as olUtilInherits} from 'ol/util.js';
-import olStyleFill from 'ol/style/Fill.js';
-import olStyleRegularShape from 'ol/style/RegularShape.js';
-import olStyleStroke from 'ol/style/Stroke.js';
-import olStyleStyle from 'ol/style/Style.js';
 import Raven from 'raven-js/src/raven.js';
 import RavenPluginsAngular from 'raven-js/plugins/angular.js';
 
@@ -32,14 +28,12 @@ if (!window.requestAnimationFrame) {
  * @param {angular.IScope} $scope Scope.
  * @param {angular.IInjectorService} $injector Main injector.
  * @constructor
- * @extends {gmf.controllers.AbstractMobileController}
+ * @extends {gmf.controllers.AbstractAPIController}
  * @ngInject
  * @export
  */
 const exports = function($scope, $injector) {
-  gmfControllersAbstractMobileController.call(this, {
-    autorotate: true,
-    mapPixelRatio: 1,
+  gmfControllersAbstractAPIController.call(this, {
     srid: 21781,
     mapViewConfig: {
       center: [632464, 185457],
@@ -48,52 +42,8 @@ const exports = function($scope, $injector) {
     }
   }, $scope, $injector);
 
-  /**
-   * @type {Array.<gmf.mobile.measure.pointComponent.LayerConfig>}
-   * @export
-   */
-  this.elevationLayersConfig = [
-    {name: 'aster', unit: 'm'},
-    {name: 'srtm', unit: 'm'}
-  ];
-
-  /**
-   * @type {number}
-   * @export
-   */
-  this.searchDelay = 50;
-
-  /**
-   * @type {Array.<string>}
-   * @export
-   */
-  this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
-
-
-  /**
-   * @type {ol.style.Style}
-   * @export
-   */
-  this.customMeasureStyle = new olStyleStyle({
-    fill: new olStyleFill({
-      color: 'rgba(255, 128, 128, 0.2)'
-    }),
-    stroke: new olStyleStroke({
-      color: 'rgba(255, 0, 0, 0.5)',
-      lineDash: [10, 10],
-      width: 2
-    }),
-    image: new olStyleRegularShape({
-      stroke: new olStyleStroke({
-        color: 'rgba(255, 0, 0, 0.7)',
-        width: 2
-      }),
-      points: 4,
-      radius: 8,
-      radius2: 0,
-      angle: 0
-    })
-  });
+  this.EPSG2056 = EPSG2056;
+  this.EPSG21781 = EPSG21781;
 
   if ($injector.has('sentryUrl')) {
     const options = $injector.has('sentryOptions') ? $injector.get('sentryOptions') : undefined;
@@ -104,14 +54,13 @@ const exports = function($scope, $injector) {
   }
 };
 
-olUtilInherits(exports, gmfControllersAbstractMobileController);
+olUtilInherits(exports, gmfControllersAbstractAPIController);
 
-
-exports.module = angular.module('Appmobile_alt', [
+exports.module = angular.module('Appiframe_api', [
   demoBase.module.name,
-  gmfControllersAbstractMobileController.module.name,
+  gmfControllersAbstractAPIController.module.name,
 ]);
 
-exports.module.controller('AlternativeMobileController', exports);
+exports.module.controller('IframeAPIController', exports);
 
 export default exports;

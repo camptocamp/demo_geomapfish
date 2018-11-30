@@ -31,59 +31,27 @@ vars:
 
   default_interface: desktop
 
-  sentry_private_url: "https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@\
-sentry.camptocamp.com/14"
   sentry_release: __import__('pkg_resources').get_distribution('c2cgeoportal_commons').version[:5]
 
+  aws_access_key_id: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
+  aws_secret_access_key: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
+
   interfaces_config:
-    default: &interface
-      constants: &constants
+    default:
+      constants:
         defaultTheme: Demo
         defaultLang: en
         sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
-        gmfSearchActions:
-          - action: add_theme
-            title: Add a theme
-          - action: add_group
-            title: Add a sub theme
-          - action: add_layer
-            title: Add a layer
-        gmfExternalOGCServers:
-          - name: Swiss Topo WMS
-            type: WMS
-            url: https://wms.geo.admin.ch/?lang=fr
-          - name: Swiss Topo WMTS
-            type: WMTS
-            url: https://wmts.geo.admin.ch/1.0.0/WMTSCapabilities.xml?lang=fr
-          - name: ASIT VD
-            type: WMTS
-            url: https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml
-      fulltextsearch_params:
-        limit: 30
-        partitionlimit: 5
-      routes: &routes
-        authenticationBaseUrl: base
-        gmfLayersUrl: layers_root
-        gmfRasterUrl: raster
-        gmfProfileCsvUrl: profile.csv
-        gmfShortenerCreateUrl: shortener_create
-        ngeoPermalinkOgcserverUrl: mapserverproxy
-      static:
-        assetsBaseUrl: '{package}_geoportal:static-ngeo/'
-      wfs_permalink:
-        wfsTypes:
-          - featureType: fuel
-            label: display_name
-          - featureType: osm_scale
-            label: display_name
-        defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
-        defaultFeaturePrefix: feature
+        ngeoWfsPermalinkOptions:
+          wfsTypes:
+            - featureType: fuel
+              label: display_name
+            - featureType: osm_scale
+              label: display_name
+          defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
+          defaultFeaturePrefix: feature
     mobile:
-      <<: *interface
-      redirect_interface: desktop
       constants:
-        <<: *constants
-        gmfSearchGroups: []
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
@@ -91,45 +59,15 @@ sentry.camptocamp.com/14"
             service: js
             interface: mobile
     mobile_alt:
-      <<: *interface
-      redirect_interface: desktop_alt
       constants:
-        <<: *constants
-        gmfTreeManagerModeFlush: false
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
             interface: mobile_alt
-            # FIXME: gmfSearchActions: []
     desktop:
-      <<: *interface
-      redirect_interface: mobile
-      do_redirect: True
-      routes:
-        <<: *routes
-        gmfProfileJsonUrl: profile.json
-        gmfPrintUrl: printproxy
       constants:
-        <<: *constants
-        gmfPrintOptions:
-          legend:
-            # See:
-            # https://www.mapserver.org/development/rfc/ms-rfc-101.html
-            # https://docs.qgis.org/testing/en/docs/user_manual/working_with_ogc/server/services.html#getlegendgraphics
-            useBbox: true
-            label:
-              qgis: false
-            params:
-              # See:
-              # https://docs.qgis.org/testing/en/docs/user_manual/working_with_ogc/server/services.html#getlegendgraphics
-              qgis:
-                LAYERFONTFAMILY: DejaVu Sans
-                ITEMFONTFAMILY: DejaVu Sans
-                LAYERFONTSIZE: '10'
-                ITEMFONTSIZE: '8'
-        gmfSearchGroups: []
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
@@ -137,63 +75,15 @@ sentry.camptocamp.com/14"
             service: js
             interface: desktop
     desktop_alt:
-      <<: *interface
       constants:
-        <<: *constants
-        ngeoQueryOptions:
-          tolerance: 20
-          limit: 5
-          queryCountFirst: true
-        gmfPrintOptions:
-          scaleInput: true
-          legend:
-            useBbox: false
-        gmfTreeManagerModeFlush: false
-        ngeoRoutingOptions:
-          - backendUrl: https://routing.osm.ch/
-          - profiles:
-              - label: Car
-                profile: routed-car
-              - label: Bike (City)
-                profile: routed-bike
-              - label: Bike (Touring)
-                profile: routed-bike-touring
-              - label: Foot
-                profile: routed-foot
-              - label: Hiking
-                profile: routed-hiking
-        ngeoNominatimSearchDefaultParams:
-          countrycodes: CH
-        ngeoWfsPermalinkOptions:
-          url: https://geomapfish-demo-dc.camptocamp.com/docker/mapserv_proxy?ogcserver=QGIS%20server
-          wfsTypes:
-            - featureType: osm_hospitals
-              label: name
-            - featureType: osm_firestations
-              label: name
-          defaultFeatureNS: http://www.qgis.org/gml
-          defaultFeaturePrefix: feature
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
             interface: desktop_alt
-      routes:
-        <<: *routes
-        gmfProfileJsonUrl: profile.json
-        gmfPrintUrl: printproxy
     oeview:
-      <<: *interface
-      # FIXME: gmfContextualdatacontentTemplateUrl
-      routes:
-        <<: *routes
-        gmfProfileJsonUrl: profile.json
-        gmfPrintUrl: printproxy
       constants:
-        <<: *constants
-        gmfPermalinkOptions:
-          pointRecenterZoom: 10
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
@@ -201,14 +91,7 @@ sentry.camptocamp.com/14"
             service: js
             interface: oeview
     oeedit:
-      <<: *interface
-      # FIXME: gmfContextualdatacontentTemplateUrl
-      routes:
-        <<: *routes
-        gmfProfileJsonUrl: profile.json
-        gmfPrintUrl: printproxy
       constants:
-        <<: *constants
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
@@ -216,85 +99,13 @@ sentry.camptocamp.com/14"
             service: js
             interface: oeedit
     iframe_api:
-      <<: *interface
       constants:
-        <<: *constants
-        gmfSearchGroups: []
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
             interface: iframe_api
-
-  # docker_global_front: True
-  docker_services:
-    config:
-      environment:
-        PGDATABASE: '{DOCKER_DATABASE}'
-        TILEGENERATION_SQS_QUEUE: geomapfish-demo-stretch
-    geoportal-build:
-      environment:
-        PGDATABASE: '{DOCKER_DATABASE}'
-    geoportal:
-      environment:
-        GUNICORN_PARAMS:
-          --bind=:8080
-          --worker-class=gthread
-          --threads=10
-          --workers=1
-          --timeout=60
-          --max-requests=1000
-          --max-requests-jitter=100
-        PGDATABASE: '{DOCKER_DATABASE}'
-        PRINT_URL: https://mutualized-print.paas-ch-3.camptocamp.com/print/demo_geomapfish_24/
-        SENTRY_URL: '{sentry_private_url}'
-        SENTRY_CLIENT_ENVIRONMENT: '{instance}'
-        SENTRY_CLIENT_RELEASE: '{sentry_release}'
-        SENTRY_TAG_SERVICE: wsgi
-        C2C_SECRET: adminc2c
-        C2C_LOG_VIEW_ENABLED: TRUE
-        C2C_SQL_PROFILER_ENABLED: TRUE
-        C2C_DEBUG_VIEW_ENABLED: TRUE
-    qgisserver:
-      environment:
-        PGDATABASE: '{DOCKER_DATABASE}'
-        GEOMAPFISH_OGCSERVER: QGIS server
-        # Single QGIS project files
-        QGIS_PROJECT_FILE: /etc/qgisserver/project.qgz
-        # Multiple QGIS project files
-        # QGIS_PROJECT_FILE:
-        # GEOMAPFISH_ACCESSCONTROL_CONFIG: /etc/qgisserver/accesscontrol_config.yaml
-    tilecloudchain:
-      environment:
-        GUNICORN_PARAMS:
-          --bind=:8080
-          --worker-class=gthread
-          --threads=10
-          --workers=1
-          --timeout=60
-          --max-requests=1000
-          --max-requests-jitter=100
-        AWS_ACCESS_KEY_ID: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
-        AWS_SECRET_ACCESS_KEY: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
-        C2C_REQUESTS_DEFAULT_TIMEOUT: 120
-        SENTRY_URL: '{sentry_private_url}'
-        SENTRY_CLIENT_ENVIRONMENT: '{instance}'
-        SENTRY_CLIENT_RELEASE: '{sentry_release}'
-        C2C_SECRET: adminc2c
-        C2C_LOG_VIEW_ENABLED: TRUE
-        C2C_SQL_PROFILER_ENABLED: TRUE
-        C2C_DEBUG_VIEW_ENABLED: TRUE
-    print:
-      environment:
-        CATALINA_OPTS: >-
-          -Xmx1024m
-          -Dsentry.dsn={sentry_private_url}
-          -Dsentry.release={sentry_release}
-          -Dsentry.environment={instance}
-          -Dsentry.tags=service:print
-    front:
-      port: '{DOCKER_PORT}'
 
   authtkt:
     # One day
@@ -561,16 +372,6 @@ update_paths:
   - checker.print
   - checker.routes
   - checker.themes
-  - docker_services.config.environment
-  - docker_services.geoportal-build.environment
-  - docker_services.db.environment
-  - docker_services.geoportal-build.environment
-  - docker_services.geoportal.environment
-  - docker_services.mapserver.environment
-  - docker_services.qgisserver.environment
-  - docker_services.tilecloudchain.environment
-  - docker_services.print.environment
-  - docker_services.front
   - fulltextsearch
   - functionalities.available_in_templates
   - global_headers
@@ -591,6 +392,38 @@ update_paths:
   - headers.layers
   - headers.shortener
   - headers.login
+  - interfaces_config.default.constants
+  - interfaces_config.default.dynamic_constants
+  - interfaces_config.default.static
+  - interfaces_config.default.routes
+  - interfaces_config.desktop.constants
+  - interfaces_config.desktop.dynamic_constants
+  - interfaces_config.desktop.static
+  - interfaces_config.desktop.routes
+  - interfaces_config.desktop_alt.constants
+  - interfaces_config.desktop_alt.dynamic_constants
+  - interfaces_config.desktop_alt.static
+  - interfaces_config.desktop_alt.routes
+  - interfaces_config.mobile.constants
+  - interfaces_config.mobile.dynamic_constants
+  - interfaces_config.mobile.static
+  - interfaces_config.mobile.routes
+  - interfaces_config.mobile_alt.constants
+  - interfaces_config.mobile_alt.dynamic_constants
+  - interfaces_config.mobile_alt.static
+  - interfaces_config.mobile_alt.routes
+  - interfaces_config.iframe_api.constants
+  - interfaces_config.iframe_api.dynamic_constants
+  - interfaces_config.iframe_api.static
+  - interfaces_config.iframe_api.routes
+  - interfaces_config.oeview.constants
+  - interfaces_config.oeview.dynamic_constants
+  - interfaces_config.oeview.static
+  - interfaces_config.oeview.routes
+  - interfaces_config.oeedit.constants
+  - interfaces_config.oeedit.dynamic_constants
+  - interfaces_config.oeedit.static
+  - interfaces_config.oeedit.routes
   - interfaces_theme
   - servers
   - shortener
@@ -601,8 +434,6 @@ no_interpreted:
   - welcome_email.email_body
   - smtp.user
   - smtp.password
-  - docker_services.tilecloudchain.environment.AWS_ACCESS_KEY_ID
-  - docker_services.tilecloudchain.environment.AWS_SECRET_ACCESS_KEY
 
 
 interpreted:
@@ -611,8 +442,8 @@ interpreted:
   bash:
     - smtp.user
     - smtp.password
-    - docker_services.tilecloudchain.environment.AWS_ACCESS_KEY_ID
-    - docker_services.tilecloudchain.environment.AWS_SECRET_ACCESS_KEY
+    - aws_access_key_id
+    - aws_secret_access_key
 
 environment:
   - DOCKER_PORT
