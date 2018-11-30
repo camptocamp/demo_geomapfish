@@ -1,7 +1,7 @@
 demo_geomapfish project
 ===================
 
-Read the `Documentation <http://docs.camptocamp.net/c2cgeoportal/>`_
+Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.3/>`_
 
 Checkout
 --------
