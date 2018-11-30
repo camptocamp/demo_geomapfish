@@ -33,6 +33,14 @@
       </gmf-displayquerywindow>
       <div
         class="gmf-mobile-measure"
+        gmf-mobile-measurearea
+        gmf-mobile-measurearea-active="mainCtrl.measureAreaActive"
+        gmf-mobile-measurearea-precision="2"
+        gmf-mobile-measurearea-sketchstyle="::mainCtrl.customMeasureStyle"
+        gmf-mobile-measurearea-map="::mainCtrl.map">
+      </div>
+      <div
+        class="gmf-mobile-measure"
         gmf-mobile-measurelength
         gmf-mobile-measurelength-active="mainCtrl.measureLengthActive"
         gmf-mobile-measurelength-precision="2"
@@ -164,6 +172,15 @@
               {{'Length' | translate}}
             </a>
           </li>
+          <li>
+            <a ngeo-btn
+              ng-click="mainCtrl.hideNav()"
+              class="gmf-mobile-nav-button"
+              ng-model="mainCtrl.measureAreaActive">
+              <span class="fa fa-fw" ng-class="{'fa-check': mainCtrl.measureAreaActive}"></span>
+              {{'Area' | translate}}
+            </a>
+          </li>
         </ul>
       </div>
       <gmf-authentication id="login" class="gmf-mobile-nav-slide" data-header-title="{{'Login' | translate}}"
@@ -177,7 +194,8 @@
     <% } %>
     <script>
     document.write(
-      '<script src="${htmlWebpackPlugin.options.vars.entry_point}dynamic.js?' +
+      '<script src="${htmlWebpackPlugin.options.vars.entry_point}static-ngeo/UNUSED_CACHE_VERSION/build/vendor.js?2.4"></script>
+<script src="${htmlWebpackPlugin.options.vars.entry_point}dynamic.js?' +
       'interface=mobile_alt&' +
       'query=' + encodeURIComponent(document.location.search) +
       '"><' + '/script>');

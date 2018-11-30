@@ -3,9 +3,6 @@
 *.pyo
 __pycache__/
 /project.yaml
-/docker-compose.yaml
-/docker-compose-build.yaml
-/docker-compose-dev.yaml
 /.env
 /geoportal/alembic.yaml
 /testdb/11-schemas.sql

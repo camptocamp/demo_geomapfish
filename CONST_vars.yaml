@@ -22,98 +22,6 @@ vars:
   docker_base: '{DOCKER_BASE}'
   docker_tag: '{DOCKER_TAG}'
   docker_global_front: false
-  docker_services:
-    config:
-      environment:
-        VISIBLE_WEB_HOST: '{docker_host}'
-        VISIBLE_WEB_PROTOCOL: '{docker_web_protocol}'
-        VISIBLE_ENTRY_POINT: '{docker_entry_point}'
-        PGHOST: 172.17.0.1
-        PGHOST_SLAVE: 172.17.0.1
-        PGPORT: 5432
-        PGUSER: www-data
-        PGPASSWORD: www-data
-        PGDATABASE: geomapfish
-        PGSCHEMA: main
-        PGSCHEMA_STATIC: main_static
-        GEOPORTAL_INTERNAL_URL: http://geoportal:8080
-        TILECLOUDCHAIN_INTERNAL_URL: http://tilecloudchain:8080
-        MAPCACHE_URL: http://mapcache:8080/mapcache/
-        MAPSERVER_URL: http://mapserver:8080/
-        MEMCACHED_HOST: memcached
-        MEMCACHED_PORT: 11211
-        REDIS_HOST: redis
-        REDIS_PORT: 6379
-        TILEGENERATION_SQS_QUEUE: '<queue_name>'
-    db:
-      environment:
-        POSTGRES_DB: geomapfish
-        POSTGRES_USER: www-data
-        POSTGRES_PASSWORD: www-data
-    geoportal-build:
-      environment: &geo-run-env
-        VISIBLE_ENTRY_POINT: '{docker_entry_point}'
-        PGHOST: 172.17.0.1
-        PGHOST_SLAVE: 172.17.0.1
-        PGPORT: 5432
-        PGUSER: www-data
-        PGPASSWORD: www-data
-        PGDATABASE: geomapfish
-        PGSCHEMA: main
-        PGSCHEMA_STATIC: main_static
-    geoportal:
-      environment:
-        <<: *geo-run-env
-        GUNICORN_PARAMS:
-          --bind=:8080
-          --worker-class=gthread
-          --threads=10
-          --workers=5
-          --timeout=60
-          --max-requests=1000
-          --max-requests-jitter=100
-        VISIBLE_WEB_HOST: '{docker_host}'
-        VISIBLE_WEB_PROTOCOL: '{docker_web_protocol}'
-        TINYOWS_URL: http://tinyows:8080/
-        MAPSERVER_URL: http://mapserver:8080/
-        PRINT_URL: http://print:8080/print/
-        DEVSERVER_HOST: webpack-dev-server:8080
-        REDIS_HOST: redis
-        REDIS_PORT: 6379
-        C2C_REQUESTS_DEFAULT_TIMEOUT: 30
-        C2C_REDIS_URL: redis://redis:6379
-        C2C_BROADCAST_PREFIX: broadcast_geoportal_
-        PGOPTIONS: '-c statement_timeout=30000'
-    mapserver:
-      environment:
-        PGOPTIONS: '-c statement_timeout=30000'
-    qgisserver:
-      environment:
-        <<: *geo-run-env
-        C2C_REDIS_URL: redis://redis:6379
-        C2C_BROADCAST_PREFIX: broadcast_geoportal_
-        PGOPTIONS: '-c statement_timeout=30000'
-    tilecloudchain:
-      environment:
-        GUNICORN_PARAMS:
-          --bind=:8080
-          --worker-class=gthread
-          --threads=10
-          --workers=5
-          --max-requests=1000
-          --max-requests-jitter=100
-        VISIBLE_ENTRY_POINT: '{docker_entry_point}'
-        TILEGENERATION_CONFIGFILE: /etc/tilegeneration/config.yaml
-        C2C_REQUESTS_DEFAULT_TIMEOUT: 30
-        C2C_BASE_PATH: /c2c_tiles
-        C2C_REDIS_URL: redis://redis:6379
-        C2C_BROADCAST_PREFIX: broadcast_tilecloudchain_
-    print:
-      environment:
-        CATALINA_OPTS: -Xmx1024m
-        PGOPTIONS: '-c statement_timeout=30000'
-    front:
-      port: 80
 
   # database user
   dbuser: '{PGUSER}'
@@ -207,6 +115,155 @@ vars:
   interfaces: __import__('os').environ.get("INTERFACES").split(" ")
 
   default_interface: desktop
+
+  interfaces_config:
+    default:
+      constants:
+        gmfSearchActions:
+          - action: add_theme
+            title: Add a theme
+          - action: add_group
+            title: Add a sub theme
+          - action: add_layer
+            title: Add a layer
+        gmfExternalOGCServers:
+          - name: Swiss Topo WMS
+            type: WMS
+            url: https://wms.geo.admin.ch/?lang=fr
+          - name: Swiss Topo WMTS
+            type: WMTS
+            url: https://wmts.geo.admin.ch/1.0.0/WMTSCapabilities.xml?lang=fr
+          - name: ASIT VD
+            type: WMTS
+            url: https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml
+      dynamic_constants:
+        cacheVersion: cache_version
+        langUrls: lang_urls
+        gmfSearchGroups: fulltextsearch_groups
+      static:
+        assetsBaseUrl: '{package}_geoportal:static-ngeo/'
+      routes:
+        authenticationBaseUrl:
+          name: base
+        gmfLayersUrl:
+          name: layers_root
+        gmfRasterUrl:
+          name: raster
+        gmfProfileCsvUrl:
+          name: profile.csv
+        gmfShortenerCreateUrl:
+          name: shortener_create
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+        fulltextsearchUrl:
+          name: fulltextsearch
+          params:
+            limit: 30
+            partitionlimit: 5
+          dynamic_params:
+            interface: interface
+        gmfTreeUrl:
+          name: themes
+          params:
+            version: 2
+            background: background
+          dynamic_params:
+            interface: interface
+    mobile:
+      redirect_interface: desktop
+      constants:
+        gmfSearchGroups: []
+    mobile_alt:
+      redirect_interface: desktop_alt
+      constants:
+        gmfTreeManagerModeFlush: false
+        # FIXME: gmfSearchActions: []
+    desktop:
+      redirect_interface: mobile
+      do_redirect: True
+      constants:
+        gmfPrintOptions:
+          legend:
+            # See:
+            # https://www.mapserver.org/development/rfc/ms-rfc-101.html
+            # https://docs.qgis.org/testing/en/docs/user_manual/working_with_ogc/server/services.html#getlegendgraphics
+            useBbox: true
+            label:
+              qgis: false
+            params:
+              # See:
+              # https://docs.qgis.org/testing/en/docs/user_manual/working_with_ogc/server/services.html#getlegendgraphics
+              qgis:
+                LAYERFONTFAMILY: DejaVu Sans
+                ITEMFONTFAMILY: DejaVu Sans
+                LAYERFONTSIZE: '10'
+                ITEMFONTSIZE: '8'
+        gmfSearchGroups: []
+      routes:
+        gmfProfileJsonUrl:
+          name: profile.json
+        gmfPrintUrl:
+          name: printproxy
+    desktop_alt:
+      redirect_interface: mobile_alt
+      constants:
+        ngeoQueryOptions:
+          tolerance: 20
+          limit: 5
+          queryCountFirst: true
+        gmfPrintOptions:
+          scaleInput: true
+          legend:
+            useBbox: false
+        gmfTreeManagerModeFlush: false
+        ngeoRoutingOptions:
+          - backendUrl: https://routing.osm.ch/
+          - profiles:
+              - label: Car
+                profile: routed-car
+              - label: Bike (City)
+                profile: routed-bike
+              - label: Bike (Touring)
+                profile: routed-bike-touring
+              - label: Foot
+                profile: routed-foot
+              - label: Hiking
+                profile: routed-hiking
+        ngeoNominatimSearchDefaultParams:
+          countrycodes: CH
+        ngeoWfsPermalinkOptions:
+          wfsTypes:
+            - featureType: osm_hospitals
+              label: name
+            - featureType: osm_firestations
+              label: name
+          defaultFeatureNS: http://www.qgis.org/gml
+          defaultFeaturePrefix: feature
+      routes:
+        gmfProfileJsonUrl:
+          name: profile.json
+        gmfPrintUrl:
+          name: printproxy
+    iframe_api:
+      constants:
+        gmfSearchGroups: []
+    oeview:
+      constants:
+        gmfPermalinkOptions:
+          pointRecenterZoom: 10
+      # FIXME: gmfContextualdatacontentTemplateUrl
+      routes:
+        gmfProfileJsonUrl:
+          name: profile.json
+        gmfPrintUrl:
+          name: printproxy
+    oeedit:
+      # FIXME: gmfContextualdatacontentTemplateUrl
+      routes:
+        gmfProfileJsonUrl:
+          name: profile.json
+        gmfPrintUrl:
+          name: printproxy
 
   # The dogpile.cache configuration.
   #
@@ -444,6 +501,11 @@ vars:
 
   lingua_extractor: {}
 
+  Content-Security-Policy_extra_script-src: \
+    https://maps.google.com/ \
+    https://maps.googleapis.com/ \
+    https://fonts.googleapis.com/ \
+    https://www.google-analytics.com/
   global_headers:
     - pattern: '.*'
       headers:
@@ -453,10 +515,8 @@ vars:
         Referrer-Policy: origin
         Strict-Transport-Security: max-age=31536000; includeSubDomains
         Content-Security-Policy: "default-src 'self' https://*; \
-            script-src 'self' 'unsafe-inline' \
-               https://cdn.polyfill.io/ \
-               https://maps.googleapis.com/ \
-               https://www.google-analytics.com/; \
+            script-src 'self' 'unsafe-inline' https://cdn.polyfill.io/ \
+               {Content-Security-Policy_extra_script-src}; \
             style-src 'self' 'unsafe-inline'; \
             img-src * data:; \
             connect-src *"
@@ -591,7 +651,7 @@ vars:
     # List of {method path} regexes to force the usage of the master, even for GET and OPTIONS
     # This supersedes the slave list.
     master:
-      - GET /short/.*   # The shortener updates the last_hit column on GET
+      - GET /s/.*   # The shortener updates the last_hit column on GET
     # List of {method path} regexes to force the usage of the slave
     slave:
       - \w+ /printproxy/.*  # The print proxy is never writing to the DB

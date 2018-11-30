@@ -10,13 +10,6 @@ services:
       file: docker-compose-lib.yaml
       service: config
 
-  print:
-    extends:
-      file: docker-compose-lib.yaml
-      service: print
-    volumes_from:
-      - config:ro
-
   mapserver:
     extends:
       file: docker-compose-lib.yaml
@@ -26,19 +19,19 @@ services:
     volumes:
       - /var/sig:/var/sig:ro
 
-  ## qgisserver:
-  ##   extends:
-  ##     file: docker-compose-lib.yaml
-  ##     service: qgisserver
-  ##   volumes_from:
-  ##     - config:ro
-  ##   environment:
-  ##     # Single QGIS project files
-  ##     QGIS_PROJECT_FILE: /etc/qgisserver/project.qgz
-  ##     GEOMAPFISH_OGCSERVER: <OGC server name>
-  ##     # Multiple QGIS project files
-  ##     # QGIS_PROJECT_FILE:
-  ##     # GEOMAPFISH_ACCESSCONTROL_CONFIG: /etc/qgisserver/accesscontrol_config.yaml
+  qgisserver:
+    extends:
+      file: docker-compose-lib.yaml
+      service: qgisserver
+    volumes_from:
+      - config:ro
+    environment:
+      # Single QGIS project files
+      QGIS_PROJECT_FILE: /etc/qgisserver/project.qgz
+      GEOMAPFISH_OGCSERVER: <OGC server name>
+      # Multiple QGIS project files
+      # QGIS_PROJECT_FILE:
+      # GEOMAPFISH_ACCESSCONTROL_CONFIG: /etc/qgisserver/accesscontrol_config.yaml
 
   tinyows:
     extends:
@@ -68,6 +61,10 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: tilecloudchain
+    environment:
+      - SENTRY_URL
+      - SENTRY_CLIENT_ENVIRONMENT
+      - SENTRY_CLIENT_RELEASE
     volumes_from:
       - config:ro
 
@@ -82,6 +79,10 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: geoportal
+    environment:
+      - SENTRY_URL
+      - SENTRY_CLIENT_ENVIRONMENT
+      - SENTRY_CLIENT_RELEASE
     volumes:
       - /var/sig:/var/sig:ro
 
@@ -94,6 +95,8 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: front
+    ports:
+      - ${PORT}:80
     volumes_from:
       - config:ro
 ## if docker_global_front:

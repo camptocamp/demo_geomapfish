@@ -6,6 +6,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const plugins = [];
 const entry = {};
 
+plugins.push(new webpack.DllReferencePlugin({
+  manifest: '/opt/vendor-manifest.json',
+  context: '/usr/lib/node_modules/',
+}));
+
 // The dev mode will be used for builds on local machine outside docker
 const nodeEnv = process.env['NODE_ENV'] || 'development';
 const dev = nodeEnv == 'development'
@@ -27,7 +32,7 @@ for (const filename of ls(path.resolve(__dirname, '${package}_geoportal/static-n
   );
 }
 
-const babelPresets = [['@babel/preset-env',{
+const babelPresets = [[require.resolve('@babel/preset-env'), {
   "targets": {
     "browsers": ["last 2 versions", "Firefox ESR", "ie 11"],
   },
@@ -42,10 +47,13 @@ const projectRule = {
     loader: 'babel-loader',
     options: {
       presets: babelPresets,
+      babelrc: false,
+      comments: false,
+      cacheDirectory: '/build/bable-loader-cache/',
       plugins: [
-        '@babel/plugin-syntax-object-rest-spread',
-        '@babel/plugin-transform-spread',
-        '@camptocamp/babel-plugin-angularjs-annotate',
+        require.resolve('@babel/plugin-syntax-object-rest-spread'),
+        require.resolve('@babel/plugin-transform-spread'),
+        require.resolve('@camptocamp/babel-plugin-angularjs-annotate'),
       ],
     }
   },
@@ -72,8 +80,9 @@ module.exports = {
   },
   plugins: plugins,
   resolve: {
+    modules: ['/usr/lib/node_modules'],
     alias: {
       demo: path.resolve(__dirname, 'demo_geoportal/static-ngeo/js'),
-    }
+    },
   },
 };

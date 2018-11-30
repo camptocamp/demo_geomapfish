@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.4
+GEOMAPFISH_VERSION ?= 2.4.0.dev8
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -36,7 +36,7 @@ DEVELOPMENT ?= FALSE
 export DEVELOPMENT
 # Language provided by the application
 LANGUAGES ?= en fr de
-NGEO_INTERFACES ?= desktop mobile
+NGEO_INTERFACES ?= desktop mobile iframe_api
 CGXP_INTERFACES ?=
 CGXP_API ?= TRUE
 CGXP_XAPI ?= FALSE
@@ -79,10 +79,7 @@ DEFAULT_BUILD_RULES ?= docker-build-geoportal \
 	project.yaml \
 	geoportal/alembic.ini \
 	geoportal/alembic.yaml \
-	docker-compose.yaml \
-	.env \
-	docker-compose-build.yaml \
-	docker-compose-dev.yaml
+	.env
 
 # TileCloud-chain
 WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-$(ENVIRONMENT).xml
@@ -90,6 +87,11 @@ export WMTSCAPABILITIES_PATH
 ifeq ($(TILECLOUD_CHAIN), TRUE)
 WMTSCAPABILITIES_FILE ?= /var/sig/tiles/$(WMTSCAPABILITIES_PATH)
 MAPCACHE_FILE ?= mapcache/mapcache.xml.tmpl
+GEN_MAPCACHE_ARGS ?= --generate-mapcache-config
+ifeq ($(DOCKER), TRUE)
+GEN_MAPCACHE_ARGS += --mapcache-version=1.6
+endif
+
 TILEGENERATION_CONFIG_FILE ?= tilegeneration/config.yaml.tmpl
 DEFAULT_BUILD_RULES += $(TILEGENERATION_CONFIG_FILE)
 ifeq ($(TILECLOUD_CHAIN_LOCAL), TRUE)
@@ -99,10 +101,6 @@ endif
 
 
 # Make rules
-ifeq (${DEVELOPMENT}, TRUE)
-DEFAULT_BUILD_RULES += docker-build-testdb
-endif
-
 BUILD_RULES ?= $(filter-out $(DISABLE_BUILD_RULES),$(DEFAULT_BUILD_RULES))
 
 OUTPUT_DIR = geoportal/$(PACKAGE)_geoportal/static/build
@@ -120,12 +118,12 @@ export NO_DEV_SERVER
 ANGULAR_VERSION = 1.6
 APP_OUTPUT_DIR = geoportal/$(PACKAGE)_geoportal/static-ngeo/build
 GCC_JS_FILES = $(shell find /usr/lib/node_modules/openlayers/src/ol /usr/lib/node_modules/ngeo/src /usr/lib/node_modules/ol-cesium/src -type f -name '*.js' 2> /dev/null)
-APP_JS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components -type f -name '*.js' 2> /dev/null)
-APP_JS_MAKO_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components $(FIND_OPTS) -name "*.js.mako" -print 2> /dev/null)
-APP_JS_JINJA_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js geoportal/$(PACKAGE)_geoportal/static-ngeo/components $(FIND_OPTS) -name "*.js.jinja" -print 2> /dev/null)
+APP_JS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js -type f -name '*.js' 2> /dev/null)
+APP_JS_MAKO_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js $(FIND_OPTS) -name "*.js.mako" -print 2> /dev/null)
+APP_JS_JINJA_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js $(FIND_OPTS) -name "*.js.jinja" -print 2> /dev/null)
 APP_JS_FILES +=  $(APP_JS_MAKO_FILES:.mako=) $(APP_JS_JINJA_FILES:.jinja=)
 APP_HTML_FILES += $(addprefix geoportal/$(PACKAGE)_geoportal/static-ngeo/js/apps/, $(addsuffix .html.ejs, $(NGEO_INTERFACES)))
-APP_DIRECTIVES_PARTIALS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/components geoportal/$(PACKAGE)_geoportal/static-ngeo/partials geoportal/$(PACKAGE)_geoportal/static-ngeo/js -type f -name '*.html' 2> /dev/null)
+APP_DIRECTIVES_PARTIALS_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/js -type f -name '*.html' 2> /dev/null)
 SASS_FILES += $(shell find geoportal/$(PACKAGE)_geoportal/static-ngeo/sass geoportal/$(PACKAGE)_geoportal/static-ngeo/components -type f -name '*.scss' 2> /dev/null)
 JSON_CLIENT_LOCALISATION_FILES = $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .json, $(LANGUAGES)))
 L10N_CLIENT_POSTFIX ?= client
@@ -614,19 +612,21 @@ $(APP_OUTPUT_DIR)/images/: /usr/lib/node_modules/jquery-ui/themes/base/images
 	mkdir --parent $@
 	cp -r $</* $@
 
+.PRECIOUS: $(APP_OUTPUT_DIR)/vendor%
+$(APP_OUTPUT_DIR)/vendor%: /opt/vendor%
+	$(PRERULE_CMD)
+	cp $< $@
 
 .PRECIOUS: /build/apps.timestamp
 /build/apps.timestamp: geoportal/webpack.apps.js $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
 			$(APP_HTML_FILES) geoportal/webpack.config.js \
 			$(SASS_FILES) \
-			$(APP_OUTPUT_DIR)/images/
+			$(APP_OUTPUT_DIR)/images/ \
+			$(APP_OUTPUT_DIR)/vendor.js \
+			$(APP_OUTPUT_DIR)/vendor.js.map
 	$(PRERULE_CMD)
 	rm --force $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .*, $(NGEO_INTERFACES)))
-	# Workaround to make Webpack working for ol/index.js
-	rm --force geoportal/node_modules
-	ln --symbolic /usr/lib/node_modules/ geoportal/
 	(cd geoportal; webpack $(WEBPACK_ARGS))
-	rm geoportal/node_modules
 ifeq ($(DOCKER), TRUE)
 	ls -1 $(APP_OUTPUT_DIR)/*.html|while read file; do mv $${file} $${file}.tmpl; done
 	ls -1 $(APP_OUTPUT_DIR)/*.css|while read file; do mv $${file} $${file}.tmpl; done
@@ -728,27 +728,6 @@ geoportal/alembic.yaml: $(ALEMBIC_YAML_FILE) vars.yaml CONST_vars.yaml
 	c2c-template --vars $< --get-config /build/_alembic.yaml srid schema schema_static sqlalchemy.url cache
 	mv /build/_alembic.yaml $@
 
-testdb/11-schemas.sql: vars_alembic.yaml $(ALEMBIC_YAML_FILE) testdb/11-schemas.sql_mako vars.yaml CONST_vars.yaml
-	$(PRERULE_CMD)
-	rm --force testdb/11-schemas.sql.mako
-	ln -s 11-schemas.sql_mako testdb/11-schemas.sql.mako
-	c2c-template --vars $< --engine mako --runtime-environment-pattern '$${{{}}}' \
-		--files testdb/11-schemas.sql.mako
-	rm testdb/11-schemas.sql.mako
-
-testdb/12-alembic.sql: geoportal/alembic.ini geoportal/alembic.yaml $(shell ls -1 /opt/alembic/main/*.py)
-	$(PRERULE_CMD)
-	alembic --config=$< --name=main upgrade --sql head > $@
-
-testdb/13-alembic-static.sql: geoportal/alembic.ini geoportal/alembic.yaml $(shell ls -1 /opt/alembic/static/*.py)
-	$(PRERULE_CMD)
-	alembic --config=$< --name=static upgrade --sql head > $@
-
-.PHONY: docker-build-testdb
-docker-build-testdb: testdb/11-schemas.sql testdb/12-alembic.sql testdb/13-alembic-static.sql \
-		$(shell docker-required --path testdb)
-	docker build --tag=$(DOCKER_BASE)-testdb:$(DOCKER_TAG) testdb
-
 # Upgrade
 
 UPGRADE_ARGS += --use-makefile --makefile=$(firstword $(MAKEFILE_LIST))
@@ -766,7 +745,7 @@ upgrade%:
 $(MAPCACHE_FILE): $(TILEGENERATION_CONFIG_FILE)
 	$(PRERULE_CMD)
 	mkdir --parent $(dir $@)
-	generate_controller --config=$< --mapcache
+	generate_controller --config=$< $(GEN_MAPCACHE_ARGS)
 
 $(WMTSCAPABILITIES_FILE): $(TILEGENERATION_CONFIG_FILE)
 	$(PRERULE_CMD)
