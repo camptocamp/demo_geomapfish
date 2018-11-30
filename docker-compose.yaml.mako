@@ -30,7 +30,7 @@ ${service_defaults('print', 8080)}\
     volumes:
       - /var/sig:/var/sig:ro
     entrypoint: []
-    mem_limit: 64M
+    mem_limit: 128M
 ${service_defaults('mapserver', 8080)}\
 
   qgisserver:
@@ -57,7 +57,7 @@ ${service_defaults('tinyows', 8080)}\
     restart: unless-stopped
     volumes_from:
       - config:ro
-    mem_limit: 64M
+    mem_limit: 256M
 ${service_defaults('mapcache', 8080)}\
 
   memcached:
@@ -88,17 +88,17 @@ ${service_defaults('memcached', 11211)}\
 ${service_defaults('redis', 6379)}\
 
   tilecloudchain:
-    image: camptocamp/tilecloud-chain:1.7
+    image: camptocamp/tilecloud-chain:1.8
     user: www-data
     restart: unless-stopped
     volumes_from:
       - config:ro
-    mem_limit: 128M
+    mem_limit: 256M
 ${service_defaults('tilecloudchain', 8080)}\
       - SENTRY_TAG_SERVICE=tilecloudchain
 
   tilegeneration_slave:
-    image: camptocamp/tilecloud-chain:1.7
+    image: camptocamp/tilecloud-chain:1.8
     user: www-data
     restart: unless-stopped
     volumes_from:
