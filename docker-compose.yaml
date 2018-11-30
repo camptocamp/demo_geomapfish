@@ -14,6 +14,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: mapserver
+    mem_limit: 128M
     volumes_from:
       - config:rw
     volumes:
@@ -23,6 +24,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: qgisserver
+    mem_limit: 1G
     volumes_from:
       - config:ro
     environment:
@@ -37,6 +39,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: tinyows
+    mem_limit: 32M
     volumes_from:
       - config:ro
 
@@ -44,6 +47,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: mapcache
+    mem_limit: 256M
     volumes_from:
       - config:ro
 
@@ -51,16 +55,19 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: memcached
+    mem_limit: 128M
 
   redis:
     extends:
       file: docker-compose-lib.yaml
       service: redis
+    mem_limit: 64M
 
   tilecloudchain:
     extends:
       file: docker-compose-lib.yaml
       service: tilecloudchain
+    mem_limit: 256M
     environment:
       - SENTRY_URL
       - SENTRY_CLIENT_ENVIRONMENT
@@ -72,6 +79,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: tilegeneration_slave
+    mem_limit: 128M
     volumes_from:
       - config:ro
 
@@ -79,6 +87,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: geoportal
+    mem_limit: 512M
     environment:
       - SENTRY_URL
       - SENTRY_CLIENT_ENVIRONMENT
@@ -95,6 +104,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: front
+    mem_limit: 8M
     ports:
       - ${PORT}:80
     volumes_from:
