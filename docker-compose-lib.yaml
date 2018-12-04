@@ -45,7 +45,7 @@ services:
       - PGOPTIONS
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver:gmf2.4.0.dev8-qgis3.2
+    image: camptocamp/geomapfish-qgisserver:gmf2.3-qgis3.2
     user: www-data
     restart: unless-stopped
     environment:
