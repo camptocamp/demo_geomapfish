@@ -3,15 +3,15 @@
 docker tag camptocamp/demo-config:$1 camptocamp/demo-config:2.4
 docker tag camptocamp/demo-geoportal:$1 camptocamp/demo-geoportal:2.4
 
-mv docker-compose.yaml{,.bak}
+mv .env{,.bak}
 ./docker-run rm /build/c2ctemplate-cache.json
-./docker-run make --makefile=prod.mk docker-compose.yaml
+./docker-run make --makefile=prod.mk .env
 ./docker-run rm /build/c2ctemplate-cache.json
 mkdir -p /var/www/vhosts/geomapfish-demo/private/2.4
-cp docker-compose.yaml /var/www/vhosts/geomapfish-demo/private/2.4/
+cp docker-compose.yaml .env /var/www/vhosts/geomapfish-demo/private/2.4/
 cd /var/www/vhosts/geomapfish-demo/private/2.4
 docker-compose down
 docker-compose up -d
 cd -
-rm docker-compose.yaml
-mv docker-compose.yaml{.bak,}
+rm .env
+mv .env{.bak,}
