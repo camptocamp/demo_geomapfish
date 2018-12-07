@@ -5,6 +5,8 @@ extends: CONST_vars.yaml
 vars:
   srid: 21781
 
+  port: '{DOCKER_PORT}'
+
   # all interface used to create the apache rewrite rules
   interfaces:
     - desktop

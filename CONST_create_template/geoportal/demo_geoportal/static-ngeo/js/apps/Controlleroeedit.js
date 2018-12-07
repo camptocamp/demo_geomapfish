@@ -31,7 +31,7 @@ if (!window.requestAnimationFrame) {
 
 /**
  * @param {angular.IScope} $scope Scope.
- * @param {angular.IInjectorService} $injector Main injector.
+ * @param {angular.auto.IInjectorService} $injector Main injector.
  * @param {angular.ITimeoutService} $timeout Angular timeout service.
  * @constructor
  * @extends {gmf.controllers.AbstractDesktopController}
@@ -203,7 +203,7 @@ const exports = function($scope, $injector, $timeout) {
   }];
 
   // Allow angular-gettext-tools to collect the strings to translate
-  /** @type {angularGettext.Catalog} */
+  /** @type {angular.gettext.gettextCatalog} */
   const gettextCatalog = $injector.get('gettextCatalog');
   gettextCatalog.getString('Add a theme');
   gettextCatalog.getString('Add a sub theme');

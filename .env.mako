@@ -1,5 +1,5 @@
 COMPOSE_PROJECT_NAME=demo_${instance}
-PORT=8189
+PORT=${port}
 PROJECT_DIRECTORY=${project_directory}
 DOCKER_BASE=${docker_base}
 DOCKER_TAG=${docker_tag}
