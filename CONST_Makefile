@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.4.0.dev10
+GEOMAPFISH_VERSION ?= 2.4.0.dev12
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -78,8 +78,10 @@ DEFAULT_BUILD_RULES ?= docker-build-geoportal \
 	docker-build-config \
 	project.yaml \
 	geoportal/alembic.ini \
-	geoportal/alembic.yaml \
-	.env
+	geoportal/alembic.yaml
+ifeq ($(DOCKER), TRUE)
+DEFAULT_BUILD_RULES += .env
+endif
 
 # TileCloud-chain
 WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-$(ENVIRONMENT).xml
