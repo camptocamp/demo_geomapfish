@@ -21,4 +21,5 @@ export WMTSCAPABILITIES_PATH
 include CONST_Makefile
 
 .env: .env.secrets
+.env.secrets: secrets
 secrets.tar.bz2.gpg: .env.secrets
