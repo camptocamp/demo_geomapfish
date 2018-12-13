@@ -20,4 +20,5 @@ export WMTSCAPABILITIES_PATH
 
 include CONST_Makefile
 
-secrets.tar.bz2.gpg: amazonses_smtp.txt amazonses_s3.txt
+.env: .env.secrets
+secrets.tar.bz2.gpg: .env.secrets

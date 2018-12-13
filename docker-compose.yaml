@@ -9,6 +9,8 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: config
+    environment:
+      - TILEGENERATION_SQS_QUEUE
 
   mapserver:
     extends:
@@ -72,6 +74,9 @@ services:
       - SENTRY_URL
       - SENTRY_CLIENT_ENVIRONMENT
       - SENTRY_CLIENT_RELEASE
+      - SENTRY_TAG_SERVICE=tilecloudchain
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
     volumes_from:
       - config:ro
 
@@ -82,6 +87,13 @@ services:
     mem_limit: 128M
     volumes_from:
       - config:ro
+    environment:
+      - SENTRY_URL
+      - SENTRY_CLIENT_ENVIRONMENT
+      - SENTRY_CLIENT_RELEASE
+      - SENTRY_TAG_SERVICE=tilegeneration_slave
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
 
   geoportal:
     extends:
@@ -92,6 +104,7 @@ services:
       - SENTRY_URL
       - SENTRY_CLIENT_ENVIRONMENT
       - SENTRY_CLIENT_RELEASE
+      - SENTRY_TAG_SERVICE=wsgi
     volumes:
       - /var/sig:/var/sig:ro
 

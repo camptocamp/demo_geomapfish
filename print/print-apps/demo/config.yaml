@@ -6,10 +6,26 @@ defaultToSvg: true
 allowedReferers:
   - !hostnameMatch
     host: geomapfish-demo-dc.camptocamp.com
-  - !localMatch {}
-  - !ipMatch
-    ip: 172.17.0.1
-    mask: 255.255.0.0
+  - !hostnameMatch
+    host: camptocamp.github.io
+  - !hostnameMatch
+    host: fredj.github.io
+  - !hostnameMatch
+    host: ger-benjamin.github.io
+  - !hostnameMatch
+    host: arnaud-morvan.github.io
+  - !hostnameMatch
+    host: julsbreakdown.github.io
+  - !hostnameMatch
+    host: adube.github.io
+  - !hostnameMatch
+    host: localhost
+  - !hostnameMatch
+    host: 127.0.0.1
+  - !hostnameMatch
+    host: localhost
+  - !hostnameMatch
+    host: 127.0.0.1
 
 templates:
   1 A4 portrait: !template
@@ -56,45 +72,36 @@ templates:
         directory: '.'
       - !configureHttpRequests &configureHttpRequests
         httpProcessors:
-          - !mapUri
-            mapping:
-              https?://${VISIBLE_WEB_HOST_RE_ESCAPED}${VISIBLE_ENTRY_POINT_RE_ESCAPED}tiles(.*): "${TILECLOUDCHAIN_INTERNAL_URL}${VISIBLE_ENTRY_POINT}tiles$1"
-          - !mapUri
-            mapping:
-              https?://${VISIBLE_WEB_HOST_RE_ESCAPED}${VISIBLE_ENTRY_POINT_RE_ESCAPED}(.*): "${GEOPORTAL_INTERNAL_URL}${VISIBLE_ENTRY_POINT}$1"
           - !forwardHeaders
             matchers:
-              - !localMatch {}
+              - !hostnameMatch
+                host: geomapfish-demo-dc.camptocamp.com
+              - !hostnameMatch
+                host: camptocamp.github.io
+              - !hostnameMatch
+                host: fredj.github.io
+              - !hostnameMatch
+                host: ger-benjamin.github.io
+              - !hostnameMatch
+                host: arnaud-morvan.github.io
+              - !hostnameMatch
+                host: julsbreakdown.github.io
+              - !hostnameMatch
+                host: adube.github.io
+              - !hostnameMatch
+                host: localhost
+              - !hostnameMatch
+                host: 127.0.0.1
+              - !hostnameMatch
+                host: localhost
+              - !hostnameMatch
+                host: 127.0.0.1
             headers:
               - Cookie
-              - Host
           - !forwardHeaders
             headers:
               - Referer
               - X-Request-ID
-          - !restrictUris
-            matchers:
-              - !localMatch
-                reject: true
-              - !hostnameMatch
-                host: ${GEOPORTAL_INTERNAL_HOST}
-                port: ${GEOPORTAL_INTERNAL_PORT}
-              - !hostnameMatch
-                host: ${TILECLOUDCHAIN_INTERNAL_HOST}
-                port: ${TILECLOUDCHAIN_INTERNAL_PORT}
-              - !ipMatch
-                ip: 10.0.0.0
-                mask: 255.0.0.0
-                reject: true
-              - !ipMatch
-                ip: 172.16.0.0
-                mask: 255.240.0.0
-                reject: true
-              - !ipMatch
-                ip: 192.168.0.0
-                mask: 255.255.0.0
-                reject: true
-              - !acceptAll {}
       - !prepareLegend
         maxWidth: 185
         template: legend.jrxml

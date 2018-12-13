@@ -35,9 +35,6 @@ vars:
 
   sentry_release: __import__('pkg_resources').get_distribution('c2cgeoportal_commons').version[:5]
 
-  aws_access_key_id: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
-  aws_secret_access_key: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
-
   interfaces_config:
     default:
       constants:
@@ -256,8 +253,8 @@ vars:
   smtp:
     host: email-smtp.eu-west-1.amazonaws.com
     ssl: True
-    user: grep 'SMTP Username' amazonses_smtp.txt|awk -F= '{ print $2 }'
-    password: grep 'SMTP Password' amazonses_smtp.txt|awk -F= '{ print $2 }'
+    user: '{SMTP_USER}'
+    password: '{SMTP_PASSWORD}'
 
   headers:
     themes: &headers
@@ -437,16 +434,16 @@ no_interpreted:
   - smtp.user
   - smtp.password
 
-
 interpreted:
   python:
     - sentry_release
-  bash:
-    - smtp.user
-    - smtp.password
-    - aws_access_key_id
-    - aws_secret_access_key
 
 environment:
   - DOCKER_PORT
   - DOCKER_DATABASE
+
+runtime_environment:
+  - name: SMTP_USER
+    default: user
+  - name: SMTP_PASSWORD
+    default: pass
