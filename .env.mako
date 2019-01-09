@@ -19,23 +19,22 @@ GEOPORTAL_INTERNAL_URL=http://geoportal:8080
 TILECLOUDCHAIN_INTERNAL_URL=http://tilecloudchain:8080
 MAPCACHE_URL=http://mapcache:8080/mapcache/
 MAPSERVER_URL=http://mapserver:8080/
+TINYOWS_URL=http://tinyows:8080/
+PRINT_URL=https://mutualized-print.paas-ch-3.camptocamp.com/print/demo_geomapfish_24/
 MEMCACHED_HOST=memcached
 MEMCACHED_PORT=11211
 REDIS_HOST=redis
 REDIS_PORT=6379
 TILEGENERATION_SQS_QUEUE=geomapfish-demo-stretch
 GUNICORN_PARAMS=--bind=:8080 --worker-class=gthread --threads=10 --workers=1 --timeout=60 --max-requests=1000 --max-requests-jitter=100
-TINYOWS_URL=http://tinyows:8080/
-MAPSERVER_URL=http://mapserver:8080/
-PRINT_URL=https://mutualized-print.paas-ch-3.camptocamp.com/print/demo_geomapfish_24/
 DEVSERVER_HOST=webpack-dev-server:8080
 C2C_REDIS_URL=redis://redis:6379
 PGOPTIONS=-c statement_timeout=30000
 CATALINA_OPTS=-Xmx1024m
 C2C_BROADCAST_PREFIX=broadcast_geoportal_
 
-SENTRY_CLIENT_ENVIRONMENT={instance}
-SENTRY_CLIENT_RELEASE={sentry_release}
+SENTRY_CLIENT_ENVIRONMENT=${instance}
+SENTRY_CLIENT_RELEASE=${sentry_release}
 SENTRY_TAG_SERVICE=wsgi
 C2C_LOG_VIEW_ENABLED=TRUE
 C2C_SQL_PROFILER_ENABLED=TRUE
