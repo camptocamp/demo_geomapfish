@@ -106,6 +106,8 @@ vars:
             service: js
             interface: iframe_api
 
+  print_get_redirect: True
+
   authtkt:
     # One day
     timeout: 86400
