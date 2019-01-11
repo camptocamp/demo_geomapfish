@@ -136,6 +136,10 @@ vars:
           - name: ASIT VD
             type: WMTS
             url: https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml
+        ngeoWfsPermalinkOptions:
+          wfsTypes: []
+          defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
+          defaultFeaturePrefix: feature
       dynamic_constants:
         cacheVersion: cache_version
         langUrls: lang_urls
@@ -159,6 +163,8 @@ vars:
           name: shortener_create
         ngeoPermalinkOgcserverUrl:
           name: mapserverproxy
+          params:
+            ogcserver: source for image/png
         fulltextsearchUrl:
           name: fulltextsearch
           params:
@@ -169,8 +175,8 @@ vars:
         gmfTreeUrl:
           name: themes
           params:
-            version: 2
             background: background
+            version: "2"
           dynamic_params:
             interface: interface
     mobile:
@@ -235,14 +241,6 @@ vars:
                 profile: routed-hiking
         ngeoNominatimSearchDefaultParams:
           countrycodes: CH
-        ngeoWfsPermalinkOptions:
-          wfsTypes:
-            - featureType: osm_hospitals
-              label: name
-            - featureType: osm_firestations
-              label: name
-          defaultFeatureNS: http://www.qgis.org/gml
-          defaultFeaturePrefix: feature
       routes:
         gmfProfileJsonUrl:
           name: profile.json
@@ -316,7 +314,6 @@ vars:
       - name: printNativeAngle
         type: boolean
       # Layer
-      - name: copyTo  # V1
       - name: copyable
         type: boolean
       - name: legend
@@ -348,7 +345,7 @@ vars:
       - name: lastUpdateUserColumn
       - name: snappingConfig
         type: json
-      - name: geometryValidation  # V1
+      - name: geometryValidation
         type: boolean
       - name: customOpenLayersOptions
         type: json
@@ -484,6 +481,7 @@ vars:
 
   # For print proxy
   print_url: '{PRINT_URL}'
+  print_get_redirect: false  # if true, redirects (302) directly to the print to fetch the report
 
   mapserver_url: '{MAPSERVER_URL}'
   mapcache_url: '{MAPCACHE_URL}'
@@ -538,6 +536,14 @@ vars:
             style-src 'self' 'unsafe-inline'; \
             img-src * data:; \
             worker-src 'self' blob:"
+    - pattern: '^/static/.*'
+      headers:
+        Access-Control-Allow-Origin: '*'
+        Access-Control-Allow-Headers: X-Requested-With, Content-Type
+    - pattern: '^/static-ngeo/.*'
+      headers:
+        Access-Control-Allow-Origin: '*'
+        Access-Control-Allow-Headers: X-Requested-With, Content-Type
 
   # Control the HTTP headers
   headers:
@@ -550,9 +556,6 @@ vars:
     api: *header
     profile: *header
     raster: *header
-    echo: *header
-    csvecho: *header
-    exportgpxkml: *header
     error: *header
     themes: &auth_header
       cache_control_max_age: 600  # 10 minutes

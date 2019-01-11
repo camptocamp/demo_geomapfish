@@ -47,8 +47,6 @@ vars:
               label: display_name
             - featureType: osm_scale
               label: display_name
-          defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
-          defaultFeaturePrefix: feature
     mobile:
       constants:
         sentryOptions:
@@ -75,12 +73,25 @@ vars:
             interface: desktop
     desktop_alt:
       constants:
+        ngeoWfsPermalinkOptions:
+          wfsTypes:
+            - featureType: osm_hospitals
+              label: name
+            - featureType: osm_firestations
+              label: name
+          defaultFeatureNS: http://www.qgis.org/gml
+          defaultFeaturePrefix: feature
         sentryOptions:
           release: '{sentry_release}'
           environment: '{instance}'
           tags:
             service: js
             interface: desktop_alt
+      routes:
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: QGIS server
     oeview:
       constants:
         sentryOptions:
@@ -289,9 +300,6 @@ vars:
     print: *headers
     layers: *headers
     raster: *headers
-    echo: *headers
-    csvecho: *headers
-    exportgpxkml: *headers
     profile: *headers
     shortener: *headers
     login:
@@ -380,9 +388,6 @@ update_paths:
   - headers.api
   - headers.profile
   - headers.raster
-  - headers.echo
-  - headers.csvecho
-  - headers.exportgpxkml
   - headers.error
   - headers.themes
   - headers.config
@@ -394,6 +399,7 @@ update_paths:
   - headers.shortener
   - headers.login
   - interfaces_config.default.constants
+  - interfaces_config.default.constants.ngeoWfsPermalinkOptions
   - interfaces_config.default.dynamic_constants
   - interfaces_config.default.static
   - interfaces_config.default.routes
