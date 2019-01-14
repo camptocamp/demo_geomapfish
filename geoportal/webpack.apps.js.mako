@@ -65,7 +65,7 @@ const rules = [
 ];
 
 const noDevServer = process.env['NO_DEV_SERVER'] == 'TRUE';
-devServer = dev && !noDevServer;
+const devServer = dev && !noDevServer;
 
 console.log("Use dev mode: " + dev)
 console.log("Use dev server mode: " + devServer)
@@ -73,7 +73,7 @@ console.log("Use dev server mode: " + devServer)
 module.exports = {
   output: {
     path: path.resolve(__dirname, 'demo_geoportal/static-ngeo/build/'),
-    publicPath: devServer ? '${entry_point}dev/' : '${entry_point}static-ngeo/UNUSED_CACHE_VERSION/build/'
+    publicPath: devServer ? '${entry_point}dev/' : '${entry_point}static-ngeo/build/'
   },
   entry: entry,
   module: {
