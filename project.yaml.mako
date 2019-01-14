@@ -11,7 +11,6 @@ managed_files:
   - geoportal/demo_geoportal/__init__\.py
   - \.gitignore
   - spell-ignore-words\.txt
-  - print/print-apps/demo/config\.yaml\.tmpl
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
   - geoportal/demo_geoportal/static-ngeo/less/mobile\.less
@@ -30,4 +29,4 @@ unmanaged_files:
   - geoportal/demo_geoportal/templates/api/mapconfig\.js
   - geoportal/demo_geoportal/templates/api/xapi\.js
   - geoportal/demo_geoportal/templates/api/xapihelp\.html
-  - print/print-apps/demo/.*
+  - print/print-apps/demo/.*\.jrxml
