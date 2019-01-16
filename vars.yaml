@@ -182,7 +182,7 @@ vars:
 
   dbsessions:
     osm:
-      url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/osm
+      url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/{osm_db}
 
   layers:
     geometry_validation: True
