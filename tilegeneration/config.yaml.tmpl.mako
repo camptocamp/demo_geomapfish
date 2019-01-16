@@ -11,7 +11,7 @@ grids:
 caches:
     s3:
         type: s3
-        bucket: camptocamp-gmf-demo-tiles
+        bucket: ${tiles_s3_bucket}}
         folder: ''
         # for GetCapabilities
         http_url: '${web_protocol}://${host}${entry_point}'

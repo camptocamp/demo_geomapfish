@@ -27,4 +27,7 @@ VOLUME /etc/mapserver \
     /usr/local/tomcat/webapps/ROOT/print-apps \
     /etc/haproxy
 
+ENV OSM_PGDATABASE=osm \
+    TILEGENERATION_S3_BUCKET=camptocamp-gmf-demo-tiles
+
 ENTRYPOINT [ "/usr/bin/entrypoint" ]

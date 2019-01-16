@@ -19,7 +19,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "way FROM (SELECT ${columns} FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     FILTER ('[${layer['column']}]' ${layer.get('operator', '=')} '${layer['value']}')
     LABELITEM "name"
@@ -64,7 +64,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity = 'police'"
     LABELITEM "name"
@@ -109,7 +109,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity = 'post_office'"
     LABELITEM "name"
@@ -154,7 +154,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity = 'fuel'"
     LABELITEM "name"
@@ -199,7 +199,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity = 'parking'"
     LABELITEM "name"
@@ -244,7 +244,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,name AS name2,name AS name3,name AS name4,name AS name5,name AS name6,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point WHERE name is not NULL) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=highway = 'bus_stop'"
     LABELITEM "name"
@@ -279,7 +279,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=highway = 'bus_stop'"
     LABELITEM "name"
@@ -326,7 +326,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=tourism in ('alpine_hut','hostel', 'guest_house', 'chalet', 'hotel', 'camp_site')"
     LABELITEM "name"
@@ -429,7 +429,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=tourism = 'information'"
     LABELITEM "name"
@@ -467,7 +467,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=tourism in ('zoo','casino', 'bicycle_rental', 'boat_rental', 'winery', 'brewery', 'museum', 'viewpoint')"
     LABELITEM "name"
@@ -643,7 +643,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity in ('bank','atm')"
     LABELITEM "name"
@@ -700,7 +700,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     FILTER ('[amenity]' = 'place_of_worship')
     LABELITEM "name"
@@ -779,7 +779,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity in ('cafe','restaurant', 'fast_food', 'bar')"
     PROJECTION
@@ -863,7 +863,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity in ('cafe','bar','nightclub', 'cinema')"
     PROJECTION
@@ -973,7 +973,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     EXTENT 473743 74095 839000 306400
@@ -1022,7 +1022,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "way FROM (SELECT ${columns} FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     EXTENT 473743 74095 839000 306400
@@ -1114,7 +1114,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''https://example.com'',''OSM'',460,210)\">Open</a>' AS open,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
 ##    DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''https://geomapfish-demo.camptocamp.com/2.2/wsgi/resourceproxy?target=point&values='||osm_id||''',''OSM'',800,500)\">Open</a>' AS open,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
@@ -1163,7 +1163,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     FILTER ('[amenity]' = 'cinema')
     LABELITEM "name"
@@ -1206,7 +1206,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
     DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     PROJECTION
         "init=epsg:21781"
