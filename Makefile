@@ -12,12 +12,8 @@ NGEO_INTERFACES ?= desktop mobile iframe_api desktop_alt mobile_alt oeview oeedi
 
 DOCKER_WEB_HOST ?= geomapfish-demo-dc.camptocamp.com
 DOCKER_DATABASE ?= demo_geomapfish
-OSM_PGDATABASE ?= osm
-TILEGENERATION_S3_BUCKET ?= camptocamp-gmf-demo-tiles
 export DOCKER_DATABASE
 export DOCKER_PORT
-export OSM_PGDATABASE
-export TILEGENERATION_S3_BUCKET
 
 WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-docker.xml
 export WMTSCAPABILITIES_PATH

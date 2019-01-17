@@ -420,11 +420,13 @@ interpreted:
 environment:
   - DOCKER_PORT
   - DOCKER_DATABASE
-  - OSM_PGDATABASE
-  - TILEGENERATION_S3_BUCKET
 
 runtime_environment:
   - name: SMTP_USER
     default: user
   - name: SMTP_PASSWORD
     default: pass
+  - name: OSM_PGDATABASE
+    default: osm
+  - name: TILEGENERATION_S3_BUCKET
+    default: camptocamp-gmf-demo-tiles
