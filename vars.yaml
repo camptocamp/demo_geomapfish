@@ -125,7 +125,7 @@ vars:
     # The list of functionalities that can be configured
     # through the admin interface.
     available_functionalities:
-      - location
+      - name: location
 
   functionalities:
     # Functionalities that are accessible to anonymous
