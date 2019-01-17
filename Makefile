@@ -8,7 +8,7 @@ endif
 PGSCHEMA ?= main
 PGSCHEMA_STATIC ?= main_static
 
-NGEO_INTERFACES ?= desktop mobile desktop_alt mobile_alt oeview oeedit
+NGEO_INTERFACES ?= desktop mobile iframe_api desktop_alt mobile_alt oeview oeedit
 
 DOCKER_WEB_HOST ?= geomapfish-demo-dc.camptocamp.com
 DOCKER_DATABASE ?= demo_geomapfish
