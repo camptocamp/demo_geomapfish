@@ -10,19 +10,6 @@ vars:
   osm_db: '{OSM_PGDATABASE}'
   tiles_s3_bucket: '{TILEGENERATION_S3_BUCKET}'
 
-  # all interface used to create the apache rewrite rules
-  interfaces:
-    - desktop
-    - mobile
-    - iframe_api
-    - old
-    - edit
-    - routing
-    - desktop_alt
-    - mobile_alt
-    - oeview
-    - oeedit
-
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
   # This also defines the language used for the text search.
