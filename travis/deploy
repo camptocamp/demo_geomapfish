@@ -26,7 +26,7 @@ function publish {
     RELEASE=`echo -n "${TRAVIS_BRANCH}" | sed -e 's/\./-/g'`
     for image in config geoportal
     do
-        oc --namespace gs-gmf-demo import-image "demo-${RELEASE}-c2cgeoportal-${image}" --scheduled true --reference-policy=local
+        oc --namespace gs-gmf-demo import-image "demo-${RELEASE}-c2cgeoportal-${image}:${version}" --scheduled true --reference-policy=local
     done
 }
 
