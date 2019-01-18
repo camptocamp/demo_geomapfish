@@ -9,6 +9,11 @@ vars:
 
   osm_db: '{OSM_PGDATABASE}'
   tiles_s3_bucket: '{TILEGENERATION_S3_BUCKET}'
+  raster_base_path: '{RASTER_BASE_PATH}'
+  aws_access_key_id: '{AWS_ACCESS_KEY_ID}'
+  aws_secret_access_key: '{AWS_SECRET_ACCESS_KEY}'
+  aws_default_region: '{AWS_DEFAULT_REGION}'
+  aws_s3_endpoint: '{AWS_S3_ENDPOINT}'
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -184,10 +189,12 @@ vars:
   # chapter in the integrator documentation.
   raster:
     srtm:
-      file: /var/sig/SRTM21781/srtm.shp
+      file: "{raster_base_path}/SRTM21781.vrt"
+      type: gdal
       round: 1
     aster:
-      file: /var/sig/Aster21781/aster.shp
+      file: "{raster_base_path}/Aster21781.vrt"
+      type: gdal
       round: 1
 
   fulltextsearch:
@@ -430,3 +437,13 @@ runtime_environment:
     default: osm
   - name: TILEGENERATION_S3_BUCKET
     default: camptocamp-gmf-demo-tiles
+  - name: RASTER_BASE_PATH
+    default: /var/sig
+  - name: AWS_ACCESS_KEY_ID
+    default: xxx
+  - name: AWS_SECRET_ACCESS_KEY
+    default: xxx
+  - name: AWS_DEFAULT_REGION
+    default: xxx
+  - name: AWS_S3_ENDPOINT
+    default: xxx

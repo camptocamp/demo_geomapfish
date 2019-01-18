@@ -1077,9 +1077,9 @@ LAYER
     NAME "${layer}"
 % if layer == "aster":
     GROUP "half_query"
-    TILEINDEX /var/sig/Aster21781/aster.shp
+    DATA ${raster_base_path}/Aster21781.vrt
 % else:
-    TILEINDEX /var/sig/SRTM21781/srtm.shp
+    DATA ${raster_base_path}/SRTM21781.vrt
 % endif
     TYPE RASTER
     STATUS ON

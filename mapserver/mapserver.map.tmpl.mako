@@ -35,6 +35,17 @@ MAP
     FONTSET "fonts.conf"
     SYMBOLSET "symbols.sym"
 
+    CONFIG "CPL_VSIL_CURL_USE_CACHE" "TRUE"
+    CONFIG "CPL_VSIL_CURL_CACHE_SIZE" "128000000"
+    CONFIG "CPL_VSIL_CURL_USE_HEAD" "FALSE"
+    CONFIG "GDAL_DISABLE_READDIR_ON_OPEN" "TRUE"
+
+    CONFIG "AWS_ACCESS_KEY_ID" "${aws_access_key_id}"
+    CONFIG "AWS_SECRET_ACCESS_KEY" "${aws_secret_access_key}"
+    CONFIG "AWS_DEFAULT_REGION" "${aws_default_region}"
+    CONFIG "AWS_S3_ENDPOINT" "${aws_s3_endpoint}"
+
+
     OUTPUTFORMAT
         NAME jpeg
         DRIVER "AGG/JPEG"
