@@ -11,11 +11,12 @@ grids:
 caches:
     s3:
         type: s3
-        bucket: ${tiles_s3_bucket}}
+        bucket: ${tiles_s3_bucket}
         folder: ''
         # for GetCapabilities
         http_url: '${web_protocol}://${host}${entry_point}'
         cache_control: 'public, max-age=14400'
+        host: ${aws_s3_endpoint}
 
 # this defines some defaults values for all the layers
 defaults:
