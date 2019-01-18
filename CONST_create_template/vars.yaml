@@ -100,9 +100,6 @@ vars:
   # Do not works with pyramid debug toolbar
   # subdomains: [s1, s2, s3]
 
-  mapserverproxy:
-    default_ogc_server: source for image/png
-
   fulltextsearch:
     languages:
       fr: french
@@ -197,6 +194,7 @@ update_paths:
   - admin_interface.available_metadata
   - admin_interface.functionalities
   - admin_interface.available_in_templates
+  - api
   - authorized_referers
   - authtkt
   - check_collector.disabled
@@ -260,6 +258,7 @@ update_paths:
   - interfaces_theme
   - servers
   - shortener
+  - tinyowsproxy
 
 no_interpreted:
   - reset_password.email_body

@@ -9,6 +9,7 @@
  */
 
 import 'gmf/controllers/iframe_api.scss';
+import angular from 'angular';
 import gmfControllersAbstractAPIController from 'gmf/controllers/AbstractAPIController.js';
 import demoBase from '../demomodule.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';

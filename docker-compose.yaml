@@ -11,6 +11,13 @@ services:
       service: config
     environment:
       - TILEGENERATION_SQS_QUEUE
+      - TILEGENERATION_S3_BUCKET
+      - OSM_PGDATABASE
+      - RASTER_BASE_PATH
+      - AWS_DEFAULT_REGION
+      - AWS_S3_ENDPOINT
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
 
   mapserver:
     extends:
@@ -76,6 +83,7 @@ services:
       - SENTRY_CLIENT_ENVIRONMENT
       - SENTRY_CLIENT_RELEASE
       - SENTRY_TAG_SERVICE=tilecloudchain
+      - AWS_DEFAULT_REGION
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
     volumes_from:
@@ -93,6 +101,7 @@ services:
       - SENTRY_CLIENT_ENVIRONMENT
       - SENTRY_CLIENT_RELEASE
       - SENTRY_TAG_SERVICE=tilegeneration_slave
+      - AWS_DEFAULT_REGION
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
 
@@ -106,6 +115,12 @@ services:
       - SENTRY_CLIENT_ENVIRONMENT
       - SENTRY_CLIENT_RELEASE
       - SENTRY_TAG_SERVICE=wsgi
+      - OSM_PGDATABASE
+      - RASTER_BASE_PATH
+      - AWS_DEFAULT_REGION
+      - AWS_S3_ENDPOINT
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
     volumes:
       - /var/sig:/var/sig:ro
 

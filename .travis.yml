@@ -7,20 +7,5 @@ addons:
     packages:
       - python3-netifaces
 
-env:
-  global:
-    - DOCKER_USERNAME=dockerhubc2c
-    - secure: "vpSNV7FOz6TaULaqqEfviKizsUnROqBKGEurvM2D/02mQQgINl5BRDuZMyCiPB+m96hbbO4IDxuO3r9Fvnsn3faDrze/z\
-        jKC+/npztumqNYr8wSDwwwiArQQrYbY+nSQoswv5xYPKVRhTKsbtvYHqIG3c+1cgSQ5ODsvbZTWQXM="
-    - OPENSHIFT_URL=https://openshift-ch-3.camptocamp.com/
-    - OPENSHIFT_USERNAME=pvalsecchi
-    - secure: "XFk3jPtVYaYEwWgo6aA3JhrbruBzGgN6lQzXrYla9XhmmTuLX0S40SQk5iBakDosNOMhy9ys6bL8V1uhcOtzcY8V52U7s\
-        uDN9odk95focG+2epgPuslOtDsXHVZ1fD/ErKTepE1qioIqqGmXLx3+Ol6oABPso7Ety75BtctBxa0="
-
-
 script:
   - ./docker-run make checks
-  - ./docker-run make docker-build-config docker-build-geoportal
-
-after_success:
-  - ./travis/deploy

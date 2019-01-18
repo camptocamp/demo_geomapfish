@@ -169,8 +169,11 @@ vars:
   # architecture.
   external_themes_url:
 
-  mapserverproxy:
-    default_ogc_server: Main PNG
+  tinyowsproxy:
+    ogc_server: Main PNG
+
+  api:
+    ogc_server: Main PNG
 
   dbsessions:
     osm:
@@ -340,6 +343,7 @@ vars:
     - https://camptocamp.github.io
 
   # Checker configuration
+  checker_ogc_server: Main PNG
   checker:
     fulltextsearch:
       search: pau
@@ -360,14 +364,15 @@ vars:
             longitudeFirst: true
             layers: []
           legend: {}
-    phantomjs:
-      disable: [desktop, mobile]
+#    phantomjs:
+#      disable: [desktop, mobile]
 
 update_paths:
   - admin_interface.available_functionalities
   - admin_interface.available_metadata
   - admin_interface.functionalities
   - admin_interface.available_in_templates
+  - api
   - authorized_referers
   - authtkt
   - check_collector.disabled
@@ -412,6 +417,7 @@ update_paths:
   - interfaces_theme
   - servers
   - shortener
+  - tinyowsproxy
 
 no_interpreted:
   - reset_password.email_body
