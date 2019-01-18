@@ -11,6 +11,7 @@ managed_files:
   - geoportal/demo_geoportal/__init__\.py
   - \.gitignore
   - spell-ignore-words\.txt
+  - \.travis\.yml
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
   - geoportal/demo_geoportal/static-ngeo/less/mobile\.less
