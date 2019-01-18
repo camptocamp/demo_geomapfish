@@ -12,8 +12,12 @@ __pycache__/
 /tilegeneration/config.yaml.tmpl
 /tilegeneration/config.yaml.mako
 /print/print-apps/demo/config.yaml.mako
+/mapserver/demo.map.tmpl
+/mapserver/edit.map.tmpl
 /mapserver/mapserver.map.tmpl
-/mapserver/*.map.tmpl
+/mapserver/osm.map.tmpl
+/mapserver/private.map.tmpl
+/mapserver/tinyows.xml
 /mapserver/tinyows.xml.mako
 /mapserver/tinyows.xml.tmpl
 /qgisserver/geomapfish.yaml
