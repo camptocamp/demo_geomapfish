@@ -104,6 +104,7 @@ server:
     mapcache_base: '${mapcache_url}'
     wmts_path: tiles
     static_path: static_tiles
+    admin_path: tiles/admin
     expires: 8  # 8 hours
 
 mapcache:
