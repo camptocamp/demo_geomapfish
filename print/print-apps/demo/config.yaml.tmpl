@@ -3,7 +3,7 @@
 throwErrorOnExtraParameters: true
 defaultToSvg: true
 
-allowedReferers:
+allowedReferers: &allowedHosts
   - !hostnameMatch
     host: geomapfish-demo-dc.camptocamp.com
   - !hostnameMatch
@@ -71,29 +71,7 @@ templates:
       - !configureHttpRequests &configureHttpRequests
         httpProcessors:
           - !forwardHeaders
-            matchers:
-              - !hostnameMatch
-                host: geomapfish-demo-dc.camptocamp.com
-              - !hostnameMatch
-                host: camptocamp.github.io
-              - !hostnameMatch
-                host: fredj.github.io
-              - !hostnameMatch
-                host: ger-benjamin.github.io
-              - !hostnameMatch
-                host: arnaud-morvan.github.io
-              - !hostnameMatch
-                host: julsbreakdown.github.io
-              - !hostnameMatch
-                host: adube.github.io
-              - !hostnameMatch
-                host: localhost
-              - !hostnameMatch
-                host: 127.0.0.1
-              - !hostnameMatch
-                host: localhost
-              - !hostnameMatch
-                host: 127.0.0.1
+            matchers: *allowedHosts
             headers:
               - Cookie
           - !forwardHeaders
