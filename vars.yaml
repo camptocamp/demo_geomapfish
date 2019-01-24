@@ -226,6 +226,7 @@ vars:
       Sincerely yours
       The GeoMapfish team
     allowed_hosts:
+      - "{host}"
       - camptocamp.github.io
       - geomapfish-demo-dc.camptocamp.com
       - fredj.github.io
@@ -256,7 +257,7 @@ vars:
     email_body: |
       Hello {user},
 
-      You have a new account on GeoMapFish: https://geomapfish-demo-dc.camptocamp.com/2.3
+      You have a new account on GeoMapFish: https://gmf-demo-2-4.paas-ch-3.camptocamp.com/2.4
       Your user name is: {user}
       Your password is: {password}
 
@@ -274,8 +275,8 @@ vars:
       cache_control_max_age: 600  # 10 minutes
       access_control_max_age: 30
       access_control_allow_origin:
+        - "{web_protocol}://{host}"
         - https://camptocamp.github.io
-        - https://geomapfish-demo-dc.camptocamp.com
         - https://fredj.github.io
         - https://ger-benjamin.github.io
         - https://arnaud-morvan.github.io
@@ -302,29 +303,10 @@ vars:
     raster: *headers
     profile: *headers
     shortener: *headers
-    login:
-      cache_control_max_age: 600  # 10 minutes
-      access_control_max_age: 30
-      access_control_allow_origin:
-        - https://camptocamp.github.io
-        - https://geomapfish-demo-dc.camptocamp.com
-        - https://fredj.github.io
-        - https://ger-benjamin.github.io
-        - https://arnaud-morvan.github.io
-        - https://julsbreakdown.github.io
-        - https://adube.github.io
-        - https://localhost:3000
-        - https://localhost
-        - https://127.0.0.1:3000
-        - https://127.0.0.1
-        - http://localhost:3000
-        - http://localhost
-        - http://127.0.0.1:3000
-        - http://127.0.0.1
+    login: *headers
 
   authorized_referers:
     - https://camptocamp.github.io
-    - https://geomapfish-demo-dc.camptocamp.com
     - https://fredj.github.io
     - https://ger-benjamin.github.io
     - https://arnaud-morvan.github.io
