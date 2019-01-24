@@ -44,7 +44,7 @@ C2C_REQUESTS_DEFAULT_TIMEOUT=120
 OSM_PGDATABASE=osm
 TILEGENERATION_S3_BUCKET=camptocamp-gmf-demo-tiles
 RASTER_BASE_PATH=/var/sig
-AWS_DEFAULT_REGION=unused
-AWS_S3_ENDPOINT=unused
+#AWS_DEFAULT_REGION=unused
+#AWS_S3_ENDPOINT=unused
 
 <%include file=".env.secrets" />
