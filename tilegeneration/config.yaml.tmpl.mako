@@ -107,10 +107,8 @@ server:
     admin_path: tiles/admin
     expires: 8  # 8 hours
     predefined_commands:
-    -   name: Generation layer plan
-        command: generate_tiles --role=master --layer=plan
-    -   name: Generation layer ortho
-        command: generate_tiles --role=master --layer=ortho
+    -   name: Generation layer map
+        command: generate_tiles --role=master --layer=map
 
 mapcache:
     config_file: mapcache/mapcache.xml.tmpl
