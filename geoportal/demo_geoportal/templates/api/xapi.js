@@ -171,10 +171,7 @@ demo.Map = function(config) {
         return new demo.Map(config);
     }
 
-<%
-params = {'ogcserver': 'Main PNG'}
-%>
-    this.wmsURL = "${request.route_url('mapserverproxy', _query=params) | n}";
+    this.wmsURL = "${request.route_url('mapserverproxy') | n}";
     this.queryableLayers = ${queryable_layers | n};
     return cgxp.api.Map.call(this, config);
 };

@@ -1,7 +1,4 @@
 /**
- * @module demo.oeedit.Controller
- */
-/**
  * Application entry point.
  *
  * This file includes `goog.require`'s for all the components/directives used
@@ -9,14 +6,13 @@
  */
 
 import angular from 'angular';
-import gmfControllersAbstractDesktopController from 'gmf/controllers/AbstractDesktopController.js';
+import gmfControllersAbstractDesktopController, {AbstractDesktopController} from 'gmf/controllers/AbstractDesktopController.js';
 import './sass/oeedit.scss';
 import demoBase from '../demomodule.js';
 import gmfObjecteditingModule from 'gmf/objectediting/module.js';
 import ngeoMiscToolActivate from 'ngeo/misc/ToolActivate.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
-import {inherits as olUtilInherits} from 'ol/util.js';
 import olCollection from 'ol/Collection.js';
 import olLayerVector from 'ol/layer/Vector.js';
 import olSourceVector from 'ol/source/Vector.js';
@@ -30,212 +26,209 @@ if (!window.requestAnimationFrame) {
   window.location = 'http://geomapfish.org/';
 }
 
-/**
- * @param {angular.IScope} $scope Scope.
- * @param {angular.auto.IInjectorService} $injector Main injector.
- * @param {angular.ITimeoutService} $timeout Angular timeout service.
- * @constructor
- * @extends {gmf.controllers.AbstractDesktopController}
- * @ngInject
- * @export
- */
-const exports = function($scope, $injector, $timeout) {
-
+class Controller extends AbstractDesktopController {
   /**
-   * @type {boolean}
-   * @export
+   * @param {angular.IScope} $scope Scope.
+   * @param {angular.auto.IInjectorService} $injector Main injector.
+   * @param {angular.ITimeoutService} $timeout Angular timeout service.
+   * @ngInject
    */
-  this.oeEditActive = false;
+  constructor($scope, $injector, $timeout) {
+    super({
+      srid: 21781,
+      mapViewConfig: {
+        center: [632464, 185457],
+        zoom: 3,
+        resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+      }
+    }, $scope, $injector);
 
-  gmfControllersAbstractDesktopController.call(this, {
-    srid: 21781,
-    mapViewConfig: {
-      center: [632464, 185457],
-      zoom: 3,
-      resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
-    }
-  }, $scope, $injector);
+    /**
+     * @type {boolean}
+     * @export
+     */
+    this.oeEditActive = false;
 
-  /**
-   * The ngeo ToolActivate manager service.
-   * @type {ngeo.misc.ToolActivateMgr}
-   */
-  const ngeoToolActivateMgr = $injector.get('ngeoToolActivateMgr');
+    /**
+     * The ngeo ToolActivate manager service.
+     * @type {import('ngeo/misc/ToolActivateMgr.js').default}
+     */
+    const ngeoToolActivateMgr = $injector.get('ngeoToolActivateMgr');
 
-  ngeoToolActivateMgr.unregisterGroup('mapTools');
+    ngeoToolActivateMgr.unregisterGroup('mapTools');
 
-  const oeEditToolActivate = new ngeoMiscToolActivate(this, 'oeEditActive');
-  ngeoToolActivateMgr.registerTool('mapTools', oeEditToolActivate, true);
+    const oeEditToolActivate = new ngeoMiscToolActivate(this, 'oeEditActive');
+    ngeoToolActivateMgr.registerTool('mapTools', oeEditToolActivate, true);
 
-  const queryToolActivate = new ngeoMiscToolActivate(this, 'queryActive');
-  ngeoToolActivateMgr.registerTool('mapTools', queryToolActivate, false);
+    const queryToolActivate = new ngeoMiscToolActivate(this, 'queryActive');
+    ngeoToolActivateMgr.registerTool('mapTools', queryToolActivate, false);
 
-  // Set edit tool as default active one
-  $timeout(() => {
-    this.oeEditActive = true;
-  });
+    // Set edit tool as default active one
+    $timeout(() => {
+      this.oeEditActive = true;
+    });
 
-  /**
-   * @type {ol.source.Vector}
-   * @private
-   */
-  this.vectorSource_ = new olSourceVector({
-    wrapX: false
-  });
-
-  /**
-   * @type {ol.layer.Vector}
-   * @private
-   */
-  this.vectorLayer_ = new olLayerVector({
-    source: this.vectorSource_
-  });
-
-  /**
-   * @type {ol.Collection.<ol.Feature>}
-   * @export
-   */
-  this.sketchFeatures = new olCollection();
-
-  /**
-   * @type {ol.layer.Vector}
-   * @private
-   */
-  this.sketchLayer_ = new olLayerVector({
-    source: new olSourceVector({
-      features: this.sketchFeatures,
+    /**
+     * @type {import("ol/source/Vector.js").default}
+     * @private
+     */
+    this.vectorSource_ = new olSourceVector({
       wrapX: false
-    })
-  });
+    });
 
-  /**
-   * @type {gmf.theme.Themes} gmfObjectEditingManager The gmf theme service
-   */
-  const gmfThemes = $injector.get('gmfThemes');
+    /**
+     * @type {import("ol/layer/Vector.js").default}
+     * @private
+     */
+    this.vectorLayer_ = new olLayerVector({
+      source: this.vectorSource_
+    });
 
-  gmfThemes.getThemesObject().then((themes) => {
-    if (themes) {
-      // Add layer vector after
-      this.map.addLayer(this.vectorLayer_);
-      this.map.addLayer(this.sketchLayer_);
+    /**
+     * @type {import("ol/Collection.js").default.<import("ol/Feature.js").default>}
+     * @export
+     */
+    this.sketchFeatures = new olCollection();
+
+    /**
+     * @type {import("ol/layer/Vector.js").default}
+     * @private
+     */
+    this.sketchLayer_ = new olLayerVector({
+      source: new olSourceVector({
+        features: this.sketchFeatures,
+        wrapX: false
+      })
+    });
+
+    /**
+     * @type {import("gmf/theme/Themes.js").ThemesService} gmfObjectEditingManager The gmf theme service
+     */
+    const gmfThemes = $injector.get('gmfThemes');
+
+    gmfThemes.getThemesObject().then((themes) => {
+      if (themes) {
+        // Add layer vector after
+        this.map.addLayer(this.vectorLayer_);
+        this.map.addLayer(this.sketchLayer_);
+      }
+    });
+
+    /**
+     * @type {import("gmf/objectediting/Manager.js").ObjecteditingManagerService} gmfObjectEditingManager The gmf
+     *     ObjectEditing manager service.
+     */
+    const gmfObjectEditingManager = $injector.get('gmfObjectEditingManager');
+
+    /**
+     * @type {string|undefined}
+     * @export
+     */
+    this.oeGeomType = gmfObjectEditingManager.getGeomType();
+
+    /**
+     * @type {number|undefined}
+     * @export
+     */
+    this.oeLayerNodeId = gmfObjectEditingManager.getLayerNodeId();
+
+    /**
+     * @type {?import("ol/Feature.js").default}
+     * @export
+     */
+    this.oeFeature = null;
+
+    gmfObjectEditingManager.getFeature().then((feature) => {
+      this.oeFeature = feature;
+      if (feature) {
+        this.vectorSource_.addFeature(feature);
+      }
+    });
+
+    /**
+     * @type {Array.<string>}
+     * @export
+     */
+    this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
+
+    /**
+     * @type {!Array.<number>}
+     * @export
+     */
+    this.scaleSelectorValues = [250000, 100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 250, 100, 50];
+
+    /**
+     * @type {Array.<string>}
+     * @export
+     */
+    this.elevationLayers = ['aster', 'srtm'];
+
+    /**
+     * @type {string}
+     * @export
+     */
+    this.selectedElevationLayer = this.elevationLayers[0];
+
+    /**
+     * @type {Object.<string, ProfileLineConfiguration>}
+     * @export
+     */
+    this.profileLinesconfiguration = {
+      'aster': {color: '#0000A0'},
+      'srtm': {color: '#00A000'}
+    };
+
+    /**
+     * @type {Array.<MousePositionProjection>}
+     * @export
+     */
+    this.mousePositionProjections = [{
+      code: EPSG2056,
+      label: 'CH1903+ / LV95',
+      filter: 'ngeoNumberCoordinates::{x}, {y} m'
+    }, {
+      code: EPSG21781,
+      label: 'CH1903 / LV03',
+      filter: 'ngeoNumberCoordinates::{x}, {y} m'
+    }, {
+      code: 'EPSG:4326',
+      label: 'WGS84',
+      filter: 'ngeoDMSCoordinates:2'
+    }];
+
+    // Allow angular-gettext-tools to collect the strings to translate
+    /** @type {angular.gettext.gettextCatalog} */
+    const gettextCatalog = $injector.get('gettextCatalog');
+    gettextCatalog.getString('Add a theme');
+    gettextCatalog.getString('Add a sub theme');
+    gettextCatalog.getString('Add a layer');
+
+    if ($injector.has('sentryUrl')) {
+      const options = $injector.has('sentryOptions') ? $injector.get('sentryOptions') : undefined;
+      const raven = new Raven();
+      raven.config($injector.get('sentryUrl'), options)
+        .addPlugin(RavenPluginsAngular)
+        .install();
     }
-  });
-
-  /**
-   * @type {gmf.objectediting.Manager} gmfObjectEditingManager The gmf
-   *     ObjectEditing manager service.
-   */
-  const gmfObjectEditingManager = $injector.get('gmfObjectEditingManager');
-
-  /**
-   * @type {string|undefined}
-   * @export
-   */
-  this.oeGeomType = gmfObjectEditingManager.getGeomType();
-
-  /**
-   * @type {number|undefined}
-   * @export
-   */
-  this.oeLayerNodeId = gmfObjectEditingManager.getLayerNodeId();
-
-  /**
-   * @type {?ol.Feature}
-   * @export
-   */
-  this.oeFeature = null;
-
-  gmfObjectEditingManager.getFeature().then((feature) => {
-    this.oeFeature = feature;
-    if (feature) {
-      this.vectorSource_.addFeature(feature);
-    }
-  });
-
-  /**
-   * @type {Array.<string>}
-   * @export
-   */
-  this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
-
-  /**
-   * @type {!Array.<number>}
-   * @export
-   */
-  this.scaleSelectorValues = [250000, 100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 250, 100, 50];
-
-  /**
-   * @type {Array.<string>}
-   * @export
-   */
-  this.elevationLayers = ['aster', 'srtm'];
-
-  /**
-   * @type {string}
-   * @export
-   */
-  this.selectedElevationLayer = this.elevationLayers[0];
-
-  /**
-   * @type {Object.<string, gmfx.ProfileLineConfiguration>}
-   * @export
-   */
-  this.profileLinesconfiguration = {
-    'aster': {color: '#0000A0'},
-    'srtm': {color: '#00A000'}
-  };
-
-  /**
-   * @type {Array.<gmfx.MousePositionProjection>}
-   * @export
-   */
-  this.mousePositionProjections = [{
-    code: EPSG2056,
-    label: 'CH1903+ / LV95',
-    filter: 'ngeoNumberCoordinates::{x}, {y} m'
-  }, {
-    code: EPSG21781,
-    label: 'CH1903 / LV03',
-    filter: 'ngeoNumberCoordinates::{x}, {y} m'
-  }, {
-    code: 'EPSG:4326',
-    label: 'WGS84',
-    filter: 'ngeoDMSCoordinates:2'
-  }];
-
-  // Allow angular-gettext-tools to collect the strings to translate
-  /** @type {angular.gettext.gettextCatalog} */
-  const gettextCatalog = $injector.get('gettextCatalog');
-  gettextCatalog.getString('Add a theme');
-  gettextCatalog.getString('Add a sub theme');
-  gettextCatalog.getString('Add a layer');
-
-  if ($injector.has('sentryUrl')) {
-    const options = $injector.has('sentryOptions') ? $injector.get('sentryOptions') : undefined;
-    const raven = new Raven();
-    raven.config($injector.get('sentryUrl'), options)
-      .addPlugin(RavenPluginsAngular)
-      .install();
   }
-};
+}
 
-olUtilInherits(exports, gmfControllersAbstractDesktopController);
-
-exports.module = angular.module('Appoeedit', [
-  demoBase.module.name,
-  gmfControllersAbstractDesktopController.module.name,
+const module = angular.module('Appoeedit', [
+  demoBase.name,
+  gmfControllersAbstractDesktopController.name,
   gmfObjecteditingModule.name,
 ]);
 
-exports.module.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
-exports.module.run(/* @ngInject */ ($templateCache) => {
+module.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
+module.run(/* @ngInject */ ($templateCache) => {
+  // @ts-ignore: webpack
   $templateCache.put('gmf/contextualdata', require('./contextualdata.html'));
 });
 
-exports.module.value('gmfPermalinkOptions', /** @type {gmfx.PermalinkOptions} */ ({
+module.value('gmfPermalinkOptions', /** @type {PermalinkOptions} */ ({
   pointRecenterZoom: 10
 }));
 
-exports.module.controller('OEEditController', exports);
+module.controller('OEEditController', Controller);
 
-export default exports;
+export default module;

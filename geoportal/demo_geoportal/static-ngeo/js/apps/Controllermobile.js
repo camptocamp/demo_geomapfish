@@ -1,7 +1,4 @@
 /**
- * @module demo.mobile.Controller
- */
-/**
  * Application entry point.
  *
  * This file includes `goog.require`'s for all the components/directives used
@@ -9,12 +6,11 @@
  */
 
 import angular from 'angular';
-import gmfControllersAbstractMobileController from 'gmf/controllers/AbstractMobileController.js';
+import gmfControllersAbstractMobileController, {AbstractMobileController} from 'gmf/controllers/AbstractMobileController.js';
 import 'gmf/controllers/mobile.scss';
 import demoBase from '../demomodule.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
-import {inherits as olUtilInherits} from 'ol/util.js';
 import Raven from 'raven-js/src/raven.js';
 import RavenPluginsAngular from 'raven-js/plugins/angular.js';
 
@@ -25,56 +21,53 @@ if (!window.requestAnimationFrame) {
   window.location = 'http://geomapfish.org/';
 }
 
-/**
- * @param {angular.IScope} $scope Scope.
- * @param {angular.auto.IInjectorService} $injector Main injector.
- * @constructor
- * @extends {gmf.controllers.AbstractMobileController}
- * @ngInject
- * @export
- */
-const exports = function($scope, $injector) {
-  gmfControllersAbstractMobileController.call(this, {
-    autorotate: false,
-    srid: 21781,
-    mapViewConfig: {
-      center: [632464, 185457],
-      zoom: 3,
-      resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+class Controller extends AbstractMobileController {
+  /**
+   * @param {angular.IScope} $scope Scope.
+   * @param {angular.auto.IInjectorService} $injector Main injector.
+   * @ngInject
+   */
+  constructor($scope, $injector) {
+    super({
+      autorotate: false,
+      srid: 21781,
+      mapViewConfig: {
+        center: [632464, 185457],
+        zoom: 3,
+        resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+      }
+    }, $scope, $injector);
+
+    /**
+     * @type {Array.<import("gmf/mobile/measure.js").default.pointComponent.LayerConfig>}
+     * @export
+     */
+    this.elevationLayersConfig = [
+      {name: 'aster', unit: 'm'},
+      {name: 'srtm', unit: 'm'}
+    ];
+
+    /**
+     * @type {Array.<string>}
+     * @export
+     */
+    this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
+
+    if ($injector.has('sentryUrl')) {
+      const options = $injector.has('sentryOptions') ? $injector.get('sentryOptions') : undefined;
+      const raven = new Raven();
+      raven.config($injector.get('sentryUrl'), options)
+        .addPlugin(RavenPluginsAngular)
+        .install();
     }
-  }, $scope, $injector);
-
-  /**
-   * @type {Array.<gmf.mobile.measure.pointComponent.LayerConfig>}
-   * @export
-   */
-  this.elevationLayersConfig = [
-    {name: 'aster', unit: 'm'},
-    {name: 'srtm', unit: 'm'}
-  ];
-
-  /**
-   * @type {Array.<string>}
-   * @export
-   */
-  this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
-
-  if ($injector.has('sentryUrl')) {
-    const options = $injector.has('sentryOptions') ? $injector.get('sentryOptions') : undefined;
-    const raven = new Raven();
-    raven.config($injector.get('sentryUrl'), options)
-      .addPlugin(RavenPluginsAngular)
-      .install();
   }
-};
+}
 
-olUtilInherits(exports, gmfControllersAbstractMobileController);
-
-exports.module = angular.module('Appmobile', [
-  demoBase.module.name,
-  gmfControllersAbstractMobileController.module.name,
+const module = angular.module('Appmobile', [
+  demoBase.name,
+  gmfControllersAbstractMobileController.name,
 ]);
 
-exports.module.controller('MobileController', exports);
+module.controller('MobileController', Controller);
 
-export default exports;
+export default module;
