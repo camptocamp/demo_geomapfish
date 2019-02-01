@@ -25,9 +25,7 @@ unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/js/apps/oeview\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/oeedit\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/image/.*
-  - geoportal/demo_geoportal/templates/api/api\.js
   - geoportal/demo_geoportal/templates/api/apihelp\.html
   - geoportal/demo_geoportal/templates/api/mapconfig\.js
-  - geoportal/demo_geoportal/templates/api/xapi\.js
   - geoportal/demo_geoportal/templates/api/xapihelp\.html
   - print/print-apps/demo/.*\.jrxml

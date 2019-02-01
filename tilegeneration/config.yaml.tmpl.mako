@@ -103,9 +103,12 @@ sqs:
 server:
     mapcache_base: '${mapcache_url}'
     wmts_path: tiles
-    static_path: static_tiles
+    static_path: tiles/static
     admin_path: tiles/admin
     expires: 8  # 8 hours
+    predefined_commands:
+    -   name: Generation layer map
+        command: generate_tiles --role=master --layer=map
 
 mapcache:
     config_file: mapcache/mapcache.xml.tmpl
