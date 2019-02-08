@@ -3,6 +3,15 @@
 throwErrorOnExtraParameters: true
 defaultToSvg: true
 
+smtp:
+    username: ${SMTP_USER}
+    password: ${SMTP_PASSWORD}
+    fromAddress: info@camptocamp.com
+    host: email-smtp.eu-west-1.amazonaws.com
+    ssl: True
+    subject: Map from GeoMapFish demo
+    body: Here is your printed map form GeoMapFish demo
+
 allowedReferers: &allowedHosts
   - !hostnameMatch
     host: geomapfish-demo-dc.camptocamp.com
