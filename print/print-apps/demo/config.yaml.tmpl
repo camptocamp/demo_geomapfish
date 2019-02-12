@@ -116,7 +116,7 @@ templates:
     processors: &processors
       - !reportBuilder  # compile all reports in current directory
         directory: '.'
-      - !configureHttpRequests *configureHttpRequests
+      - *configureHttpRequests
 
   2 A4 landscape: !template
     reportTemplate: A4_Landscape.jrxml
