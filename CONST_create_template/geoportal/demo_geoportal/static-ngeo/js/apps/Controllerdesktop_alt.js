@@ -1,7 +1,7 @@
 /**
  * Application entry point.
  *
- * This file includes `goog.require`'s for all the components/directives used
+ * This file includes `import`'s for all the components/directives used
  * by the HTML page and the controller to provide the configuration.
  */
 import angular from 'angular';
@@ -14,6 +14,7 @@ import ngeoRoutingModule from 'ngeo/routing/module.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink.js';
+import {Circle, Fill, Stroke, Style} from 'ol/style';
 import Raven from 'raven-js/src/raven.js';
 import RavenPluginsAngular from 'raven-js/plugins/angular.js';
 
@@ -24,6 +25,10 @@ if (!window.requestAnimationFrame) {
   window.location = 'http://geomapfish.org/';
 }
 
+
+/**
+ * @private
+ */
 class Controller extends AbstractDesktopController {
   /**
    * @param {angular.IScope} $scope Scope.
@@ -42,51 +47,43 @@ class Controller extends AbstractDesktopController {
 
     /**
      * @type {Array.<string>}
-     * @export
      */
     this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
 
     /**
      * @type {number}
-     * @export
      */
     this.searchDelay = 500;
 
     /**
      * @type {boolean}
-     * @export
      */
     this.showInfobar = true;
 
     /**
      * @type {!Array.<number>}
-     * @export
      */
     this.scaleSelectorValues = [250000, 100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 250, 100, 50];
 
     /**
      * @type {Array.<string>}
-     * @export
      */
     this.elevationLayers = ['srtm'];
 
     /**
-     * @type {Object.<string, import("gmf/raster/component.js").default.LayerConfig>}
-     * @export
+     * @type {Object<string, import('gmf/mobile/measure/pointComponent.js').LayerConfig>}
      */
     this.elevationLayersConfig = {};
 
     /**
-     * @type {Object.<string, ProfileLineConfiguration>}
-     * @export
+     * @type {Object<string, import('gmf/profile/component.js').ProfileLineConfiguration>}
      */
     this.profileLinesconfiguration = {
       'srtm': {}
     };
 
     /**
-     * @type {Array.<MousePositionProjection>}
-     * @export
+     * @type {Array<import('gmf/map/mousepositionComponent.js').MousePositionProjection>}
      */
     this.mousePositionProjections = [{
       code: 'EPSG:2056',
@@ -104,12 +101,29 @@ class Controller extends AbstractDesktopController {
 
     /**
      * @type {GridMergeTabs}
-     * @export
      */
     this.gridMergeTabs = {
       'OSM_time_merged': ['osm_time', 'osm_time2'],
       'transport (merged)': ['fuel', 'parking'],
       'Learning [merged]': ['information', 'bus_stop']
+    };
+
+    const radius = 5;
+    const fill = new Fill({color: [255, 255, 255, 0.6]});
+    const stroke = new Stroke({color: [255, 0, 0, 1], width: 2});
+    const image = new Circle({fill, radius, stroke});
+    const default_search_style = new Style({
+      fill,
+      image,
+      stroke
+    });
+
+    /**
+     * @type {Object.<string, ol.style.Style>} Map of styles for search overlay.
+     * @export
+     */
+    this.searchStyles = {
+      'default': default_search_style
     };
 
     // Allow angular-gettext-tools to collect the strings to translate
@@ -124,7 +138,6 @@ class Controller extends AbstractDesktopController {
 
     /**
      * @type {string}
-     * @export
      */
     this.bgOpacityOptions = 'Test aus Olten';
 
@@ -139,7 +152,6 @@ class Controller extends AbstractDesktopController {
 
   /**
    * @param {JQueryEventObject} event keydown event.
-   * @export
    */
   onKeydown(event) {
     if (event.ctrlKey && event.key === 'p') {
@@ -149,7 +161,9 @@ class Controller extends AbstractDesktopController {
   }
 }
 
-
+/**
+ * @hidden
+ */
 const module = angular.module('Appdesktop_alt', [
   demoBase.name,
   gmfControllersAbstractDesktopController.name,

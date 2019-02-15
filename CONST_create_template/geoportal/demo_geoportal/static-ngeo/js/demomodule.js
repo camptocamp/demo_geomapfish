@@ -3,25 +3,20 @@
  * application's main namespace. And it defines the application's Angular
  * module.
  */
+import {decodeQueryString} from 'ngeo/utils.js';
+import angular from 'angular';
 
 /**
- * @module demo
+ * @type {!angular.IModule}
  */
-const exports = {};
+const module = angular.module('demo', []);
 
-import ngeoUtils from 'ngeo/utils.js';
-
-/**
- * @type {!angular.Module}
- */
-exports.module = angular.module('demo', []);
-
-exports.module.config(['$compileProvider', function($compileProvider) {
-  if (!('debug' in ngeoUtils.decodeQueryString(window.location.search))) {
+module.config(['$compileProvider', function($compileProvider) {
+  if (!('debug' in decodeQueryString(window.location.search))) {
     // Disable the debug info
     $compileProvider.debugInfoEnabled(false);
   }
 }]);
 
 
-export default exports;
+export default module;
