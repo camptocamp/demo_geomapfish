@@ -1,7 +1,7 @@
 /**
  * Application entry point.
  *
- * This file includes `goog.require`'s for all the components/directives used
+ * This file includes `import`'s for all the components/directives used
  * by the HTML page and the controller to provide the configuration.
  */
 
@@ -21,6 +21,10 @@ if (!window.requestAnimationFrame) {
   window.location = 'http://geomapfish.org/';
 }
 
+
+/**
+ * @private
+ */
 class Controller extends AbstractMobileController {
   /**
    * @param {angular.IScope} $scope Scope.
@@ -39,8 +43,7 @@ class Controller extends AbstractMobileController {
     }, $scope, $injector);
 
     /**
-     * @type {Array.<import("gmf/mobile/measure.js").default.pointComponent.LayerConfig>}
-     * @export
+     * @type {Array<import('gmf/mobile/measure/pointComponent.js').LayerConfig>}
      */
     this.elevationLayersConfig = [
       {name: 'aster', unit: 'm'},
@@ -48,8 +51,7 @@ class Controller extends AbstractMobileController {
     ];
 
     /**
-     * @type {Array.<string>}
-     * @export
+     * @type {Array<string>}
      */
     this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
 
@@ -63,6 +65,9 @@ class Controller extends AbstractMobileController {
   }
 }
 
+/**
+ * @hidden
+ */
 const module = angular.module('Appmobile', [
   demoBase.name,
   gmfControllersAbstractMobileController.name,

@@ -3,11 +3,11 @@
  * application's main namespace. And it defines the application's Angular
  * module.
  */
-
 import {decodeQueryString} from 'ngeo/utils.js';
+import angular from 'angular';
 
 /**
- * @type {!angular.Module}
+ * @type {!angular.IModule}
  */
 const module = angular.module('demo', []);
 

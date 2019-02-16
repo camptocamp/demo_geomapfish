@@ -1,7 +1,7 @@
 /**
  * Application entry point.
  *
- * This file includes `goog.require`'s for all the components/directives used
+ * This file includes `import`'s for all the components/directives used
  * by the HTML page and the controller to provide the configuration.
  */
 
@@ -26,6 +26,10 @@ if (!window.requestAnimationFrame) {
   window.location = 'http://geomapfish.org/';
 }
 
+
+/**
+ * @private
+ */
 class Controller extends AbstractDesktopController {
   /**
    * @param {angular.IScope} $scope Scope.
@@ -45,7 +49,6 @@ class Controller extends AbstractDesktopController {
 
     /**
      * @type {boolean}
-     * @export
      */
     this.oeEditActive = false;
 
@@ -86,7 +89,6 @@ class Controller extends AbstractDesktopController {
 
     /**
      * @type {import("ol/Collection.js").default.<import("ol/Feature.js").default>}
-     * @export
      */
     this.sketchFeatures = new olCollection();
 
@@ -122,19 +124,16 @@ class Controller extends AbstractDesktopController {
 
     /**
      * @type {string|undefined}
-     * @export
      */
     this.oeGeomType = gmfObjectEditingManager.getGeomType();
 
     /**
      * @type {number|undefined}
-     * @export
      */
     this.oeLayerNodeId = gmfObjectEditingManager.getLayerNodeId();
 
     /**
      * @type {?import("ol/Feature.js").default}
-     * @export
      */
     this.oeFeature = null;
 
@@ -147,31 +146,26 @@ class Controller extends AbstractDesktopController {
 
     /**
      * @type {Array.<string>}
-     * @export
      */
     this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
 
     /**
      * @type {!Array.<number>}
-     * @export
      */
     this.scaleSelectorValues = [250000, 100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 250, 100, 50];
 
     /**
      * @type {Array.<string>}
-     * @export
      */
     this.elevationLayers = ['aster', 'srtm'];
 
     /**
      * @type {string}
-     * @export
      */
     this.selectedElevationLayer = this.elevationLayers[0];
 
     /**
-     * @type {Object.<string, ProfileLineConfiguration>}
-     * @export
+     * @type {Object<string, import('gmf/profile/component.js').ProfileLineConfiguration>}
      */
     this.profileLinesconfiguration = {
       'aster': {color: '#0000A0'},
@@ -179,8 +173,7 @@ class Controller extends AbstractDesktopController {
     };
 
     /**
-     * @type {Array.<MousePositionProjection>}
-     * @export
+     * @type {Array<import('gmf/map/mousepositionComponent.js').MousePositionProjection>}
      */
     this.mousePositionProjections = [{
       code: EPSG2056,
@@ -213,6 +206,9 @@ class Controller extends AbstractDesktopController {
   }
 }
 
+/**
+ * @hidden
+ */
 const module = angular.module('Appoeedit', [
   demoBase.name,
   gmfControllersAbstractDesktopController.name,

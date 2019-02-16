@@ -1,7 +1,7 @@
 /**
  * Application entry point.
  *
- * This file includes `goog.require`'s for all the components/directives used
+ * This file includes `import`'s for all the components/directives used
  * by the HTML page and the controller to provide the configuration.
  */
 
@@ -21,6 +21,10 @@ if (!window.requestAnimationFrame) {
   window.location = 'http://geomapfish.org/';
 }
 
+
+/**
+ * @private
+ */
 class Controller extends AbstractAPIController {
   /**
    * @param {angular.IScope} $scope Scope.
@@ -50,6 +54,9 @@ class Controller extends AbstractAPIController {
   }
 }
 
+/**
+ * @hidden
+ */
 const module = angular.module('Appiframe_api', [
   demoBase.name,
   gmfControllersAbstractAPIController.name,
