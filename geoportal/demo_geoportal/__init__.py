@@ -33,9 +33,9 @@ def main(global_config, **settings):
     add_interface(config, 'desktop', INTERFACE_TYPE_NGEO, default=True)
     add_interface(config, 'mobile', INTERFACE_TYPE_NGEO)
     add_interface(config, 'iframe_api', INTERFACE_TYPE_NGEO)
-    add_interface(config, 'desktop_alt', INTERFACE_TYPE_NGEO, default=True)
+    add_interface(config, 'desktop_alt', INTERFACE_TYPE_NGEO)
     add_interface(config, 'mobile_alt', INTERFACE_TYPE_NGEO)
-    add_interface(config, 'oeview', INTERFACE_TYPE_NGEO, default=True)
+    add_interface(config, 'oeview', INTERFACE_TYPE_NGEO)
     add_interface(config, 'oeedit', INTERFACE_TYPE_NGEO)
 
     return config.make_wsgi_app()
