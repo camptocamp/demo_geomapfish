@@ -974,7 +974,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     EXTENT 473743 74095 839000 306400
     PROJECTION
@@ -1009,7 +1009,7 @@ LAYER
         "wfs_enable_request" "*"
 
         "wms_timeextent" "${extent}"
-        "wms_timeitem" "timestamp"
+        "wms_timeitem" "datetime"
     END
 END
 % endfor
