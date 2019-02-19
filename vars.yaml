@@ -138,9 +138,6 @@ vars:
     anonymous:
       print_template:
         - 1 A4 portrait
-        - 2 A4 landscape
-        - 3 A3 portrait
-        - 4 A3 landscape
       default_basemap: asitvd.fond_gris
       filterable_layers:
         - osm_open
@@ -159,6 +156,11 @@ vars:
     registered:
       print_template:
         - 1 A4 portrait
+        - 2 A4 landscape
+        - 3 A3 portrait
+        - 4 A3 landscape
+        - simple
+        - A0
 
     # Functionalities that are made available to Mako templates.
     available_in_templates:
