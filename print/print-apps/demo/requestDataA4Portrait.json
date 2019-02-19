@@ -7,6 +7,20 @@
             "projection": "EPSG:21781",
             "scale": 5000,
             "layers": [{
+                "baseURL": "https://geomapfish-demo-dc.camptocamp.com/2.4/mapserv_proxy",
+                "imageFormat": "image/png",
+                "layers": ["osm_hospitals", "osm_firestations", "landuse", "railways"],
+                "customParams": {
+                    "TRANSPARENT": "true",
+                    "ogcserver": "QGIS server",
+                    "cache_version": "cfe127c3bd2c4d3a80c3f37d6c4eca1a",
+                    "STYLES": ",,,"
+                },
+                "serverType": "qgisserver",
+                "type": "wms",
+                "opacity": 1,
+                "useNativeAngle": true
+            }, {
                 "baseURL": "https://geomapfish-demo-dc.camptocamp.com/2.4/tiles/1.0.0/map/default/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.png",
                 "dimensions": [],
                 "dimensionParams": {},
@@ -103,20 +117,6 @@
                 "style": "default",
                 "type": "WMTS",
                 "version": "1.0.0"
-            }, {
-                "baseURL": "https://geomapfish-demo-dc.camptocamp.com/2.4/mapserv_proxy",
-                "imageFormat": "image/png",
-                "layers": ["osm_hospitals", "osm_firestations", "landuse", "railways"],
-                "customParams": {
-                    "TRANSPARENT": "true",
-                    "ogcserver": "QGIS server",
-                    "cache_version": "cfe127c3bd2c4d3a80c3f37d6c4eca1a",
-                    "STYLES": ",,,"
-                },
-                "serverType": "qgisserver",
-                "type": "wms",
-                "opacity": 1,
-                "useNativeAngle": true
             }]
         },
         "datasource": [],
