@@ -22,6 +22,8 @@ smtp:
 
 allowedReferers: &allowedHosts
   - !hostnameMatch
+    host: ${MUTUALIZED_PRINT_URL}
+  - !hostnameMatch
     host: geomapfish-demo-dc.camptocamp.com
   - !hostnameMatch
     host: gmf-demo-2-4.paas-ch-3.camptocamp.com
