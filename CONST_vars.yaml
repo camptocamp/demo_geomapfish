@@ -514,7 +514,8 @@ vars:
     https://maps.google.com/ \
     https://maps.googleapis.com/ \
     https://fonts.googleapis.com/ \
-    https://www.google-analytics.com/"
+    https://www.google-analytics.com/ \
+    https://stackpath.bootstrapcdn.com/"
   global_headers:
     - pattern: '.*'
       headers:
