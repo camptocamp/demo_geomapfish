@@ -102,8 +102,6 @@ services:
       - SENTRY_CLIENT_RELEASE
       - SENTRY_TAG_SERVICE=tilegeneration_slave
       - AWS_DEFAULT_REGION
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
 
   geoportal:
     extends:
