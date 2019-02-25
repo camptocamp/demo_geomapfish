@@ -95,22 +95,6 @@ templates:
                 urlExtractor: (.*)
                 urlGroup: 1
 
-  simple: !template
-    reportTemplate: simple.jrxml
-    attributes:
-      map:
-        !map &map
-        maxDpi: 254
-        dpiSuggestions: [254]
-        zoomLevels: !zoomLevels
-          scales: [100, 250, 500, 2500, 5000, 10000, 25000, 50000, 100000, 500000]
-        width: 555
-        height: 675
-    processors: &processors
-      - !reportBuilder  # compile all reports in current directory
-        directory: '.'
-      - !configureHttpRequests *configureHttpRequests
-
   2 A4 landscape: !template
     reportTemplate: A4_Landscape.jrxml
     attributes:
