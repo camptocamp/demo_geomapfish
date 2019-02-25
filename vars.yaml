@@ -407,8 +407,6 @@ no_interpreted:
   - reset_password.email_body
   - shortener.email_body
   - welcome_email.email_body
-  - smtp.user
-  - smtp.password
 
 interpreted:
   python:
