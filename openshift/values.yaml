@@ -1,0 +1,56 @@
+---
+
+geoportal:
+  env: &config_env
+    OSM_PGDATABASE: gmf_demo_osm
+    RASTER_BASE_PATH: /vsis3/data-gmf-demo
+
+
+config:
+  env:
+    <<: *config_env
+    TILES_S3_BUCKET: tiles-gmf-demo
+
+
+image:
+  repositoryPrefix: camptocamp/demo
+  tag: "2.4"
+  pullPolicy: Always
+
+
+qgisserver:
+  enabled: true
+  env: *config_env
+
+
+postgresql:
+  secret: pg-gmf-demo
+
+
+print:
+  enabled: false
+  external: https://mutualized-print.paas-ch-3.camptocamp.com/print/demo_geomapfish_24/
+
+
+s3:
+  enabled: true
+  secretRef: s3-tiles-demo
+
+
+tilecloudchain:
+  s3:
+    bucket: tiles-gmf-demo
+
+
+c2c:
+  logging:
+    type: json
+  sentry:
+    enabled: true
+    project: 14
+
+
+openshift: true
+routes:
+  enabled: true
+  host: geomapfish-demo-2-4.camptocamp.com
