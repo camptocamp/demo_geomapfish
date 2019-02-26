@@ -51,6 +51,6 @@ c2c:
 
 
 openshift: true
-routes:
+ingress:
   enabled: true
   host: geomapfish-demo-2-4.camptocamp.com
