@@ -12,7 +12,6 @@ NGEO_INTERFACES ?= desktop mobile iframe_api desktop_alt mobile_alt oeview oeedi
 
 DOCKER_WEB_HOST ?= geomapfish-demo-dc.camptocamp.com
 DOCKER_DATABASE ?= demo_geomapfish
-DOCKER_PORT ?= 80
 export DOCKER_DATABASE
 export DOCKER_PORT
 

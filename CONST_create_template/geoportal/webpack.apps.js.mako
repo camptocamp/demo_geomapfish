@@ -15,9 +15,9 @@ plugins.push(new webpack.DllReferencePlugin({
 const nodeEnv = process.env['NODE_ENV'] || 'development';
 const dev = nodeEnv == 'development'
 
-for (const filename of ls(path.resolve(__dirname, 'demo_geoportal/static-ngeo/js/apps/*.html.ejs'))) {
+for (const filename of ls(path.resolve(__dirname, '${package}_geoportal/static-ngeo/js/apps/*.html.ejs'))) {
   const name = filename.file.substr(0, filename.file.length - '.html.ejs'.length);
-  entry[name] = 'demo/apps/Controller' + name + '.js';
+  entry[name] = '${package}/apps/Controller' + name + '.js';
   plugins.push(
     new HtmlWebpackPlugin({
       template: filename.full,
@@ -34,11 +34,11 @@ for (const filename of ls(path.resolve(__dirname, 'demo_geoportal/static-ngeo/js
 }
 
 const babelPresets = [[require.resolve('@babel/preset-env'), {
-  targets: {
-    browsers: ['last 2 versions', 'Firefox ESR', 'ie 11'],
+  "targets": {
+    "browsers": ["last 2 versions", "Firefox ESR", "ie 11"],
   },
-  modules: false,
-  loose: true,
+  "modules": false,
+  "loose": true,
 }]]
 
 // Transform code to ES2015 and annotate injectable functions with an $inject array.

@@ -97,7 +97,7 @@ services:
     volumes_from:
       - config:ro
     ports:
-      - ${DOCKER_PORT}:80
+      - ${PORT}:80
 ## if docker_global_front:
 ##     networks:
 ##       default: {}

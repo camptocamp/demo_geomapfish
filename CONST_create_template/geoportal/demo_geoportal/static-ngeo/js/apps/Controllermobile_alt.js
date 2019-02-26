@@ -6,8 +6,7 @@
  */
 
 import angular from 'angular';
-import gmfControllersAbstractMobileController, {AbstractMobileController}
-  from 'gmf/controllers/AbstractMobileController.js';
+import gmfControllersAbstractMobileController, {AbstractMobileController} from 'gmf/controllers/AbstractMobileController.js';
 import './sass/mobile_alt.scss';
 import demoBase from '../demomodule.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
@@ -21,10 +20,8 @@ import RavenPluginsAngular from 'raven-js/plugins/angular.js';
 
 if (!window.requestAnimationFrame) {
   alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
-    + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. '
-    + 'Vous allez être redirigé.\n\n'
-    + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. '
-    + 'Sie werden weitergeleitet.');
+    + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. Vous allez être redirigé.\n\n'
+    + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. Sie werden weitergeleitet.');
   window.location = 'http://geomapfish.org/';
 }
 

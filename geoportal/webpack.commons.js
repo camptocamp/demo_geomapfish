@@ -1,3 +1,5 @@
+'use strict';
+
 const commons = require('ngeo/buildtools/webpack.commons.js');
 const SassPlugin = require('ngeo/buildtools/webpack.plugin.js');
 
