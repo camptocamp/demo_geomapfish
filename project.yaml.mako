@@ -1,6 +1,6 @@
 ---
 project_folder: demo_geomapfish
-project_package: ${package}
+project_package: demo
 checker_url: ${docker_web_protocol}://${docker_host}${docker_entry_point}c2c/health_check?max_level=9
 template_vars:
   package: ${package}
@@ -13,8 +13,6 @@ managed_files:
   - spell-ignore-words\.txt
   - \.travis\.yml
 unmanaged_files:
-  - geoportal/demo_geoportal/static-ngeo/less/desktop\.less
-  - geoportal/demo_geoportal/static-ngeo/less/mobile\.less
   - geoportal/demo_geoportal/static-ngeo/components/contextualdata/contextualdata\.html
   - geoportal/demo_geoportal/static-ngeo/components/README\.md
   - geoportal/demo_geoportal/static-ngeo/js/apps/Controller.*\.js
@@ -24,6 +22,7 @@ unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/js/apps/mobile_alt\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/oeview\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/oeedit\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/sass/.*
   - geoportal/demo_geoportal/static-ngeo/js/apps/image/.*
   - geoportal/demo_geoportal/templates/api/apihelp\.html
   - geoportal/demo_geoportal/templates/api/mapconfig\.js
