@@ -1,21 +1,48 @@
-GEOMAPFISH_VERSION ?= 2.4.0-dev.19
+GEOMAPFISH_VERSION ?= 2.4
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
 INSTANCE ?= main
 export INSTANCE
 
+# Enable Docker target
 DOCKER ?= TRUE
+DOCKER_BASE ?= camptocamp/demo
+DOCKER_PORT ?= 8010
 ifeq ($(INSTANCE), main)
 DOCKER_ENTRY_POINT ?= /
+DOCKER_TAG ?= latest
 else
-DOCKER_ENTRY_POINT ?= /_$(INSTANCE)/
+DOCKER_ENTRY_POINT ?= /$(INSTANCE)/
+DOCKER_TAG ?= $(INSTANCE)
 endif
 DOCKER_WEB_HOST ?= localhost
 DOCKER_WEB_PROTOCOL ?= https
+DOCKER_PGUSER ?= www-data
+DOCKER_PGPASSWORD ?= www-data
+DOCKER_PGHOST ?= 172.17.0.1
+DOCKER_PGHOST_SLAVE ?= 172.17.0.1
+DOCKER_PGPORT ?= 5432
+DOCKER_PGDATABASE ?= geomapfish
+DOCKER_PGSCHEMA ?= main
+DOCKER_PGSCHEMA_STATIC ?= main_static
+export DOCKER_PORT
+export DOCKER_BASE
+export DOCKER_TAG
 export DOCKER_ENTRY_POINT
 export DOCKER_WEB_HOST
 export DOCKER_WEB_PROTOCOL
+export DOCKER_PGUSER
+export DOCKER_PGPASSWORD
+export DOCKER_PGHOST
+export DOCKER_PGHOST_SLAVE
+export DOCKER_PGPORT
+export DOCKER_PGDATABASE
+export DOCKER_PGSCHEMA
+export DOCKER_PGSCHEMA_STATIC
+
+DOCKER_PORT ?= 8480
+export DOCKER_PORT
 
 ifeq ($(DEBUG), TRUE)
 PRERULE_CMD ?= @echo "Build \033[1;34m$@\033[0m due modification on \033[1;34m$?\033[0m" 1>&2; ls -t --full-time --reverse $? $@ 1>&2 || true
@@ -43,11 +70,6 @@ INTERFACES += $(NGEO_INTERFACES)
 export INTERFACES
 # Use print
 PRINT ?= TRUE
-# Enable Docker target
-DOCKER_BASE ?= camptocamp/demo
-export DOCKER_BASE
-DOCKER_TAG ?= latest
-export DOCKER_TAG
 
 PGHOST ?= localhost
 export PGHOST
@@ -293,7 +315,7 @@ ifndef DISABLE_DEFAULT_GPG_KEYS
 GPG_KEYS += D1D6A94C # Stéphane Brunner
 GPG_KEYS += B42AF223 # Patrick Valsecchi
 GPG_KEYS += C27D570B # Roman Zoller
-#GPG_KEYS += CF8E9976 # Guillaume Beraudo
+GPG_KEYS += CF8E9976 # Guillaume Beraudo
 GPG_KEYS += 3EA11D26 # Elisabeth Leu
 GPG_KEYS += 0875810F # Frederic Junod
 GPG_KEYS += 1DAFEE6A # Oliver Christen
@@ -585,7 +607,7 @@ $(APP_OUTPUT_DIR)/vendor%: /opt/vendor%
 	cp $< $@
 
 .PRECIOUS: /build/apps.timestamp
-/build/apps.timestamp: geoportal/webpack.apps.js $(OL_JS_FILES) $(NGEO_JS_FILES) $(APP_JS_FILES) \
+/build/apps.timestamp: geoportal/webpack.apps.js $(OL_JS_FILES) $(APP_JS_FILES) \
 			$(APP_HTML_FILES) geoportal/webpack.config.js \
 			$(HTML_FILES) \
 			$(SASS_FILES) \
