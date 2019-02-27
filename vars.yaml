@@ -197,6 +197,10 @@ vars:
       file: "{raster_base_path}/SRTM21781.vrt"
       type: gdal
       round: 1
+    srtm-partial:
+      file: "{raster_base_path}/SRTM21781-partial.vrt"
+      type: gdal
+      round: 0.1
     aster:
       file: "{raster_base_path}/Aster21781.vrt"
       type: gdal
