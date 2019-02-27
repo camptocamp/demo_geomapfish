@@ -134,8 +134,6 @@ services:
       file: docker-compose-lib.yaml
       service: front
     mem_limit: 8M
-    ports:
-      - ${PORT}:80
     volumes_from:
       - config:ro
 ## if docker_global_front:
