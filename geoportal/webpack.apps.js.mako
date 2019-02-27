@@ -71,7 +71,6 @@ console.log("Use dev mode: " + dev)
 console.log("Use dev server mode: " + devServer)
 
 module.exports = {
-  mode: 'development',
   output: {
     path: path.resolve(__dirname, 'demo_geoportal/static-ngeo/build/'),
     publicPath: devServer ? '${entry_point}dev/' : '${entry_point}static-ngeo/build/'
@@ -86,5 +85,8 @@ module.exports = {
     alias: {
       demo: path.resolve(__dirname, 'demo_geoportal/static-ngeo/js'),
     },
+  },
+  optimization: {
+    sideEffects: false,
   },
 };
