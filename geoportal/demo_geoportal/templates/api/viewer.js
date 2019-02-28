@@ -11,7 +11,8 @@ This file defines the GXP viewer and its plugins for the Extended API.
             },
             tools: [
             {
-                ptype: "cgxp_mapopacityslider"
+                ptype: "cgxp_mapopacityslider",
+                orthoRef: null,
             },
             {
                 ptype: "gxp_zoomtoextent",

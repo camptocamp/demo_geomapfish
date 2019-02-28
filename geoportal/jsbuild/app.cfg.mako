@@ -51,6 +51,60 @@ root = [
 ]
 %>
 
+[lang-en.js]
+root =
+    ${"\n    ".join(root)}
+first =
+    OpenLayers/Lang/en.js
+include =
+    Proj/Lang/en.js
+    Ext/src/locale/ext-lang-en.js
+#    FeatureEditing/resources/lang/en.js
+    Styler/lang/en.js
+    locale/en.js #GXP
+exclude =
+    OpenLayers/Lang.js
+
+[lang-fr.js]
+root =
+    ${"\n    ".join(root)}
+first =
+    OpenLayers/Lang/fr.js
+include =
+    Ext/src/locale/ext-lang-fr.js
+    FeatureEditing/resources/lang/fr.js
+    GeoExt.ux/locale/WMSBrowser-fr.js
+    ux/locale/StreetViewPanel-fr.js
+    Styler/lang/fr.js
+    locale/SimplePrint-fr.js
+    locale/fr.js #GXP
+    CGXP/locale/fr.js
+last =
+    Proj/Lang/fr.js
+    Proj/Lang/GeoExt-fr.js
+exclude =
+    OpenLayers/Lang.js
+
+[lang-de.js]
+root =
+    ${"\n    ".join(root)}
+first =
+    OpenLayers/Lang/de.js
+include =
+    Ext/src/locale/ext-lang-de.js
+    FeatureEditing/resources/lang/de.js
+    GeoExt.ux/locale/WMSBrowser-de.js
+    ux/locale/StreetViewPanel-de.js
+    locale/SimplePrint-de.js
+    Styler/lang/de.js
+#    locale/de.js #GXP
+    CGXP/locale/de.js
+last =
+    Proj/Lang/de.js
+    Proj/Lang/GeoExt-de.js
+exclude =
+    OpenLayers/Lang.js
+
 [api.js]
 root =
     ${"\n    ".join(root)}
