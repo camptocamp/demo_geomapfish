@@ -11,16 +11,12 @@ Extended APIs.
             transitionEffect: "resize",
             visibility: false,
             style: 'default',
-            dimensions: ['TIME'],
-            params: {
-                'time': '2014'
-            },
-            matrixSet: 'swissgrid',
+            matrixSet: 'swissgrid_005',
             maxExtent: new OpenLayers.Bounds(420000, 30000, 900000, 350000),
             projection: new OpenLayers.Projection("EPSG:21781"),
             units: "m",
             formatSuffix: 'png',
-            serverResolutions: [1000,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1,0.05]
+            serverResolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
         };
 
         var INITIAL_EXTENT = [420000, 30000, 900000, 350000];
@@ -93,24 +89,12 @@ Extended APIs.
             layers: [{
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
-                args: [OpenLayers.Util.applyDefaults({
-                    name: OpenLayers.i18n('ortho'),
-                    mapserverLayers: 'ortho',
-                    ref: 'ortho',
-                    layer: 'ortho',
-                    formatSuffix: 'jpeg',
-                    opacity: 0
-                }, WMTS_OPTIONS)]
-            },
-            {
-                source: "olsource",
-                type: "OpenLayers.Layer.WMTS",
                 group: 'background',
                 args: [OpenLayers.Util.applyDefaults({
-                    name: OpenLayers.i18n('plan'),
-                    mapserverLayers: 'plan',
-                    ref: 'plan',
-                    layer: 'plan',
+                    name: OpenLayers.i18n('map'),
+                    mapserverLayers: 'map',
+                    ref: 'map',
+                    layer: 'map',
                     group: 'background'
                 }, WMTS_OPTIONS)]
             },

@@ -10,14 +10,9 @@ services:
       file: docker-compose-lib.yaml
       service: config
     environment:
-      - TILEGENERATION_SQS_QUEUE
       - TILEGENERATION_S3_BUCKET
       - OSM_PGDATABASE
       - RASTER_BASE_PATH
-      - AWS_DEFAULT_REGION
-      - AWS_S3_ENDPOINT
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
 
   mapserver:
     extends:
@@ -84,8 +79,6 @@ services:
       - SENTRY_CLIENT_RELEASE
       - SENTRY_TAG_SERVICE=tilecloudchain
       - AWS_DEFAULT_REGION
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
     volumes_from:
       - config:ro
 

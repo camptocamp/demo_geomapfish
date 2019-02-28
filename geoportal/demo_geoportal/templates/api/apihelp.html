@@ -73,7 +73,7 @@ certain <em>id</em> where you want your map to be:
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map1', // id of the div element to put the map in
     zoom: 8,
-    center: [544500, 210100]
+    center: [538199, 152380]
 });</pre>
 </div>
 
@@ -83,7 +83,7 @@ certain <em>id</em> where you want your map to be:
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map2',
     zoom: 8,
-    center: [544500, 210100]
+    center: [538199, 152380]
 });
 map.addMarker();</pre>
 </div>
@@ -118,9 +118,9 @@ map.addMarker({
     <div id='map4' class="map"></div>
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map4',
-    zoom: 8,
-    center: [544500, 210100],
-    layers: ['parcelles', 'batiments_ofs']
+    zoom: 9,
+    center: [538199, 152380],
+    layers: ['sustenance', 'entertainment']
 });</pre>
 </div>
 
@@ -129,9 +129,9 @@ map.addMarker({
     <div id='map5' class="map"></div>
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map5',
-    zoom: 8,
-    center: [544500, 210100],
-    layers: ['mo4_pfp_3'],
+    zoom: 9,
+    center: [538199, 152380],
+    layers: ['sustenance', 'entertainment'],
     addLayerSwitcher: true,
     layerSwitcherExpanded: true,
     addMiniMap: true,
@@ -168,13 +168,13 @@ button2.onclick = function() {
     <div id='map7' class="map"></div>
     <pre data-language="javascript">var map = new demo.Map({
     div: 'map7',
-    layers: ['batiments_ofs']
+    layers: ['fuel']
 });
 map.recenterOnObjects(
     /* the layer name */
-    'batiments_ofs',
+    'fuel',
     /* the ids of the objects */
-    ['1474234', '1474232'],
+    ['269304246', '303903676'],
     /* whether to highlight the objects or not */
     true
 );

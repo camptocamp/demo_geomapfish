@@ -5,8 +5,6 @@ extends: CONST_vars.yaml
 vars:
   srid: 21781
 
-  port: '{DOCKER_PORT}'
-
   osm_db: '{OSM_PGDATABASE}'
   tiles_s3_bucket: '{TILEGENERATION_S3_BUCKET}'
   raster_base_path: '{RASTER_BASE_PATH}'
@@ -14,6 +12,8 @@ vars:
   aws_secret_access_key: '{AWS_SECRET_ACCESS_KEY}'
   aws_default_region: '{AWS_DEFAULT_REGION}'
   aws_s3_endpoint: '{AWS_S3_ENDPOINT}'
+
+  main_ogc_server: Main PNG
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -416,10 +416,6 @@ no_interpreted:
 interpreted:
   python:
     - sentry_release
-
-environment:
-  - DOCKER_PORT
-  - DOCKER_DATABASE
 
 runtime_environment:
   - name: SMTP_USER

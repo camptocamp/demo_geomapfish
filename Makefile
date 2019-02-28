@@ -5,18 +5,16 @@ VARS_FILE = vars.yaml
 VARS_FILES += ${VARS_FILE}
 endif
 
-PGSCHEMA ?= main
-PGSCHEMA_STATIC ?= main_static
-
 NGEO_INTERFACES ?= desktop mobile iframe_api desktop_alt mobile_alt oeview oeedit
 
-DOCKER_WEB_HOST ?= geomapfish-demo-dc.camptocamp.com
-DOCKER_DATABASE ?= demo_geomapfish
-export DOCKER_DATABASE
-export DOCKER_PORT
+export DOCKER_WEB_HOST ?= localhost:8010
+export DOCKER_WEB_PROTOCOL ?= http
 
-WMTSCAPABILITIES_PATH ?= 1.0.0/WMTSCapabilities-docker.xml
-export WMTSCAPABILITIES_PATH
+export DOCKER_PGHOST ?= pg-cluster-master.exo.camptocamp.com
+export DOCKER_PGHOST_SLAVE ?= pg-cluster-master.exo.camptocamp.com
+export DOCKER_PGDATABASE ?= gmf_demo
+export DOCKER_PGSCHEMA ?= main
+export DOCKER_PGSCHEMA_STATIC ?= main_static
 
 include CONST_Makefile
 
