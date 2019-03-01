@@ -24,6 +24,8 @@ allowedReferers: &allowedHosts
   - !hostnameMatch
     host: ${MUTUALIZED_PRINT_URL}
   - !hostnameMatch
+    host: geomapfish-demo-2-4.camptocamp.com
+  - !hostnameMatch
     host: geomapfish-demo-dc.camptocamp.com
   - !hostnameMatch
     host: gmf-demo-2-4.paas-ch-3.camptocamp.com
@@ -41,8 +43,11 @@ allowedReferers: &allowedHosts
     host: adube.github.io
   - !hostnameMatch
     host: localhost
-  - !hostnameMatch
-    host: 127.0.0.1
+  - !ipMatch
+    ip: 127.0.0.1
+  - !ipMatch
+    ip: 172.17.0.0
+    mask: 255.240.0.0
 
 templates:
   1 A4 portrait: !template
