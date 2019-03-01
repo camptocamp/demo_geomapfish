@@ -93,12 +93,24 @@ Extended APIs.
             layers: [{
                 source: "olsource",
                 type: "OpenLayers.Layer.WMTS",
+                args: [OpenLayers.Util.applyDefaults({
+                    name: OpenLayers.i18n('ortho'),
+                    mapserverLayers: 'ortho',
+                    ref: 'ortho',
+                    layer: 'ortho',
+                    formatSuffix: 'jpeg',
+                    opacity: 0
+                }, WMTS_OPTIONS)]
+            },
+            {
+                source: "olsource",
+                type: "OpenLayers.Layer.WMTS",
                 group: 'background',
                 args: [OpenLayers.Util.applyDefaults({
-                    name: OpenLayers.i18n('map'),
-                    mapserverLayers: 'map',
-                    ref: 'map',
-                    layer: 'map',
+                    name: OpenLayers.i18n('plan'),
+                    mapserverLayers: 'plan',
+                    ref: 'plan',
+                    layer: 'plan',
                     group: 'background'
                 }, WMTS_OPTIONS)]
             },

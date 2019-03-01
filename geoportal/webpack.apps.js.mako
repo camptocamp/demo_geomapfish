@@ -86,7 +86,4 @@ module.exports = {
       demo: path.resolve(__dirname, 'demo_geoportal/static-ngeo/js'),
     },
   },
-  optimization: {
-    sideEffects: false,
-  },
 };

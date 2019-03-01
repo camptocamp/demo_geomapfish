@@ -157,6 +157,7 @@ services:
       - VISIBLE_WEB_PROTOCOL
       - TINYOWS_URL
       - MAPSERVER_URL
+      - QGISSERVER_URL
       - PRINT_URL
       - DEVSERVER_HOST
       - REDIS_HOST
@@ -203,7 +204,7 @@ services:
     image: nginx:1
     restart: unless-stopped
     ports:
-      - 8081:${DOCKER_PORT}
+      - 80:80
 
   build:
     image: camptocamp/geomapfish-build:${GEOMAPFISH_VERSION}

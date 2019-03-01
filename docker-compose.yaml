@@ -126,7 +126,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: front
-    mem_limit: 8M
+    mem_limit: 16M
     volumes_from:
       - config:ro
 ## if docker_global_front:

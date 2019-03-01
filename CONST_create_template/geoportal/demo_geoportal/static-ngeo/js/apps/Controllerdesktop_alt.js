@@ -25,7 +25,7 @@ if (!window.requestAnimationFrame) {
     + 'Vous allez être redirigé.\n\n'
     + 'Ihr Browser wird nicht unterstützt, bitte aktualisieren Sie ihn oder verwenden Sie einen anderen. '
     + 'Sie werden weitergeleitet.');
-  window.location = 'http://geomapfish.org/';
+  window.location.href = 'https://geomapfish.org/';
 }
 
 
@@ -71,7 +71,7 @@ class Controller extends AbstractDesktopController {
     /**
      * @type {Array.<string>}
      */
-    this.elevationLayers = ['srtm'];
+    this.elevationLayers = ['srtm-partial'];
 
     /**
      * @type {Object<string, import('gmf/mobile/measure/pointComponent.js').LayerConfig>}
@@ -82,7 +82,7 @@ class Controller extends AbstractDesktopController {
      * @type {Object<string, import('gmf/profile/component.js').ProfileLineConfiguration>}
      */
     this.profileLinesconfiguration = {
-      'srtm': {}
+      'srtm-partial': {}
     };
 
     /**

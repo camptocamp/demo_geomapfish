@@ -8,7 +8,6 @@ endif
 NGEO_INTERFACES ?= desktop mobile iframe_api desktop_alt mobile_alt oeview oeedit
 CGXP_XAPI ?= TRUE
 
-export DOCKER_WEB_HOST ?= localhost:8010
 export DOCKER_WEB_PROTOCOL ?= http
 
 export DOCKER_PGHOST ?= pg-cluster-master.exo.camptocamp.com

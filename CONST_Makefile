@@ -16,7 +16,7 @@ else
 DOCKER_ENTRY_POINT ?= /$(INSTANCE)/
 DOCKER_TAG ?= $(INSTANCE)
 endif
-DOCKER_WEB_HOST ?= localhost
+DOCKER_WEB_HOST ?= 172.17.0.1:$(DOCKER_PORT)
 DOCKER_WEB_PROTOCOL ?= https
 DOCKER_PGUSER ?= www-data
 DOCKER_PGPASSWORD ?= www-data
@@ -66,37 +66,26 @@ LANGUAGES ?= en fr de
 NGEO_INTERFACES ?= desktop mobile iframe_api
 CGXP_API ?= TRUE
 CGXP_XAPI ?= FALSE
+NGEO_API ?= TRUE
 INTERFACES += $(NGEO_INTERFACES)
 export INTERFACES
 # Use print
 PRINT ?= TRUE
-
-PGHOST ?= localhost
-export PGHOST
-PGHOST_SLAVE ?= localhost
-export PGHOST_SLAVE
-PGPORT ?= 5432
-export PGPORT
-PGUSER ?= www-data
-export PGUSER
-PGPASSWORD ?= www-data
-export PGPASSWORD
-PGDATABASE ?= geomapfish
-export PGDATABASE
-PGSCHEMA ?= main
-export PGSCHEMA
-PGSCHEMA_STATIC ?= main_static
-export PGSCHEMA_STATIC
 
 DEFAULT_WEB_RULE += $(JSBUILD_OUTPUT_FILES) $(CSS_API_OUTPUT) $(CSS_XAPI_OUTPUT)
 ifneq ($(NGEO_INTERFACES), "")
 DEFAULT_WEB_RULE += $(NGEO_OUTPUT_FILES)
 CLIENT_CHECK_RULE ?= lint-ngeo
 endif
+ifneq ($(NGEO_API), "")
+DEFAULT_WEB_RULE += $(NGEO_API_OUTPUT_FILES)
+endif
+
 WEB_RULE ?= $(DEFAULT_WEB_RULE)
 
 DEFAULT_BUILD_RULES ?= docker-build-geoportal \
 	docker-build-config \
+	build-api \
 	project.yaml \
 	geoportal/alembic.ini \
 	geoportal/alembic.yaml
@@ -155,6 +144,9 @@ ANGULAR_LOCALES_FILES = $(addprefix $(APP_OUTPUT_DIR)/angular-locale_, $(addsuff
 NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
 	$(ANGULAR_LOCALES_FILES)
 NGEO_OUTPUT_FILES += /build/apps.timestamp
+
+NGEO_API_OUTPUT_FILES += $(APP_OUTPUT_DIR)/api.js $(APP_OUTPUT_DIR)/api.css $(APP_OUTPUT_DIR)/apihelp/
+
 
 ifdef CI
 WEBPACK_ARGS ?= --debug
@@ -354,6 +346,7 @@ endif
 	@echo
 	@echo  "- build-cgxp		Build the javascript and the css for cgxp"
 	@echo  "- build-ngeo		Build the javascript and the css for ngeo"
+	@echo  "- build-api		Build the javascript api"
 	@echo  "- flake8		Run Flake8 checker on the Python code"
 	@echo  "- lint-ngeo		Check the JavaScript code with linters for ngeo"
 	@echo  "- template-clean	Clean the template file"
@@ -629,6 +622,23 @@ endif
 	eslint $?
 	touch $@
 
+# API
+
+.PHONY: build-api
+build-api: $(NGEO_API_OUTPUT_FILES)
+
+$(APP_OUTPUT_DIR)/api.js: geoportal/webpack.api.js geoportal/$(PACKAGE)_geoportal/static-ngeo/api/index.js
+	$(PRERULE_CMD)
+	(cd geoportal; webpack --config webpack.api.js $(WEBPACK_ARGS))
+
+$(APP_OUTPUT_DIR)/api.css: geoportal/$(PACKAGE)_geoportal/static-ngeo/api/api.css
+	$(PRERULE_CMD)
+	cp $< $@
+
+$(APP_OUTPUT_DIR)/apihelp/: geoportal/$(PACKAGE)_geoportal/static-ngeo/api/apihelp/
+	$(PRERULE_CMD)
+	mkdir --parent $@
+	cp -r $< $@
 
 # Git
 
