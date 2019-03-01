@@ -14,9 +14,6 @@ managed_files:
   - spell-ignore-words\.txt
   - \.travis\.yml
   - geoportal/demo_geoportal/static/apihelp/data\.txt
-  - geoportal/demo_geoportal/templates/api/apihelp\.html
-  - geoportal/demo_geoportal/templates/api/mapconfig\.js
-  - geoportal/demo_geoportal/templates/api/xapihelp\.html
 unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/components/contextualdata/contextualdata\.html
   - geoportal/demo_geoportal/static-ngeo/components/README\.md
@@ -29,7 +26,4 @@ unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/js/apps/oeedit\.html\.ejs
   - geoportal/demo_geoportal/static-ngeo/js/apps/sass/.*
   - geoportal/demo_geoportal/static-ngeo/js/apps/image/.*
-  - geoportal/demo_geoportal/templates/api/apihelp\.html
-  - geoportal/demo_geoportal/templates/api/mapconfig\.js
-  - geoportal/demo_geoportal/templates/api/xapihelp\.html
   - print/print-apps/demo/.*\.jrxml
