@@ -4,7 +4,6 @@ geoportal:
   env: &config_env
     OSM_PGDATABASE: gmf_demo_osm
     RASTER_BASE_PATH: /vsis3/data-gmf-demo
-    QGISSERVER_URL: http://demo-2-4-c2cgeoportal-qgisserver:8080/
 
 
 config:
