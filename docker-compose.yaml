@@ -74,10 +74,6 @@ services:
       service: tilecloudchain
     mem_limit: 256M
     environment:
-      - SENTRY_URL
-      - SENTRY_CLIENT_ENVIRONMENT
-      - SENTRY_CLIENT_RELEASE
-      - SENTRY_TAG_SERVICE=tilecloudchain
       - AWS_DEFAULT_REGION
     volumes_from:
       - config:ro
@@ -90,10 +86,6 @@ services:
     volumes_from:
       - config:ro
     environment:
-      - SENTRY_URL
-      - SENTRY_CLIENT_ENVIRONMENT
-      - SENTRY_CLIENT_RELEASE
-      - SENTRY_TAG_SERVICE=tilegeneration_slave
       - AWS_DEFAULT_REGION
 
   geoportal:
@@ -102,10 +94,6 @@ services:
       service: geoportal
     mem_limit: 512M
     environment:
-      - SENTRY_URL
-      - SENTRY_CLIENT_ENVIRONMENT
-      - SENTRY_CLIENT_RELEASE
-      - SENTRY_TAG_SERVICE=wsgi
       - OSM_PGDATABASE
       - RASTER_BASE_PATH
       - AWS_DEFAULT_REGION
