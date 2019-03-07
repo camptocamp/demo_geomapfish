@@ -20,7 +20,14 @@ image:
 
 qgisserver:
   enabled: true
-  env: *config_env
+  image:
+    tag: gmf2.4-qgis3.4
+  env:
+    <<: *config_env
+    GEOMAPFISH_OGCSERVER: QGIS server
+    QGIS_SERVER_LOG_LEVEL: 0
+    AWS_DEFAULT_REGION: ch-dk-2
+    AWS_S3_ENDPOINT: sos-ch-dk-2.exo.io
 
 
 postgresql:

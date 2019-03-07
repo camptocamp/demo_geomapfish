@@ -25,7 +25,7 @@ services:
       - /var/sig:/var/sig:ro
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver:gmf2.4-qgismaster
+    image: camptocamp/geomapfish-qgisserver:gmf2.4-qgis3.4
     extends:
       file: docker-compose-lib.yaml
       service: qgisserver
@@ -35,7 +35,7 @@ services:
     environment:
       # Single QGIS project files
       QGIS_PROJECT_FILE: /etc/qgisserver/project.qgz
-      GEOMAPFISH_OGCSERVER: <OGC server name>
+      GEOMAPFISH_OGCSERVER: QGIS server
       # Multiple QGIS project files
       # QGIS_PROJECT_FILE:
       # GEOMAPFISH_ACCESSCONTROL_CONFIG: /etc/qgisserver/accesscontrol_config.yaml
