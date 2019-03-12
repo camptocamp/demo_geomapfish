@@ -23,7 +23,6 @@ vars:
   docker_base: '{DOCKER_BASE}'
   docker_tag: '{DOCKER_TAG}'
   docker_port: '{DOCKER_PORT}'
-  docker_global_front: false
 
   # Master database host
   docker_dbhost: '{DOCKER_PGHOST}'
@@ -549,7 +548,13 @@ vars:
             style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com/; \
             img-src * data:; \
             connect-src *"
-    - pattern: '^/x?apihelp.html'
+    - pattern: '^/oldx?apihelp.html'
+      headers:
+        Content-Security-Policy: "default-src 'self'; \
+            script-src 'self' 'unsafe-inline' 'unsafe-eval'; \
+            style-src 'self' 'unsafe-inline'; \
+            img-src *;"
+    - pattern: '^/apihelp/index.html'
       headers:
         Content-Security-Policy: "default-src 'self'; \
             script-src 'self' 'unsafe-inline' 'unsafe-eval'; \
@@ -629,7 +634,12 @@ vars:
       routes:
         - name: apijs
           level: 3
-        - name: xapijs
+          params:
+            version: '2'
+        - name: apijs
+          checker_name: oldapijs
+          level: 3
+        - name: oldxapijs
           level: 3
         - name: printproxy_capabilities
           level: 3

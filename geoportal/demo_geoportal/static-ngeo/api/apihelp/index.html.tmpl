@@ -38,8 +38,8 @@
              height: 400px;
          }
         </style>
-        <link href="github.css" rel="stylesheet" type="text/css" media="screen">
-        <script src="rainbow-custom.min.js"></script>
+        <link href="../static-ngeo/api/apihelp/github.css" rel="stylesheet" type="text/css" media="screen">
+        <script src="../static-ngeo/api/apihelp/rainbow-custom.min.js"></script>
         <script src="../api.js"></script>
         <link href="../api.css" rel="stylesheet" type="text/css">
     </head>
@@ -53,7 +53,8 @@
             <h2>Basis</h2>
             <p>To use the API you should add the following HTML:</p>
             <pre><code data-language="html">
-&lt;script src="https://geomapfish-demo.camptocamp.com/2.4/wsgi/api.js"&gt;&lt;/script&gt;
+&lt;link src="${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}api.css" rel="stylesheet"&gt;
+&lt;script src="${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}api.js?version=2"&gt;&lt;/script&gt;
 &lt;script&gt;
 window.onload = function() {
     // add the code here
@@ -101,17 +102,17 @@ var map = new demo.Map({
 map.addMarker({
     position: [544410, 210100],
     size: [14, 14],
-    icon: 'img/info.png'
+    icon: '../static-ngeo/api/apihelp/img/info.png'
 });
 map.addMarker({
     position: [544450, 210000],
     size: [18, 18],
-    icon: 'img/essence.png'
+    icon: '../static-ngeo/api/apihelp/img/essence.png'
 });
 map.addMarker({
     position: [544310, 210200],
     size: [14, 14],
-    icon: 'img/parking.png'
+    icon: '../static-ngeo/api/apihelp/img/parking.png'
 });
                     </pre>
                 </div>
@@ -190,14 +191,14 @@ map.recenterOnObjects(
 
                 <div class="api">
                     <h2>Load data from a text file</h2>
-                    See <a href="data.txt" target="_blank">data.txt</a>.
+                    See <a href="../static-ngeo/api/apihelp/data.txt" target="_blank">data.txt</a>.
                     <br />
                     <div id='map9' class="map"></div>
                     <pre data-language="javascript">
 var map = new demo.Map({
     div: 'map9'
 });
-map.addCustomLayer('text', 'My custom txt layer', 'data.txt', {
+map.addCustomLayer('text', 'My custom txt layer', '../static-ngeo/api/apihelp/data.txt', {
   success: function() {
     map.selectObject(2);
   }

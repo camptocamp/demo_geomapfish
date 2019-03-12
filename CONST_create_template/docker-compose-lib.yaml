@@ -49,11 +49,10 @@ services:
       - PGOPTIONS
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver:gmf2.4-qgis3.2
+    image: camptocamp/geomapfish-qgisserver:gmf2.4-qgis3.4
     user: www-data
     restart: unless-stopped
     environment:
-      - VISIBLE_ENTRY_POINT
       - PGHOST
       - PGHOST_SLAVE
       - PGPORT
@@ -199,12 +198,6 @@ services:
       - /etc/haproxy
     ports:
       - ${DOCKER_PORT}:80
-
-  global_front:
-    image: nginx:1
-    restart: unless-stopped
-    ports:
-      - 80:80
 
   build:
     image: camptocamp/geomapfish-build:${GEOMAPFISH_VERSION}
