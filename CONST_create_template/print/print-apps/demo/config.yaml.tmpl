@@ -14,6 +14,8 @@ allowedReferers:
 templates:
   1 A4 portrait: !template
     reportTemplate: A4_Portrait.jrxml
+    outputFilename: &outputFilename
+        GeoMapFish_${DOLLAR}{yyyy-MM-dd_HH-mm-ss}
     attributes:
       title:
         !string &title
@@ -114,6 +116,7 @@ templates:
 
   2 A4 landscape: !template
     reportTemplate: A4_Landscape.jrxml
+    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
@@ -130,6 +133,7 @@ templates:
 
   3 A3 portrait: !template
     reportTemplate: A3_Portrait.jrxml
+    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
@@ -146,6 +150,7 @@ templates:
 
   4 A3 landscape: !template
     reportTemplate: A3_Landscape.jrxml
+    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
