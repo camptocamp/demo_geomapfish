@@ -55,6 +55,8 @@ c2c:
   sentry:
     enabled: true
     project: 14
+  statsd:
+    enabled: true
 
 
 openshift: true
