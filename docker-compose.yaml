@@ -102,6 +102,7 @@ services:
       - AWS_SECRET_ACCESS_KEY
       - SMTP_USER
       - SMTP_PASSWORD
+      - DOLLAR
     volumes:
       - /var/sig:/var/sig:ro
 
