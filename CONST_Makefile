@@ -635,6 +635,7 @@ $(APP_OUTPUT_DIR)/api.js.tmpl: geoportal/webpack.api.js geoportal/$(PACKAGE)_geo
 	sed --in-place --expression='s#{FULL_ENTRY_POINT}#$${VISIBLE_WEB_PROTOCOL}://$${VISIBLE_WEB_HOST}$${VISIBLE_ENTRY_POINT}#g' $(APP_OUTPUT_DIR)/api.js
 	mv $(APP_OUTPUT_DIR)/api.js $@
 
+
 $(APP_OUTPUT_DIR)/api.css: geoportal/$(PACKAGE)_geoportal/static-ngeo/api/api.css
 	$(PRERULE_CMD)
 	cp $< $@

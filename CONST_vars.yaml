@@ -534,8 +534,7 @@ vars:
     https://maps.googleapis.com/ \
     https://fonts.googleapis.com/ \
     https://www.google-analytics.com/"
-  Content-Security-Policy_api_extra_script-src: "\
-    https://geomapfish-demo-2-4.camptocamp.com/"
+  Content-Security-Policy_api_extra_script-src: ''
   global_headers:
     - pattern: '.*'
       headers:
