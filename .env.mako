@@ -29,7 +29,7 @@ REDIS_HOST=redis
 REDIS_PORT=6379
 TILEGENERATION_SQS_QUEUE=geomapfish-demo-stretch
 GUNICORN_PARAMS=--bind=:8080 --worker-class=gthread --threads=10 --workers=1 --timeout=60 --max-requests=1000 --max-requests-jitter=100
-DEVSERVER_HOST=webpack-dev-server:8080
+DEVSERVER_HOST=webpack_dev_server:8080
 C2C_REDIS_URL=redis://redis:6379
 PGOPTIONS=-c statement_timeout=30000
 CATALINA_OPTS=-Xmx1024m
