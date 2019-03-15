@@ -109,7 +109,6 @@ ${service_defaults('tilecloudchain')}\
     command:
       - generate_tiles
       - --role=slave
-      - --daemon
 
   geoportal:
     image: ${docker_base}-geoportal:${docker_tag}
