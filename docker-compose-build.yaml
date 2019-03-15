@@ -24,5 +24,3 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: build
-    environment:
-      - OSM_PGDATABASE
