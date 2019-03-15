@@ -33,5 +33,4 @@ run:
 
 .. code::
 
-   ./docker-run make theme2fts
-
+   ./docker-compose-run make theme2fts
