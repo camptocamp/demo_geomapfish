@@ -560,7 +560,8 @@ vars:
         Content-Security-Policy: "default-src 'self' {Content-Security-Policy_api_extra_script-src}; \
             script-src 'self' 'unsafe-inline' 'unsafe-eval'; \
             style-src 'self' 'unsafe-inline'; \
-            img-src *;"
+            img-src *; \
+            connect-src *"
     - pattern: '^/admin/.*'
       headers:
         Referrer-Policy: same-origin
