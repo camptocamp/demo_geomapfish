@@ -664,11 +664,11 @@ vars:
     themes:
       params:
         version: "2"
-      level: 1
+      level: 3
       interfaces: {}
     print:
       spec: {}
-      level: 3
+      level: 4
 
   # Check collector configuration
   check_collector:
