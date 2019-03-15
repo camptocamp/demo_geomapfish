@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-09-10 14:33+0000\n"
+"POT-Creation-Date: 2019-03-15 10:43+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -29,6 +29,9 @@ msgid ""
 "fédérale de données géographiques (IFDG)</a>"
 msgstr ""
 
+msgid "A0"
+msgstr "A0"
+
 msgid "Add a layer"
 msgstr "Add a Layer"
 
@@ -47,6 +50,9 @@ msgstr "Alternative Desktop Application"
 msgid "Alternative Mobile Application"
 msgstr "Alternative Mobile Application"
 
+msgid "Area"
+msgstr "Area"
+
 msgid "Back"
 msgstr "Back"
 
@@ -62,6 +68,9 @@ msgstr "Close"
 msgid "Coordinate"
 msgstr "Coordinate"
 
+msgid "Data"
+msgstr "Data"
+
 msgid "Demo"
 msgstr "Demo"
 
@@ -76,15 +85,15 @@ msgstr ""
 msgid "Disclaimer works on items (layer police)"
 msgstr "Disclaimer works on items (layer police)"
 
-msgid "Draw & Measure"
-msgstr "Draw & Measure"
-
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
+
+msgid "Draw and Measure"
+msgstr "Draw and Measure"
 
 msgid "Draw profile line"
 msgstr "Draw profile line"
@@ -103,6 +112,9 @@ msgstr "Elevation (Aster)"
 
 msgid "Elevation (SRTM)"
 msgstr "Elevation (SRTM)"
+
+msgid "Empty group"
+msgstr "Empty group"
 
 msgid "Enseignement"
 msgstr "Learning"
@@ -133,6 +145,9 @@ msgstr "Group"
 
 msgid "Half query"
 msgstr "Half query"
+
+msgid "Iframe API Application"
+msgstr "Iframe API Application"
 
 msgid "Import Layer"
 msgstr "Import Layer"
@@ -251,14 +266,14 @@ msgstr "Snapping tolerance"
 msgid "Street View"
 msgstr "Street View"
 
+msgid "Sub group"
+msgstr "Sub group"
+
 msgid "Swiss grid (LV03)"
 msgstr "Swiss grid (LV03)"
 
 msgid "Test"
 msgstr "Test"
-
-msgid "Test aus Olten"
-msgstr "Test on Olten"
 
 msgid "Test for a disclaimer to test metadata"
 msgstr "Test for a disclaimer to test metadata"
@@ -274,6 +289,9 @@ msgstr "Themes"
 
 msgid "This is a test disclaimer, to test metadata addition."
 msgstr "This is a test disclaimer, to test metadata addition."
+
+msgid "Tools"
+msgstr "Tools"
 
 msgid "Transport"
 msgstr "Transport"
@@ -292,8 +310,14 @@ msgid ""
 "\"{{url}}\">standard application</a>."
 msgstr ""
 
+msgid "access"
+msgstr "Access"
+
 msgid "accommodation"
 msgstr "Accommodation"
+
+msgid "aerialway"
+msgstr "Aerialway"
 
 msgid "aeroways10"
 msgstr "Aeroways"
@@ -322,6 +346,9 @@ msgstr "Aeroways"
 msgid "aeroways18"
 msgstr "Aeroways"
 
+msgid "amenity"
+msgstr "Amenity"
+
 msgid "asitvd.fond_couleur"
 msgstr "ASIT VD - color background"
 
@@ -334,17 +361,35 @@ msgstr "ASIT VD - background for orthophoto"
 msgid "aster"
 msgstr "ASTER"
 
+msgid "autolink_email"
+msgstr "Autolink email"
+
+msgid "autolink_url"
+msgstr "Autolink URL"
+
 msgid "background"
 msgstr "Background"
 
 msgid "bank"
 msgstr "Bank"
 
+msgid "barrier"
+msgstr "Barrier"
+
 msgid "bench"
 msgstr "Bench"
 
+msgid "bicycle"
+msgstr "Bicycle"
+
+msgid "brand"
+msgstr "Brand"
+
 msgid "buffer_stop"
 msgstr "Buffer stop"
+
+msgid "building"
+msgstr "Building"
 
 msgid "buildings15"
 msgstr "Buildings"
@@ -373,11 +418,17 @@ msgstr "LV95 Triangular network"
 msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
 msgstr "Classification of rocks"
 
+msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung2"
+msgstr "Classification of rocks"
+
 msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
 msgstr "Main lithological groups"
 
 msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
 msgstr "Gravimetric Atlas 1:100000"
+
+msgid "ch.swisstopo.swissimage"
+msgstr "SWISSIMAGE"
 
 msgid "check"
 msgstr "Check"
@@ -387,6 +438,9 @@ msgstr "Cinema"
 
 msgid "comments"
 msgstr "Comments"
+
+msgid "covered"
+msgstr "Covered"
 
 msgid "crossing"
 msgstr "Crossing"
@@ -403,17 +457,35 @@ msgstr "Date time"
 msgid "debug"
 msgstr "Debug"
 
+msgid "denomination"
+msgstr "Information"
+
+msgid "display_name"
+msgstr "Display name"
+
 msgid "district"
 msgstr "District"
 
 msgid "drinking_water"
 msgstr "Drinking water"
 
+msgid "ele"
+msgstr "Elevation"
+
+msgid "email"
+msgstr "Email"
+
 msgid "entertainment"
 msgstr "Entertainment"
 
+msgid "fid"
+msgstr "ID"
+
 msgid "firestations"
 msgstr "Fire stations"
+
+msgid "foot"
+msgstr "Foot"
 
 msgid "fountain"
 msgstr "Fountain"
@@ -432,6 +504,9 @@ msgstr "Group no WFS"
 
 msgid "height"
 msgstr "Height"
+
+msgid "highway"
+msgstr "Highway"
 
 msgid "hospitals"
 msgstr "Hospitals"
@@ -505,8 +580,14 @@ msgstr "Landuse alias"
 msgid "landuse_ingrp"
 msgstr "Landuse in group"
 
+msgid "layer"
+msgstr "Layer"
+
 msgid "legend"
 msgstr "Legend"
+
+msgid "leisure"
+msgstr "Leisure"
 
 msgid "level_crossing"
 msgstr "Level crossing"
@@ -526,8 +607,14 @@ msgstr "Line snapping without vertex"
 msgid "line snap tolerance"
 msgstr "Line snapping with tolerance"
 
+msgid "link"
+msgstr "Link"
+
 msgid "long wms-t layer name name name name name name name"
 msgstr "Long WMS-T layer name name name name name name name"
+
+msgid "man_made"
+msgstr "Man made"
 
 msgid "many_attributes"
 msgstr "Many attributes"
@@ -535,8 +622,29 @@ msgstr "Many attributes"
 msgid "map"
 msgstr "Map"
 
+msgid "motorcar"
+msgstr "Motorcar"
+
 msgid "name"
 msgstr "Name"
+
+msgid "name2"
+msgstr "Name 2"
+
+msgid "name3"
+msgstr "Name 3"
+
+msgid "name4"
+msgstr "Name 4"
+
+msgid "name5"
+msgstr "Name 5"
+
+msgid "name6"
+msgstr "Name 6"
+
+msgid "natural"
+msgstr "Natural"
 
 msgid "no_wfs"
 msgstr "No WFS"
@@ -544,47 +652,65 @@ msgstr "No WFS"
 msgid "northArrow"
 msgstr "North arrow"
 
+msgid "open"
+msgstr "Open"
+
+msgid "operator"
+msgstr "Operator"
+
+msgid "orthophoto"
+msgstr "Orthophoto"
+
 msgid "osm"
 msgstr "OSM"
 
 msgid "osm dual no wfs"
-msgstr "OSM dual no WFS"
+msgstr "OSM (dual, no WFS)"
 
 msgid "osm group no wfs"
-msgstr "OSM group no WFS"
+msgstr "OSM group (no WFS)"
 
 msgid "osm_dual"
-msgstr "OSM dual"
+msgstr "OSM (dual)"
 
 msgid "osm_dual_restricted"
-msgstr "OSM dual restricted"
+msgstr "OSM (dual, restricted)"
 
 msgid "osm_firestations"
-msgstr "OSM fire stations"
+msgstr "OSM Fire stations"
 
 msgid "osm_firestations no wfs"
-msgstr "OSM Fire stations no WFS"
+msgstr "OSM Fire stations (no WFS)"
 
 msgid "osm_firestations_dual_restricted"
 msgstr "OSM Fire stations dual restricted"
+
+msgid "osm_firestations_ingrp"
+msgstr "OSM Fire stations (group)"
+
+msgid "osm_firestations_restricted"
+msgstr "OSM Fire stations (restricted)"
 
 msgid "osm_group"
 msgstr "OSM group"
 
 msgid "osm_group_restricted"
-msgstr "OSM group restricted"
+msgstr "OSM group (restricted)"
 
 msgid "osm_hospitals"
 msgstr "OSM Hospitals"
 
 msgid "osm_hospitals no wfs"
-msgstr "OSM Hospitals no WFS"
+msgstr "OSM Hospitals (no WFS)"
 
 msgid "osm_hospitals_dual_restricted"
-msgstr "OSM Hospitals dual restricted"
+msgstr "OSM Hospitals (dual, restricted)"
+
+msgid "osm_hospitals_ingrp"
+msgstr "OSM Hospitals (group)"
 
 msgid "osm_hospitals_restricted"
-msgstr "OSM Hospitals restricted"
+msgstr "OSM Hospitals (restricted)"
 
 msgid "osm_id"
 msgstr "OSM ID"
@@ -602,37 +728,37 @@ msgid "osm_time2"
 msgstr "OSM time 2"
 
 msgid "osm_time_d_year_mounth"
-msgstr "OSM time value year mounth"
+msgstr "OSM time (value, year, mounth)"
 
 msgid "osm_time_mount_year"
-msgstr "OSM time mounth year"
+msgstr "OSM time (mounth, year)"
 
 msgid "osm_time_r_dp"
-msgstr "OSM time range picker"
+msgstr "OSM time (range, picker)"
 
 msgid "osm_time_r_dp_2"
-msgstr "OSM time range picker 2"
+msgstr "OSM time (range, picker 2)"
 
 msgid "osm_time_r_mounth_year"
-msgstr "OSM time range mounth year"
+msgstr "OSM time (range, mounth, year)"
 
 msgid "osm_time_r_s"
-msgstr "OSM time range slider"
+msgstr "OSM time (range, slider)"
 
 msgid "osm_time_r_year_mounth"
-msgstr "OSM time range year mounth"
+msgstr "OSM time (range, year, mounth)"
 
 msgid "osm_time_v_dp"
-msgstr "OSM time value picher"
+msgstr "OSM time (value, picher)"
 
 msgid "osm_time_v_mounth_year"
-msgstr "OSM time value mounth year"
+msgstr "OSM time (value, mounth year)"
 
 msgid "osm_time_v_s"
-msgstr "OSM time value slider"
+msgstr "OSM time (value, slider)"
 
 msgid "osm_time_year_mounth"
-msgstr "OSM time year mounth"
+msgstr "OSM time (year, mounth)"
 
 msgid "other"
 msgstr "Other"
@@ -642,6 +768,9 @@ msgstr "Parking"
 
 msgid "picnic_site"
 msgstr "Picnic site"
+
+msgid "place"
+msgstr "Place"
 
 msgid "place_of_worship"
 msgstr "Place of worship"
@@ -745,11 +874,20 @@ msgstr "Polygon snapping without vertex"
 msgid "polygon snap tolerance"
 msgstr "Polygon snapping with tolerance"
 
+msgid "population"
+msgstr "Population"
+
 msgid "post_box"
 msgstr "Post box"
 
 msgid "post_office"
 msgstr "Post office"
+
+msgid "power"
+msgstr "Power"
+
+msgid "railway"
+msgstr "Railway"
 
 msgid "railways"
 msgstr "Railways"
@@ -795,6 +933,12 @@ msgstr "Railways in group"
 
 msgid "recycling"
 msgstr "Recycling"
+
+msgid "ref"
+msgstr "Ref"
+
+msgid "religion"
+msgstr "Religion"
 
 msgid "restaurant"
 msgstr "Restaurant"
@@ -850,6 +994,9 @@ msgstr "Roads"
 msgid "scalebar"
 msgstr "Scale bar"
 
+msgid "shop"
+msgstr "Shop"
+
 msgid "short_name"
 msgstr "Short name"
 
@@ -859,8 +1006,20 @@ msgstr "Short name 2"
 msgid "short_name3"
 msgstr "Short name 3"
 
+msgid "simple"
+msgstr "Simple"
+
+msgid "sport"
+msgstr "Sport"
+
 msgid "srtm"
 msgstr "SRTM"
+
+msgid "srtm-partial"
+msgstr "SRTM (partial)"
+
+msgid "surface"
+msgstr "Surface"
 
 msgid "sustenance"
 msgstr "Sustenance"
@@ -879,6 +1038,9 @@ msgstr "Timestamp"
 
 msgid "title"
 msgstr "Title"
+
+msgid "tourism"
+msgstr "Tourism activity"
 
 msgid "tourism_activity"
 msgstr "Tourism activity"
@@ -940,6 +1102,9 @@ msgstr "Waterarea"
 msgid "waterarea9"
 msgstr "Waterarea"
 
+msgid "waterway"
+msgstr "Waterway"
+
 msgid "waterways10"
 msgstr "Waterways"
 
@@ -979,12 +1144,15 @@ msgstr "Waterways"
 msgid "waterways9"
 msgstr "Waterways"
 
+msgid "wood"
+msgstr "Wood"
+
 msgid ""
 "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://"
 "www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 msgstr ""
-"© <a href='http://asitvd.ch'>ASIT VD</a>, <a href='http://"
-"www.openstreetmap.org/copyright'>OpenStreetMap</a> Contributors"
+"© <a href='http://asitvd.ch'>ASIT VD</a>, <a href='http://www.openstreetmap."
+"org/copyright'>OpenStreetMap</a> Contributors"
 
 msgid "© les contributeurs d’OpenStreetMap"
 msgstr "© OpenStreetMap Contributors"
@@ -998,56 +1166,20 @@ msgstr "© OpenStreetMap Contributors"
 #~ msgid "Cluster_Group"
 #~ msgstr "Cluster Group"
 
-#~ msgid "access"
-#~ msgstr "Access"
-
-#~ msgid "aerialway"
-#~ msgstr "Aerialway"
+#~ msgid "Test aus Olten"
+#~ msgstr "Test on Olten"
 
 #~ msgid "alpine_hut"
 #~ msgstr "Alpine hut"
 
-#~ msgid "amenity"
-#~ msgstr "Amenity"
-
-#~ msgid "barrier"
-#~ msgstr "Barrier"
-
-#~ msgid "bicycle"
-#~ msgstr "Bicycle"
-
-#~ msgid "brand"
-#~ msgstr "Brand"
-
-#~ msgid "building"
-#~ msgstr "Building"
-
 #~ msgid "cafe"
 #~ msgstr "Café"
-
-#~ msgid "covered"
-#~ msgstr "Covered"
-
-#~ msgid "denomination"
-#~ msgstr "Information"
-
-#~ msgid "display_name"
-#~ msgstr "Display name"
-
-#~ msgid "ele"
-#~ msgstr "Elevation"
 
 #~ msgid "filters"
 #~ msgstr "Filters"
 
-#~ msgid "foot"
-#~ msgstr "Foot"
-
 #~ msgid "geom"
 #~ msgstr "Geom"
-
-#~ msgid "highway"
-#~ msgstr "Highway"
 
 #~ msgid "last_update_timestamp"
 #~ msgstr "Timestamp"
@@ -1055,86 +1187,14 @@ msgstr "© OpenStreetMap Contributors"
 #~ msgid "last_update_user"
 #~ msgstr "User"
 
-#~ msgid "layer"
-#~ msgstr "Layer"
-
-#~ msgid "leisure"
-#~ msgstr "Leisure"
-
-#~ msgid "man_made"
-#~ msgstr "Man made"
-
-#~ msgid "motorcar"
-#~ msgstr "Motorcar"
-
-#~ msgid "name2"
-#~ msgstr "Name 2"
-
-#~ msgid "name3"
-#~ msgstr "Name 3"
-
-#~ msgid "name4"
-#~ msgstr "Name 4"
-
-#~ msgid "name5"
-#~ msgstr "Name 5"
-
-#~ msgid "name6"
-#~ msgstr "Name 6"
-
-#~ msgid "natural"
-#~ msgstr "Natural"
-
-#~ msgid "open"
-#~ msgstr "Open"
-
-#~ msgid "operator"
-#~ msgstr "Operator"
-
-#~ msgid "place"
-#~ msgstr "Place"
-
-#~ msgid "population"
-#~ msgstr "Population"
-
-#~ msgid "power"
-#~ msgstr "Power"
-
-#~ msgid "railway"
-#~ msgstr "Railway"
-
-#~ msgid "ref"
-#~ msgstr "Ref"
-
-#~ msgid "religion"
-#~ msgstr "Religion"
-
-#~ msgid "shop"
-#~ msgstr "Shop"
-
-#~ msgid "sport"
-#~ msgstr "Sport"
-
 #~ msgid "standard application"
 #~ msgstr "Standard version"
-
-#~ msgid "surface"
-#~ msgstr "Surface"
 
 #~ msgid "test"
 #~ msgstr "Test"
 
 #~ msgid "test2"
 #~ msgstr "Second test"
-
-#~ msgid "tourism"
-#~ msgstr "Tourism activity"
-
-#~ msgid "waterway"
-#~ msgstr "Waterway"
-
-#~ msgid "wood"
-#~ msgstr "Wood"
 
 #~ msgid "zoo"
 #~ msgstr "Zoo"

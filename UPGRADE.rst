@@ -10,8 +10,7 @@ https://camptocamp.github.io/c2cgeoportal/master/integrator/upgrade_application.
 
 .. code::
 
-   ./docker-run --share /var/sig/ --home make --makefile=<makefile> upgrade
-
+   ./docker-run --home make upgrade
 
 After upgrade:
 
@@ -19,7 +18,7 @@ run:
 
 .. code::
 
-   ./docker-run --share /var/sig/ make update-po
+   ./docker-compose-run make update-po
 
 complete the files:  geoportal/demo/locale/*/LC_MESSAGES/demo-*.po
 
@@ -36,8 +35,3 @@ run:
 
    ./docker-run make theme2fts
 
-When it's working publish it to the main demo:
-
-.. code::
-
-   /scripts/publish <instance>
