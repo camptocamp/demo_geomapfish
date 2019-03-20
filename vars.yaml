@@ -189,6 +189,7 @@ vars:
         attributes:
           type:
             table: swiss_points
+      osm_time_r_dp_2: *osm_type
 
   # The "raster web services" configuration. See the "raster"
   # chapter in the integrator documentation.
