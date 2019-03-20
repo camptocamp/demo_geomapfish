@@ -12,6 +12,7 @@ authtkt_secret = ${authtkt["secret"]}
 authtkt_cookie_name = ${authtkt["cookie_name"]}
 % if "timeout" in authtkt:
 authtkt_timeout = ${authtkt["timeout"]}
+#authtkt_http_only = False
 % endif
 app.cfg = %(here)s/config.yaml
 
