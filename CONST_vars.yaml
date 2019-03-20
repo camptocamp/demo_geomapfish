@@ -80,7 +80,8 @@ vars:
   # mapfile data subselect
   mapfile_data_subselect: "SELECT ST_Collect(ra.area) FROM main.restrictionarea AS ra, \
     main.role_restrictionarea AS rra, main.layer_restrictionarea AS lra, main.treeitem AS la \
-    WHERE rra IS NOT NULL AND rra.role_id in (%role_ids%) AND rra.restrictionarea_id = ra.id AND lra.restrictionarea_id = ra.id \
+    WHERE rra IS NOT NULL AND rra.role_id in (%role_ids%) AND rra.restrictionarea_id = ra.id \
+    AND lra.restrictionarea_id = ra.id \
     AND lra.layer_id = la.id AND la.name = "
   # mapserver filter on role id only
   mapfile_data_noarea_subselect: "SELECT rra.role_id FROM {mapserver_join_tables} \
