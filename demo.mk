@@ -14,7 +14,7 @@ export DEV_SERVER_PORT
 PGDATABASE ?= demo_geomapfish_2_3
 export PGDATABASE
 
-NGEO_INTERFACES ?= desktop mobile desktop_alt mobile_alt oeview oeedit
+NGEO_INTERFACES ?= desktop mobile mobile_alt oeview oeedit
 
 ifeq ($(FINALISE), TRUE)
 include nondocker-finalise.mk
