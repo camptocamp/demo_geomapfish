@@ -152,3 +152,17 @@ metadata:
 provider:
     name: Camptocamp
     url: https://www.camptocamp.com/solutions/business/
+    contact:
+        name: The contact name
+        position: The position name
+        info:
+            phone:
+                voice: +41 11 222 33 44
+                fax: +41 11 222 33 44
+            address:
+                delivery: Address delivery
+                city: Berne
+                area: BE
+                postal_code: 3000
+                country: Switzerland
+                email: info@example.com
