@@ -57,7 +57,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE %role_id% IN (${mapfile_data_noarea_subselect} 'firestations')) AS foo USING UNIQUE osm_id USING srid=21781"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE %role_ids% IN (${mapfile_data_noarea_subselect} 'firestations')) AS foo USING UNIQUE osm_id USING srid=21781"
     VALIDATION
         ${mapserver_layer_validation}
     END
