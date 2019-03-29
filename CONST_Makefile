@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.4
+GEOMAPFISH_VERSION ?= 2.4.0rc3
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -86,9 +86,7 @@ WEB_RULE ?= $(DEFAULT_WEB_RULE)
 DEFAULT_BUILD_RULES ?= docker-build-geoportal \
 	docker-build-config \
 	build-api \
-	project.yaml \
-	geoportal/alembic.ini \
-	geoportal/alembic.yaml
+	project.yaml
 ifeq ($(DOCKER), TRUE)
 DEFAULT_BUILD_RULES += .env
 endif
@@ -162,11 +160,6 @@ I18N_SOURCE_FILES += $(APP_HTML_FILES) \
 # The theme from the database
 I18N_SOURCE_FILES += geoportal/development.ini
 I18N_DEPENDENCIES += project.yaml
-
-
-# Alembic
-ALEMBIC_YAML_FILE ?= $(VARS_FILE)
-export ALEMBIC_YAML_FILE
 
 # CGXP
 JSBUILD_MAIN_FILES = $(shell find geoportal/$(PACKAGE)_geoportal/static/lib/cgxp geoportal/$(PACKAGE)_geoportal/static/js -name "*.js" -print 2> /dev/null)
@@ -704,6 +697,7 @@ docker-build-geoportal: $(shell docker-required --path geoportal) \
 		$(WEB_RULE) \
 		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).mo, $(LANGUAGES))) \
 		geoportal/config.yaml \
+		geoportal/alembic.ini \
 		geoportal/alembic.yaml
 	docker build --tag=$(DOCKER_BASE)-geoportal:$(DOCKER_TAG) --build-arg=GIT_HASH=$(GIT_HASH) geoportal
 
@@ -712,9 +706,9 @@ push-docker:
 	docker push $(DOCKER_BASE)-config:$(DOCKER_TAG)
 	docker push $(DOCKER_BASE)-geoportal:$(DOCKER_TAG)
 
-geoportal/alembic.yaml: $(ALEMBIC_YAML_FILE) vars.yaml CONST_vars.yaml
+geoportal/alembic.yaml: /build/c2ctemplate-cache.json
 	$(PRERULE_CMD)
-	c2c-template --vars $< --get-config /build/_alembic.yaml srid schema schema_static sqlalchemy.url cache
+	c2c-template --cache $< --get-config /build/_alembic.yaml srid schema schema_static sqlalchemy.url cache
 	mv /build/_alembic.yaml $@
 
 # Upgrade
@@ -761,11 +755,20 @@ secrets:
 .PHONY: edit-qgis-project
 edit-qgis-project:
 	IP=$$(ip addr show dev $$(route | grep default | awk '{print $$(NF)}' | head -1) | awk '$$1 ~ /^inet/ { sub("/.*", "", $$2); print $$2 }' | head -1); \
-	docker run -ti \
-		--add-host=db:$${IP} \
+	./docker-run make .env
+	sed -r "s/^([^=]+)=(.+)$$/export \1=\'\2\'/g" .env > .env.source
+	bash -c 'source .env.source; docker run -ti \
 		--volume=$${PWD}/qgisserver:/etc/qgisserver \
 		--volume=/tmp/.X11-unix:/tmp/.X11-unix \
 		--volume=$${HOME}:$${HOME} \
 		--env=DISPLAY=unix$${DISPLAY} \
 		--env=PGSERVICEFILE=$$HOME/.pg_service.conf \
-		--rm camptocamp/qgis-server:3.2 /usr/local/bin/start-client /etc/qgisserver/project.qgs
+		--env=AWS_ACCESS_KEY_ID \
+		--env=AWS_SECRET_ACCESS_KEY \
+		--env=AWS_DEFAULT_REGION \
+		--env=AWS_S3_ENDPOINT \
+		--env=CPL_VSIL_CURL_USE_CACHE \
+		--env=CPL_VSIL_CURL_CACHE_SIZE \
+		--env=CPL_VSIL_CURL_USE_HEAD \
+		--env=GDAL_DISABLE_READDIR_ON_OPEN \
+		camptocamp/qgis-server:3.4 /usr/local/bin/start-client /etc/qgisserver/project.qgz'

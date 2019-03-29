@@ -58,8 +58,6 @@ vars:
   # Sqlalchemy static schema
   schema_static: '{PGSCHEMA_STATIC}'
 
-  alembic_yaml_file: '{ALEMBIC_YAML_FILE}'
-
   dbsessions: {}
 
   # mapserver connexion string
@@ -528,6 +526,7 @@ vars:
   ogcproxy_enable: false
 
   lingua_extractor: {}
+
   content_security_policy_main_default_src_extra: ""
   content_security_policy_main_script_src_extra: "
     https://maps.google.com/
@@ -640,6 +639,21 @@ vars:
     blob:
     {content_security_policy_oldapihelp_worker_src_extra}"
 
+  content_security_policy_c2c_default_src_extra: ""
+  content_security_policy_c2c_script_src_extra: ""
+  content_security_policy_c2c_style_src_extra: ""
+  content_security_policy_c2c_default_src: "
+    'self'
+    {content_security_policy_c2c_default_src_extra}"
+  content_security_policy_c2c_script_src: "
+    'self'
+    {content_security_policy_c2c_script_src_extra}"
+  content_security_policy_c2c_style_src: "
+    'self'
+    'unsafe-inline'
+    https://stackpath.bootstrapcdn.com/
+    {content_security_policy_c2c_style_src_extra}"
+
   global_headers:
     - pattern: '.*'
       headers:
@@ -687,6 +701,18 @@ vars:
       headers:
         Access-Control-Allow-Origin: '*'
         Access-Control-Allow-Headers: X-Requested-With, Content-Type
+    - pattern: '^/c2c$'
+      headers:
+        Content-Security-Policy:
+          "default-src {content_security_policy_c2c_default_src};
+          script-src {content_security_policy_c2c_script_src};
+          style-src {content_security_policy_c2c_style_src};"
+    - pattern: '^/c2c/.*'
+      headers:
+        Content-Security-Policy:
+          "default-src {content_security_policy_c2c_default_src};
+          script-src {content_security_policy_c2c_script_src};
+          style-src {content_security_policy_c2c_style_src};"
 
   # Control the HTTP headers
   headers:
@@ -844,7 +870,6 @@ environment:
   - BUILD_VOLUME_NAME
   - PROJECT_DIRECTORY
   - INSTANCE
-  - ALEMBIC_YAML_FILE
   - DOCKER_PORT
 
 runtime_environment:
