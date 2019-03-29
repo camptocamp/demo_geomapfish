@@ -59,9 +59,8 @@ c2c:
     enabled: true
     dbstats:
       schemas:
-      - edit
-      - geodata
-
+        - edit
+        - geodata
 
 
 openshift: true
