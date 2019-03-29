@@ -57,6 +57,11 @@ c2c:
     project: 14
   statsd:
     enabled: true
+    dbstats:
+      schemas:
+      - edit
+      - geodata
+
 
 
 openshift: true
