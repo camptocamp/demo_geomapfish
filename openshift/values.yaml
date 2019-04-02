@@ -61,7 +61,8 @@ c2c:
       schemas:
         - edit
         - geodata
-
+      extraDBs:
+        - database: gmf_demo_osm
 
 openshift: true
 ingress:
