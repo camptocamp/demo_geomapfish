@@ -21,4 +21,4 @@ include CONST_Makefile
 .env: .env.secrets
 .env.secrets:
 	@echo "Use `make secrets` outside of Docker to get the secrets."
-secrets.tar.bz2.gpg: .env.secrets openshift/secrets.yaml openshift/ch-3/ secrets.md
+secrets.tar.bz2.gpg: .env.secrets secrets.md
