@@ -123,7 +123,6 @@ vars:
                 LAYERFONTSIZE: '10'
                 ITEMFONTSIZE: '8'
 
-        gmfSearchGroups: []
         sentryOptions:
           release: 2.3
           environment: '{instance}'
@@ -134,6 +133,7 @@ vars:
       <<: *interface
       constants:
         <<: *constants
+        gmfSearchGroups: []
         ngeoQueryOptions:
           tolerance: 20
           limit: 5
