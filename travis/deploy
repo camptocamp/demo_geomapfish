@@ -2,11 +2,12 @@
 
 function publish {
     local version=$1
+    shift
 
 
     echo "Deploying images to Docker Hub for tag ${version}"
     docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
-    for image in config geoportal
+    for image in $*
     do
         if [[ "${version}" != "latest" ]]
         then
@@ -24,7 +25,7 @@ function publish {
 
     oc login $OPENSHIFT_URL --username=$OPENSHIFT_USERNAME --password=$OPENSHIFT_PASSWORD
     RELEASE=`echo -n "${TRAVIS_BRANCH}" | sed -e 's/\./-/g'`
-    for image in config geoportal
+    for image in $*
     do
         oc --namespace gs-gmf-demo import-image "demo-${RELEASE}-c2cgeoportal-${image}:${version}" --scheduled true --reference-policy=local
     done

@@ -17,10 +17,16 @@ env:
     - secure: "XFk3jPtVYaYEwWgo6aA3JhrbruBzGgN6lQzXrYla9XhmmTuLX0S40SQk5iBakDosNOMhy9ys6bL8V1uhcOtzcY8V52U7s\
         uDN9odk95focG+2epgPuslOtDsXHVZ1fD/ErKTepE1qioIqqGmXLx3+Ol6oABPso7Ety75BtctBxa0="
 
-
-script:
-  - ./docker-run make checks
-  - ./docker-run make docker-build-config docker-build-geoportal
-
-after_success:
-  - ./travis/deploy
+jobs:
+  include:
+    - stage: config
+      script:
+        - ./docker-run make docker-build-config
+      after_success:
+        - ./travis/deploy 2.4 config
+    - stage: geoportal
+      script:
+        - ./docker-run make checks
+        - ./docker-run make docker-build-geoportal
+      after_success:
+        - ./travis/deploy 2.4 geoportal

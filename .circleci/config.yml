@@ -1,0 +1,46 @@
+---
+
+version: 2
+jobs:
+
+  config:
+    machine:
+      docker_layer_caching: true
+    environment:
+      - DOCKER_USERNAME=dockerhubc2c
+      - OPENSHIFT_URL=https://openshift-ch-3.camptocamp.com/
+      - OPENSHIFT_USERNAME=sbrunner
+    steps:
+      - checkout
+      - restore_cache:
+          key: '{{ checksum ".circleci/config.yml" }}'
+      - run: python -m pip install --user netifaces configparser six
+      - run: python ./docker-run make docker-build-config
+      - deploy:
+          command: ./travis/deploy 2.4 config
+      - save_cache:
+          key: '{{ checksum ".circleci/config.yml" }}'
+          paths:
+            - "~/.local"
+
+  geoportal:
+    machine:
+      docker_layer_caching: true
+    environment:
+      - DOCKER_USERNAME=dockerhubc2c
+      - OPENSHIFT_URL=https://openshift-ch-3.camptocamp.com/
+      - OPENSHIFT_USERNAME=sbrunner
+    steps:
+      - checkout
+      - run: python -m pip install --user netifaces configparser six
+      - run: python ./docker-run make checks
+      - run: python ./docker-run make docker-build-geoportal
+      - deploy:
+          command: ./travis/deploy 2.4 geoportal
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - config
+      - geoportal
