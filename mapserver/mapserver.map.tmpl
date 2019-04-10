@@ -41,10 +41,10 @@ MAP
     CONFIG "CPL_VSIL_CURL_USE_HEAD" "FALSE"
     CONFIG "GDAL_DISABLE_READDIR_ON_OPEN" "TRUE"
 
-    CONFIG "AWS_ACCESS_KEY_ID" "${aws_access_key_id}"
-    CONFIG "AWS_SECRET_ACCESS_KEY" "${aws_secret_access_key}"
-    CONFIG "AWS_DEFAULT_REGION" "${aws_default_region}"
-    CONFIG "AWS_S3_ENDPOINT" "${aws_s3_endpoint}"
+    CONFIG "AWS_ACCESS_KEY_ID" "${AWS_ACCESS_KEY_ID}"
+    CONFIG "AWS_SECRET_ACCESS_KEY" "${AWS_SECRET_ACCESS_KEY}"
+    CONFIG "AWS_DEFAULT_REGION" "${AWS_DEFAULT_REGION}"
+    CONFIG "AWS_S3_ENDPOINT" "${AWS_S3_ENDPOINT}"
 
 
     OUTPUTFORMAT
@@ -76,7 +76,7 @@ MAP
         METADATA
             "wms_title" "Démo du c2cgeoportal"
             "wms_abstract" "Des exemples de couches à partir de données OpenData de différentes villes françaises et suisse."
-            "ows_onlineresource" "${web_protocol}://${host}${entry_point}mapserv_proxy?ogcserver=Main+PNG"
+            "ows_onlineresource" "${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}mapserv_proxy?ogcserver=Main+PNG"
             "ows_srs" "EPSG:21781"
             "wms_encoding" "UTF-8"
             "wms_enable_request" "*"
