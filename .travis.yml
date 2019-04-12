@@ -19,13 +19,12 @@ env:
 
 jobs:
   include:
-    - stage: config
+    - stage: config-geoportal
       script:
         - ./docker-run make docker-build-config
       after_success:
         - ./travis/deploy 2.4 config
-    - stage: geoportal
-      script:
+    - script:
         - ./docker-run make checks
         - ./docker-run make docker-build-geoportal
       after_success:
