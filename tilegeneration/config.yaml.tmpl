@@ -1,30 +1,36 @@
 grids:
     # grid name, I just recommends to add the min resolution because it's common to not generate all the layers at the same resolution.
-    swissgrid_005:
+    swissgrid_05:
         # resolutions [required]
-        resolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+        resolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5]
         # bbox [required]
         bbox: [420000, 30000, 900000, 350000]
         # srs [required]
         srs: EPSG:21781
 
 caches:
+    local:
+        type: filesystem
+        folder: /var/sig/tiles
+        # for GetCapabilities
+        http_url: ${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}
     s3:
         type: s3
-        bucket: ${TILEGENERATION_S3_BUCKET}
+        bucket: tiles
         folder: ''
         # for GetCapabilities
-        http_url: '${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}'
+        http_url: ${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}
         cache_control: 'public, max-age=14400'
-        host: ${AWS_S3_ENDPOINT}
+        hosts:
+        - wmts0.<host>
 
 # this defines some defaults values for all the layers
 defaults:
     layer: &layer
         type: wms
-        grid: swissgrid_005
+        grid: swissgrid_05
         # The minimum resolution to seed, useful to use with mapcache, optional.
-        min_resolution_seed: 5
+        # min_resolution_seed: 1
         # the URL of the WMS server to used
         url: ${MAPSERVER_URL}
         # Set the headers to get the right virtual host, and don't get any cached result
@@ -35,7 +41,7 @@ defaults:
         # file name extension
         extension: png
         # the bbox there we want to generate tiles
-        bbox: [473743, 74095, 850904, 325533]
+        #bbox: [493000, 114000, 586000, 204000]
 
         # mime type used for the WMS request and the WMTS capabilities generation
         mime_type: image/png
@@ -55,11 +61,6 @@ defaults:
         meta_size: 5
         # the meta tiles buffer [default to 128]
         meta_buffer: 128
-
-layers:
-    map:
-        <<: *layer
-        layers: default
         # connexion an sql to get geometries (in column named geom) where we want to generate tiles
         # Warn: too complex result can slow down the application
 #    connection: user=www-data password=www-data dbname=<db> host=localhost
@@ -72,11 +73,18 @@ layers:
         empty_tile_detection:
             size: 921
             hash: 1e3da153be87a493c4c71198366485f290cad43c
-    map_jpeg:
+
+layers:
+    plan:
         <<: *layer
-        layers: default
+        layers: plan
+    ortho:
+        <<: *layer
+        layers: ortho
         extension: jpeg
         mime_type: image/jpeg
+        # no buffer needed on rater sources
+        meta_buffer: 0
         empty_metatile_detection:
             size: 66163
             hash: a9d16a1794586ef92129a2fb41a739451ed09914
@@ -85,7 +93,9 @@ layers:
             hash: 2892fea0a474228f5d66a534b0b5231d923696da
 
 generation:
-    default_cache: s3
+    default_cache: local
+    # used to allowed only a specific user to generate tiles (for rights issue)
+    authorised_user: www-data
 
     # maximum allowed consecutive errors, after it exit [default to 10]
     maxconsecutive_errors: 10
@@ -101,14 +111,18 @@ sqs:
     queue: '${TILEGENERATION_SQS_QUEUE}'
 
 server:
-    mapcache_base: '${MAPCACHE_URL}'
+    mapcache_base: '${MAPSERVER_URL}'
     wmts_path: tiles
     static_path: tiles/static
     admin_path: tiles/admin
     expires: 8  # 8 hours
     predefined_commands:
-    -   name: Generation layer map
-        command: generate_tiles --role=master --layer=map
+    -   name: Generation all layers
+        command: generate_tiles --role=master
+    -   name: Generation layer plan
+        command: generate_tiles --role=master --layer=plan
+    -   name: Generation layer ortho
+        command: generate_tiles --role=master --layer=ortho
 
 mapcache:
     config_file: mapcache/mapcache.xml.tmpl
@@ -137,16 +151,29 @@ openlayers:
     center_y: 200000
 
 metadata:
-    title: Camptocamp GeoMapFish demo
-    abstract: Camptocamp GeoMapFish demo
+    title: Some title
+    abstract: Some abstract
     servicetype: OGC WMTS
     keywords:
-    - camptocamp
-    - geomapfish
-    - demo
+    - some
+    - keywords
     fees: None
     access_constraints: None
 
 provider:
-    name: Camptocamp
-    url: https://www.camptocamp.com/solutions/business/
+    name: The provider name
+    url: The provider URL
+    contact:
+        name: The contact name
+        position: The position name
+        info:
+            phone:
+                voice: +41 11 222 33 44
+                fax: +41 11 222 33 44
+            address:
+                delivery: Address delivery
+                city: Berne
+                area: BE
+                postal_code: 3000
+                country: Switzerland
+                email: info@example.com
