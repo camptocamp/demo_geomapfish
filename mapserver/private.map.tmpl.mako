@@ -7,12 +7,10 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_hospitals WHERE ST_Contains((SELECT ST_Collect(ra.area) FROM main.restrictionarea AS ra, main.role_restrictionarea AS rra, main.layer_restrictionarea AS lra, main.treeitem AS la WHERE rra.role_id in (%role_ids%) AND rra.restrictionarea_id = ra.id AND lra.restrictionarea_id = ra.id AND lra.layer_id = la.id AND la.name =  'hospitals'), geom)) AS foo USING UNIQUE osm_id USING srid=21781"
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_hospitals WHERE ST_Contains((${mapfile_data_subselect} 'hospitals'), geom)) AS foo USING UNIQUE osm_id USING srid=21781"
     VALIDATION
-        "default_role_ids" "-1"
-"role_ids" "^-?[0-9,]*$"
-
+        ${mapserver_layer_validation}
     END
     LABELITEM "name"
     PROJECTION
@@ -58,12 +56,10 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE %role_ids% IN (SELECT rra.role_id FROM ${PGSCHEMA}.restrictionarea AS ra, ${PGSCHEMA}.role_restrictionarea AS rra, ${PGSCHEMA}.layer_restrictionarea AS lra, ${PGSCHEMA}.treeitem AS la WHERE rra.restrictionarea_id = ra.id AND lra.restrictionarea_id = ra.id AND lra.layer_id = la.id AND la.name =  'firestations')) AS foo USING UNIQUE osm_id USING srid=21781"
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE %role_ids% IN (${mapfile_data_noarea_subselect} 'firestations')) AS foo USING UNIQUE osm_id USING srid=21781"
     VALIDATION
-        "default_role_ids" "-1"
-"role_ids" "^-?[0-9,]*$"
-
+        ${mapserver_layer_validation}
     END
     LABELITEM "name"
     PROJECTION

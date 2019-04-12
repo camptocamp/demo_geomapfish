@@ -11,7 +11,7 @@ LAYER
   EXTENT -31 27 45 71 # Useful for better performance but not mandatory
   CONNECTIONTYPE postgis
   PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-  CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
+  CONNECTION "${mapserver_connection}"
   DATA "geom FROM (SELECT geo.* FROM data.europe_borders as geo) as foo using unique gid using srid=4326"
   PROJECTION
     "init=epsg:4326"
@@ -35,7 +35,7 @@ LAYER
     "wms_metadataurl_format" "text/html" # For metadata URL
     "wms_metadataurl_type" "TC211" # For metadata URL
 
-     # For secured layers
+    ${mapserver_layer_metadata} # For secured layers
   END
 END
 
@@ -49,8 +49,8 @@ LAYER
   EXTENT  -31 27 45 71
   CONNECTIONTYPE postgis
   PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-  CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-  DATA "geom FROM (SELECT geo.*, (pop2005/(area*10)) AS density FROM data.europe_borders AS geo WHERE %role_ids% IN (SELECT rra.role_id FROM ${PGSCHEMA}.restrictionarea AS ra, ${PGSCHEMA}.role_restrictionarea AS rra, ${PGSCHEMA}.layer_restrictionarea AS lra, ${PGSCHEMA}.treeitem AS la WHERE rra.restrictionarea_id = ra.id AND lra.restrictionarea_id = ra.id AND lra.layer_id = la.id AND la.name =  'density')) as foo USING UNIQUE gid USING srid=4326"
+  CONNECTION "${mapserver_connection}"
+  DATA "geom FROM (SELECT geo.*, (pop2005/(area*10)) AS density FROM data.europe_borders AS geo WHERE %role_ids% IN (${mapfile_data_noarea_subselect} 'density')) as foo USING UNIQUE gid USING srid=4326"
   PROJECTION
     "init=epsg:4326"
   END
@@ -225,9 +225,7 @@ LAYER
   END
 
   VALIDATION
-    "default_role_ids" "-1"
-"role_ids" "^-?[0-9,]*$"
- # For secured layers
+    ${mapserver_layer_validation} # For secured layers
   END
 
   METADATA
@@ -243,6 +241,6 @@ LAYER
     "wms_metadataurl_format" "text/html" # For metadata URL
     "wms_metadataurl_type" "TC211" # For metadata URL
 
-     # For secured layers
+    ${mapserver_layer_metadata} # For secured layers
   END
 END
