@@ -179,7 +179,7 @@ vars:
 
   dbsessions:
     osm:
-      url: postgresql://{dbuser}:{dbpassword}@{dbhost}:{dbport}/{osm_db}
+      url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{osm_db}
 
   layers:
     geometry_validation: True
@@ -233,7 +233,7 @@ vars:
       Sincerely yours
       The GeoMapfish team
     allowed_hosts:
-      - "{host}"
+      - "{VISIBLE_WEB_HOST}"
       - camptocamp.github.io
       - geomapfish-demo-dc.camptocamp.com
       - fredj.github.io
@@ -282,7 +282,7 @@ vars:
       cache_control_max_age: 600  # 10 minutes
       access_control_max_age: 30
       access_control_allow_origin:
-        - "{web_protocol}://{host}"
+        - "{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}"
         - https://camptocamp.github.io
         - https://fredj.github.io
         - https://ger-benjamin.github.io
@@ -336,23 +336,6 @@ vars:
   checker:
     fulltextsearch:
       search: pau
-    print:
-      spec:
-        layout: "1 A4 portrait"
-        outputFormat: "pdf"
-        attributes:
-          title: ""
-          comments: ""
-          datasource: []
-          map:
-            projection: "EPSG:21781"
-            dpi: 254
-            rotation: 0
-            center: [600000, 200000]
-            scale: 100000
-            longitudeFirst: true
-            layers: []
-          legend: {}
 #    phantomjs:
 #      disable: [desktop, mobile]
 

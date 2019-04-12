@@ -1,17 +1,7 @@
-# -*- coding: utf-8 -*-
 
-<%!
-columns = 'regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\\"natural\\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way'
-layers = [{
-    "column": "tourism",
-    "value": "hotel",
-    "type": "hotel",
-    "name": u"Hôtels"
-}]
-%>
-% for layer in layers:
+
 LAYER
-    NAME "${layer['type']}"
+    NAME "hotel"
     GROUP "osm"
     EXTENT 473743 74095 839000 306400
     TYPE POINT
@@ -19,9 +9,9 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
-    DATA "way FROM (SELECT ${columns} FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
-    FILTER ('[${layer['column']}]' ${layer.get('operator', '=')} '${layer['value']}')
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    FILTER ('[tourism]' = 'hotel')
     LABELITEM "name"
     PROJECTION
         "init=epsg:21781"
@@ -29,7 +19,7 @@ LAYER
     TOLERANCE 10
     TOLERANCEUNITS pixels
     CLASS
-        NAME "${layer['name']}"
+        NAME "Hôtels"
         STYLE
             SYMBOL "circle"
             SIZE 6
@@ -45,7 +35,7 @@ LAYER
     END
 
     METADATA
-        "wms_title" "${layer['name']}"
+        "wms_title" "Hôtels"
 
         "gml_include_items" "all"
         "gml_types" "auto"
@@ -54,7 +44,6 @@ LAYER
         "gml_geometries" "THE_GEOM"
     END
 END
-% endfor
 
 LAYER
     NAME "police"
@@ -64,7 +53,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity = 'police'"
     LABELITEM "name"
@@ -109,7 +98,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity = 'post_office'"
     LABELITEM "name"
@@ -154,7 +143,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity = 'fuel'"
     LABELITEM "name"
@@ -199,7 +188,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity = 'parking'"
     LABELITEM "name"
@@ -244,7 +233,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,name AS name2,name AS name3,name AS name4,name AS name5,name AS name6,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point WHERE name is not NULL) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=highway = 'bus_stop'"
     LABELITEM "name"
@@ -279,7 +268,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=highway = 'bus_stop'"
     LABELITEM "name"
@@ -326,7 +315,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=tourism in ('alpine_hut','hostel', 'guest_house', 'chalet', 'hotel', 'camp_site')"
     LABELITEM "name"
@@ -429,7 +418,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=tourism = 'information'"
     LABELITEM "name"
@@ -467,7 +456,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=tourism in ('zoo','casino', 'bicycle_rental', 'boat_rental', 'winery', 'brewery', 'museum', 'viewpoint')"
     LABELITEM "name"
@@ -643,7 +632,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity in ('bank','atm')"
     LABELITEM "name"
@@ -700,7 +689,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     FILTER ('[amenity]' = 'place_of_worship')
     LABELITEM "name"
@@ -779,7 +768,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity in ('cafe','restaurant', 'fast_food', 'bar')"
     PROJECTION
@@ -863,7 +852,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     PROCESSING "NATIVE_FILTER=amenity in ('cafe','bar','nightclub', 'cinema')"
     PROJECTION
@@ -956,24 +945,16 @@ LAYER
     END
 END
 
-<%!
-time_layers = [
-    ("osm_time", "2006-01/2013-12/P1M"),
-    ("osm_time2", "2006-01/2013-12/P1M"),
-    ("osm_time_year_mounth", "2006/2013/P1M"),
-    ("osm_time_mount_year", "2006-01/2013-12/P1Y"),
-]
-%>
-% for name, extent in time_layers:
+
 LAYER
-    NAME "${name}"
+    NAME "osm_time"
     EXTENT 420000 40500 839000 306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     EXTENT 473743 74095 839000 306400
@@ -1008,11 +989,151 @@ LAYER
         "gml_geometries" "geom"
         "wfs_enable_request" "*"
 
-        "wms_timeextent" "${extent}"
+        "wms_timeextent" "2006-01/2013-12/P1M"
         "wms_timeitem" "datetime"
     END
 END
-% endfor
+LAYER
+    NAME "osm_time2"
+    EXTENT 420000 40500 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
+    LABELITEM "name"
+    EXTENT 473743 74095 839000 306400
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Dans les temps"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 0 0 30
+            COLOR 0 0 230
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "OSM Time"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+        "wfs_enable_request" "*"
+
+        "wms_timeextent" "2006-01/2013-12/P1M"
+        "wms_timeitem" "datetime"
+    END
+END
+LAYER
+    NAME "osm_time_year_mounth"
+    EXTENT 420000 40500 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
+    LABELITEM "name"
+    EXTENT 473743 74095 839000 306400
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Dans les temps"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 0 0 30
+            COLOR 0 0 230
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "OSM Time"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+        "wfs_enable_request" "*"
+
+        "wms_timeextent" "2006/2013/P1M"
+        "wms_timeitem" "datetime"
+    END
+END
+LAYER
+    NAME "osm_time_mount_year"
+    EXTENT 420000 40500 839000 306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
+    LABELITEM "name"
+    EXTENT 473743 74095 839000 306400
+    PROJECTION
+        "init=epsg:21781"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Dans les temps"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 0 0 30
+            COLOR 0 0 230
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "OSM Time"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+        "wfs_enable_request" "*"
+
+        "wms_timeextent" "2006-01/2013-12/P1Y"
+        "wms_timeitem" "datetime"
+    END
+END
 
 LAYER
     NAME "osm_scale"
@@ -1022,8 +1143,8 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
-    DATA "way FROM (SELECT ${columns} FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     EXTENT 473743 74095 839000 306400
     PROJECTION
@@ -1063,49 +1184,866 @@ LAYER
     END
 END
 
-<%
-colors = [
-    [100, 160, 235, 140],
-    [500, 242, 243, 159],
-    [2000, 247, 171, 96],
-    [5000, 148, 103, 50],
-]
-nb = 20
-%>
-% for layer in ["aster", "srtm"]:
+
 LAYER
-    NAME "${layer}"
-% if layer == "aster":
+    NAME "aster"
     GROUP "half_query"
-    DATA ${raster_base_path}/Aster21781.vrt
-% else:
-    DATA ${raster_base_path}/SRTM21781.vrt
-% endif
+    DATA ${RASTER_BASE_PATH}/Aster21781.vrt
     TYPE RASTER
     STATUS ON
-% for i in range(len(colors) - 1):
-<%
-c1 = colors[i]
-c2 = colors[i+1]
-%>
-% for j in range(nb):
-<%
-l1 = c1[0] + (c2[0] - c1[0]) / nb * j
-l2 = c1[0] + (c2[0] - c1[0]) / nb * (j+1)
-r = c1[1] + (c2[1] - c1[1]) / nb * j
-g = c1[2] + (c2[2] - c1[2]) / nb * j
-b = c1[3] + (c2[3] - c1[3]) / nb * j
-%>
+
+
     CLASS
-        EXPRESSION ([pixel] > ${l1} and [pixel] <= ${l2})
+        EXPRESSION ([pixel] > 100.0 and [pixel] <= 120.0)
         STYLE
-            COLOR ${r} ${g} ${b}
+            COLOR 160.0 235.0 140.0
         END
     END
-% endfor
-% endfor
+
+    CLASS
+        EXPRESSION ([pixel] > 120.0 and [pixel] <= 140.0)
+        STYLE
+            COLOR 164.1 235.4 140.95
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 140.0 and [pixel] <= 160.0)
+        STYLE
+            COLOR 168.2 235.8 141.9
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 160.0 and [pixel] <= 180.0)
+        STYLE
+            COLOR 172.3 236.2 142.85
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 180.0 and [pixel] <= 200.0)
+        STYLE
+            COLOR 176.4 236.6 143.8
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 200.0 and [pixel] <= 220.0)
+        STYLE
+            COLOR 180.5 237.0 144.75
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 220.0 and [pixel] <= 240.0)
+        STYLE
+            COLOR 184.6 237.4 145.7
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 240.0 and [pixel] <= 260.0)
+        STYLE
+            COLOR 188.7 237.8 146.65
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 260.0 and [pixel] <= 280.0)
+        STYLE
+            COLOR 192.8 238.2 147.6
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 280.0 and [pixel] <= 300.0)
+        STYLE
+            COLOR 196.9 238.6 148.55
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 300.0 and [pixel] <= 320.0)
+        STYLE
+            COLOR 201.0 239.0 149.5
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 320.0 and [pixel] <= 340.0)
+        STYLE
+            COLOR 205.1 239.4 150.45
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 340.0 and [pixel] <= 360.0)
+        STYLE
+            COLOR 209.2 239.8 151.4
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 360.0 and [pixel] <= 380.0)
+        STYLE
+            COLOR 213.3 240.2 152.35
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 380.0 and [pixel] <= 400.0)
+        STYLE
+            COLOR 217.39999999999998 240.6 153.3
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 400.0 and [pixel] <= 420.0)
+        STYLE
+            COLOR 221.5 241.0 154.25
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 420.0 and [pixel] <= 440.0)
+        STYLE
+            COLOR 225.6 241.4 155.2
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 440.0 and [pixel] <= 460.0)
+        STYLE
+            COLOR 229.7 241.8 156.15
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 460.0 and [pixel] <= 480.0)
+        STYLE
+            COLOR 233.8 242.2 157.1
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 480.0 and [pixel] <= 500.0)
+        STYLE
+            COLOR 237.89999999999998 242.6 158.05
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ([pixel] > 500.0 and [pixel] <= 575.0)
+        STYLE
+            COLOR 242.0 243.0 159.0
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 575.0 and [pixel] <= 650.0)
+        STYLE
+            COLOR 242.25 239.4 155.85
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 650.0 and [pixel] <= 725.0)
+        STYLE
+            COLOR 242.5 235.8 152.7
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 725.0 and [pixel] <= 800.0)
+        STYLE
+            COLOR 242.75 232.2 149.55
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 800.0 and [pixel] <= 875.0)
+        STYLE
+            COLOR 243.0 228.6 146.4
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 875.0 and [pixel] <= 950.0)
+        STYLE
+            COLOR 243.25 225.0 143.25
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 950.0 and [pixel] <= 1025.0)
+        STYLE
+            COLOR 243.5 221.4 140.1
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1025.0 and [pixel] <= 1100.0)
+        STYLE
+            COLOR 243.75 217.8 136.95
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1100.0 and [pixel] <= 1175.0)
+        STYLE
+            COLOR 244.0 214.2 133.8
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1175.0 and [pixel] <= 1250.0)
+        STYLE
+            COLOR 244.25 210.6 130.65
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1250.0 and [pixel] <= 1325.0)
+        STYLE
+            COLOR 244.5 207.0 127.5
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1325.0 and [pixel] <= 1400.0)
+        STYLE
+            COLOR 244.75 203.4 124.35
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1400.0 and [pixel] <= 1475.0)
+        STYLE
+            COLOR 245.0 199.8 121.2
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1475.0 and [pixel] <= 1550.0)
+        STYLE
+            COLOR 245.25 196.2 118.05000000000001
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1550.0 and [pixel] <= 1625.0)
+        STYLE
+            COLOR 245.5 192.6 114.9
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1625.0 and [pixel] <= 1700.0)
+        STYLE
+            COLOR 245.75 189.0 111.75
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1700.0 and [pixel] <= 1775.0)
+        STYLE
+            COLOR 246.0 185.4 108.6
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1775.0 and [pixel] <= 1850.0)
+        STYLE
+            COLOR 246.25 181.8 105.45
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1850.0 and [pixel] <= 1925.0)
+        STYLE
+            COLOR 246.5 178.2 102.30000000000001
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1925.0 and [pixel] <= 2000.0)
+        STYLE
+            COLOR 246.75 174.6 99.15
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ([pixel] > 2000.0 and [pixel] <= 2150.0)
+        STYLE
+            COLOR 247.0 171.0 96.0
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2150.0 and [pixel] <= 2300.0)
+        STYLE
+            COLOR 242.05 167.6 93.7
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2300.0 and [pixel] <= 2450.0)
+        STYLE
+            COLOR 237.1 164.2 91.4
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2450.0 and [pixel] <= 2600.0)
+        STYLE
+            COLOR 232.15 160.8 89.1
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2600.0 and [pixel] <= 2750.0)
+        STYLE
+            COLOR 227.2 157.4 86.8
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2750.0 and [pixel] <= 2900.0)
+        STYLE
+            COLOR 222.25 154.0 84.5
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2900.0 and [pixel] <= 3050.0)
+        STYLE
+            COLOR 217.3 150.6 82.2
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3050.0 and [pixel] <= 3200.0)
+        STYLE
+            COLOR 212.35 147.2 79.9
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3200.0 and [pixel] <= 3350.0)
+        STYLE
+            COLOR 207.4 143.8 77.6
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3350.0 and [pixel] <= 3500.0)
+        STYLE
+            COLOR 202.45 140.4 75.3
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3500.0 and [pixel] <= 3650.0)
+        STYLE
+            COLOR 197.5 137.0 73.0
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3650.0 and [pixel] <= 3800.0)
+        STYLE
+            COLOR 192.55 133.6 70.7
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3800.0 and [pixel] <= 3950.0)
+        STYLE
+            COLOR 187.6 130.2 68.4
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3950.0 and [pixel] <= 4100.0)
+        STYLE
+            COLOR 182.64999999999998 126.80000000000001 66.1
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4100.0 and [pixel] <= 4250.0)
+        STYLE
+            COLOR 177.7 123.4 63.800000000000004
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4250.0 and [pixel] <= 4400.0)
+        STYLE
+            COLOR 172.75 120.0 61.5
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4400.0 and [pixel] <= 4550.0)
+        STYLE
+            COLOR 167.8 116.6 59.2
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4550.0 and [pixel] <= 4700.0)
+        STYLE
+            COLOR 162.85 113.2 56.900000000000006
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4700.0 and [pixel] <= 4850.0)
+        STYLE
+            COLOR 157.89999999999998 109.80000000000001 54.6
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4850.0 and [pixel] <= 5000.0)
+        STYLE
+            COLOR 152.95 106.4 52.300000000000004
+        END
+    END
 END
-% endfor
+LAYER
+    NAME "srtm"
+    DATA ${RASTER_BASE_PATH}/SRTM21781.vrt
+    TYPE RASTER
+    STATUS ON
+
+
+    CLASS
+        EXPRESSION ([pixel] > 100.0 and [pixel] <= 120.0)
+        STYLE
+            COLOR 160.0 235.0 140.0
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 120.0 and [pixel] <= 140.0)
+        STYLE
+            COLOR 164.1 235.4 140.95
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 140.0 and [pixel] <= 160.0)
+        STYLE
+            COLOR 168.2 235.8 141.9
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 160.0 and [pixel] <= 180.0)
+        STYLE
+            COLOR 172.3 236.2 142.85
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 180.0 and [pixel] <= 200.0)
+        STYLE
+            COLOR 176.4 236.6 143.8
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 200.0 and [pixel] <= 220.0)
+        STYLE
+            COLOR 180.5 237.0 144.75
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 220.0 and [pixel] <= 240.0)
+        STYLE
+            COLOR 184.6 237.4 145.7
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 240.0 and [pixel] <= 260.0)
+        STYLE
+            COLOR 188.7 237.8 146.65
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 260.0 and [pixel] <= 280.0)
+        STYLE
+            COLOR 192.8 238.2 147.6
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 280.0 and [pixel] <= 300.0)
+        STYLE
+            COLOR 196.9 238.6 148.55
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 300.0 and [pixel] <= 320.0)
+        STYLE
+            COLOR 201.0 239.0 149.5
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 320.0 and [pixel] <= 340.0)
+        STYLE
+            COLOR 205.1 239.4 150.45
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 340.0 and [pixel] <= 360.0)
+        STYLE
+            COLOR 209.2 239.8 151.4
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 360.0 and [pixel] <= 380.0)
+        STYLE
+            COLOR 213.3 240.2 152.35
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 380.0 and [pixel] <= 400.0)
+        STYLE
+            COLOR 217.39999999999998 240.6 153.3
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 400.0 and [pixel] <= 420.0)
+        STYLE
+            COLOR 221.5 241.0 154.25
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 420.0 and [pixel] <= 440.0)
+        STYLE
+            COLOR 225.6 241.4 155.2
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 440.0 and [pixel] <= 460.0)
+        STYLE
+            COLOR 229.7 241.8 156.15
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 460.0 and [pixel] <= 480.0)
+        STYLE
+            COLOR 233.8 242.2 157.1
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 480.0 and [pixel] <= 500.0)
+        STYLE
+            COLOR 237.89999999999998 242.6 158.05
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ([pixel] > 500.0 and [pixel] <= 575.0)
+        STYLE
+            COLOR 242.0 243.0 159.0
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 575.0 and [pixel] <= 650.0)
+        STYLE
+            COLOR 242.25 239.4 155.85
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 650.0 and [pixel] <= 725.0)
+        STYLE
+            COLOR 242.5 235.8 152.7
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 725.0 and [pixel] <= 800.0)
+        STYLE
+            COLOR 242.75 232.2 149.55
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 800.0 and [pixel] <= 875.0)
+        STYLE
+            COLOR 243.0 228.6 146.4
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 875.0 and [pixel] <= 950.0)
+        STYLE
+            COLOR 243.25 225.0 143.25
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 950.0 and [pixel] <= 1025.0)
+        STYLE
+            COLOR 243.5 221.4 140.1
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1025.0 and [pixel] <= 1100.0)
+        STYLE
+            COLOR 243.75 217.8 136.95
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1100.0 and [pixel] <= 1175.0)
+        STYLE
+            COLOR 244.0 214.2 133.8
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1175.0 and [pixel] <= 1250.0)
+        STYLE
+            COLOR 244.25 210.6 130.65
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1250.0 and [pixel] <= 1325.0)
+        STYLE
+            COLOR 244.5 207.0 127.5
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1325.0 and [pixel] <= 1400.0)
+        STYLE
+            COLOR 244.75 203.4 124.35
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1400.0 and [pixel] <= 1475.0)
+        STYLE
+            COLOR 245.0 199.8 121.2
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1475.0 and [pixel] <= 1550.0)
+        STYLE
+            COLOR 245.25 196.2 118.05000000000001
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1550.0 and [pixel] <= 1625.0)
+        STYLE
+            COLOR 245.5 192.6 114.9
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1625.0 and [pixel] <= 1700.0)
+        STYLE
+            COLOR 245.75 189.0 111.75
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1700.0 and [pixel] <= 1775.0)
+        STYLE
+            COLOR 246.0 185.4 108.6
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1775.0 and [pixel] <= 1850.0)
+        STYLE
+            COLOR 246.25 181.8 105.45
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1850.0 and [pixel] <= 1925.0)
+        STYLE
+            COLOR 246.5 178.2 102.30000000000001
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 1925.0 and [pixel] <= 2000.0)
+        STYLE
+            COLOR 246.75 174.6 99.15
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ([pixel] > 2000.0 and [pixel] <= 2150.0)
+        STYLE
+            COLOR 247.0 171.0 96.0
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2150.0 and [pixel] <= 2300.0)
+        STYLE
+            COLOR 242.05 167.6 93.7
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2300.0 and [pixel] <= 2450.0)
+        STYLE
+            COLOR 237.1 164.2 91.4
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2450.0 and [pixel] <= 2600.0)
+        STYLE
+            COLOR 232.15 160.8 89.1
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2600.0 and [pixel] <= 2750.0)
+        STYLE
+            COLOR 227.2 157.4 86.8
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2750.0 and [pixel] <= 2900.0)
+        STYLE
+            COLOR 222.25 154.0 84.5
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 2900.0 and [pixel] <= 3050.0)
+        STYLE
+            COLOR 217.3 150.6 82.2
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3050.0 and [pixel] <= 3200.0)
+        STYLE
+            COLOR 212.35 147.2 79.9
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3200.0 and [pixel] <= 3350.0)
+        STYLE
+            COLOR 207.4 143.8 77.6
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3350.0 and [pixel] <= 3500.0)
+        STYLE
+            COLOR 202.45 140.4 75.3
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3500.0 and [pixel] <= 3650.0)
+        STYLE
+            COLOR 197.5 137.0 73.0
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3650.0 and [pixel] <= 3800.0)
+        STYLE
+            COLOR 192.55 133.6 70.7
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3800.0 and [pixel] <= 3950.0)
+        STYLE
+            COLOR 187.6 130.2 68.4
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 3950.0 and [pixel] <= 4100.0)
+        STYLE
+            COLOR 182.64999999999998 126.80000000000001 66.1
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4100.0 and [pixel] <= 4250.0)
+        STYLE
+            COLOR 177.7 123.4 63.800000000000004
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4250.0 and [pixel] <= 4400.0)
+        STYLE
+            COLOR 172.75 120.0 61.5
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4400.0 and [pixel] <= 4550.0)
+        STYLE
+            COLOR 167.8 116.6 59.2
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4550.0 and [pixel] <= 4700.0)
+        STYLE
+            COLOR 162.85 113.2 56.900000000000006
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4700.0 and [pixel] <= 4850.0)
+        STYLE
+            COLOR 157.89999999999998 109.80000000000001 54.6
+        END
+    END
+
+    CLASS
+        EXPRESSION ([pixel] > 4850.0 and [pixel] <= 5000.0)
+        STYLE
+            COLOR 152.95 106.4 52.300000000000004
+        END
+    END
+END
 LAYER
     NAME "osm_open"
     EXTENT 420000 40500 839000 306400
@@ -1114,7 +2052,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''https://example.com'',''OSM'',800,500)\">Open</a>' AS open, 'https://geomapfish-demo-dc.camptocamp.com/2.4/resourceproxy?target=point&values='||osm_id AS autolink_url,type||'@camptocamp.com' AS autolink_email,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
     LABELITEM "name"
     EXTENT 473743 74095 839000 306400
@@ -1162,7 +2100,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=21781"
     FILTER ('[amenity]' = 'cinema')
     LABELITEM "name"
@@ -1205,7 +2143,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=${osm_db}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     PROJECTION
         "init=epsg:21781"

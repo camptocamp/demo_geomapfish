@@ -9,6 +9,7 @@ NGEO_INTERFACES ?= desktop mobile iframe_api desktop_alt mobile_alt oeview oeedi
 CGXP_XAPI ?= TRUE
 
 export DOCKER_WEB_PROTOCOL ?= http
+MUTUALIZED_PRINT_APP ?= demo_geomapfish_24
 
 export DOCKER_PGHOST ?= pg-cluster-master.exo.camptocamp.com
 export DOCKER_PGHOST_SLAVE ?= pg-cluster-master.exo.camptocamp.com

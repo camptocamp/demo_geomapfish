@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.4.0rc3
+GEOMAPFISH_VERSION ?= 2.4
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -40,6 +40,7 @@ export DOCKER_PGPORT
 export DOCKER_PGDATABASE
 export DOCKER_PGSCHEMA
 export DOCKER_PGSCHEMA_STATIC
+export MUTUALIZED_PRINT_APP
 
 DOCKER_PORT ?= 8480
 export DOCKER_PORT
@@ -52,7 +53,7 @@ endif
 TILECLOUD_CHAIN ?= TRUE
 TILECLOUD_CHAIN_LOCAL ?= FALSE
 
-TEMPLATE_EXCLUDE += /build node_modules \
+TEMPLATE_EXCLUDE += node_modules \
 	print/templates \
 	CONST_create_template \
 	geoportal/$(PACKAGE)_geoportal/static/lib
@@ -143,7 +144,8 @@ NGEO_OUTPUT_FILES = $(JSON_CLIENT_LOCALISATION_FILES) \
 	$(ANGULAR_LOCALES_FILES)
 NGEO_OUTPUT_FILES += /build/apps.timestamp
 
-NGEO_API_OUTPUT_FILES += $(APP_OUTPUT_DIR)/api.js.tmpl $(APP_OUTPUT_DIR)/api.css
+NGEO_API_OUTPUT_JS_FILE ?= $(APP_OUTPUT_DIR)/api.js.tmpl
+NGEO_API_OUTPUT_FILES += $(NGEO_API_OUTPUT_JS_FILE) $(APP_OUTPUT_DIR)/api.css
 
 
 ifdef CI
@@ -291,7 +293,7 @@ CONFIG_VARS += sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlal
 	raster shortener hide_capabilities tinyowsproxy resourceproxy print_url print_get_redirect \
 	tiles_url checker check_collector default_max_age jsbuild package srid \
 	reset_password fulltextsearch global_headers headers authorized_referers hooks stats db_chooser \
-	ogcproxy_enable dbsessions urllogin host_forward_host smtp c2c.base_path welcome_email host \
+	ogcproxy_enable dbsessions urllogin host_forward_host smtp c2c.base_path welcome_email \
 	lingua_extractor interfaces_config interfaces default_interface devserver_url api
 
 # Secrets
@@ -408,6 +410,7 @@ clean: template-clean
 		$(MAPCACHE_FILE) \
 		$(OUTPUT_DIR)/ \
 		$(APP_OUTPUT_DIR)/ \
+		$(FILES_TO_CLEAN) \
 		geoportal/$(PACKAGE)_geoportal/locale/$(PACKAGE)-*.pot \
 		geoportal/alembic.yaml \
 		qgisserver/geomapfish.yaml \
@@ -605,8 +608,14 @@ $(APP_OUTPUT_DIR)/vendor%: /opt/vendor%
 	rm --force $(addprefix $(APP_OUTPUT_DIR)/, $(addsuffix .*, $(NGEO_INTERFACES)))
 	(cd geoportal; webpack $(WEBPACK_ARGS))
 ifeq ($(DOCKER), TRUE)
-	ls -1 $(APP_OUTPUT_DIR)/*.html|while read file; do mv $${file} $${file}.tmpl; done
-	ls -1 $(APP_OUTPUT_DIR)/*.css|while read file; do mv $${file} $${file}.tmpl; done
+	for interface in $(NGEO_INTERFACES); \
+	do \
+		mv $(APP_OUTPUT_DIR)/$${interface}.html $(APP_OUTPUT_DIR)/$${interface}.html.tmpl; \
+		ls -1 $(APP_OUTPUT_DIR)/$${interface}.*.css|while read file; \
+		do \
+			mv $${file} $${file}.tmpl; \
+		done; \
+	done
 endif
 	touch $@
 

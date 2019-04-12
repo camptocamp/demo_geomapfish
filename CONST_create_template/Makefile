@@ -8,4 +8,6 @@ endif
 PGSCHEMA ?= main
 PGSCHEMA_STATIC ?= main_static
 
+MUTUALIZED_PRINT_APP ?= demo
+
 include CONST_Makefile
