@@ -376,7 +376,7 @@ update_paths:
   - headers.layers
   - headers.shortener
   - headers.login
-  - interfaces_config.default.constants
+  - interfaces_config.default.constants.ngeoWfsPermalinkOptions
   - interfaces_config.default.dynamic_constants
   - interfaces_config.default.static
   - interfaces_config.default.routes
@@ -394,6 +394,8 @@ update_paths:
   - resourceproxy
   - servers
   - shortener
+  - sqlalchemy
+  - sqlalchemy_slave
   - tinyowsproxy
 
 no_interpreted:

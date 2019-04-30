@@ -1,5 +1,6 @@
 [app:app]
 use = egg:demo_geoportal
+filter-with = proxy-prefix
 pyramid.reload_templates = true
 pyramid.debug_authorization = false
 pyramid.debug_notfound = true
@@ -7,6 +8,7 @@ pyramid.debug_routematch = false
 pyramid.debug_templates = true
 pyramid.includes =
     pyramid_debugtoolbar
+debugtoolbar.hosts = 0.0.0.0/0
 mako.directories = demo_geoportal:templates
     c2cgeoportal_geoportal:templates
 authtkt_secret = ${authtkt["secret"]}
@@ -16,13 +18,17 @@ authtkt_timeout = ${authtkt["timeout"]}
 % endif
 app.cfg = %(here)s/config.yaml
 
+[filter:proxy-prefix]
+use = egg:PasteDeploy#prefix
+prefix = %(VISIBLE_ENTRY_POINT)s
+
 [pipeline:main]
 pipeline =
     app
 
 ###
 # logging configuration
-# http://docs.pylonsproject.org/projects/pyramid/en/1.5-branch/narr/logging.html
+# https://docs.pylonsproject.org/projects/pyramid/en/1.5-branch/narr/logging.html
 ###
 
 [loggers]

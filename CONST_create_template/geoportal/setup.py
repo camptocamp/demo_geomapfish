@@ -9,7 +9,7 @@ setup(
     description='demo, a c2cgeoportal project',
     author='demo',
     author_email='info@demo.com',
-    url='http://www.demo.com/',
+    url='https://www.demo.com/',
     install_requires=[
         'c2cgeoportal_geoportal',
         'c2cgeoportal_admin',

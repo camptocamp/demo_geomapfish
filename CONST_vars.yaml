@@ -157,15 +157,6 @@ vars:
             background: background
           dynamic_params:
             interface: interface
-    mobile:
-      redirect_interface: desktop
-      constants:
-        gmfSearchGroups: []
-    mobile_alt:
-      redirect_interface: desktop_alt
-      constants:
-        gmfTreeManagerModeFlush: false
-        gmfSearchActions: []
     desktop:
       redirect_interface: mobile
       do_redirect: True
@@ -224,6 +215,15 @@ vars:
           name: profile.json
         gmfPrintUrl:
           name: printproxy
+    mobile:
+      redirect_interface: desktop
+      constants:
+        gmfSearchGroups: []
+    mobile_alt:
+      redirect_interface: desktop_alt
+      constants:
+        gmfTreeManagerModeFlush: false
+        gmfSearchActions: []
     iframe_api:
       constants:
         gmfSearchGroups: []
@@ -259,7 +259,7 @@ vars:
   #
   # Here is a dogpile.cache configuration example for the memcached backend
   # (equivalent of
-  # http://dogpilecache.readthedocs.org/en/latest/api.html#dogpile.cache.backends.memcached.MemcachedBackend)
+  # https://dogpilecache.readthedocs.org/en/latest/api.html#dogpile.cache.backends.memcached.MemcachedBackend)
   # cache:
   #   backend: dogpile.cache.memcached
   #   expiration_time: 3600
@@ -401,7 +401,7 @@ vars:
     # to the TinyOWS proxy url (e.g. when the service is also used without
     # the proxy), the proxy can replace the original `online_resource`
     # url with the proxy url.
-    # proxy_online_resource: http://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}tinyows_proxy
+    # proxy_online_resource: {VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}tinyows_proxy
     # online_resource: http://localhost{VISIBLE_ENTRY_POINT}tinyows
 
     # When running a c2cgeoportal appl. in debug mode (with `make serve`)
@@ -414,7 +414,7 @@ vars:
   resourceproxy:
     # List of urls from which it is safe to load content
     targets: {}
-    #   exempletargetname: http://www.camptocamp.com/?param1=%s&param2=%s
+    #   exempletargetname: https://www.camptocamp.com/?param1=%s&param2=%s
 
     # List of allowed headers
     allowed_headers:
@@ -670,6 +670,9 @@ vars:
           "default-src {content_security_policy_c2c_default_src};
           script-src {content_security_policy_c2c_script_src};
           style-src {content_security_policy_c2c_style_src};"
+    - pattern: '^/_debug_toolbar/.*'
+      headers:
+        Content-Security-Policy:
 
   # Control the HTTP headers
   headers:
