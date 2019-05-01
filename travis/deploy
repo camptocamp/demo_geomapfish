@@ -40,7 +40,7 @@ fi
 
 if [[ "${TRAVIS_BRANCH}" == "2.4" ]]
 then
-    publish "${TRAVIS_BRANCH}"
+    publish $*
 else
     echo "Not deploying images"
 fi
