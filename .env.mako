@@ -46,4 +46,7 @@ RASTER_BASE_PATH=/vsis3/data-gmf-demo
 AWS_DEFAULT_REGION=ch-dk-2
 AWS_S3_ENDPOINT=sos-ch-dk-2.exo.io
 
+SENTRY_CLIENT_RELEASE=${geomapfish_version}
+SENTRY_CLIENT_ENVIRONMENT=dev
+
 <%include file=".env.secrets" />

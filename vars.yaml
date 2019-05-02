@@ -45,24 +45,24 @@ vars:
     mobile:
       constants:
         sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           tags:
             service: js
             interface: mobile
     mobile_alt:
       constants:
         sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           tags:
             service: js
             interface: mobile_alt
     desktop:
       constants:
         sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           tags:
             service: js
             interface: desktop
@@ -77,8 +77,8 @@ vars:
           defaultFeatureNS: http://www.qgis.org/gml
           defaultFeaturePrefix: feature
         sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           tags:
             service: js
             interface: desktop_alt
@@ -90,24 +90,24 @@ vars:
     oeview:
       constants:
         sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           tags:
             service: js
             interface: oeview
     oeedit:
       constants:
         sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           tags:
             service: js
             interface: oeedit
     iframe_api:
       constants:
         sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           tags:
             service: js
             interface: iframe_api
@@ -425,4 +425,8 @@ runtime_environment:
   - name: AWS_DEFAULT_REGION
     default: xxx
   - name: AWS_S3_ENDPOINT
+    default: xxx
+  - name: SENTRY_CLIENT_RELEASE
+    default: xxx
+  - name: SENTRY_CLIENT_ENVIRONMENT
     default: xxx
