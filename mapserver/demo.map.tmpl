@@ -34,8 +34,6 @@ LAYER
     "wms_metadataurl_href" "https://www.example.com/bar" # For metadata URL
     "wms_metadataurl_format" "text/html" # For metadata URL
     "wms_metadataurl_type" "TC211" # For metadata URL
-
-     # For secured layers
   END
 END
 
@@ -50,7 +48,7 @@ LAYER
   CONNECTIONTYPE postgis
   PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
   CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-  DATA "geom FROM (SELECT geo.*, (pop2005/(area*10)) AS density FROM data.europe_borders AS geo WHERE %role_ids% IN (${MAPSERVER_DATA_NOAREA_SUBSELECT} 'density')) as foo USING UNIQUE gid USING srid=4326"
+  DATA "geom FROM (SELECT geo.*, (pop2005/(area*10)) AS density FROM data.europe_borders AS geo WHERE ARRAY[%role_ids%] && ARRAY(${mapfile_data_noarea_subselect} 'density')) as foo USING UNIQUE gid USING srid=4326"
   PROJECTION
     "init=epsg:4326"
   END
@@ -225,9 +223,9 @@ LAYER
   END
 
   VALIDATION
+    # For secured layers
     "default_role_ids" "-1"
-"role_ids" "^-?[0-9,]*$"
- # For secured layers
+    "role_ids" "^-?[0-9,]*$"
   END
 
   METADATA
@@ -242,7 +240,5 @@ LAYER
     "wms_metadataurl_href" "https://www.example.com/bar" # For metadata URL
     "wms_metadataurl_format" "text/html" # For metadata URL
     "wms_metadataurl_type" "TC211" # For metadata URL
-
-     # For secured layers
   END
 END
