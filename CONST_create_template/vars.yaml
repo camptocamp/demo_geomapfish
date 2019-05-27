@@ -23,7 +23,7 @@ vars:
     default: &interface
       constants: &constants
         defaultTheme: Demo
-        defaultLang: en
+        defaultLang: '{default_locale_name}'
         gmfSearchActions:
           - action: add_theme
             title: Add a theme
@@ -129,15 +129,14 @@ vars:
                 profile: routed-hiking
         ngeoNominatimSearchDefaultParams:
           countrycodes: CH
-        ngeoWfsPermalinkOptions:
-          url: https://geomapfish-demo.camptocamp.com/docker/mapserv_proxy?ogcserver=QGIS%20server
-          wfsTypes:
-            - featureType: osm_hospitals
-              label: name
-            - featureType: osm_firestations
-              label: name
-          defaultFeatureNS: http://www.qgis.org/gml
-          defaultFeaturePrefix: feature
+      wfs_permalink:
+        wfsTypes:
+          - featureType: osm_hospitals
+            label: name
+          - featureType: osm_firestations
+            label: name
+        defaultFeatureNS: http://www.qgis.org/gml
+        defaultFeaturePrefix: feature
       routes:
         <<: *routes
         gmfProfileJsonUrl: profile.json
@@ -361,6 +360,8 @@ update_paths:
   - resourceproxy
   - servers
   - shortener
+  - sqlalchemy
+  - sqlalchemy_slave
 
 no_interpreted:
   - reset_password.email_body
