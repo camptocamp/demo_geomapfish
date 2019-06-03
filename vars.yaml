@@ -30,16 +30,11 @@ vars:
 
   default_interface: desktop
 
-  sentry_private_url: "https://eb74985290ea4f3c9ae6665db9252d72:0f56f89956d34815a336fc04c3fce1e4@\
-sentry.camptocamp.com/14"
-  sentry_release: __import__('pkg_resources').get_distribution('c2cgeoportal_commons').version[:5]
-
   interfaces_config:
     default: &interface
       constants: &constants
         defaultTheme: Demo
         defaultLang: '{default_locale_name}'
-        sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
         gmfSearchActions:
           - action: add_theme
             title: Add a theme
@@ -82,24 +77,11 @@ sentry.camptocamp.com/14"
       constants:
         <<: *constants
         gmfSearchGroups: []
-        sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
-          tags:
-            service: js
-            interface: mobile
     mobile_alt:
       <<: *interface
       constants:
         <<: *constants
         gmfTreeManagerModeFlush: false
-        sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
-          tags:
-            service: js
-            interface: mobile_alt
-            # FIXME: gmfSearchActions: []
     desktop:
       <<: *interface
       redirect_interface: mobile
@@ -127,12 +109,6 @@ sentry.camptocamp.com/14"
                 LAYERFONTSIZE: '10'
                 ITEMFONTSIZE: '8'
         gmfSearchGroups: []
-        sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
-          tags:
-            service: js
-            interface: desktop
     desktop_alt:
       <<: *interface
       constants:
@@ -161,12 +137,6 @@ sentry.camptocamp.com/14"
                 profile: routed-hiking
         ngeoNominatimSearchDefaultParams:
           - countrycodes: CH
-        sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
-          tags:
-            service: js
-            interface: desktop_alt
       wfs_permalink:
         url: https://geomapfish-demo.camptocamp.com/docker/mapserv_proxy?ogcserver=QGIS%20server
         wfsTypes:
@@ -189,12 +159,6 @@ sentry.camptocamp.com/14"
         gmfPrintUrl: printproxy
       constants:
         <<: *constants
-        sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
-          tags:
-            service: js
-            interface: oeview
     oeedit:
       <<: *interface
       # FIXME: gmfContextualdatacontentTemplateUrl
@@ -204,12 +168,6 @@ sentry.camptocamp.com/14"
         gmfPrintUrl: printproxy
       constants:
         <<: *constants
-        sentryOptions:
-          release: '{sentry_release}'
-          environment: '{instance}'
-          tags:
-            service: js
-            interface: oeedit
 
   # docker_global_front: True
   docker_services:
@@ -231,10 +189,6 @@ sentry.camptocamp.com/14"
           --max-requests=1000
           --max-requests-jitter=100
         PGDATABASE: demo_geomapfish_2_3_bak
-        SENTRY_URL: '{sentry_private_url}'
-        SENTRY_CLIENT_ENVIRONMENT: '{instance}'
-        SENTRY_CLIENT_RELEASE: '{sentry_release}'
-        SENTRY_TAG_SERVICE: wsgi
         C2C_SECRET: adminc2c
         C2C_LOG_VIEW_ENABLED: TRUE
         C2C_SQL_PROFILER_ENABLED: TRUE
@@ -256,9 +210,6 @@ sentry.camptocamp.com/14"
           --max-requests-jitter=100
         AWS_ACCESS_KEY_ID: grep AWS_ACCESS_KEY_ID amazonses_s3.txt|awk -F= '{ print $2 }'
         AWS_SECRET_ACCESS_KEY: grep AWS_SECRET_ACCESS_KEY amazonses_s3.txt|awk -F= '{ print $2 }'
-        SENTRY_URL: '{sentry_private_url}'
-        SENTRY_CLIENT_ENVIRONMENT: '{instance}'
-        SENTRY_CLIENT_RELEASE: '{sentry_release}'
         C2C_SECRET: adminc2c
         C2C_LOG_VIEW_ENABLED: TRUE
         C2C_SQL_PROFILER_ENABLED: TRUE
@@ -267,10 +218,6 @@ sentry.camptocamp.com/14"
       environment:
         CATALINA_OPTS: >-
           -Xmx1024m
-          -Dsentry.dsn={sentry_private_url}
-          -Dsentry.release={sentry_release}
-          -Dsentry.environment={instance}
-          -Dsentry.tags=print
     front:
       port: 8480
 
@@ -574,8 +521,6 @@ no_interpreted:
 
 
 interpreted:
-  python:
-    - sentry_release
   bash:
     - smtp.user
     - smtp.password
