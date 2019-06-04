@@ -11,12 +11,20 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="mapSubReport" class="java.lang.String"/>
+	<parameter name="mapContext" class="org.mapfish.print.attribute.map.MapfishMapContext"/>
 	<detail>
 		<band height="717" splitType="Stretch">
 			<subreport>
 				<reportElement mode="Transparent" x="0" y="1" width="555" height="675" uuid="eeb84a7e-2310-404a-8e6e-c12285fa6566"/>
 				<subreportExpression><![CDATA[$P{mapSubReport}]]></subreportExpression>
 			</subreport>
+			<textField>
+				<reportElement x="10" y="10" width="600" height="23"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Scale denominator (new, old): " + $P{mapContext}.getRoundedScaleDenominator() + ", " + $P{mapContext}.getScale().getDenominator()]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>
