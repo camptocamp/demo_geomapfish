@@ -23,7 +23,7 @@
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Scale denominator (new, old): " + $P{mapContext}.getRoundedScaleDenominator() + ", " + $P{mapContext}.getScale().getDenominator()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Scale denominator: " + $P{mapContext}.getRoundedScaleDenominator()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
