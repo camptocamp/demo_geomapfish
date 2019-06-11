@@ -27,7 +27,7 @@ function publish {
     RELEASE=`echo -n "${TRAVIS_BRANCH}" | sed -e 's/\./-/g'`
     for image in $*
     do
-        oc --namespace gs-gmf-demo import-image "prod-c2cgeoportal-${image}:${version}" --scheduled true --reference-policy=local
+        oc --namespace gs-gmf-demo import-image "prod-2-4-c2cgeoportal-${image}:${version}" --scheduled true --reference-policy=local
     done
 }
 
