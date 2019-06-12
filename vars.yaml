@@ -34,7 +34,7 @@ vars:
     default:
       constants:
         defaultTheme: Demo
-        defaultLang: en
+        defaultLang: '{default_locale_name}'
         sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
         ngeoWfsPermalinkOptions:
           wfsTypes:
