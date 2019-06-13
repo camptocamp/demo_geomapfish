@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-15 10:43+0000\n"
+"POT-Creation-Date: 2019-06-13 09:37+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -59,8 +59,17 @@ msgstr "Retour"
 msgid "Background"
 msgstr "Fond de carte"
 
+msgid "Batiment VD"
+msgstr "Bâtiment VD"
+
+msgid "Batiment VD noWFS"
+msgstr "Bâtiment VD sans WFS"
+
 msgid "Cadastre"
 msgstr "Cadastre"
+
+msgid "Camptocamp"
+msgstr "Camptocamp"
 
 msgid "Close"
 msgstr "Fermer"
@@ -234,6 +243,9 @@ msgstr "Paysage"
 
 msgid "Print"
 msgstr "Impression"
+
+msgid "Private group"
+msgstr "Groupe privé"
 
 msgid "Profile"
 msgstr "Profile"
@@ -415,6 +427,30 @@ msgstr "Convention des Alpes"
 
 msgid "ch.astra.ausnahmetransportrouten"
 msgstr "Itinéraires convois exceptionnels"
+
+msgid "ch.bfe.solarenergie-eignung-daecher"
+msgstr "Solaire: aptitude des toitures"
+
+msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
+msgstr "Solaire: aptitude des toitures"
+
+msgid "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo"
+msgstr "Solaire: aptitude des toitures"
+
+msgid "ch.bfe.solarenergie-eignung-daecher_overview"
+msgstr "Solaire: aptitude des toitures"
+
+msgid "ch.bfe.solarenergie-eignung-fassaden"
+msgstr "Solaire: potentiel des facades"
+
+msgid "ch.bfe.solarenergie-eignung-fassaden_fulldetail"
+msgstr "Solaire: potentiel des facades"
+
+msgid "ch.bfe.solarenergie-eignung-fassaden_getfeatureinfo"
+msgstr "Solaire: potentiel des facades"
+
+msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
+msgstr "Solaire: potentiel des facades"
 
 msgid "ch.swisstopo.dreiecksvermaschung"
 msgstr "MN95 Maillage triangulaire"
@@ -1061,6 +1097,9 @@ msgstr "Deux couches"
 msgid "type"
 msgstr "Type"
 
+msgid "vd.batiment_rcb"
+msgstr "Bâtiment VD RCB"
+
 msgid "waterarea10"
 msgstr "Cours d'eau"
 
@@ -1154,6 +1193,11 @@ msgstr "Bois"
 msgid ""
 "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://"
 "www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+msgstr ""
+
+msgid ""
+"© Contributeurs d’<a href='http://www.openstreetmap.org/"
+"copyright'>OpenStreetMap</a>"
 msgstr ""
 
 msgid "© les contributeurs d’OpenStreetMap"

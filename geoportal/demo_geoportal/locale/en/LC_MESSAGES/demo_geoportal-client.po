@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-15 10:43+0000\n"
+"POT-Creation-Date: 2019-06-13 09:37+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -28,6 +28,8 @@ msgid ""
 "<a href=\"http://www.geo.admin.ch/\">Données publiques de l'infrastructure "
 "fédérale de données géographiques (IFDG)</a>"
 msgstr ""
+"<a href=\"http://www.geo.admin.ch/\">Public Data of the Federal Geographical "
+"Data Infrastructure (IFDG)</a>"
 
 msgid "A0"
 msgstr "A0"
@@ -59,8 +61,17 @@ msgstr "Back"
 msgid "Background"
 msgstr "Background"
 
+msgid "Batiment VD"
+msgstr "Building VD"
+
+msgid "Batiment VD noWFS"
+msgstr "Buildinf VD no WFS"
+
 msgid "Cadastre"
 msgstr "Cadastre"
+
+msgid "Camptocamp"
+msgstr "Camptocmap"
 
 msgid "Close"
 msgstr "Close"
@@ -232,6 +243,9 @@ msgstr "Landscape"
 
 msgid "Print"
 msgstr "Print"
+
+msgid "Private group"
+msgstr "Private group"
 
 msgid "Profile"
 msgstr "Profile"
@@ -411,6 +425,30 @@ msgstr "Alpine Convention"
 
 msgid "ch.astra.ausnahmetransportrouten"
 msgstr "Cant. routes for exceptional loads"
+
+msgid "ch.bfe.solarenergie-eignung-daecher"
+msgstr "Solar energy: suitability of roofs"
+
+msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
+msgstr "Solar energy: suitability of roofs"
+
+msgid "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo"
+msgstr "Solar energy: suitability of roofs"
+
+msgid "ch.bfe.solarenergie-eignung-daecher_overview"
+msgstr "Solar energy: suitability of roofs"
+
+msgid "ch.bfe.solarenergie-eignung-fassaden"
+msgstr "Solarenergie: Eignung Fassaden"
+
+msgid "ch.bfe.solarenergie-eignung-fassaden_fulldetail"
+msgstr "Solarenergie: Eignung Fassaden"
+
+msgid "ch.bfe.solarenergie-eignung-fassaden_getfeatureinfo"
+msgstr "Solarenergie: Eignung Fassaden"
+
+msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
+msgstr "Solarenergie: Eignung Fassaden"
 
 msgid "ch.swisstopo.dreiecksvermaschung"
 msgstr "LV95 Triangular network"
@@ -1057,6 +1095,9 @@ msgstr "Two layer"
 msgid "type"
 msgstr "Type"
 
+msgid "vd.batiment_rcb"
+msgstr "Buildings VD RCB"
+
 msgid "waterarea10"
 msgstr "Waterarea"
 
@@ -1153,6 +1194,13 @@ msgid ""
 msgstr ""
 "© <a href='http://asitvd.ch'>ASIT VD</a>, <a href='http://www.openstreetmap."
 "org/copyright'>OpenStreetMap</a> Contributors"
+
+msgid ""
+"© Contributeurs d’<a href='http://www.openstreetmap.org/"
+"copyright'>OpenStreetMap</a>"
+msgstr ""
+"© <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+" Contributors"
 
 msgid "© les contributeurs d’OpenStreetMap"
 msgstr "© OpenStreetMap Contributors"
