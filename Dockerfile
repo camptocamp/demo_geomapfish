@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-config-build:2.4.0.19
+FROM camptocamp/geomapfish-config-build:2.4.0.23
 
 COPY . /tmp/config/
 
