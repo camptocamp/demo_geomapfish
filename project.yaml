@@ -8,4 +8,23 @@ unmanaged_files: []
 template_vars:
   package: demo
   srid: 21781
-  extent: 489246,78873,837119,296543
+  extent: 489246, 78873, 837119, 296543
+managed_files:
+  - geoportal/demo_geoportal/__init__\.py
+  - \.gitignore
+  - spell-ignore-words\.txt
+  - \.travis\.yml
+  - geoportal/demo_geoportal/static/apihelp/data\.txt
+unmanaged_files:
+  - geoportal/demo_geoportal/static-ngeo/components/contextualdata/contextualdata\.html
+  - geoportal/demo_geoportal/static-ngeo/components/README\.md
+  - geoportal/demo_geoportal/static-ngeo/js/apps/Controller.*\.js
+  - geoportal/demo_geoportal/static-ngeo/js/apps/desktop\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/mobile\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/desktop_alt\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/mobile_alt\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/oeview\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/oeedit\.html\.ejs
+  - geoportal/demo_geoportal/static-ngeo/js/apps/sass/.*
+  - geoportal/demo_geoportal/static-ngeo/js/apps/image/.*
+  - print/print-apps/demo/.*\.jrxml
