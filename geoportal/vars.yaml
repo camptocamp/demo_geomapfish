@@ -1,0 +1,423 @@
+---
+
+extends: CONST_vars.yaml
+
+vars:
+  srid: 21781
+
+  osm_db: '{OSM_PGDATABASE}'
+  tiles_s3_bucket: '{TILEGENERATION_S3_BUCKET}'
+  raster_base_path: '{RASTER_BASE_PATH}'
+  aws_access_key_id: '{AWS_ACCESS_KEY_ID}'
+  aws_secret_access_key: '{AWS_SECRET_ACCESS_KEY}'
+  aws_default_region: '{AWS_DEFAULT_REGION}'
+  aws_s3_endpoint: '{AWS_S3_ENDPOINT}'
+
+  main_ogc_server: Main PNG
+
+  # The application's default language. This is the language used by
+  # the application if no specific language is specified in the URLs.
+  # This also defines the language used for the text search.
+  default_locale_name: fr
+
+  # The set of languages supported by the applications.
+  available_locale_names:
+    - en
+    - fr
+    - de
+
+  default_interface: desktop
+
+  sentry_release: __import__('pkg_resources').get_distribution('c2cgeoportal_commons').version[:5]
+
+  interfaces_config:
+    default:
+      constants:
+        defaultTheme: Demo
+        defaultLang: '{default_locale_name}'
+        sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+        ngeoWfsPermalinkOptions:
+          wfsTypes:
+            - featureType: fuel
+              label: display_name
+            - featureType: osm_scale
+              label: display_name
+    mobile:
+      constants:
+        sentryOptions:
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          tags:
+            service: js
+            interface: mobile
+    mobile_alt:
+      constants:
+        sentryOptions:
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          tags:
+            service: js
+            interface: mobile_alt
+    desktop:
+      constants:
+        sentryOptions:
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          tags:
+            service: js
+            interface: desktop
+    desktop_alt:
+      constants:
+        ngeoWfsPermalinkOptions:
+          wfsTypes:
+            - featureType: osm_hospitals
+              label: name
+            - featureType: osm_firestations
+              label: name
+          defaultFeatureNS: http://www.qgis.org/gml
+          defaultFeaturePrefix: feature
+        sentryOptions:
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          tags:
+            service: js
+            interface: desktop_alt
+      routes:
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: QGIS server
+    oeview:
+      constants:
+        sentryOptions:
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          tags:
+            service: js
+            interface: oeview
+    oeedit:
+      constants:
+        sentryOptions:
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          tags:
+            service: js
+            interface: oeedit
+    iframe_api:
+      constants:
+        sentryOptions:
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          tags:
+            service: js
+            interface: iframe_api
+
+  print_get_redirect: True
+
+  authtkt:
+    # One day
+    timeout: 86400
+
+  urllogin:
+    aes_key: foobarfoobar1234
+
+  admin_interface:
+    # Default values for the admin interface's maps.
+    map_x: 740000
+    map_y: 5860000
+    map_zoom: 10
+
+    # The list of functionalities that can be configured
+    # through the admin interface.
+    available_functionalities:
+      - name: location
+
+  functionalities:
+    # Functionalities that are accessible to anonymous
+    # users.
+    anonymous:
+      print_template:
+        - 1 A4 portrait
+      default_basemap: asitvd.fond_gris
+      filterable_layers:
+        - osm_open
+        - OSM map
+        - osm_time_r_dp_2
+        - landuse
+        - points
+        - railways
+        - osm_firestations
+        - osm_hospitals
+        - osm_hospitals_restricted
+
+    # Functionalities that are accessible to authenticated
+    # users with no associated functionalities in the
+    # database.
+    registered:
+      print_template:
+        - 1 A4 portrait
+        - 2 A4 landscape
+        - 3 A3 portrait
+        - 4 A3 landscape
+        - simple
+        - A0
+
+    # Functionalities that are made available to Mako templates.
+    available_in_templates:
+      - location
+
+  # Define URLs to the parent application. Only useful if
+  # this application is a child application in a parent/child
+  # architecture.
+  external_themes_url:
+
+  tinyowsproxy:
+    ogc_server: Main PNG
+
+  api:
+    ogc_server: Main PNG
+
+  dbsessions:
+    osm:
+      url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{osm_db}
+
+  layers:
+    geometry_validation: True
+    enum:
+      osm_open: &osm_type
+        dbsession: osm
+        attributes:
+          type:
+            table: swiss_points
+      osm_time_r_dp_2: *osm_type
+
+  # The "raster web services" configuration. See the "raster"
+  # chapter in the integrator documentation.
+  raster:
+    srtm:
+      file: "{raster_base_path}/SRTM21781.vrt"
+      type: gdal
+      round: 1
+    srtm-partial:
+      file: "{raster_base_path}/SRTM21781-partial.vrt"
+      type: gdal
+      round: 0.1
+    aster:
+      file: "{raster_base_path}/Aster21781.vrt"
+      type: gdal
+      round: 1
+
+  fulltextsearch:
+    languages:
+      fr: fr
+      en: english
+      de: german
+
+  resourceproxy:
+    targets:
+      point: http://www.openstreetmap.org/node/%s
+
+  shortener:
+    # Used to send a confirmation email
+    email_from: info@camptocamp.com
+    email_subject: "Geoportal URL"
+    email_body: |
+      Hello,
+      Somebody sent you the following link:
+      {short_url}
+      With the message:
+      {message}
+      Sincerely yours
+      The GeoMapfish team
+    allowed_hosts:
+      - "{VISIBLE_WEB_HOST}"
+      - camptocamp.github.io
+      - geomapfish-demo-dc.camptocamp.com
+      - fredj.github.io
+      - ger-benjamin.github.io
+      - arnaud-morvan.github.io
+      - julsbreakdown.github.io
+      - adube.github.io
+      - localhost
+      - 127.0.0.1
+
+  reset_password:
+    # Used to send a confirmation email
+    email_from: info@camptocamp.com
+    email_subject: New password generated for GeoMapFish
+    email_body: |
+      Hello {user},
+      You have asked for an new password,
+      the newly generated password is: {password}
+      Sincerely yours
+      The GeoMapfish team
+  welcome_email:
+    # Used to send a welcome email for new user
+    email_from: info@camptocamp.com
+    email_subject: Welcome to GeoMapFish
+    email_body: |
+      Hello {user},
+      You have a new account on GeoMapFish: https://gmf-demo-2-4.paas-ch-3.camptocamp.com/2.4
+      Your user name is: {user}
+      Your password is: {password}
+      Sincerely yours
+      The GeoMapfish team
+  smtp:
+    host: email-smtp.eu-west-1.amazonaws.com
+    ssl: True
+    user: '{SMTP_USER}'
+    password: '{SMTP_PASSWORD}'
+
+  headers:
+    themes: &headers
+      cache_control_max_age: 600  # 10 minutes
+      access_control_max_age: 30
+      access_control_allow_origin:
+        - "{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}"
+        - https://camptocamp.github.io
+        - https://fredj.github.io
+        - https://ger-benjamin.github.io
+        - https://arnaud-morvan.github.io
+        - https://julsbreakdown.github.io
+        - https://adube.github.io
+        - https://localhost:3000
+        - https://localhost
+        - https://127.0.0.1:3000
+        - https://127.0.0.1
+        - http://localhost:3000
+        - http://localhost
+        - http://127.0.0.1:3000
+        - http://127.0.0.1
+        - "*"
+    index: *headers
+    api: *headers
+    error: *headers
+    config: *headers
+    mapserver: *headers
+    tinyows: *headers
+    fulltextsearch: *headers
+    print: *headers
+    layers: *headers
+    raster: *headers
+    profile: *headers
+    shortener: *headers
+    login: *headers
+
+  authorized_referers:
+    - https://camptocamp.github.io
+    - https://fredj.github.io
+    - https://ger-benjamin.github.io
+    - https://arnaud-morvan.github.io
+    - https://julsbreakdown.github.io
+    - https://adube.github.io
+    - https://localhost:3000
+    - https://localhost
+    - https://127.0.0.1:3000
+    - https://127.0.0.1
+    - http://localhost:3000
+    - http://localhost
+    - http://127.0.0.1:3000
+    - http://127.0.0.1
+
+  access_control_allow_origin:
+    - https://camptocamp.github.io
+
+  # Checker configuration
+  checker_ogc_server: Main PNG
+  checker:
+    fulltextsearch:
+      search: pau
+#    phantomjs:
+#      disable: [desktop, mobile]
+
+update_paths:
+  - admin_interface.available_functionalities
+  - admin_interface.available_metadata
+  - admin_interface.functionalities
+  - admin_interface.available_in_templates
+  - api
+  - authorized_referers
+  - authtkt
+  - check_collector.disabled
+  - check_collector.hosts
+  - checker.fulltextsearch
+  - checker.lang
+  - checker.phantomjs
+  - checker.print
+  - checker.routes
+  - checker.themes
+  - content_security_policy.main
+  - content_security_policy.admin
+  - content_security_policy.apihelp
+  - content_security_policy.oldapihelp
+  - fulltextsearch
+  - functionalities.available_in_templates
+  - global_headers
+  - headers.index
+  - headers.api
+  - headers.profile
+  - headers.raster
+  - headers.error
+  - headers.themes
+  - headers.config
+  - headers.print
+  - headers.fulltextsearch
+  - headers.mapserver
+  - headers.tinyows
+  - headers.layers
+  - headers.shortener
+  - headers.login
+  - interfaces_config.default.constants.ngeoWfsPermalinkOptions
+  - interfaces_config.default.dynamic_constants
+  - interfaces_config.default.static
+  - interfaces_config.default.routes
+  - interfaces_config.desktop.constants
+  - interfaces_config.desktop.routes
+  - interfaces_config.desktop_alt.constants
+  - interfaces_config.desktop_alt.routes
+  - interfaces_config.mobile.constants
+  - interfaces_config.mobile_alt.constants
+  - interfaces_config.iframe_api.constants
+  - interfaces_config.oeview.constants
+  - interfaces_config.oeview.routes
+  - interfaces_config.oeedit.routes
+  - interfaces_theme
+  - resourceproxy
+  - servers
+  - shortener
+  - sqlalchemy
+  - sqlalchemy_slave
+  - tinyowsproxy
+
+no_interpreted:
+  - reset_password.email_body
+  - shortener.email_body
+  - welcome_email.email_body
+
+interpreted:
+  python:
+    - sentry_release
+
+runtime_environment:
+  - name: SMTP_USER
+    default: user
+  - name: SMTP_PASSWORD
+    default: pass
+  - name: OSM_PGDATABASE
+    default: osm
+  - name: TILEGENERATION_S3_BUCKET
+    default: camptocamp-gmf-demo-tiles
+  - name: RASTER_BASE_PATH
+    default: /var/sig
+  - name: AWS_ACCESS_KEY_ID
+    default: xxx
+  - name: AWS_SECRET_ACCESS_KEY
+    default: xxx
+  - name: AWS_DEFAULT_REGION
+    default: xxx
+  - name: AWS_S3_ENDPOINT
+    default: xxx
+  - name: SENTRY_CLIENT_RELEASE
+    default: xxx
+  - name: SENTRY_CLIENT_ENVIRONMENT
+    default: xxx
