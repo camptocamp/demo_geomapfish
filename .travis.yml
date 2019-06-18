@@ -9,6 +9,10 @@ addons:
 
 env:
   global:
+    - PROJECT=demo
+    - TAG=int
+    - OPENSHIFT_PROJECT=gs-gmf-demo
+    - HELM_RELEASE_NAMES=2.5
     - DOCKER_USERNAME=dockerhubc2c
     - secure: "vpSNV7FOz6TaULaqqEfviKizsUnROqBKGEurvM2D/02mQQgINl5BRDuZMyCiPB+m96hbbO4IDxuO3r9Fvnsn3faDrze/z\
         jKC+/npztumqNYr8wSDwwwiArQQrYbY+nSQoswv5xYPKVRhTKsbtvYHqIG3c+1cgSQ5ODsvbZTWQXM="
@@ -21,11 +25,11 @@ jobs:
   include:
     - stage: config-geoportal
       script:
-        - ./docker-run make docker-build-config
+        - docker build --tag=camptocamp/demo-config:${TAG} .
       after_success:
-        - ./travis/deploy 2.4 config
+        - scripts/deploy-docker config
     - script:
-        - ./docker-run make checks
-        - ./docker-run make docker-build-geoportal
+        - docker build --tag=camptocamp/demo-geoportal:${TAG} \
+          --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
       after_success:
-        - ./travis/deploy 2.4 geoportal
+        - scripts/deploy-docker geoportal

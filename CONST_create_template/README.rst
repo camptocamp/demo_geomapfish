@@ -1,7 +1,7 @@
 demo_geomapfish project
 ===================
 
-Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.4/>`_
+Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.5/>`_
 
 Checkout
 --------
@@ -17,20 +17,15 @@ Build
 
 .. code::
 
-  ./docker-run make --makefile=<user.mk> build
-
-If you want to work on your own instance, create a ${USER}.mk file like that:
-
-.. script::
-
-  INSTANCE=myUserName
-  include Makefile
+  cp .env.sample .env
+  docker build --tag=camptocamp/demo-geoportal --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
+  docker build --tag=camptocamp/demo-config .
 
 Run
 ---
 
 .. code::
 
-   docker-compose up
+   docker-compose up -d
 
 .. Feel free to add project-specific things.

@@ -20,7 +20,7 @@ services:
       service: mapserver
     mem_limit: 128M
     volumes_from:
-      - config:rw
+      - config:ro
     volumes:
       - /var/sig:/var/sig:ro
 
@@ -47,20 +47,6 @@ services:
     mem_limit: 32M
     volumes_from:
       - config:ro
-
-  mapcache:
-    extends:
-      file: docker-compose-lib.yaml
-      service: mapcache
-    mem_limit: 256M
-    volumes_from:
-      - config:ro
-
-  memcached:
-    extends:
-      file: docker-compose-lib.yaml
-      service: memcached
-    mem_limit: 128M
 
   redis:
     extends:
@@ -93,6 +79,8 @@ services:
       file: docker-compose-lib.yaml
       service: geoportal
     mem_limit: 512M
+    volumes_from:
+      - config:ro
     environment:
       - OSM_PGDATABASE
       - RASTER_BASE_PATH

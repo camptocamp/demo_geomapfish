@@ -1,0 +1,11 @@
+---
+project_folder: demo_geomapfish
+project_package: demo
+application_url: https://localhost:8484/
+checker_url: https://localhost:8484/c2c/health_check?max_level=9
+managed_files: []
+unmanaged_files: []
+template_vars:
+  package: demo
+  srid: 21781
+  extent: 489246,78873,837119,296543
