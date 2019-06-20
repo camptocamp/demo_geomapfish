@@ -1,5 +1,8 @@
 FROM camptocamp/geomapfish-config-build:2.5
 
+ARG PGSCHEMA
+ENV PGSCHEMA=$PGSCHEMA
+
 COPY . /tmp/config/
 
 ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \

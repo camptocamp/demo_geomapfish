@@ -24,6 +24,8 @@ ENV LOG_LEVEL=INFO \
 
 WORKDIR /app
 COPY . /app
+COPY --from=builder /usr/lib/node_modules/ngeo/dist/* \
+    /app/demo_geoportal/static-ngeo/build/
 COPY --from=builder /app/demo_geoportal/static-ngeo/build/* \
     /app/demo_geoportal/static-ngeo/build/
 COPY --from=builder /app/alembic.ini /app/alembic.yaml ./

@@ -34,11 +34,11 @@ services:
       - config:ro
     environment:
       # Single QGIS project files
-      QGIS_PROJECT_FILE: /etc/qgisserver/project.qgz
-      GEOMAPFISH_OGCSERVER: QGIS server
+      - QGIS_PROJECT_FILE=/etc/qgisserver/project.qgz
+      - GEOMAPFISH_OGCSERVER=QGIS server
       # Multiple QGIS project files
-      # QGIS_PROJECT_FILE:
-      # GEOMAPFISH_ACCESSCONTROL_CONFIG: /etc/qgisserver/accesscontrol_config.yaml
+      # - QGIS_PROJECT_FILE=
+      # - GEOMAPFISH_ACCESSCONTROL_CONFIG=/etc/qgisserver/accesscontrol_config.yaml
 
   tinyows:
     extends:

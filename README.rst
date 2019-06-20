@@ -20,7 +20,7 @@ Build
   cp .env.sample .env
   make secrets
   docker build --tag=camptocamp/demo-geoportal --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
-  docker build --tag=camptocamp/demo-config .
+  docker build --tag=camptocamp/demo-config --build-arg=PGSCHEMA=main .
 
   ./docker-run make build
 
