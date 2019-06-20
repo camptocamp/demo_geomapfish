@@ -14,7 +14,6 @@ PGPORT=${docker_dbport}
 PGUSER=${docker_dbuser}
 PGPASSWORD=${docker_dbpassword}
 PGDATABASE=${docker_db}
-PGSCHEMA=${docker_schema}
 PGSCHEMA_STATIC=${docker_schema_static}
 GEOPORTAL_INTERNAL_URL=http://geoportal:8080
 TILECLOUDCHAIN_INTERNAL_URL=http://tilecloudchain:8080

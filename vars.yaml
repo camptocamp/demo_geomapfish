@@ -430,3 +430,7 @@ runtime_environment:
     default: xxx
   - name: SENTRY_CLIENT_ENVIRONMENT
     default: xxx
+
+environment:
+  - name: PGSCHEMA
+    default: main
