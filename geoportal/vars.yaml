@@ -35,7 +35,6 @@ vars:
       constants:
         defaultTheme: Demo
         defaultLang: '{default_locale_name}'
-        sentryUrl: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
         ngeoWfsPermalinkOptions:
           wfsTypes:
             - featureType: fuel
@@ -44,25 +43,28 @@ vars:
               label: display_name
     mobile:
       constants:
-        sentryOptions:
+        sentryOptions: &sentryOptions
+          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
           release: '{SENTRY_CLIENT_RELEASE}'
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          attachStacktrace: true
+          whitelistUrls:
+            - .*\.camptocamp\.com.*
+            - https://camptocamp\.github\.io/ngeo/.*
           tags:
             service: js
             interface: mobile
     mobile_alt:
       constants:
         sentryOptions:
-          release: '{SENTRY_CLIENT_RELEASE}'
-          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          <<: *sentryOptions
           tags:
             service: js
             interface: mobile_alt
     desktop:
       constants:
         sentryOptions:
-          release: '{SENTRY_CLIENT_RELEASE}'
-          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          <<: *sentryOptions
           tags:
             service: js
             interface: desktop
@@ -77,8 +79,7 @@ vars:
           defaultFeatureNS: http://www.qgis.org/gml
           defaultFeaturePrefix: feature
         sentryOptions:
-          release: '{SENTRY_CLIENT_RELEASE}'
-          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          <<: *sentryOptions
           tags:
             service: js
             interface: desktop_alt
@@ -90,16 +91,14 @@ vars:
     oeedit:
       constants:
         sentryOptions:
-          release: '{SENTRY_CLIENT_RELEASE}'
-          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          <<: *sentryOptions
           tags:
             service: js
             interface: oeedit
     iframe_api:
       constants:
         sentryOptions:
-          release: '{SENTRY_CLIENT_RELEASE}'
-          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          <<: *sentryOptions
           tags:
             service: js
             interface: iframe_api
