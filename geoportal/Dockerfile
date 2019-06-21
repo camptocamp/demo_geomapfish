@@ -11,16 +11,13 @@ RUN make build
 RUN mv webpack.apps.js webpack.apps.js.tmpl && \
     ln --symbolic /usr/lib/node_modules/ .
 
+COPY --from=camptocamp/geomapfish:2.5 /usr/bin/eval-templates /usr/bin/eval-templates
+ENTRYPOINT [ "/usr/bin/eval-templates" ]
+CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--progress", "--no-inline" ]
+
 ###############################################################################
 
 FROM camptocamp/geomapfish:2.5 as runner
-
-ENV LOG_LEVEL=INFO \
-    GUNICORN_ACCESS_LOG_LEVEL=INFO \
-    C2CGEOPORTAL_LOG_LEVEL=WARN \
-    PGPORT=5432 \
-    VISIBLE_ENTRY_POINT=/ \
-    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 WORKDIR /app
 COPY . /app
@@ -39,6 +36,9 @@ RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=
 
 ARG GIT_HASH
 RUN c2cwsgiutils_genversion.py $GIT_HASH
+
+ENV LOG_LEVEL=INFO \
+    C2CGEOPORTAL_LOG_LEVEL=WARN
 
 ENTRYPOINT [ "/usr/bin/eval-templates" ]
 CMD ["c2cwsgiutils_run"]

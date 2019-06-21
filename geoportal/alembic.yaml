@@ -1,6 +1,6 @@
 ---
 vars:
-  schema: 'main_2_5'
+  schema: '{PGSCHEMA}'
   schema_static: '{PGSCHEMA_STATIC}'
   sqlalchemy.url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{PGDATABASE}
   srid: 21781
