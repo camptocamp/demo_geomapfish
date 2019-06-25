@@ -5,22 +5,16 @@
  * by the HTML page and the controller to provide the configuration.
  */
 
-import './sass/desktop_alt.scss';
+import './sass/vars_oeview.scss';
 import 'gmf/controllers/desktop.scss';
-import './sass/vars_desktop_alt.scss';
+import './sass/oeview.scss';
 
 import angular from 'angular';
 import gmfControllersAbstractDesktopController, {AbstractDesktopController}
   from 'gmf/controllers/AbstractDesktopController.js';
 import demoBase from '../demomodule.js';
-import gmfImportModule from 'gmf/import/module.js';
-import gmfFloorModule from 'gmf/floor/module.js';
-import ngeoGooglestreetviewModule from 'ngeo/googlestreetview/module.js';
-import ngeoRoutingModule from 'ngeo/routing/module.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
-import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink.js';
-import {Circle, Fill, Stroke, Style} from 'ol/style';
 import Raven from 'raven-js/src/raven.js';
 import RavenPluginsAngular from 'raven-js/plugins/angular.js';
 
@@ -41,10 +35,9 @@ class Controller extends AbstractDesktopController {
   /**
    * @param {angular.IScope} $scope Scope.
    * @param {angular.auto.IInjectorService} $injector Main injector.
-   * @param {Array.<Object.<string, string>>} demoFloors Floor dimension values and labels.
    * @ngInject
    */
-  constructor($scope, $injector, demoFloors) {
+  constructor($scope, $injector) {
     super({
       srid: 21781,
       mapViewConfig: {
@@ -55,28 +48,9 @@ class Controller extends AbstractDesktopController {
     }, $scope, $injector);
 
     /**
-     * @type {Array.<Object.<string, string>>}
-     */
-    this.floors = demoFloors;
-
-    if (this.dimensions['FLOOR'] == undefined) {
-      this.dimensions['FLOOR'] = '*';
-    }
-
-    /**
      * @type {Array.<string>}
      */
     this.searchCoordinatesProjections = [EPSG21781, EPSG2056, 'EPSG:4326'];
-
-    /**
-     * @type {number}
-     */
-    this.searchDelay = 500;
-
-    /**
-     * @type {boolean}
-     */
-    this.showInfobar = true;
 
     /**
      * @type {!Array.<number>}
@@ -86,29 +60,30 @@ class Controller extends AbstractDesktopController {
     /**
      * @type {Array.<string>}
      */
-    this.elevationLayers = ['srtm-partial'];
+    this.elevationLayers = ['aster', 'srtm'];
 
     /**
-     * @type {Object<string, import('gmf/mobile/measure/pointComponent.js').LayerConfig>}
+     * @type {string}
      */
-    this.elevationLayersConfig = {};
+    this.selectedElevationLayer = this.elevationLayers[0];
 
     /**
-     * @type {Object<string, import('gmf/profile/component.js').ProfileLineConfiguration>}
+     * @type {Object.<string, import('gmf/profile/component.js').ProfileLineConfiguration>}
      */
     this.profileLinesconfiguration = {
-      'srtm-partial': {}
+      'aster': {color: '#0000A0'},
+      'srtm': {color: '#00A000'}
     };
 
     /**
      * @type {Array<import('gmf/map/mousepositionComponent.js').MousePositionProjection>}
      */
     this.mousePositionProjections = [{
-      code: 'EPSG:2056',
+      code: EPSG2056,
       label: 'CH1903+ / LV95',
       filter: 'ngeoNumberCoordinates::{x}, {y} m'
     }, {
-      code: 'EPSG:21781',
+      code: EPSG21781,
       label: 'CH1903 / LV03',
       filter: 'ngeoNumberCoordinates::{x}, {y} m'
     }, {
@@ -117,47 +92,12 @@ class Controller extends AbstractDesktopController {
       filter: 'ngeoDMSCoordinates:2'
     }];
 
-    /**
-     * @type {GridMergeTabs}
-     */
-    this.gridMergeTabs = {
-      'OSM_time_merged': ['osm_time', 'osm_time2'],
-      'transport (merged)': ['fuel', 'parking'],
-      'Learning [merged]': ['information', 'bus_stop']
-    };
-
-    const radius = 5;
-    const fill = new Fill({color: [255, 255, 255, 0.6]});
-    const stroke = new Stroke({color: [255, 0, 0, 1], width: 2});
-    const image = new Circle({fill, radius, stroke});
-    const default_search_style = new Style({
-      fill,
-      image,
-      stroke
-    });
-
-    /**
-     * @type {Object.<string, ol.style.Style>} Map of styles for search overlay.
-     * @export
-     */
-    this.searchStyles = {
-      'default': default_search_style
-    };
-
     // Allow angular-gettext-tools to collect the strings to translate
     /** @type {angular.gettext.gettextCatalog} */
     const gettextCatalog = $injector.get('gettextCatalog');
-    gettextCatalog.getString('OSM_time_merged');
-    gettextCatalog.getString('OSM_time (merged)');
-    gettextCatalog.getString('Learning [merged]');
     gettextCatalog.getString('Add a theme');
     gettextCatalog.getString('Add a sub theme');
     gettextCatalog.getString('Add a layer');
-
-    /**
-     * @type {string}
-     */
-    this.bgOpacityOptions = 'orthophoto';
 
     if ($injector.has('sentryUrl')) {
       const options = $injector.has('sentryOptions') ? $injector.get('sentryOptions') : undefined;
@@ -167,31 +107,22 @@ class Controller extends AbstractDesktopController {
         .install();
     }
   }
-
-  /**
-   * @param {JQueryEventObject} event keydown event.
-   */
-  onKeydown(event) {
-    if (event && event.ctrlKey && event.key === 'p') {
-      this.printPanelActive = true;
-      event.preventDefault();
-    }
-  }
 }
 
 /**
  * @hidden
  */
-const module = angular.module('Appdesktop_alt', [
+const module = angular.module('Appoeview', [
   demoBase.name,
   gmfControllersAbstractDesktopController.name,
-  gmfImportModule.name,
-  gmfFloorModule.name,
-  ngeoRoutingModule.name,
-  ngeoGooglestreetviewModule.name,
-  ngeoStatemanagerWfsPermalink.name,
 ]);
 
-module.controller('AlternativeDesktopController', Controller);
+module.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
+module.run(/* @ngInject */ ($templateCache) => {
+  // @ts-ignore: webpack
+  $templateCache.put('gmf/contextualdata', require('./contextualdata.html'));
+});
+
+module.controller('DesktopController', Controller);
 
 export default module;
