@@ -26,6 +26,7 @@ vars:
     - fr
     - de
 
+  # All the application interfaces used to create the apache rewrite rules
   interfaces:
     - name: desktop
       default: True
