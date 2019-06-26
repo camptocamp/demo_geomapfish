@@ -18,8 +18,8 @@ jobs:
           command: scripts/publish-docker 2.4 config
 
   geoportal:
-    machine:
-      docker_layer_caching: true
+    docker:
+      - image: circleci/python:3
     environment:
       - DOCKER_USERNAME=dockerhubc2c
       - OPENSHIFT_URL=https://openshift-ch-3.camptocamp.com/

@@ -4,11 +4,11 @@ import os.path
 import sys
 import subprocess
 
-if os.environ['TRAVIS_PULL_REQUEST'] == 'true':
+if os.environ.get('TRAVIS_PULL_REQUEST', 'false') == 'true':
     print('Not deploying images for pull requests')
     exit(0)
 
-version = os.environ['TRAVIS_BRANCH']
+version = os.environ.get('CIRCLE_BRANCH', os.environ.get('TRAVIS_BRANCH'))
 
 if version not in os.environ.get('HELM_RELEASE_NAMES', '').split(','):
     print('Not a release branch')
