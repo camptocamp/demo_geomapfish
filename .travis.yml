@@ -25,9 +25,15 @@ jobs:
     - stage: config-geoportal
       script:
         - ./build --config .env.sample
-      after_success:
-        - scripts/publish-docker config
+      deploy:
+        - provider: script
+          script: scripts/publish-docker config
+          on:
+            all_branches: true
     - script:
         - ./build --geoportal .env.sample
-      after_success:
-        - scripts/publish-docker geoportal
+      deploy:
+        - provider: script
+          script: scripts/publish-docker geoportal
+          on:
+            all_branches: true
