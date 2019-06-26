@@ -16,7 +16,7 @@ jobs:
           key: '{{ checksum ".circleci/config.yml" }}'
       - run: ./build --config .env.sample
       - deploy:
-          command: scripts/deploy-docker 2.4 config
+          command: scripts/publish-docker 2.4 config
       - save_cache:
           key: '{{ checksum ".circleci/config.yml" }}'
           paths:
@@ -33,7 +33,7 @@ jobs:
       - checkout
       - run: ./build --geoportal .env.sample
       - deploy:
-          command: scripts/deploy-docker 2.4 geoportal
+          command: scripts/publish-docker 2.4 geoportal
 
 workflows:
   version: 2
