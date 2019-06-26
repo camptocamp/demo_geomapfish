@@ -9,7 +9,7 @@ jobs:
     environment: &environment
       - PROJECT=demo
       - OPENSHIFT_PROJECT=gs-gmf-demo
-      - HELM_RELEASE_NAMES=2.5
+      - HELM_RELEASE_NAMES=prod-2-5
       - DOCKER_USERNAME=dockerhubc2c
       - OPENSHIFT_URL=https://openshift-ch-3.camptocamp.com/
       - OPENSHIFT_USERNAME=sbrunner

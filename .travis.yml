@@ -11,7 +11,7 @@ env:
   global:
     - PROJECT=demo
     - OPENSHIFT_PROJECT=gs-gmf-demo
-    - HELM_RELEASE_NAMES=2.5
+    - HELM_RELEASE_NAMES=prod-2-5
     - DOCKER_USERNAME=dockerhubc2c
     - secure: "vpSNV7FOz6TaULaqqEfviKizsUnROqBKGEurvM2D/02mQQgINl5BRDuZMyCiPB+m96hbbO4IDxuO3r9Fvnsn3faDrze/z\
         jKC+/npztumqNYr8wSDwwwiArQQrYbY+nSQoswv5xYPKVRhTKsbtvYHqIG3c+1cgSQ5ODsvbZTWQXM="
