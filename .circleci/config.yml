@@ -18,7 +18,7 @@ jobs:
       - setup_remote_docker
       - run: ./build --config .env.sample
       - deploy:
-          command: scripts/publish-docker 2.4 config
+          command: scripts/publish-docker config
 
   geoportal:
     docker:
@@ -32,7 +32,7 @@ jobs:
       - setup_remote_docker
       - run: ./build --geoportal .env.sample
       - deploy:
-          command: scripts/publish-docker 2.4 geoportal
+          command: scripts/publish-docker geoportal
 
 workflows:
   version: 2
