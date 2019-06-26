@@ -10,6 +10,9 @@ if os.environ.get('TRAVIS_PULL_REQUEST', 'false') == 'true':
 
 version = os.environ.get('CIRCLE_BRANCH', os.environ.get('TRAVIS_BRANCH'))
 
+print(version)
+print(os.environ.get('HELM_RELEASE_NAMES', ''))
+
 if version not in os.environ.get('HELM_RELEASE_NAMES', '').split(','):
     print('Not a release branch')
     exit(0)
