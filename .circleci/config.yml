@@ -12,15 +12,10 @@ jobs:
       - OPENSHIFT_USERNAME=sbrunner
     steps:
       - checkout
-      - restore_cache:
-          key: '{{ checksum ".circleci/config.yml" }}'
+      - setup_remote_docker
       - run: ./build --config .env.sample
       - deploy:
           command: scripts/publish-docker 2.4 config
-      - save_cache:
-          key: '{{ checksum ".circleci/config.yml" }}'
-          paths:
-            - "~/.local"
 
   geoportal:
     machine:
@@ -31,6 +26,7 @@ jobs:
       - OPENSHIFT_USERNAME=sbrunner
     steps:
       - checkout
+      - setup_remote_docker
       - run: ./build --geoportal .env.sample
       - deploy:
           command: scripts/publish-docker 2.4 geoportal
