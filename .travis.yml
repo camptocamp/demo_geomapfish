@@ -25,11 +25,10 @@ jobs:
   include:
     - stage: config-geoportal
       script:
-        - docker build --tag=camptocamp/demo-config:${TAG} .
+        - ./build --config
       after_success:
         - scripts/deploy-docker config
     - script:
-        - docker build --tag=camptocamp/demo-geoportal:${TAG} \
-          --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
+        - ./build --geoportal
       after_success:
         - scripts/deploy-docker geoportal
