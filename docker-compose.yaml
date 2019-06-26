@@ -78,7 +78,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: geoportal
-    mem_limit: 512M
+    mem_limit: 1G
     volumes_from:
       - config:ro
     environment:

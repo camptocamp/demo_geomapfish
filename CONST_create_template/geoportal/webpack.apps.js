@@ -65,7 +65,7 @@ console.log("Use dev server mode: " + devServer)
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, 'demo_geoportal/static-ngeo/'),
+    path: '/etc/static-ngeo/',
     publicPath: devServer ? '${VISIBLE_ENTRY_POINT}dev/' : '.__ENTRY_POINT__static-ngeo/'
   },
   devServer: {
