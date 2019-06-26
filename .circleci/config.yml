@@ -14,8 +14,7 @@ jobs:
       - checkout
       - restore_cache:
           key: '{{ checksum ".circleci/config.yml" }}'
-      - run: python -m pip install --user netifaces configparser six
-      - run: python ./docker-run make docker-build-config
+      - run: ./build --config
       - deploy:
           command: ./travis/deploy 2.4 config
       - save_cache:
@@ -32,9 +31,7 @@ jobs:
       - OPENSHIFT_USERNAME=sbrunner
     steps:
       - checkout
-      - run: python -m pip install --user netifaces configparser six
-      - run: python ./docker-run make checks
-      - run: python ./docker-run make docker-build-geoportal
+      - run: ./build --geoportal
       - deploy:
           command: ./travis/deploy 2.4 geoportal
 
