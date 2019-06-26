@@ -6,7 +6,7 @@ jobs:
   config:
     docker:
       - image: circleci/python:3
-    environment:
+    environment: &environment
       - PROJECT=demo
       - OPENSHIFT_PROJECT=gs-gmf-demo
       - HELM_RELEASE_NAMES=2.5
@@ -23,10 +23,7 @@ jobs:
   geoportal:
     docker:
       - image: circleci/python:3
-    environment:
-      - DOCKER_USERNAME=dockerhubc2c
-      - OPENSHIFT_URL=https://openshift-ch-3.camptocamp.com/
-      - OPENSHIFT_USERNAME=sbrunner
+    environment: *environment
     steps:
       - checkout
       - setup_remote_docker
