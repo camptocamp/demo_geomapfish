@@ -46,7 +46,7 @@ subprocess.check_call([
     'mv', '{}/oc'.format(openshift_version_name), os.path.expanduser('~/bin/')
 ], cwd='/tmp')
 
-subprocess.check_call([
+subprocess.check_output([
     'oc', 'login', os.environ['OPENSHIFT_URL'],
     '--username=' + os.environ['OPENSHIFT_USERNAME'],
     '--password=' + os.environ['OPENSHIFT_PASSWORD'],

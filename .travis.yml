@@ -10,7 +10,6 @@ addons:
 env:
   global:
     - PROJECT=demo
-    - TAG=int
     - OPENSHIFT_PROJECT=gs-gmf-demo
     - HELM_RELEASE_NAMES=2.5
     - DOCKER_USERNAME=dockerhubc2c
