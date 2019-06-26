@@ -25,10 +25,10 @@ jobs:
   include:
     - stage: config-geoportal
       script:
-        - ./build --config
+        - ./build --config .env.sample
       after_success:
         - scripts/deploy-docker config
     - script:
-        - ./build --geoportal
+        - ./build --geoportal .env.sample
       after_success:
         - scripts/deploy-docker geoportal
