@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-config-build:2.4.0.30
+FROM camptocamp/geomapfish-config-build:2.4.0.31
 
 ARG PGSCHEMA
 ENV PGSCHEMA=$PGSCHEMA
