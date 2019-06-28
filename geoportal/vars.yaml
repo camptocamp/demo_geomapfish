@@ -111,10 +111,6 @@ vars:
 
   print_get_redirect: True
 
-  authtkt:
-    # One day
-    timeout: 86400
-
   urllogin:
     aes_key: foobarfoobar1234
 
@@ -334,7 +330,6 @@ update_paths:
   - admin_interface.available_in_templates
   - api
   - authorized_referers
-  - authtkt
   - check_collector.disabled
   - check_collector.hosts
   - checker.fulltextsearch

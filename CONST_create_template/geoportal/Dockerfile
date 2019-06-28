@@ -25,7 +25,6 @@ COPY --from=builder /usr/lib/node_modules/ngeo/dist/* \
 COPY --from=builder /etc/static-ngeo/* /etc/static-ngeo/
 COPY --from=builder /app/alembic.ini /app/alembic.yaml ./
 RUN chmod go+w /etc/static-ngeo/ \
-    /app/demo_geoportal/static-ngeo/api/apihelp/ \
     /app/demo_geoportal/locale/ \
     /app/demo_geoportal/locale/*/LC_MESSAGES/demo_geoportal-client.po
 
