@@ -17,9 +17,7 @@ Build
 
 .. code::
 
-  cp .env.sample .env
-  docker build --tag=camptocamp/demo-geoportal --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
-  docker build --tag=camptocamp/demo-config --build-arg=PGSCHEMA=main .
+  ./build
 
 Run
 ---

@@ -1,15 +1,14 @@
-demo_geomapfish project
-===================
+GeoMapFish demo project
+=======================
 
 Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.5/>`_
 
 Checkout
 --------
 
-.. script::
+.. code::
 
    git clone git@github.com:camptocamp/demo_geomapfish.git
-
    cd demo_geomapfish
 
 Build
@@ -17,16 +16,12 @@ Build
 
 .. code::
 
-  cp .env.sample .env
   make secrets
-  docker build --tag=camptocamp/demo-geoportal --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
-  docker build --tag=camptocamp/demo-config --build-arg=PGSCHEMA=main .
-
-  ./docker-run make build
+  ./build
 
 Run locally
 -----------
 
-.. script::
+.. code::
 
   docker-compose up -d
