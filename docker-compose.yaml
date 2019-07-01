@@ -14,6 +14,13 @@ services:
       - OSM_PGDATABASE
       - RASTER_BASE_PATH
 
+  ## print:
+  ##   extends:
+  ##     file: docker-compose-lib.yaml
+  ##     service: print
+  ##   volumes_from:
+  ##     - config:ro
+
   mapserver:
     extends:
       file: docker-compose-lib.yaml
