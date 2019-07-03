@@ -78,19 +78,16 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: geoportal
+    image: camptocamp/geomapfish-geoportal:2.5
     mem_limit: 1G
     volumes_from:
       - config:ro
     environment:
       - OSM_PGDATABASE
       - RASTER_BASE_PATH
-      - AWS_DEFAULT_REGION
-      - AWS_S3_ENDPOINT
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
       - SMTP_USER
       - SMTP_PASSWORD
-      - DOLLAR
+      - PGSCHEMA
     volumes:
       - /var/sig:/var/sig:ro
 
