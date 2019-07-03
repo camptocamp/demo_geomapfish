@@ -5,6 +5,9 @@ GPG_KEYS += CF8E9976 # Guillaume Beraudo
 GPG_KEYS += 3EA11D26 # Elisabeth Leu
 GPG_KEYS += 0875810F # Frederic Junod
 GPG_KEYS += 1DAFEE6A # Oliver Christen
+GPG_KEYS += C8A0FF72 # Wolfgang Kaltz
+GPG_KEYS += A510717D # Michael Künzli
+GPG_KEYS += A68C2F5F # Arnaud Morvan
 
 secrets.tar.bz2.gpg: .env.secrets secrets.md
 	tar -jcf secrets.tar.bz2 $^
