@@ -36,10 +36,8 @@ if [ $GEOPORTAL == true ]
 then
     set -x
     docker build --target=builder --tag=camptocamp/demo-geoportal-dev \
-        --build-arg=PGSCHEMA=main_2_5 \
         --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
     docker build --tag=camptocamp/demo-geoportal \
-        --build-arg=PGSCHEMA=main_2_5 \
         --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
 fi
 

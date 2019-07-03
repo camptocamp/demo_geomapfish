@@ -34,11 +34,9 @@ RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=
 ARG GIT_HASH
 RUN c2cwsgiutils_genversion.py $GIT_HASH
 
-ARG PGSCHEMA
 ENV LOG_LEVEL=INFO \
     GUNICORN_ACCESS_LOG_LEVEL=INFO \
-    C2CGEOPORTAL_LOG_LEVEL=WARN \
-    PGSCHEMA=$PGSCHEMA
+    C2CGEOPORTAL_LOG_LEVEL=WARN
 
 ENTRYPOINT [ "/usr/bin/eval-templates" ]
 CMD ["c2cwsgiutils_run"]

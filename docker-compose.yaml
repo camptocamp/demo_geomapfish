@@ -87,7 +87,6 @@ services:
       - RASTER_BASE_PATH
       - SMTP_USER
       - SMTP_PASSWORD
-      - PGSCHEMA
     volumes:
       - /var/sig:/var/sig:ro
 

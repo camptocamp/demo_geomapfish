@@ -11,8 +11,6 @@ environment:
   - name: PGPORT
     default: 5432
   - PGDATABASE
-  - name: PGSCHEMA
-    default: main
   - name: PGSCHEMA_STATIC
     default: main_static
 interpreted: {}
