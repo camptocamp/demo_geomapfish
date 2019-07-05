@@ -58,7 +58,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: tilecloudchain
-    mem_limit: 256M
+    mem_limit: 300M
     environment:
       - AWS_DEFAULT_REGION
     volumes_from:
