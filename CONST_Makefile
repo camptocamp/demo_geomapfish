@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.4.1
+GEOMAPFISH_VERSION ?= 2.4.1.4
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -304,8 +304,6 @@ GPG_KEYS += CF8E9976 # Guillaume Beraudo
 GPG_KEYS += 3EA11D26 # Elisabeth Leu
 GPG_KEYS += 0875810F # Frederic Junod
 GPG_KEYS += 1DAFEE6A # Oliver Christen
-GPG_KEYS += C8A0FF72 # Wolfgang Kaltz
-GPG_KEYS += A510717D # Michael Künzli
 endif
 
 # Disabling Make built-in rules to speed up execution time
@@ -369,7 +367,7 @@ git-attributes:
 PRINT_REPORTS_FILES ?= $(shell find print/print-apps -name "*.jrxml" -print)
 .PHONY: printlint
 printlint: $(PRINT_REPORTS_FILES)
-	xmllint --schema /opt/jasperreport.xsd --encode utf-8 $(PRINT_REPORTS_FILES)
+	xmllint --noout --schema /opt/jasperreport.xsd --encode utf-8 $(PRINT_REPORTS_FILES)
 
 YAML_FILES ?= $(filter-out ./tilegeneration/config.yaml ./geoportal/config.yaml \
 	./qgisserver/geomapfish.yaml ./geoportal/alembic.yaml \
