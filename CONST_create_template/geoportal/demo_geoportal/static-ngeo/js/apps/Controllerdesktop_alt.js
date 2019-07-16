@@ -20,7 +20,11 @@ import ngeoRoutingModule from 'ngeo/routing/module.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink.js';
-import {Circle, Fill, Stroke, Style} from 'ol/style.js';
+import Style from 'ol/style/Style.js';
+import Circle from 'ol/style/Circle.js';
+import Fill from 'ol/style/Fill.js';
+import Stroke from 'ol/style/Stroke.js';
+import Icon from 'ol/style/Icon.js';
 
 if (!window.requestAnimationFrame) {
   alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
@@ -39,10 +43,9 @@ class Controller extends AbstractDesktopController {
   /**
    * @param {angular.IScope} $scope Scope.
    * @param {angular.auto.IInjectorService} $injector Main injector.
-   * @param {Array<Object<string, string>>} demoFloors Floor dimension values and labels.
    * @ngInject
    */
-  constructor($scope, $injector, demoFloors) {
+  constructor($scope, $injector) {
     super({
       srid: 21781,
       mapViewConfig: {
@@ -51,16 +54,6 @@ class Controller extends AbstractDesktopController {
         resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
       }
     }, $scope, $injector);
-
-    /**
-     * @type {Array<Object<string, string>>}
-     */
-    this.floors = demoFloors;
-
-    /**
-     * @type {Object<string, string>}
-     */
-    this.dimensions = {};
 
     if (this.dimensions.FLOOR == undefined) {
       this.dimensions.FLOOR = '*';
@@ -188,5 +181,17 @@ const module = angular.module('Appdesktop_alt', [
 ]);
 
 module.controller('AlternativeDesktopController', Controller);
+
+
+module.value('gmfPermalinkOptions', /** @type {import('gmf/permalink/Permalink.js').PermalinkOptions} */ ({
+  crosshairStyle: [
+    new Style({
+      image: new Icon({
+        src: 'data:image/svg+xml;base64,' + btoa(require('./image/crosshair.svg?viewbox')),
+        imgSize: [22, 22],
+      })
+    })
+  ]
+}));
 
 export default module;
