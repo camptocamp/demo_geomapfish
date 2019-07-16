@@ -83,6 +83,7 @@ services:
     volumes_from:
       - config:ro
     environment:
+      - PGSCHEMA
       - OSM_PGDATABASE
       - RASTER_BASE_PATH
       - SMTP_USER
