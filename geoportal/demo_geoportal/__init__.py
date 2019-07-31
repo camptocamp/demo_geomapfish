@@ -19,6 +19,10 @@ def main(global_config, **settings):
         authentication_policy=create_authentication(settings)
     )
 
+    config.include('getitfixed.routes')
+    config.add_translation_dirs('getitfixed:locale')
+    config.scan('getitfixed')
+
     # Workaround to not have the error: distutils.errors.DistutilsArgError: no commands supplied
     distutils.core._setup_stop_after = 'config'
     config.include('c2cgeoportal_geoportal')

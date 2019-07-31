@@ -19,8 +19,13 @@ ENV NODE_PATH=/usr/lib/node_modules \
     PRINT_URL=http://print:8080/print/ \
     SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
+COPY getitfixed/package.json /app/getitfixed/package.json
+RUN cd /app/getitfixed && npm install
+
 WORKDIR /app
 COPY . /app
+
+RUN pip install -e ./getitfixed
 
 RUN mv webpack.apps.js webpack.apps.js.tmpl && \
     ln --symbolic /usr/lib/node_modules/ . && \
