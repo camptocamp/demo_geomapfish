@@ -701,7 +701,7 @@ docker-build-config: $(shell docker-required --path .) \
 		--build-arg=PGSCHEMA=$(PGSCHEMA) .
 
 .PHONY: docker-build-geoportal
-docker-build-geoportal: $(shell docker-required --path geoportal) \
+docker-build-geoportal: \
 		$(WEB_RULE) \
 		$(addprefix geoportal/$(PACKAGE)_geoportal/locale/, $(addsuffix /LC_MESSAGES/$(PACKAGE)_geoportal-$(L10N_CLIENT_POSTFIX).mo, $(LANGUAGES))) \
 		geoportal/config.yaml \
