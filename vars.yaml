@@ -327,6 +327,7 @@ vars:
     - http://localhost
     - http://127.0.0.1:3000
     - http://127.0.0.1
+    - https://172.17.0.1:8484
 
   access_control_allow_origin:
     - https://camptocamp.github.io
