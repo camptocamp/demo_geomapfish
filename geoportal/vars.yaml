@@ -321,8 +321,8 @@ vars:
   checker:
     fulltextsearch:
       search: pau
-#    phantomjs:
-#      disable: [desktop, mobile]
+    phantomjs:
+      disable: [desktop, mobile, apihelp]
 
 update_paths:
   - admin_interface.available_functionalities
