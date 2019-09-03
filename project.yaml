@@ -14,6 +14,7 @@ unmanaged_files:
   - geoportal/demo_geoportal/static-ngeo/js/apps/image/.*
   - geoportal/demo_geoportal/static/apihelp/.*
   - print/print-apps/demo/.*\.jrxml
+  - geoportal/demo_geoportal/static-ngeo/api/index.js
 template_vars:
   package: demo
   srid: 21781

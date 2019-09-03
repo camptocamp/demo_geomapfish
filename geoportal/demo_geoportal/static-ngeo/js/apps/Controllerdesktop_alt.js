@@ -51,7 +51,8 @@ class Controller extends AbstractDesktopController {
       mapViewConfig: {
         center: [632464, 185457],
         zoom: 3,
-        resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+        resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05],
+        constrainResolution: true,
       }
     }, $scope, $injector);
 
@@ -114,7 +115,7 @@ class Controller extends AbstractDesktopController {
     }];
 
     /**
-     * @type {GridMergeTabs}
+     * @type {import('gmf/query/gridComponent.js').GridMergeTabs}
      */
     this.gridMergeTabs = {
       'OSM_time_merged': ['osm_time', 'osm_time2'],
@@ -133,7 +134,7 @@ class Controller extends AbstractDesktopController {
     });
 
     /**
-     * @type {Object<string, ol.style.Style>} Map of styles for search overlay.
+     * @type {Object<string, import('ol/style/Style.js').default>} Map of styles for search overlay.
      * @export
      */
     this.searchStyles = {
@@ -186,10 +187,11 @@ module.controller('AlternativeDesktopController', Controller);
 module.value('gmfPermalinkOptions', /** @type {import('gmf/permalink/Permalink.js').PermalinkOptions} */ ({
   crosshairStyle: [
     new Style({
-      image: new Icon({
+      image: /** @type {import('ol/style/Image.js').default} */(new Icon({
+        // @ts-ignore: webpack
         src: 'data:image/svg+xml;base64,' + btoa(require('./image/crosshair.svg?viewbox')),
         imgSize: [22, 22],
-      })
+      }))
     })
   ]
 }));
