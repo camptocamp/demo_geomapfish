@@ -10,6 +10,7 @@
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
+    <link href="${htmlWebpackPlugin.options.vars.entry_point}static/${htmlWebpackPlugin.options.vars.version}/desktop.css" rel="stylesheet">
   </head>
   <body ng-class="{'gmf-profile-chart-active': !!profileChartActive}">
   <div ng-show="mainCtrl.loading" class="loading-mask">
@@ -318,7 +319,7 @@
       </gmf-profile>
     </footer>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,default-3.6,Array.prototype.includes,Object.entries,Object.values"></script>
-    <script src="${htmlWebpackPlugin.options.vars.entry_point}static-ngeo/vendor.js?${htmlWebpackPlugin.options.vars.version}"></script>
+    <script src="${htmlWebpackPlugin.options.vars.entry_point}static-ngeo/vendor.js?${htmlWebpackPlugin.options.vars.cache_version}"></script>
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
     <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% } %>

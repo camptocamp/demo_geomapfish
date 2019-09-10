@@ -22,6 +22,7 @@ for (const filename of ls(path.resolve(__dirname, 'demo_geoportal/static-ngeo/js
       vars: {
         entry_point: '${VISIBLE_ENTRY_POINT}',
         version: '2.5',
+        cache_version: '${CACHE_VERSION}',
        },
     })
   );

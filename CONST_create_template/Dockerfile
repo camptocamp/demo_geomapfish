@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-build:2.5 as builder
+FROM camptocamp/geomapfish-tools:2.5 as builder
 
 ENV LANGUAGES="en fr de"
 ENV VARS_FILE=vars.yaml
@@ -18,8 +18,8 @@ RUN \
     for lang in ${LANGUAGES}; \
     do \
         node /usr/bin/compile-catalog \
-            /opt/c2cgeoportal_geoportal/c2cgeoportal_geoportal/locale/${lang}/LC_MESSAGES/ngeo.po \
-            /opt/c2cgeoportal_geoportal/c2cgeoportal_geoportal/locale/${lang}/LC_MESSAGES/gmf.po \
+            /opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal/locale/${lang}/LC_MESSAGES/ngeo.po \
+            /opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal/locale/${lang}/LC_MESSAGES/gmf.po \
             /tmp/config/geoportal/demo_geoportal/locale/${lang}/LC_MESSAGES/demo_geoportal-client.po \
             > /tmp/config/geoportal/demo_geoportal/static/${lang}.json; \
     done && \

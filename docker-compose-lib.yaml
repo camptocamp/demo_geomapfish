@@ -130,7 +130,7 @@ services:
     image: ${DOCKER_BASE}-geoportal:${DOCKER_TAG}
     user: www-data
     restart: unless-stopped
-    environment:
+    environment: &env
       - VISIBLE_ENTRY_POINT
       - PACKAGE=demo
       - PGHOST
@@ -145,12 +145,14 @@ services:
       - VISIBLE_WEB_HOST
       - VISIBLE_WEB_PROTOCOL
       - AUTHTKT_TIMEOUT
+      - AUTHTKT_REISSUE_TIME
+      - AUTHTKT_MAXAGE
       - AUTHTKT_SECRET
       - AUTHTKT_COOKIENAME
-      - AUTHTKT_REISSUE_TIME
       - AUTHTKT_HTTP_ONLY
       - AUTHTKT_SECURE
       - AUTHTKT_SAMESITE
+      - BASICAUTH
       - TINYOWS_URL
       - MAPSERVER_URL
       - QGISSERVER_URL
@@ -170,6 +172,11 @@ services:
       - SQL_LOG_LEVEL
       - GUNICORN_LOG_LEVEL
       - OTHER_LOG_LEVEL
+
+  tools:
+    image: camptocamp/geoportal-tools:2.5
+    restart: unless-stopped
+    environment: *env
 
   alembic:
     image: ${DOCKER_BASE}-geoportal:${DOCKER_TAG}
