@@ -8,7 +8,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_hospitals WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'hospitals'), geom)) AS foo USING UNIQUE osm_id USING srid=21781"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_hospitals WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'hospitals'), geom)) AS foo USING UNIQUE osm_id USING srid=2056"
     VALIDATION
         "default_role_ids" "-1"
 "role_ids" "^-?[0-9,]*$"
@@ -16,7 +16,7 @@ LAYER
     END
     LABELITEM "name"
     PROJECTION
-      "init=epsg:21781"
+      "init=epsg:2056"
     END
     TOLERANCE 10
     TOLERANCEUNITS pixels
@@ -59,7 +59,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE %role_ids% IN (${MAPSERVER_DATA_NOAREA_SUBSELECT} 'firestations')) AS foo USING UNIQUE osm_id USING srid=21781"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE %role_ids% IN (${MAPSERVER_DATA_NOAREA_SUBSELECT} 'firestations')) AS foo USING UNIQUE osm_id USING srid=2056"
     VALIDATION
         "default_role_ids" "-1"
 "role_ids" "^-?[0-9,]*$"
@@ -67,7 +67,7 @@ LAYER
     END
     LABELITEM "name"
     PROJECTION
-      "init=epsg:21781"
+      "init=epsg:2056"
     END
     TOLERANCE 10
     TOLERANCEUNITS pixels

@@ -6,7 +6,7 @@ LAYER
     CONNECTIONTYPE postgis
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     NAME "floor_slider"
-    DATA "way FROM (SELECT * FROM planet_osm_roads WHERE (admin_level = '%floor%' OR ('%floor%' = 'NULL' AND admin_level IS NULL) OR '%floor%' = '*')) as foo using unique osm_id using srid=21781"
+    DATA "way FROM (SELECT * FROM planet_osm_roads WHERE (admin_level = '%floor%' OR ('%floor%' = 'NULL' AND admin_level IS NULL) OR '%floor%' = '*')) as foo using unique osm_id using srid=2056"
     VALIDATION
         "default_floor" "NULL"
         "floor" "^[0-9*]+$"

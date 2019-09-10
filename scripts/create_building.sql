@@ -1,11 +1,11 @@
 CREATE TABLE edit.type (id SERIAL PRIMARY KEY, name VARCHAR(15));
-CREATE TABLE edit.building (id SERIAL PRIMARY KEY, housename VARCHAR, housenumber VARCHAR, name VARCHAR, building VARCHAR, geom GEOMETRY(POLYGON, 21781));
+CREATE TABLE edit.building (id SERIAL PRIMARY KEY, housename VARCHAR, housenumber VARCHAR, name VARCHAR, building VARCHAR, geom GEOMETRY(POLYGON, 2056));
 INSERT INTO edit.type (name) VALUES ('undefined');
 INSERT INTO edit.type (name) VALUES ('residential');
 INSERT INTO edit.type (name) VALUES ('industrial');
 INSERT INTO edit.type (name) VALUES ('commercial');
 INSERT INTO edit.type (name) VALUES ('farm');
-INSERT INTO edit.building (housename, housenumber, name, building, geom) (SELECT housename, housenumber, name, building, geom FROM dblink('dbname=osm', 'SELECT "addr:housename" as housename, "addr:housenumber" as housenumber, "name", "building", way as geom FROM planet_osm_polygon  WHERE building IS NOT NULL') AS osm(housename text, housenumber text, name text, building text, geom GEOMETRY(POLYGON, 21781)));
+INSERT INTO edit.building (housename, housenumber, name, building, geom) (SELECT housename, housenumber, name, building, geom FROM dblink('dbname=osm', 'SELECT "addr:housename" as housename, "addr:housenumber" as housenumber, "name", "building", way as geom FROM planet_osm_polygon  WHERE building IS NOT NULL') AS osm(housename text, housenumber text, name text, building text, geom GEOMETRY(POLYGON, 2056)));
 ALTER TABLE edit.building ADD COLUMN building_type integer DEFAULT 1 REFERENCES edit.type(id);
 UPDATE edit.building SET building_type = 2 WHERE building LIKE '%residential%';
 UPDATE edit.building SET building_type = 3 WHERE building LIKE '%industrial%';

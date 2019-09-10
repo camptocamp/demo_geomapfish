@@ -8,10 +8,10 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.point AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=21781"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.point AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=2056"
     LABELITEM "name"
     PROJECTION
-      "init=epsg:21781"
+      "init=epsg:2056"
     END
     TOLERANCE 10
     TOLERANCEUNITS pixels
@@ -55,10 +55,10 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.line AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=21781"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.line AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=2056"
     LABELITEM "name"
     PROJECTION
-      "init=epsg:21781"
+      "init=epsg:2056"
     END
     CLASS
         NAME "Line"
@@ -96,10 +96,10 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.polygon AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=21781"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, k.name AS kind, g.geom AS geom FROM edit.polygon AS g LEFT OUTER JOIN edit.choise AS k ON g.kind_id = k.id) AS foo USING UNIQUE id USING srid=2056"
     LABELITEM "name"
     PROJECTION
-      "init=epsg:21781"
+      "init=epsg:2056"
     END
     TOLERANCE 10
     TOLERANCEUNITS pixels
@@ -145,13 +145,13 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT g.id AS id, g.name AS name, number, k.name AS building, geom FROM edit.building AS g LEFT OUTER JOIN edit.type AS k ON g.building_id = k.id) AS foo USING UNIQUE id USING srid=21781"
+    DATA "geom FROM (SELECT g.id AS id, g.name AS name, number, k.name AS building, geom FROM edit.building AS g LEFT OUTER JOIN edit.type AS k ON g.building_id = k.id) AS foo USING UNIQUE id USING srid=2056"
     LABELITEM "name"
     MAXSCALEDENOM 40000
     LABELMAXSCALEDENOM 5000
 
     PROJECTION
-      "init=epsg:21781"
+      "init=epsg:2056"
     END
     TOLERANCE 10
     TOLERANCEUNITS pixels

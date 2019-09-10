@@ -8,14 +8,14 @@ LAYER
   PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
   CONNECTION "${mapserver_connection}"
   # Example data for secured layer by restriction area
-  DATA "geometry FROM (SELECT geo.* FROM geodata.table AS geo WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'layer_name'), ST_SetSRID(geo.geometry, 21781))) as foo using unique id using srid=21781"
+  DATA "geometry FROM (SELECT geo.* FROM geodata.table AS geo WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'layer_name'), ST_SetSRID(geo.geometry, 2056))) as foo using unique id using srid=2056"
   # Example data for secured layer by role (without any area)
-  #DATA "geometry FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE ARRAY[%role_ids%] && ARRAY(${MAPSERVER_DATA_NOAREA_SUBSELECT} 'layer_name')) as foo USING UNIQUE gid USING srid=21781"
+  #DATA "geometry FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE ARRAY[%role_ids%] && ARRAY(${MAPSERVER_DATA_NOAREA_SUBSELECT} 'layer_name')) as foo USING UNIQUE gid USING srid=2056"
   # Example data for public layer
-  #DATA "geometry FROM (SELECT geo.geom as geom FROM geodata.table AS geo) AS foo USING UNIQUE gid USING srid=21781"
+  #DATA "geometry FROM (SELECT geo.geom as geom FROM geodata.table AS geo) AS foo USING UNIQUE gid USING srid=2056"
   METADATA
     "wms_title" "layer_name" # For WMS
-    "wms_srs" "EPSG:21781" # For WMS
+    "wms_srs" "EPSG:2056" # For WMS
 
     "wfs_enable_request" "*" # Enable WFS for this layer
     "gml_include_items" "all" # For GetFeatureInfo and WFS GetFeature (QueryBuilder)
@@ -35,7 +35,7 @@ LAYER
   TOLERANCE 10
   TOLERANCEUNITS pixels
   PROJECTION
-    "init=epsg:21781"
+    "init=epsg:2056"
   END
   CLASS
     NAME "countries"

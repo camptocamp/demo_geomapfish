@@ -9,7 +9,7 @@ import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 config.themesUrl = '{FULL_ENTRY_POINT}themes?version=2&background=background&interface=api';
 
 // The projection of the map
-config.projection = EPSG21781;
+config.projection = EPSG2056;
 // to use the EPSG:2056 projection, replace the previous line with:
 // config.projection = EPSG2056;
 
