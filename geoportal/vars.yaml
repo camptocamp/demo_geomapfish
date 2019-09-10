@@ -27,6 +27,11 @@ vars:
     - fr
     - de
 
+  authentication:
+    two_factor: true
+    two_factor_issuer_name: Camptocamp GeoMapFish Demo
+    max_consecutive_failures: 3
+
   # All the application interfaces used to create the apache rewrite rules
   interfaces:
     - name: desktop
