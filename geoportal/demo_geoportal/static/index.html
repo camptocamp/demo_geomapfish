@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title>ngeo story map</title>
+
+  <link href="https://geomapfish-demo-2-4.camptocamp.com/api.css" rel="stylesheet">
+  <script src="https://geomapfish-demo-2-4.camptocamp.com/api.js?version=2"></script>
+
+  <script src="https://openlayers.org/en/latest/build/ol.js"></script>
+
+  <link href="http://viglino.github.io/ol-ext/dist/ol-ext.css" rel="stylesheet">
+  <script src="http://viglino.github.io/ol-ext/dist/ol-ext.js"></script>
+
+  <style>
+    #map {
+      width: 600px;
+      height: 600px;
+      display: inline-block;
+    }
+
+    #story {
+      width: 800px;
+      height: 600px;
+      display: inline-block;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="map"></div>
+
+  <div id="story">
+    <div class="chapter select" name="start">
+      <h2>story map</h2>
+      <p>A story map with ngeo.</p>
+      <div class="ol-scroll-next"><span>Start</span></div>
+    </div>
+
+    <div class="chapter" name="Nyon">
+      <h2>Nyon</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Nyon_nma.jpg">
+      <p>
+        Nyon est une ville et une commune suisse du canton de Vaud, située dans le district de Nyon, dont elle est le
+        chef-lieu.
+      </p>
+    </div>
+    <div class="chapter" name="Morges">
+      <h2>Morges</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/BAM01wiki.jpg/640px-BAM01wiki.jpg">
+      <p>
+        Morges est une commune suisse du canton de Vaud, située au bord du Léman. La ville est le
+        chef-lieu du district de Morges, qui se trouve être la limite occidentale de l'agglomération lausannoise, aussi
+        nommée agglomération Lausanne-Morges.
+      </p>
+    </div>
+    <div class="chapter" name="Lausanne">
+      <h2>Lausanne</h2>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Duomo_di_losanna%2C_int.%2C_salita_alla_torre%2C_veduta_sulla_citt%C3%A0_08.JPG/640px-Duomo_di_losanna%2C_int.%2C_salita_alla_torre%2C_veduta_sulla_citt%C3%A0_08.JPG">
+      <p>
+        Lausanne est une ville suisse située sur la rive nord du lac Léman. Elle est la capitale et ville principale du
+        canton de Vaud et le chef-lieu du district de Lausanne. Elle constitue la quatrième ville du pays en termes de
+        population4 après Zurich, Genève et Bâle.
+      </p>
+    </div>
+    <div class="chapter" name="Vevey">
+      <h2>Vevey</h2>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/P1280110_-_Vevey.JPG/534px-P1280110_-_Vevey.JPG">
+      <p>
+        Vevey est une ville et une commune suisse du canton de Vaud située sur la rive nord du lac Léman. Sixième
+        commune du canton par sa population, elle est le chef-lieu du district de la Riviera-Pays-d'Enhaut. Au 31
+        décembre 2018, la commune de Vevey compte 19 904 habitants.
+      </p>
+    </div>
+  </div>
+
+  <p>Go to <a href="#" onclick="story.setChapter('Lausanne');">Lausanne chapter</a></p>
+
+  <script>
+    // mapping of chapter name to position
+    var positions = {
+      // the initial position of the map
+      start: {
+        center: [544500, 210100],
+        zoom: 0,
+      },
+      Nyon: {
+        center: [507794, 137450],
+        zoom: 8
+      },
+      Morges: {
+        center: [527497, 151530],
+        zoom: 4
+      },
+      Lausanne: {
+        center: [537882, 152065],
+        zoom: 3
+      },
+      Vevey: {
+        center: [554182, 145558],
+        zoom: 8
+      }
+    };
+
+    // create a ngeo API instance.
+    var ngeoApi = new demo.Map({
+      div: 'map'
+    });
+
+    var map = ngeoApi.map_;
+
+    var storyContainer = document.getElementById('story');
+
+    var story = new ol.control.Storymap({
+      target: storyContainer
+    });
+
+    story.on('scrollto', function (event) {
+      // unselect previous div
+      storyContainer.querySelector('.chapter.select').classList.remove('select');
+      // select current div
+      event.element.classList.add('select');
+
+      // recenter to position
+      var position = positions[event.name];
+      if (position) {
+        ngeoApi.recenter(position.center, position.zoom);
+      }
+    });
+
+    map.addControl(story);
+
+  </script>
+
+</body>
+
+</html>
