@@ -48,6 +48,6 @@ then
 else
     if [ ! -f .env ]
     then
-        cat .env.sample .env.secrets > .env
+        cat .env.sample .env.secrets > .env || true
     fi
 fi
