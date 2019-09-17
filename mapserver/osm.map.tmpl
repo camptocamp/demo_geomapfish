@@ -3,7 +3,7 @@
 LAYER
     NAME "hotel"
     GROUP "osm"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -47,7 +47,7 @@ END
 
 LAYER
     NAME "police"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -92,7 +92,7 @@ END
 
 LAYER
     NAME "post_office"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -137,7 +137,7 @@ END
 
 LAYER
     NAME "fuel"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -182,7 +182,7 @@ END
 
 LAYER
     NAME "parking"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -227,7 +227,7 @@ END
 
 LAYER
     NAME "many_attributes"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -262,7 +262,7 @@ END
 
 LAYER
     NAME "bus_stop"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -309,7 +309,7 @@ END
 LAYER
     NAME "accommodation"
     GROUP "alpine_hut"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -412,7 +412,7 @@ END
 
 LAYER
     NAME "information"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -450,7 +450,7 @@ END
 
 LAYER
     NAME "tourism_activity"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -626,7 +626,7 @@ END
 LAYER
     NAME "bank"
     GROUP "osm"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -683,7 +683,7 @@ END
 LAYER
     NAME "place_of_worship"
     GROUP "osm"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
@@ -957,7 +957,7 @@ LAYER
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=2056"
     LABELITEM "name"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     PROJECTION
         "init=epsg:2056"
     END
@@ -1004,7 +1004,7 @@ LAYER
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=2056"
     LABELITEM "name"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     PROJECTION
         "init=epsg:2056"
     END
@@ -1051,7 +1051,7 @@ LAYER
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=2056"
     LABELITEM "name"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     PROJECTION
         "init=epsg:2056"
     END
@@ -1099,7 +1099,7 @@ LAYER
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=2056"
     LABELITEM "name"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     PROJECTION
         "init=epsg:2056"
     END
@@ -1147,7 +1147,7 @@ LAYER
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=2056"
     LABELITEM "name"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     PROJECTION
         "init=epsg:2056"
     END
@@ -1194,7 +1194,7 @@ LAYER
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=2056"
     LABELITEM "name"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     PROJECTION
         "init=epsg:2056"
     END
@@ -1242,7 +1242,7 @@ LAYER
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=2056"
     LABELITEM "name"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     PROJECTION
         "init=epsg:2056"
     END
@@ -2151,7 +2151,7 @@ LAYER
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''https://example.com'',''OSM'',800,500)\">Open</a>' AS open, 'https://geomapfish-demo-dc.camptocamp.com/2.4/resourceproxy?target=point&values='||osm_id AS autolink_url,type||'@camptocamp.com' AS autolink_email,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=2056"
     LABELITEM "name"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     PROJECTION
         "init=epsg:2056"
     END
@@ -2190,7 +2190,7 @@ END
 LAYER
     NAME "cinema"
     GROUP "half_query"
-    EXTENT 473743 74095 839000 306400
+    EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
