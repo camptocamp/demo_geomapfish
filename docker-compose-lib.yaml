@@ -174,7 +174,7 @@ services:
       - OTHER_LOG_LEVEL
 
   tools:
-    image: camptocamp/geoportal-tools:2.5
+    image: camptocamp/geomapfish-tools:2.5
     restart: unless-stopped
     environment: *env
 
