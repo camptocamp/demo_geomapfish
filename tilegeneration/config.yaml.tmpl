@@ -1,6 +1,6 @@
 grids:
     # grid name, I just recommends to add the min resolution because it's common to not generate all the layers at the same resolution.
-    2056_005:
+    epsg2056_005:
         # resolutions [required]
         resolutions: [1000, 500, 250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
         # bbox [required]
@@ -27,7 +27,7 @@ caches:
 defaults:
     layer: &layer
         type: wms
-        grid: 2056_005
+        grid: epsg2056_005
         # The minimum resolution to seed, useful to use with mapcache, optional.
         min_resolution_seed: 5
         # the URL of the WMS server to used
