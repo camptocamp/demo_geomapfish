@@ -59,7 +59,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE ARRAY[%role_ids%] IN (${MAPSERVER_DATA_NOAREA_SUBSELECT} 'firestations')) AS foo USING UNIQUE osm_id USING srid=2056"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE ARRAY[%role_ids%] && ARRAY(${MAPSERVER_DATA_NOAREA_SUBSELECT} 'firestations')) AS foo USING UNIQUE osm_id USING srid=2056"
     VALIDATION
         "default_role_ids" "-1"
 "role_ids" "^-?[0-9,]*$"
