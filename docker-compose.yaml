@@ -18,7 +18,6 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: mapserver
-    mem_limit: 128M
     volumes_from:
       - config:ro
     volumes:
@@ -29,7 +28,6 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: qgisserver
-    mem_limit: 1G
     volumes_from:
       - config:ro
     environment:
@@ -44,7 +42,6 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: tinyows
-    mem_limit: 32M
     volumes_from:
       - config:ro
 
@@ -52,13 +49,11 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: redis
-    mem_limit: 64M
 
   tilecloudchain:
     extends:
       file: docker-compose-lib.yaml
       service: tilecloudchain
-    mem_limit: 300M
     environment:
       - AWS_DEFAULT_REGION
     volumes_from:
@@ -68,7 +63,6 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: tilegeneration_slave
-    mem_limit: 128M
     volumes_from:
       - config:ro
     environment:
@@ -79,7 +73,6 @@ services:
       file: docker-compose-lib.yaml
       service: geoportal
     image: camptocamp/geomapfish-geoportal:2.5
-    mem_limit: 1G
     volumes_from:
       - config:ro
     environment:
@@ -100,6 +93,5 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: front
-    mem_limit: 16M
     volumes_from:
       - config:ro

@@ -1284,10 +1284,11 @@ END
 LAYER
     NAME "aster"
     GROUP "half_query"
-    DATA ${RASTER_BASE_PATH}/Aster2056.vrt
     TYPE RASTER
     STATUS ON
-
+    PROCESSING "RESAMPLE=AVERAGE"
+    CONNECTIONTYPE OGR
+    TILEINDEX Aster2056.shp
 
     CLASS
         EXPRESSION ([pixel] > 100.0 and [pixel] <= 120.0)
@@ -1713,10 +1714,11 @@ LAYER
 END
 LAYER
     NAME "srtm"
-    DATA ${RASTER_BASE_PATH}/SRTM2056.vrt
     TYPE RASTER
     STATUS ON
-
+    PROCESSING "RESAMPLE=AVERAGE"
+    CONNECTIONTYPE OGR
+    TILEINDEX Aster2056.shp
 
     CLASS
         EXPRESSION ([pixel] > 100.0 and [pixel] <= 120.0)
