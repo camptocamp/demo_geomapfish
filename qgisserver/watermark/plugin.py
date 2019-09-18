@@ -1,4 +1,8 @@
 
+import os
+import traceback
+import sys
+
 from qgis.core import QgsMessageLog, Qgis
 from qgis.server import QgsServerFilter
 from qgis.PyQt.QtCore import (
@@ -15,6 +19,12 @@ from qgis.PyQt.QtGui import (
     QPainter, QPainterPath, QBrush, QPen
 )
 
+import sqlalchemy
+from sqlalchemy.orm import configure_mappers, scoped_session, sessionmaker
+
+from c2c.template.config import config
+import c2cwsgiutils.broadcast
+
 
 class WatermarkPlugin():
 
@@ -24,16 +34,39 @@ class WatermarkPlugin():
 
 class WatermarkFilter(QgsServerFilter):
 
+    def __init__(self, server_iface):
+        super().__init__(server_iface)
+        self.server_iface = server_iface
+
+        try:
+            config.init(os.environ.get('GEOMAPFISH_CONFIG', '/etc/qgisserver/geomapfish.yaml'))
+            c2cwsgiutils.broadcast.init(None)
+            configure_mappers()
+            engine = sqlalchemy.create_engine(config.get('sqlalchemy_slave.url'))
+            session_factory = sessionmaker()
+            session_factory.configure(bind=engine)
+            self.dbsession = scoped_session(session_factory)  # noqa: N806
+        except Exception:
+            QgsMessageLog.logMessage(''.join(traceback.format_exception(*sys.exc_info())))
+            raise
+
     def requestReady(self):
         request = self.serverInterface().requestHandler()
         params = request.parameterMap()
-
         import pprint
         QgsMessageLog.logMessage(pprint.pformat(params))
 
     def responseComplete(self):
+        from c2cgeoportal_commons.models.static import User
+
         request = self.serverInterface().requestHandler()
         params = request.parameterMap()
+
+        userid = params.get('USER_ID')
+        user = self.dbsession.query(User).get(userid) if userid else None
+        username = user.username if user is not None else 'unauthenticated'
+
+        QgsMessageLog.logMessage("User: {}".format(username))
 
         # Do some checks
         if (
@@ -43,7 +76,7 @@ class WatermarkFilter(QgsServerFilter):
         ):
             QgsMessageLog.logMessage("WatermarkFilter.responseComplete: image ready %s" % request.format())
 
-            text = "Arnaud Morvan"
+            text = username
 
             # Get the image
             img = QImage()
