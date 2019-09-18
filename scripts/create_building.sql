@@ -12,8 +12,6 @@ UPDATE edit.building SET building_type = 3 WHERE building LIKE '%industrial%';
 UPDATE edit.building SET building_type = 4 WHERE building LIKE '%commercial%';
 UPDATE edit.building SET building_type = 5 WHERE building LIKE '%farm%';
 UPDATE edit.building SET name = housename WHERE name IS NULL AND housename IS NOT NULL;
-GRANT ALL ON ALL TABLES IN SCHEMA edit TO "www-data";
-GRANT ALL ON ALL SEQUENCES IN SCHEMA edit TO "www-data";
 ALTER TABLE edit.building DROP COLUMN housename;
 ALTER TABLE edit.building DROP COLUMN building;
 ALTER TABLE edit.building RENAME COLUMN housenumber TO number;
