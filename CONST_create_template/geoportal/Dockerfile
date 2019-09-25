@@ -2,6 +2,10 @@ FROM camptocamp/geomapfish-tools:2.5 as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 WORKDIR /app
+COPY webpack.*.js Makefile CONST_Makefile /app/
+COPY demo_geoportal/static-ngeo /app/demo_geoportal/static-ngeo
+RUN make apps
+
 COPY . /app
 
 RUN make checks
@@ -27,7 +31,8 @@ RUN chmod go+w /etc/static-ngeo/ \
     /app/demo_geoportal/locale/*/LC_MESSAGES/demo_geoportal-client.po
 
 RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=/app/ && \
-    python -m compileall -q /app/demo_geoportal -x /app/demo_geoportal/static.*
+    python3 -m compileall -q /usr/local/lib/python3.7 -x /usr/local/lib/python3.7/dist-packages/dateutils/ && \
+    python3 -m compileall -q /app/demo_geoportal -x /app/demo_geoportal/static.*
 
 ARG GIT_HASH
 RUN c2cwsgiutils_genversion.py $GIT_HASH

@@ -322,7 +322,7 @@ vars:
     fulltextsearch:
       search: pau
     phantomjs:
-      disable: [desktop, mobile, apihelp]
+      disable: [apihelp]
 
 update_paths:
   - admin_interface.available_functionalities

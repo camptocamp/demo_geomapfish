@@ -4,7 +4,7 @@ extends: CONST_vars.yaml
 
 vars:
 
-  srid: 21781
+  srid: 2056
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -170,7 +170,7 @@ vars:
     #         layers: []
     #       legend: {}
     phantomjs:
-      disable: [desktop, mobile, apihelp]
+      disable: [apihelp]
 
   check_collector:
     hosts: []
