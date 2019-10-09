@@ -2,7 +2,6 @@
 import Map from 'api/Map.js';
 import config from 'api/constants.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
-import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 
 
 // The URL to the themes service.
@@ -13,8 +12,6 @@ config.localeUrl = '{FULL_ENTRY_POINT}locale.json';
 
 // The projection of the map
 config.projection = EPSG2056;
-// to use the EPSG:2056 projection, replace the previous line with:
-// config.projection = EPSG2056;
 
 // The resolutions list.
 config.resolutions = [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05];

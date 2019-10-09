@@ -72,7 +72,7 @@
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Draw and Measure'|translate}}">
               <span class="fa fa-paint-brush"></span>
             </button>
-            <button ngeo-btn class="btn btn-default" ng-if="mainCtrl.filterSelectorEnabled" ng-model="mainCtrl.filterSelectorActive"
+            <button ngeo-btn class="btn btn-default" ng-class="{'gmf-filter-active': mainCtrl.filterIsApplied}" ng-model="mainCtrl.filterSelectorActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Filter'|translate}}">
               <span class="fa fa-filter"></span>
             </button>
@@ -84,6 +84,10 @@
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.drawProfilePanelActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Profile'|translate}}">
               <span class="fa fa-chart-area"></span>
+            </button>
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.queryPanelActive"
+              data-toggle="tooltip" data-placement="left" data-original-title="{{'Selection'|translate}}">
+              <span class="fa fa-info"></span>
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.importDataSourceActive"
                     data-toggle="tooltip" data-placement="left" data-original-title="{{'Import Layer'|translate}}">
@@ -146,7 +150,8 @@
               <gmf-filterselector
                   active="mainCtrl.filterSelectorActive"
                   map="mainCtrl.map"
-                  tool-group="mainCtrl.mapToolsGroup">
+                  tool-group="mainCtrl.mapToolsGroup"
+                  filter-is-applied="mainCtrl.filterIsApplied">
               </gmf-filterselector>
             </div>
           </div>
@@ -192,6 +197,15 @@
                   </em>
                 </p>
               </div>
+            </div>
+          </div>
+          <div ng-show="mainCtrl.queryPanelActive" class="row">
+            <div class="col-sm-12">
+              <div class="gmf-app-tools-content-heading">
+                {{'Selection'|translate}}
+                <a class="btn close" ng-click="mainCtrl.queryPanelActive = false">&times;</a>
+              </div>
+              <ngeo-query-panel></ngeo-query-panel>
             </div>
           </div>
           <div ng-show="mainCtrl.importDataSourceActive" class="row">

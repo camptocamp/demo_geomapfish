@@ -34,13 +34,12 @@ vars:
   default_max_age: 864000
 
   authentication:
-    two_factor: &two_factor_auth false
-    two_factor_issuer_name: {VISIBLE_WEB_HOST}
+    two_factor: false
+    two_factor_issuer_name: demo_geomapfish
 
   interfaces_config:
     default:
       constants:
-        gmfTwoFactorAuth: *two_factor_auth
         gmfSearchActions:
           - action: add_theme
             title: Add a theme
@@ -65,6 +64,7 @@ vars:
       dynamic_constants:
         cacheVersion: cache_version
         langUrls: lang_urls
+        gmfTwoFactorAuth: two_factor
         gmfSearchGroups: fulltextsearch_groups
       static:
         angularLocaleScript:
@@ -207,14 +207,17 @@ vars:
   #   arguments:
   #   url: 127.0.0.1:11211
   cache:
-    backend: dogpile.cache.redis
-    arguments:
-      host: '{REDIS_HOST}'
-      port: '{REDIS_PORT}'
-      db: '{REDIS_DB}'
-      lock_timeout: 120  # Two minutes
-      redis_expiration_time: 86400  # One day
-      distributed_lock: True
+    std:
+      backend: dogpile.cache.redis
+      arguments:
+        host: '{REDIS_HOST}'
+        port: '{REDIS_PORT}'
+        db: '{REDIS_DB}'
+        lock_timeout: 120  # Two minutes
+        redis_expiration_time: 86400  # One day
+        distributed_lock: True
+    obj:
+      backend: dogpile.cache.memory
 
   admin_interface:
     # Default values for the admin interface's maps.
