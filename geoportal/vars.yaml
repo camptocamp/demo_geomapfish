@@ -236,7 +236,7 @@ vars:
   intranet:
     networks:
       - 172.18.0.1/16
-      - 28.179.66/24
+      - 128.179.66.4/24
 
   headers:
     themes: &headers
