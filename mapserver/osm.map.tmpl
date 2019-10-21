@@ -1,8 +1,46 @@
 
 
 LAYER
+    NAME "hotel_label"
+    GROUP "hotel_filter"
+    EXTENT 2473743 1074095 2839000 1306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING UNIQUE osm_id USING srid=2056"
+    FILTER ('[tourism]' = 'hotel')
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:2056"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Hôtels"
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "Hôtels"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_THE_GEOM_type" "point"
+        "gml_geometries" "THE_GEOM"
+    END
+END
+
+LAYER
     NAME "hotel"
-    GROUP "osm"
+    GROUP "hotel_filter"
     EXTENT 2473743 1074095 2839000 1306400
     TYPE POINT
     STATUS ON
@@ -26,11 +64,6 @@ LAYER
             WIDTH 1
             OUTLINECOLOR 30 0 0
             COLOR 230 0 0
-        END
-        LABEL
-            SIZE 7
-            OFFSET 0 -10
-            PARTIALS FALSE
         END
     END
 
