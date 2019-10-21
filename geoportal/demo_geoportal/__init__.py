@@ -24,7 +24,7 @@ def main(global_config, **settings):
     config.include('c2cgeoportal_geoportal')
     distutils.core._setup_stop_after = None
 
-    config.add_translation_dirs('demo_geoportal:locale/')
+    config.add_translation_dirs('geomapfish_geoportal:locale/')
 
     # Scan view decorator for adding routes
     config.scan()
