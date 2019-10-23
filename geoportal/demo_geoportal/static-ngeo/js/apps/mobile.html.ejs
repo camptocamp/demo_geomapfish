@@ -12,7 +12,7 @@
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
-    <link href="${htmlWebpackPlugin.options.vars.entry_point}static/${htmlWebpackPlugin.options.vars.version}/mobile.css" rel="stylesheet">
+    <link href="${htmlWebpackPlugin.options.vars.entry_point}static/${htmlWebpackPlugin.options.vars.version}/css/mobile.css" rel="stylesheet">
   </head>
 
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
