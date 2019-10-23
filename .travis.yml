@@ -29,8 +29,8 @@ jobs:
             all_branches: true
     - script:
         - ./build --geoportal .env.sample
-      deploy:
-        - provider: script
-          script: scripts/publish-docker geoportal
-          on:
-            all_branches: true
+#      deploy:
+#        - provider: script
+#          script: scripts/publish-docker geoportal
+#          on:
+#            all_branches: true
