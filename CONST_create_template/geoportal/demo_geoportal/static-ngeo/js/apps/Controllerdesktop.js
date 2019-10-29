@@ -121,6 +121,7 @@ const module = angular.module('Appdesktop', [
   gmfControllersAbstractDesktopController.name,
 ]);
 
+
 module.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
 module.run(/* @ngInject */ ($templateCache) => {
   // @ts-ignore: webpack

@@ -6,7 +6,10 @@ import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 
 
 // The URL to the themes service.
-config.themesUrl = '{FULL_ENTRY_POINT}themes?version=2&background=background';
+config.themesUrl = '{FULL_ENTRY_POINT}themes?version=2&background=background&interface=api';
+
+// The URL to the locale service.
+config.localeUrl = '{FULL_ENTRY_POINT}locale.json';
 
 // The projection of the map
 config.projection = EPSG21781;
