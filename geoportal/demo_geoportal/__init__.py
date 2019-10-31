@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import distutils.core
+
 from pyramid.config import Configurator
-from c2cgeoportal_geoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
+
+from c2cgeoportal_geoportal import INTERFACE_TYPE_NGEO, add_interface, locale_negotiator
 from c2cgeoportal_geoportal.lib.authentication import create_authentication
 from demo_geoportal.resources import Root
 
