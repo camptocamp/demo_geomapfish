@@ -12,7 +12,7 @@ import './sass/mobile.scss';
 import angular from 'angular';
 import gmfControllersAbstractMobileController, {AbstractMobileController}
   from 'gmf/controllers/AbstractMobileController.js';
-import demoBase from '../demomodule.js';
+import geomapfishBase from '../geomapfishmodule.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 
@@ -65,7 +65,7 @@ class Controller extends AbstractMobileController {
  * @hidden
  */
 const module = angular.module('Appmobile', [
-  demoBase.name,
+  geomapfishBase.name,
   gmfControllersAbstractMobileController.name,
 ]);
 

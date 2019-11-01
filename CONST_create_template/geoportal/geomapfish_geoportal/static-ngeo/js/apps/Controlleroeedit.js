@@ -12,7 +12,7 @@ import './sass/oeedit.scss';
 import angular from 'angular';
 import gmfControllersAbstractDesktopController, {AbstractDesktopController}
   from 'gmf/controllers/AbstractDesktopController.js';
-import demoBase from '../demomodule.js';
+import geomapfishBase from '../geomapfishmodule.js';
 import gmfObjecteditingModule from 'gmf/objectediting/module.js';
 import ngeoMiscToolActivate from 'ngeo/misc/ToolActivate.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
@@ -206,7 +206,7 @@ class Controller extends AbstractDesktopController {
  * @hidden
  */
 const module = angular.module('Appoeedit', [
-  demoBase.name,
+  geomapfishBase.name,
   gmfControllersAbstractDesktopController.name,
   gmfObjecteditingModule.name,
 ]);

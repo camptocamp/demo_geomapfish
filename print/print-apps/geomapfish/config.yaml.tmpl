@@ -3,57 +3,14 @@
 throwErrorOnExtraParameters: true
 defaultToSvg: true
 
-smtp:
-  username: ${SMTP_USER}
-  password: ${SMTP_PASSWORD}
-  fromAddress: info@camptocamp.com
-  host: email-smtp.eu-west-1.amazonaws.com
-  port: 465
-  ssl: True
-  subject: Map from GeoMapFish demo
-  body: Your printed map form GeoMapFish demo is <a href="{url}">here</a>.
-  storage: !s3reportStorage
-    bucket: print-mutualized
-    prefix: gmf_demo
-    endpointUrl: https://sos-ch-dk-2.exo.io/
-    region: ch-dk-2
-    accessKey: ${AWS_ACCESS_KEY_ID}
-    secretKey: ${AWS_SECRET_ACCESS_KEY}
-
-allowedReferers: &allowedHosts
+allowedReferers:
   - !hostnameMatch
-    host: ${MUTUALIZED_PRINT_URL}
-  - !hostnameMatch
-    host: geomapfish-demo-2-5.camptocamp.com
-  - !hostnameMatch
-    host: geomapfish-demo-dc.camptocamp.com
-  - !hostnameMatch
-    host: gmf-demo-2-4.paas-ch-3.camptocamp.com
-  - !hostnameMatch
-    host: camptocamp.github.io
-  - !hostnameMatch
-    host: fredj.github.io
-  - !hostnameMatch
-    host: ger-benjamin.github.io
-  - !hostnameMatch
-    host: arnaud-morvan.github.io
-  - !hostnameMatch
-    host: julsbreakdown.github.io
-  - !hostnameMatch
-    host: adube.github.io
-  - !hostnameMatch
-    host: localhost
-  - !ipMatch
-    ip: 127.0.0.1
-  - !ipMatch
-    ip: 172.17.0.0
-    mask: 255.240.0.0
+    host: ${VISIBLE_WEB_HOST}
+  - !localMatch {}
 
 templates:
   1 A4 portrait: !template
     reportTemplate: A4_Portrait.jrxml
-    outputFilename: &outputFilename
-      GeoMapFish_${DOLLAR}{yyyy-MM-dd_HH-mm-ss}
     attributes:
       title:
         !string &title
@@ -109,9 +66,13 @@ templates:
           ##       host: ${GEOPORTAL_INTERNAL_HOST}
           ##       port: ${GEOPORTAL_INTERNAL_PORT}
           - !forwardHeaders
-            matchers: *allowedHosts
+            matchers:
+              - !hostnameMatch
+                host: ${VISIBLE_WEB_HOSTNAME}
+                port: ${VISIBLE_WEB_PORT}
             headers:
               - Cookie
+              - Host
           - !forwardHeaders
             headers:
               - Referer
@@ -157,7 +118,6 @@ templates:
 
   2 A4 landscape: !template
     reportTemplate: A4_Landscape.jrxml
-    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
@@ -174,7 +134,6 @@ templates:
 
   3 A3 portrait: !template
     reportTemplate: A3_Portrait.jrxml
-    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
@@ -191,7 +150,6 @@ templates:
 
   4 A3 landscape: !template
     reportTemplate: A3_Landscape.jrxml
-    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
@@ -205,30 +163,3 @@ templates:
       scalebar: *scalebar
       datasource: *datasource
     processors: *processors
-
-  simple: !template
-    reportTemplate: simple.jrxml
-    attributes:
-      map: *map
-    processors:
-      - !reportBuilder  # compile all reports in current directory
-        directory: '.'
-      - *configureHttpRequests
-      - !createMap {}
-
-  A0: !template
-    reportTemplate: A0.jrxml
-    attributes:
-      map: !map
-        <<: *map
-        width: 2340
-        height: 3327
-        dpiSuggestions: [254, 127, 72]
-    processors:
-      - !reportBuilder  # compile all reports in current directory
-        directory: '.'
-      - *configureHttpRequests
-      - !setTiledWms
-        maxWidth: 1000
-        maxHeight: 1000
-      - !createMap {}

@@ -9,8 +9,8 @@ addons:
 
 env:
   global:
-    - PROJECT=demo
-#    - OPENSHIFT_PROJECT=gs-gmf-demo
+    - PROJECT=geomapfish
+#    - OPENSHIFT_PROJECT=gs-gmf-geomapfish
 #    - HELM_RELEASE_NAMES=List of branch that should be deployed on helm
 #    - DOCKER_USERNAME=username
 #    - secure: travis encrypt DOCKER_PASSWORD=password

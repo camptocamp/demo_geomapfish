@@ -1,4 +1,4 @@
-export PACKAGE = demo
+export PACKAGE = geomapfish
 
 TEMPLATE_EXCLUDE += $(PACKAGE)_geoportal/static/lib
 FIND_OPTS = $(foreach ELEM, $(TEMPLATE_EXCLUDE),-path ./$(ELEM) -prune -o) -type f

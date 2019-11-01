@@ -1,5 +1,5 @@
 /**
- * This file provides the "demo" namespace, which is the
+ * This file provides the "geomapfish" namespace, which is the
  * application's main namespace. And it defines the application's Angular
  * module.
  */
@@ -9,7 +9,7 @@ import angular from 'angular';
 /**
  * @type {!angular.IModule}
  */
-const module = angular.module('demo', []);
+const module = angular.module('geomapfish', []);
 
 module.config(['$compileProvider', function($compileProvider) {
   if (!('debug' in decodeQueryString(window.location.search))) {

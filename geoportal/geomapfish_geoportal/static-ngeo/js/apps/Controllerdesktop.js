@@ -12,7 +12,7 @@ import './sass/vars_desktop.scss';
 import angular from 'angular';
 import gmfControllersAbstractDesktopController, {AbstractDesktopController}
   from 'gmf/controllers/AbstractDesktopController.js';
-import demoBase from '../demomodule.js';
+import geomapfishBase from '../geomapfishmodule.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 
@@ -109,7 +109,7 @@ class Controller extends AbstractDesktopController {
  * @hidden
  */
 const module = angular.module('Appdesktop', [
-  demoBase.name,
+  geomapfishBase.name,
   gmfControllersAbstractDesktopController.name,
 ]);
 

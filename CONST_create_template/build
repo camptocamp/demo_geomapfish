@@ -29,16 +29,16 @@ fi
 if [ $CONFIG == true ]
 then
     set -x
-    docker build --tag=camptocamp/demo-config \
+    docker build --tag=camptocamp/geomapfish-config \
         --build-arg=PGSCHEMA=main .
 fi
 if [ $GEOPORTAL == true ]
 then
     set -x
-    docker build --target=builder --tag=camptocamp/demo-geoportal-dev \
+    docker build --target=builder --tag=camptocamp/geomapfish-geoportal-dev \
         --build-arg=PGSCHEMA=main \
         --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
-    docker build --tag=camptocamp/demo-geoportal \
+    docker build --tag=camptocamp/geomapfish-geoportal \
         --build-arg=PGSCHEMA=main \
         --build-arg=GIT_HASH=$(git rev-parse HEAD) geoportal
 fi

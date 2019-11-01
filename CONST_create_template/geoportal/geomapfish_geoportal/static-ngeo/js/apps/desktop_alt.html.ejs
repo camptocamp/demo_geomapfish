@@ -10,7 +10,7 @@
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
-    <link href="${htmlWebpackPlugin.options.vars.entry_point}static/${htmlWebpackPlugin.options.vars.version}/desktop_alt.css" rel="stylesheet">
+    <link href="${htmlWebpackPlugin.options.vars.entry_point}static/${htmlWebpackPlugin.options.vars.version}/css/desktop_alt.css" rel="stylesheet">
   </head>
   <body ng-class="{'gmf-profile-chart-active': !!profileChartActive, 'gmf-query-grid-active': !!queryGridActive}" ng-keydown="mainCtrl.onKeydown($event)">
   <div ng-show="mainCtrl.loading" class="loading-mask">
@@ -69,9 +69,12 @@
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Draw and Measure'|translate}}">
               <span class="fa fa-paint-brush"></span>
             </button>
-            <button ngeo-btn class="btn btn-default" ng-class="{'gmf-filter-active': mainCtrl.filterIsApplied}" ng-model="mainCtrl.filterSelectorActive"
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.filterSelectorActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Filter'|translate}}">
-              <span class="fa fa-filter"></span>
+              <span
+                class="fa"
+                ng-class="mainCtrl.gmfDataSourceBeingFiltered.dataSource && mainCtrl.gmfDataSourceBeingFiltered.dataSource.filterRules ? 'fa-funnel-dollar' : 'fa-filter'"></span>
+
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.editFeatureActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Editing'|translate}}"
@@ -276,7 +279,8 @@
         <ngeo-mapswipe
           ng-if="mainCtrl.gmfLayerBeingSwipe.layer != null"
           map="::mainCtrl.map"
-          layer="::mainCtrl.gmfLayerBeingSwipe.layer">
+          layer="::mainCtrl.gmfLayerBeingSwipe.layer"
+          swipe-value="mainCtrl.gmfLayerBeingSwipe.swipeValue">
         </ngeo-mapswipe>
         <ngeo-displaywindow
           content="mainCtrl.displaywindowContent"
@@ -350,6 +354,17 @@
           </div>
         </div>
       </div>
+      <ngeo-modal ngeo-modal-closable="false" ng-model="mainCtrl.userMustChangeItsPassword">
+        <div class="modal-header ui-draggable-handle">
+          <h4 class="modal-title">
+            {{'You must change your password' | translate}}
+          </h4>
+        </div>
+        <div class="modal-body">
+          <gmf-authentication gmf-authentication-force-password-change="::true"></gmf-authentication>
+        </div>
+      </ngeo-modal>
+
       <ngeo-modal ng-model="mainCtrl.modalShareShown">
         <gmf-share ng-if="mainCtrl.modalShareShown" gmf-share-email="false"></gmf-share>
       </ngeo-modal>

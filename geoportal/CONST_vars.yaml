@@ -2,7 +2,7 @@
 
 vars:
   # the package name
-  package: demo
+  package: geomapfish
   main_ogc_server: source for image/png
 
   srid: -1
@@ -285,8 +285,6 @@ vars:
       - name: directedFilterAttributes
         type: list
       - name: enumeratedAttributes
-        type: list
-      - name: getData
         type: list
       # WMTS layers
       - name: ogcServer
@@ -670,7 +668,7 @@ vars:
   # application. The value is the full python name
   # (full.module.path.function_name) of the function to call
   hooks: {}
-  #   after_settings: demo.after_settings_hook
+  #   after_settings: geomapfish.after_settings_hook
   # Called just after the settings have been loaded. Allows to modify
   # the settings at runtime (they are constructed at build time).
   # The function receives one parameter: the settings object.

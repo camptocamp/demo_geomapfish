@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import distutils.core
-
 from pyramid.config import Configurator
-
-from c2cgeoportal_geoportal import INTERFACE_TYPE_NGEO, add_interface, locale_negotiator
+from c2cgeoportal_geoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
 from c2cgeoportal_geoportal.lib.authentication import create_authentication
 from geomapfish_geoportal.resources import Root
 
@@ -39,5 +37,12 @@ def main(global_config, **settings):
             interface.get('type', INTERFACE_TYPE_NGEO),
             default=interface.get('default', False)
         )
+
+    try:
+        import ptvsd
+        ptvsd.enable_attach(address=('172.17.0.1', 5678))
+        # ptvsd.wait_for_attach()
+    except ModuleNotFoundError as e:
+        pass
 
     return config.make_wsgi_app()

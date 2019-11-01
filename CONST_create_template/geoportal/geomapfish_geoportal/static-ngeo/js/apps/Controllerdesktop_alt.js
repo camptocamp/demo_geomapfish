@@ -12,7 +12,7 @@ import './sass/vars_desktop_alt.scss';
 import angular from 'angular';
 import gmfControllersAbstractDesktopController, {AbstractDesktopController}
   from 'gmf/controllers/AbstractDesktopController.js';
-import demoBase from '../demomodule.js';
+import geomapfishBase from '../geomapfishmodule.js';
 import gmfImportModule from 'gmf/import/module.js';
 import gmfFloorModule from 'gmf/floor/module.js';
 import ngeoGooglestreetviewModule from 'ngeo/googlestreetview/module.js';
@@ -172,7 +172,7 @@ class Controller extends AbstractDesktopController {
  * @hidden
  */
 const module = angular.module('Appdesktop_alt', [
-  demoBase.name,
+  geomapfishBase.name,
   gmfControllersAbstractDesktopController.name,
   gmfImportModule.name,
   gmfFloorModule.name,

@@ -1,7 +1,7 @@
 extends:
   - openlayers
 globals:
-  'demo': false
+  'geomapfish': false
 env:
   jquery: true
 parserOptions:

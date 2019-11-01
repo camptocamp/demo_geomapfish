@@ -13,11 +13,15 @@ services:
       # For Python project development.
       - ${PWD}/geoportal/geomapfish_geoportal:/app/geomapfish_geoportal
       # For Python c2cgeportal development.
-      # - '${PWD}/../c2cgeoportal:/opt/c2cgeoportal'
+      # - '${PWD}/../c2cgeoportal/commons/c2cgeoportal_gcommons:/opt/c2cgeoportal/commons/c2cgeoportal_commons'
+      # - '${PWD}/../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal'
+      # - '${PWD}/../c2cgeoportal/admin/c2cgeoportal_admin:/opt/c2cgeoportal/admin/c2cgeoportal_admin'
     environment:
       - GUNICORN_CMD_ARGS=--reload
       - C2CWSGIUTILS_CONFIG=/app/development.ini
       # - PRINT_URL=http://print:8080/print/
+    ports:
+      - 5678:5678  # For remote debugging using Visual Studio Code
 
   # Also uncomment the PRINT_URL in geoportal
   # print:
@@ -30,6 +34,12 @@ services:
   # For Javascript project development.
   # The debug application will be availavble at ``https://<host>/<entry_point>/dev/<interface>.html``.
   webpack_dev_server:
+    # Uncomment these lines when you want to debug respectively the project js, ngeo js and/or the gmf contrib js.
+    # Adapt the path for ngeo / gmf contrib to point where you have checkouted the code.
+    # volumes:
+    #   - ${PWD}/geoportal/geomapfish_geoportal/static-ngeo:/app/geomapfish_geoportal/static-ngeo
+    #   - ${PWD}/../ngeo/src:/usr/lib/node_modules/ngeo/src
+    #   - ${PWD}/../ngeo/contribs:/usr/lib/node_modules/ngeo/contribs
     volumes_from:
       - config:rw
     extends:

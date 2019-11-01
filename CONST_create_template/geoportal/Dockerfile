@@ -36,7 +36,8 @@ RUN chmod go+w /etc/static-ngeo/ \
     /app/geomapfish_geoportal/locale/*/LC_MESSAGES/geomapfish_geoportal-client.po
 
 RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=/app/ && \
-    python3 -m compileall -q /usr/local/lib/python3.7 -x /usr/local/lib/python3.7/dist-packages/dateutils/ && \
+    python3 -m compileall -q /usr/local/lib/python3.7 \
+        -x '/usr/local/lib/python3.7/dist-packages/(dateutils|pydevd|ptvsd)/' && \
     python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
 
 ARG GIT_HASH

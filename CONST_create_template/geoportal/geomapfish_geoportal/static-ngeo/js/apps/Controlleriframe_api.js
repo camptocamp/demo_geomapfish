@@ -9,7 +9,7 @@ import 'gmf/controllers/iframe_api.scss';
 import angular from 'angular';
 import gmfControllersAbstractAPIController, {AbstractAPIController}
   from 'gmf/controllers/AbstractAPIController.js';
-import demoBase from '../demomodule.js';
+import geomapfishBase from '../geomapfishmodule.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 
@@ -51,7 +51,7 @@ class Controller extends AbstractAPIController {
  * @hidden
  */
 const module = angular.module('Appiframe_api', [
-  demoBase.name,
+  geomapfishBase.name,
   gmfControllersAbstractAPIController.name,
 ]);
 
