@@ -11,7 +11,7 @@ services:
     user: root
     volumes:
       # For Python project development.
-      - ${PWD}/geoportal/demo_geoportal:/app/demo_geoportal
+      - ${PWD}/geoportal/geomapfish_geoportal:/app/geomapfish_geoportal
       # For Python c2cgeportal development.
       # - '${PWD}/../c2cgeoportal:/opt/c2cgeoportal'
     environment:

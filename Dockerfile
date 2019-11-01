@@ -20,17 +20,17 @@ RUN \
         node /usr/bin/compile-catalog \
             /opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal/locale/${lang}/LC_MESSAGES/ngeo.po \
             /opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal/locale/${lang}/LC_MESSAGES/gmf.po \
-            /tmp/config/geoportal/demo_geoportal/locale/${lang}/LC_MESSAGES/demo_geoportal-client.po \
-            > /tmp/config/geoportal/demo_geoportal/static/${lang}.json; \
+            /tmp/config/geoportal/geomapfish_geoportal/locale/${lang}/LC_MESSAGES/geomapfish_geoportal-client.po \
+            > /tmp/config/geoportal/geomapfish_geoportal/static/${lang}.json; \
     done && \
-    rm -rf /tmp/config/geoportal/demo_geoportal/locale
+    rm -rf /tmp/config/geoportal/geomapfish_geoportal/locale
 
 RUN \
     cd /tmp/config/geoportal/ && \
     c2c-template --vars ${VARS_FILE} \
-        --get-config demo_geoportal/config.yaml \
+        --get-config geomapfish_geoportal/config.yaml \
         ${CONFIG_VARS} && \
-    pykwalify --data-file demo_geoportal/config.yaml \
+    pykwalify --data-file geomapfish_geoportal/config.yaml \
         --schema-file CONST_config-schema.yaml && \
     rm CONST_* vars.yaml
 
@@ -52,7 +52,7 @@ RUN mv /tmp/config/bin/* /usr/bin/ && \
     if [ -e /tmp/config/front_dev ]; then mv /tmp/config/front_dev /etc/haproxy_dev; fi && \
     mkdir --parent /usr/local/tomcat/webapps/ROOT/ && \
     if [ -e /tmp/config/print ]; then mv /tmp/config/print/print-apps /usr/local/tomcat/webapps/ROOT/; fi && \
-    mv /tmp/config/geoportal/demo_geoportal/ /etc/geomapfish/ && \
+    mv /tmp/config/geoportal/geomapfish_geoportal/ /etc/geomapfish/ && \
     chmod g+w -R /etc /usr/local/tomcat/webapps && \
     adduser www-data root
 

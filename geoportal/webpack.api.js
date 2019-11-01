@@ -14,7 +14,7 @@ const babelPresets = [[require.resolve('@babel/preset-env'), {
 module.exports = (env, argv) => {
   const library = argv.library ? argv.library : 'demo';
   return {
-    entry: path.resolve(__dirname, 'demo_geoportal/static-ngeo/api/index.js'),
+    entry: path.resolve(__dirname, 'geomapfish_geoportal/static-ngeo/api/index.js'),
     devtool: 'source-map',
     mode: 'production',
     module: {

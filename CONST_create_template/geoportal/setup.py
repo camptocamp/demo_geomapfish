@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='demo_geoportal',
+    name='geomapfish_geoportal',
     version='1.0',
     description='demo, a c2cgeoportal project',
     author='demo',
@@ -19,7 +19,7 @@ setup(
     zip_safe=False,
     entry_points={
         'paste.app_factory': [
-            'main = demo_geoportal:main',
+            'main = geomapfish_geoportal:main',
         ],
         'console_scripts': [
         ],

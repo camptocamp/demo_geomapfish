@@ -3,7 +3,7 @@ LABEL maintainer Camptocamp "info@camptocamp.com"
 
 WORKDIR /app
 COPY webpack.*.js Makefile CONST_Makefile /app/
-COPY demo_geoportal/static-ngeo /app/demo_geoportal/static-ngeo
+COPY geomapfish_geoportal/static-ngeo /app/geomapfish_geoportal/static-ngeo
 RUN make apps
 
 COPY . /app
@@ -32,12 +32,12 @@ COPY --from=builder /usr/lib/node_modules/ngeo/dist/* \
 COPY --from=builder /etc/static-ngeo/* /etc/static-ngeo/
 COPY --from=builder /app/alembic.ini /app/alembic.yaml ./
 RUN chmod go+w /etc/static-ngeo/ \
-    /app/demo_geoportal/locale/ \
-    /app/demo_geoportal/locale/*/LC_MESSAGES/demo_geoportal-client.po
+    /app/geomapfish_geoportal/locale/ \
+    /app/geomapfish_geoportal/locale/*/LC_MESSAGES/geomapfish_geoportal-client.po
 
 RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=/app/ && \
     python3 -m compileall -q /usr/local/lib/python3.7 -x /usr/local/lib/python3.7/dist-packages/dateutils/ && \
-    python3 -m compileall -q /app/demo_geoportal -x /app/demo_geoportal/static.*
+    python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
 
 ARG GIT_HASH
 RUN c2cwsgiutils_genversion.py $GIT_HASH
