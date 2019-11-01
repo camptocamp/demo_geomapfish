@@ -160,6 +160,7 @@ templates:
 
   2 A4 landscape: !template
     reportTemplate: A4_Landscape.jrxml
+    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
@@ -176,6 +177,7 @@ templates:
 
   3 A3 portrait: !template
     reportTemplate: A3_Portrait.jrxml
+    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
@@ -192,6 +194,7 @@ templates:
 
   4 A3 landscape: !template
     reportTemplate: A3_Landscape.jrxml
+    outputFilename: *outputFilename
     attributes:
       title: *title
       comments: *comments
@@ -205,3 +208,30 @@ templates:
       scalebar: *scalebar
       datasource: *datasource
     processors: *processors
+
+  simple: !template
+    reportTemplate: simple.jrxml
+    attributes:
+      map: *map
+    processors:
+      - !reportBuilder  # compile all reports in current directory
+        directory: '.'
+      - *configureHttpRequests
+      - !createMap {}
+
+  A0: !template
+    reportTemplate: A0.jrxml
+    attributes:
+      map: !map
+        <<: *map
+        width: 2340
+        height: 3327
+        dpiSuggestions: [254, 127, 72]
+    processors:
+      - !reportBuilder  # compile all reports in current directory
+        directory: '.'
+      - *configureHttpRequests
+      - !setTiledWms
+        maxWidth: 1000
+        maxHeight: 1000
+      - !createMap {}
