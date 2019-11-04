@@ -47,4 +47,13 @@ def main(global_config, **settings):
     except ModuleNotFoundError as e:
         pass
 
-    return config.make_wsgi_app()
+    try:
+        from wsgi_lineprof.middleware import LineProfilerMiddleware
+        from wsgi_lineprof.filters import FilenameFilter, TotalTimeSorter
+        filters = [
+            FilenameFilter("c2cgeoportal.*", regex=True),
+            TotalTimeSorter(),
+        ]
+        return LineProfilerMiddleware(config.make_wsgi_app(), filters=filters)
+    except ModuleNotFoundError as e:
+        return config.make_wsgi_app()

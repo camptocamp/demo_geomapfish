@@ -8,6 +8,7 @@ GPG_KEYS += 1DAFEE6A # Oliver Christen
 GPG_KEYS += C8A0FF72 # Wolfgang Kaltz
 GPG_KEYS += A510717D # Michael Künzli
 GPG_KEYS += A68C2F5F # Arnaud Morvan
+GPG_KEYS += 855DF5F3 # Alexandre Saunier
 
 secrets.tar.bz2.gpg: .env.secrets secrets.md
 	tar -jcf secrets.tar.bz2 $^
