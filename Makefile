@@ -12,7 +12,7 @@ GPG_KEYS += 855DF5F3 # Alexandre Saunier
 
 secrets.tar.bz2.gpg: .env.secrets secrets.md
 	tar -jcf secrets.tar.bz2 $^
-	gpg --keyserver pool.sks-keyservers.net --keyserver-options timeout=20 --recv-keys $(GPG_KEYS) || true
+	gpg --keyserver-options timeout=20 --recv-keys $(GPG_KEYS) || true
 	rm -f $@
 	gpg --always-trust --output $@ --encrypt $(addprefix --recipient ,$(GPG_KEYS)) secrets.tar.bz2
 	rm secrets.tar.bz2
