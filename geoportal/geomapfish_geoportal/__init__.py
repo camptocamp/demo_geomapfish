@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import distutils.core
-
 from pyramid.config import Configurator
-
-from c2cgeoportal_geoportal import INTERFACE_TYPE_NGEO, add_interface, locale_negotiator
+from c2cgeoportal_geoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
 from c2cgeoportal_geoportal.lib.authentication import create_authentication
 from geomapfish_geoportal.resources import Root
 
@@ -47,13 +45,4 @@ def main(global_config, **settings):
     except ModuleNotFoundError as e:
         pass
 
-    try:
-        from wsgi_lineprof.middleware import LineProfilerMiddleware
-        from wsgi_lineprof.filters import FilenameFilter, TotalTimeSorter
-        filters = [
-            FilenameFilter("c2cgeoportal.*", regex=True),
-            TotalTimeSorter(),
-        ]
-        return LineProfilerMiddleware(config.make_wsgi_app(), filters=filters)
-    except ModuleNotFoundError as e:
-        return config.make_wsgi_app()
+    return config.make_wsgi_app()
