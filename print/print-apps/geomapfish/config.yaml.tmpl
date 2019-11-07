@@ -48,8 +48,6 @@ allowedReferers: &allowedHosts
   - !ipMatch
     ip: 172.17.0.0
     mask: 255.240.0.0
-  - !hostnameMatch
-    host: ${VISIBLE_WEB_HOST}
   - !localMatch {}
 
 templates:
