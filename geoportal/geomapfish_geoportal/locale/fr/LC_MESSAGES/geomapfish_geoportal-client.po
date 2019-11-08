@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-06-13 09:37+0000\n"
+"POT-Creation-Date: 2019-11-08 13:16+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -59,12 +59,6 @@ msgstr "Retour"
 msgid "Background"
 msgstr "Fond de carte"
 
-msgid "Batiment VD"
-msgstr "Bâtiment VD"
-
-msgid "Batiment VD noWFS"
-msgstr "Bâtiment VD sans WFS"
-
 msgid "Cadastre"
 msgstr "Cadastre"
 
@@ -109,6 +103,9 @@ msgstr "Mesure et dessin"
 msgid "Draw profile line"
 msgstr "Dessine la ligne de profile"
 
+msgid "ESRI no WFS no Geom"
+msgstr "ESRI sans WFS sams Geom"
+
 msgid "Edit"
 msgstr "Edition"
 
@@ -147,6 +144,9 @@ msgstr "Filtres"
 
 msgid "Filters mixed"
 msgstr "Filtres mixés"
+
+msgid "Floor slider"
+msgstr "Choix d'étage"
 
 msgid "Gestion des eaux"
 msgstr "Gestion des eaux"
@@ -205,6 +205,12 @@ msgstr "Multi-Polygon Query pas éditable mais queryable"
 msgid "Multi-Polygon Query2 pas éditable mais queryable"
 msgstr "Multi-Polygon Query2 pas éditable mais queryable"
 
+msgid "NPA localite"
+msgstr "N° postal"
+
+msgid "NPA localite noWFS"
+msgstr "N° postal sans WFS"
+
 msgid "OSM functions"
 msgstr "Fonctions OSM"
 
@@ -231,9 +237,6 @@ msgstr "Edition d'objet"
 
 msgid "ObjectEditing - Edit Application"
 msgstr "Edition d'objet - Application d'edition"
-
-msgid "ObjectEditing - Viewer Application"
-msgstr "Edition d'objet - Application de visionnage"
 
 msgid "Patrimoine"
 msgstr "Patrimoine"
@@ -262,6 +265,9 @@ msgstr "Interrogation"
 msgid "Routing"
 msgstr "Itinéraire"
 
+msgid "Selection"
+msgstr "Sélection"
+
 msgid "Share this map"
 msgstr "Partager cette carte"
 
@@ -285,6 +291,9 @@ msgstr "Sous Groupe"
 
 msgid "Swiss grid (LV03)"
 msgstr "Grille suisse (LV03)"
+
+msgid "Swiss grid (LV95)"
+msgstr "Grille suisse (LV95)"
 
 msgid "Test"
 msgstr "Test"
@@ -476,17 +485,11 @@ msgstr "Coche"
 msgid "cinema"
 msgstr "Cinéma"
 
-msgid "comments"
-msgstr "Commentaires"
-
 msgid "covered"
 msgstr "Couvert"
 
 msgid "crossing"
 msgstr "Intersection"
-
-msgid "datasource"
-msgstr "Source de donnée"
 
 msgid "date"
 msgstr "Date"
@@ -521,8 +524,17 @@ msgstr "Divertissement"
 msgid "fid"
 msgstr "ID"
 
+msgid "filter_double"
+msgstr "Filtre double"
+
+msgid "filter_group"
+msgstr "Filtre groupe"
+
 msgid "firestations"
 msgstr "Caserne de pompiers"
+
+msgid "floor_slider"
+msgstr "Choix d'étage"
 
 msgid "foot"
 msgstr "Foot"
@@ -532,6 +544,9 @@ msgstr "Fontaines"
 
 msgid "fuel"
 msgstr "Station d'essence"
+
+msgid "geom21781"
+msgstr "Géometrie 21781"
 
 msgid "good"
 msgstr "Correcte"
@@ -553,6 +568,9 @@ msgstr "Hôpitaux"
 
 msgid "hotel"
 msgstr "Hôtels"
+
+msgid "hotel_label"
+msgstr "Hôtel label"
 
 msgid "information"
 msgstr "Informations"
@@ -623,9 +641,6 @@ msgstr "Utilisation du sol (groupe)"
 msgid "layer"
 msgstr "Couches"
 
-msgid "legend"
-msgstr "Légende"
-
 msgid "leisure"
 msgstr "Loisirs"
 
@@ -659,9 +674,6 @@ msgstr "Fabrication humaine"
 msgid "many_attributes"
 msgstr "Beaucoup d'attributs"
 
-msgid "map"
-msgstr "Carte"
-
 msgid "motorcar"
 msgstr "Véhicules"
 
@@ -689,9 +701,6 @@ msgstr "Naturel"
 msgid "no_wfs"
 msgstr "Pas de WFS"
 
-msgid "northArrow"
-msgstr "Fléche du nord"
-
 msgid "open"
 msgstr "Ouvert"
 
@@ -708,7 +717,7 @@ msgid "osm dual no wfs"
 msgstr "OSM (double, sans WFS)"
 
 msgid "osm group no wfs"
-msgstr "OSM (group, sans WFS)"
+msgstr "OSM (groupe, sans WFS)"
 
 msgid "osm_dual"
 msgstr "OSM (double)"
@@ -731,6 +740,9 @@ msgstr "Caserne de pompiers OSM (groupe)"
 msgid "osm_firestations_restricted"
 msgstr "Caserne de pompiers OSM (restrain)"
 
+msgid "osm_firestations_restricted_ingrp"
+msgstr "Caserne de pompiers OSM (groupe, restrain)"
+
 msgid "osm_group"
 msgstr "OSM groupe"
 
@@ -747,10 +759,13 @@ msgid "osm_hospitals_dual_restricted"
 msgstr "Hôpitaux OSM (double, restrain)"
 
 msgid "osm_hospitals_ingrp"
-msgstr "Hôpitaux OSM (group)"
+msgstr "Hôpitaux OSM (groupe)"
 
 msgid "osm_hospitals_restricted"
 msgstr "Hôpitaux OSM (restrain)"
+
+msgid "osm_hospitals_restricted_ingrp"
+msgstr "Hôpitaux OSM (groupe, restrain)"
 
 msgid "osm_id"
 msgstr "ID OSM"
@@ -770,6 +785,12 @@ msgstr "Temps OSM 2"
 msgid "osm_time_d_year_mounth"
 msgstr "Temps OSM (valeur, année, mois)"
 
+msgid "osm_time_default"
+msgstr "Temps OSM (défaut)"
+
+msgid "osm_time_default_slider"
+msgstr "Temps OSM (défaut, curseur)"
+
 msgid "osm_time_mount_year"
 msgstr "Temps OSM (mois, année)"
 
@@ -779,11 +800,17 @@ msgstr "Temps OSM (popup, interval)"
 msgid "osm_time_r_dp_2"
 msgstr "Temps OSM (popup, interval 2)"
 
+msgid "osm_time_r_dp_default"
+msgstr "Temps OSM (popup, interval, défaut)"
+
 msgid "osm_time_r_mounth_year"
 msgstr "Temps OSM (interval, mois, année)"
 
 msgid "osm_time_r_s"
 msgstr "Temps OSM (curseur, interval)"
+
+msgid "osm_time_r_s_default"
+msgstr "Temps OSM (curseur, interval, défaut)"
 
 msgid "osm_time_r_year_mounth"
 msgstr "Temps OSM (interval, année, mois)"
@@ -791,11 +818,17 @@ msgstr "Temps OSM (interval, année, mois)"
 msgid "osm_time_v_dp"
 msgstr "Temps OSM (popup, valeur)"
 
+msgid "osm_time_v_dp_default"
+msgstr "Temps OSM (popup, valeur, défaut)"
+
 msgid "osm_time_v_mounth_year"
 msgstr "Temps OSM (valeur, mois, année)"
 
 msgid "osm_time_v_s"
 msgstr "Temps OSM (curseur, valeur)"
+
+msgid "osm_time_v_s_default"
+msgstr "Temps OSM (curseur, valeur, défaut)"
 
 msgid "osm_time_year_mounth"
 msgstr "Temps OSM (année, mois)"
@@ -896,6 +929,12 @@ msgstr "Points & Utilisation du sol (sans WFS)"
 msgid "points_ingrp"
 msgstr "Points dans groupe"
 
+msgid "pointscopier"
+msgstr "Points copier"
+
+msgid "pointslabels"
+msgstr "Points labels"
+
 msgid "police"
 msgstr "Police"
 
@@ -986,9 +1025,6 @@ msgstr "Restaurants"
 msgid "restricted"
 msgstr "Restrain"
 
-msgid "restricted_group"
-msgstr "Restrain dans groupe"
-
 msgid "roads10"
 msgstr "Routes"
 
@@ -1031,9 +1067,6 @@ msgstr "Routes"
 msgid "roads9"
 msgstr "Routes"
 
-msgid "scalebar"
-msgstr "Barre d'échelle"
-
 msgid "shop"
 msgstr "Magasin"
 
@@ -1045,9 +1078,6 @@ msgstr "Nom court 2"
 
 msgid "short_name3"
 msgstr "Nom court 3"
-
-msgid "simple"
-msgstr "Simple"
 
 msgid "sport"
 msgstr "Sport"
@@ -1076,9 +1106,6 @@ msgstr "Temps (groupe)"
 msgid "timestamp"
 msgstr "Datation"
 
-msgid "title"
-msgstr "Titre"
-
 msgid "tourism"
 msgstr "Tourisme"
 
@@ -1097,8 +1124,14 @@ msgstr "Deux couches"
 msgid "type"
 msgstr "Type"
 
-msgid "vd.batiment_rcb"
-msgstr "Bâtiment VD RCB"
+msgid "vd.npa_localite"
+msgstr "N° postal"
+
+msgid "vd.regime_hydrique"
+msgstr "Régime hydrique"
+
+msgid "vd.regime_hydrique noWFS"
+msgstr "Régime hydrique sans WFS"
 
 msgid "waterarea10"
 msgstr "Cours d'eau"
@@ -1203,14 +1236,35 @@ msgstr ""
 msgid "© les contributeurs d’OpenStreetMap"
 msgstr "© les contributeurs d’OpenStreetMap"
 
+#~ msgid "1 A4 portrait"
+#~ msgstr "A4 portrait"
+
+#~ msgid "2 A4 landscape"
+#~ msgstr "A4 paysage"
+
+#~ msgid "3 A3 portrait"
+#~ msgstr "A3 portrait"
+
+#~ msgid "4 A3 landscape"
+#~ msgstr "A3 paysage"
+
+#~ msgid "A0"
+#~ msgstr "A0"
+
+#~ msgid "Batiment VD"
+#~ msgstr "Bâtiment VD"
+
+#~ msgid "Batiment VD noWFS"
+#~ msgstr "Bâtiment VD sans WFS"
+
 #~ msgid "Cluster_BaseFID"
 #~ msgstr "Grappe base FID"
 
 #~ msgid "Cluster_FeatureCount"
 #~ msgstr "Grappe nombre elements"
 
-#~ msgid "Cluster_Group"
-#~ msgstr "Grappe groupe"
+#~ msgid "ObjectEditing - Viewer Application"
+#~ msgstr "Edition d'objet - Application de visionnage"
 
 #~ msgid "Search…"
 #~ msgstr "Recherche…"
@@ -1227,14 +1281,35 @@ msgstr "© les contributeurs d’OpenStreetMap"
 #~ msgid "ch.swisstopo.swissnames3d_feature_poly"
 #~ msgstr "Noms géographiques swissNAMES3D"
 
-#~ msgid "filters"
-#~ msgstr "Filtres"
+#~ msgid "comments"
+#~ msgstr "Commentaires"
+
+#~ msgid "datasource"
+#~ msgstr "Source de donnée"
 
 #~ msgid "last_update_timestamp"
 #~ msgstr "Data de mise à jours"
 
 #~ msgid "last_update_user"
 #~ msgstr "User"
+
+#~ msgid "legend"
+#~ msgstr "Légende"
+
+#~ msgid "map"
+#~ msgstr "Carte"
+
+#~ msgid "northArrow"
+#~ msgstr "Fléche du nord"
+
+#~ msgid "restricted_group"
+#~ msgstr "Restrain dans groupe"
+
+#~ msgid "scalebar"
+#~ msgstr "Barre d'échelle"
+
+#~ msgid "simple"
+#~ msgstr "Simple"
 
 #~ msgid "standard application"
 #~ msgstr "Application bureau"
@@ -1247,6 +1322,12 @@ msgstr "© les contributeurs d’OpenStreetMap"
 
 #~ msgid "test2"
 #~ msgstr "Deuxième test"
+
+#~ msgid "title"
+#~ msgstr "Titre"
+
+#~ msgid "vd.batiment_rcb"
+#~ msgstr "Bâtiment VD RCB"
 
 #~ msgid "zoo"
 #~ msgstr "Zoo"
