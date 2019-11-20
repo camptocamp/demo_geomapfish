@@ -46,6 +46,12 @@ def metrics(request):
                                     cur_dict[name.lower()] += int(matcher.group(2))
                             elif not line.startswith("VmFlags:"):
                                 LOG.warning("Don't know how to parse /proc/self/smaps line: %s", line)
+                    values = []
+                    for name, value in sizes.items():
+                        value_ = {'name': name, 'pid': pid}
+                        value_.update(**value)
+                        values.append(value_)
+
                     values += [
                         {'name': name, 'pid': pid, **value}
                         for name, value in sizes.items()
