@@ -25,6 +25,7 @@ def main(global_config, **settings):
     distutils.core._setup_stop_after = None
 
     config.add_translation_dirs('geomapfish_geoportal:locale/')
+    config.add_route('metrics', '/metrics')
 
     # Scan view decorator for adding routes
     config.scan()
