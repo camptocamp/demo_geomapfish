@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import distutils.core
+
 from pyramid.config import Configurator
-from c2cgeoportal_geoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
+
+from c2cgeoportal_geoportal import INTERFACE_TYPE_NGEO, add_interface, locale_negotiator
 from c2cgeoportal_geoportal.lib.authentication import create_authentication
 from demo_geoportal.resources import Root
 
@@ -25,6 +27,7 @@ def main(global_config, **settings):
     distutils.core._setup_stop_after = None
 
     config.add_translation_dirs('demo_geoportal:locale/')
+    config.add_route('metrics', '/metrics')
 
     # scan view decorator for adding routes
     config.scan()
