@@ -51,12 +51,6 @@ def metrics(request):
                         value_ = {'name': name, 'pid': pid}
                         value_.update(**value)
                         values.append(value_)
-
-                    values += [
-                        {'name': name, 'pid': pid, **value}
-                        for name, value in sizes.items()
-                        if value.get('pss', 0) > 0
-                    ]
             except:
                 pass
 
