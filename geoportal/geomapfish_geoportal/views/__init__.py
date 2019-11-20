@@ -7,7 +7,11 @@ import re
 import socket
 from typing import Any, Dict
 
+from c2cwsgiutils.debug import get_size
 from pyramid.view import view_config
+
+from c2cgeoportal_geoportal.lib.caching import MEMORY_CACHE_DICT
+from c2cgeoportal_geoportal.views import raster
 
 LOG = logging.getLogger(__name__)
 
@@ -23,6 +27,7 @@ NUMBER_RE = re.compile(r'^[0-9]+$')
 
 @view_config(route_name="metrics")
 def metrics(request):
+    ### Memory maps
     values = []
     for pid in listdir('/proc/'):
         if NUMBER_RE.match(pid):
@@ -77,6 +82,25 @@ def metrics(request):
             socket.gethostname(), value['pid'], value['name'], value['size']
         ))
 
-    request.response.text = '\n'.join(result)
+    ### Cache
+    result += [
+        '# HELP pod_process_memory_cache_kb Container smap used size',
+        '# TYPE pod_process_memory_cache_kb gauge',
+    ]
+    for key, value in MEMORY_CACHE_DICT.items():
+        result.append('pod_process_memory_cache_kb{{hostname="{}",name="{}",value="{}"}} {}'.format(
+            socket.gethostname(), key, repr(value), get_size(value)
+        ))
 
+    ### Raster
+    result += [
+        '# HELP pod_process_raster_data_kb Container smap used size',
+        '# TYPE pod_process_raster_data_kb gauge',
+    ]
+    for key, value in raster.Raster.data.items():
+        result.append('pod_process_raster_data_kb{{hostname="{}",name="{}"}} {}'.format(
+            socket.gethostname(), key, get_size(value)
+        ))
+
+    request.response.text = '\n'.join(result)
     return request.response
