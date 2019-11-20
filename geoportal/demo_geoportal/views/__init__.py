@@ -5,7 +5,6 @@ import logging
 from os import listdir
 import re
 import socket
-from typing import Any, Dict
 
 from c2cwsgiutils.debug import get_size
 from pyramid.view import view_config
@@ -32,8 +31,8 @@ def metrics(request):
         if NUMBER_RE.match(pid):
             try:
                 with open("/proc/{}/smaps".format(pid)) as input_:
-                    cur_dict: Dict[str, int] = defaultdict(int)
-                    sizes: Dict[str, Any] = {}
+                    cur_dict = defaultdict(int)
+                    sizes = {}
                     for line in input_:
                         line = line.rstrip("\n")
                         matcher = SMAPS_LOCATION_RE.match(line)
