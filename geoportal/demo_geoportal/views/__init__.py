@@ -6,7 +6,6 @@ from os import listdir
 import re
 import socket
 
-from c2cwsgiutils.debug import get_size
 from pyramid.view import view_config
 
 from c2cgeoportal_geoportal.views import raster
@@ -78,16 +77,6 @@ def metrics(request):
     for value in values:
         result.append('pod_process_smap_size_kb{{hostname="{}",pid="{}",name="{}"}} {}'.format(
             socket.gethostname(), value['pid'], value['name'], value['size']
-        ))
-
-    ### Raster
-    result += [
-        '# HELP pod_process_raster_data_kb Container smap used size',
-        '# TYPE pod_process_raster_data_kb gauge',
-    ]
-    for key, value in raster.Raster.data.items():
-        result.append('pod_process_raster_data_kb{{hostname="{}",name="{}"}} {}'.format(
-            socket.gethostname(), key, get_size(value) / 1024
         ))
 
     request.response.text = '\n'.join(result)
