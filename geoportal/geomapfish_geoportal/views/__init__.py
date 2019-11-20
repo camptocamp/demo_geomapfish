@@ -73,7 +73,7 @@ def metrics(request):
         '# TYPE pod_process_smap_size_kb gauge',
     ]
     for value in values:
-        result.append('pod_process_smap_rss_kb{{hostname="{}",pid="{}",name="{}"}} {}'.format(
+        result.append('pod_process_smap_size_kb{{hostname="{}",pid="{}",name="{}"}} {}'.format(
             socket.gethostname(), value['pid'], value['name'], value['size']
         ))
 
