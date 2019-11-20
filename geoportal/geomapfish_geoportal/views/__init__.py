@@ -89,7 +89,7 @@ def metrics(request):
     ]
     for key, value in MEMORY_CACHE_DICT.items():
         result.append('pod_process_memory_cache_kb{{hostname="{}",name="{}",value="{}"}} {}'.format(
-            socket.gethostname(), key, repr(value), get_size(value)
+            socket.gethostname(), key, repr(value), get_size(value) / 1024
         ))
 
     ### Raster
@@ -99,7 +99,7 @@ def metrics(request):
     ]
     for key, value in raster.Raster.data.items():
         result.append('pod_process_raster_data_kb{{hostname="{}",name="{}"}} {}'.format(
-            socket.gethostname(), key, get_size(value)
+            socket.gethostname(), key, get_size(value) / 1024
         ))
 
     request.response.text = '\n'.join(result)
