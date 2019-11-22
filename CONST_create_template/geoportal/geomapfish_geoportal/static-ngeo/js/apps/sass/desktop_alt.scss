@@ -14,6 +14,12 @@ header {
 
 .gmf-theme-selector li {
   flex-direction: column;
+  span.gmf-text {
+    width: auto;
+  }
+}
+.gmf-theme-selector .gmf-thumb {
+  height: 3rem;
 }
 
 .gmf-layertree-node .gmf-layertree-legend {
@@ -26,4 +32,8 @@ div .ngeo-displaywindow {
   left: $app-margin + $left-panel-width + $displaywindow-min-height / 2;
   right: initial;
   top: $topbar-height + $app-margin + 3 * $map-tools-size;
+}
+
+.offset-info-icon {
+  position: absolute;
 }
