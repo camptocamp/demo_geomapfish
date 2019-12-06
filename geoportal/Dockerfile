@@ -20,6 +20,8 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--progr
 
 FROM camptocamp/geomapfish:2.5 as runner
 
+#RUN apt update
+#RUN apt install --yes gcc python3.7-dev
 COPY requirements.txt /tmp/requirements.txt
 RUN \
   python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt && \

@@ -16,6 +16,7 @@ services:
       # - '${PWD}/../c2cgeoportal/commons/c2cgeoportal_gcommons:/opt/c2cgeoportal/commons/c2cgeoportal_commons'
       # - '${PWD}/../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal'
       # - '${PWD}/../c2cgeoportal/admin/c2cgeoportal_admin:/opt/c2cgeoportal/admin/c2cgeoportal_admin'
+    command: mprof run --include-children /usr/local/bin/gunicorn $GUNICORN_PARAMS c2cwsgiutils.wsgi_app:application
     environment:
       - GUNICORN_CMD_ARGS=--reload
       - C2CWSGIUTILS_CONFIG=/app/development.ini
