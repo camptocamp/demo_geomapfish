@@ -228,10 +228,6 @@ vars:
     user: '{SMTP_USER}'
     password: '{SMTP_PASSWORD}'
 
-  cache:
-    std:
-      disable_memory_cache: True
-
   intranet:
     networks:
       - 172.18.0.1/16
@@ -354,6 +350,7 @@ update_paths:
   - sqlalchemy
   - sqlalchemy_slave
   - tinyowsproxy
+#  - cache.std
 
 no_interpreted:
   - reset_password.email_body
