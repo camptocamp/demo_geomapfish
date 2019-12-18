@@ -3,9 +3,9 @@
 import distutils.core
 from pyramid.config import Configurator
 from c2cgeoportal_geoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
-from c2cgeoportal_geoportal.lib.authentication import create_authentication
 from geomapfish_geoportal.resources import Root
 
+from geomapfish_geoportal.duoweb import create_authentication
 
 def main(global_config, **settings):
     """
@@ -23,6 +23,8 @@ def main(global_config, **settings):
     distutils.core._setup_stop_after = 'config'
     config.include('c2cgeoportal_geoportal')
     distutils.core._setup_stop_after = None
+
+    config.include('geomapfish_geoportal.duoweb')
 
     config.add_translation_dirs('geomapfish_geoportal:locale/')
 

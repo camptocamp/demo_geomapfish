@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-controller="DesktopController as mainCtrl" ng-strict-di>
+<html lang="{{mainCtrl.lang}}" ng-controller="DesktopController as mainCtrl">
   <head>
     <title ng-bind-template="{{'Desktop Application'|translate}}">GeoMapFish</title>
     <meta charset="utf-8">
@@ -119,8 +119,10 @@
                 <a class="btn close" ng-click="mainCtrl.loginActive = false">&times;</a>
               </div>
               <gmf-authentication
+                gmf-authentication-on-successful-login="mainCtrl.handleDuoWebLogin"
                 gmf-authentication-info-message="mainCtrl.loginInfoMessage"
               ></gmf-authentication>
+              <iframe id="duo_iframe"></iframe>
               <div ng-if="mainCtrl.postLoading">
                 <i class="fa custom-spinner-connect fa-spin">
                   <%=require('gmf/icons/spinner.svg?viewbox&height=1em')%>

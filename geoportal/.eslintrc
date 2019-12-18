@@ -1,6 +1,7 @@
 extends:
   - openlayers
 globals:
+  'Duo': false
   'geomapfish': false
 env:
   jquery: true

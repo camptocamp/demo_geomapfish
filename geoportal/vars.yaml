@@ -27,6 +27,11 @@ vars:
     - fr
     - de
 
+  duo_web:
+    ikey: xxx
+    skey: yyy
+    akey: zzz
+
   # All the application interfaces used to create the apache rewrite rules
   interfaces:
     - name: desktop
