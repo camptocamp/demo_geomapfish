@@ -21,14 +21,14 @@ jobs:
   include:
     - stage: config-geoportal
       script:
-        - ./build --config .env.sample
+        - ./build --config env.sample
       deploy:
         - provider: script
           script: scripts/publish-docker config
           on:
             all_branches: true
     - script:
-        - ./build --geoportal .env.sample
+        - ./build --geoportal env.sample
         - docker tag camptocamp/geomapfish-geoportal:2.5 camptocamp/demo-geoportal
       deploy:
         - provider: script
