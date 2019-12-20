@@ -3,11 +3,13 @@ vars:
   schema: 'main_2_5'
   schema_static: '{PGSCHEMA_STATIC}'
   sqlalchemy.url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{PGDATABASE}
+  sqlalchemy_slave.url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST_SLAVE}:{PGPORT}/{PGDATABASE}
   srid: 2056
 environment:
   - PGUSER
   - PGPASSWORD
   - PGHOST
+  - PGHOST_SLAVE
   - name: PGPORT
     default: 5432
   - PGDATABASE

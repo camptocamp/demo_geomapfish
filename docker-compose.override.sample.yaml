@@ -34,10 +34,13 @@ services:
   #   volumes_from:
   #     - config:ro
 
-  # qgisserver:
-  #   environment:
-  #     env:
-  #       - QGIS_SERVER_LOG_LEVEL=0
+  qgisserver:
+    # volumes:
+    #   - '${PWD}/../c2cgeoportal/docker/qgisserver/geomapfish_qgisserver/:/var/www/plugins/geomapfish_qgisserver/'
+    #   - '${PWD}/../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons/'
+    #   - '${PWD}/../c2c.template/c2c/template:/usr/local/lib/python3.6/dist-packages/c2c/template/'
+    environment:
+      - QGIS_SERVER_LOG_LEVEL=0
 
   # For Javascript project development.
   # The debug application will be availavble at ``https://<host>/<entry_point>/dev/<interface>.html``.
