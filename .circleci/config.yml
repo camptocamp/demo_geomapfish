@@ -7,13 +7,13 @@ jobs:
     docker:
       - image: circleci/python:3
     environment: &environment
-      - PROJECT=demo
-    # - OPENSHIFT_PROJECT=gs-gmf-demo
-    # - HELM_RELEASE_NAMES=2.5
-    # - DOCKER_USERNAME=dockerhubc2c
+      - PROJECT=geomapfish
+      - OPENSHIFT_PROJECT=gs-gmf-demo
+      - HELM_RELEASE_NAMES=prod-2-5
+      - DOCKER_USERNAME=dockerhubc2c
+      - OPENSHIFT_URL=https://openshift-ch-3.camptocamp.com/
+      - OPENSHIFT_USERNAME=sbrunner
     #   Requires a DOCKER_PASSWORD in the Circle CI secrets
-    # - OPENSHIFT_URL=https://openshift-ch-3.camptocamp.com/
-    # - OPENSHIFT_USERNAME=sbrunner
     #   Requires an OPENSHIFT_PASSWORD in the Circle CI secrets
     steps:
       - checkout

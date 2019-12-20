@@ -9,7 +9,7 @@ addons:
 
 env:
   global:
-    - PROJECT=demo
+    - PROJECT=geomapfish
     - OPENSHIFT_PROJECT=gs-gmf-demo
     - HELM_RELEASE_NAMES=prod-2-5
     - DOCKER_USERNAME=dockerhubc2c
