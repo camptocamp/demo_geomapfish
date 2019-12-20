@@ -30,8 +30,8 @@ jobs:
     - script:
         - ./build --geoportal env.sample
         - docker tag camptocamp/geomapfish-geoportal:2.5 camptocamp/demo-geoportal
-      deploy:
-        - provider: script
-          script: scripts/publish-docker geoportal
-          on:
-            all_branches: true
+#      deploy:
+#        - provider: script
+#          script: scripts/publish-docker geoportal
+#          on:
+#            all_branches: true

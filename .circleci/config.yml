@@ -30,8 +30,8 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: ./build --geoportal
-      - deploy:
-          command: scripts/publish-docker geoportal
+#      - deploy:
+#          command: scripts/publish-docker geoportal
 
 workflows:
   version: 2
