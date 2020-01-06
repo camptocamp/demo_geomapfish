@@ -24,7 +24,6 @@ services:
       - /var/sig:/var/sig:ro
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver:gmf2.4-qgis3.4
     extends:
       file: docker-compose-lib.yaml
       service: qgisserver
