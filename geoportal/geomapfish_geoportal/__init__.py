@@ -14,17 +14,18 @@ def main(global_config, **settings):
     del global_config  # Unused
 
     config = Configurator(
-        root_factory=Root, settings=settings,
+        root_factory=Root,
+        settings=settings,
         locale_negotiator=locale_negotiator,
-        authentication_policy=create_authentication(settings)
+        authentication_policy=create_authentication(settings),
     )
 
     # Workaround to not have the error: distutils.errors.DistutilsArgError: no commands supplied
-    distutils.core._setup_stop_after = 'config'
-    config.include('c2cgeoportal_geoportal')
+    distutils.core._setup_stop_after = "config"
+    config.include("c2cgeoportal_geoportal")
     distutils.core._setup_stop_after = None
 
-    config.add_translation_dirs('geomapfish_geoportal:locale/')
+    config.add_translation_dirs("geomapfish_geoportal:locale/")
 
     # Scan view decorator for adding routes
     config.scan()
@@ -33,14 +34,15 @@ def main(global_config, **settings):
     for interface in config.get_settings().get("interfaces", []):
         add_interface(
             config,
-            interface['name'],
-            interface.get('type', INTERFACE_TYPE_NGEO),
-            default=interface.get('default', False)
+            interface["name"],
+            interface.get("type", INTERFACE_TYPE_NGEO),
+            default=interface.get("default", False),
         )
 
     try:
         import ptvsd
-        ptvsd.enable_attach(address=('172.17.0.1', 5678))
+
+        ptvsd.enable_attach(address=("172.17.0.1", 5678))
         # ptvsd.wait_for_attach()
     except ModuleNotFoundError as e:
         pass
