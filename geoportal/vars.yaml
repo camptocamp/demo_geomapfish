@@ -115,6 +115,9 @@ vars:
   urllogin:
     aes_key: foobarfoobar1234
 
+  getitfixed:
+    enabled: true
+
   admin_interface:
     # Default values for the admin interface's maps.
     map:
