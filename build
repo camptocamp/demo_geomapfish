@@ -56,11 +56,8 @@ base = env['DOCKER_BASE'] if 'DOCKER_BASE' in env else "camptocamp/geomapfish-co
 tag = ":" + env['DOCKER_TAG'] if 'DOCKER_TAG' in env else ""
 
 if auto or args.config:
-    print(
-        " ".join(["docker", "build", "--tag=" + base + tag, "--build-arg=PGSCHEMA=" + args.pgschema, "."])
-    )
     subprocess.check_call(
-        ["docker", "build", "--tag=" + base + tag, "--build-arg=PGSCHEMA=" + args.pgschema, "."]
+        ["docker", "build", "--tag=" + base + "-config" + tag, "--build-arg=PGSCHEMA=" + args.pgschema, "."]
     )
 if auto or args.geoportal:
     git_hash = subprocess.check_output(["git", "rev-parse", "HEAD"]).strip().decode()
@@ -68,7 +65,7 @@ if auto or args.geoportal:
         [
             "docker",
             "build",
-            "--tag=" + base + tag,
+            "--tag=" + base + "-geoportal" + tag,
             "--build-arg=PGSCHEMA=" + args.pgschema,
             "--build-arg=GIT_HASH=" + git_hash,
             "geoportal",
@@ -79,7 +76,7 @@ if auto or args.geoportal:
             "docker",
             "build",
             "--target=builder",
-            "--tag=camptocamp/geomapfish-geoportal-dev" + tag,
+            "--tag=" + base + "-geoportal-dev" + tag,
             "--build-arg=PGSCHEMA=" + args.pgschema,
             "--build-arg=GIT_HASH=" + git_hash,
             "geoportal",
