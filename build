@@ -5,6 +5,7 @@ import os
 import re
 import stat
 import subprocess
+import sys
 import urllib.request
 
 parser = argparse.ArgumentParser(description="Build the project,")
@@ -30,14 +31,14 @@ if args.upgrade:
         if result.code != 200:
             print("ERROR:")
             print(result.read())
-            exit(1)
+            sys.exit(1)
         f.write(result.read().decode())
     os.chmod("upgrade", os.stat("upgrade").st_mode | stat.S_IXUSR)
     try:
         subprocess.check_call(["./upgrade", full_version])
     except subprocess.CalledProcessError:
-        exit(1)
-    exit(0)
+        sys.exit(1)
+    sys.exit(0)
 
 auto = not (args.config or args.geoportal or args.env)
 env = {}
@@ -52,12 +53,12 @@ for env_file in args.env_files:
                     # Ignore lines that don't have a '='
                     pass
 
-base = env['DOCKER_BASE'] if 'DOCKER_BASE' in env else "camptocamp/geomapfish-config"
+base = env['DOCKER_BASE'] if 'DOCKER_BASE' in env else "camptocamp/geomapfish"
 tag = ":" + env['DOCKER_TAG'] if 'DOCKER_TAG' in env else ""
 
 if auto or args.config:
     subprocess.check_call(
-        ["docker", "build", "--tag=" + base + "-config" + tag, "--build-arg=PGSCHEMA=" + args.pgschema, "."]
+        ["docker", "build", "--tag={}-config{}".format(base, tag), "--build-arg=PGSCHEMA=" + args.pgschema, "."]
     )
 if auto or args.geoportal:
     git_hash = subprocess.check_output(["git", "rev-parse", "HEAD"]).strip().decode()
@@ -65,7 +66,7 @@ if auto or args.geoportal:
         [
             "docker",
             "build",
-            "--tag=" + base + "-geoportal" + tag,
+            "--tag={}-geoportal{}".format(base, tag),
             "--build-arg=PGSCHEMA=" + args.pgschema,
             "--build-arg=GIT_HASH=" + git_hash,
             "geoportal",
@@ -76,7 +77,7 @@ if auto or args.geoportal:
             "docker",
             "build",
             "--target=builder",
-            "--tag=" + base + "-geoportal-dev" + tag,
+            "--tag={}-geoportal-dev{}".format(base, tag),
             "--build-arg=PGSCHEMA=" + args.pgschema,
             "--build-arg=GIT_HASH=" + git_hash,
             "geoportal",

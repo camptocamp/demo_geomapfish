@@ -117,9 +117,16 @@ vars:
 
   admin_interface:
     # Default values for the admin interface's maps.
-    map_x: 740000
-    map_y: 5860000
-    map_zoom: 10
+    map:
+      baseLayers:
+        - type_: "OSM"
+      view:
+        projection: 'EPSG:3857'
+        center: [740000, 5860000]
+        zoom: 10
+      fitSource: false
+      fitMaxZoom: 14
+      focusOnly: false
 
     # The list of functionalities that can be configured
     # through the admin interface.
