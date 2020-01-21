@@ -21,14 +21,14 @@ jobs:
   include:
     - stage: config-geoportal
       script:
-        - ./build --config
+        - ./build --config --pgschema=main_2_5
       deploy:
         - provider: script
           script: scripts/publish-docker config
           on:
             all_branches: true
     - script:
-        - ./build --geoportal
+        - ./build --geoportal --pgschema=main_2_5
 #      deploy:
 #        - provider: script
 #          script: scripts/publish-docker geoportal

@@ -18,7 +18,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: ./build --config
+      - run: ./build --config --pgschema=main_2_5
       - deploy:
           command: scripts/publish-docker config
 
@@ -29,7 +29,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: ./build --geoportal
+      - run: ./build --geoportal --pgschema=main_2_5
 #      - deploy:
 #          command: scripts/publish-docker geoportal
 
