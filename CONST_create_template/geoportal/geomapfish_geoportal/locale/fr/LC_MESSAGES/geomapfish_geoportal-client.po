@@ -11,21 +11,21 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: contribs/gmf/apps/desktop/Controller.js:104
-#: contribs/gmf/apps/desktop_alt/Controller.js:152
-#: contribs/gmf/apps/oeedit/Controller.js:201
-msgid "Add a layer"
-msgstr "Ajouter une couche"
-
 #: contribs/gmf/apps/desktop/Controller.js:103
 #: contribs/gmf/apps/desktop_alt/Controller.js:151
 #: contribs/gmf/apps/oeedit/Controller.js:200
-msgid "Add a sub theme"
-msgstr "Ajouter un sous thème"
+msgid "Add a layer"
+msgstr "Ajouter une couche"
 
 #: contribs/gmf/apps/desktop/Controller.js:102
 #: contribs/gmf/apps/desktop_alt/Controller.js:150
 #: contribs/gmf/apps/oeedit/Controller.js:199
+msgid "Add a sub theme"
+msgstr "Ajouter un sous thème"
+
+#: contribs/gmf/apps/desktop/Controller.js:101
+#: contribs/gmf/apps/desktop_alt/Controller.js:149
+#: contribs/gmf/apps/oeedit/Controller.js:198
 msgid "Add a theme"
 msgstr "Ajouter un theme"
 
@@ -37,36 +37,36 @@ msgstr "Application bureau alternative"
 msgid "Alternative Mobile Application"
 msgstr "Application mobile alternative"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:182
+#: contribs/gmf/apps/mobile/index.html.ejs:186
 msgid "Area"
 msgstr "Surface"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:108
-#: contribs/gmf/apps/mobile/index.html.ejs:144
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:105
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:142
+#: contribs/gmf/apps/mobile/index.html.ejs:112
+#: contribs/gmf/apps/mobile/index.html.ejs:148
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:109
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:146
 msgid "Back"
 msgstr "Retour"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:115
-#: contribs/gmf/apps/mobile/index.html.ejs:129
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:112
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:127
+#: contribs/gmf/apps/mobile/index.html.ejs:119
+#: contribs/gmf/apps/mobile/index.html.ejs:133
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:116
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:131
 msgid "Background"
 msgstr "Fond de plan"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:99
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:96
+#: contribs/gmf/apps/mobile/index.html.ejs:103
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:100
 msgid "Close"
 msgstr "Fermer"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:164
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:162
+#: contribs/gmf/apps/mobile/index.html.ejs:168
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:166
 msgid "Coordinate"
 msgstr "Coordonnée"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:109
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:106
+#: contribs/gmf/apps/mobile/index.html.ejs:113
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:110
 msgid "Data"
 msgstr "Donnée"
 
@@ -137,12 +137,12 @@ msgstr "Importer une couche"
 msgid "In order to use the editing tool, you must log in first."
 msgstr "Pour utiliser l'interface d’édition vous devez être connecté."
 
-#: contribs/gmf/apps/desktop_alt/Controller.js:149
+#: contribs/gmf/apps/desktop_alt/Controller.js:148
 msgid "Learning [merged]"
 msgstr "Formation [merged]"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:173
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:171
+#: contribs/gmf/apps/mobile/index.html.ejs:177
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:175
 msgid "Length"
 msgstr "Longueur"
 
@@ -156,17 +156,17 @@ msgstr "Chargement..."
 #: contribs/gmf/apps/desktop/index.html.ejs:65
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:123
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:62
-#: contribs/gmf/apps/mobile/index.html.ejs:152
-#: contribs/gmf/apps/mobile/index.html.ejs:187
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:150
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:176
+#: contribs/gmf/apps/mobile/index.html.ejs:156
+#: contribs/gmf/apps/mobile/index.html.ejs:191
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:154
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:180
 msgid "Login"
 msgstr "Connection"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:151
-#: contribs/gmf/apps/mobile/index.html.ejs:156
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:149
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:154
+#: contribs/gmf/apps/mobile/index.html.ejs:155
+#: contribs/gmf/apps/mobile/index.html.ejs:160
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:153
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:158
 msgid "Measure tools"
 msgstr "Outil de mesure"
 
@@ -174,11 +174,11 @@ msgstr "Outil de mesure"
 msgid "Mobile Application"
 msgstr "Application mobile"
 
-#: contribs/gmf/apps/desktop_alt/Controller.js:148
+#: contribs/gmf/apps/desktop_alt/Controller.js:147
 msgid "OSM_time (merged)"
 msgstr "Temps OSM (merger)"
 
-#: contribs/gmf/apps/desktop_alt/Controller.js:147
+#: contribs/gmf/apps/desktop_alt/Controller.js:146
 msgid "OSM_time_merged"
 msgstr "Temps OSM (merger)"
 
@@ -251,16 +251,16 @@ msgstr "Theme:"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:45
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:41
-#: contribs/gmf/apps/mobile/index.html.ejs:118
-#: contribs/gmf/apps/mobile/index.html.ejs:136
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:115
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:134
+#: contribs/gmf/apps/mobile/index.html.ejs:122
+#: contribs/gmf/apps/mobile/index.html.ejs:140
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:119
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:138
 #: contribs/gmf/apps/oeedit/index.html.ejs:36
 msgid "Themes"
 msgstr "Themes"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:145
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:143
+#: contribs/gmf/apps/mobile/index.html.ejs:149
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:147
 msgid "Tools"
 msgstr "Outils"
 
@@ -278,13 +278,13 @@ msgstr "Coordonnées WGS D.M.S."
 
 #: contribs/gmf/apps/desktop/index.html.ejs:327
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:365
-#: contribs/gmf/apps/iframe_api/index.html.ejs:78
-#: contribs/gmf/apps/mobile/index.html.ejs:196
+#: contribs/gmf/apps/iframe_api/index.html.ejs:80
+#: contribs/gmf/apps/mobile/index.html.ejs:200
 msgid "You must change your password"
 msgstr "Vous devez changer votre mot de passe"
 
-#: contribs/gmf/apps/mobile/index.html.ejs:100
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:97
+#: contribs/gmf/apps/mobile/index.html.ejs:104
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:101
 msgid ""
 "You're using the mobile application. Check out the <a "
 "href=\"{{url}}\">standard application</a>."
