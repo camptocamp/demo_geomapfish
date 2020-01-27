@@ -115,26 +115,44 @@ vars:
   urllogin:
     aes_key: foobarfoobar1234
 
-  getitfixed:
-    enabled: true
-
   admin_interface:
     # Default values for the admin interface's maps.
-    map:
+    map: &map_config
+      srid: 2056
+      projections:
+       - code: "EPSG:2056"
+         definition: "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 \
+                      +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs"
       baseLayers:
-        - type_: "OSM"
+        - type_: "WMTS"
+          url: "{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}tiles/1.0.0/\
+                {{{{{{{{{{{{{{{{Layer}}}}}}}}}}}}}}}}/default/{{{{{{{{{{{{{{{{TileMatrixSet}}}}}}}}}}}}}}}}\
+                /{{{{{{{{{{{{{{{{TileMatrix}}}}}}}}}}}}}}}}/{{{{{{{{{{{{{{{{TileRow}}}}}}}}}}}}}}}}/\
+                {{{{{{{{{{{{{{{{TileCol}}}}}}}}}}}}}}}}.png"
+          requestEncoding: "REST"
+          layer: "map"
+          matrixSet: "epsg2056_005"
+          dimensions: {}
+          style: "default"
+          projection: "EPSG:2056"
+          tileGrid:
+            origin: [2420000, 1350000]
+            resolutions: [4000, 2000, 1000, 500, 250, 100, 50, 20, 10, 5, 2.5, 1, 0.5, 0.25, 0.1, 0.05]
+            matrixIds: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+          attributions: []
       view:
-        projection: 'EPSG:3857'
-        center: [740000, 5860000]
-        zoom: 10
-      fitSource: false
-      fitMaxZoom: 14
-      focusOnly: false
+        projection: "EPSG:2056"
+        initialExtent: [2495822, 1091449, 2780525, 1270656]
+      fitMaxZoom: 12
 
     # The list of functionalities that can be configured
     # through the admin interface.
     available_functionalities:
       - name: location
+
+  getitfixed:
+    enabled: true
+    map: *map_config
 
   functionalities:
     # Functionalities that are made available to Mako templates.
