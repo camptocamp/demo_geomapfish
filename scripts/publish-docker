@@ -19,7 +19,7 @@ subprocess.check_call(
         "docker",
         "login",
         "--username=" + subprocess.check_output(["gopass", "gs/ci/dockerhub/username"]).decode(),
-        "--password=" + subprocess.check_output(["gopass", "gs/ci/dockerhub/username"]).decode(),
+        "--password=" + subprocess.check_output(["gopass", "gs/ci/dockerhub/password"]).decode(),
     ]
 )
 
