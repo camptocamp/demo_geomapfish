@@ -54,7 +54,6 @@ subprocess.check_call(
         + subprocess.check_output(
             ["gopass", "gs/ci/openshift/{}/token".format(os.environ["OPENSHIFT_PROJECT"])]
         ).decode(),
-        os.environ["OPENSHIFT_TOKEN"],
     ]
 )
 for image in images:
