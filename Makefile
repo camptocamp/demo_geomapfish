@@ -14,7 +14,7 @@ MUTUALIZED_PRINT_APP ?= demo_geomapfish_24
 export DOCKER_PGHOST ?= pg-cluster-master.exo.camptocamp.com
 export DOCKER_PGHOST_SLAVE ?= pg-cluster-master.exo.camptocamp.com
 export DOCKER_PGDATABASE ?= gmf_demo
-export DOCKER_PGSCHEMA ?= main_2_4
+export PGSCHEMA ?= main_2_4
 export DOCKER_PGSCHEMA_STATIC ?= static_2_4
 
 include CONST_Makefile
