@@ -49,7 +49,9 @@ subprocess.check_call(
     [
         oc,
         "login",
-        os.environ["OPENSHIFT_URL"],
+        subprocess.check_output(
+            ["gopass", "gs/ci/openshift/{}/url".format(os.environ["OPENSHIFT_PROJECT"])]
+        ).decode(),
         "--token="
         + subprocess.check_output(
             ["gopass", "gs/ci/openshift/{}/token".format(os.environ["OPENSHIFT_PROJECT"])]

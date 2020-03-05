@@ -9,7 +9,6 @@ env:
   PROJECT: demo
   OPENSHIFT_PROJECT: gs-gmf-demo
   HELM_RELEASE_NAMES: prod-2-5
-  OPENSHIFT_URL: https://api.openshift-ch-1.camptocamp.com/
   PATH: /bin:/usr/bin:/usr/local/bin:/home/runner/.local/bin
   SUMMON_PROVIDER: /usr/local/bin/gopass
   PGSCHEMA: main_2_5
