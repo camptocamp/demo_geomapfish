@@ -1,3 +1,11 @@
+ENV_FILES = env.default env.project env.secrets
+BUILD_OPTIONS = --config
+
+.PHONY: build
+build:
+	./build $(BUILD_OPTIONS) $(ENV_FILES)
+
+
 GPG_KEYS += D1D6A94C # Stéphane Brunner
 GPG_KEYS += B42AF223 # Patrick Valsecchi
 GPG_KEYS += C27D570B # Roman Zoller
