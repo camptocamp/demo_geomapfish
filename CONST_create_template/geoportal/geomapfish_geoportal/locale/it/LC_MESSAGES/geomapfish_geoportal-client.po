@@ -8,21 +8,21 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: contribs/gmf/apps/desktop/Controller.js:103
-#: contribs/gmf/apps/desktop_alt/Controller.js:151
-#: contribs/gmf/apps/oeedit/Controller.js:200
+#: contribs/gmf/apps/desktop/Controller.js:126
+#: contribs/gmf/apps/desktop_alt/Controller.js:173
+#: contribs/gmf/apps/oeedit/Controller.js:222
 msgid "Add a layer"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/Controller.js:102
-#: contribs/gmf/apps/desktop_alt/Controller.js:150
-#: contribs/gmf/apps/oeedit/Controller.js:199
+#: contribs/gmf/apps/desktop/Controller.js:125
+#: contribs/gmf/apps/desktop_alt/Controller.js:172
+#: contribs/gmf/apps/oeedit/Controller.js:221
 msgid "Add a sub theme"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/Controller.js:101
-#: contribs/gmf/apps/desktop_alt/Controller.js:149
-#: contribs/gmf/apps/oeedit/Controller.js:198
+#: contribs/gmf/apps/desktop/Controller.js:124
+#: contribs/gmf/apps/desktop_alt/Controller.js:171
+#: contribs/gmf/apps/oeedit/Controller.js:220
 msgid "Add a theme"
 msgstr ""
 
@@ -34,36 +34,36 @@ msgstr ""
 msgid "Alternative Mobile Application"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:186
+#: contribs/gmf/apps/mobile/index.html.ejs:185
 msgid "Area"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:112
-#: contribs/gmf/apps/mobile/index.html.ejs:148
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:109
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:146
+#: contribs/gmf/apps/mobile/index.html.ejs:111
+#: contribs/gmf/apps/mobile/index.html.ejs:147
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:108
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:145
 msgid "Back"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:119
-#: contribs/gmf/apps/mobile/index.html.ejs:133
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:116
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:131
+#: contribs/gmf/apps/mobile/index.html.ejs:118
+#: contribs/gmf/apps/mobile/index.html.ejs:132
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:115
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:130
 msgid "Background"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:103
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:100
+#: contribs/gmf/apps/mobile/index.html.ejs:102
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:99
 msgid "Close"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:168
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:166
+#: contribs/gmf/apps/mobile/index.html.ejs:167
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:165
 msgid "Coordinate"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:113
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:110
+#: contribs/gmf/apps/mobile/index.html.ejs:112
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:109
 msgid "Data"
 msgstr ""
 
@@ -72,7 +72,7 @@ msgid "Desktop Application"
 msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:200
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:220
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:218
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
@@ -80,19 +80,19 @@ msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:140
 #: contribs/gmf/apps/desktop/index.html.ejs:73
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:159
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:157
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:70
 msgid "Draw and Measure"
 msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:194
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:213
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:211
 msgid "Draw profile line"
 msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:167
 #: contribs/gmf/apps/desktop/index.html.ejs:83
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:186
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:184
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:81
 msgid "Editing"
 msgstr ""
@@ -111,7 +111,7 @@ msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:153
 #: contribs/gmf/apps/desktop/index.html.ejs:77
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:172
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:170
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:74
 msgid "Filter"
 msgstr ""
@@ -123,21 +123,21 @@ msgstr ""
 #: contribs/gmf/apps/desktop/index.html.ejs:220
 #: contribs/gmf/apps/desktop/index.html.ejs:99
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:101
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:253
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:251
 msgid "Import Layer"
 msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:172
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:191
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:189
 msgid "In order to use the editing tool, you must log in first."
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/Controller.js:148
+#: contribs/gmf/apps/desktop_alt/Controller.js:170
 msgid "Learning [merged]"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:177
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:175
+#: contribs/gmf/apps/mobile/index.html.ejs:176
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:174
 msgid "Length"
 msgstr ""
 
@@ -151,17 +151,17 @@ msgstr ""
 #: contribs/gmf/apps/desktop/index.html.ejs:65
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:123
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:62
-#: contribs/gmf/apps/mobile/index.html.ejs:156
-#: contribs/gmf/apps/mobile/index.html.ejs:191
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:154
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:180
+#: contribs/gmf/apps/mobile/index.html.ejs:155
+#: contribs/gmf/apps/mobile/index.html.ejs:190
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:153
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:179
 msgid "Login"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:155
-#: contribs/gmf/apps/mobile/index.html.ejs:160
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:153
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:158
+#: contribs/gmf/apps/mobile/index.html.ejs:154
+#: contribs/gmf/apps/mobile/index.html.ejs:159
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:152
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:157
 msgid "Measure tools"
 msgstr ""
 
@@ -169,11 +169,11 @@ msgstr ""
 msgid "Mobile Application"
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/Controller.js:147
+#: contribs/gmf/apps/desktop_alt/Controller.js:169
 msgid "OSM_time (merged)"
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/Controller.js:146
+#: contribs/gmf/apps/desktop_alt/Controller.js:168
 msgid "OSM_time_merged"
 msgstr ""
 
@@ -188,14 +188,14 @@ msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:128
 #: contribs/gmf/apps/desktop/index.html.ejs:69
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:136
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:134
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:66
 msgid "Print"
 msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:186
 #: contribs/gmf/apps/desktop/index.html.ejs:88
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:205
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:203
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:86
 msgid "Profile"
 msgstr ""
@@ -206,13 +206,13 @@ msgid "Query"
 msgstr ""
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:105
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:264
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:262
 msgid "Routing"
 msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:211
 #: contribs/gmf/apps/desktop/index.html.ejs:92
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:244
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:242
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:94
 msgid "Selection"
 msgstr ""
@@ -222,7 +222,7 @@ msgstr ""
 msgid "Share this map"
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:231
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:229
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:90
 msgid "Street View"
 msgstr ""
@@ -246,16 +246,16 @@ msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:45
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:41
-#: contribs/gmf/apps/mobile/index.html.ejs:122
-#: contribs/gmf/apps/mobile/index.html.ejs:140
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:119
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:138
+#: contribs/gmf/apps/mobile/index.html.ejs:121
+#: contribs/gmf/apps/mobile/index.html.ejs:139
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:118
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:137
 #: contribs/gmf/apps/oeedit/index.html.ejs:36
 msgid "Themes"
 msgstr ""
 
-#: contribs/gmf/apps/mobile/index.html.ejs:149
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:147
+#: contribs/gmf/apps/mobile/index.html.ejs:148
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:146
 msgid "Tools"
 msgstr ""
 
@@ -271,20 +271,13 @@ msgstr ""
 msgid "Wgs Coord. DMS"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:327
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:365
-#: contribs/gmf/apps/iframe_api/index.html.ejs:80
-#: contribs/gmf/apps/mobile/index.html.ejs:200
-msgid "You must change your password"
-msgstr ""
-
-#: contribs/gmf/apps/mobile/index.html.ejs:104
-#: contribs/gmf/apps/mobile_alt/index.html.ejs:101
+#: contribs/gmf/apps/mobile/index.html.ejs:103
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:100
 msgid ""
 "You're using the mobile application. Check out the <a "
 "href=\"{{url}}\">standard application</a>."
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:149
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:147
 msgid "debug"
 msgstr ""

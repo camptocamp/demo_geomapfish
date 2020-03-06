@@ -6,9 +6,12 @@ on:
   push:
 
 env:
-  PROJECT: demo
-  OPENSHIFT_PROJECT: gs-gmf-demo
-  HELM_RELEASE_NAMES: prod-2-5
+  PROJECT: geomapfish
+  # Requires CI_GPG_PRIVATE_KEY and GITHUB_GOPASS_CI_TOKEN secrets.
+  # OPENSHIFT_PROJECT: gs-gmf-geomapfish
+  # HELM_RELEASE_NAMES: # List of branch that should be deployed on helm
+  # OPENSHIFT_URL: https://api.openshift-ch-1.camptocamp.com/
+  # PGSCHEMA: # main schema
   PATH: /bin:/usr/bin:/usr/local/bin:/home/runner/.local/bin
   SUMMON_PROVIDER: /usr/local/bin/gopass
 
