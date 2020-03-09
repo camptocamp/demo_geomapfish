@@ -12,6 +12,10 @@ if ref[1] != "heads":
 
 version = "/".join(ref[2:])
 
+if version not in os.environ.get("HELM_RELEASE_NAMES", "").split(","):
+    print("Not a release branch")
+    sys.exit(0)
+
 print("Deploying images to Docker Hub for tag {}".format(version))
 sys.stdout.flush()
 subprocess.check_call(
