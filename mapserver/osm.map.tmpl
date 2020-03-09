@@ -2275,7 +2275,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
-    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo USING unique osm_id using srid=2056"
+    DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo USING unique osm_id USING srid=2056"
     PROJECTION
         "init=epsg:2056"
     END

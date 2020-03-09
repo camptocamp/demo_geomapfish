@@ -12,7 +12,7 @@ LAYER
   CONNECTIONTYPE postgis
   PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
   CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
-  DATA "geom FROM (SELECT geo.* FROM data.europe_borders as geo) as foo USING unique gid using srid=4326"
+  DATA "geom FROM (SELECT geo.* FROM data.europe_borders as geo) as foo USING unique gid USING srid=4326"
   PROJECTION
     "init=epsg:4326"
   END

@@ -8,7 +8,7 @@ LAYER
   PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
   CONNECTION "${mapserver_connection}"
   # Example data for secured layer by restriction area
-  DATA "geometry FROM (SELECT geo.* FROM geodata.table AS geo WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'layer_name'), ST_SetSRID(geo.geometry, 2056))) as foo USING unique gid using srid=2056"
+  DATA "geometry FROM (SELECT geo.* FROM geodata.table AS geo WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'layer_name'), ST_SetSRID(geo.geometry, 2056))) as foo USING unique gid USING srid=2056"
   # Example data for secured layer by role (without any area)
   #DATA "geometry FROM (SELECT geo.geom as geom FROM geodata.table AS geo WHERE ARRAY[%role_ids%] && ARRAY(${MAPSERVER_DATA_NOAREA_SUBSELECT} 'layer_name')) as foo USING unique gid USING srid=2056"
   # Example data for public layer
