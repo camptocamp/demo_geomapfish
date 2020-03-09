@@ -17,7 +17,7 @@ Build
 .. code::
 
   make secrets
-  ./build --pgschema main_2_5 env.sample env.secrets
+  ./build env.default env.project env.secrets
 
 Run locally
 -----------
