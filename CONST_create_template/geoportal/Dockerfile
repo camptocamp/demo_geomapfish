@@ -35,16 +35,16 @@ RUN chmod go+w /etc/static-ngeo/ \
     /app/geomapfish_geoportal/locale/ \
     /app/geomapfish_geoportal/locale/*/LC_MESSAGES/geomapfish_geoportal-client.po
 
-RUN pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=/app/ && \
+RUN pip install --disable-pip-version-check --no-cache-dir --editable=/app/ && \
     python3 -m compileall -q /usr/local/lib/python3.7 \
         -x '/usr/local/lib/python3.7/dist-packages/(pydevd|ptvsd)/' && \
     python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
 
 ARG GIT_HASH
-RUN c2cwsgiutils_genversion.py $GIT_HASH
+RUN c2cwsgiutils_genversion.py ${GIT_HASH}
 
 ARG PGSCHEMA
-ENV PGSCHEMA=$PGSCHEMA
+ENV PGSCHEMA=${PGSCHEMA}
 
 ENTRYPOINT [ "/usr/bin/eval-templates" ]
 CMD ["c2cwsgiutils_run"]
