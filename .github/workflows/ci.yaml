@@ -21,8 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - run: touch env.secrets
       - name: Build config
-        run: ./build --config env.default env.project
+        run: ./build --config
 
       - uses: camptocamp/initialise-gopass-summon-action@v1
         with:
@@ -40,8 +41,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - run: touch env.secrets
       - name: Build geoportal
-        run: ./build --geoportal env.default env.project
+        run: ./build --geoportal
 
 #      - uses: camptocamp/initialise-gopass-summon-action@v1
 #        with:
