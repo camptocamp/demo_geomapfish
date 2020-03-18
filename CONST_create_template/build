@@ -64,7 +64,10 @@ def main():
             f.write(result.read().decode())
         os.chmod("upgrade", os.stat("upgrade").st_mode | stat.S_IXUSR)
         try:
-            subprocess.check_call(["./upgrade", full_version])
+            if platform.system() == "Windows":
+                subprocess.check_call(["python", "upgrade", full_version])
+            else:
+                subprocess.check_call(["./upgrade", full_version])
         except subprocess.CalledProcessError:
             sys.exit(1)
         sys.exit(0)
@@ -75,7 +78,7 @@ def main():
         print(project_env["help"])
         sys.exit(1)
     env_files = [e.format(*args.env) for e in project_env["files"]]
-    print("Use env files: {}".format(env_files))
+    print("Use env files: {}".format(", ".join(env_files)))
     env = load_env(env_files)
 
     base = env["DOCKER_BASE"] if "DOCKER_BASE" in env else "camptocamp/geomapfish"
