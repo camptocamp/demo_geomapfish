@@ -12,7 +12,7 @@ env:
     - DOCKER_USERNAME=dockerhubc2c
     - secure: "vpSNV7FOz6TaULaqqEfviKizsUnROqBKGEurvM2D/02mQQgINl5BRDuZMyCiPB+m96hbbO4IDxuO3r9Fvnsn3faDrze/z\
         jKC+/npztumqNYr8wSDwwwiArQQrYbY+nSQoswv5xYPKVRhTKsbtvYHqIG3c+1cgSQ5ODsvbZTWQXM="
-    - OPENSHIFT_URL=https://api.openshift-ch-3.camptocamp.com/
+    - OPENSHIFT_URL=https://api.openshift-ch-1.camptocamp.com/
 
 jobs:
   include:

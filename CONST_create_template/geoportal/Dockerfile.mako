@@ -8,6 +8,7 @@ ENV NODE_PATH=/usr/lib/node_modules \
     PGHOST=db \
     PGHOST_SLAVE=db \
     PGPORT=5432 \
+    PGPORT_SLAVE=5432 \
     PGUSER=www-data \
     PGPASSWORD=www-data \
     PGDATABASE=geomapfish \
@@ -27,6 +28,7 @@ RUN mv webpack.apps.js webpack.apps.js.tmpl && \
     adduser www-data root
 
 ARG GIT_HASH
+
 ARG PGSCHEMA
 ENV PGSCHEMA=$PGSCHEMA
 

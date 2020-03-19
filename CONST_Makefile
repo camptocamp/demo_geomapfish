@@ -1,4 +1,4 @@
-GEOMAPFISH_VERSION ?= 2.4.1.46
+GEOMAPFISH_VERSION ?= 2.4.1.95
 export GEOMAPFISH_VERSION
 export PACKAGE = demo
 
@@ -24,6 +24,7 @@ DOCKER_PGPASSWORD ?= www-data
 DOCKER_PGHOST ?= 172.17.0.1
 DOCKER_PGHOST_SLAVE ?= 172.17.0.1
 DOCKER_PGPORT ?= 5432
+DOCKER_PGPORT_SLAVE ?= 5432
 DOCKER_PGDATABASE ?= geomapfish
 DOCKER_PGSCHEMA ?= main
 PGSCHEMA ?= main
@@ -39,6 +40,7 @@ export DOCKER_PGPASSWORD
 export DOCKER_PGHOST
 export DOCKER_PGHOST_SLAVE
 export DOCKER_PGPORT
+export DOCKER_PGPORT_SLAVE
 export DOCKER_PGDATABASE
 export DOCKER_PGSCHEMA
 export DOCKER_PGSCHEMA_STATIC
@@ -264,7 +266,7 @@ VALIDATE_PY_FOLDERS = admin/$(PACKAGE)_admin \
 VALIDATE_PY_TEST_FOLDERS = geoportal/$(PACKAGE)_geoportal/tests
 
 # Documentation
-SPHINX_FILES = $(shell find doc -name "*.rst" -print)
+SPHINX_FILES = $(shell find doc -name "*.rst" -print 2> /dev/null)
 
 # Print
 ifeq ($(PRINT), TRUE)
@@ -273,11 +275,11 @@ PRINT_CONFIG_FILE ?= print/print-apps/$(PACKAGE)/config.yaml.tmpl
 I18N_SOURCE_FILES += $(PRINT_CONFIG_FILE)
 endif
 
-PY_FILES = $(shell find $(PACKAGE) -type f -name '*.py' -print)
+PY_FILES = $(shell find $(PACKAGE) -type f -name '*.py' -print 2> /dev/null)
 
 # Templates
-ALL_MAKO_FILES = $(shell find $(FIND_OPTS) -name "*.mako" -print)
-ALL_JINJA_FILES = $(shell find $(FIND_OPTS) -name "*.jinja" -print)
+ALL_MAKO_FILES = $(shell find $(FIND_OPTS) -name "*.mako" -print 2> /dev/null)
+ALL_JINJA_FILES = $(shell find $(FIND_OPTS) -name "*.jinja" -print 2> /dev/null)
 EXTRA_EXCLUDE = $(foreach ELEM, print mapfile jsbuild tilegeneration,-path ./$(ELEM) -prune -o)
 VARS_FILES += CONST_vars.yaml $(VARS_FILE)
 CONFIG_VARS += sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \
@@ -357,13 +359,13 @@ docker-build:
 build: $(BUILD_RULES)
 
 .PHONY: checks
-checks: flake8 $(CLIENT_CHECK_RULE) git-attributes yamllint spell printlint
+checks: flake8 $(CLIENT_CHECK_RULE) git-attributes yamllint printlint
 
 .PHONY: git-attributes
 git-attributes:
 	git --no-pager diff --check `git log --oneline | tail -1 | cut --fields=1 --delimiter=' '`
 
-PRINT_REPORTS_FILES ?= $(shell find print/print-apps -name "*.jrxml" -print)
+PRINT_REPORTS_FILES ?= $(shell find print/print-apps -name "*.jrxml" -print 2> /dev/null)
 .PHONY: printlint
 printlint: $(PRINT_REPORTS_FILES)
 	xmllint --noout --schema /opt/jasperreport.xsd --encode utf-8 $(PRINT_REPORTS_FILES)
@@ -707,9 +709,9 @@ docker-build-geoportal: $(shell docker-required --path geoportal) \
 		geoportal/alembic.yaml
 	docker build $(DOCKER_BUILD_ARGS) \
 		--tag=$(DOCKER_BASE)-geoportal:$(DOCKER_TAG) \
-		--build-arg=GIT_HASH=$(GIT_HASH) \
 		--build-arg=PGSCHEMA=$(PGSCHEMA) \
-        geoportal
+		--build-arg=GIT_HASH=$(GIT_HASH) \
+		geoportal
 
 .PHONY: push-docker
 push-docker:

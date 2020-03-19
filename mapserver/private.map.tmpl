@@ -7,7 +7,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST} port=${PGPORT}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata21781.osm_hospitals WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'hospitals'), geom)) AS foo USING UNIQUE osm_id USING srid=21781"
     VALIDATION
         "default_role_ids" "-1"
@@ -58,7 +58,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE} host=${PGHOST} port=${PGPORT}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata21781.osm_firestations WHERE ARRAY[%role_ids%] && ARRAY(${MAPSERVER_DATA_NOAREA_SUBSELECT} 'firestations')) AS foo USING UNIQUE osm_id USING srid=21781"
     VALIDATION
         "default_role_ids" "-1"

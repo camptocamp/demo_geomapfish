@@ -11,10 +11,13 @@ CGXP_XAPI ?= TRUE
 export DOCKER_WEB_PROTOCOL ?= http
 MUTUALIZED_PRINT_APP ?= demo_geomapfish_24
 
-export DOCKER_PGHOST ?= pg-cluster-master.exo.camptocamp.com
-export DOCKER_PGHOST_SLAVE ?= pg-cluster-master.exo.camptocamp.com
+export DOCKER_PGHOST ?= pg-gs.camptocamp.com
+export DOCKER_PGHOST_SLAVE ?= pg-gs.camptocamp.com
+export DOCKER_PGPORT ?= 30100
+export DOCKER_PGPORT_SLAVE ?= 30101
 export DOCKER_PGDATABASE ?= gmf_demo
 export PGSCHEMA ?= main_2_4
+export DOCKER_PGSCHEMA ?= main_2_4
 export DOCKER_PGSCHEMA_STATIC ?= static_2_4
 
 include CONST_Makefile

@@ -17,7 +17,7 @@ LAYER
  EXTENT 420000 40500 839000 306400
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places0"
  MINSCALEDENOM 332808204
  MAXSCALEDENOM 99999999999
@@ -45,7 +45,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places1"
  MINSCALEDENOM 166404102
  MAXSCALEDENOM 332808204
@@ -73,7 +73,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places2"
  MINSCALEDENOM 83202051
  MAXSCALEDENOM 166404102
@@ -118,7 +118,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places3"
  MINSCALEDENOM 41601025
  MAXSCALEDENOM 83202051
@@ -176,7 +176,7 @@ LAYER
     NAME "landuse4"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -253,7 +253,7 @@ LAYER
     NAME "waterarea4"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 41601025
     MINSCALEDENOM 20800512
@@ -282,7 +282,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places4"
  MINSCALEDENOM 20800512
  MAXSCALEDENOM 41601025
@@ -340,7 +340,7 @@ LAYER
     NAME "landuse5"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -417,7 +417,7 @@ LAYER
     NAME "waterarea5"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 20800512
     MINSCALEDENOM 10400256
@@ -449,7 +449,7 @@ LAYER
     MAXSCALEDENOM 20800512
     NAME "roads5"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -476,7 +476,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places5"
  MINSCALEDENOM 10400256
  MAXSCALEDENOM 20800512
@@ -534,7 +534,7 @@ LAYER
     NAME "landuse6"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -611,7 +611,7 @@ LAYER
     NAME "waterarea6"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 10400256
     MINSCALEDENOM 5200128
@@ -654,7 +654,7 @@ LAYER
     NAME "waterways6"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 10400256
@@ -709,7 +709,7 @@ LAYER
     MAXSCALEDENOM 10400256
     NAME "roads6"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -736,7 +736,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places6"
  MINSCALEDENOM 5200128
  MAXSCALEDENOM 10400256
@@ -794,7 +794,7 @@ LAYER
     NAME "landuse7"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -871,7 +871,7 @@ LAYER
     NAME "waterarea7"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 5200128
     MINSCALEDENOM 2600064
@@ -914,7 +914,7 @@ LAYER
     NAME "waterways7"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 5200128
@@ -969,7 +969,7 @@ LAYER
     MAXSCALEDENOM 5200128
     NAME "roads7"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -996,7 +996,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places7"
  MINSCALEDENOM 2600064
  MAXSCALEDENOM 5200128
@@ -1054,7 +1054,7 @@ LAYER
     NAME "landuse8"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon)            as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -1131,7 +1131,7 @@ LAYER
     NAME "waterarea8"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 2600064
     MINSCALEDENOM 1300032
@@ -1174,7 +1174,7 @@ LAYER
     NAME "waterways8"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 2600064
@@ -1225,7 +1225,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 1300032
     MAXSCALEDENOM 2600064
     TYPE LINE
@@ -1262,7 +1262,7 @@ LAYER
     MAXSCALEDENOM 2600064
     NAME "roads8"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('trunk', 'motorway', 'primary') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -1296,7 +1296,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places8"
  MINSCALEDENOM 1300032
  MAXSCALEDENOM 2600064
@@ -1361,7 +1361,7 @@ LAYER
     NAME "landuse9"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'industrial', 'commercial', 'residential')) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -1438,7 +1438,7 @@ LAYER
     NAME "waterarea9"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 1300032
     MINSCALEDENOM 650016
@@ -1481,7 +1481,7 @@ LAYER
     NAME "waterways9"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 1300032
@@ -1532,7 +1532,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 650016
     MAXSCALEDENOM 1300032
     TYPE LINE
@@ -1569,7 +1569,7 @@ LAYER
     MAXSCALEDENOM 1300032
     NAME "roads9"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line WHERE highway in ('secondary', 'trunk', 'motorway', 'primary') ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -1624,7 +1624,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places9"
  MINSCALEDENOM 650016
  MAXSCALEDENOM 1300032
@@ -1689,7 +1689,7 @@ LAYER
     NAME "landuse10"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -1766,7 +1766,7 @@ LAYER
     NAME "waterarea10"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 650016
     MINSCALEDENOM 325008
@@ -1809,7 +1809,7 @@ LAYER
     NAME "waterways10"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 650016
@@ -1874,7 +1874,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 325008
     MAXSCALEDENOM 650016
     TYPE LINE
@@ -1911,7 +1911,7 @@ LAYER
     MAXSCALEDENOM 650016
     NAME "roads10"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -2001,7 +2001,7 @@ LAYER
     TYPE LINE
     NAME "aeroways10"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -2033,7 +2033,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places10"
  MINSCALEDENOM 325008
  MAXSCALEDENOM 650016
@@ -2092,7 +2092,7 @@ LAYER
     NAME "landuse11"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, landuse AS type FROM planet_osm_polygon WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -2198,7 +2198,7 @@ LAYER
     NAME "waterarea11"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 325008
     MINSCALEDENOM 162504
@@ -2241,7 +2241,7 @@ LAYER
     NAME "waterways11"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line WHERE waterway='river') as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 325008
@@ -2306,7 +2306,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 162504
     MAXSCALEDENOM 325008
     TYPE LINE
@@ -2343,7 +2343,7 @@ LAYER
     MAXSCALEDENOM 325008
     NAME "roads11"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -2440,7 +2440,7 @@ LAYER
     TYPE LINE
     NAME "aeroways11"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -2472,7 +2472,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places11"
  MINSCALEDENOM 162504
  MAXSCALEDENOM 325008
@@ -2554,7 +2554,7 @@ LAYER
     NAME "landuse12"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -2752,7 +2752,7 @@ LAYER
     NAME "waterarea12"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 162504
     MINSCALEDENOM 81252
@@ -2795,7 +2795,7 @@ LAYER
     NAME "waterways12"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 162504
@@ -2874,7 +2874,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 81252
     MAXSCALEDENOM 162504
     TYPE LINE
@@ -2911,7 +2911,7 @@ LAYER
     MAXSCALEDENOM 162504
     NAME "roads12"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -3023,7 +3023,7 @@ LAYER
     TYPE LINE
     NAME "aeroways12"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -3055,7 +3055,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places12"
  MINSCALEDENOM 81252
  MAXSCALEDENOM 162504
@@ -3131,7 +3131,7 @@ LAYER
     NAME "landuse13"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -3329,7 +3329,7 @@ LAYER
     NAME "waterarea13"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 81252
     MINSCALEDENOM 40626
@@ -3372,7 +3372,7 @@ LAYER
     NAME "waterways13"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 81252
@@ -3451,7 +3451,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 40626
     MAXSCALEDENOM 81252
     TYPE LINE
@@ -3488,7 +3488,7 @@ LAYER
     MAXSCALEDENOM 81252
     NAME "roads13"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway AS type FROM planet_osm_line ORDER BY z_order asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -3628,7 +3628,7 @@ LAYER
     TYPE LINE
     NAME "aeroways13"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -3660,7 +3660,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places13"
  MINSCALEDENOM 40626
  MAXSCALEDENOM 81252
@@ -3753,7 +3753,7 @@ LAYER
     NAME "landuse14"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -3951,7 +3951,7 @@ LAYER
     NAME "waterarea14"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 40626
     MINSCALEDENOM 20313
@@ -3994,7 +3994,7 @@ LAYER
     NAME "waterways14"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 40626
@@ -4073,7 +4073,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 20313
     MAXSCALEDENOM 40626
     TYPE LINE
@@ -4110,7 +4110,7 @@ LAYER
     MAXSCALEDENOM 40626
     NAME "roads14"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -4439,7 +4439,7 @@ LAYER
     TYPE LINE
     NAME "aeroways14"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -4471,7 +4471,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places14"
  MINSCALEDENOM 20313
  MAXSCALEDENOM 40626
@@ -4558,7 +4558,7 @@ LAYER
     NAME "landuse15"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -4756,7 +4756,7 @@ LAYER
     NAME "waterarea15"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 20313
     MINSCALEDENOM 10156
@@ -4799,7 +4799,7 @@ LAYER
     NAME "waterways15"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 20313
@@ -4878,7 +4878,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 10156
     MAXSCALEDENOM 20313
     TYPE LINE
@@ -4915,7 +4915,7 @@ LAYER
     MAXSCALEDENOM 20313
     NAME "roads15"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -5308,7 +5308,7 @@ LAYER
     TYPE LINE
     NAME "aeroways15"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -5344,7 +5344,7 @@ LAYER
     NAME "buildings15"
     TYPE POLYGON
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
@@ -5380,7 +5380,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places15"
  MINSCALEDENOM 10156
  MAXSCALEDENOM 20313
@@ -5467,7 +5467,7 @@ LAYER
     NAME "landuse16"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -5665,7 +5665,7 @@ LAYER
     NAME "waterarea16"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 10156
     MINSCALEDENOM 5078
@@ -5708,7 +5708,7 @@ LAYER
     NAME "waterways16"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 10156
@@ -5787,7 +5787,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 5078
     MAXSCALEDENOM 10156
     TYPE LINE
@@ -5824,7 +5824,7 @@ LAYER
     MAXSCALEDENOM 10156
     NAME "roads16"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -6217,7 +6217,7 @@ LAYER
     TYPE LINE
     NAME "aeroways16"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -6253,7 +6253,7 @@ LAYER
     NAME "buildings16"
     TYPE POLYGON
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
@@ -6289,7 +6289,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places16"
  MINSCALEDENOM 5078
  MAXSCALEDENOM 10156
@@ -6359,7 +6359,7 @@ LAYER
     NAME "landuse17"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -6557,7 +6557,7 @@ LAYER
     NAME "waterarea17"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 5078
     MINSCALEDENOM 2539
@@ -6600,7 +6600,7 @@ LAYER
     NAME "waterways17"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 5078
@@ -6679,7 +6679,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 2539
     MAXSCALEDENOM 5078
     TYPE LINE
@@ -6716,7 +6716,7 @@ LAYER
     MAXSCALEDENOM 5078
     NAME "roads17"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -7109,7 +7109,7 @@ LAYER
     TYPE LINE
     NAME "aeroways17"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -7145,7 +7145,7 @@ LAYER
     NAME "buildings17"
     TYPE POLYGON
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
@@ -7181,7 +7181,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places17"
  MINSCALEDENOM 2539
  MAXSCALEDENOM 5078
@@ -7251,7 +7251,7 @@ LAYER
     NAME "landuse18"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, landuse AS type, name FROM planet_osm_polygon       WHERE landuse in ('forest', 'pedestrian', 'cemetery', 'industrial', 'commercial',      'brownfield', 'residential', 'school', 'college', 'university',      'military', 'park', 'golf_course', 'hospital', 'parking', 'stadium', 'sports_center',      'pitch') ORDER BY way_area desc) as foo using unique osm_id using srid=21781"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -7449,7 +7449,7 @@ LAYER
     NAME "waterarea18"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name, water AS type FROM planet_osm_polygon WHERE water IS NOT NULL) as foo using unique osm_id using srid=21781"
     MAXSCALEDENOM 2539
     MINSCALEDENOM 0
@@ -7492,7 +7492,7 @@ LAYER
     NAME "waterways18"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, waterway AS type, name FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     MAXSCALEDENOM 2539
@@ -7571,7 +7571,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     MINSCALEDENOM 0
     MAXSCALEDENOM 2539
     TYPE LINE
@@ -7608,7 +7608,7 @@ LAYER
     MAXSCALEDENOM 2539
     NAME "roads18"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT osm_id, way AS geometry, name, ref, highway||osm_to_boolean(bridge)||osm_to_boolean(tunnel) as type FROM planet_osm_line ORDER BY z_order asc, st_length(way) asc) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     CLASSITEM "type"
@@ -8001,7 +8001,7 @@ LAYER
     TYPE LINE
     NAME "aeroways18"
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, aeroway AS type FROM planet_osm_line) as foo using unique osm_id using srid=21781"
     CLASSITEM "type"
     CLASS
@@ -8037,7 +8037,7 @@ LAYER
     NAME "buildings18"
     TYPE POLYGON
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way21781 AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo using unique osm_id using srid=21781"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
@@ -8073,7 +8073,7 @@ LAYER
  GROUP "default"
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} dbname=${OSM_PGDATABASE}"
+ CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
  NAME "places18"
  MINSCALEDENOM 0
  MAXSCALEDENOM 2539
