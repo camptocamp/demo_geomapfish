@@ -7,8 +7,6 @@ build:
 
 
 GPG_KEYS += D1D6A94C # Stéphane Brunner
-GPG_KEYS += B42AF223 # Patrick Valsecchi
-GPG_KEYS += C27D570B # Roman Zoller
 GPG_KEYS += CF8E9976 # Guillaume Beraudo
 GPG_KEYS += 3EA11D26 # Elisabeth Leu
 GPG_KEYS += 0875810F # Frederic Junod
