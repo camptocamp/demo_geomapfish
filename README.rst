@@ -17,7 +17,7 @@ Build
 .. code::
 
   make secrets
-  ./build env.default env.project env.secrets
+  ./build
 
 Run locally
 -----------
