@@ -71,6 +71,15 @@ vars:
           wfsTypes: []
           defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
           defaultFeaturePrefix: feature
+        gmfPermalinkOptions:
+          crosshairStyle:
+          crosshairEnabledByDefault: False
+          projectionCodes:
+            - EPSG:3857
+            - EPSG:2056
+            - EPSG:21781
+          useLocalStorage: False
+          pointRecenterZoom:
       dynamic_constants:
         cacheVersion: cache_version
         langUrls: lang_urls
@@ -89,15 +98,6 @@ vars:
           name: raster
         gmfShortenerCreateUrl:
           name: shortener_create
-        gmfPermalinkOptions:
-          crosshairStyle:
-          crosshairEnabledByDefault: False
-          projectionCodes:
-            - EPSG:3857
-            - EPSG:2056
-            - EPSG:21781
-          useLocalStorage: False
-          pointRecenterZoom:
         ngeoPermalinkOgcserverUrl:
           name: mapserverproxy
           params:
