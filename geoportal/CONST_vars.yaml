@@ -89,6 +89,15 @@ vars:
           name: raster
         gmfShortenerCreateUrl:
           name: shortener_create
+        gmfPermalinkOptions:
+          crosshairStyle:
+          crosshairEnabledByDefault: False
+          projectionCodes:
+            - EPSG:3857
+            - EPSG:2056
+            - EPSG:21781
+          useLocalStorage: False
+          pointRecenterZoom:
         ngeoPermalinkOgcserverUrl:
           name: mapserverproxy
           params:
