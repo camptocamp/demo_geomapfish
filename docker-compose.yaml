@@ -28,7 +28,7 @@ services:
       file: docker-compose-lib.yaml
       service: qgisserver
     volumes_from:
-      - config:ro
+      - config:rw
     environment:
       # Single QGIS project files
       - QGIS_PROJECT_FILE=/etc/qgisserver/project.qgz
