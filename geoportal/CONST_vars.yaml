@@ -18,13 +18,13 @@ vars:
 
   # Database information
   sqlalchemy:
-    url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{PGDATABASE}
+    url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{PGDATABASE}?sslmode={PGSSLMODE}
     pool_recycle: 30
     pool_size: 5
     max_overflow: 25
     use_batch_mode: true
   sqlalchemy_slave:
-    url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST_SLAVE}:{PGPORT_SLAVE}/{PGDATABASE}
+    url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST_SLAVE}:{PGPORT_SLAVE}/{PGDATABASE}?sslmode={PGSSLMODE}
     pool_recycle: 30
     pool_size: 5
     max_overflow: 25
@@ -71,15 +71,6 @@ vars:
           wfsTypes: []
           defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
           defaultFeaturePrefix: feature
-        gmfPermalinkOptions:
-          crosshairStyle:
-          crosshairEnabledByDefault: False
-          projectionCodes:
-            - EPSG:3857
-            - EPSG:2056
-            - EPSG:21781
-          useLocalStorage: False
-          pointRecenterZoom:
       dynamic_constants:
         cacheVersion: cache_version
         langUrls: lang_urls
@@ -135,6 +126,15 @@ vars:
                 ITEMFONTFAMILY: DejaVu Sans
                 LAYERFONTSIZE: '10'
                 ITEMFONTSIZE: '8'
+        gmfPermalinkOptions:
+          crosshairStyle:
+          crosshairEnabledByDefault: False
+          projectionCodes:
+            - EPSG:3857
+            - EPSG:2056
+            - EPSG:21781
+          useLocalStorage: False
+          pointRecenterZoom:
       routes:
         gmfProfileJsonUrl:
           name: profile.json
@@ -183,6 +183,15 @@ vars:
                 profile: routed-hiking
         ngeoNominatimSearchDefaultParams:
           countrycodes: CH
+        gmfPermalinkOptions:
+          crosshairStyle:
+          crosshairEnabledByDefault: True
+          projectionCodes:
+            - EPSG:3857
+            - EPSG:2056
+            - EPSG:21781
+          useLocalStorage: False
+          pointRecenterZoom:
       routes:
         gmfProfileJsonUrl:
           name: profile.json
@@ -723,6 +732,8 @@ runtime_environment:
   - PGPASSWORD
   - name: PGDATABASE
     default: geomapfish
+  - name: PGSSLMODE
+    default: prefer
   - name: PGSCHEMA
     default: main
   - name: PGSCHEMA_STATIC
