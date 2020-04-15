@@ -1,0 +1,36 @@
+#!/bin/bash -ex
+
+cp scripts/upgrade ../demo_geomapfish/
+cd ../demo_geomapfish
+./upgrade $1
+if [ -e .UPGRADE7 ]
+then
+    ./upgrade $1 8
+fi
+if [ -e .UPGRADE8 ]
+then
+    # Workaround
+    git status > /dev/null
+    git apply --3way ngeo.diff
+    ./upgrade $1 9
+fi
+if [ -e .UPGRADE9 ]
+then
+    # Workaround
+    git status > /dev/null
+    git apply --3way create.diff
+    cp CONST_create_template/project.yaml .
+    ./upgrade $1 10
+fi
+if [ ! -e .UPGRADE_SUCCESS ]
+then
+    printdiff
+    echo "Fail to upgrade"
+    exit 1
+fi
+
+git add --all
+git comit -m "Upgrade to $1"
+git push
+
+git push $2
