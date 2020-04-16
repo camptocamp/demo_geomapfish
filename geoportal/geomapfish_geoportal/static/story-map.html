@@ -86,33 +86,33 @@
     var positions = {
       // the initial position of the map
       start: {
-        center: [544500, 210100],
+        center: [2544500, 1210100],
         zoom: 0,
       },
       Nyon: {
-        center: [507794, 137450],
+        center: [2507794, 1137450],
         zoom: 8
       },
       Morges: {
-        center: [527497, 151530],
+        center: [2527497, 1151530],
         zoom: 4
       },
       Lausanne: {
-        center: [537882, 152065],
+        center: [2537882, 1152065],
         zoom: 3
       },
       Vevey: {
-        center: [554182, 145558],
+        center: [2554182, 1145558],
         zoom: 8
       }
     };
 
     // create a ngeo API instance.
-    var ngeoApi = new demo.Map({
+    var ngeoApi = new geomapfish.Map({
       div: 'map'
     });
 
-    var map = ngeoApi.map_;
+    var map = ngeoApi.getMap();
 
     var storyContainer = document.getElementById('story');
 
