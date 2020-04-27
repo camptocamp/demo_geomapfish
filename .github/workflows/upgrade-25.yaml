@@ -26,10 +26,9 @@ jobs:
           ref: 'prod-2-5'
 
       - name: Update the demo
-        run: scripts/update 2.5 "https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
+        run: scripts/update ${{ github.event.client_payload.version }} "https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
       - name: Push interrupted Upgrade
         run: |
-          cd ../demo_geomapfish
           git add --all
           git commit -m "Interrupted upgrade to ${MAJOR_VERSION}"
           remote_repo="https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"

@@ -1,6 +1,7 @@
 #!/bin/bash -ex
 
-build --upgrade $1
+./build --upgrade $1
+
 if [ -e .UPGRADE7 ]
 then
     ./upgrade $1 8
