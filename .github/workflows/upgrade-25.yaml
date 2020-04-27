@@ -31,7 +31,7 @@ jobs:
         run: |
           cd ../demo_geomapfish
           git add --all
-          git comit -m "Interrupted upgrade to ${MAJOR_VERSION}"
+          git commit -m "Interrupted upgrade to ${MAJOR_VERSION}"
           remote_repo="https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
           git push "${remote_repo}" --force origin HEAD:interrupted-upgrade-${MAJOR_VERSION}
         if: failure()

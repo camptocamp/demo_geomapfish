@@ -1,8 +1,6 @@
 #!/bin/bash -ex
 
-cp scripts/upgrade ../demo_geomapfish/
-cd ../demo_geomapfish
-./upgrade $1
+build --upgrade $1
 if [ -e .UPGRADE7 ]
 then
     ./upgrade $1 8
@@ -30,7 +28,7 @@ then
 fi
 
 git add --all
-git comit -m "Upgrade to $1"
+git commit -m "Upgrade to $1"
 git push
 
 git push $2
