@@ -1,5 +1,7 @@
 #!/bin/bash -ex
 
+git config user.email "<ci@camptocamp.com>"
+git config user.name "Continuous integration"
 ./build --upgrade $1
 
 if [ -e .UPGRADE7 ]
