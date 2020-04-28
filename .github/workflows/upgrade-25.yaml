@@ -26,7 +26,7 @@ jobs:
           ref: 'prod-2-5'
 
       - name: Update the demo
-        run: scripts/update ${{ github.event.client_payload.version }} "https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
+        run: scripts/upgrade ${{ github.event.client_payload.version }} "https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
       - name: Push interrupted Upgrade
         run: |
           git add --all
