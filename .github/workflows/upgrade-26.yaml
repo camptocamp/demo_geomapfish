@@ -1,0 +1,29 @@
+---
+
+name: Upgrade
+
+on:
+  repository_dispatch:
+    types:
+      - geomapfish_2.6_updated
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-18.04
+    name: Upgrade
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'prod-2-6'
+
+      - name: Update the demo
+        run: scripts/upgrade ${{ github.event.client_payload.version }} "https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
+      - name: Push interrupted Upgrade
+        run: |
+          git add --all
+          git commit -m "Interrupted upgrade to ${MAJOR_VERSION}"
+          remote_repo="https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
+          git push "${remote_repo}" --force origin HEAD:interrupted-upgrade-${MAJOR_VERSION}
+        if: failure()
