@@ -19,11 +19,12 @@ jobs:
           ref: 'prod-2-5'
 
       - name: Update the demo
-        run: scripts/upgrade ${{ github.event.client_payload.version }} "https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
+        run: scripts/upgrade ${{ github.event.client_payload.version }} "https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/demo_geomapfish.git"
       - name: Push interrupted Upgrade
         run: |
-          git add --all
+          git add --all || true
+          git add --force .UPGRADE_INSTRUCTIONS || true
           git commit -m "Interrupted upgrade to ${MAJOR_VERSION}"
-          remote_repo="https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
+          remote_repo="https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/demo_geomapfish.git"
           git push "${remote_repo}" --force origin HEAD:interrupted-upgrade-${MAJOR_VERSION}
         if: failure()

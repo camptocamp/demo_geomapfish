@@ -31,8 +31,5 @@ then
 fi
 
 git add --all
-git add --force .UPGRADE_INSTRUCTIONS || true
 git commit -m "Upgrade to $1"
-git push
-
-git push $2
+git push remote_repo=$2
