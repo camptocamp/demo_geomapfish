@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.5.0.23 as builder
+FROM camptocamp/geomapfish-tools:2.5.0.22 as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 WORKDIR /app
@@ -10,7 +10,8 @@ COPY . /app
 
 RUN make checks
 RUN make build
-RUN mv webpack.apps.js webpack.apps.js.tmpl
+RUN mv webpack.apps.js webpack.apps.js.tmpl && \
+    ln --symbolic /usr/lib/node_modules/ .
 
 ENTRYPOINT [ "/usr/bin/eval-templates" ]
 CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--progress", "--no-inline" ]
@@ -19,6 +20,8 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--progr
 
 FROM camptocamp/geomapfish:2.5 as runner
 
+#RUN apt update
+#RUN apt install --yes gcc python3.7-dev
 COPY requirements.txt /tmp/requirements.txt
 RUN \
   python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt && \
