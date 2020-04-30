@@ -3,8 +3,24 @@ project_folder: demo_geomapfish
 project_package: geomapfish
 application_url: https://localhost:8484/
 checker_url: https://172.17.0.1:8484/c2c/health_check?max_level=9
-managed_files: []
-unmanaged_files: []
+managed_files:
+  - spell-ignore-words\.txt
+  - pattern: Makefile
+    no_touch: True
+  - \.gitignore
+  - qgisserver/pg_service.conf.tmpl
+  - docker-compose.override.sample.yaml
+  - geoportal/Dockerfile
+  - geoportal/requirements.txt
+unmanaged_files:
+  - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
+  - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
+  - geoportal/geomapfish_geoportal/static-ngeo/js/apps/sass/.*
+  - geoportal/geomapfish_geoportal/static-ngeo/js/apps/image/.*
+  - geoportal/geomapfish_geoportal/static-ngeo/api/api.css
+  - geoportal/geomapfish_geoportal/static-ngeo/api/index.js
+  - geoportal/geomapfish_geoportal/static/apihelp/.*
+  - print/print-apps/demo/.*\.jrxml
 template_vars:
   package: geomapfish
   srid: 2056
@@ -14,5 +30,6 @@ env:
   files:
     - env.default
     - env.project
+    - env.secrets
   required_args: 0
   help: No arguments needed.
