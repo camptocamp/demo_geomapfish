@@ -24,7 +24,8 @@ jobs:
         run: |
           git add --all || true
           git add --force .UPGRADE_INSTRUCTIONS || true
+          git status
           git commit -m "Interrupted upgrade to ${MAJOR_VERSION}"
           remote_repo="https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/demo_geomapfish.git"
-          git push "${remote_repo}" --force origin HEAD:interrupted-upgrade-${MAJOR_VERSION}
+          git push "${remote_repo}" --force origin HEAD:interrupted-upgrade-${MAJOR_VERSION} || true
         if: failure()
