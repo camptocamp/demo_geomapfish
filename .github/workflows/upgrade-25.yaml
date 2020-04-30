@@ -7,13 +7,6 @@ on:
     types:
       - geomapfish_25_updated
 
-env:
-  PROJECT: demo
-  OPENSHIFT_PROJECT: gs-gmf-demo
-  HELM_RELEASE_NAMES: prod-2-5
-  PATH: /bin:/usr/bin:/usr/local/bin:/home/runner/.local/bin
-  SUMMON_PROVIDER: /usr/local/bin/gopass
-
 jobs:
   upgrade:
     runs-on: ubuntu-18.04
@@ -34,49 +27,3 @@ jobs:
           remote_repo="https://${GITHUB_ACTOR}:${{ github.token }}@github.com/camptocamp/ngeo.git"
           git push "${remote_repo}" --force origin HEAD:interrupted-upgrade-${MAJOR_VERSION}
         if: failure()
-
-  config:
-    runs-on: ubuntu-18.04
-    name: Config
-    timeout-minutes: 10
-    needs: upgrade
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: 'prod-2-5'
-
-      - run: touch env.secrets
-      - name: Build config
-        run: ./build --config
-
-      - uses: camptocamp/initialise-gopass-summon-action@v1
-        with:
-          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
-          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
-        if: "env.HELM_RELEASE_NAMES != ''"
-      - run: scripts/publish-docker config
-        if: "env.HELM_RELEASE_NAMES != ''"
-
-  geoportal:
-    runs-on: ubuntu-18.04
-    name: Geoportal
-    timeout-minutes: 10
-    needs: upgrade
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: 'prod-2-5'
-
-      - run: touch env.secrets
-      - name: Build geoportal
-        run: ./build --geoportal
-
-#      - uses: camptocamp/initialise-gopass-summon-action@v1
-#        with:
-#          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
-#          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
-#        if: "env.HELM_RELEASE_NAMES != ''"
-#      - run: scripts/publish-docker geoportal
-#        if: "env.HELM_RELEASE_NAMES != ''"
