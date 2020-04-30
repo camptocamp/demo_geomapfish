@@ -20,7 +20,6 @@ then
     # Workaround
     git status > /dev/null
     git apply --3way create.diff
-    cp CONST_create_template/project.yaml .
     ./upgrade $1 10
 fi
 if [ ! -e .UPGRADE_SUCCESS ]
