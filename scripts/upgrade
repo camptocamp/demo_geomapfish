@@ -5,6 +5,7 @@ git config user.name "Continuous integration"
 ./build --upgrade $1
 VERSION=$1
 if [ ${VERSION} = "master" ]
+then
     VERSION=latest
 fi
 
