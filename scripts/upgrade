@@ -32,4 +32,4 @@ fi
 git add --all
 git status
 git commit -m "Upgrade to $1"
-git push remote_repo=$2
+git push $2
