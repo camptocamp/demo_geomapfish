@@ -3,7 +3,6 @@
 throwErrorOnExtraParameters: true
 defaultToSvg: true
 
-<<<<<<< ours
 smtp:
   username: ${SMTP_USER}
   password: ${SMTP_PASSWORD}
@@ -32,11 +31,6 @@ allowedReferers: &allowedHosts
     host: gmf-demo-2-4.paas-ch-3.camptocamp.com
   - !hostnameMatch
     host: camptocamp.github.io
-=======
-allowedReferers: &allowedHosts
-  - !hostnameMatch
-    host: ${MUTUALIZED_PRINT_URL}
->>>>>>> theirs
   - !hostnameMatch
     host: fredj.github.io
   - !hostnameMatch

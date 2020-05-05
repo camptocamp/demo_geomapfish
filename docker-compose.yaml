@@ -9,12 +9,10 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: config
-<<<<<<< ours
     environment:
       - TILEGENERATION_S3_BUCKET
       - OSM_PGDATABASE
       - RASTER_BASE_PATH
-=======
 
   print:
     extends:
@@ -22,7 +20,6 @@ services:
       service: print
     volumes_from:
       - config:ro
->>>>>>> theirs
 
   mapserver:
     extends:
