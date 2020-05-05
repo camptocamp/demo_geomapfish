@@ -1,6 +1,6 @@
 ---
 
-name: Upgrade
+name: Upgrade 2.6
 
 on:
   repository_dispatch:
@@ -10,7 +10,7 @@ on:
 jobs:
   upgrade:
     runs-on: ubuntu-18.04
-    name: Upgrade
+    name: Upgrade 2.6
     timeout-minutes: 10
 
     steps:
