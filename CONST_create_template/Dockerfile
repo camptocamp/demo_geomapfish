@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.6.dev as builder
+FROM camptocamp/geomapfish-tools:latest as builder
 
 ENV LANGUAGES="en fr de"
 ENV VARS_FILE=vars.yaml
@@ -36,7 +36,7 @@ RUN \
 
 ###############################################################################
 
-FROM camptocamp/geomapfish-config:2.6.dev
+FROM camptocamp/geomapfish-config:latest
 
 ARG PGSCHEMA
 ENV PGSCHEMA=$PGSCHEMA

@@ -192,7 +192,7 @@ services:
       - LOG_TYPE
 
   tools:
-    image: camptocamp/geomapfish-tools:2.6.dev
+    image: camptocamp/geomapfish-tools:latest
     restart: unless-stopped
     environment: *env
 
