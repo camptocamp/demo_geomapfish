@@ -4,13 +4,13 @@
     <title ng-bind-template="{{'Alternative Desktop Application'|translate}}">GeoMapFish</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <meta name="dynamicUrl" content="${htmlWebpackPlugin.options.vars.entry_point}dynamic.json">
+    <meta name="dynamicUrl" content="<%= htmlWebpackPlugin.options.vars.entry_point %>dynamic.json">
     <meta name="interface" content="desktop_alt">
     <link rel="shortcut icon" href="<%=require("./image/favicon.ico")%>" />
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
-    <link href="${htmlWebpackPlugin.options.vars.entry_point}static/${htmlWebpackPlugin.options.vars.version}/css/desktop_alt.css" rel="stylesheet">
+    <link href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.version %>/css/desktop_alt.css" rel="stylesheet">
   </head>
   <body ng-class="{'gmf-profile-chart-active': !!profileChartActive, 'gmf-query-grid-active': !!queryGridActive}" ng-keydown="mainCtrl.onKeydown($event)">
   <div ng-show="mainCtrl.loading" class="loading-mask">
@@ -399,9 +399,9 @@
     </footer>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,default-3.6,Array.prototype.includes,Object.entries,Object.values"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyA3NVIy-HOYT0a0CkChA6nFwqEFqHYWBVk"></script>
-    <script src="${htmlWebpackPlugin.options.vars.entry_point}static-ngeo/vendor.js?${htmlWebpackPlugin.options.vars.cache_version}"></script>
-    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <script src="<%= htmlWebpackPlugin.options.vars.entry_point %>static-ngeo/vendor.js?<%= htmlWebpackPlugin.options.vars.cache_version %>"></script>
+    <% for (var js in htmlWebpackPlugin.files.js) { %>
+    <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
     <% } %>
   </body>
 </html>

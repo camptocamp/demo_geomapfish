@@ -3,6 +3,7 @@
 throwErrorOnExtraParameters: true
 defaultToSvg: true
 
+<<<<<<< ours
 smtp:
   username: ${SMTP_USER}
   password: ${SMTP_PASSWORD}
@@ -31,6 +32,11 @@ allowedReferers: &allowedHosts
     host: gmf-demo-2-4.paas-ch-3.camptocamp.com
   - !hostnameMatch
     host: camptocamp.github.io
+=======
+allowedReferers: &allowedHosts
+  - !hostnameMatch
+    host: ${MUTUALIZED_PRINT_URL}
+>>>>>>> theirs
   - !hostnameMatch
     host: fredj.github.io
   - !hostnameMatch
@@ -109,11 +115,18 @@ templates:
           ##     - !hostnameMatch
           ##       host: ${GEOPORTAL_INTERNAL_HOST}
           ##       port: ${GEOPORTAL_INTERNAL_PORT}
+          ## For mutualized print
+          - !mapUri
+            mapping:
+              https?://localhost:8484/tiles(.*): "http://tilecloudchain:8080/tiles$1"
+          - !mapUri
+            mapping:
+              https?://localhost:8484/(.*): "http://geoportal:8080/$1"
+          ## End for mutualized print
           - !forwardHeaders
             matchers: *allowedHosts
             headers:
               - Cookie
-              ## - Host
           - !forwardHeaders
             headers:
               - Referer
@@ -123,13 +136,10 @@ templates:
             matchers:
               - !localMatch
                 reject: true
-              ## For internal print
-              ## - !hostnameMatch
-              ##   host: ${GEOPORTAL_INTERNAL_HOST}
-              ##   port: ${GEOPORTAL_INTERNAL_PORT}
-              ## - !hostnameMatch
-              ##   host: ${TILECLOUDCHAIN_INTERNAL_HOST}
-              ##   port: ${TILECLOUDCHAIN_INTERNAL_PORT}
+              - !hostnameMatch
+                host: geoportal
+              - !hostnameMatch
+                host: tilecloudchain
               - !ipMatch
                 ip: 10.0.0.0
                 mask: 255.0.0.0

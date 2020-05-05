@@ -6,13 +6,13 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="dynamicUrl" content="${htmlWebpackPlugin.options.vars.entry_point}dynamic.json">
+    <meta name="dynamicUrl" content="<%= htmlWebpackPlugin.options.vars.entry_point %>dynamic.json">
     <meta name="interface" content="mobile_alt">
     <link rel="shortcut icon" href="<%=require("./image/favicon.ico")%>" />
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
-    <link href="${htmlWebpackPlugin.options.vars.entry_point}static/${htmlWebpackPlugin.options.vars.version}/css/mobile_alt.css" rel="stylesheet">
+    <link href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.version %>/css/mobile_alt.css" rel="stylesheet">
   </head>
   <body ng-class="{'gmf-mobile-nav-is-visible': mainCtrl.navIsVisible(),
                    'gmf-mobile-nav-left-is-visible': mainCtrl.leftNavVisible,
@@ -183,9 +183,9 @@
       </gmf-authentication>
     </nav>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,default-3.6,Array.prototype.includes,Object.entries,Object.values"></script>
-    <script src="${htmlWebpackPlugin.options.vars.entry_point}static-ngeo/vendor.js?${htmlWebpackPlugin.options.vars.cache_version}"></script>
-    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <script src="<%= htmlWebpackPlugin.options.vars.entry_point %>static-ngeo/vendor.js?<%= htmlWebpackPlugin.options.vars.cache_version %>"></script>
+    <% for (var js in htmlWebpackPlugin.files.js) { %>
+    <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
     <% } %>
   </body>
 </html>

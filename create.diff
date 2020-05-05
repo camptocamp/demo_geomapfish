@@ -1,0 +1,141 @@
+diff --git a/README.rst b/README.rst
+index ff9a63f..d87b016 100644
+--- a/README.rst
++++ b/README.rst
+@@ -1,7 +1,7 @@
+ demo_geomapfish project
+ ===================
+ 
+-Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.5/>`_
++Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.6/>`_
+ 
+ Checkout
+ --------
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+index e8176ca..5834e02 100644
+--- a/docker-compose.yaml
++++ b/docker-compose.yaml
+@@ -10,12 +10,12 @@ services:
+       file: docker-compose-lib.yaml
+       service: config
+ 
+-  ## print:
+-  ##   extends:
+-  ##     file: docker-compose-lib.yaml
+-  ##     service: print
+-  ##   volumes_from:
+-  ##     - config:ro
++  print:
++    extends:
++      file: docker-compose-lib.yaml
++      service: print
++    volumes_from:
++      - config:ro
+ 
+   mapserver:
+     extends:
+diff --git a/env.project b/env.project
+index 387e07b..9357454 100644
+--- a/env.project
++++ b/env.project
+@@ -22,9 +22,9 @@ PGSSLMODE=require
+ # PGSSLMODE=prefer
+ 
+ # Use the mutualised print, ask Camptocamp to configure your project.
+-PRINT_URL=https://mutualized-print.apps.openshift-ch-1.camptocamp.com/print/geomapfish/
++# PRINT_URL=https://mutualized-print.apps.openshift-ch-1.camptocamp.com/print/geomapfish/
+ # To use the internal print:
+-# PRINT_URL=http://print:8080/print/
++PRINT_URL=http://print:8080/print/
+ 
+ TILEGENERATION_SQS_QUEUE=<queue_name>
+ TILEGENERATION_S3_BUCKET=<bucket_name>
+diff --git a/geoportal/Dockerfile b/geoportal/Dockerfile
+index 82278d3..2038c91 100644
+--- a/geoportal/Dockerfile
++++ b/geoportal/Dockerfile
+@@ -1,4 +1,4 @@
+-FROM camptocamp/geomapfish-tools:2.5 as builder
++FROM camptocamp/geomapfish-tools:2.6.dev as builder
+ LABEL maintainer Camptocamp "info@camptocamp.com"
+ 
+ WORKDIR /app
+@@ -17,7 +17,7 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--progr
+ 
+ ###############################################################################
+ 
+-FROM camptocamp/geomapfish:2.5 as runner
++FROM camptocamp/geomapfish:2.6 as runner
+ 
+ COPY requirements.txt /tmp/requirements.txt
+ RUN \
+diff --git a/geoportal/vars.yaml b/geoportal/vars.yaml
+index 107399c..b7a4a57 100644
+--- a/geoportal/vars.yaml
++++ b/geoportal/vars.yaml
+@@ -125,7 +125,7 @@ vars:
+     email_body: |
+       Hello {user},
+ 
+-      You have a new account on GeoMapFish: https://geomapfish-demo-2-5.camptocamp.com
++      You have a new account on GeoMapFish: https://geomapfish-demo-2-6.camptocamp.com
+       Your user name is: {user}
+       Your password is: {password}
+ 
+diff --git a/print/print-apps/geomapfish/config.yaml.tmpl b/print/print-apps/geomapfish/config.yaml.tmpl
+index 27792f9..38a7473 100644
+--- a/print/print-apps/geomapfish/config.yaml.tmpl
++++ b/print/print-apps/geomapfish/config.yaml.tmpl
+@@ -3,7 +3,9 @@
+ throwErrorOnExtraParameters: true
+ defaultToSvg: true
+ 
+-allowedReferers:
++allowedReferers: &allowedHosts
++  - !hostnameMatch
++    host: ${MUTUALIZED_PRINT_URL}
+   - !hostnameMatch
+     host: ${VISIBLE_WEB_HOST}
+   - !localMatch {}
+@@ -65,14 +67,18 @@ templates:
+           ##     - !hostnameMatch
+           ##       host: ${GEOPORTAL_INTERNAL_HOST}
+           ##       port: ${GEOPORTAL_INTERNAL_PORT}
++          ## For mutualized print
++          - !mapUri
++            mapping:
++              https?://localhost:8484/tiles(.*): "http://tilecloudchain:8080/tiles$1"
++          - !mapUri
++            mapping:
++              https?://localhost:8484/(.*): "http://geoportal:8080/$1"
++          ## End for mutualized print
+           - !forwardHeaders
+-            matchers:
+-              - !hostnameMatch
+-                host: ${VISIBLE_WEB_HOSTNAME}
+-                port: ${VISIBLE_WEB_PORT}
++            matchers: *allowedHosts
+             headers:
+               - Cookie
+-              ## - Host
+           - !forwardHeaders
+             headers:
+               - Referer
+@@ -82,13 +88,10 @@ templates:
+             matchers:
+               - !localMatch
+                 reject: true
+-              ## For internal print
+-              ## - !hostnameMatch
+-              ##   host: ${GEOPORTAL_INTERNAL_HOST}
+-              ##   port: ${GEOPORTAL_INTERNAL_PORT}
+-              ## - !hostnameMatch
+-              ##   host: ${TILECLOUDCHAIN_INTERNAL_HOST}
+-              ##   port: ${TILECLOUDCHAIN_INTERNAL_PORT}
++              - !hostnameMatch
++                host: geoportal
++              - !hostnameMatch
++                host: tilecloudchain
+               - !ipMatch
+                 ip: 10.0.0.0
+                 mask: 255.0.0.0

@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.5 as builder
+FROM camptocamp/geomapfish-tools:2.6.dev as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 WORKDIR /app
@@ -18,7 +18,7 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--progr
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:2.5 as runner
+FROM camptocamp/geomapfish:2.6 as runner
 
 #RUN apt update
 #RUN apt install --yes gcc python3.7-dev
