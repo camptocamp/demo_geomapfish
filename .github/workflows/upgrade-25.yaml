@@ -27,5 +27,5 @@ jobs:
           git status
           git commit -m "Interrupted upgrade to ${MAJOR_VERSION}"
           remote_repo="https://c2c-bot-gis-ci:${{ secrets.GITHUB_GOPASS_CI_TOKEN }}@github.com/camptocamp/demo_geomapfish.git"
-          git push --force "remote_repo=${remote_repo}" HEAD:interrupted-upgrade-25
+          git push --force "${remote_repo}" HEAD:interrupted-upgrade-25
         if: failure()
