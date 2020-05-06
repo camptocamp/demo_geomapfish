@@ -21,7 +21,7 @@ jobs:
 
       - name: Update the demo
         run: >
-          scripts/upgrade ${{ github.event.client_payload.version }} "origin"
+          scripts/upgrade ${{ github.event.client_payload.version }} origin
       - name: Push interrupted Upgrade
         run: |
           git add --all || true
