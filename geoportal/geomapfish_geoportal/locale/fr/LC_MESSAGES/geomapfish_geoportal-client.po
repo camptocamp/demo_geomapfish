@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-11-08 13:16+0000\n"
+"POT-Creation-Date: 2020-05-06 13:53+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -178,6 +178,9 @@ msgstr "Apprentissage [fusionné]"
 msgid "Length"
 msgstr "Longueur"
 
+msgid "Loading themes, please wait..."
+msgstr "Theme en cours de chargement, merci de patienter...""
+
 msgid "Loading..."
 msgstr "Chargement..."
 
@@ -295,9 +298,6 @@ msgstr "Grille suisse (LV03)"
 msgid "Swiss grid (LV95)"
 msgstr "Grille suisse (LV95)"
 
-msgid "Test"
-msgstr "Test"
-
 msgid "Test for a disclaimer to test metadata"
 msgstr "Tester un avertissement pour tester les métadonnées"
 
@@ -325,15 +325,15 @@ msgstr "Coordonées WGS"
 msgid "Wgs Coord. DMS"
 msgstr "Coordonée WGS DMS"
 
-msgid "You must change your password"
-msgstr "Vous devez changer votre mot de passe"
-
 msgid ""
 "You're using the mobile application. Check out the <a href="
 "\"{{url}}\">standard application</a>."
 msgstr ""
 "Vous utilisez l'application mobile. Passer à l'<a href="
 "\"{{url}}\">application standard</a>."
+
+msgid "__test__"
+msgstr "Test"
 
 msgid "access"
 msgstr "Accès"
@@ -485,11 +485,17 @@ msgstr "Coche"
 msgid "cinema"
 msgstr "Cinéma"
 
+msgid "comments"
+msgstr "Commentaires"
+
 msgid "covered"
 msgstr "Couvert"
 
 msgid "crossing"
 msgstr "Intersection"
+
+msgid "datasource"
+msgstr "Source de donnée"
 
 msgid "date"
 msgstr "Date"
@@ -526,6 +532,9 @@ msgstr "ID"
 
 msgid "filter_double"
 msgstr "Filtre double"
+
+msgid "filter_double_all"
+msgstr "Filtre double tous"
 
 msgid "filter_group"
 msgstr "Filtre groupe"
@@ -641,6 +650,9 @@ msgstr "Utilisation du sol (groupe)"
 msgid "layer"
 msgstr "Couches"
 
+msgid "legend"
+msgstr "Légende"
+
 msgid "leisure"
 msgstr "Loisirs"
 
@@ -674,6 +686,9 @@ msgstr "Fabrication humaine"
 msgid "many_attributes"
 msgstr "Beaucoup d'attributs"
 
+msgid "map"
+msgstr "Carte"
+
 msgid "motorcar"
 msgstr "Véhicules"
 
@@ -700,6 +715,9 @@ msgstr "Naturel"
 
 msgid "no_wfs"
 msgstr "Pas de WFS"
+
+msgid "northArrow"
+msgstr "Fléche du nord"
 
 msgid "open"
 msgstr "Ouvert"
@@ -740,9 +758,6 @@ msgstr "Caserne de pompiers OSM (groupe)"
 msgid "osm_firestations_restricted"
 msgstr "Caserne de pompiers OSM (restrain)"
 
-msgid "osm_firestations_restricted_ingrp"
-msgstr "Caserne de pompiers OSM (groupe, restrain)"
-
 msgid "osm_group"
 msgstr "OSM groupe"
 
@@ -763,9 +778,6 @@ msgstr "Hôpitaux OSM (groupe)"
 
 msgid "osm_hospitals_restricted"
 msgstr "Hôpitaux OSM (restrain)"
-
-msgid "osm_hospitals_restricted_ingrp"
-msgstr "Hôpitaux OSM (groupe, restrain)"
 
 msgid "osm_id"
 msgstr "ID OSM"
@@ -1025,6 +1037,9 @@ msgstr "Restaurants"
 msgid "restricted"
 msgstr "Restrain"
 
+msgid "restricted_group"
+msgstr "Restrain dans groupe"
+
 msgid "roads10"
 msgstr "Routes"
 
@@ -1067,6 +1082,9 @@ msgstr "Routes"
 msgid "roads9"
 msgstr "Routes"
 
+msgid "scalebar"
+msgstr "Barre d'échelle"
+
 msgid "shop"
 msgstr "Magasin"
 
@@ -1078,6 +1096,9 @@ msgstr "Nom court 2"
 
 msgid "short_name3"
 msgstr "Nom court 3"
+
+msgid "simple"
+msgstr "Simple"
 
 msgid "sport"
 msgstr "Sport"
@@ -1105,6 +1126,9 @@ msgstr "Temps (groupe)"
 
 msgid "timestamp"
 msgstr "Datation"
+
+msgid "title"
+msgstr "Titre"
 
 msgid "tourism"
 msgstr "Tourisme"
@@ -1236,21 +1260,6 @@ msgstr ""
 msgid "© les contributeurs d’OpenStreetMap"
 msgstr "© les contributeurs d’OpenStreetMap"
 
-#~ msgid "1 A4 portrait"
-#~ msgstr "A4 portrait"
-
-#~ msgid "2 A4 landscape"
-#~ msgstr "A4 paysage"
-
-#~ msgid "3 A3 portrait"
-#~ msgstr "A3 portrait"
-
-#~ msgid "4 A3 landscape"
-#~ msgstr "A3 paysage"
-
-#~ msgid "A0"
-#~ msgstr "A0"
-
 #~ msgid "Batiment VD"
 #~ msgstr "Bâtiment VD"
 
@@ -1269,8 +1278,14 @@ msgstr "© les contributeurs d’OpenStreetMap"
 #~ msgid "Search…"
 #~ msgstr "Recherche…"
 
+#~ msgid "Test"
+#~ msgstr "Test"
+
 #~ msgid "Test aus Olten"
 #~ msgstr "Test sur Olten"
+
+#~ msgid "You must change your password"
+#~ msgstr "Vous devez changer votre mot de passe"
 
 #~ msgid "cafe"
 #~ msgstr "Café"
@@ -1281,35 +1296,17 @@ msgstr "© les contributeurs d’OpenStreetMap"
 #~ msgid "ch.swisstopo.swissnames3d_feature_poly"
 #~ msgstr "Noms géographiques swissNAMES3D"
 
-#~ msgid "comments"
-#~ msgstr "Commentaires"
-
-#~ msgid "datasource"
-#~ msgstr "Source de donnée"
-
 #~ msgid "last_update_timestamp"
 #~ msgstr "Data de mise à jours"
 
 #~ msgid "last_update_user"
 #~ msgstr "User"
 
-#~ msgid "legend"
-#~ msgstr "Légende"
+#~ msgid "osm_firestations_restricted_ingrp"
+#~ msgstr "Caserne de pompiers OSM (groupe, restrain)"
 
-#~ msgid "map"
-#~ msgstr "Carte"
-
-#~ msgid "northArrow"
-#~ msgstr "Fléche du nord"
-
-#~ msgid "restricted_group"
-#~ msgstr "Restrain dans groupe"
-
-#~ msgid "scalebar"
-#~ msgstr "Barre d'échelle"
-
-#~ msgid "simple"
-#~ msgstr "Simple"
+#~ msgid "osm_hospitals_restricted_ingrp"
+#~ msgstr "Hôpitaux OSM (groupe, restrain)"
 
 #~ msgid "standard application"
 #~ msgstr "Application bureau"
@@ -1317,14 +1314,8 @@ msgstr "© les contributeurs d’OpenStreetMap"
 #~ msgid "standard version"
 #~ msgstr "version standard"
 
-#~ msgid "test"
-#~ msgstr "Test"
-
 #~ msgid "test2"
 #~ msgstr "Deuxième test"
-
-#~ msgid "title"
-#~ msgstr "Titre"
 
 #~ msgid "vd.batiment_rcb"
 #~ msgstr "Bâtiment VD RCB"
