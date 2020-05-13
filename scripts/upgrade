@@ -34,7 +34,11 @@ then
     exit 1
 fi
 
+if [[ $(git status --porcelain) == "" ]]
+then
+    echo Nothing to commit
+    exit 0
+fi
 git add --all
-git status
-git commit -m "Upgrade to $1"
+git commit -message="Upgrade to $1"
 git push $2
