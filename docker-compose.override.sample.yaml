@@ -38,6 +38,19 @@ services:
     environment:
       - QGIS_SERVER_LOG_LEVEL=0
 
+  tilecloudchain:
+    volumes:
+      - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
+    environment:
+      - GUNICORN_CMD_ARGS=--reload
+      - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
+
+  tilegeneration_slave:
+    volumes:
+      - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
+    environment:
+      - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
+
   # For Javascript project development.
   # The debug application will be availavble at ``https://<host>/<entry_point>/dev/<interface>.html``.
   webpack_dev_server:
