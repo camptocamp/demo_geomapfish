@@ -1,0 +1,29 @@
+{% extends "getitfixed:templates/layout.jinja2" %}
+
+{% block title %}
+<title>{{_('GeoMapFish / GetItFixed!')}}</title>
+<link rel="shortcut icon" href="{{request.static_url('/etc/geomapfish/static/images/favicon.ico')}}">
+{% endblock title %}
+
+{% block style %}
+<link href="{{request.static_url('/etc/geomapfish/static/css/getitfixed.css')}}" rel="stylesheet">
+<style>
+  body {
+    background-color: #F0F0F0;
+  }
+</style>
+{% endblock style %}
+
+{% block header %}
+<header class="container">
+  <h3 class="title">{{_('GeoMapFish / GetItFixed!')}}</h3>
+</header>
+{% endblock header %}
+
+{% block footer %}
+<footer class="footer text-muted">
+ <div class="container">
+   <p>Contact: <a href="...">Contact form</a></p>
+ </div>
+</footer>
+{% endblock footer %}

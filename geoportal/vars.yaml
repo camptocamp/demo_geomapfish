@@ -152,6 +152,7 @@ vars:
 
   getitfixed:
     enabled: true
+    layout: geomapfish_geoportal:templates/getitfixed/layout.jinja2
     map: *map_config
 
   functionalities:
