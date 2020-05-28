@@ -35,5 +35,5 @@ then
     exit 0
 fi
 git add --all
-git commit -message="Upgrade to $1"
+git commit --message="Upgrade to $1"
 git push $2
