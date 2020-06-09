@@ -341,6 +341,26 @@ vars:
             layers: []
           legend: {}
 
+  # The dogpile.cache configuration.
+  cache:
+    std:
+      backend: c2cgeoportal.hybrid
+      arguments:
+        lock_timeout: 120  # Two minutes
+        redis_expiration_time: 86400  # One day
+        distributed_lock: True
+        db: '{REDIS_DB}'
+        socket_timeout: '{REDIS_TIMEOUT}'
+        # Standalone version
+        # host: '{REDIS_HOST}'
+        # port: '{REDIS_PORT}'
+        # Openshift version
+        sentinels:
+          - - ${REDIS_HOST}
+              ${REDIS_PORT}
+    obj:
+      backend: dogpile.cache.memory
+      
 update_paths:
   - admin_interface.available_functionalities
   - admin_interface.available_metadata

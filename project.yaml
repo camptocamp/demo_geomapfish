@@ -9,9 +9,9 @@ managed_files:
     no_touch: True
   - \.gitignore
   - qgisserver/pg_service.conf.tmpl
-  - docker-compose.override.sample.yaml
+  - docker-compose\.override\.sample\.yaml
   - geoportal/Dockerfile
-  - geoportal/requirements.txt
+  - geoportal/requirements\.txt
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs

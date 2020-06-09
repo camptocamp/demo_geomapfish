@@ -13,9 +13,10 @@ services:
       # For Python project development.
       - ./geoportal/geomapfish_geoportal:/app/geomapfish_geoportal
       # For Python c2cgeportal development.
-      # - ./../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons
-      # - ./../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal
-      # - ./../c2cgeoportal/admin/c2cgeoportal_admin:/opt/c2cgeoportal/admin/c2cgeoportal_admin
+      - ./../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons
+      - ./../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal
+      - ./../c2cwsgiutils/c2cwsgiutils:/opt/c2cwsgiutils/c2cwsgiutils
+      - ./../dogpile.cache/dogpile/:./usr/local/lib/python3.7/dist-packages/dogpile
     environment:
       - GUNICORN_CMD_ARGS=--reload
       - C2CWSGIUTILS_CONFIG=/app/development.ini
