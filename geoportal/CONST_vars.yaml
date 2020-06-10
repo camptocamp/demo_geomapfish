@@ -765,7 +765,8 @@ runtime_environment:
 runtime_postprocess:
   - expression: int({})
     vars:
-      - cache.arguments.port
+      - cache.std.arguments.port
+      - cache.std.arguments.db
 
 no_interpreted:
   - interfaces_config.default.static.angularLocaleScript.append

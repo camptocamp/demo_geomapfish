@@ -356,11 +356,11 @@ vars:
         # port: '{REDIS_PORT}'
         # Openshift version
         sentinels:
-          - - ${REDIS_HOST}
-              ${REDIS_PORT}
+          - - '{REDIS_HOST}'
+            - '{REDIS_PORT}'
     obj:
       backend: dogpile.cache.memory
-      
+
 update_paths:
   - admin_interface.available_functionalities
   - admin_interface.available_metadata
@@ -449,3 +449,8 @@ runtime_environment:
 
 environment:
   - name: VERSION
+
+runtime_postprocess:
+  - expression: "int({})"
+    vars:
+      - cache.std.arguments.socket_timeout

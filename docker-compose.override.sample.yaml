@@ -13,10 +13,11 @@ services:
       # For Python project development.
       - ./geoportal/geomapfish_geoportal:/app/geomapfish_geoportal
       # For Python c2cgeportal development.
-      - ./../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons
-      - ./../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal
-      - ./../c2cwsgiutils/c2cwsgiutils:/opt/c2cwsgiutils/c2cwsgiutils
-      - ./../dogpile.cache/dogpile/:./usr/local/lib/python3.7/dist-packages/dogpile
+      # - ./../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons
+      # - ./../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal
+      # - ./../c2cwsgiutils/c2cwsgiutils:/opt/c2cwsgiutils/c2cwsgiutils
+      # - ./../dogpile.cache/dogpile:/usr/local/lib/python3.7/dist-packages/dogpile
+      # - ./../c2c.template/c2c/template:/usr/local/lib/python3.7/dist-packages/c2c/template
     environment:
       - GUNICORN_CMD_ARGS=--reload
       - C2CWSGIUTILS_CONFIG=/app/development.ini
@@ -40,15 +41,17 @@ services:
       - QGIS_SERVER_LOG_LEVEL=0
 
   tilecloudchain:
-    volumes:
-      - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
+    # volumes:
+    #   - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
+    #   - ../tilecloud/tilecloud:/usr/local/lib/python3.7/dist-packages/tilecloud
     environment:
       - GUNICORN_CMD_ARGS=--reload
       - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
 
   tilegeneration_slave:
-    volumes:
-      - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
+    # volumes:
+    #   - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
+    #   - ../tilecloud/tilecloud:/usr/local/lib/python3.7/dist-packages/tilecloud
     environment:
       - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
 
