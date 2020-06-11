@@ -51,24 +51,10 @@ services:
     volumes_from:
       - config:ro
 
-  redis_master:
+  redis:
     extends:
       file: docker-compose-lib.yaml
-      service: redis_master
-
-  redis_slave:
-    extends:
-      file: docker-compose-lib.yaml
-      service: redis_slave
-    depends_on:
-      - redis_master
-
-  redis_sentinel:
-    extends:
-      file: docker-compose-lib.yaml
-      service: redis_sentinel
-    depends_on:
-      - redis_master
+      service: redis
 
   tilecloudchain:
     extends:

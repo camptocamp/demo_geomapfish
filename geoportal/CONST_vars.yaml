@@ -755,8 +755,6 @@ runtime_environment:
     default: '6372'
   - name: REDIS_DB
     default: '0'
-  - name: REDIS_TIMEOUT
-    default: '3'
   - name: TILEGENERATION_SQS_QUEUE
     default: queue_name
   - name: TILEGENERATION_S3_BUCKET
@@ -765,8 +763,7 @@ runtime_environment:
 runtime_postprocess:
   - expression: int({})
     vars:
-      - cache.std.arguments.port
-      - cache.std.arguments.db
+      - cache.arguments.port
 
 no_interpreted:
   - interfaces_config.default.static.angularLocaleScript.append
