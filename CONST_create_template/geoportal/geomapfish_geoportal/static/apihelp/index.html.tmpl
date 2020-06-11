@@ -199,7 +199,7 @@ map.recenterOnObjects(
 var map = new geomapfish.Map({
     div: 'map9'
 });
-map.addCustomLayer('text', 'My custom txt layer', '../static//apihelp/data.txt', {
+map.addCustomLayer('text', 'My custom txt layer', '../static/${CACHE_VERSION}/apihelp/data.txt', {
   success: function() {
     map.selectObject(2);
   }
