@@ -14,16 +14,12 @@ import yaml
 
 
 def call(verbose, arguments, **kwargs):
-    print_args = [a.replace(" ", "\\ ") for a in arguments]
-    print_args = [a.replace('"', '\\"') for a in print_args]
-    print_args = [a.replace("'", "\\'") for a in print_args]
     if verbose:
+        print_args = [a.replace(" ", "\\ ") for a in arguments]
+        print_args = [a.replace('"', '\\"') for a in print_args]
+        print_args = [a.replace("'", "\\'") for a in print_args]
         print(" ".join(print_args))
-    try:
-        subprocess.check_call(arguments, **kwargs)
-    except subprocess.CalledProcessError as e:
-        print("Error with command: " + " ".join(print_args))
-        sys.exit(e.returncode)
+    subprocess.check_call(arguments, **kwargs)
 
 
 def load_env(env_files):
