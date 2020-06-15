@@ -13,8 +13,6 @@ PGHOST_SLAVE=${docker_dbhost_slave}
 PGPORT=${docker_dbport}
 PGPORT_SLAVE=${docker_dbport_slave}
 PGUSER=${docker_dbuser}
-PGPASSWORD=${docker_dbpassword}
-PGDATABASE=${docker_db}
 PGSCHEMA=${docker_schema}
 PGSCHEMA_STATIC=${docker_schema_static}
 GEOPORTAL_INTERNAL_URL=http://geoportal:8080
@@ -53,7 +51,6 @@ C2C_SQL_PROFILER_ENABLED=TRUE
 C2C_DEBUG_VIEW_ENABLED=TRUE
 C2C_REQUESTS_DEFAULT_TIMEOUT=120
 
-OSM_PGDATABASE=gmf_demo_osm
 RASTER_BASE_PATH=/vsis3/data-gmf-demo
 AWS_DEFAULT_REGION=ch-dk-2
 AWS_S3_ENDPOINT=sos-ch-dk-2.exo.io
