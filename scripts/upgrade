@@ -1,5 +1,14 @@
 #!/bin/bash -ex
 
+function printdiff {
+    ls -l .UPGRADE*
+    for f in $(ls -1 *.diff)
+    do
+        echo "--- $f ---"
+        cat "$f"
+    done
+}
+
 git config user.email "<ci@camptocamp.com>"
 git config user.name "Continuous integration"
 ./build --upgrade $1
