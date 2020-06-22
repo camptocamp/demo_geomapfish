@@ -5,7 +5,7 @@ extends: CONST_vars.yaml
 vars:
   srid: 2056
   osm_db: '{OSM_PGDATABASE}'
-  schema: 'main_2_6'
+  schema: 'main_2_5'
 
   tiles_s3_bucket: '{TILEGENERATION_S3_BUCKET}'
   raster_base_path: '{RASTER_BASE_PATH}'
