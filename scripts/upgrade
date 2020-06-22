@@ -18,6 +18,10 @@ then
     VERSION=latest
 fi
 
+if [ -e .UPGRADE5 ]
+then
+    ./upgrade ${VERSION} 5
+fi
 if [ -e .UPGRADE7 ]
 then
     ./upgrade ${VERSION} 8
