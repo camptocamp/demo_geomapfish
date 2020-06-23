@@ -13,6 +13,10 @@ git config user.email "<ci@camptocamp.com>"
 git config user.name "Continuous integration"
 ./build --upgrade $1
 
+if [ -e .UPGRADE5 ]
+then
+    ./upgrade ${VERSION} 5
+fi
 if [ -e .UPGRADE7 ]
 then
     ./upgrade $1 8
