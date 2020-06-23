@@ -37,7 +37,7 @@ jobs:
                 "maintainer_can_modify": True,
             }' \
             --header=Accept=application/vnd.github.v3+json \
-            --header=Authorization="Bearer ${{ secret.GITHUB_GOPASS_CI_TOKEN }}" \
+            --header=Authorization="Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}" \
             --header=Content-Type=application/json \
             https://github.com/camptocamp/demo_geomapfish/pulls
         if: failure()
