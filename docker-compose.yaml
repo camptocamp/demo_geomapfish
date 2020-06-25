@@ -78,7 +78,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: geoportal
-    image: camptocamp/geomapfish-geoportal:2.5
+    image: camptocamp/geomapfish-geoportal:2.6
     volumes_from:
       - config:ro
     environment:
@@ -94,7 +94,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: alembic
-    image: camptocamp/geomapfish-geoportal:2.5
+    image: camptocamp/geomapfish-geoportal:2.6
 
   front:
     extends:
