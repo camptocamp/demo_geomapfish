@@ -29,15 +29,15 @@ jobs:
           git status
           git commit -m "Interrupted upgrade to ${MAJOR_VERSION}"
           git push --force origin HEAD:interrupted-upgrade-26
-          curl --data='{
+          curl -X POST --data '{
                 "title": "Upgrade failed",
                 "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.6%22",
                 "head": "interrupted-upgrade-26",
                 "base": "prod-2-6",
                 "maintainer_can_modify": True,
             }' \
-            --header=Accept=application/vnd.github.v3+json \
-            --header=Authorization="Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}" \
-            --header=Content-Type=application/json \
+            --header Accept=application/vnd.github.v3+json \
+            --header Authorization="Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}" \
+            --header Content-Type=application/json \
             https://github.com/camptocamp/demo_geomapfish/pulls
         if: failure()
