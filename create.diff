@@ -1,0 +1,32 @@
+diff --git a/geoportal/Dockerfile b/geoportal/Dockerfile
+index 31f023f..cc46b2d 100644
+--- a/geoportal/Dockerfile
++++ b/geoportal/Dockerfile
+@@ -1,4 +1,4 @@
+-FROM camptocamp/geomapfish-tools:2.5.0.37 as builder
++FROM camptocamp/geomapfish-tools:2.5.0.48 as builder
+ LABEL maintainer Camptocamp "info@camptocamp.com"
+ 
+ WORKDIR /app
+@@ -36,7 +36,7 @@ RUN chmod go+w /etc/static-ngeo/ \
+ 
+ RUN pip install --disable-pip-version-check --no-cache-dir --editable=/app/ && \
+     python3 -m compileall -q /usr/local/lib/python3.7 \
+-        -x '/usr/local/lib/python3.7/dist-packages/(pydevd|ptvsd)/' && \
++        -x '/usr/local/lib/python3.7/dist-packages/(pydevd|ptvsd|pipenv)/' && \
+     python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
+ 
+ ARG GIT_HASH
+diff --git a/print/print-apps/geomapfish/config.yaml.tmpl b/print/print-apps/geomapfish/config.yaml.tmpl
+index 27792f9..88a85b4 100644
+--- a/print/print-apps/geomapfish/config.yaml.tmpl
++++ b/print/print-apps/geomapfish/config.yaml.tmpl
+@@ -68,7 +68,7 @@ templates:
+           - !forwardHeaders
+             matchers:
+               - !hostnameMatch
+-                host: ${VISIBLE_WEB_HOSTNAME}
++                host: ${VISIBLE_WEB_HOST}
+                 port: ${VISIBLE_WEB_PORT}
+             headers:
+               - Cookie

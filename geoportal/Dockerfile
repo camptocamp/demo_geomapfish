@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.5.0.37 as builder
+FROM camptocamp/geomapfish-tools:2.5.0.48 as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 WORKDIR /app
@@ -39,7 +39,7 @@ RUN chmod go+w /etc/static-ngeo/ \
 
 RUN pip install --disable-pip-version-check --no-cache-dir --editable=/app/ && \
     python3 -m compileall -q /usr/local/lib/python3.7 \
-        -x '/usr/local/lib/python3.7/dist-packages/(pydevd|ptvsd)/' && \
+        -x '/usr/local/lib/python3.7/dist-packages/(pydevd|ptvsd|pipenv)/' && \
     python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
 
 ARG GIT_HASH
