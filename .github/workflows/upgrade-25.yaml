@@ -28,15 +28,21 @@ jobs:
           git status
           git commit -m "Interrupted upgrade to ${MAJOR_VERSION}"
           git push --force origin HEAD:interrupted-upgrade-25
-          curl -X POST --data '{
+          python3 -c 'import requests
+          responce = requests.post(
+              "https://api.github.com/repos/camptocamp/demo_geomapfish/pulls",
+              json={
                 "title": "Upgrade failed",
-                "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.6%22",
+                "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.5%22",
                 "head": "interrupted-upgrade-25",
                 "base": "prod-2-5",
-                "maintainer_can_modify": True,
-            }' \
-            --header Accept=application/vnd.github.v3+json \
-            --header Authorization="Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}" \
-            --header Content-Type=application/json \
-            https://github.com/camptocamp/demo_geomapfish/pulls
+                "maintainer_can_modify": True
+              },
+              headers={
+                  "Accept": "application/vnd.github.v3+json",
+                  "Authorization": "Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }",
+                  "Content-Type": "application/json",
+              },
+          )
+          assert responce.status_code < 300, responce.text'
         if: failure()
