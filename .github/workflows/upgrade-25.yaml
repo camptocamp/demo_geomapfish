@@ -40,7 +40,7 @@ jobs:
               },
               headers={
                   "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }",
+                  "Authorization": "Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}",
                   "Content-Type": "application/json",
               },
           )
