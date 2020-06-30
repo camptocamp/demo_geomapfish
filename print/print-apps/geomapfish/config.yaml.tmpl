@@ -110,14 +110,7 @@ templates:
           ##       host: ${GEOPORTAL_INTERNAL_HOST}
           ##       port: ${GEOPORTAL_INTERNAL_PORT}
           - !forwardHeaders
-<<<<<<< ours
             matchers: *allowedHosts
-=======
-            matchers:
-              - !hostnameMatch
-                host: ${VISIBLE_WEB_HOST}
-                port: ${VISIBLE_WEB_PORT}
->>>>>>> theirs
             headers:
               - Cookie
               ## - Host
