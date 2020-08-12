@@ -18,27 +18,27 @@ then
     VERSION=latest
 fi
 
-if [ -e .UPGRADE5 ]
+if [ -e .UPGRADE6 ]
 then
-    ./upgrade ${VERSION} 5
-fi
-if [ -e .UPGRADE7 ]
-then
-    ./upgrade ${VERSION} 8
+    ./upgrade ${VERSION} 7
 fi
 if [ -e .UPGRADE8 ]
 then
-    # Workaround
-    git status > /dev/null
-    git apply --3way ngeo.diff
     ./upgrade ${VERSION} 9
 fi
 if [ -e .UPGRADE9 ]
 then
     # Workaround
     git status > /dev/null
-    git apply --3way create.diff
+    git apply --3way ngeo.diff
     ./upgrade ${VERSION} 10
+fi
+if [ -e .UPGRADE10 ]
+then
+    # Workaround
+    git status > /dev/null
+    git apply --3way create.diff
+    ./upgrade ${VERSION} 11
 fi
 if [ ! -e .UPGRADE_SUCCESS ]
 then
