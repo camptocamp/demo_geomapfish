@@ -96,7 +96,10 @@ class Controller extends AbstractMobileController {
 /**
  * @hidden
  */
-const module = angular.module('Appmobile_alt', [geomapfishBase.name, gmfControllersAbstractMobileController.name]);
+const module = angular.module('Appmobile_alt', [
+  geomapfishBase.name,
+  gmfControllersAbstractMobileController.name,
+]);
 
 module.controller('AlternativeMobileController', Controller);
 
