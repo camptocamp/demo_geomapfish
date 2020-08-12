@@ -13,7 +13,7 @@ rules:
   valid-jsdoc: 0
   max-len:
     - error
-    - code: 110
+    - code: 150
       ignoreComments: true
   prettier/prettier: 0
   sort-imports-es6-autofix/sort-imports-es6: 0
