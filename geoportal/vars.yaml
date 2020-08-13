@@ -341,6 +341,20 @@ vars:
             layers: []
           legend: {}
 
+  # The dogpile.cache configuration.
+  cache:
+    std:
+      # Standalone version
+      # backend: c2cgeoportal.hybridsentinel
+      # arguments:
+      #   host: '{REDIS_HOST}'
+      #   port: '{REDIS_PORT}'
+      # Openshift version
+      arguments:
+        sentinels:
+          - - '{REDIS_HOST}'
+            - '{REDIS_PORT}'
+
 update_paths:
   - admin_interface.available_functionalities
   - admin_interface.available_metadata
@@ -405,6 +419,7 @@ no_interpreted:
   - shortener.email_body
   - welcome_email.email_body
 
+<<<<<<< ours
 runtime_environment:
   - name: SMTP_USER
     default: user
@@ -429,3 +444,10 @@ runtime_environment:
 
 environment:
   - name: VERSION
+=======
+# Standalone version
+# runtime_postprocess:
+#   - expression: "int({})"
+#     vars:
+#       - cache.std.arguments.port
+>>>>>>> theirs
