@@ -100,17 +100,6 @@ generation:
     maxconsecutive_errors: 10
 
 redis:
-<<<<<<< ours
-    # socket_timeout: ${REDIS_TIMEOUT}
-    # For standalone version
-    url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
-    # For OpenShift version
-    # sentinels:
-    #   - - ${REDIS_HOST}
-    #     - ${REDIS_PORT}
-    # service_name: ${REDIS_SERVICENAME}
-    # db: ${REDIS_DB}
-=======
     socket_timeout: ${REDIS_TIMEOUT}
     # For standalone version
     # url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
@@ -120,7 +109,6 @@ redis:
         - ${REDIS_PORT}
     service_name: ${REDIS_SERVICENAME}
     db: ${REDIS_DB}
->>>>>>> theirs
 
 # Not used if the previous redis section is not commented out
 sqs:
