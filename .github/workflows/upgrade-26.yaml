@@ -1,5 +1,4 @@
 ---
-
 name: Upgrade 2.6
 
 on:
@@ -24,6 +23,7 @@ jobs:
           scripts/upgrade ${{ github.event.client_payload.version }} origin
       - name: Push interrupted Upgrade
         run: |
+          ls -als .UPGRADE*
           git add --all || true
           git add --force .UPGRADE_INSTRUCTIONS || true
           git status
