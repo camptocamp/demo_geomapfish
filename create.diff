@@ -1,0 +1,123 @@
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+index 5834e02..a2238d5 100644
+--- a/docker-compose.yaml
++++ b/docker-compose.yaml
+@@ -47,10 +47,31 @@ services:
+     volumes_from:
+       - config:ro
+ 
+-  redis:
++  # Standalone version
++  # redis:
++  #   extends:
++  #     file: docker-compose-lib.yaml
++  #     service: redis
++
++  # To test OpenShift version
++  redis_master:
++    extends:
++      file: docker-compose-lib.yaml
++      service: redis_master
++
++  redis_slave:
++    extends:
++      file: docker-compose-lib.yaml
++      service: redis_slave
++    depends_on:
++      - redis_master
++
++  redis_sentinel:
+     extends:
+       file: docker-compose-lib.yaml
+-      service: redis
++      service: redis_sentinel
++    depends_on:
++      - redis_master
+ 
+   tilecloudchain:
+     extends:
+diff --git a/env.project b/env.project
+index 9357454..34fdf10 100644
+--- a/env.project
++++ b/env.project
+@@ -36,4 +36,13 @@ TILEGENERATION_S3_BUCKET=<bucket_name>
+ FRONT_INNER_PORT=443
+ FRONT_CONFIG=haproxy_dev
+ 
++# For OpenShift
++REDIS_HOST=redis_sentinel
++REDIS_PORT=26379
++C2C_REDIS_SENTINELS=redis_sentinel:26379
++# For internal Redis
++# REDIS_HOST=redis
++# REDIS_PORT=6379
++# C2C_REDIS_URL=redis://redis:6379/0
++
+ C2C_SECRET=c2crulez
+diff --git a/geoportal/Dockerfile b/geoportal/Dockerfile
+index b260d85..ce1d6d8 100644
+--- a/geoportal/Dockerfile
++++ b/geoportal/Dockerfile
+@@ -63,4 +63,5 @@ ENV VISIBLE_ENTRY_POINT=/ \
+     GUNICORN_LOG_LEVEL=INFO \
+     SQL_LOG_LEVEL=WARN \
+     DOGPILECACHE_LOG_LEVEL=INFO \
+-    OTHER_LOG_LEVEL=WARN
++    OTHER_LOG_LEVEL=WARN \
++    DEVELOPMENT=False
+diff --git a/geoportal/vars.yaml b/geoportal/vars.yaml
+index b7a4a57..9314e54 100644
+--- a/geoportal/vars.yaml
++++ b/geoportal/vars.yaml
+@@ -161,6 +161,20 @@ vars:
+     # - display: Child:
+     #   url: {web_protocol}://{host}/child/wsgi
+ 
++  # The dogpile.cache configuration.
++  cache:
++    std:
++      # Standalone version
++      # backend: c2cgeoportal.hybridsentinel
++      # arguments:
++      #   host: '{REDIS_HOST}'
++      #   port: '{REDIS_PORT}'
++      # Openshift version
++      arguments:
++        sentinels:
++          - - '{REDIS_HOST}'
++            - '{REDIS_PORT}'
++
+ update_paths:
+   - admin_interface.available_functionalities
+   - admin_interface.available_metadata
+@@ -222,3 +236,9 @@ no_interpreted:
+   - reset_password.email_body
+   - shortener.email_body
+   - welcome_email.email_body
++
++# Standalone version
++# runtime_postprocess:
++#   - expression: "int({})"
++#     vars:
++#       - cache.std.arguments.port
+diff --git a/tilegeneration/config.yaml.tmpl b/tilegeneration/config.yaml.tmpl
+index fce8fd7..fca7aa0 100644
+--- a/tilegeneration/config.yaml.tmpl
++++ b/tilegeneration/config.yaml.tmpl
+@@ -97,7 +97,15 @@ generation:
+     default_cache: s3
+ 
+ redis:
+-    url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
++    socket_timeout: ${REDIS_TIMEOUT}
++    # For standalone version
++    # url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
++    # For OpenShift version
++    sentinels:
++      - - ${REDIS_HOST}
++        - ${REDIS_PORT}
++    service_name: ${REDIS_SERVICENAME}
++    db: ${REDIS_DB}
+ 
+ # Not used if the previous redis section is not commented out
+ sqs:

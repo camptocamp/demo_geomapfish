@@ -1,5 +1,4 @@
 ---
-
 extends: CONST_vars.yaml
 
 vars:
@@ -120,28 +119,28 @@ vars:
     map: &map_config
       srid: 2056
       projections:
-       - code: "EPSG:2056"
-         definition: "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 \
-                      +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs"
+        - code: 'EPSG:2056'
+          definition: "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 \
+            +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs"
       baseLayers:
-        - type_: "WMTS"
+        - type_: 'WMTS'
           url: "{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}tiles/1.0.0/\
-                {{{{{{{{{{{{{{{{Layer}}}}}}}}}}}}}}}}/default/{{{{{{{{{{{{{{{{TileMatrixSet}}}}}}}}}}}}}}}}\
-                /{{{{{{{{{{{{{{{{TileMatrix}}}}}}}}}}}}}}}}/{{{{{{{{{{{{{{{{TileRow}}}}}}}}}}}}}}}}/\
-                {{{{{{{{{{{{{{{{TileCol}}}}}}}}}}}}}}}}.png"
-          requestEncoding: "REST"
-          layer: "map"
-          matrixSet: "epsg2056_005"
+            {{{{{{{{{{{{{{{{Layer}}}}}}}}}}}}}}}}/default/{{{{{{{{{{{{{{{{TileMatrixSet}}}}}}}}}}}}}}}}\
+            /{{{{{{{{{{{{{{{{TileMatrix}}}}}}}}}}}}}}}}/{{{{{{{{{{{{{{{{TileRow}}}}}}}}}}}}}}}}/\
+            {{{{{{{{{{{{{{{{TileCol}}}}}}}}}}}}}}}}.png"
+          requestEncoding: 'REST'
+          layer: 'map'
+          matrixSet: 'epsg2056_005'
           dimensions: {}
-          style: "default"
-          projection: "EPSG:2056"
+          style: 'default'
+          projection: 'EPSG:2056'
           tileGrid:
             origin: [2420000, 1350000]
             resolutions: [4000, 2000, 1000, 500, 250, 100, 50, 20, 10, 5, 2.5, 1, 0.5, 0.25, 0.1, 0.05]
-            matrixIds: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+            matrixIds: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
           attributions: []
       view:
-        projection: "EPSG:2056"
+        projection: 'EPSG:2056'
         initialExtent: [2495822, 1091449, 2780525, 1270656]
       fitMaxZoom: 12
 
@@ -183,15 +182,15 @@ vars:
   # chapter in the integrator documentation.
   raster:
     srtm:
-      file: "{raster_base_path}/SRTM2056.vrt"
+      file: '{raster_base_path}/SRTM2056.vrt'
       type: gdal
       round: 1
     srtm-partial:
-      file: "{raster_base_path}/SRTM2056-partial.vrt"
+      file: '{raster_base_path}/SRTM2056-partial.vrt'
       type: gdal
       round: 0.1
     aster:
-      file: "{raster_base_path}/Aster2056.vrt"
+      file: '{raster_base_path}/Aster2056.vrt'
       type: gdal
       round: 1
 
@@ -208,7 +207,7 @@ vars:
   shortener:
     # Used to send a confirmation email
     email_from: info@camptocamp.com
-    email_subject: "Geoportal URL"
+    email_subject: 'Geoportal URL'
     email_body: |
       Hello,
       Somebody sent you the following link:
@@ -218,7 +217,7 @@ vars:
       Sincerely yours
       The GeoMapfish team
     allowed_hosts:
-      - "{VISIBLE_WEB_HOST}"
+      - '{VISIBLE_WEB_HOST}'
       - camptocamp.github.io
       - geomapfish-demo-dc.camptocamp.com
       - fredj.github.io
@@ -264,10 +263,10 @@ vars:
 
   headers:
     themes: &headers
-      cache_control_max_age: 600  # 10 minutes
+      cache_control_max_age: 600 # 10 minutes
       access_control_max_age: 30
       access_control_allow_origin:
-        - "{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}"
+        - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
         - https://camptocamp.github.io
         - https://fredj.github.io
         - https://ger-benjamin.github.io
@@ -282,7 +281,7 @@ vars:
         - http://localhost
         - http://127.0.0.1:3000
         - http://127.0.0.1
-        - "*"
+        - '*'
     index: *headers
     api: *headers
     error: *headers
@@ -325,14 +324,14 @@ vars:
       disable: [apihelp]
     print:
       spec:
-        layout: "1 A4 portrait"
-        outputFormat: "pdf"
+        layout: '1 A4 portrait'
+        outputFormat: 'pdf'
         attributes:
-          title: ""
-          comments: ""
+          title: ''
+          comments: ''
           datasource: []
           map:
-            projection: "EPSG:21781"
+            projection: 'EPSG:21781'
             dpi: 254
             rotation: 0
             center: [600000, 200000]
@@ -340,6 +339,20 @@ vars:
             longitudeFirst: true
             layers: []
           legend: {}
+
+  # The dogpile.cache configuration.
+  cache:
+    std:
+      # Standalone version
+      # backend: c2cgeoportal.hybridsentinel
+      # arguments:
+      #   host: '{REDIS_HOST}'
+      #   port: '{REDIS_PORT}'
+      # Openshift version
+      arguments:
+        sentinels:
+          - - '{REDIS_HOST}'
+            - '{REDIS_PORT}'
 
 update_paths:
   - admin_interface.available_functionalities
