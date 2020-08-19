@@ -57,7 +57,7 @@ vars:
               label: display_name
             - featureType: osm_scale
               label: display_name
-    mobile:
+    desktop:
       constants:
         sentryOptions: &sentryOptions
           dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
@@ -69,22 +69,18 @@ vars:
             - https://camptocamp\.github\.io/ngeo/.*
           tags:
             service: js
-            interface: mobile
-    mobile_alt:
-      constants:
-        sentryOptions:
-          <<: *sentryOptions
-          tags:
-            service: js
-            interface: mobile_alt
-    desktop:
-      constants:
-        sentryOptions:
-          <<: *sentryOptions
-          tags:
-            service: js
             interface: desktop
+        ngeoWfsPermalinkOptions:
+          wfsTypes:
+            - featureType: osm_hospitals
+              label: name
+            - featureType: osm_firestations
+              label: name
+          defaultFeatureNS: http://www.qgis.org/gml
+          defaultFeaturePrefix: feature
         gmfOptions:
+          map:
+            maxTilesLoading: 128
           view:
             srid: 2056,
             center: [2632464, 1185457]
@@ -95,19 +91,21 @@ vars:
     desktop_alt:
       redirect_interface: mobile_alt
       constants:
-        ngeoWfsPermalinkOptions:
-          wfsTypes:
-            - featureType: osm_hospitals
-              label: name
-            - featureType: osm_firestations
-              label: name
-          defaultFeatureNS: http://www.qgis.org/gml
-          defaultFeaturePrefix: feature
         sentryOptions:
           <<: *sentryOptions
           tags:
             service: js
             interface: desktop_alt
+        gmfOptions:
+          map:
+            maxTilesLoading: .Inf
+          view:
+            srid: 2056,
+            center: [2632464, 1185457]
+            zoom: 3
+            resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+            constrainResolution: false
+            extent: [2485071.54, 175346.36, 2828515.78, 1299941.84]
         gmfInfobarOptions:
           show: True
         gmfElevationOptions:
@@ -216,10 +214,24 @@ vars:
             - EPSG:21781
           useLocalStorage: False
           pointRecenterZoom:
+    mobile:
+      constants:
+        sentryOptions:
+          <<: *sentryOptions
+          tags:
+            service: js
+            interface: mobile
     mobile_alt:
       redirect_interface: desktop_alt
       constants:
+        sentryOptions:
+          <<: *sentryOptions
+          tags:
+            service: js
+            interface: mobile_alt
         gmfOptions:
+          map:
+            pixelRatio: 1
           view:
             autorotate: true
             srid: 2056
