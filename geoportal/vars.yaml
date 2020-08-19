@@ -44,7 +44,7 @@ vars:
         gmfOptions:
           map: {}
           view:
-            srid: 2056,
+            srid: 2056
             center: [2632464, 1185457]
             zoom: 3
             resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
@@ -82,7 +82,7 @@ vars:
           map:
             maxTilesLoading: 128
           view:
-            srid: 2056,
+            srid: 2056
             center: [2632464, 1185457]
             zoom: 3
             resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
@@ -98,9 +98,9 @@ vars:
             interface: desktop_alt
         gmfOptions:
           map:
-            maxTilesLoading: .Inf
+            maxTilesLoading: 9999
           view:
-            srid: 2056,
+            srid: 2056
             center: [2632464, 1185457]
             zoom: 3
             resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
