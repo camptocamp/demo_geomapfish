@@ -2,6 +2,7 @@
 extends: CONST_vars.yaml
 
 vars:
+
   srid: 2056
   osm_db: '{OSM_PGDATABASE}'
   schema: 'main_2_6'
@@ -14,6 +15,11 @@ vars:
   aws_s3_endpoint: '{AWS_S3_ENDPOINT}'
 
   main_ogc_server: Main PNG
+
+  alternate_projections: &alternate_projections
+    - EPSG:3857
+    - EPSG:{srid}
+    - EPSG:21781
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -43,14 +49,53 @@ vars:
         defaultLang: '{default_locale_name}'
         gmfOptions:
           map: {}
-          view:
-            srid: 2056
+          view: &view
+            srid: '{srid}'
             center: [2632464, 1185457]
             zoom: 3
             resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
             extent: [2485071.54, 175346.36, 2828515.78, 1299941.84]
-            autorotate: false
-            constrainResolution: true
+        gmfSearchOptions:
+          styles: {}
+          coordinatesProjections: *alternate_projections
+          actions:
+            - action: add_theme
+              title: Add a theme
+            - action: add_group
+              title: Add a sub theme
+            - action: add_layer
+              title: Add a layer
+        gmfContextualDataOptions:
+          projections: [2056, 21781, 4326]
+        gmfMousePositionOptions:
+          projections:
+            - code: EPSG:2056
+              label: CH1903+ / LV95
+              filter: ngeoNumberCoordinates::{{x}}, {{y}} m
+            - code: EPSG:21781
+              label: CH1903 / LV03
+              filter: ngeoNumberCoordinates::{{x}}, {{y}} m
+            - code: EPSG:4326'
+              label: WGS84
+              filter: ngeoDMSCoordinates:2
+        gmfExternalOGCServers:
+          - name: Swiss Topo WMS
+            type: WMS
+            url: https://wms.geo.admin.ch/?lang=fr
+          - name: Swiss Topo WMTS
+            type: WMTS
+            url: https://wmts.geo.admin.ch/1.0.0/WMTSCapabilities.xml?lang=fr
+          - name: ASIT VD
+            type: WMTS
+            url: https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml
+        ngeoScaleSelectorOptions:
+          values: [1000000, 500000, 200000, 100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 200]
+        gmfPermalinkOptions:
+          crosshairStyle:
+          crosshairEnabledByDefault: False
+          projectionCodes: *alternate_projections
+          useLocalStorage: False
+          pointRecenterZoom:
         ngeoWfsPermalinkOptions:
           wfsTypes:
             - featureType: fuel
@@ -63,31 +108,19 @@ vars:
           dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
           release: '{VERSION}'
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
-          attachStacktrace: true
+          attachStacktrace: True
           whitelistUrls:
             - .*\.camptocamp\.com.*
             - https://camptocamp\.github\.io/ngeo/.*
           tags:
             service: js
             interface: desktop
-        ngeoWfsPermalinkOptions:
-          wfsTypes:
-            - featureType: osm_hospitals
-              label: name
-            - featureType: osm_firestations
-              label: name
-          defaultFeatureNS: http://www.qgis.org/gml
-          defaultFeaturePrefix: feature
         gmfOptions:
           map:
             maxTilesLoading: 128
           view:
-            srid: 2056
-            center: [2632464, 1185457]
-            zoom: 3
-            resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
-            constrainResolution: false
-            extent: [2485071.54, 175346.36, 2828515.78, 1299941.84]
+            <<: *view
+            constrainResolution: True
     desktop_alt:
       redirect_interface: mobile_alt
       constants:
@@ -99,13 +132,15 @@ vars:
         gmfOptions:
           map:
             maxTilesLoading: 9999
-          view:
-            srid: 2056
-            center: [2632464, 1185457]
-            zoom: 3
-            resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
-            constrainResolution: false
-            extent: [2485071.54, 175346.36, 2828515.78, 1299941.84]
+          view: *view
+        ngeoWfsPermalinkOptions:
+          wfsTypes:
+            - featureType: osm_hospitals
+              label: name
+            - featureType: osm_firestations
+              label: name
+          defaultFeatureNS: http://www.qgis.org/gml
+          defaultFeaturePrefix: feature
         gmfInfobarOptions:
           show: True
         gmfElevationOptions:
@@ -122,7 +157,7 @@ vars:
             transport (merged): [fuel, parking]
             Learning [merged]: [information, bus_stop]
         gmfSearchOptions:
-          coordinatesProjections: [EPSG:21781, EPSG:2056, EPSG:4326]
+          coordinatesProjections: *alternate_projections
           delay: 500
           colorChooser: True
           clearBuffon: True
@@ -149,17 +184,17 @@ vars:
         ngeoQueryOptions:
           tolerance: 20
           limit: 5
-          queryCountFirst: true
+          queryCountFirst: True
         gmfPrintOptions:
-          scaleInput: true
+          scaleInput: True
           legend:
-            useBbox: false
+            useBbox: False
           hiddenAttributes: [debug]
           rotatemask: True
         gmfDisclaimerOptions:
           layerVisibility: False
           external: True
-        gmfTreeManagerModeFlush: false
+        gmfTreeManagerModeFlush: False
         gmfSearchGroups: []
         gmfFloors:
           # Communes
@@ -174,8 +209,8 @@ vars:
           - value: '*'
             label: '*'
         gmfAuthenticationConfig:
-          allowPasswordReset: false
-          allowPasswordChange: false
+          allowPasswordReset: False
+          allowPasswordChange: False
         ngeoRoutingOptions:
           - backendUrl: https://routing.osm.ch/
           - profiles:
@@ -208,10 +243,7 @@ vars:
               radius2: 0
               angle: 0
           crosshairEnabledByDefault: True
-          projectionCodes:
-            - EPSG:3857
-            - EPSG:2056
-            - EPSG:21781
+          projectionCodes: *alternate_projections
           useLocalStorage: False
           pointRecenterZoom:
     mobile:
@@ -221,6 +253,11 @@ vars:
           tags:
             service: js
             interface: mobile
+        gmfOptions:
+          map: {}
+          view:
+            <<: *view
+            autorotate: True
     mobile_alt:
       redirect_interface: desktop_alt
       constants:
@@ -233,20 +270,16 @@ vars:
           map:
             pixelRatio: 1
           view:
-            autorotate: true
-            srid: 2056
-            center: [2632464, 1185457]
-            zoom: 3
-            resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
-            extent: [2485071.54, 175346.36, 2828515.78, 1299941.84]
-        gmfTreeManagerModeFlush: false
+            <<: *view
+            autorotate: True
+        gmfTreeManagerModeFlush: False
         gmfDisplayQueryWindowOptions:
           defaultCollapsed: False
         gmfMobileMeasure:
           coordinatesDecimals: 2
           format: '{{x}} / {{y}}'
         gmfSearchOptions:
-          coordinatesProjections: [EPSG:21781, EPSG:2056, EPSG:4326]
+          coordinatesProjections: *alternate_projections
           delay: 50
           clearBuffon: False
           actions: []
@@ -315,7 +348,7 @@ vars:
       - name: location
 
   getitfixed:
-    enabled: true
+    enabled: True
     map: *map_config
 
   functionalities:
@@ -501,7 +534,7 @@ vars:
             rotation: 0
             center: [600000, 200000]
             scale: 100000
-            longitudeFirst: true
+            longitudeFirst: True
             layers: []
           legend: {}
 
