@@ -275,9 +275,6 @@ vars:
         gmfTreeManagerModeFlush: False
         gmfDisplayQueryWindowOptions:
           defaultCollapsed: False
-        gmfMobileMeasure:
-          coordinatesDecimals: 2
-          format: '{{x}} / {{y}}'
         gmfSearchOptions:
           coordinatesProjections: *alternate_projections
           delay: 50
