@@ -151,7 +151,7 @@ vars:
           linesConfiguration:
             srtm-partial: {}
         gmfDisplayQueryGridOptions:
-          featuresstyle: {}
+          featuresStyle: {}
           removeEmptyColumns: True
           mergeTabs:
             OSM_time_merged: [osm_time, osm_time2]
@@ -196,6 +196,8 @@ vars:
         gmfDisclaimerOptions:
           layerVisibility: False
           external: True
+          externalMessage: disclaimerMsg
+          externalVisibility: disclaimerVisibility
         gmfTreeManagerModeFlush: False
         gmfSearchGroups: []
         gmfFloors:
