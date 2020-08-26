@@ -181,6 +181,7 @@ vars:
           opacityLayer: orthophoto
         ngeoScaleSelectorOptions:
           values:
+          dropup: True
         ngeoQueryOptions:
           tolerance: 20
           limit: 5
