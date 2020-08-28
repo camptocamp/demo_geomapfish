@@ -676,6 +676,7 @@ no_interpreted:
   - reset_password.email_body
   - shortener.email_body
   - welcome_email.email_body
+  - interfaces_config.mobile_alt.constants.gmfMobileMeasurePointOptions.format
 
 runtime_environment:
   - name: SMTP_USER
