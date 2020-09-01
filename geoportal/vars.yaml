@@ -2,7 +2,6 @@
 extends: CONST_vars.yaml
 
 vars:
-
   srid: 2056
   osm_db: '{OSM_PGDATABASE}'
   schema: 'main_2_6'
@@ -291,6 +290,8 @@ vars:
         gmfLayerTreeOptions:
           openLinksInNewWindow: True
           isExpanded: False
+        gmfShareOptions:
+          enableEmail: False
     mobile:
       constants:
         sentryOptions:
