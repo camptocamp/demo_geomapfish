@@ -317,8 +317,6 @@
           <div class="gmf-app-map-messages">
             <gmf-disclaimer
               gmf-disclaimer-map="::mainCtrl.map"
-              gmf-disclaimer-layer-visibility="::false"
-              gmf-disclaimer-external="::true"
               gmf-disclaimer-external-msg="disclaimerMsg"
               gmf-disclaimer-external-visibility="disclaimerVisibility">
             </gmf-disclaimer>
@@ -344,9 +342,7 @@
           <button class="btn fa gmf-app-map-info ng-cloak" ng-click="mainCtrl.showInfobar = !mainCtrl.showInfobar"
                   ng-class="{'fa-angle-double-up': !mainCtrl.showInfobar, 'fa-angle-double-down': mainCtrl.showInfobar}"></button>
 
-          <div ngeo-scaleselector="undefined"
-               ngeo-scaleselector-map="mainCtrl.map"
-               ngeo-scaleselector-options="mainCtrl.scaleSelectorOptions"></div>
+          <div ngeo-scaleselector ngeo-scaleselector-map="mainCtrl.map"></div>
           <div id="scaleline"></div>
           <div class="pull-right">
             <gmf-elevationwidget
@@ -388,10 +384,7 @@
 
       <gmf-displayquerygrid
         gmf-displayquerygrid-active="queryGridActive"
-        gmf-displayquerygrid-featuresstyle="::mainCtrl.queryFeatureStyle"
         gmf-displayquerygrid-map="::mainCtrl.map"
-        gmf-displayquerygrid-removeemptycolumns="true"
-        gmf-displayquerygrid-mergetabs="::mainCtrl.gridMergeTabs"
         ngeo-resizemap="mainCtrl.map"
         ngeo-resizemap-state="queryGridActive">
       </gmf-displayquerygrid>
