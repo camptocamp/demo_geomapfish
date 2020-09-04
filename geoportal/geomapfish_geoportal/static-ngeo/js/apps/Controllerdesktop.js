@@ -37,6 +37,8 @@ import geomapfishBase from '../geomapfishmodule.js';
 import EPSG2056 from '@geoblocks/proj/src/EPSG_2056.js';
 import EPSG21781 from '@geoblocks/proj/src/EPSG_21781.js';
 
+import {initialize} from './duo/index.js';
+
 if (!window.requestAnimationFrame) {
   alert('Your browser is not supported, please update it or use another one. You will be redirected.\n\n'
     + 'Votre navigateur n\'est pas supporté, veuillez le mettre à jour ou en utiliser un autre. '
@@ -124,6 +126,12 @@ class Controller extends AbstractDesktopController {
     gettextCatalog.getString('Add a theme');
     gettextCatalog.getString('Add a sub theme');
     gettextCatalog.getString('Add a layer');
+  }
+
+  handleDuoWebLogin(resp) {
+    // geoportal login was successful
+    initialize(resp.data.sig_request);
+    return resp;
   }
 }
 
