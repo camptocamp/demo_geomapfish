@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.5.0.72 as builder
+FROM camptocamp/geomapfish-tools:2.5.0.73 as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 WORKDIR /app
@@ -26,8 +26,8 @@ RUN \
 
 WORKDIR /app
 COPY . /app
-COPY --from=builder /usr/lib/node_modules/ngeo/dist/* \
-    /etc/static-ngeo/
+COPY --from=builder /app/geomapfish_geoportal/locale/ /app/geomapfish_geoportal/locale/
+COPY --from=builder /usr/lib/node_modules/ngeo/dist/* /etc/static-ngeo/
 COPY --from=builder /etc/static-ngeo/* /etc/static-ngeo/
 COPY --from=builder /app/alembic.ini /app/alembic.yaml ./
 RUN chmod go+w /etc/static-ngeo/ \
