@@ -161,40 +161,6 @@ class Controller extends AbstractDesktopController {
       }
     });
 
-    /**
-     * @type {string[]}
-     */
-    this.searchCoordinatesProjections = ['EPSG:21781', 'EPSG:2056', 'EPSG:4326'];
-
-    /**
-     * @type {Object<string, import('gmf/profile/component.js').ProfileLineConfiguration>}
-     */
-    this.profileLinesconfiguration = {
-      'aster': {color: '#0000A0'},
-      'srtm': {color: '#00A000'},
-    };
-
-    /**
-     * @type {Array<import('gmf/map/mousepositionComponent.js').MousePositionProjection>}
-     */
-    this.mousePositionProjections = [
-      {
-        code: 'EPSG:2056',
-        label: 'CH1903+ / LV95',
-        filter: 'ngeoNumberCoordinates::{x}, {y} m',
-      },
-      {
-        code: 'EPSG:21781',
-        label: 'CH1903 / LV03',
-        filter: 'ngeoNumberCoordinates::{x}, {y} m',
-      },
-      {
-        code: 'EPSG:4326',
-        label: 'WGS84',
-        filter: 'ngeoDMSCoordinates:2',
-      },
-    ];
-
     // Allow angular-gettext-tools to collect the strings to translate
     /** @type {angular.gettext.gettextCatalog} */
     const gettextCatalog = $injector.get('gettextCatalog');

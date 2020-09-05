@@ -72,47 +72,9 @@ class Controller extends AbstractDesktopController {
     }
 
     /**
-     * @type {Array<string>}
-     */
-    this.searchCoordinatesProjections = ['EPSG:21781', 'EPSG:2056', 'EPSG:4326'];
-
-    /**
-     * @type {number}
-     */
-    this.searchDelay = 500;
-
-    /**
      * @type {boolean}
      */
     this.showInfobar = true;
-
-    /**
-     * @type {Object<string, import('gmf/profile/component.js').ProfileLineConfiguration>}
-     */
-    this.profileLinesconfiguration = {
-      'srtm-partial': {},
-    };
-
-    /**
-     * @type {Array<import('gmf/map/mousepositionComponent.js').MousePositionProjection>}
-     */
-    this.mousePositionProjections = [
-      {
-        code: 'EPSG:2056',
-        label: 'CH1903+ / LV95',
-        filter: 'ngeoNumberCoordinates::{x}, {y} m',
-      },
-      {
-        code: 'EPSG:21781',
-        label: 'CH1903 / LV03',
-        filter: 'ngeoNumberCoordinates::{x}, {y} m',
-      },
-      {
-        code: 'EPSG:4326',
-        label: 'WGS84',
-        filter: 'ngeoDMSCoordinates:2',
-      },
-    ];
 
     const radius = 5;
     const fill = new Fill({color: [255, 255, 255, 0.6]});
