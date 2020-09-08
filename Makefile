@@ -17,3 +17,7 @@ secrets:
 		--output secrets.tar.bz2 secrets.tar.bz2.gpg
 	tar --touch -jxf secrets.tar.bz2
 	rm secrets.tar.bz2
+
+.PHONY: update-po
+update-po:
+	docker-compose exec tools sh -c "USER_ID=`id --user` GROUP_ID=`id --group` make -C geoportal update-po"
