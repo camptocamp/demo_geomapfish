@@ -29,19 +29,16 @@ RUN \
 
 WORKDIR /app
 COPY . /app
-COPY --from=builder /app/geomapfish_geoportal/locale/ /app/geomapfish_geoportal/locale/
 # Workaround, see:https://github.com/moby/moby/issues/37965
 RUN true
 COPY --from=builder /usr/lib/node_modules/ngeo/dist/* /etc/static-ngeo/
 COPY --from=builder /etc/static-ngeo/* /etc/static-ngeo/
 COPY --from=builder /app/alembic.ini /app/alembic.yaml ./
-RUN chmod go+w /etc/static-ngeo/ \
-    /app/geomapfish_geoportal/locale/ \
-    /app/geomapfish_geoportal/locale/*/LC_MESSAGES/geomapfish_geoportal-client.po
+RUN chmod go+w /etc/static-ngeo/
 
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=/app/ && \
     python3 -m compileall -q /usr/local/lib/python3.8 \
-        -x '/usr/local/lib/python3.8/dist-packages/(pydevd|ptvsd|pipenv)/' && \
+        -x '/usr/local/lib/python3.8/dist-packages/(pydevd|ptvsd|pipenv|.*pydev.*)/' && \
     python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
 
 ARG GIT_HASH
