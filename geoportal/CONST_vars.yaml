@@ -300,7 +300,7 @@ vars:
                 radius: 3
         gmfShareOptions:
           enableEmail: True
-        gmfGeolocationOptions:
+        ngeoGeolocationOptions:
           positionFeatureStyle:
             circle:
               radius: 6
