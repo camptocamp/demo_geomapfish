@@ -131,6 +131,12 @@ vars:
             title: Add a sub theme
           - action: add_layer
             title: Add a layer
+        gmfContextualDataOptions:
+          projections: *alternate_projections
+          rasterParams: {}
+        gmfContextualdataOptions:
+          projections: *alternate_projections
+          rasterParams: {}
     desktop:
       constants:
         sentryOptions: &sentryOptions
