@@ -162,6 +162,7 @@ vars:
           map:
             maxTilesLoading: 9999
           view: *view
+          showInfobar: True
         ngeoWfsPermalinkOptions:
           wfsTypes:
             - featureType: osm_hospitals
