@@ -206,6 +206,16 @@ vars:
               title: Add a sub theme
             - action: add_layer
               title: Add a layer
+          datasources:
+            labelKey: label
+            groupActions:
+              - action: add_theme
+                title: Add a theme
+              - action: add_group
+                title: Add a sub theme
+              - action: add_layer
+                title: Add a layer
+            projection: EPSG:{srid}
         gmfBackgroundLayerSelectorOptions:
           opacityLayer: orthophoto
         ngeoScaleSelectorOptions:
@@ -315,6 +325,16 @@ vars:
           delay: 50
           clearBuffon: False
           actions: []
+          datasources:
+            labelKey: label
+            groupActions:
+              - action: add_theme
+                title: Add a theme
+              - action: add_group
+                title: Add a sub theme
+              - action: add_layer
+                title: Add a layer
+            projection: EPSG:{srid}
         gmfLayerTreeOptions:
           openLinksInNewWindow: True
           isExpanded: False
