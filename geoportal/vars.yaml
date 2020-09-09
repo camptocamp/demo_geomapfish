@@ -121,6 +121,14 @@ vars:
               fill:
                 color: '#ffffff'
                 radius: 3
+        # Should be removed
+        gmfSearchActions:
+          - action: add_theme
+            title: Add a theme
+          - action: add_group
+            title: Add a sub theme
+          - action: add_layer
+            title: Add a layer
     desktop:
       constants:
         sentryOptions: &sentryOptions
