@@ -12,6 +12,7 @@ managed_files:
   - docker-compose\.override\.sample\.yaml
   - geoportal/Dockerfile
   - geoportal/requirements\.txt
+  - scripts/publish-docker
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
