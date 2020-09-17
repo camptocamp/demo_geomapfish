@@ -1,6 +1,5 @@
 FROM camptocamp/geomapfish-tools:latest as builder
 
-ENV LANGUAGES="en fr de"
 ENV VARS_FILE=vars.yaml
 ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \
     sqlalchemy.executemany_mode sqlalchemy_slave.url sqlalchemy_slave.pool_recycle sqlalchemy_slave.pool_size \
@@ -15,7 +14,7 @@ ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqla
 COPY . /tmp/config/
 
 RUN \
-    for lang in ${LANGUAGES}; \
+    for lang in $(cd /tmp/config/geoportal/geomapfish_geoportal/locale/; ls -d */ | sed "s#/##"); \
     do \
         msgfmt -o /tmp/config/geoportal/geomapfish_geoportal/locale/${lang}/LC_MESSAGES/geomapfish_geoportal-client.mo \
             /tmp/config/geoportal/geomapfish_geoportal/locale/${lang}/LC_MESSAGES/geomapfish_geoportal-client.po; \
