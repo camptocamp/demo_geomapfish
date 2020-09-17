@@ -18,7 +18,7 @@ def main():
         "--no-trigger",
         dest="trigger",
         action="store_false",
-        help="Trigger openshift for an image update",
+        help="Disable triggerring OpenShift for an image update",
     )
     args = parser.parse_args()
 
