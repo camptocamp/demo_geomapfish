@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-05-06 13:53+0000\n"
+"POT-Creation-Date: 2020-09-08 13:28+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -79,15 +79,6 @@ msgstr "Démo"
 
 msgid "Desktop Application"
 msgstr "Application bureau"
-
-msgid ""
-"Disclaimer works obviously also on items in subgroups (layer entertainment)"
-msgstr ""
-"Déni de responsabilité fonctionne évidemment également sur les éléments dans "
-"les sous-groupes (divertissement de couche)"
-
-msgid "Disclaimer works on items (layer police)"
-msgstr "Déni de responsabilité fonctionne sur les articles (couche police)"
 
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
@@ -171,6 +162,9 @@ msgstr "Couche avec un nom très très très très très long"
 
 msgid "Layers"
 msgstr "Couches"
+
+msgid "Layers-exclusive"
+msgstr ""
 
 msgid "Learning [merged]"
 msgstr "Apprentissage [fusionné]"
@@ -437,6 +431,10 @@ msgstr "Convention des Alpes"
 msgid "ch.astra.ausnahmetransportrouten"
 msgstr "Itinéraires convois exceptionnels"
 
+#, fuzzy
+msgid "ch.astra.hauptstrassennetz"
+msgstr "Itinéraires convois exceptionnels"
+
 msgid "ch.bfe.solarenergie-eignung-daecher"
 msgstr "Solaire: aptitude des toitures"
 
@@ -553,9 +551,6 @@ msgstr "Fontaines"
 
 msgid "fuel"
 msgstr "Station d'essence"
-
-msgid "geom21781"
-msgstr "Géometrie 21781"
 
 msgid "good"
 msgstr "Correcte"
@@ -1253,12 +1248,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"© Contributeurs d’<a href='http://www.openstreetmap.org/"
+"© Les contributeurs d’<a href='http://www.openstreetmap.org/"
 "copyright'>OpenStreetMap</a>"
 msgstr ""
-
-msgid "© les contributeurs d’OpenStreetMap"
-msgstr "© les contributeurs d’OpenStreetMap"
 
 #~ msgid "Batiment VD"
 #~ msgstr "Bâtiment VD"
@@ -1271,6 +1263,16 @@ msgstr "© les contributeurs d’OpenStreetMap"
 
 #~ msgid "Cluster_FeatureCount"
 #~ msgstr "Grappe nombre elements"
+
+#~ msgid ""
+#~ "Disclaimer works obviously also on items in subgroups (layer "
+#~ "entertainment)"
+#~ msgstr ""
+#~ "Déni de responsabilité fonctionne évidemment également sur les éléments "
+#~ "dans les sous-groupes (divertissement de couche)"
+
+#~ msgid "Disclaimer works on items (layer police)"
+#~ msgstr "Déni de responsabilité fonctionne sur les articles (couche police)"
 
 #~ msgid "ObjectEditing - Viewer Application"
 #~ msgstr "Edition d'objet - Application de visionnage"
@@ -1295,6 +1297,9 @@ msgstr "© les contributeurs d’OpenStreetMap"
 
 #~ msgid "ch.swisstopo.swissnames3d_feature_poly"
 #~ msgstr "Noms géographiques swissNAMES3D"
+
+#~ msgid "geom21781"
+#~ msgstr "Géometrie 21781"
 
 #~ msgid "last_update_timestamp"
 #~ msgstr "Data de mise à jours"
@@ -1322,3 +1327,6 @@ msgstr "© les contributeurs d’OpenStreetMap"
 
 #~ msgid "zoo"
 #~ msgstr "Zoo"
+
+#~ msgid "© les contributeurs d’OpenStreetMap"
+#~ msgstr "© les contributeurs d’OpenStreetMap"
