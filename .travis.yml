@@ -1,5 +1,4 @@
 ---
-
 sudo: false
 
 addons:
@@ -20,9 +19,9 @@ jobs:
       script:
         - ./docker-run make docker-build-config
       after_success:
-        - ./travis/deploy 2.4 config
+        - ./scripts/deploy-docker --image=config
     - script:
         - ./docker-run make checks
         - ./docker-run make docker-build-geoportal
       after_success:
-        - ./travis/deploy 2.4 geoportal
+        - ./scripts/deploy-docker --image=geoportal
