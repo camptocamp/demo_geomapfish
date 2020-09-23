@@ -33,27 +33,26 @@ jobs:
         if: "env.HELM_RELEASE_NAMES != ''"
       - run: scripts/deploy-docker --image=config --service=github
         if: "env.HELM_RELEASE_NAMES != ''"
-
-  geoportal:
-    runs-on: ubuntu-18.04
-    name: Geoportal
-    timeout-minutes: 10
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Run checks
-        run: ./docker-run make checks
-
-      - name: Build geoportal
-        run: ./docker-run make docker-build-geoportal
-
-      - uses: camptocamp/initialise-gopass-summon-action@v1
-        with:
-          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
-          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
-        if: "env.HELM_RELEASE_NAMES != ''"
-      - run: scripts/deploy-docker --image=geoportal --no-trigger
-        if: "env.HELM_RELEASE_NAMES != ''"
-      - run: scripts/deploy-docker --image=geoportal --service=github
-        if: "env.HELM_RELEASE_NAMES != ''"
+#  geoportal:
+#    runs-on: ubuntu-18.04
+#    name: Geoportal
+#    timeout-minutes: 10
+#
+#    steps:
+#      - uses: actions/checkout@v1
+#
+#      - name: Run checks
+#        run: ./docker-run make checks
+#
+#      - name: Build geoportal
+#        run: ./docker-run make docker-build-geoportal
+#
+#      - uses: camptocamp/initialise-gopass-summon-action@v1
+#        with:
+#          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
+#          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
+#        if: "env.HELM_RELEASE_NAMES != ''"
+#      - run: scripts/deploy-docker --image=geoportal --no-trigger
+#        if: "env.HELM_RELEASE_NAMES != ''"
+#      - run: scripts/deploy-docker --image=geoportal --service=github
+#        if: "env.HELM_RELEASE_NAMES != ''"
