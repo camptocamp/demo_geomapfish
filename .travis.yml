@@ -23,8 +23,8 @@ jobs:
         - ./docker-run make docker-build-config
       after_success:
         - ./scripts/deploy-docker --image=config
-    - script:
-        - ./docker-run make checks
-        - ./docker-run make docker-build-geoportal
-      after_success:
-        - ./scripts/deploy-docker --image=geoportal
+#    - script:
+#        - ./docker-run make checks
+#        - ./docker-run make docker-build-geoportal
+#      after_success:
+#        - ./scripts/deploy-docker --image=geoportal
