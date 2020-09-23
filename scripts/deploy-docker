@@ -124,7 +124,7 @@ def main():
 
         for image in args.images:
             openshift_image_ref = "{}-c2cgeoportal-{}:{}".format(
-                version, image, version
+                os.environ.get("OPENSHIFT_RELEASE", version), image, version
             )
             subprocess.check_call(
                 [
