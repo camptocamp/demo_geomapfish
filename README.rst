@@ -1,12 +1,12 @@
 demo_geomapfish project
-===================
+=======================
 
 Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.4/>`_
 
 Checkout
 --------
 
-.. script::
+.. script:: bash
 
    git clone git@github.com:camptocamp/demo_geomapfish.git
 
@@ -15,7 +15,7 @@ Checkout
 Build
 -----
 
-.. script::
+.. script:: bash
 
   make secrets
 
@@ -24,6 +24,6 @@ Build
 Run locally
 -----------
 
-.. script::
+.. script:: bash
 
   docker-compose up -d
