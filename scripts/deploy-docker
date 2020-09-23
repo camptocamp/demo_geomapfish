@@ -46,13 +46,19 @@ def main():
 
     cmd = ["docker", "login"]
     if args.service == "dockerhub":
-        login = os.environ["DOCKER_USERNAME"]
-        password = os.environ["DOCKER_PASSWORD"]
+        if "GITHUB_REF" in os.environ:
+            login = subprocess.check_output(
+                ["gopass", "gs/ci/dockerhub/username"]
+            ).decode()
+            password = subprocess.check_output(["gopass", "gs/ci/dockerhub/password"])
+        else:
+            login = os.environ["DOCKER_USERNAME"]
+            password = os.environ["DOCKER_PASSWORD"]
         prefix = ""
     elif args.service == "github":
         cmd += ["ghcr.io"]
-        login = os.environ["GITHUB_USERNAME"]
-        password = os.environ["GITHUB_TOKEN"]
+        login = subprocess.check_output(["gopass", "gs/ci/github/username"]).decode()
+        password = subprocess.check_output(["gopass", "gs/ci/github/token/gopass"])
         prefix = "ghcr.io/"
     else:
         print("Unknown service '{}'".format(args.service))

@@ -29,8 +29,6 @@ jobs:
           ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
           github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
         if: "env.HELM_RELEASE_NAMES != ''"
-      - run: scripts/deploy-docker --image=config --no-trigger
-        if: "env.HELM_RELEASE_NAMES != ''"
       - run: scripts/deploy-docker --image=config --service=github
         if: "env.HELM_RELEASE_NAMES != ''"
 
@@ -52,8 +50,6 @@ jobs:
 #        with:
 #          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
 #          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
-#        if: "env.HELM_RELEASE_NAMES != ''"
-#      - run: scripts/deploy-docker --image=geoportal --no-trigger
 #        if: "env.HELM_RELEASE_NAMES != ''"
 #      - run: scripts/deploy-docker --image=geoportal --service=github
 #        if: "env.HELM_RELEASE_NAMES != ''"
