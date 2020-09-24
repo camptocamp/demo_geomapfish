@@ -25,12 +25,6 @@ vars:
   # This also defines the language used for the text search.
   default_locale_name: fr
 
-  # The set of languages supported by the applications.
-  available_locale_names:
-    - en
-    - fr
-    - de
-
   # All the application interfaces used to create the apache rewrite rules
   interfaces:
     - name: desktop
@@ -481,6 +475,7 @@ vars:
       fr: fr
       en: english
       de: german
+      it: italian
 
   resourceproxy:
     targets:
