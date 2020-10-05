@@ -383,6 +383,8 @@ vars:
           zoom: 8
           autorotate: True
           atloadingtime: True
+          autoRotate: True
+          atLoadingTime: True
       routes:
         ngeoPermalinkOgcserverUrl:
           name: mapserverproxy
