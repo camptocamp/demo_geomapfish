@@ -365,6 +365,24 @@ vars:
               radius: 8
               radius2: 0
               angle: 0
+        ngeoGeolocationOptions:
+          positionFeatureStyle:
+            circle:
+              radius: 6
+              fill:
+                color: rgba(230, 100, 100, 1)
+              stroke:
+                color: rgba(230, 40, 40, 1)
+                width: 2
+          accuracyFeatureStyle:
+            fill:
+              color: rgba(100, 100, 230, 0.3)
+            stroke:
+              color: rgba(40, 40, 230, 1)
+              width: 2
+          zoom: 8
+          autorotate: True
+          atloadingtime: True
       routes:
         ngeoPermalinkOgcserverUrl:
           name: mapserverproxy
