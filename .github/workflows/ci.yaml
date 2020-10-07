@@ -45,11 +45,12 @@ jobs:
       - run: touch env.secrets
       - name: Build geoportal
         run: ./build --geoportal
-
 #      - uses: camptocamp/initialise-gopass-summon-action@v1
 #        with:
 #          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
 #          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
 #        if: "env.HELM_RELEASE_NAMES != ''"
-#      - run: scripts/publish-docker geoportal
+#      - run: scripts/publish-docker --image=geoportal --no-trigger
+#        if: "env.HELM_RELEASE_NAMES != ''"
+#      - run: scripts/publish-docker --image=geoportal --service=github
 #        if: "env.HELM_RELEASE_NAMES != ''"
