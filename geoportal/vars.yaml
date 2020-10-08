@@ -166,6 +166,9 @@ vars:
           view: *view
           showInfobar: True
           geolocalisation: False
+          cssVars:
+            brand-primary: '#9FB6CC'
+            brand-secondary: '#D3DBE3'
         ngeoWfsPermalinkOptions:
           wfsTypes:
             - featureType: osm_hospitals
