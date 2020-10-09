@@ -13,24 +13,6 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: contribs/gmf/apps/desktop/Controller.js:65
-#: contribs/gmf/apps/desktop_alt/Controller.js:77
-#: contribs/gmf/apps/oeedit/Controller.js:169
-msgid "Add a layer"
-msgstr "Ajouter une couche"
-
-#: contribs/gmf/apps/desktop/Controller.js:64
-#: contribs/gmf/apps/desktop_alt/Controller.js:76
-#: contribs/gmf/apps/oeedit/Controller.js:168
-msgid "Add a sub theme"
-msgstr "Ajouter un sous thème"
-
-#: contribs/gmf/apps/desktop/Controller.js:63
-#: contribs/gmf/apps/desktop_alt/Controller.js:75
-#: contribs/gmf/apps/oeedit/Controller.js:167
-msgid "Add a theme"
-msgstr "Ajouter un theme"
-
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:4
 msgid "Alternative Desktop Application"
 msgstr "Application bureau alternative"
@@ -139,10 +121,6 @@ msgstr "Importer une couche"
 msgid "In order to use the editing tool, you must log in first."
 msgstr "Pour utiliser l'interface d’édition vous devez être connecté."
 
-#: contribs/gmf/apps/desktop_alt/Controller.js:74
-msgid "Learning [merged]"
-msgstr "Formation [merged]"
-
 #: contribs/gmf/apps/mobile/index.html.ejs:171
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:165
 msgid "Length"
@@ -180,14 +158,6 @@ msgstr "Outil de mesure"
 #: contribs/gmf/apps/mobile/index.html.ejs:4
 msgid "Mobile Application"
 msgstr "Application mobile"
-
-#: contribs/gmf/apps/desktop_alt/Controller.js:73
-msgid "OSM_time (merged)"
-msgstr "Temps OSM (merger)"
-
-#: contribs/gmf/apps/desktop_alt/Controller.js:72
-msgid "OSM_time_merged"
-msgstr "Temps OSM (merger)"
 
 #: contribs/gmf/apps/oeedit/index.html.ejs:61
 #: contribs/gmf/apps/oeedit/index.html.ejs:79
