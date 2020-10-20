@@ -27,8 +27,6 @@ services:
       service: mapserver
     volumes_from:
       - config:ro
-    volumes:
-      - /var/sig:/var/sig:ro
 
   qgisserver:
     extends:
@@ -108,8 +106,6 @@ services:
       - RASTER_BASE_PATH
       - SMTP_USER
       - SMTP_PASSWORD
-    volumes:
-      - /var/sig:/var/sig:ro
 
   alembic:
     extends:
