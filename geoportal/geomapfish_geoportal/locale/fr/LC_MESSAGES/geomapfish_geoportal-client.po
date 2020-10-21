@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-05-06 13:53+0000\n"
+"POT-Creation-Date: 2020-10-21 07:21+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -79,15 +79,6 @@ msgstr "Démo"
 
 msgid "Desktop Application"
 msgstr "Application bureau"
-
-msgid ""
-"Disclaimer works obviously also on items in subgroups (layer entertainment)"
-msgstr ""
-"Déni de responsabilité fonctionne évidemment également sur les éléments dans "
-"les sous-groupes (divertissement de couche)"
-
-msgid "Disclaimer works on items (layer police)"
-msgstr "Déni de responsabilité fonctionne sur les articles (couche police)"
 
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
@@ -172,6 +163,9 @@ msgstr "Couche avec un nom très très très très très long"
 msgid "Layers"
 msgstr "Couches"
 
+msgid "Layers-exclusive"
+msgstr ""
+
 msgid "Learning [merged]"
 msgstr "Apprentissage [fusionné]"
 
@@ -225,9 +219,6 @@ msgstr "Carte OSM"
 
 msgid "OSM map WMS"
 msgstr "Carte OSM WMS"
-
-msgid "OSM_time (merged)"
-msgstr "OSM temps (fusionné)"
 
 msgid "OSM_time_merged"
 msgstr "OSM temps (fusionné)"
@@ -434,31 +425,13 @@ msgstr "Arrêt de bus"
 msgid "ch.are.alpenkonvention"
 msgstr "Convention des Alpes"
 
-msgid "ch.astra.ausnahmetransportrouten"
-msgstr "Itinéraires convois exceptionnels"
+msgid "ch.astra.hauptstrassennetz"
+msgstr "Réseau routes principales"
 
 msgid "ch.bfe.solarenergie-eignung-daecher"
 msgstr "Solaire: aptitude des toitures"
 
-msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
-msgstr "Solaire: aptitude des toitures"
-
-msgid "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo"
-msgstr "Solaire: aptitude des toitures"
-
-msgid "ch.bfe.solarenergie-eignung-daecher_overview"
-msgstr "Solaire: aptitude des toitures"
-
 msgid "ch.bfe.solarenergie-eignung-fassaden"
-msgstr "Solaire: potentiel des facades"
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_fulldetail"
-msgstr "Solaire: potentiel des facades"
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_getfeatureinfo"
-msgstr "Solaire: potentiel des facades"
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
 msgstr "Solaire: potentiel des facades"
 
 msgid "ch.swisstopo.dreiecksvermaschung"
@@ -553,9 +526,6 @@ msgstr "Fontaines"
 
 msgid "fuel"
 msgstr "Station d'essence"
-
-msgid "geom21781"
-msgstr "Géometrie 21781"
 
 msgid "good"
 msgstr "Correcte"
@@ -1139,6 +1109,9 @@ msgstr "Tourisme"
 msgid "traffic_signals"
 msgstr "Signaux de trafic"
 
+msgid "transport (merged)"
+msgstr ""
+
 msgid "turning_circle"
 msgstr "Rond-point interne"
 
@@ -1150,9 +1123,6 @@ msgstr "Type"
 
 msgid "vd.npa_localite"
 msgstr "N° postal"
-
-msgid "vd.regime_hydrique"
-msgstr "Régime hydrique"
 
 msgid "vd.regime_hydrique noWFS"
 msgstr "Régime hydrique sans WFS"
@@ -1253,12 +1223,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"© Contributeurs d’<a href='http://www.openstreetmap.org/"
+"© Les contributeurs d’<a href='http://www.openstreetmap.org/"
 "copyright'>OpenStreetMap</a>"
 msgstr ""
-
-msgid "© les contributeurs d’OpenStreetMap"
-msgstr "© les contributeurs d’OpenStreetMap"
 
 #~ msgid "Batiment VD"
 #~ msgstr "Bâtiment VD"
@@ -1271,6 +1238,19 @@ msgstr "© les contributeurs d’OpenStreetMap"
 
 #~ msgid "Cluster_FeatureCount"
 #~ msgstr "Grappe nombre elements"
+
+#~ msgid ""
+#~ "Disclaimer works obviously also on items in subgroups (layer "
+#~ "entertainment)"
+#~ msgstr ""
+#~ "Déni de responsabilité fonctionne évidemment également sur les éléments "
+#~ "dans les sous-groupes (divertissement de couche)"
+
+#~ msgid "Disclaimer works on items (layer police)"
+#~ msgstr "Déni de responsabilité fonctionne sur les articles (couche police)"
+
+#~ msgid "OSM_time (merged)"
+#~ msgstr "OSM temps (fusionné)"
 
 #~ msgid "ObjectEditing - Viewer Application"
 #~ msgstr "Edition d'objet - Application de visionnage"
@@ -1290,11 +1270,32 @@ msgstr "© les contributeurs d’OpenStreetMap"
 #~ msgid "cafe"
 #~ msgstr "Café"
 
+#~ msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
+#~ msgstr "Solaire: aptitude des toitures"
+
+#~ msgid "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo"
+#~ msgstr "Solaire: aptitude des toitures"
+
+#~ msgid "ch.bfe.solarenergie-eignung-daecher_overview"
+#~ msgstr "Solaire: aptitude des toitures"
+
+#~ msgid "ch.bfe.solarenergie-eignung-fassaden_fulldetail"
+#~ msgstr "Solaire: potentiel des facades"
+
+#~ msgid "ch.bfe.solarenergie-eignung-fassaden_getfeatureinfo"
+#~ msgstr "Solaire: potentiel des facades"
+
+#~ msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
+#~ msgstr "Solaire: potentiel des facades"
+
 #~ msgid "ch.swisstopo.swissnames3d_feature_point"
 #~ msgstr "Noms géographiques swissNAMES3D"
 
 #~ msgid "ch.swisstopo.swissnames3d_feature_poly"
 #~ msgstr "Noms géographiques swissNAMES3D"
+
+#~ msgid "geom21781"
+#~ msgstr "Géometrie 21781"
 
 #~ msgid "last_update_timestamp"
 #~ msgstr "Data de mise à jours"
@@ -1320,5 +1321,11 @@ msgstr "© les contributeurs d’OpenStreetMap"
 #~ msgid "vd.batiment_rcb"
 #~ msgstr "Bâtiment VD RCB"
 
+#~ msgid "vd.regime_hydrique"
+#~ msgstr "Régime hydrique"
+
 #~ msgid "zoo"
 #~ msgstr "Zoo"
+
+#~ msgid "© les contributeurs d’OpenStreetMap"
+#~ msgstr "© les contributeurs d’OpenStreetMap"

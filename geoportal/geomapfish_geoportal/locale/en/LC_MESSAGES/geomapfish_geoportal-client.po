@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-06-13 09:37+0000\n"
+"POT-Creation-Date: 2020-10-21 07:21+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -61,12 +61,6 @@ msgstr "Back"
 msgid "Background"
 msgstr "Background"
 
-msgid "Batiment VD"
-msgstr "Building VD"
-
-msgid "Batiment VD noWFS"
-msgstr "Buildinf VD no WFS"
-
 msgid "Cadastre"
 msgstr "Cadastre"
 
@@ -89,14 +83,6 @@ msgid "Desktop Application"
 msgstr "Desktop Application"
 
 msgid ""
-"Disclaimer works obviously also on items in subgroups (layer entertainment)"
-msgstr ""
-"Disclaimer works obviously also on items in subgroups (layer entertainment)"
-
-msgid "Disclaimer works on items (layer police)"
-msgstr "Disclaimer works on items (layer police)"
-
-msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
@@ -108,6 +94,9 @@ msgstr "Draw and Measure"
 
 msgid "Draw profile line"
 msgstr "Draw profile line"
+
+msgid "ESRI no WFS no Geom"
+msgstr ""
 
 msgid "Edit"
 msgstr "Edit"
@@ -148,6 +137,9 @@ msgstr "Filters"
 msgid "Filters mixed"
 msgstr "Filters mixed"
 
+msgid "Floor slider"
+msgstr ""
+
 msgid "Gestion des eaux"
 msgstr "Water Management"
 
@@ -172,11 +164,17 @@ msgstr "Layer with very very very very very long name"
 msgid "Layers"
 msgstr "Layers"
 
+msgid "Layers-exclusive"
+msgstr ""
+
 msgid "Learning [merged]"
 msgstr "Learning [merged]"
 
 msgid "Length"
 msgstr "Length"
+
+msgid "Loading themes, please wait..."
+msgstr ""
 
 msgid "Loading..."
 msgstr "Loading..."
@@ -205,6 +203,12 @@ msgstr "Multi-Polygon queryable, non editable"
 msgid "Multi-Polygon Query2 pas éditable mais queryable"
 msgstr "Multi-Polygon2 queryable, non editable"
 
+msgid "NPA localite"
+msgstr ""
+
+msgid "NPA localite noWFS"
+msgstr ""
+
 msgid "OSM functions"
 msgstr "OSM functions"
 
@@ -217,9 +221,6 @@ msgstr "OSM map"
 msgid "OSM map WMS"
 msgstr "OSM map WMS"
 
-msgid "OSM_time (merged)"
-msgstr "OSM time (merged)"
-
 msgid "OSM_time_merged"
 msgstr "OSM time (merged)"
 
@@ -231,9 +232,6 @@ msgstr "ObjectEditing"
 
 msgid "ObjectEditing - Edit Application"
 msgstr "ObjectEditing - Edit Application"
-
-msgid "ObjectEditing - Viewer Application"
-msgstr "ObjectEditing - Viewer Application"
 
 msgid "Patrimoine"
 msgstr "Heritage"
@@ -262,6 +260,9 @@ msgstr "Query"
 msgid "Routing"
 msgstr "Routing"
 
+msgid "Selection"
+msgstr ""
+
 msgid "Share this map"
 msgstr "Share this map"
 
@@ -286,8 +287,8 @@ msgstr "Sub group"
 msgid "Swiss grid (LV03)"
 msgstr "Swiss grid (LV03)"
 
-msgid "Test"
-msgstr "Test"
+msgid "Swiss grid (LV95)"
+msgstr "Swiss grid (LV95)"
 
 msgid "Test for a disclaimer to test metadata"
 msgstr "Test for a disclaimer to test metadata"
@@ -316,13 +317,13 @@ msgstr "WGS Coord."
 msgid "Wgs Coord. DMS"
 msgstr "WGS Coord. DMS"
 
-msgid "You must change your password"
-msgstr "You must change your password"
-
 msgid ""
 "You're using the mobile application. Check out the <a href="
 "\"{{url}}\">standard application</a>."
 msgstr ""
+
+msgid "__test__"
+msgstr "Test"
 
 msgid "access"
 msgstr "Access"
@@ -423,31 +424,13 @@ msgstr "Bus stop"
 msgid "ch.are.alpenkonvention"
 msgstr "Alpine Convention"
 
-msgid "ch.astra.ausnahmetransportrouten"
-msgstr "Cant. routes for exceptional loads"
+msgid "ch.astra.hauptstrassennetz"
+msgstr "Réseau routes principales"
 
 msgid "ch.bfe.solarenergie-eignung-daecher"
 msgstr "Solar energy: suitability of roofs"
 
-msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
-msgstr "Solar energy: suitability of roofs"
-
-msgid "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo"
-msgstr "Solar energy: suitability of roofs"
-
-msgid "ch.bfe.solarenergie-eignung-daecher_overview"
-msgstr "Solar energy: suitability of roofs"
-
 msgid "ch.bfe.solarenergie-eignung-fassaden"
-msgstr "Solarenergie: Eignung Fassaden"
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_fulldetail"
-msgstr "Solarenergie: Eignung Fassaden"
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_getfeatureinfo"
-msgstr "Solarenergie: Eignung Fassaden"
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
 msgstr "Solarenergie: Eignung Fassaden"
 
 msgid "ch.swisstopo.dreiecksvermaschung"
@@ -519,8 +502,20 @@ msgstr "Entertainment"
 msgid "fid"
 msgstr "ID"
 
+msgid "filter_double"
+msgstr "Filter double"
+
+msgid "filter_double_all"
+msgstr ""
+
+msgid "filter_group"
+msgstr "Filter Groupe"
+
 msgid "firestations"
 msgstr "Fire stations"
+
+msgid "floor_slider"
+msgstr ""
 
 msgid "foot"
 msgstr "Foot"
@@ -551,6 +546,9 @@ msgstr "Hospitals"
 
 msgid "hotel"
 msgstr "Hotel"
+
+msgid "hotel_label"
+msgstr "Hotel label"
 
 msgid "information"
 msgstr "Information"
@@ -766,37 +764,55 @@ msgid "osm_time2"
 msgstr "OSM time 2"
 
 msgid "osm_time_d_year_mounth"
-msgstr "OSM time (value, year, mounth)"
+msgstr "OSM time (valeur, année, mois)"
+
+msgid "osm_time_default"
+msgstr "OSM time (defaut)"
+
+msgid "osm_time_default_slider"
+msgstr "OSM time (defaut, curseur)"
 
 msgid "osm_time_mount_year"
-msgstr "OSM time (mounth, year)"
+msgstr "OSM time (mois, année)"
 
 msgid "osm_time_r_dp"
-msgstr "OSM time (range, picker)"
+msgstr "OSM time (intervalle, selecteur)"
 
 msgid "osm_time_r_dp_2"
-msgstr "OSM time (range, picker 2)"
+msgstr "OSM time (intervalle, selecteur 2)"
+
+msgid "osm_time_r_dp_default"
+msgstr "OSM time (intervalle, selecteur, defaut)"
 
 msgid "osm_time_r_mounth_year"
-msgstr "OSM time (range, mounth, year)"
+msgstr "OSM time (intervalle, mois, année)"
 
 msgid "osm_time_r_s"
-msgstr "OSM time (range, slider)"
+msgstr "OSM time (intervalle, curseur)"
+
+msgid "osm_time_r_s_default"
+msgstr "OSM time (range, curseur, defaut)"
 
 msgid "osm_time_r_year_mounth"
-msgstr "OSM time (range, year, mounth)"
+msgstr "OSM time (intervalle, année, mois)"
 
 msgid "osm_time_v_dp"
-msgstr "OSM time (value, picher)"
+msgstr "OSM time (value, selecteur)"
+
+msgid "osm_time_v_dp_default"
+msgstr "OSM time (value, selecteur, default)"
 
 msgid "osm_time_v_mounth_year"
-msgstr "OSM time (value, mounth year)"
+msgstr "OSM time (value, mois, année)"
 
 msgid "osm_time_v_s"
-msgstr "OSM time (value, slider)"
+msgstr "OSM time (value, selecteur)"
+
+msgid "osm_time_v_s_default"
+msgstr "OSM time (value, selecteur, defaut)"
 
 msgid "osm_time_year_mounth"
-msgstr "OSM time (year, mounth)"
+msgstr "OSM time (year, mois)"
 
 msgid "other"
 msgstr "Other"
@@ -893,6 +909,12 @@ msgstr "Points & Landuse (no WFS)"
 
 msgid "points_ingrp"
 msgstr "Points in group"
+
+msgid "pointscopier"
+msgstr "Point copier"
+
+msgid "pointslabels"
+msgstr "Points label"
 
 msgid "police"
 msgstr "Police"
@@ -1086,6 +1108,9 @@ msgstr "Tourism activity"
 msgid "traffic_signals"
 msgstr "Traffic signals"
 
+msgid "transport (merged)"
+msgstr ""
+
 msgid "turning_circle"
 msgstr "Turning circle"
 
@@ -1095,8 +1120,11 @@ msgstr "Two layer"
 msgid "type"
 msgstr "Type"
 
-msgid "vd.batiment_rcb"
-msgstr "Buildings VD RCB"
+msgid "vd.npa_localite"
+msgstr ""
+
+msgid "vd.regime_hydrique noWFS"
+msgstr ""
 
 msgid "waterarea10"
 msgstr "Waterarea"
@@ -1196,14 +1224,17 @@ msgstr ""
 "org/copyright'>OpenStreetMap</a> Contributors"
 
 msgid ""
-"© Contributeurs d’<a href='http://www.openstreetmap.org/"
+"© Les contributeurs d’<a href='http://www.openstreetmap.org/"
 "copyright'>OpenStreetMap</a>"
 msgstr ""
-"© <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
-" Contributors"
+"© <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> "
+"Contributors"
 
-msgid "© les contributeurs d’OpenStreetMap"
-msgstr "© OpenStreetMap Contributors"
+#~ msgid "Batiment VD"
+#~ msgstr "Building VD"
+
+#~ msgid "Batiment VD noWFS"
+#~ msgstr "Buildinf VD no WFS"
 
 #~ msgid "Cluster_BaseFID"
 #~ msgstr "Cluster Base FID"
@@ -1211,11 +1242,30 @@ msgstr "© OpenStreetMap Contributors"
 #~ msgid "Cluster_FeatureCount"
 #~ msgstr "Cluster Feature Count"
 
-#~ msgid "Cluster_Group"
-#~ msgstr "Cluster Group"
+#~ msgid ""
+#~ "Disclaimer works obviously also on items in subgroups (layer "
+#~ "entertainment)"
+#~ msgstr ""
+#~ "Disclaimer works obviously also on items in subgroups (layer "
+#~ "entertainment)"
+
+#~ msgid "Disclaimer works on items (layer police)"
+#~ msgstr "Disclaimer works on items (layer police)"
+
+#~ msgid "OSM_time (merged)"
+#~ msgstr "OSM time (merged)"
+
+#~ msgid "ObjectEditing - Viewer Application"
+#~ msgstr "ObjectEditing - Viewer Application"
+
+#~ msgid "Test"
+#~ msgstr "Test"
 
 #~ msgid "Test aus Olten"
 #~ msgstr "Test on Olten"
+
+#~ msgid "You must change your password"
+#~ msgstr "You must change your password"
 
 #~ msgid "alpine_hut"
 #~ msgstr "Alpine hut"
@@ -1223,8 +1273,23 @@ msgstr "© OpenStreetMap Contributors"
 #~ msgid "cafe"
 #~ msgstr "Café"
 
-#~ msgid "filters"
-#~ msgstr "Filters"
+#~ msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
+#~ msgstr "Solar energy: suitability of roofs"
+
+#~ msgid "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo"
+#~ msgstr "Solar energy: suitability of roofs"
+
+#~ msgid "ch.bfe.solarenergie-eignung-daecher_overview"
+#~ msgstr "Solar energy: suitability of roofs"
+
+#~ msgid "ch.bfe.solarenergie-eignung-fassaden_fulldetail"
+#~ msgstr "Solarenergie: Eignung Fassaden"
+
+#~ msgid "ch.bfe.solarenergie-eignung-fassaden_getfeatureinfo"
+#~ msgstr "Solarenergie: Eignung Fassaden"
+
+#~ msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
+#~ msgstr "Solarenergie: Eignung Fassaden"
 
 #~ msgid "geom"
 #~ msgstr "Geom"
@@ -1238,11 +1303,14 @@ msgstr "© OpenStreetMap Contributors"
 #~ msgid "standard application"
 #~ msgstr "Standard version"
 
-#~ msgid "test"
-#~ msgstr "Test"
-
 #~ msgid "test2"
 #~ msgstr "Second test"
 
+#~ msgid "vd.batiment_rcb"
+#~ msgstr "Buildings VD RCB"
+
 #~ msgid "zoo"
 #~ msgstr "Zoo"
+
+#~ msgid "© les contributeurs d’OpenStreetMap"
+#~ msgstr "© OpenStreetMap Contributors"

@@ -1,8 +1,10 @@
-BUILD_OPTIONS = --config
+.PHONY: update-po
+update-po:
+	docker-compose exec -T tools sh -c "USER_ID=`id --user` GROUP_ID=`id --group` make -C geoportal update-po"
 
 .PHONY: build
 build:
-	./build $(BUILD_OPTIONS)
+	./build --config
 
 secrets.tar.bz2.gpg: env.secrets secrets.md
 	tar -jcf secrets.tar.bz2 $^

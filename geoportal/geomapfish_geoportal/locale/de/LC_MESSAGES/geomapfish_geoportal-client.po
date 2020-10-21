@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-06-13 09:37+0000\n"
+"POT-Creation-Date: 2020-10-21 07:21+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -59,12 +59,6 @@ msgstr "Zurück"
 msgid "Background"
 msgstr "Hintergrund"
 
-msgid "Batiment VD"
-msgstr ""
-
-msgid "Batiment VD noWFS"
-msgstr ""
-
 msgid "Cadastre"
 msgstr "Kataster"
 
@@ -87,13 +81,6 @@ msgid "Desktop Application"
 msgstr "Desktop-Applikation"
 
 msgid ""
-"Disclaimer works obviously also on items in subgroups (layer entertainment)"
-msgstr ""
-
-msgid "Disclaimer works on items (layer police)"
-msgstr ""
-
-msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
@@ -106,6 +93,9 @@ msgstr "Zeichnen und messen"
 
 msgid "Draw profile line"
 msgstr "Profillinie zeichnen"
+
+msgid "ESRI no WFS no Geom"
+msgstr ""
 
 msgid "Edit"
 msgstr "Editieren"
@@ -148,6 +138,9 @@ msgstr "Einfache Filter"
 msgid "Filters mixed"
 msgstr "Komplexe Filter"
 
+msgid "Floor slider"
+msgstr ""
+
 msgid "Gestion des eaux"
 msgstr "Wassermanagement"
 
@@ -173,11 +166,17 @@ msgstr "Ebene mit sehr sehr sehr sehr sehr langem Namen"
 msgid "Layers"
 msgstr "Ebenen"
 
+msgid "Layers-exclusive"
+msgstr ""
+
 msgid "Learning [merged]"
 msgstr ""
 
 msgid "Length"
 msgstr "Länge"
+
+msgid "Loading themes, please wait..."
+msgstr ""
 
 msgid "Loading..."
 msgstr "Applikation wird geladen..."
@@ -206,6 +205,12 @@ msgstr "Multipolygon Query ist nicht editierbar, aber abfragbar"
 msgid "Multi-Polygon Query2 pas éditable mais queryable"
 msgstr "Multipolygon Query2 ist nicht editierbar, aber abfragbar"
 
+msgid "NPA localite"
+msgstr ""
+
+msgid "NPA localite noWFS"
+msgstr ""
+
 msgid "OSM functions"
 msgstr "OSM Funktion"
 
@@ -217,9 +222,6 @@ msgstr "OSM Karte"
 
 msgid "OSM map WMS"
 msgstr "OSM Karte WMS"
-
-msgid "OSM_time (merged)"
-msgstr ""
 
 msgid "OSM_time_merged"
 msgstr ""
@@ -233,9 +235,6 @@ msgid "ObjectEditing"
 msgstr "Editieren"
 
 msgid "ObjectEditing - Edit Application"
-msgstr ""
-
-msgid "ObjectEditing - Viewer Application"
 msgstr ""
 
 msgid "Patrimoine"
@@ -265,6 +264,9 @@ msgstr ""
 msgid "Routing"
 msgstr ""
 
+msgid "Selection"
+msgstr ""
+
 msgid "Share this map"
 msgstr "Diese Karte teilen"
 
@@ -290,8 +292,9 @@ msgstr "Gruppe"
 msgid "Swiss grid (LV03)"
 msgstr "Swissgrid (LV03)"
 
-msgid "Test"
-msgstr ""
+#, fuzzy
+msgid "Swiss grid (LV95)"
+msgstr "Swissgrid (LV03)"
 
 msgid "Test for a disclaimer to test metadata"
 msgstr ""
@@ -320,15 +323,16 @@ msgstr "Wgs Koord."
 msgid "Wgs Coord. DMS"
 msgstr "Wgs. Koord. DMS"
 
-msgid "You must change your password"
-msgstr "Sie müssen Ihr Passwort ändern"
-
 msgid ""
 "You're using the mobile application. Check out the <a href="
 "\"{{url}}\">standard application</a>."
 msgstr ""
 "Sie verwenden die mobile Anwendung. Hier <a href=\"{{url}}\">erreichen Sie "
 "die Standardanwendung</a>."
+
+#, fuzzy
+msgid "__test__"
+msgstr "Test"
 
 msgid "access"
 msgstr "Zugang"
@@ -430,31 +434,14 @@ msgstr "Bushaltestelle"
 msgid "ch.are.alpenkonvention"
 msgstr "Alpenkonvention"
 
-msgid "ch.astra.ausnahmetransportrouten"
+#, fuzzy
+msgid "ch.astra.hauptstrassennetz"
 msgstr "Ausnahmetransportrouten"
 
 msgid "ch.bfe.solarenergie-eignung-daecher"
 msgstr ""
 
-msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
-msgstr ""
-
-msgid "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo"
-msgstr ""
-
-msgid "ch.bfe.solarenergie-eignung-daecher_overview"
-msgstr ""
-
 msgid "ch.bfe.solarenergie-eignung-fassaden"
-msgstr ""
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_fulldetail"
-msgstr ""
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_getfeatureinfo"
-msgstr ""
-
-msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
 msgstr ""
 
 msgid "ch.swisstopo.dreiecksvermaschung"
@@ -528,8 +515,20 @@ msgstr "Unterhaltung"
 msgid "fid"
 msgstr ""
 
+msgid "filter_double"
+msgstr ""
+
+msgid "filter_double_all"
+msgstr ""
+
+msgid "filter_group"
+msgstr ""
+
 msgid "firestations"
 msgstr "Feuerwehrstation"
+
+msgid "floor_slider"
+msgstr ""
 
 msgid "foot"
 msgstr "Fuss"
@@ -560,6 +559,9 @@ msgid "hospitals"
 msgstr "Spital"
 
 msgid "hotel"
+msgstr ""
+
+msgid "hotel_label"
 msgstr ""
 
 msgid "information"
@@ -789,6 +791,14 @@ msgid "osm_time_d_year_mounth"
 msgstr "OSM Zeitwert Jahr Monat"
 
 #, fuzzy
+msgid "osm_time_default"
+msgstr "OSM Zeitwert Jahr Monat"
+
+#, fuzzy
+msgid "osm_time_default_slider"
+msgstr "OSM Zeitintervall Monat Jahr"
+
+#, fuzzy
 msgid "osm_time_mount_year"
 msgstr "OSM Zeitintervall Monat Jahr"
 
@@ -799,10 +809,18 @@ msgid "osm_time_r_dp_2"
 msgstr "OSM Zeitintervall 2 Popup"
 
 #, fuzzy
+msgid "osm_time_r_dp_default"
+msgstr "OSM Zeitintervall 2 Popup"
+
+#, fuzzy
 msgid "osm_time_r_mounth_year"
 msgstr "OSM Zeitintervall Monat Jahr"
 
 msgid "osm_time_r_s"
+msgstr "OSM Zeitintervall Zeiger"
+
+#, fuzzy
+msgid "osm_time_r_s_default"
 msgstr "OSM Zeitintervall Zeiger"
 
 #, fuzzy
@@ -813,10 +831,18 @@ msgid "osm_time_v_dp"
 msgstr "OSM Zeitwert Popup"
 
 #, fuzzy
+msgid "osm_time_v_dp_default"
+msgstr "OSM Zeitwert Popup"
+
+#, fuzzy
 msgid "osm_time_v_mounth_year"
 msgstr "OSM Zeitwert Monat Jahr"
 
 msgid "osm_time_v_s"
+msgstr "OSM Zeitwert Zeiger"
+
+#, fuzzy
+msgid "osm_time_v_s_default"
 msgstr "OSM Zeitwert Zeiger"
 
 msgid "osm_time_year_mounth"
@@ -920,6 +946,14 @@ msgstr ""
 #, fuzzy
 msgid "points_ingrp"
 msgstr "Punkt-Snapping"
+
+#, fuzzy
+msgid "pointscopier"
+msgstr "Punkt"
+
+#, fuzzy
+msgid "pointslabels"
+msgstr "Punkt"
 
 msgid "police"
 msgstr "Polizei"
@@ -1120,6 +1154,9 @@ msgstr "Touristische Aktivität"
 msgid "traffic_signals"
 msgstr "Lichtsignal"
 
+msgid "transport (merged)"
+msgstr ""
+
 msgid "turning_circle"
 msgstr "Kreisverkehr"
 
@@ -1129,7 +1166,10 @@ msgstr "zwei Ebenen"
 msgid "type"
 msgstr "Typ"
 
-msgid "vd.batiment_rcb"
+msgid "vd.npa_localite"
+msgstr ""
+
+msgid "vd.regime_hydrique noWFS"
 msgstr ""
 
 msgid "waterarea10"
@@ -1228,11 +1268,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"© Contributeurs d’<a href='http://www.openstreetmap.org/"
+"© Les contributeurs d’<a href='http://www.openstreetmap.org/"
 "copyright'>OpenStreetMap</a>"
-msgstr ""
-
-msgid "© les contributeurs d’OpenStreetMap"
 msgstr ""
 
 #~ msgid "OSM"
@@ -1240,6 +1277,9 @@ msgstr ""
 
 #~ msgid "Search…"
 #~ msgstr "Suche..."
+
+#~ msgid "You must change your password"
+#~ msgstr "Sie müssen Ihr Passwort ändern"
 
 #~ msgid "last_update_timestamp"
 #~ msgstr "zuletzt aktualisierter Zeitstempel"
@@ -1250,9 +1290,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "standard application"
 #~ msgstr "Desktop-Applikation"
-
-#~ msgid "test"
-#~ msgstr "Test"
 
 #~ msgid "test2"
 #~ msgstr "Test2"
