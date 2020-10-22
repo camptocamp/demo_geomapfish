@@ -20,6 +20,8 @@ export PGSCHEMA ?= main_2_4
 export DOCKER_PGSCHEMA ?= main_2_4
 export DOCKER_PGSCHEMA_STATIC ?= static_2_4
 
+GPG_KEYS += EBD91808C5BF727FC1E764FE9542AD34ABE74D6E # Yves Jacolin
+
 include CONST_Makefile
 
 .env: .env.secrets
