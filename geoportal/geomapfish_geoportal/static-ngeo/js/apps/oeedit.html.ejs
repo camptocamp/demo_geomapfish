@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <meta name="dynamicUrl" content="<%= htmlWebpackPlugin.options.vars.entry_point %>dynamic.json">
     <meta name="interface" content="oeedit">
-    <link rel="shortcut icon" href="<%=require("./image/favicon.ico")%>" />
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.cache_version %>/images/favicon.ico">
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
