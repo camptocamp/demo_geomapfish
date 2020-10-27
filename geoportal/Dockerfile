@@ -14,7 +14,7 @@ RUN mv webpack.apps.js webpack.apps.js.tmpl && \
     ln --symbolic /usr/lib/node_modules/ .
 
 ENTRYPOINT [ "/usr/bin/eval-templates" ]
-CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--progress", "--no-inline" ]
+CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--no-inline" ]
 
 ###############################################################################
 
