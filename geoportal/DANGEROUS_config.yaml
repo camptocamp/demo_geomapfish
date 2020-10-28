@@ -1,0 +1,1011 @@
+environment:
+- default: localhost
+  name: VISIBLE_WEB_HOST
+- default: https
+  name: VISIBLE_WEB_PROTOCOL
+- default: /
+  name: VISIBLE_ENTRY_POINT
+- name: PGHOST
+- name: PGHOST_SLAVE
+- default: '5432'
+  name: PGPORT
+- default: '5432'
+  name: PGPORT_SLAVE
+- name: PGUSER
+- name: PGPASSWORD
+- default: geomapfish
+  name: PGDATABASE
+- default: prefer
+  name: PGSSLMODE
+- default: main
+  name: PGSCHEMA
+- default: main_static
+  name: PGSCHEMA_STATIC
+- default: http://tinyows:8080/
+  name: TINYOWS_URL
+- default: http://mapserver:8080/
+  name: MAPSERVER_URL
+- default: http://qgisserver:8080/
+  name: QGISSERVER_URL
+- default: http://print:8080/print/
+  name: PRINT_URL
+- default: webpack-dev-server:8080
+  name: DEVSERVER_HOST
+- default: redis
+  name: REDIS_HOST
+- default: '6372'
+  name: REDIS_PORT
+- default: '0'
+  name: REDIS_DB
+- default: queue_name
+  name: TILEGENERATION_SQS_QUEUE
+- default: bucket_name
+  name: TILEGENERATION_S3_BUCKET
+- default: user
+  name: SMTP_USER
+- default: pass
+  name: SMTP_PASSWORD
+- default: osm
+  name: OSM_PGDATABASE
+- default: camptocamp-gmf-demo-tiles
+  name: TILEGENERATION_S3_BUCKET
+- default: /var/sig
+  name: RASTER_BASE_PATH
+- default: xxx
+  name: AWS_ACCESS_KEY_ID
+- default: xxx
+  name: AWS_SECRET_ACCESS_KEY
+- default: xxx
+  name: AWS_DEFAULT_REGION
+- default: xxx
+  name: AWS_S3_ENDPOINT
+- default: xxx
+  name: SENTRY_CLIENT_ENVIRONMENT
+interpreted: {}
+no_interpreted:
+- reset_password.email_body
+- shortener.email_body
+- interfaces_config.default.static.angularLocaleScript.append
+- welcome_email.email_body
+postprocess:
+- expression: int({})
+  vars:
+  - cache.arguments.port
+vars:
+  oereb_client:
+    # Application configuration
+    # Mandatory:
+    #   "title" - The application title
+    #   "logo"  - URL to logo image
+    # Optional:
+    #   "icon"  - URL to image used as favicon
+    application:
+      title: ÖREB-Kataster, Kanton Basel-Landschaft
+      icon: http://localhost:8080/static/images/favicon.png
+      logo_canton: http://localhost:8080/samples/static/logo_bl.png
+      logo_oereb: http://localhost:8080/samples/static/logo_oereb.png
+      local_storage_prefix: bl
+
+    # View configuration
+    view:
+      map_x: 2615000
+      map_y: 1255000
+      map_zoom: 2
+      resolutions: [250, 100, 50, 20, 10, 5, 2.5, 2, 1.5, 1, 0.5, 0.25, 0.1, 0.05, 0.025, 0.01]
+
+    # Base layer configuration
+    base_layer:
+      type: wmts
+      url: https://tile.geoview.bl.ch/1.0.0/WMTSCapabilities.xml
+      layer: grundkarte_sw
+      matrixSet: swissgrid
+      projection: "EPSG:2056"
+      style: default
+      format: image/png
+
+    # Availability layer
+    availability:
+      url: https://geowms.bl.ch
+      params:
+        LAYERS: oereb_published_municipalities
+        FORMAT: image/png
+
+    # Search field configuration
+    search:
+      api:
+        url: https://geoview.bl.ch/main/wsgi/bl_fulltextsearch
+        limit: 5
+      wfs:
+        url: https://geowms.bl.ch
+        limit: 5
+
+    # Link to external viewer/portal
+    external_viewer:
+      tooltip: zu GeoView BL wechseln
+      url: https://geoview.bl.ch
+      params:
+        - "wfs_layer=grundstueck"
+        - "wfs_egris_egrid={{{{egrid}}}}"
+        - "no_redirect="
+        - "tree_groups=Bau- und Strassenlinien,Kataster belasteter Standorte,Lärm,Nutzungsplan"
+        - "tree_group_layers_Bau- und Strassenlinien=statische_waldgrenzen,baulinien_kommunal_waldabstandslinien,baulinien_kommunal,baulinien_kantonal"
+        - "tree_group_layers_Kataster belasteter Standorte=kbs_kataster_standorte"
+        - "tree_group_layers_Lärm=laermempfindlichkeitsstufen"
+        - "tree_group_layers_Nutzungsplan=nutzungsplanung_kantonal_grundnutzung_group,nutzungsplanung_kommunal_grundnutzung_group,nutzungsplanung_kantonal_ueberlagernd_rechtsverbindlich_group,nutzungsplanung_kommunal_ueberlagernd_rechtsverbindlich_group,nutzungsplanung_kantonal_perimeter_tiefbau_umrandung,nutzungsplanung_kommunal_sondernutzungsplan_umrandung"
+
+    # Support
+    support:
+      office1: Amt für Geoinformation
+      office2: GIS-Fachstelle
+      street: Mühlemattstrasse 36
+      city: 4410 Liestal
+      email: support.gis@bl.ch
+      phone: 061 552 56 73
+
+    # Custom CSS file
+    custom_css_url: samples/static/custom.css
+
+    # Enable Google Analytics by specifying account key
+    # google_analytics: UA-12345678-9
+   
+  admin_interface:
+    available_functionalities:
+    - name: default_basemap
+      single: true
+    - name: default_theme
+      single: true
+    - name: print_template
+    - name: mapserver_substitution
+    - name: filterable_layers
+    - name: preset_layer_filter
+      single: true
+    - name: open_panel
+      single: true
+    - name: location
+    available_metadata:
+    - name: exclusiveGroup
+      type: boolean
+    - name: isExpanded
+      type: boolean
+    - name: printNativeAngle
+      type: boolean
+    - name: copyable
+      type: boolean
+    - name: legend
+      type: boolean
+    - name: isLegendExpanded
+      type: boolean
+    - name: legendRule
+    - name: legendImage
+      type: url
+    - name: hiDPILegendImages
+      type: json
+    - name: iconUrl
+      type: url
+    - name: metadataUrl
+      type: url
+    - name: disclaimer
+      translate: true
+    - name: isChecked
+      type: boolean
+    - name: identifierAttributeField
+    - name: maxResolution
+      type: float
+    - name: minResolution
+      type: float
+    - name: opacity
+      type: float
+    - name: thumbnail
+      type: url
+    - name: timeAttribute
+    - name: geotablePrimaryKey
+    - name: lastUpdateDateColumn
+    - name: lastUpdateUserColumn
+    - name: snappingConfig
+      type: json
+    - name: geometryValidation
+      type: boolean
+    - name: customOpenLayersOptions
+      type: json
+    - name: editingAttributesOrder
+      type: list
+    - name: readonlyAttributes
+      type: list
+    - name: directedFilterAttributes
+      type: list
+    - name: enumeratedAttributes
+      type: list
+    - name: ogcServer
+    - name: wmsLayers
+    - name: queryLayers
+    - name: printLayers
+    layer_tree_max_nodes: 1000
+    map: &id002
+      baseLayers:
+      - attributions: []
+        dimensions: {}
+        layer: map
+        matrixSet: epsg2056_005
+        projection: EPSG:2056
+        requestEncoding: REST
+        style: default
+        tileGrid:
+          matrixIds:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+          - '13'
+          - '14'
+          - '15'
+          origin:
+          - 2420000
+          - 1350000
+          resolutions:
+          - 4000
+          - 2000
+          - 1000
+          - 500
+          - 250
+          - 100
+          - 50
+          - 20
+          - 10
+          - 5
+          - 2.5
+          - 1
+          - 0.5
+          - 0.25
+          - 0.1
+          - 0.05
+        type_: WMTS
+        url: '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}tiles/1.0.0/{{{{Layer}}}}/default/{{{{TileMatrixSet}}}}/{{{{TileMatrix}}}}/{{{{TileRow}}}}/{{{{TileCol}}}}.png'
+      fitMaxZoom: 12
+      projections:
+      - code: EPSG:2056
+        definition: +proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333
+          +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0
+          +units=m +no_defs
+      srid: 2056
+      view:
+        initialExtent:
+        - 2495822
+        - 1091449
+        - 2780525
+        - 1270656
+        projection: EPSG:2056
+  api:
+    ogc_server: Main PNG
+  authentication:
+    two_factor: false
+    two_factor_issuer_name: demo_geomapfish
+  authorized_referers:
+  - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}/'
+  - https://camptocamp.github.io
+  - https://fredj.github.io
+  - https://ger-benjamin.github.io
+  - https://arnaud-morvan.github.io
+  - https://julsbreakdown.github.io
+  - https://_totoro_pound_pound_pound_pound_pound_pound_.github.io
+  - https://adube.github.io
+  - https://localhost:3000
+  - https://localhost
+  - https://127.0.0.1:3000
+  - https://127.0.0.1
+  - http://localhost:3000
+  - http://localhost
+  - http://127.0.0.1:3000
+  - http://127.0.0.1
+  available_locale_names:
+  - en
+  - fr
+  - de
+  c2c.base_path: /c2c
+  cache:
+    obj:
+      backend: dogpile.cache.memory
+    std:
+      arguments:
+        db: '{REDIS_DB}'
+        distributed_lock: true
+        host: '{REDIS_HOST}'
+        lock_timeout: 120
+        port: '{REDIS_PORT}'
+        redis_expiration_time: 86400
+      backend: c2cgeoportal.hybrid
+  check_collector:
+    hosts:
+    - display: Main
+      url: http://localhost:8080{VISIBLE_ENTRY_POINT}
+    level: 10
+    max_level: 3
+  checker:
+    base_internal_url: http://localhost:8080
+    fulltextsearch:
+      level: 3
+      search: pau
+    lang:
+      files:
+      - ngeo
+      level: 3
+    phantomjs:
+      disable:
+      - apihelp
+      routes:
+      - environment: &id001
+          HTTP_MAP:
+            https://localhost:8484/tiles/: http://localhost:8080/tiles/
+        level: 6
+        name: desktop
+        params:
+          no_redirect: 'true'
+      - environment: *id001
+        level: 6
+        name: mobile
+        params:
+          no_redirect: 'true'
+      - environment: *id001
+        level: 6
+        name: iframe_api
+        params:
+          no_redirect: 'true'
+      - environment: *id001
+        level: 6
+        name: apihelp
+    print:
+      level: 5
+      spec:
+        attributes:
+          comments: ''
+          datasource: []
+          legend: {}
+          map:
+            center:
+            - 600000
+            - 200000
+            dpi: 254
+            layers: []
+            longitudeFirst: true
+            projection: EPSG:21781
+            rotation: 0
+            scale: 100000
+          title: ''
+        layout: 1 A4 portrait
+        outputFormat: pdf
+    routes:
+      disable: []
+      routes:
+      - level: 3
+        name: apijs
+        params:
+          version: '2'
+      - level: 3
+        name: printproxy_capabilities
+      - checker_name: mapserverproxy_wms
+        level: 3
+        name: mapserverproxy
+        params:
+          REQUEST: GetCapabilities
+          SERVICE: WMS
+          VERSION: 1.1.1
+          ogcserver: Main PNG
+      - checker_name: mapserverproxy_wfs
+        level: 3
+        name: mapserverproxy
+        params:
+          REQUEST: GetCapabilities
+          SERVICE: WFS
+          VERSION: 1.1.0
+          ogcserver: Main PNG
+    themes:
+      interfaces: {}
+      level: 4
+      params:
+        version: '2'
+  db_chooser:
+    master:
+    - GET /s/.*
+    slave:
+    - \w+ /printproxy/.*
+  dbsessions:
+    osm:
+      url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{OSM_PGDATABASE}
+  default_locale_name: fr
+  default_max_age: 864000
+  devserver_url: http://{DEVSERVER_HOST}{VISIBLE_ENTRY_POINT}
+  enable_admin_interface: true
+  fulltextsearch:
+    defaultlimit: 30
+    languages:
+      de: german
+      en: english
+      fr: fr
+    maxlimit: 200
+  functionalities:
+    available_in_templates:
+    - default_basemap
+    - default_theme
+    - filterable_layers
+    - print_template
+    - preset_layer_filter
+    - open_panel
+    - location
+  getitfixed:
+    enabled: true
+    map: *id002
+  global_headers:
+  - headers: &id003
+      Content-Security-Policy: 'default-src  ''self'' ; script-src  ''self'' ''unsafe-inline''
+        ; style-src  ''self'' ''unsafe-inline'' https://stackpath.bootstrapcdn.com/
+        ; img-src  * data: ; worker-src  ''self'' blob: '
+      Referrer-Policy: same-origin
+      Strict-Transport-Security: max-age=31536000; includeSubDomains
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: SAMEORIGIN
+      X-Xss-Protection: 1; mode=block
+    pattern: ^/admin/.*
+  - headers: *id003
+    pattern: ^/getitfixed.*
+  - headers:
+      Access-Control-Allow-Headers: X-Requested-With, Content-Type
+      Access-Control-Allow-Origin: '*'
+    pattern: ^/static/.*
+  - headers:
+      Access-Control-Allow-Headers: X-Requested-With, Content-Type
+      Access-Control-Allow-Origin: '*'
+    pattern: ^/static-ngeo/.*
+  - headers:
+      Content-Security-Policy: default-src  'self' ; script-src  'self' ; style-src  'self'
+        'unsafe-inline' https://stackpath.bootstrapcdn.com/ ;
+    pattern: ^/c2c$
+  - headers:
+      Content-Security-Policy: default-src  'self' ; script-src  'self' ; style-src  'self'
+        'unsafe-inline' https://stackpath.bootstrapcdn.com/ ;
+    pattern: ^/c2c/.*
+  headers:
+    api: &id004
+      access_control_allow_origin:
+      - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
+      - https://camptocamp.github.io
+      - https://fredj.github.io
+      - https://ger-benjamin.github.io
+      - https://arnaud-morvan.github.io
+      - https://julsbreakdown.github.io
+      - https://totoro_pound_pound_pound_pound_pound_pound_.github.io
+      - https://adube.github.io
+      - https://localhost:3000
+      - https://localhost
+      - https://127.0.0.1:3000
+      - https://127.0.0.1
+      - http://localhost:3000
+      - http://localhost
+      - http://127.0.0.1:3000
+      - http://127.0.0.1
+      - '*'
+      access_control_max_age: 30
+      cache_control_max_age: 600
+    apihelp:
+      access_control_allow_origin:
+      - '*'
+      access_control_max_age: 600
+      cache_control_max_age: 600
+      headers:
+        Content-Security-Policy: 'default-src  ''self'' https://* ; script-src  ''self''
+          ''unsafe-inline'' ''unsafe-eval'' https://cdn.polyfill.io/ ; style-src  ''self''
+          ''unsafe-inline'' https://stackpath.bootstrapcdn.com/ ; img-src  * data:
+          ; connect-src  * '
+        Referrer-Policy: origin
+        Strict-Transport-Security: max-age=31536000; includeSubDomains
+        X-Content-Type-Options: nosniff
+        X-Frame-Options: SAMEORIGIN
+        X-Xss-Protection: 1; mode=block
+    config: &id005
+      access_control_allow_origin:
+      - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
+      - https://camptocamp.github.io
+      - https://fredj.github.io
+      - https://ger-benjamin.github.io
+      - https://arnaud-morvan.github.io
+      - https://julsbreakdown.github.io
+      - https://totoro_pound_pound_pound_pound_pound_pound_.github.io
+      - https://adube.github.io
+      - https://localhost:3000
+      - https://localhost
+      - https://127.0.0.1:3000
+      - https://127.0.0.1
+      - http://localhost:3000
+      - http://localhost
+      - http://127.0.0.1:3000
+      - http://127.0.0.1
+      - '*'
+      access_control_max_age: 30
+      cache_control_max_age: 600
+      headers: &id006
+        Strict-Transport-Security: max-age=31536000; includeSubDomains
+    dynamic: *id004
+    error: *id004
+    fulltextsearch: *id005
+    index:
+      access_control_allow_origin:
+      - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
+      - https://camptocamp.github.io
+      - https://fredj.github.io
+      - https://ger-benjamin.github.io
+      - https://arnaud-morvan.github.io
+      - https://julsbreakdown.github.io
+      - https://totoro_pound_pound_pound_pound_pound_pound_.github.io
+      - https://adube.github.io
+      - https://localhost:3000
+      - https://localhost
+      - https://127.0.0.1:3000
+      - https://127.0.0.1
+      - http://localhost:3000
+      - http://localhost
+      - http://127.0.0.1:3000
+      - http://127.0.0.1
+      - '*'
+      access_control_max_age: 30
+      cache_control_max_age: 600
+      headers:
+        Content-Security-Policy: 'default-src  ''self'' https://* ; script-src  ''self''
+          ''unsafe-inline'' https://cdn.polyfill.io/  https://maps.google.com/ https://maps.googleapis.com/
+          https://www.google-analytics.com/; style-src  ''self'' ''unsafe-inline''  https://fonts.googleapis.com/;
+          img-src  * data: ; connect-src  * '
+        Referrer-Policy: origin
+        Strict-Transport-Security: max-age=31536000; includeSubDomains
+        X-Content-Type-Options: nosniff
+        X-Frame-Options: SAMEORIGIN
+        X-Xss-Protection: 1; mode=block
+    layers: *id005
+    login:
+      access_control_allow_origin:
+      - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
+      - https://camptocamp.github.io
+      - https://fredj.github.io
+      - https://ger-benjamin.github.io
+      - https://arnaud-morvan.github.io
+      - https://julsbreakdown.github.io
+      - https://totoro_pound_pound_pound_pound_pound_pound_.github.io
+      - https://adube.github.io
+      - https://localhost:3000
+      - https://localhost
+      - https://127.0.0.1:3000
+      - https://127.0.0.1
+      - http://localhost:3000
+      - http://localhost
+      - http://127.0.0.1:3000
+      - http://127.0.0.1
+      - '*'
+      access_control_max_age: 30
+      cache_control_max_age: 600
+      headers: *id006
+    mapserver: *id005
+    print: *id005
+    profile: *id004
+    raster: *id004
+    shortener: *id005
+    themes: *id005
+    tinyows: *id005
+  hide_capabilities: false
+  hooks: {}
+  host_forward_host: []
+  interfaces:
+  - default: true
+    name: desktop
+  - name: mobile
+  - name: iframe_api
+  - name: desktop_alt
+  - name: mobile_alt
+  - name: oeedit
+  interfaces_config:
+    default:
+      constants:
+        defaultLang: fr
+        defaultTheme: Demo
+        gmfAuthenticationConfig:
+          forcePasswordChange: true
+        gmfExternalOGCServers:
+        - name: Swiss Topo WMS
+          type: WMS
+          url: https://wms.geo.admin.ch/?lang=fr
+        - name: Swiss Topo WMTS
+          type: WMTS
+          url: https://wmts.geo.admin.ch/1.0.0/WMTSCapabilities.xml?lang=fr
+        - name: ASIT VD
+          type: WMTS
+          url: https://ows.asitvd.ch/wmts/1.0.0/WMTSCapabilities.xml
+        gmfSearchActions:
+        - action: add_theme
+          title: Add a theme
+        - action: add_group
+          title: Add a sub theme
+        - action: add_layer
+          title: Add a layer
+        ngeoWfsPermalinkOptions:
+          defaultFeatureNS: http://mapserver.gis.umn.edu/mapserver
+          defaultFeaturePrefix: feature
+          wfsTypes:
+          - featureType: fuel
+            label: display_name
+          - featureType: osm_scale
+            label: display_name
+      dynamic_constants:
+        cacheVersion: cache_version
+        gmfSearchGroups: fulltextsearch_groups
+        gmfTwoFactorAuth: two_factor
+        langUrls: lang_urls
+      routes:
+        authenticationBaseUrl:
+          name: base
+        fulltextsearchUrl:
+          dynamic_params:
+            interface: interface
+          name: fulltextsearch
+          params:
+            limit: 30
+            partitionlimit: 5
+        gmfLayersUrl:
+          name: layers_root
+        gmfRasterUrl:
+          name: raster
+        gmfShortenerCreateUrl:
+          name: shortener_create
+        gmfTreeUrl:
+          dynamic_params:
+            interface: interface
+          name: themes
+          params:
+            background: background
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: Main PNG
+      static:
+        angularLocaleScript:
+          append: angular-locale_{{locale}}.js
+          name: /etc/static-ngeo/
+    desktop:
+      constants:
+        gmfPermalinkOptions:
+          crosshairEnabledByDefault: false
+          crosshairStyle: null
+          pointRecenterZoom: null
+          projectionCodes:
+          - EPSG:3857
+          - EPSG:2056
+          - EPSG:21781
+          - EPSG:12345
+          - EPSG:67890
+          - EPSG:87879
+          useLocalStorage: false
+        gmfPrintOptions:
+          legend:
+            label:
+              qgis: false
+            params:
+              qgis:
+                ITEMFONTFAMILY: DejaVu Sans
+                ITEMFONTSIZE: '8'
+                LAYERFONTFAMILY: DejaVu Sans
+                LAYERFONTSIZE: '10'
+            useBbox: true
+        sentryOptions:
+          attachStacktrace: true
+          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          release: 2.5.0.89
+          tags:
+            interface: desktop
+            service: js
+          whitelistUrls:
+          - .*\.camptocamp\.com.*
+          - https://camptocamp\.github\.io/ngeo/.*
+      do_redirect: true
+      redirect_interface: mobile
+      routes:
+        gmfPrintUrl:
+          name: printproxy
+        gmfProfileJsonUrl:
+          name: profile.json
+    desktop_alt:
+      constants:
+        gmfAuthenticationConfig:
+          allowPasswordChange: false
+          allowPasswordReset: false
+        gmfFloors:
+        - label: '8'
+          value: '8'
+        - label: '6'
+          value: '6'
+        - label: '4'
+          value: '4'
+        - label: '*'
+          value: '*'
+        gmfPermalinkOptions:
+          crosshairEnabledByDefault: true
+          crosshairStyle:
+          - angle: 0
+            points: 4
+            radius: 10
+            radius2: 0
+            stroke:
+              color: white
+              width: 5
+          - angle: 0
+            points: 4
+            radius: 10
+            radius2: 0
+            stroke:
+              color: blue
+              width: 2
+          pointRecenterZoom: null
+          projectionCodes:
+          - EPSG:3857
+          - EPSG:2056
+          - EPSG:21781
+          useLocalStorage: false
+        gmfPrintOptions:
+          legend:
+            useBbox: false
+          scaleInput: true
+        gmfSearchGroups: []
+        gmfTreeManagerModeFlush: false
+        ngeoNominatimSearchDefaultParams:
+          countrycodes: CH
+        ngeoQueryOptions:
+          limit: 5
+          queryCountFirst: true
+          tolerance: 20
+        ngeoRoutingOptions:
+        - backendUrl: https://routing.osm.ch/
+        - profiles:
+          - label: Car
+            profile: routed-car
+          - label: Bike (City)
+            profile: routed-bike
+          - label: Bike (Touring)
+            profile: routed-bike-touring
+          - label: Foot
+            profile: routed-foot
+          - label: Hiking
+            profile: routed-hiking
+        ngeoWfsPermalinkOptions:
+          defaultFeatureNS: http://www.qgis.org/gml
+          defaultFeaturePrefix: feature
+          wfsTypes:
+          - featureType: osm_hospitals
+            label: name
+          - featureType: osm_firestations
+            label: name
+        sentryOptions:
+          attachStacktrace: true
+          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          release: 2.5.0.89
+          tags:
+            interface: desktop_alt
+            service: js
+          whitelistUrls:
+          - .*\.camptocamp\.com.*
+          - https://camptocamp\.github\.io/ngeo/.*
+      redirect_interface: mobile_alt
+      routes:
+        gmfPrintUrl:
+          name: printproxy
+        gmfProfileJsonUrl:
+          name: profile.json
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: QGIS server
+    iframe_api:
+      constants:
+        gmfSearchGroups: []
+        sentryOptions:
+          attachStacktrace: true
+          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          release: 2.5.0.89
+          tags:
+            interface: iframe_api
+            service: js
+          whitelistUrls:
+          - .*\.camptocamp\.com.*
+          - https://camptocamp\.github\.io/ngeo/.*
+    mobile:
+      constants:
+        sentryOptions:
+          attachStacktrace: true
+          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          release: 2.5.0.89
+          tags:
+            interface: mobile
+            service: js
+          whitelistUrls:
+          - .*\.camptocamp\.com.*
+          - https://camptocamp\.github\.io/ngeo/.*
+    mobile_alt:
+      constants:
+        gmfSearchActions: []
+        gmfTreeManagerModeFlush: false
+        sentryOptions:
+          attachStacktrace: true
+          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          release: 2.5.0.89
+          tags:
+            interface: mobile_alt
+            service: js
+          whitelistUrls:
+          - .*\.camptocamp\.com.*
+          - https://camptocamp\.github\.io/ngeo/.*
+      redirect_interface: desktop_alt
+    oeedit:
+      constants:
+        sentryOptions:
+          attachStacktrace: true
+          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          release: 2.5.0.89
+          tags:
+            interface: oeedit
+            service: js
+          whitelistUrls:
+          - .*\.camptocamp\.com.*
+          - https://camptocamp\.github\.io/ngeo/.*
+      routes:
+        gmfPrintUrl:
+          name: printproxy
+        gmfProfileJsonUrl:
+          name: profile.json
+  intranet:
+    networks:
+    - 172.18.0.1/16
+    - 185.127.205.3/24
+  layers:
+    enum:
+      osm_open: &id007
+        attributes:
+          type:
+            table: swiss_points
+        dbsession: osm
+      osm_time_r_dp_2: *id007
+    geometry_validation: true
+  lingua_extractor: {}
+  metrics:
+    memory_cache: true
+    memory_cache_all: false
+    memory_maps_rss: false
+    memory_maps_size: false
+    raster_data: false
+    total_python_object_memory: true
+  package: geomapfish
+  pdfreport:
+    print_url: '{PRINT_URL}'
+  print_get_redirect: true
+  print_url: '{PRINT_URL}'
+  raster:
+    aster:
+      file: '{RASTER_BASE_PATH}/Aster2056.vrt'
+      round: 1
+      type: gdal
+    srtm:
+      file: '{RASTER_BASE_PATH}/SRTM2056.vrt'
+      round: 1
+      type: gdal
+    srtm-partial:
+      file: '{RASTER_BASE_PATH}/SRTM2056-partial.vrt'
+      round: 0.1
+      type: gdal
+  reset_password:
+    email_body: 'Hello {user},
+
+      You have asked for an new password,
+
+      the newly generated password is: {password}
+
+      Sincerely yours
+
+      The GeoMapfish team
+
+      '
+    email_from: info@camptocamp.com
+    email_subject: New password generated for GeoMapFish
+  resourceproxy:
+    allowed_headers:
+    - Cache-Control
+    - Content-Encoding
+    - Content-Language
+    - Content-Type
+    - Date
+    - ETag
+    - Vary
+    targets:
+      point: http://www.openstreetmap.org/node/%s
+  schema: main_2_5
+  schema_static: '{PGSCHEMA_STATIC}'
+  servers:
+    internal: http://localhost/
+    local: '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}'
+    mapserver: '{MAPSERVER_URL}'
+    qgisserver: '{QGISSERVER_URL}'
+  shortener:
+    allowed_hosts:
+    - '{VISIBLE_WEB_HOST}'
+    - '{VISIBLE_WEB_HOST}'
+    - camptocamp.github.io
+    - geomapfish-demo-dc.camptocamp.com
+    - fredj.github.io
+    - totoro_pound_pound_pound_pound_pound_pound_.github.io
+    - ger-benjamin.github.io
+    - arnaud-morvan.github.io
+    - julsbreakdown.github.io
+    - adube.github.io
+    - localhost
+    - 127.0.0.1
+    base_url: '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}s/'
+    email_body: 'Hello,
+
+      Somebody sent you the following link:
+
+      {short_url}
+
+      With the message:
+
+      {message}
+
+      Sincerely yours
+
+      The GeoMapfish team
+
+      '
+    email_from: info@camptocamp.com
+    email_subject: Geoportal URL
+  smtp:
+    host: email-smtp.eu-west-1.amazonaws.com
+    password: '{SMTP_PASSWORD}'
+    ssl: true
+    user: '{SMTP_USER}'
+  sqlalchemy.max_overflow: 25
+  sqlalchemy.pool_recycle: 30
+  sqlalchemy.pool_size: 5
+  sqlalchemy.url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{PGDATABASE}?sslmode={PGSSLMODE}
+  sqlalchemy.use_batch_mode: true
+  sqlalchemy_slave.max_overflow: 25
+  sqlalchemy_slave.pool_recycle: 30
+  sqlalchemy_slave.pool_size: 5
+  sqlalchemy_slave.url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST_SLAVE}:{PGPORT_SLAVE}/{PGDATABASE}?sslmode={PGSSLMODE}
+  sqlalchemy_slave.use_batch_mode: true
+  srid: 2056
+  stats: {}
+  tinyowsproxy:
+    ogc_server: Main PNG
+    tinyows_url: '{TINYOWS_URL}'
+  urllogin:
+    aes_key: foobarfoobar1234
+  welcome_email:
+    email_body: 'Hello {user},
+
+      You have a new account on GeoMapFish: https://geomapfish-demo-2-5.camptocamp.com
+
+      Your user name is: {user}
+
+      Your password is: {password}
+
+      Sincerely yours
+
+      The GeoMapfish team
+
+      '
+    email_from: info@camptocamp.com
+    email_subject: Welcome to GeoMapFish

@@ -22,6 +22,13 @@ FROM camptocamp/geomapfish:2.5 as runner
 
 #RUN apt update
 #RUN apt install --yes gcc python3.7-dev
+
+# For debug and oereb_client
+RUN apt update
+RUN apt install --yes vim
+COPY ./oereb_client.yml /etc/oereb_client.yml
+COPY oereb_client /app/oereb_client
+
 COPY requirements.txt /tmp/requirements.txt
 RUN \
   python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt && \
@@ -41,6 +48,9 @@ RUN pip install --disable-pip-version-check --no-cache-dir --editable=/app/ && \
     python3 -m compileall -q /usr/local/lib/python3.7 \
         -x '/usr/local/lib/python3.7/dist-packages/(pydevd|ptvsd|pipenv)/' && \
     python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
+
+# Workaround POC to use oereb config:
+COPY DANGEROUS_config.yaml /etc/geomapfish/config.yaml
 
 ARG GIT_HASH
 RUN c2cwsgiutils_genversion.py ${GIT_HASH}

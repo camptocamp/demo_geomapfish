@@ -1,0 +1,76 @@
+oereb_client:
+
+  # Application configuration
+  # Mandatory:
+  #   "title" - The application title
+  #   "logo"  - URL to logo image
+  # Optional:
+  #   "icon"  - URL to image used as favicon
+  application:
+    title: ÖREB-Kataster, Kanton Basel-Landschaft
+    icon: http://localhost:8080/static/images/favicon.png
+    logo_canton: http://localhost:8080/samples/static/logo_bl.png
+    logo_oereb: http://localhost:8080/samples/static/logo_oereb.png
+    local_storage_prefix: bl
+
+  # View configuration
+  view:
+    map_x: 2615000
+    map_y: 1255000
+    map_zoom: 2
+    resolutions: [250, 100, 50, 20, 10, 5, 2.5, 2, 1.5, 1, 0.5, 0.25, 0.1, 0.05, 0.025, 0.01]
+
+  # Base layer configuration
+  base_layer:
+    type: wmts
+    url: https://tile.geoview.bl.ch/1.0.0/WMTSCapabilities.xml
+    layer: grundkarte_sw
+    matrixSet: swissgrid
+    projection: "EPSG:2056"
+    style: default
+    format: image/png
+
+  # Availability layer
+  availability:
+    url: https://geowms.bl.ch
+    params:
+      LAYERS: oereb_published_municipalities
+      FORMAT: image/png
+
+  # Search field configuration
+  search:
+    api:
+      url: https://geoview.bl.ch/main/wsgi/bl_fulltextsearch
+      limit: 5
+    wfs:
+      url: https://geowms.bl.ch
+      limit: 5
+
+  # Link to external viewer/portal
+  external_viewer:
+    tooltip: zu GeoView BL wechseln
+    url: https://geoview.bl.ch
+    params:
+      - "wfs_layer=grundstueck"
+      - "wfs_egris_egrid={egrid}"
+      - "no_redirect="
+      - "tree_groups=Bau- und Strassenlinien,Kataster belasteter Standorte,Lärm,Nutzungsplan"
+      - "tree_group_layers_Bau- und Strassenlinien=statische_waldgrenzen,baulinien_kommunal_waldabstandslinien,baulinien_kommunal,baulinien_kantonal"
+      - "tree_group_layers_Kataster belasteter Standorte=kbs_kataster_standorte"
+      - "tree_group_layers_Lärm=laermempfindlichkeitsstufen"
+      - "tree_group_layers_Nutzungsplan=nutzungsplanung_kantonal_grundnutzung_group,nutzungsplanung_kommunal_grundnutzung_group,nutzungsplanung_kantonal_ueberlagernd_rechtsverbindlich_group,nutzungsplanung_kommunal_ueberlagernd_rechtsverbindlich_group,nutzungsplanung_kantonal_perimeter_tiefbau_umrandung,nutzungsplanung_kommunal_sondernutzungsplan_umrandung"
+
+  # Support
+  support:
+    office1: Amt für Geoinformation
+    office2: GIS-Fachstelle
+    street: Mühlemattstrasse 36
+    city: 4410 Liestal
+    email: support.gis@bl.ch
+    phone: 061 552 56 73
+
+  # Custom CSS file
+  custom_css_url: samples/static/custom.css
+
+  # Enable Google Analytics by specifying account key
+  # google_analytics: UA-12345678-9

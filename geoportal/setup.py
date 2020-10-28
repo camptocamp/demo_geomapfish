@@ -10,7 +10,7 @@ setup(
     author="geomapfish",
     author_email="info@geomapfish.com",
     url="https://www.geomapfish.com/",
-    install_requires=["c2cgeoportal_geoportal", "c2cgeoportal_admin",],
+    install_requires=["c2cgeoportal_geoportal", "c2cgeoportal_admin"],
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,

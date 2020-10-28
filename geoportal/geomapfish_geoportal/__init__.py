@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import distutils.core
+import codecs
+import yaml
+import logging
 from pyramid.config import Configurator
 from c2cgeoportal_geoportal import locale_negotiator, add_interface, INTERFACE_TYPE_NGEO
 from c2cgeoportal_geoportal.lib.authentication import create_authentication
 from geomapfish_geoportal.resources import Root
+
+LOG = logging.getLogger(__name__)
 
 
 def main(global_config, **settings):
@@ -25,6 +30,13 @@ def main(global_config, **settings):
     distutils.core._setup_stop_after = None
 
     config.add_translation_dirs('geomapfish_geoportal:locale/')
+
+    # Oereb client integration
+    with open(settings.get('oereb_client.cfg')) as f:
+        oereb_conf = yaml.load(f.read(), Loader=yaml.BaseLoader)
+        settings.update(oereb_conf)
+
+    config.include('oereb_client')
 
     # Scan view decorator for adding routes
     config.scan()
