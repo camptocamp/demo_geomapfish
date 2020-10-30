@@ -312,7 +312,6 @@ vars:
           view:
             <<: *view
             autoRotate: True
-            autorotate: True
           geolocalisation: True
     mobile_alt:
       redirect_interface: desktop_alt
@@ -327,7 +326,6 @@ vars:
             pixelRatio: 1
           view:
             <<: *view
-            autorotate: True
             autoRotate: True
           geolocalisation: True
         gmfTreeManagerModeFlush: False
@@ -388,7 +386,6 @@ vars:
               color: rgba(40, 40, 230, 1)
               width: 2
           zoom: 8
-          autorotate: True
           autoRotate: True
           atLoadingTime: True
       routes:
