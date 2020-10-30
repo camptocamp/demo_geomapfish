@@ -1,5 +1,4 @@
 ---
-
 # The project Docker compose file for development.
 
 version: '2.0'
@@ -112,6 +111,8 @@ services:
       file: docker-compose-lib.yaml
       service: alembic
     image: camptocamp/geomapfish-geoportal:${DOCKER_TAG}
+    environment:
+      - PGSCHEMA
 
   front:
     extends:
