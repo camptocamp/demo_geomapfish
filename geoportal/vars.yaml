@@ -311,6 +311,7 @@ vars:
           map: {}
           view:
             <<: *view
+            autoRotate: True
             autorotate: True
           geolocalisation: True
     mobile_alt:
@@ -327,6 +328,7 @@ vars:
           view:
             <<: *view
             autorotate: True
+            autoRotate: True
           geolocalisation: True
         gmfTreeManagerModeFlush: False
         gmfDisplayQueryWindowOptions:
@@ -387,7 +389,6 @@ vars:
               width: 2
           zoom: 8
           autorotate: True
-          atloadingtime: True
           autoRotate: True
           atLoadingTime: True
       routes:
