@@ -10,7 +10,7 @@
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
-    <link href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.version %>/css/iframe_api.css" rel="stylesheet">
+    <link href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.cache_version %>/css/iframe_api.css" rel="stylesheet">
   </head>
   <body>
     <div ng-show="mainCtrl.loading" class="loading-mask">
