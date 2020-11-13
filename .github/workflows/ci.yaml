@@ -27,7 +27,7 @@ jobs:
       - uses: camptocamp/initialise-gopass-summon-action@v1
         with:
           ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
-          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
+          github-gopass-ci-token: ${{secrets.GOPASS_CI_GITHUB_TOKEN}}
         if: "env.HELM_RELEASE_NAMES != ''"
       - run: scripts/publish-docker --image=config --no-trigger
         if: "env.HELM_RELEASE_NAMES != ''"
@@ -49,7 +49,7 @@ jobs:
 #      - uses: camptocamp/initialise-gopass-summon-action@v1
 #        with:
 #          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
-#          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
+#          github-gopass-ci-token: ${{secrets.GOPASS_CI_GITHUB_TOKEN}}
 #        if: "env.HELM_RELEASE_NAMES != ''"
 #      - run: scripts/publish-docker --image=geoportal --no-trigger
 #        if: "env.HELM_RELEASE_NAMES != ''"
