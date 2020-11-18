@@ -143,6 +143,7 @@ vars:
             constrainResolution: True
           geolocalisation: True
     desktop_alt:
+      extends: desktop
       redirect_interface: mobile_alt
       constants:
         sentryOptions:
@@ -330,6 +331,7 @@ vars:
                   - many_attributes
                   - polygon
     mobile_alt:
+      extends: mobile
       redirect_interface: desktop_alt
       constants:
         sentryOptions:
