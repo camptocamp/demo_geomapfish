@@ -44,8 +44,6 @@ vars:
           map: {}
           view: &view
             projection: EPSG:{srid}
-            # Should be removed
-            srid: '{srid}'
             center: [2632464, 1185457]
             zoom: 3
             resolutions: &resolutions [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
@@ -118,14 +116,6 @@ vars:
               fill:
                 color: '#ffffff'
                 radius: 3
-        # Should be removed
-        gmfSearchActions:
-          - action: add_theme
-            title: Add a theme
-          - action: add_group
-            title: Add a sub theme
-          - action: add_layer
-            title: Add a layer
         gmfContextualDataOptions:
           projections: *alternate_projections
           rasterParams: {}
@@ -375,8 +365,6 @@ vars:
         gmfLayerTreeOptions:
           openLinksInNewWindow: True
           isExpanded: False
-        # Should be removed
-        gmfSearchActions: []
         gmfMobileMeasurePointOptions:
           decimals: 2
           rasterLayers: []
