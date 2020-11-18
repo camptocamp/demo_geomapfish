@@ -311,25 +311,25 @@ vars:
           tags:
             service: js
             interface: iframe_api
-            api:
-              constants:
-                # The resolutions list.
-                resolutions: *resolutions
+    api:
+      constants:
+        # The resolutions list.
+        resolutions: *resolutions
 
-                # The extent restriction, must be in the same projection as `config.projection`.
-                # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
-                # the null is no restriction.
-                extent: *extent
+        # The extent restriction, must be in the same projection as `config.projection`.
+        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
+        # the null is no restriction.
+        extent: *extent
 
-                # The name of the layer to use as background, the layer must be present in the 'background_layers'
-                # section of the theme
-                backgroundLayer: OSM map
+        # The name of the layer to use as background, the layer must be present in the 'background_layers'
+        # section of the theme
+        backgroundLayer: OSM map
 
-                # The list of layers (names) that can be queried on mouse click
-                queryableLayers:
-                  - osm_open
-                  - many_attributes
-                  - polygon
+        # The list of layers (names) that can be queried on mouse click
+        queryableLayers:
+          - osm_open
+          - many_attributes
+          - polygon
     mobile_alt:
       extends: mobile
       redirect_interface: desktop_alt
@@ -410,6 +410,7 @@ vars:
           params:
             ogcserver: QGIS server
     oeedit:
+      extends: default
       constants:
         sentryOptions:
           <<: *sentryOptions
