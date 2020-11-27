@@ -12,10 +12,17 @@ jobs:
     name: Upgrade 2.6
     timeout-minutes: 10
 
+    strategy:
+      fail-fast: false
+      matrix:
+        branch:
+          - prod-2-6
+          - prod-2-6-simple
+
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: 'prod-2-6'
+          ref: ${{ matrix.branch }}
           token: ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}
 
       - name: Update the demo
