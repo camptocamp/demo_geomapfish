@@ -26,9 +26,10 @@ jobs:
           ls -als .UPGRADE*
           git add --all || true
           git add --force .UPGRADE_INSTRUCTIONS || true
+          git add --force upgrade || true
           git status
           git commit -m "Interrupted upgrade to ${{ github.event.client_payload.version }}"
-          git push --force origin HEAD:interrupted-upgrade-26
+          git push origin HEAD:interrupted-upgrade-26
           python3 -c 'import requests
           responce = requests.post(
               "https://api.github.com/repos/camptocamp/demo_geomapfish/pulls",
