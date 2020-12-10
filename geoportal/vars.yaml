@@ -163,6 +163,7 @@ vars:
             theme-selector-columns: 3
             theme-selector-column-width: 8rem
         ngeoStreetviewOptions:
+          viewer: 'mapillary'
           key: 'd1dNaFk4aDVoVVlZd0dEZG95Wm84QTpkYmRkOGQyMWRkMThiM2E2'
         ngeoWfsPermalinkOptions:
           wfsTypes:
