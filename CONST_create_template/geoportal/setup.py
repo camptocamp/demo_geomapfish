@@ -10,9 +10,17 @@ setup(
     author="geomapfish",
     author_email="info@geomapfish.com",
     url="https://www.geomapfish.com/",
-    install_requires=["c2cgeoportal_geoportal", "c2cgeoportal_admin",],
+    install_requires=[
+        "c2cgeoportal_geoportal",
+        "c2cgeoportal_admin",
+    ],
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    entry_points={"paste.app_factory": ["main = geomapfish_geoportal:main",], "console_scripts": [],},
+    entry_points={
+        "paste.app_factory": [
+            "main = geomapfish_geoportal:main",
+        ],
+        "console_scripts": [],
+    },
 )
