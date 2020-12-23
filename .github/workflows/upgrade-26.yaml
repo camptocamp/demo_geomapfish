@@ -32,17 +32,17 @@ jobs:
         run: |
           ls -als .UPGRADE*
           git add --all || true
-          git add --force .UPGRADE_INSTRUCTIONS || true
+          git add --force .UPGRADE_INSTRUCTIONS upgrade || true
           git status
           git commit -m "Interrupted upgrade to ${{ github.event.client_payload.version }}"
-          git push --force origin HEAD:interrupted-upgrade-${{ matrix.branch }}
+          git push --force origin HEAD:interrupted-upgrade-${{ matrix.branch }}-${{ github.event.client_payload.version }}
           python3 -c 'import requests
           responce = requests.post(
               "https://api.github.com/repos/camptocamp/demo_geomapfish/pulls",
               json={
                 "title": "Upgrade failed",
                 "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.6%22",
-                "head": "interrupted-upgrade-${{ matrix.branch }}",
+                "head": "interrupted-upgrade-${{ matrix.branch }}-${{ github.event.client_payload.version }}",
                 "base": "${{ matrix.branch }}",
                 "maintainer_can_modify": True
               },
