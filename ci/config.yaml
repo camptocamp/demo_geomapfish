@@ -10,6 +10,6 @@ publish:
   docker:
     images:
       - group: geoportal
-        name: camptocamp/demo-geoportal
+        name: camptocamp/{{package}}-geoportal
       - group: config
-        name: camptocamp/demo-config
+        name: camptocamp/{{package}}-config
