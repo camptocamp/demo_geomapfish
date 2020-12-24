@@ -20,8 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int_2.6
-          - prod_2.6
+          - prod-2-6
+          - prod-2-6-simple
 
     steps:
       - uses: actions/checkout@v2
