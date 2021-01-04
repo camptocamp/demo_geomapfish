@@ -32,6 +32,7 @@ jobs:
           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
           patterns: docker
 
+      - run: touch env.secrets
       - name: Build config
         run: ./build --config
 
@@ -48,12 +49,12 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int_2.6
-          - prod_2.6
+          - prod-2-6
 
     steps:
       - uses: actions/checkout@v1
 
+      - run: touch env.secrets
       - name: Build geoportal
         run: ./build --geoportal
 
