@@ -9,7 +9,5 @@ checks:
 publish:
   docker:
     images:
-      - group: geoportal
-        name: camptocamp/demo-geoportal
       - group: config
-        name: camptocamp/demo-config
+        name: camptocamp/geomapfishdemo-config
