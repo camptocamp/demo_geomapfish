@@ -96,7 +96,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: geoportal
-    image: camptocamp/geomapfish-geoportal:${DOCKER_TAG}
+    image: camptocamp/geomapfishapp-geoportal:${DOCKER_TAG}
     volumes_from:
       - config:ro
     environment:
