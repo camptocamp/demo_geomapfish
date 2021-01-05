@@ -54,7 +54,7 @@ Changes to apply
    interfaces_config. To ease future migration, you should remove any existing custom JavaScript code which is
    setting such variables.
    There is some new documentation about the constants in ngeo
-   https://camptocamp.github.io/ngeo/master/apidoc/index.html.
+   https://camptocamp.github.io/ngeo/2.6/apidoc/index.html.
 
 
 Version 2.5.0
@@ -65,7 +65,7 @@ Information
 
 1. Basic authentication is disabled by default from this version onward.
    To enable basic auth see:
-   https://camptocamp.github.io/c2cgeoportal/master/integrator/security.html#basic-auth
+   https://camptocamp.github.io/c2cgeoportal/2.6/integrator/security.html#basic-auth
 
 2. We change the secret name from `GITHUB_GOPASS_CI_TOKEN` to `GOPASS_CI_GITHUB_TOKEN` because we can't
    anymore create create secret started with `GITHUB_`.
@@ -77,7 +77,7 @@ Changes to apply
 
 1. Now we need to have PyYAML python package installed in the home,
    see the documentation for more information:
-   https://camptocamp.github.io/c2cgeoportal/master/integrator/requirements.html
+   https://camptocamp.github.io/c2cgeoportal/2.6/integrator/requirements.html
 
 2. The configuration vars `vars/functionalities/anonymous` and `vars/functionalities/registered` should
    be moved to the new roles `anonymous` and `registered` that will be created once the database has been upgraded.
@@ -94,7 +94,7 @@ Changes to apply
    `request.static_url('/etc/geomapfish/static/`.
 
 6. Optional, change your mapfiles according the documentation:
-   https://camptocamp.github.io/c2cgeoportal/master/administrator/mapfile.html
+   https://camptocamp.github.io/c2cgeoportal/2.6/administrator/mapfile.html
 
 
 Version 2.4.2
