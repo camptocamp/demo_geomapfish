@@ -17,7 +17,7 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--no-in
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:master as runner
+FROM camptocamp/geomapfish:2.6 as runner
 
 COPY requirements.txt /tmp/requirements.txt
 RUN \

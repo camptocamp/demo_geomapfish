@@ -20,8 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int-master
-          - prod-master
+          - int-2.6
+          - prod-2.6
 
     steps:
       - uses: actions/checkout@v2
@@ -48,8 +48,8 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int_master
-          - prod_master
+          - int_2.6
+          - prod_2.6
 
     steps:
       - uses: actions/checkout@v1
