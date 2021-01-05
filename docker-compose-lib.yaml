@@ -56,7 +56,7 @@ services:
       - PGOPTIONS
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver:gmfmaster-qgis${QGIS_VERSION}
+    image: camptocamp/geomapfish-qgisserver:gmf2.6-qgis${QGIS_VERSION}
     user: www-data
     restart: unless-stopped
     environment:
