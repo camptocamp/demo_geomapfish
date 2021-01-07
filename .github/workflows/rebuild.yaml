@@ -33,6 +33,7 @@ jobs:
           patterns: docker
 
       - run: touch env.secrets
+      - run: sed -i '/^DOCKER_TAG=/d' env.project
       - name: Build config
         run: ./build --config
 
@@ -58,6 +59,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - run: touch env.secrets
+      - run: sed -i '/^DOCKER_TAG=/d' env.project
       - name: Build geoportal
         run: ./build --geoportal
 
