@@ -408,7 +408,7 @@ vars:
           params:
             ogcserver: QGIS server
     oeedit:
-      extends: default
+      extends: desktop
       constants:
         sentryOptions:
           <<: *sentryOptions
