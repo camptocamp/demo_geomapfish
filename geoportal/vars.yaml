@@ -86,7 +86,7 @@ vars:
     desktop:
       constants:
         sentryOptions: &sentryOptions
-          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+          dsn: https://8dfa6c72fcad48c487c6a89b22ce581b@o330647.ingest.sentry.io/1851011
           release: '{VERSION}'
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           attachStacktrace: True
