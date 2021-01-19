@@ -86,7 +86,7 @@ vars:
     desktop:
       constants:
         sentryOptions: &sentryOptions
-          dsn: https://8dfa6c72fcad48c487c6a89b22ce581b@o330647.ingest.sentry.io/1851011
+          dsn: '{SENTRY_PUBLIC_URL}'
           release: '{VERSION}'
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           attachStacktrace: True
@@ -747,6 +747,8 @@ runtime_environment:
     default: xxx
   - name: SENTRY_CLIENT_ENVIRONMENT
     default: xxx
+  - name: SENTRY_PUBLIC_URL
+    default: https://8dfa6c72fcad48c487c6a89b22ce581b@o330647.ingest.sentry.io/1851011
 
 environment:
   - name: VERSION
