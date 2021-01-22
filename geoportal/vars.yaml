@@ -540,6 +540,11 @@ vars:
       - 172.18.0.1/16
       - 185.127.205.3/24
 
+  content_security_policy_main_script_src: "
+    'self'
+    https://cdn.polyfill.io/
+    {content_security_policy_main_script_src_extra}"
+
   headers:
     themes: &headers
       cache_control_max_age: 600 # 10 minutes
