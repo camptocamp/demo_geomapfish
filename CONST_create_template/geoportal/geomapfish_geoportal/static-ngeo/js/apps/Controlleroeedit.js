@@ -166,14 +166,14 @@ class Controller extends AbstractDesktopController {
 /**
  * @hidden
  */
-const module = angular.module('Appoeedit', [
+const geomapfishModule = angular.module('Appoeedit', [
   geomapfishBase.name,
   gmfControllersAbstractDesktopController.name,
   gmfObjecteditingModule.name,
 ]);
 
-module.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
-module.run(
+geomapfishModule.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
+geomapfishModule.run(
   /**
    * @ngInject
    * @param {angular.ITemplateCacheService} $templateCache
@@ -184,13 +184,13 @@ module.run(
   }
 );
 
-module.value(
+geomapfishModule.value(
   'gmfPermalinkOptions',
   /** @type {import('gmf/options.js').gmfPermalinkOptions} */ ({
     pointRecenterZoom: 10,
   })
 );
 
-module.controller('OEEditController', Controller);
+geomapfishModule.controller('OEEditController', Controller);
 
-export default module;
+export default geomapfishModule;

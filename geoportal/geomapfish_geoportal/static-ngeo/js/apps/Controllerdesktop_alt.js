@@ -36,7 +36,7 @@ import gmfControllersAbstractDesktopController, {
 import geomapfishBase from '../geomapfishmodule.js';
 import gmfImportModule from 'gmf/import/module.js';
 import gmfFloorModule from 'gmf/floor/module.js';
-import ngeoGooglestreetviewModule from 'ngeo/googlestreetview/module.js';
+import ngeoStreetviewModule from 'ngeo/streetview/module.js';
 import ngeoRoutingModule from 'ngeo/routing/module.js';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink.js';
 
@@ -77,16 +77,16 @@ class Controller extends AbstractDesktopController {
 /**
  * @hidden
  */
-const module = angular.module('Appdesktop_alt', [
+const geomapfishModule = angular.module('Appdesktop_alt', [
   geomapfishBase.name,
   gmfControllersAbstractDesktopController.name,
   gmfImportModule.name,
   gmfFloorModule.name,
   ngeoRoutingModule.name,
-  ngeoGooglestreetviewModule.name,
+  ngeoStreetviewModule.name,
   ngeoStatemanagerWfsPermalink.name,
 ]);
 
-module.controller('AlternativeDesktopController', Controller);
+geomapfishModule.controller('AlternativeDesktopController', Controller);
 
-export default module;
+export default geomapfishModule;

@@ -65,10 +65,10 @@ class Controller extends AbstractDesktopController {
 /**
  * @hidden
  */
-const module = angular.module('Appdesktop', [geomapfishBase.name, gmfControllersAbstractDesktopController.name]);
+const geomapfishModule = angular.module('Appdesktop', [geomapfishBase.name, gmfControllersAbstractDesktopController.name]);
 
-module.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
-module.run(
+geomapfishModule.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
+geomapfishModule.run(
   /**
    * @ngInject
    * @param {angular.ITemplateCacheService} $templateCache
@@ -79,6 +79,6 @@ module.run(
   }
 );
 
-module.controller('DesktopController', Controller);
+geomapfishModule.controller('DesktopController', Controller);
 
-export default module;
+export default geomapfishModule;
