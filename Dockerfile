@@ -39,7 +39,7 @@ RUN \
 
 ###############################################################################
 
-FROM camptocamp/geomapfish-config:2.6
+FROM camptocamp/geomapfish-config:2.7
 
 ARG PGSCHEMA
 ENV PGSCHEMA=$PGSCHEMA
