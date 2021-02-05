@@ -18,7 +18,7 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--no-in
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:2.6 as runner
+FROM camptocamp/geomapfish:2.7 as runner
 
 #RUN apt update
 #RUN apt install --yes gcc python3.7-dev
