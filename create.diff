@@ -1,0 +1,58 @@
+diff --git a/.github/workflows/rebuild.yaml b/.github/workflows/rebuild.yaml
+index a5b9e65..27851dc 100644
+--- a/.github/workflows/rebuild.yaml
++++ b/.github/workflows/rebuild.yaml
+@@ -20,8 +20,8 @@ jobs:
+       fail-fast: false
+       matrix:
+         branch:
+-          - int-2.6
+-          - prod-2.6
++          - int-2.7
++          - prod-2.7
+ 
+     steps:
+       - uses: actions/checkout@v2
+@@ -51,8 +51,8 @@ jobs:
+       fail-fast: false
+       matrix:
+         branch:
+-          - int_2.6
+-          - prod_2.6
++          - int_2.7
++          - prod_2.7
+ 
+     steps:
+       - uses: actions/checkout@v1
+diff --git a/README.rst b/README.rst
+index d87b016..4ad8167 100644
+--- a/README.rst
++++ b/README.rst
+@@ -1,7 +1,7 @@
+ demo_geomapfish project
+ ===================
+ 
+-Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.6/>`_
++Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.7/>`_
+ 
+ Checkout
+ --------
+diff --git a/geoportal/Dockerfile b/geoportal/Dockerfile
+index 3998ad1..20bcb56 100644
+--- a/geoportal/Dockerfile
++++ b/geoportal/Dockerfile
+@@ -1,4 +1,4 @@
+-FROM camptocamp/geomapfish-tools:2.6.rc.2 as builder
++FROM camptocamp/geomapfish-tools:latest as builder
+ LABEL maintainer Camptocamp "info@camptocamp.com"
+ 
+ WORKDIR /app
+@@ -17,7 +17,7 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--no-in
+ 
+ ###############################################################################
+ 
+-FROM camptocamp/geomapfish:2.6 as runner
++FROM camptocamp/geomapfish:2.7 as runner
+ 
+ COPY requirements.txt /tmp/requirements.txt
+ RUN \

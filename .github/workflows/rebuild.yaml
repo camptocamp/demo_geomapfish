@@ -20,8 +20,13 @@ jobs:
       fail-fast: false
       matrix:
         branch:
+<<<<<<< ours
           - prod-2-6
           - prod-2-6-simple
+=======
+          - int-2.7
+          - prod-2.7
+>>>>>>> theirs
 
     steps:
       - uses: actions/checkout@v2
@@ -53,7 +58,12 @@ jobs:
       fail-fast: false
       matrix:
         branch:
+<<<<<<< ours
           - prod-2-6
+=======
+          - int_2.7
+          - prod_2.7
+>>>>>>> theirs
 
     steps:
       - uses: actions/checkout@v1
