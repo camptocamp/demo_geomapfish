@@ -231,7 +231,7 @@ services:
       - LOG_TYPE
 
   tools:
-    image: camptocamp/geomapfish-tools:2.6.rc.2
+    image: camptocamp/geomapfish-tools:2.6.rc.6
     restart: unless-stopped
     environment:
       - PGSCHEMA

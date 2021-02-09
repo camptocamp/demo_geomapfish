@@ -13,14 +13,7 @@
     <link href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.cache_version %>/css/oeedit.css" rel="stylesheet">
   </head>
   <body ng-class="{'gmf-profile-chart-active': !!profileChartActive}">
-    <header>
-      <div class="logo">
-        <span></span>
-      </div>
-      <div class="logo-right">
-        <span></span>
-      </div>
-    </header>
+    <gmf-header gmf-header-template-url="oeedit/header.html"></gmf-header>
     <main>
       <div class="gmf-app-data-panel">
         <div class="gmf-app-header">
