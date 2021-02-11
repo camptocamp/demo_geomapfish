@@ -41,11 +41,14 @@ defaults:
             Pragma: no-cache
         # file name extension
         extension: png
+        # legend file name extension
+        legend_extension: png
         # the bbox there we want to generate tiles
         bbox: [2473743, 1074095, 2850904, 1325533]
 
         # mime type used for the WMS request and the WMTS capabilities generation
         mime_type: image/png
+        legend_mime: image/png
         wmts_style: default
         # the WMTS dimensions definition [default to []]
         #dimensions:
@@ -126,6 +129,10 @@ server:
     predefined_commands:
     -   name: Generation layer map
         command: generate_tiles --role=master --layer=map
+    -   name: Generation OpenLayers example
+        command: generate_controller --openlayers
+    -   name: Generate the legend images
+        command: generate_controller --generate-legend-images
 
 process:
     optipng_test:
