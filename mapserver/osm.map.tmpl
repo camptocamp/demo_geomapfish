@@ -87,8 +87,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=amenity = 'police'"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE amenity = 'police'
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -132,8 +139,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=amenity = 'post_office'"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,
+            layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion,
+            shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE amenity = 'post_office'
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -177,8 +191,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=amenity = 'fuel'"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE amenity = 'fuel'
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -222,8 +243,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=amenity = 'parking'"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE amenity = 'parking'
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -267,8 +295,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,name AS name2,name AS name3,name AS name4,name AS name5,name AS name6,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point WHERE name is not NULL) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=highway = 'bus_stop'"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,name AS name2,name AS name3,name AS name4,name AS name5,name AS name6,osm_id,access,
+            aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,
+            leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref,
+            religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point
+        WHERE name is not NULL AND highway = 'bus_stop'
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -302,8 +337,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=highway = 'bus_stop'"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE highway = 'bus_stop'
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -349,8 +391,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=tourism in ('alpine_hut','hostel', 'guest_house', 'chalet', 'hotel', 'camp_site')"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE tourism in ('alpine_hut','hostel', 'guest_house', 'chalet', 'hotel', 'camp_site')
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -452,8 +501,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=tourism = 'information'"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE tourism = 'information'
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -490,8 +546,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=tourism in ('zoo','casino', 'bicycle_rental', 'boat_rental', 'winery', 'brewery', 'museum', 'viewpoint')"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE tourism in ('zoo','casino', 'bicycle_rental', 'boat_rental', 'winery', 'brewery', 'museum', 'viewpoint')
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -666,8 +729,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=amenity in ('bank','atm')"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WITH amenity in ('bank', 'atm')
+    ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
         "init=epsg:2056"
@@ -802,8 +872,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=amenity in ('cafe','restaurant', 'fast_food', 'bar')"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WITH amenity in ('cafe', 'restaurant', 'fast_food', 'bar')
+    ) AS foo USING unique osm_id USING srid=2056"
     PROJECTION
         "init=epsg:2056"
     END
@@ -886,8 +963,15 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
-    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
-    PROCESSING "NATIVE_FILTER=amenity in ('cafe','bar','nightclub', 'cinema')"
+    DATA "geom FROM (
+        SELECT
+            regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
+            name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,
+            foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
+            railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
+        FROM planet_osm_point
+        WHERE amenity in ('cafe', 'bar', 'nightclub', 'cinema')
+    ) AS foo USING unique osm_id USING srid=2056"
     PROJECTION
         "init=epsg:2056"
     END
