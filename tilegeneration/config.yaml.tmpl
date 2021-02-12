@@ -48,6 +48,7 @@ defaults:
 
         # mime type used for the WMS request and the WMTS capabilities generation
         mime_type: image/png
+        # mime type used for the WMS request and the WMTS legend image generation
         legend_mime: image/png
         wmts_style: default
         # the WMTS dimensions definition [default to []]
@@ -127,8 +128,12 @@ server:
     expires: 8  # 8 hours
     mapcache_internal: True
     predefined_commands:
-    -   name: Generation layer map
-        command: generate_tiles --role=master --layer=map
+    -   name: Generation all layers
+        command: generate_tiles --role=master
+    -   name: Generation layer plan
+        command: generate_tiles --role=master --layer=plan
+    -   name: Generation layer ortho
+        command: generate_tiles --role=master --layer=ortho
     -   name: Generation OpenLayers example
         command: generate_controller --openlayers
     -   name: Generate the legend images
