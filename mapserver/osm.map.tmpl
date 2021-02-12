@@ -736,7 +736,7 @@ LAYER
             foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
             railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
         FROM planet_osm_point
-        WITH amenity in ('bank', 'atm')
+        WHERE amenity in ('bank', 'atm')
     ) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     PROJECTION
@@ -879,7 +879,7 @@ LAYER
             foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place,
             railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom
         FROM planet_osm_point
-        WITH amenity in ('cafe', 'restaurant', 'fast_food', 'bar')
+        WHERE amenity in ('cafe', 'restaurant', 'fast_food', 'bar')
     ) AS foo USING unique osm_id USING srid=2056"
     PROJECTION
         "init=epsg:2056"
