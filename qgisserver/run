@@ -1,0 +1,39 @@
+docker pull camptocamp/qgis-server:configurable-serviceurl
+
+docker stop qgis
+
+docker run --name=qgis -d --rm -ti --publish=8380:80 -e QGIS_PROJECT_FILE=/etc/qgisserver/project.qgz --env QGIS_SERVER_LOG_LEVEL=0 \
+-v /home/external/workspace/demo_geomapfish/qgisserver/test-plugin:/var/www/plugins/test-plugin \
+-v /home/external/workspace/demo_geomapfish/qgisserver:/etc/qgisserver \
+camptocamp/qgis-server:configurable-serviceurl
+
+curl 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+docker stop qgis
+
+docker run --name=qgis -d --rm -ti --publish=8380:80 -e PGOPTIONS="-c statement_timeout=1000" -e QGIS_SERVER_IGNORE_BAD_LAYERS=TRUE -e QGIS_PROJECT_FILE=/etc/qgisserver/project.qgz --env QGIS_SERVER_LOG_LEVEL=0 -v /home/external/workspace/demo_geomapfish/qgisserver:/etc/qgisserver camptocamp/qgis-server:configurable-serviceurl
+
+curl -H 'X-Qgis-Service-Url:http://t111?ogc=zééhg&hh=kk' 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+curl -H 'X-Qgis-Wms-Service-Url:http://t222?ogc=zééhg&hh=kk' 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+
+curl -H 'X-Forwarded-Host:t444' 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+
+curl -H 'X-Forwarded-Host:t5555' -H 'X-Forwarded-Proto:https' 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+curl -H 'Forwarded:proto=https;host=t666' 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+curl -H 'Forwarded:proto=https;host=t777, proto=https;host=wrong' 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+XX proto
+curl -H Host:t888 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+XX proto: http/1.1
+curl 'http://localhost:8380/jj?REQUEST=GetCapabilities&SERVICE=WMS'
+
+
+PATH_INFO
+REQUEST_URI
+SCRIPT_NAME
