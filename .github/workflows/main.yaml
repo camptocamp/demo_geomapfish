@@ -6,8 +6,10 @@ on:
 
 env:
   PROJECT: demo
+  # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
   OPENSHIFT_PROJECT: gs-gmf-demo
-  HELM_RELEASE_NAMES: prod-2-6,prod-2-7
+  # The release branches
+  HELM_RELEASE_NAMES: prod-2-6
 
 jobs:
   checks:
