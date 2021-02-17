@@ -7,8 +7,8 @@ on:
 env:
   PROJECT: demo
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
-  # OPENSHIFT_PROJECT: gs-gmf-demo
-  # HELM_RELEASE_NAMES: # List of branch that should be deployed on helm
+  OPENSHIFT_PROJECT: gs-gmf-demo
+  HELM_RELEASE_NAMES: '2.4' # List of branch that should be deployed on helm
   PATH: /bin:/usr/bin:/usr/local/bin:/home/runner/.local/bin
   SUMMON_PROVIDER: /usr/local/bin/gopass
   OPENSHIFT_URL: https://api.openshift-ch-1.camptocamp.com/
