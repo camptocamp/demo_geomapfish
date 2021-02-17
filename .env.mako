@@ -32,7 +32,7 @@ REDIS_PORT=6379
 REDIS_DB=0
 TILEGENERATION_SQS_QUEUE=geomapfish-demo-stretch
 TILEGENERATION_S3_BUCKET=tiles-gmf-demo
-GUNICORN_PARAMS=--bind=:8080 --worker-class=gthread --threads=10 --workers=1 --timeout=60 --max-requests=1000 --max-requests-jitter=100
+GUNICORN_PARAMS=--bind=:8080 --worker-class=gthread --threads=10 --workers=1 --timeout=60 --max-requests=1000 --max-requests-jitter=100 --worker-tmp-dir=/dev/shm
 # Use the mutualised print, ask Camptocamp to configure your project.
 PRINT_URL=https://mutualized-print.apps.openshift-ch-1.camptocamp.com/print/${mutualized_print_app}/
 DEVSERVER_HOST=webpack_dev_server:8080
