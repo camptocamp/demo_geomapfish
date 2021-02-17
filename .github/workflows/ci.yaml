@@ -12,7 +12,7 @@ env:
   PATH: /bin:/usr/bin:/usr/local/bin:/home/runner/.local/bin
   SUMMON_PROVIDER: /usr/local/bin/gopass
   OPENSHIFT_URL: https://api.openshift-ch-1.camptocamp.com/
-  # OPENSHIFT_RELEASE: # Optional, name of the OpenShift release
+  OPENSHIFT_RELEASE: prod-2-4 # Optional, name of the OpenShift release
 
 jobs:
   config:
