@@ -56,7 +56,7 @@ jobs:
 
       - name: Publish
         run: c2cciutils-publish --group=config
-      - run: ci/trigger --image=config
+  #      - run: ci/trigger --image=config
 
   geoportal:
     runs-on: ubuntu-20.04
