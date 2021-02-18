@@ -154,6 +154,57 @@ vars:
     enabled: true
     map: *map_config
 
+    admin_new_issue_email:
+       email_from: info@camptocamp.com
+       email_subject: A new issue has been created
+       email_body: |
+          A new issue has been submitted
+          You can find the link here : {issue-link}
+
+    new_issue_email:
+       # Used to send a email when an issue has been created
+       email_from: info@camptocamp.com
+       email_subject: Issue declaration confirmation
+       email_body: |
+          Hello {username},
+
+          We confirm that we have received a new issue situated at {issue.localisation}.
+
+          You can follow the status here : {issue-link}
+          You will receive a new email as soon as it has been updated.
+
+          Best
+
+          Get It Fixed Team
+
+    update_issue_email:
+       # Used to send a email when an issue has been updated
+       email_from: info@camptocamp.com
+       email_subject: Status update for an issue
+       email_body: |
+          Hello {username},
+
+          The issue {issue.hash} created on the {issue.request_date} has evolved it is now {issue.status_en}.
+          {event.comment}
+          You can follow it here {issue-link}
+
+          Best
+
+          Get It Fixed Team
+
+    resolved_issue_email:
+       # Used to send a when an issue has been resolved
+       email_from: info@camptocamp.com
+       email_subject: Issue resolved
+       email_body: |
+          Hello {username},
+
+          The issue {issue.hash} created on the {issue.request_date} has now been resolved.
+
+          Best
+
+          Get It Fixed Team
+
   functionalities:
     # Functionalities that are made available to Mako templates.
     available_in_templates:
@@ -400,6 +451,10 @@ update_paths:
 #  - cache.std
 
 no_interpreted:
+  - getitfixed.admin_new_issue_email.email_body
+  - getitfixed.new_issue_email.email_body
+  - getitfixed.update_issue_email.email_body
+  - getitfixed.resolved_issue_email.email_body
   - reset_password.email_body
   - shortener.email_body
   - welcome_email.email_body
