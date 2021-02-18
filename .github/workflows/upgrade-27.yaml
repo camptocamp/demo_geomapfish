@@ -41,7 +41,7 @@ jobs:
               "https://api.github.com/repos/camptocamp/demo_geomapfish/pulls",
               json={
                 "title": "Upgrade failed",
-                "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.6%22",
+                "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.7%22",
                 "head": "interrupted-upgrade-${{ matrix.branch }}-${{ github.event.client_payload.version }}",
                 "base": "${{ matrix.branch }}",
                 "maintainer_can_modify": True
