@@ -159,7 +159,7 @@ vars:
           coordinatesProjections: *alternate_projections
           delay: 500
           colorChooser: True
-          clearBuffon: True
+          clearButton: False
           styles:
             default:
               type: Circle
@@ -328,7 +328,7 @@ vars:
         gmfSearchOptions:
           coordinatesProjections: *alternate_projections
           delay: 50
-          clearBuffon: False
+          clearButton: False
           actions: []
           datasources:
             - labelKey: label
