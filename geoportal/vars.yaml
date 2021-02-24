@@ -280,6 +280,12 @@ vars:
       - localhost
       - 127.0.0.1
 
+  # Allow inclusion in iframe
+  global_headers:
+    - pattern: '.*'
+      headers:
+        X-Frame-Options:
+
   reset_password:
     # Used to send a confirmation email
     email_from: info@camptocamp.com
