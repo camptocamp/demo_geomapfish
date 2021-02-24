@@ -282,7 +282,10 @@ vars:
         - http://127.0.0.1:3000
         - http://127.0.0.1
         - "*"
-    index: *headers
+    index:
+      <<: *headers
+      headers:
+        X-Frame-Options: null
     api: *headers
     error: *headers
     config: *headers
@@ -365,6 +368,7 @@ update_paths:
   - functionalities.available_in_templates
   - global_headers
   - headers.index
+  - headers.index.headers
   - headers.api
   - headers.profile
   - headers.raster
