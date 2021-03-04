@@ -24,7 +24,7 @@ jobs:
         run: |
           ls -als .UPGRADE*
           git add --all || true
-          git add --force .UPGRADE_INSTRUCTIONS upgrade || true
+          git add --force .UPGRADE_INSTRUCTIONS upgrade .upgrade.yaml || true
           git status
           git commit -m "Interrupted upgrade to ${{ github.event.client_payload.version }}"
           git push --force origin HEAD:interrupted-upgrade-${{ github.event.client_payload.version }}
