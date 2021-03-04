@@ -1,0 +1,10 @@
+diff --git a/geoportal/Dockerfile b/geoportal/Dockerfile
+index b6ce576..e496147 100644
+--- a/geoportal/Dockerfile
++++ b/geoportal/Dockerfile
+@@ -1,4 +1,4 @@
+-FROM camptocamp/geomapfish-tools:2.6.rc.16 as builder
++FROM camptocamp/geomapfish-tools:2.6.rc.18 as builder
+ LABEL maintainer Camptocamp "info@camptocamp.com"
+ 
+ WORKDIR /app
