@@ -105,12 +105,6 @@ vars:
               color: '#0000A0'
             srtm:
               color: '#00A000'
-        gmfContextualDataOptions:
-          projections: *alternate_projections
-          rasterParams: {}
-        gmfContextualdataOptions:
-          projections: *alternate_projections
-          rasterParams: {}
     desktop:
       constants:
         sentryOptions: &sentryOptions
@@ -296,7 +290,7 @@ vars:
           geolocalisation: True
         gmfMobileMeasurePointOptions:
           decimals: 0
-          format: '{x}, {y}'
+          format: '{x} {y}'
           rasterLayers:
             - name: aster
               unit: m
