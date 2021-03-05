@@ -105,6 +105,7 @@ vars:
               color: '#0000A0'
             srtm:
               color: '#00A000'
+<<<<<<< ours
         gmfContextualDataOptions:
           projections: *alternate_projections
           rasterParams: {}
@@ -281,6 +282,8 @@ vars:
         gmfShareOptions:
           enableEmail: False
         pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
+=======
+>>>>>>> theirs
     mobile:
       constants:
         sentryOptions:
@@ -296,7 +299,7 @@ vars:
           geolocalisation: True
         gmfMobileMeasurePointOptions:
           decimals: 0
-          format: '{x}, {y}'
+          format: '{x} {y}'
           rasterLayers:
             - name: aster
               unit: m
