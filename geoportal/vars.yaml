@@ -79,6 +79,11 @@ vars:
             partitionlimit: 5
     desktop:
       constants:
+        sentryOptions:
+          <<: *sentryOptions
+          tags:
+            service: js
+            interface: desktop
         gmfOptions:
           map:
             maxTilesLoading: 128
@@ -120,6 +125,11 @@ vars:
       extends: desktop
       redirect_interface: mobile_alt
       constants:
+        sentryOptions:
+          <<: *sentryOptions
+          tags:
+            service: js
+            interface: desktop_alt
         gmfOptions:
           map:
             maxTilesLoading: 9999
@@ -267,6 +277,11 @@ vars:
         pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
     mobile:
       constants:
+        sentryOptions:
+          <<: *sentryOptions
+          tags:
+            service: js
+            interface: mobile
         gmfOptions:
           map: {}
           view:
@@ -296,34 +311,15 @@ vars:
               radius: 8
               radius2: 0
               angle: 0
-    api:
-      constants:
-        # The resolutions list.
-        resolutions: *resolutions
-
-        # The extent restriction, must be in the same projection as `config.projection`.
-        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
-        # the null is no restriction.
-        extent: *extent
-
-        # The name of the layer to use as background, the layer must be present in the 'background_layers'
-        # section of the theme
-        backgroundLayer: OSM map
-
-        # The list of layers (names) that can be queried on mouse click
-        queryableLayers:
-          - osm_open
-          - many_attributes
-          - polygon
-      routes:
-        searchUrl:
-          params:
-            limit: 30
-            partitionlimit: 5
     mobile_alt:
       extends: mobile
       redirect_interface: desktop_alt
       constants:
+        sentryOptions:
+          <<: *sentryOptions
+          tags:
+            service: js
+            interface: mobile_alt
         gmfOptions:
           map:
             pixelRatio: 1
@@ -394,6 +390,37 @@ vars:
           name: mapserverproxy
           params:
             ogcserver: QGIS server
+    iframe_api:
+      constants:
+        sentryOptions:
+          <<: *sentryOptions
+          tags:
+            service: js
+            interface: iframe_api
+    api:
+      constants:
+        # The resolutions list.
+        resolutions: *resolutions
+
+        # The extent restriction, must be in the same projection as `config.projection`.
+        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
+        # the null is no restriction.
+        extent: *extent
+
+        # The name of the layer to use as background, the layer must be present in the 'background_layers'
+        # section of the theme
+        backgroundLayer: OSM map
+
+        # The list of layers (names) that can be queried on mouse click
+        queryableLayers:
+          - osm_open
+          - many_attributes
+          - polygon
+      routes:
+        searchUrl:
+          params:
+            limit: 30
+            partitionlimit: 5
     oeedit:
       extends: desktop
   print_get_redirect: True
