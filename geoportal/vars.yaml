@@ -53,6 +53,23 @@ vars:
             resolutions: *resolutions
             extent: *extent
           geolocalisation: True
+        sentryOptions: &sentryOptions
+          dsn: '{SENTRY_URL}'
+          release: '{SENTRY_CLIENT_RELEASE}'
+          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
+          attachStacktrace: True
+          autoSessionTracking: False
+          whitelistUrls:
+            - .*\.camptocamp\.com.*
+            - https://camptocamp\.github\.io/ngeo/.*
+          tags:
+            service: js
+        ngeoWfsPermalinkOptions:
+          wfsTypes:
+            - featureType: fuel
+              label: display_name
+            - featureType: osm_scale
+              label: display_name
         gmfElevationOptions:
           layers: [aster, srtm]
       routes:
@@ -62,6 +79,11 @@ vars:
             partitionlimit: 5
     desktop:
       constants:
+        sentryOptions:
+          <<: *sentryOptions
+          tags:
+            service: js
+            interface: desktop
         gmfOptions:
           map:
             maxTilesLoading: 128
@@ -93,38 +115,12 @@ vars:
             - code: EPSG:4326'
               label: WGS84
               filter: ngeoDMSCoordinates:2:{y} {x}
-        ngeoWfsPermalinkOptions:
-          wfsTypes:
-            - featureType: fuel
-              label: display_name
-            - featureType: osm_scale
-              label: display_name
         ngeoProfileOptions:
           linesConfiguration:
             aster:
               color: '#0000A0'
             srtm:
               color: '#00A000'
-    desktop:
-      constants:
-        sentryOptions: &sentryOptions
-          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
-          release: '{VERSION}'
-          environment: '{SENTRY_CLIENT_ENVIRONMENT}'
-          attachStacktrace: True
-          whitelistUrls:
-            - .*\.camptocamp\.com.*
-            - https://camptocamp\.github\.io/ngeo/.*
-          tags:
-            service: js
-            interface: desktop
-        gmfOptions:
-          map:
-            maxTilesLoading: 128
-          view:
-            <<: *view
-            constrainResolution: True
-          geolocalisation: True
     desktop_alt:
       extends: desktop
       redirect_interface: mobile_alt
@@ -145,6 +141,10 @@ vars:
             brand-secondary: '#D3DBE3'
             theme-selector-columns: 3
             theme-selector-column-width: 8rem
+        gmfQueryGrid: True
+        ngeoStreetviewOptions:
+          viewer: mapillary
+          key: d1dNaFk4aDVoVVlZd0dEZG95Wm84QTpkYmRkOGQyMWRkMThiM2E2
         ngeoWfsPermalinkOptions:
           wfsTypes:
             - featureType: osm_hospitals
@@ -311,30 +311,6 @@ vars:
               radius: 8
               radius2: 0
               angle: 0
-    api:
-      constants:
-        # The resolutions list.
-        resolutions: *resolutions
-
-        # The extent restriction, must be in the same projection as `config.projection`.
-        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
-        # the null is no restriction.
-        extent: *extent
-
-        # The name of the layer to use as background, the layer must be present in the 'background_layers'
-        # section of the theme
-        backgroundLayer: OSM map
-
-        # The list of layers (names) that can be queried on mouse click
-        queryableLayers:
-          - osm_open
-          - many_attributes
-          - polygon
-      routes:
-        searchUrl:
-          params:
-            limit: 30
-            partitionlimit: 5
     mobile_alt:
       extends: mobile
       redirect_interface: desktop_alt
@@ -414,14 +390,39 @@ vars:
           name: mapserverproxy
           params:
             ogcserver: QGIS server
-    oeedit:
-      extends: default
+    iframe_api:
       constants:
         sentryOptions:
           <<: *sentryOptions
           tags:
             service: js
-            interface: oeedit
+            interface: iframe_api
+    api:
+      constants:
+        # The resolutions list.
+        resolutions: *resolutions
+
+        # The extent restriction, must be in the same projection as `config.projection`.
+        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
+        # the null is no restriction.
+        extent: *extent
+
+        # The name of the layer to use as background, the layer must be present in the 'background_layers'
+        # section of the theme
+        backgroundLayer: OSM map
+
+        # The list of layers (names) that can be queried on mouse click
+        queryableLayers:
+          - osm_open
+          - many_attributes
+          - polygon
+      routes:
+        searchUrl:
+          params:
+            limit: 30
+            partitionlimit: 5
+    oeedit:
+      extends: desktop
   print_get_redirect: True
 
   urllogin:
@@ -465,6 +466,57 @@ vars:
   getitfixed:
     enabled: True
     map: *map_config
+
+    admin_new_issue_email:
+       email_from: info@camptocamp.com
+       email_subject: A new issue has been created
+       email_body: |
+          A new issue has been submitted
+          You can find the link here : {issue-link}
+
+    new_issue_email:
+       # Used to send a email when an issue has been created
+       email_from: info@camptocamp.com
+       email_subject: Issue declaration confirmation
+       email_body: |
+          Hello {username},
+
+          We confirm that we have received a new issue situated at {issue.localisation}.
+
+          You can follow the status here : {issue-link}
+          You will receive a new email as soon as it has been updated.
+
+          Best
+
+          Get It Fixed Team
+
+    update_issue_email:
+       # Used to send a email when an issue has been updated
+       email_from: info@camptocamp.com
+       email_subject: Status update for an issue
+       email_body: |
+          Hello {username},
+
+          The issue {issue.hash} created on the {issue.request_date} has evolved it is now {issue.status_en}.
+          {event.comment}
+          You can follow it here {issue-link}
+
+          Best
+
+          Get It Fixed Team
+
+    resolved_issue_email:
+       # Used to send a when an issue has been resolved
+       email_from: info@camptocamp.com
+       email_subject: Issue resolved
+       email_body: |
+          Hello {username},
+
+          The issue {issue.hash} created on the {issue.request_date} has now been resolved.
+
+          Best
+
+          Get It Fixed Team
 
   functionalities:
     # Functionalities that are made available to Mako templates.
@@ -731,6 +783,10 @@ update_paths:
 #  - cache.std
 
 no_interpreted:
+  - getitfixed.admin_new_issue_email.email_body
+  - getitfixed.new_issue_email.email_body
+  - getitfixed.update_issue_email.email_body
+  - getitfixed.resolved_issue_email.email_body
   - reset_password.email_body
   - shortener.email_body
   - welcome_email.email_body
@@ -757,6 +813,10 @@ runtime_environment:
     default: xxx
   - name: SENTRY_CLIENT_ENVIRONMENT
     default: xxx
+  - name: SENTRY_CLIENT_RELEASE
+    default: xxx
+  - name: SENTRY_URL
+    default: https://8dfa6c72fcad48c487c6a89b22ce581b@o330647.ingest.sentry.io/1851011
 
 environment:
   - name: VERSION
