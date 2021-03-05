@@ -20,6 +20,10 @@ vars:
     - EPSG:{srid}
     - EPSG:21781
 
+  resolutions: &resolutions [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+
+  extent: &extent [2485071.54, 175346.36, 2828515.78, 1299941.84]
+
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
   # This also defines the language used for the text search.
@@ -46,8 +50,8 @@ vars:
             projection: EPSG:{srid}
             center: [2632464, 1185457]
             zoom: 3
-            resolutions: &resolutions [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
-            extent: &extent [2485071.54, 175346.36, 2828515.78, 1299941.84]
+            resolutions: *resolutions
+            extent: *extent
           geolocalisation: True
         sentryOptions: &sentryOptions
           dsn: '{SENTRY_URL}'
@@ -71,6 +75,11 @@ vars:
               label: display_name
         gmfElevationOptions:
           layers: [aster, srtm]
+      routes:
+        fulltextsearchUrl:
+          params:
+            limit: 30
+            partitionlimit: 5
     desktop:
       constants:
         gmfOptions:
@@ -83,14 +92,14 @@ vars:
         gmfMousePositionOptions:
           projections:
             - code: EPSG:2056
-              label: CH1903+ / LV95
-              filter: ngeoNumberCoordinates::{x}, {y} m
+              label: CH1903+ / MN95
+              filter: ngeoNumberCoordinates::{x} {y} m
             - code: EPSG:21781
-              label: CH1903 / LV03
-              filter: ngeoNumberCoordinates::{x}, {y} m
+              label: CH1903 / MN03
+              filter: ngeoNumberCoordinates::{x} {y} m
             - code: EPSG:4326'
               label: WGS84
-              filter: ngeoDMSCoordinates:2
+              filter: ngeoDMSCoordinates:2:{y} {x}
         gmfExternalOGCServers:
           - name: swisstopo WMS
             type: WMS
@@ -311,6 +320,11 @@ vars:
           - osm_open
           - many_attributes
           - polygon
+      routes:
+        searchUrl:
+          params:
+            limit: 30
+            partitionlimit: 5
     mobile_alt:
       extends: mobile
       redirect_interface: desktop_alt
@@ -730,13 +744,13 @@ update_paths:
   - interfaces_config.default.constants.ngeoWfsPermalinkOptions
   - interfaces_config.default.dynamic_constants
   - interfaces_config.default.static
-  - interfaces_config.default.routes
+  - interfaces_config.default.routes.fulltextsearchUrl
   - interfaces_config.desktop.constants
   - interfaces_config.desktop.routes
   - interfaces_config.mobile.constants
   - interfaces_config.iframe_api.constants
   - interfaces_config.api.constants
-  - interfaces_config.api.routes
+  - interfaces_config.api.routes.searchUrl
   - interfaces_theme
   - resourceproxy
   - servers
