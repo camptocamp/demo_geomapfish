@@ -280,7 +280,7 @@ vars:
           geolocalisation: True
         gmfMobileMeasurePointOptions:
           decimals: 0
-          format: '{x}, {y}'
+          format: '{x} {y}'
           rasterLayers:
             - name: aster
               unit: m
