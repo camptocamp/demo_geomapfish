@@ -116,12 +116,6 @@ vars:
               color: '#0000A0'
             srtm:
               color: '#00A000'
-        gmfProfileOptions:
-          hoverPointStyle:
-            circle:
-              fill:
-                color: '#ffffff'
-                radius: 3
     desktop_alt:
       extends: desktop
       redirect_interface: mobile_alt
@@ -281,7 +275,7 @@ vars:
           geolocalisation: True
         gmfMobileMeasurePointOptions:
           decimals: 0
-          format: '{x}, {y}'
+          format: '{x} {y}'
           rasterLayers:
             - name: aster
               unit: m
