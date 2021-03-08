@@ -59,7 +59,7 @@ msgid "Desktop Application"
 msgstr "Application bureau"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:199
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:217
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:221
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
@@ -69,19 +69,19 @@ msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:138
 #: contribs/gmf/apps/desktop/index.html.ejs:66
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:156
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:160
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:67
 msgid "Draw and Measure"
 msgstr "Mesure et dessin"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:192
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:210
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:214
 msgid "Draw profile line"
 msgstr "Dessiner une ligne de profil"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:165
 #: contribs/gmf/apps/desktop/index.html.ejs:76
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:183
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:187
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:77
 msgid "Editing"
 msgstr "Edition"
@@ -98,9 +98,14 @@ msgstr "Altitude (Aster)"
 msgid "Elevation (SRTM)"
 msgstr "Altitude (SRTM)"
 
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:206
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:82
+msgid "Elevation profile"
+msgstr ""
+
 #: contribs/gmf/apps/desktop/index.html.ejs:151
 #: contribs/gmf/apps/desktop/index.html.ejs:70
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:169
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:173
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:71
 msgid "Filter"
 msgstr "Filtre"
@@ -111,23 +116,31 @@ msgstr "Application iframe API"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:219
 #: contribs/gmf/apps/desktop/index.html.ejs:92
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:251
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:97
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:101
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:268
 msgid "Import Layer"
 msgstr "Importer une couche"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:170
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:188
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:192
 msgid "In order to use the editing tool, you must log in first."
 msgstr "Pour utiliser l'interface d’édition vous devez être connecté."
+
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:86
+msgid "LIDAR profile"
+msgstr ""
 
 #: contribs/gmf/apps/mobile/index.html.ejs:171
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:166
 msgid "Length"
 msgstr "Longueur"
 
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:232
+msgid "Lidar profile"
+msgstr ""
+
 #: contribs/gmf/apps/desktop/index.html.ejs:119
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:128
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:132
 msgid "Loading themes, please wait..."
 msgstr "Chargement des thèmes, veuillez patienter..."
 
@@ -139,7 +152,7 @@ msgstr "Chargement..."
 
 #: contribs/gmf/apps/desktop/index.html.ejs:110
 #: contribs/gmf/apps/desktop/index.html.ejs:58
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:119
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:123
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:59
 #: contribs/gmf/apps/mobile/index.html.ejs:150
 #: contribs/gmf/apps/mobile/index.html.ejs:185
@@ -170,15 +183,13 @@ msgstr "Edition objet - Application d'édition"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:126
 #: contribs/gmf/apps/desktop/index.html.ejs:62
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:135
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:139
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:63
 msgid "Print"
 msgstr "Impression"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:184
 #: contribs/gmf/apps/desktop/index.html.ejs:81
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:202
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:82
 msgid "Profile"
 msgstr "Profil"
 
@@ -187,25 +198,25 @@ msgstr "Profil"
 msgid "Query"
 msgstr "Interrogation"
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:101
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:261
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:105
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:278
 msgid "Routing"
 msgstr "Trajet"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:210
 #: contribs/gmf/apps/desktop/index.html.ejs:85
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:242
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:90
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:259
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:94
 msgid "Selection"
 msgstr "Sélection"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:98
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:107
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:111
 msgid "Share this map"
 msgstr "Partager cette carte"
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:228
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:86
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:245
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:90
 msgid "Street View"
 msgstr "Street View"
 
@@ -263,6 +274,6 @@ msgstr ""
 "Vous utilisez l'application mobile. Allez sur l'<a "
 "href=\"{{url}}\">application standard</a>."
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:146
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:150
 msgid "debug"
 msgstr "Debug"
