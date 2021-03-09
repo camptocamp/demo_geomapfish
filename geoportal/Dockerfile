@@ -24,8 +24,8 @@ FROM camptocamp/geomapfish:2.6 as runner
 #RUN apt install --yes gcc python3.7-dev
 COPY requirements.txt /tmp/requirements.txt
 RUN \
-  python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt && \
-  rm --recursive --force /tmp/* /var/tmp/* /root/.cache/*
+    python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt && \
+    rm --recursive --force /tmp/* /var/tmp/* /root/.cache/*
 
 WORKDIR /app
 COPY . /app
@@ -36,9 +36,10 @@ COPY --from=builder /etc/static-ngeo/* /etc/static-ngeo/
 COPY --from=builder /app/alembic.ini /app/alembic.yaml ./
 RUN chmod go+w /etc/static-ngeo/
 
+RUN python3 -m pip install --disable-pip-version-check --no-cache-dir pyramid-oauthlib oauthlib
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=/app/ && \
     python3 -m compileall -q /usr/local/lib/python3.* \
-        -x '/(ptvsd|pipenv|.*pydev.*|networkx)/' && \
+    -x '/(ptvsd|pipenv|.*pydev.*|networkx)/' && \
     python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
 
 ARG GIT_HASH
