@@ -16,7 +16,7 @@ vars:
   main_ogc_server: Main PNG
 
   alternate_projections: &alternate_projections
-    - EPSG:3857
+    - EPSG:4326
     - EPSG:{srid}
     - EPSG:21781
 
@@ -61,11 +61,16 @@ vars:
               label: display_name
         gmfElevationOptions:
           layers: [aster, srtm]
+        gmfSearchOptions:
+          coordinatesProjections: *alternate_projections
+        gmfPermalinkOptions:
+          projectionCodes: *alternate_projections
       routes:
         fulltextsearchUrl:
           params:
             limit: 30
             partitionlimit: 5
+
     desktop:
       constants:
         sentryOptions: &sentryOptions
@@ -115,6 +120,10 @@ vars:
               color: '#0000A0'
             srtm:
               color: '#00A000'
+        gmfContextualDataOptions:
+          projections: *alternate_projections
+          rasterParams: {}
+
     desktop_alt:
       extends: desktop
       redirect_interface: mobile_alt
@@ -265,6 +274,7 @@ vars:
         gmfShareOptions:
           enableEmail: False
         pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
+
     mobile:
       constants:
         sentryOptions:
@@ -301,30 +311,7 @@ vars:
               radius: 8
               radius2: 0
               angle: 0
-    api:
-      constants:
-        # The resolutions list.
-        resolutions: *resolutions
 
-        # The extent restriction, must be in the same projection as `config.projection`.
-        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
-        # the null is no restriction.
-        extent: *extent
-
-        # The name of the layer to use as background, the layer must be present in the 'background_layers'
-        # section of the theme
-        backgroundLayer: OSM map
-
-        # The list of layers (names) that can be queried on mouse click
-        queryableLayers:
-          - osm_open
-          - many_attributes
-          - polygon
-      routes:
-        searchUrl:
-          params:
-            limit: 30
-            partitionlimit: 5
     mobile_alt:
       extends: mobile
       redirect_interface: desktop_alt
@@ -404,6 +391,32 @@ vars:
           name: mapserverproxy
           params:
             ogcserver: QGIS server
+
+    api:
+      constants:
+        # The resolutions list.
+        resolutions: *resolutions
+
+        # The extent restriction, must be in the same projection as `config.projection`.
+        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
+        # the null is no restriction.
+        extent: *extent
+
+        # The name of the layer to use as background, the layer must be present in the 'background_layers'
+        # section of the theme
+        backgroundLayer: OSM map
+
+        # The list of layers (names) that can be queried on mouse click
+        queryableLayers:
+          - osm_open
+          - many_attributes
+          - polygon
+      routes:
+        searchUrl:
+          params:
+            limit: 30
+            partitionlimit: 5
+
     oeedit:
       extends: default
       constants:
@@ -702,6 +715,8 @@ update_paths:
   - headers.shortener
   - headers.login
   - interfaces_config.default.constants.ngeoWfsPermalinkOptions
+  - interfaces_config.default.constants.gmfSearchOptions
+  - interfaces_config.default.constants.gmfPermalinkOptions
   - interfaces_config.default.dynamic_constants
   - interfaces_config.default.static
   - interfaces_config.default.routes.fulltextsearchUrl
