@@ -72,11 +72,16 @@ vars:
               label: display_name
         gmfElevationOptions:
           layers: [aster, srtm]
+        gmfSearchOptions:
+          coordinatesProjections: *alternate_projections
+        gmfPermalinkOptions:
+          projectionCodes: *alternate_projections
       routes:
         fulltextsearchUrl:
           params:
             limit: 30
             partitionlimit: 5
+
     desktop:
       constants:
         sentryOptions:
@@ -121,6 +126,10 @@ vars:
               color: '#0000A0'
             srtm:
               color: '#00A000'
+        gmfContextualDataOptions:
+          projections: *alternate_projections
+          rasterParams: {}
+
     desktop_alt:
       extends: desktop
       redirect_interface: mobile_alt
@@ -275,6 +284,7 @@ vars:
         gmfShareOptions:
           enableEmail: False
         pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
+
     mobile:
       constants:
         sentryOptions:
@@ -311,6 +321,7 @@ vars:
               radius: 8
               radius2: 0
               angle: 0
+
     mobile_alt:
       extends: mobile
       redirect_interface: desktop_alt
@@ -397,6 +408,7 @@ vars:
           tags:
             service: js
             interface: iframe_api
+
     api:
       constants:
         # The resolutions list.
@@ -764,6 +776,8 @@ update_paths:
   - headers.shortener
   - headers.login
   - interfaces_config.default.constants.ngeoWfsPermalinkOptions
+  - interfaces_config.default.constants.gmfSearchOptions
+  - interfaces_config.default.constants.gmfPermalinkOptions
   - interfaces_config.default.dynamic_constants
   - interfaces_config.default.static
   - interfaces_config.default.routes.fulltextsearchUrl
