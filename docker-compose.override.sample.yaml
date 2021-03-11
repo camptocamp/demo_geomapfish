@@ -7,7 +7,12 @@
 version: '2.0'
 
 services:
+  # config:
+  #   volumes:
+  #     - './qgisserver:/etc/qgisserver/'
+
   geoportal:
+    image: ${DOCKER_BASE}-geoportal:${DOCKER_TAG}
     user: root
     volumes:
       # For Python project development.
