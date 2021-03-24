@@ -109,6 +109,7 @@ def main():
     base = env["DOCKER_BASE"] if "DOCKER_BASE" in env else "camptocamp/geomapfish"
     tag = ":" + env["DOCKER_TAG"] if "DOCKER_TAG" in env else ""
     schema = env["PGSCHEMA"]
+    simple = env.get("SIMPLE", "FALSE")
 
     default = not (args.config or args.geoportal)
 
@@ -119,6 +120,7 @@ def main():
                 "docker",
                 "build",
                 "--tag={}-config{}".format(base, tag),
+                "--build-arg=SIMPLE=" + simple,
                 "--build-arg=PGSCHEMA=" + schema,
                 ".",
             ],
