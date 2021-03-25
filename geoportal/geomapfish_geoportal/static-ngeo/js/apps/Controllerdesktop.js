@@ -118,6 +118,16 @@ class Controller extends AbstractDesktopController {
       filter: 'ngeoDMSCoordinates:2'
     }];
 
+    /**
+     * @type {import('gmf/query/gridComponent.js').GridMergeTabs}
+     */
+    this.gridMergeTabs = {
+      'OSM_time_merged': ['osm_time', 'osm_time2'],
+      'transport (merged)': ['fuel', 'parking'],
+      'Learning [merged]': ['information', 'bus_stop']
+    };
+
+
     // Allow angular-gettext-tools to collect the strings to translate
     /** @type {angular.gettext.gettextCatalog} */
     const gettextCatalog = $injector.get('gettextCatalog');
