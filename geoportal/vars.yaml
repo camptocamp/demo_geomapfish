@@ -154,6 +154,8 @@ vars:
         ngeoStreetviewOptions:
           viewer: mapillary
           key: d1dNaFk4aDVoVVlZd0dEZG95Wm84QTpkYmRkOGQyMWRkMThiM2E2
+        ngeoGoogleStreetviewOptions:
+          viewer: google
         ngeoWfsPermalinkOptions:
           wfsTypes:
             - featureType: osm_hospitals
