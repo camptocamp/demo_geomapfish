@@ -145,6 +145,12 @@ vars:
             brand-secondary: '#D3DBE3'
             theme-selector-columns: 3
             theme-selector-column-width: 8rem
+        gmfQueryGrid: True
+        ngeoStreetviewOptions:
+          viewer: mapillary
+          key: d1dNaFk4aDVoVVlZd0dEZG95Wm84QTpkYmRkOGQyMWRkMThiM2E2
+        ngeoGoogleStreetviewOptions:
+          viewer: google
         ngeoWfsPermalinkOptions:
           wfsTypes:
             - featureType: osm_hospitals
