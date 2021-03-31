@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.6.rc.38 as builder
+FROM camptocamp/geomapfish-tools:2.6.rc.39 as builder
 
 ENV VARS_FILE=vars.yaml
 ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \
@@ -13,20 +13,10 @@ ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqla
 
 COPY . /tmp/config/
 
-RUN \
-    for lang in $(cd /tmp/config/geoportal/geomapfish_geoportal/locale/; ls -d */ | sed "s#/##"); \
-    do \
-        msgfmt -o /tmp/config/geoportal/geomapfish_geoportal/locale/${lang}/LC_MESSAGES/geomapfish_geoportal-client.mo \
-            /tmp/config/geoportal/geomapfish_geoportal/locale/${lang}/LC_MESSAGES/geomapfish_geoportal-client.po; \
-        msgfmt -o /tmp/config/geoportal/geomapfish_geoportal/locale/${lang}/LC_MESSAGES/geomapfish_geoportal-server.mo \
-            /tmp/config/geoportal/geomapfish_geoportal/locale/${lang}/LC_MESSAGES/geomapfish_geoportal-server.po; \
-        node /usr/bin/compile-catalog \
-            /opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal/locale/${lang}/LC_MESSAGES/ngeo.po \
-            /opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal/locale/${lang}/LC_MESSAGES/gmf.po \
-            /tmp/config/geoportal/geomapfish_geoportal/locale/${lang}/LC_MESSAGES/geomapfish_geoportal-client.po \
-            > /tmp/config/geoportal/geomapfish_geoportal/static/${lang}.json; \
-    done && \
-    rm -rf /tmp/config/geoportal/geomapfish_geoportal/locale/*/LC_MESSAGES/*.po
+ARG SIMPLE
+ENV SIMPLE=$SIMPLE
+
+RUN build-l10n "geomapfish"
 
 RUN \
     cd /tmp/config/geoportal/ && \
