@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.6.rc.42 as builder
+FROM camptocamp/geomapfish-tools:2.6.rc.43 as builder
 
 ENV VARS_FILE=vars.yaml
 ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \
