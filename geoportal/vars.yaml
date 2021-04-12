@@ -327,6 +327,15 @@ vars:
           coordinatesProjections: *alternate_projections
           delay: 50
           clearButton: False
+          styles:
+            default:
+              type: Circle
+              radius: 5
+              fill:
+                color: [65, 134, 240, 0.5]
+              stroke:
+                color: [65, 134, 240, 1]
+                width: 2
           actions: []
           datasources:
             - labelKey: label
