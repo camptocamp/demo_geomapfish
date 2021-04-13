@@ -629,6 +629,7 @@ vars:
     ssl: True
     user: '{SMTP_USER}'
     password: '{SMTP_PASSWORD}'
+    starttls: False
 
   intranet:
     networks:
