@@ -2,8 +2,6 @@
 # This file can be renamed as `docker-compose.override.yaml` and uncomment the desired lines for
 # development. The file `docker-compose.override.yaml` is ignored by Git by default.
 
-# yamllint disable rule:line-length
-
 version: '2.0'
 
 services:
