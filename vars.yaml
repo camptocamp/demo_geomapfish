@@ -13,7 +13,7 @@ vars:
   aws_default_region: '{AWS_DEFAULT_REGION}'
   aws_s3_endpoint: '{AWS_S3_ENDPOINT}'
 
-  main_ogc_server: Main PNG
+  main_ogc_server: 'Main PNG'
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -42,6 +42,12 @@ vars:
               label: display_name
             - featureType: osm_scale
               label: display_name
+      routes:
+        mapserverUrl:
+          name: 'mapserverproxy'
+          params:
+            ogcserver: '{main_ogc_server}'
+
     mobile:
       constants:
         sentryOptions:
@@ -328,6 +334,8 @@ vars:
     - http://127.0.0.1:3000
     - http://127.0.0.1
     - https://172.17.0.1:8484
+    - http://localhost:8480
+    - https://localhost:8480
 
   access_control_allow_origin:
     - https://camptocamp.github.io

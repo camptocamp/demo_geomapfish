@@ -22,6 +22,10 @@ export DOCKER_PGSCHEMA_STATIC ?= static_2_4
 
 GPG_KEYS += EBD91808C5BF727FC1E764FE9542AD34ABE74D6E # Yves Jacolin
 
+# The following variables will be passed to python
+# so that they can be used in python scripts
+CONFIG_VARS += main_ogc_server 
+
 include CONST_Makefile
 
 .env: .env.secrets
