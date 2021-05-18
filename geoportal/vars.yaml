@@ -185,14 +185,17 @@ vars:
           colorChooser: True
           clearButton: False
           styles:
-            default:
-              type: Circle
-              radius: 5
+            default: 
               fill:
                 color: [255, 255, 255, 0.6]
-              stroke:
+              stroke: &redStroke
                 color: [255, 0, 0, 1]
                 width: 2
+              circle: 
+                fill: 
+                  color: [255, 255, 255, 0]
+                radius: 5
+                stroke: *redStroke
           actions:
             - action: add_theme
               title: Add a theme
