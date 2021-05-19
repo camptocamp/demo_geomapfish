@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.5.0.133 as builder
+FROM camptocamp/geomapfish-tools:2.5.0.134 as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 WORKDIR /app
