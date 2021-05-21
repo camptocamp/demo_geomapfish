@@ -20,8 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int-2.6
-          - prod-2.6
+          - int-2-6
+          - prod-2-6
 
     steps:
       - uses: actions/checkout@v2
@@ -53,11 +53,13 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int_2.6
-          - prod_2.6
+          - int-2-6
+          - prod-2-6
 
     steps:
       - uses: actions/checkout@v1
+        with:
+          ref: ${{ matrix.branch }}
 
       - name: Build geoportal
         run: ./build --geoportal

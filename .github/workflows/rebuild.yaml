@@ -59,6 +59,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        with:
+          ref: ${{ matrix.branch }}
 
       - run: touch env.secrets
       - run: sed -i '/^DOCKER_TAG=/d' env.project
