@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.6.rc.91 as builder
+FROM camptocamp/geomapfish-tools:2.6.rc.92 as builder
 
 ENV VARS_FILE=vars.yaml
 ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \
@@ -43,7 +43,15 @@ RUN \
     mkdir --parent /usr/local/tomcat/webapps/ROOT/ && \
     if [ -e /tmp/config/print ]; then mv /tmp/config/print/print-apps /usr/local/tomcat/webapps/ROOT/; fi && \
     mv /tmp/config/geoportal/geomapfish_geoportal/ /etc/geomapfish/ && \
-    chmod g+w -R /etc /usr/local/tomcat/webapps && \
+    chmod g+w -R \
+        /etc/geomapfish \
+        /etc/mapserver \
+        /etc/qgisserver \
+        /etc/tilegeneration \
+        /usr/local/tomcat/webapps/ROOT/print-apps \
+        /etc/gunicorn \
+        /etc/haproxy_dev \
+        /etc/haproxy && \
     adduser www-data root && \
     sed 's#bind :80#bind *:443 ssl crt /etc/haproxy_dev/localhost.pem#g' /etc/haproxy/haproxy.cfg.tmpl \
         > /etc/haproxy_dev/haproxy.cfg.tmpl && \
