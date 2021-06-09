@@ -397,6 +397,13 @@ vars:
             layers: []
           legend: {}
 
+  sqlalchemy:
+    pool_size: 1
+    max_overflow: 3
+  sqlalchemy_slave:
+    pool_size: 5
+    max_overflow: 25
+
 update_paths:
   - admin_interface.available_functionalities
   - admin_interface.available_metadata
