@@ -337,8 +337,8 @@ vars:
   checker:
     fulltextsearch:
       search: pau
-  #  phantomjs:
-  #    disable: [desktop, mobile]
+      # phantomjs:
+      #   disable: [desktop, mobile]
 
   sqlalchemy:
     pool_size: 1
