@@ -3,7 +3,7 @@ LAYER
     EXTENT 420000 40500 839000 306400
     TYPE LINE
     CONNECTIONTYPE postgis
-    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST} port=${PGPORT} dbname=${OSM_PGDATABASE}"
+    CONNECTION "user=${PGUSER} password=${PGPASSWORD} host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} dbname=${OSM_PGDATABASE}"
     NAME "floor_slider"
     DATA "way FROM (SELECT * FROM planet_osm_roads WHERE (admin_level = '%floor%' OR ('%floor%' = 'NULL' AND admin_level IS NULL) OR '%floor%' = '*')) as foo using unique osm_id using srid=21781"
     VALIDATION
