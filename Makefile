@@ -6,7 +6,8 @@ VARS_FILES += ${VARS_FILE}
 endif
 
 NGEO_INTERFACES ?= desktop mobile iframe_api desktop_alt mobile_alt oeview oeedit
-CGXP_XAPI ?= TRUE
+CGXP_XAPI ?= FALSE
+CGXP_API ?= FALSE
 
 export DOCKER_WEB_PROTOCOL ?= http
 MUTUALIZED_PRINT_APP ?= demo_geomapfish_24
