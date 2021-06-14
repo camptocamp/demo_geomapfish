@@ -3,6 +3,9 @@
 
 version: '2.0'
 
+volumes:
+  postgresql_data:
+
 services:
   config:
     extends:
@@ -133,3 +136,10 @@ services:
     environment:
       - PGSCHEMA
       - OSM_PGDATABASE
+
+  # db:
+  #   extends:
+  #     file: docker-compose-lib.yaml
+  #     service: db
+  #   volumes:
+  #     - postgresql_data:/var/lib/postgresql/data
