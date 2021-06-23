@@ -12,7 +12,6 @@
 # WMS GetFeatureInfo:
 # /mapserv?service=wms&version=1.1.1&request=getfeatureinfo&bbox=-180,-90,180,90&layers=countries&query_layers=countries&width=600&height=400&srs=EPSG:4326&format=image/png&x=180&y=90&info_format=application/vnd.ogc.gml
 #
-
 MAP
     NAME "demo"
 
@@ -28,7 +27,6 @@ MAP
 
     # MAXSIZE shouldn't be less than 5000 for MF print on A3
     MAXSIZE 5000
-
     IMAGECOLOR 255 255 255
     STATUS ON
 
@@ -46,17 +44,16 @@ MAP
     CONFIG "AWS_S3_ENDPOINT" "${AWS_S3_ENDPOINT}"
 
     OUTPUTFORMAT
-        NAME jpeg
+        NAME "jpeg"
         DRIVER "AGG/JPEG"
         MIMETYPE "image/jpeg"
         IMAGEMODE RGB
         EXTENSION "jpeg"
         FORMATOPTION "QUALITY=75,PROGRESSIVE=TRUE"
     END
-
     OUTPUTFORMAT
-        NAME png
-        DRIVER AGG/PNG
+        NAME "png"
+        DRIVER "AGG/PNG"
         MIMETYPE "image/png"
         IMAGEMODE RGBA
         EXTENSION "png"
@@ -65,11 +62,9 @@ MAP
         FORMATOPTION "QUANTIZE_FORCE=ON"
         FORMATOPTION "QUANTIZE_COLORS=256"
     END
-
     PROJECTION
         "init=epsg:2056"
     END
-
     WEB
         METADATA
             "wms_title" "Démo du c2cgeoportal"
@@ -82,7 +77,6 @@ MAP
             "wfs_encoding" "UTF-8"
         END
     END
-
     LEGEND
         KEYSIZE 20 25
         LABEL
