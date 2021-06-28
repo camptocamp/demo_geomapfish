@@ -54,9 +54,9 @@ jobs:
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
 
-  #      - name: Publish
-  #        run: c2cciutils-publish --group=config
-  #      - run: ci/trigger --image=config
+      - name: Publish
+        run: c2cciutils-publish --group=config
+      - run: ci/trigger --image=config
 
   geoportal:
     runs-on: ubuntu-20.04
