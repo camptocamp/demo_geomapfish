@@ -6,9 +6,11 @@ on:
     - cron: '30 2 * * *'
 
 env:
-  PROJECT: geomapfish
+  PROJECT: demo
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
   OPENSHIFT_PROJECT: gs-gmf-demo
+  # The release branches
+  HELM_RELEASE_NAMES: prod-2-6,prod-2-7
 
 jobs:
   config:
@@ -78,7 +80,6 @@ jobs:
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
-
-      - name: Publish
-        run: c2cciutils-publish --group=geoportal
-      - run: ci/trigger --image=geoportal
+#      - name: Publish
+#        run: c2cciutils-publish --group=geoportal
+#      - run: ci/trigger --image=geoportal
