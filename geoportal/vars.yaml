@@ -75,7 +75,7 @@ vars:
       constants:
         sentryOptions: &sentryOptions
           dsn: '{SENTRY_URL}'
-          release: '{VERSION}'
+          release: '{SENTRY_CLIENT_RELEASE}'
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           attachStacktrace: True
           whitelistUrls:
