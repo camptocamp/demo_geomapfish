@@ -78,6 +78,7 @@ vars:
           release: '{SENTRY_CLIENT_RELEASE}'
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           attachStacktrace: True
+          autoSessionTracking: False
           whitelistUrls:
             - .*\.camptocamp\.com.*
             - https://camptocamp\.github\.io/ngeo/.*
