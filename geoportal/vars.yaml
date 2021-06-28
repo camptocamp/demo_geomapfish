@@ -74,7 +74,7 @@ vars:
     desktop:
       constants:
         sentryOptions: &sentryOptions
-          dsn: https://eb74985290ea4f3c9ae6665db9252d72@sentry.camptocamp.com/14
+          dsn: '{SENTRY_URL}'
           release: '{VERSION}'
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           attachStacktrace: True
@@ -762,6 +762,8 @@ runtime_environment:
   - name: AWS_S3_ENDPOINT
     default: xxx
   - name: SENTRY_CLIENT_ENVIRONMENT
+    default: xxx
+  - name: SENTRY_URL
     default: xxx
 
 environment:
