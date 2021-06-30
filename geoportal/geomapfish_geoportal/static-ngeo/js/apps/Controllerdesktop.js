@@ -30,7 +30,7 @@ import './sass/desktop.scss';
 import './sass/vars_desktop.scss';
 
 import angular from 'angular';
-import { isEventUsinCtrlKey } from 'ngeo/utils.js';
+import {isEventUsinCtrlKey} from 'ngeo/utils.js';
 import gmfControllersAbstractDesktopController, {
   AbstractDesktopController,
 } from 'gmf/controllers/AbstractDesktopController.js';
@@ -65,10 +65,7 @@ class Controller extends AbstractDesktopController {
 /**
  * @hidden
  */
-const geomapfishModule = angular.module('Appdesktop', [
-  geomapfishBase.name,
-  gmfControllersAbstractDesktopController.name,
-]);
+const geomapfishModule = angular.module('Appdesktop', [geomapfishBase.name, gmfControllersAbstractDesktopController.name]);
 
 geomapfishModule.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
 geomapfishModule.run(
