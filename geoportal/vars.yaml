@@ -185,14 +185,14 @@ vars:
           colorChooser: True
           clearButton: False
           styles:
-            default: 
+            default:
               fill:
                 color: [255, 255, 255, 0.6]
               stroke: &redStroke
                 color: [255, 0, 0, 1]
                 width: 2
-              circle: 
-                fill: 
+              circle:
+                fill:
                   color: [255, 255, 255, 0]
                 radius: 5
                 stroke: *redStroke
