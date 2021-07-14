@@ -78,6 +78,7 @@ vars:
           release: '{SENTRY_CLIENT_RELEASE}'
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           attachStacktrace: True
+          autoSessionTracking: True
           whitelistUrls:
             - .*\.camptocamp\.com.*
             - https://camptocamp\.github\.io/ngeo/.*
@@ -304,30 +305,6 @@ vars:
             - name: srtm
               unit: m
 
-    api:
-      constants:
-        # The resolutions list.
-        resolutions: *resolutions
-
-        # The extent restriction, must be in the same projection as `config.projection`.
-        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
-        # the null is no restriction.
-        extent: *extent
-
-        # The name of the layer to use as background, the layer must be present in the 'background_layers'
-        # section of the theme
-        backgroundLayer: OSM map
-
-        # The list of layers (names) that can be queried on mouse click
-        queryableLayers:
-          - osm_open
-          - many_attributes
-          - polygon
-      routes:
-        searchUrl:
-          params:
-            limit: 30
-            partitionlimit: 5
     mobile_alt:
       extends: mobile
       redirect_interface: desktop_alt
@@ -416,8 +393,34 @@ vars:
           name: mapserverproxy
           params:
             ogcserver: QGIS server
+
+    api:
+      constants:
+        # The resolutions list.
+        resolutions: *resolutions
+
+        # The extent restriction, must be in the same projection as `config.projection`.
+        # the format is `[minx, miny, maxx, maxy]`for example: `[2420000, 1030000, 2660000, 1350000]`
+        # the null is no restriction.
+        extent: *extent
+
+        # The name of the layer to use as background, the layer must be present in the 'background_layers'
+        # section of the theme
+        backgroundLayer: OSM map
+
+        # The list of layers (names) that can be queried on mouse click
+        queryableLayers:
+          - osm_open
+          - many_attributes
+          - polygon
+      routes:
+        searchUrl:
+          params:
+            limit: 30
+            partitionlimit: 5
+
     oeedit:
-      extends: default
+      extends: desktop
       constants:
         sentryOptions:
           <<: *sentryOptions
