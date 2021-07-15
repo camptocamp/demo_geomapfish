@@ -440,16 +440,16 @@ vars:
           definition: "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 \
             +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs"
       baseLayers:
-        - type_: 'WMTS'
+        - type_: WMTS
           url: "{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}tiles/1.0.0/\
             {{{{{{{{{{{{{{{{Layer}}}}}}}}}}}}}}}}/default/{{{{{{{{{{{{{{{{TileMatrixSet}}}}}}}}}}}}}}}}\
             /{{{{{{{{{{{{{{{{TileMatrix}}}}}}}}}}}}}}}}/{{{{{{{{{{{{{{{{TileRow}}}}}}}}}}}}}}}}/\
             {{{{{{{{{{{{{{{{TileCol}}}}}}}}}}}}}}}}.png"
-          requestEncoding: 'REST'
-          layer: 'map'
-          matrixSet: 'epsg2056_005'
+          requestEncoding: REST
+          layer: map
+          matrixSet: epsg2056_005
           dimensions: {}
-          style: 'default'
+          style: default
           projection: 'EPSG:2056'
           tileGrid:
             origin: [2420000, 1350000]
@@ -525,7 +525,7 @@ vars:
   shortener:
     # Used to send a confirmation email
     email_from: info@camptocamp.com
-    email_subject: 'Geoportal URL'
+    email_subject: Geoportal URL
     email_body: |
       Hello,
       Somebody sent you the following link:
