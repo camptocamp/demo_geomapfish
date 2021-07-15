@@ -1,11 +1,11 @@
 phantom:
-  address: geomapfish-demo-2-7.camptocamp.com:443
+  address: geomapfish-demo-2-4.camptocamp.com:443
   #address: 172.17.0.1:8080
   ssl: True
-  ammofile: ammo.txt
+  ammofile: ammo-wmts.txt
   load_profile:
     load_type: rps
-    schedule: line(8, 8, 1m)
+    schedule: line(15, 15, 1m)
   header_http: '1.1'
   headers:
     - '[Host: geomapfish-demo-2-7.camptocamp.com]'
