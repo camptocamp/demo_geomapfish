@@ -55,4 +55,7 @@ def main(global_config, **settings):
     except ModuleNotFoundError:
         pass
 
+
+    config.add_route("callback", "/callback", request_method="GET")
+
     return config.make_wsgi_app()
