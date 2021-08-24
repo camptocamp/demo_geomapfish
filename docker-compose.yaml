@@ -30,19 +30,12 @@ services:
     volumes_from:
       - config:ro
 
-  qgisserver:
-    extends:
-      file: docker-compose-lib.yaml
-      service: qgisserver
-    volumes_from:
-      - config:rw
-    environment:
-      # Single QGIS project files
-      - QGIS_PROJECT_FILE=/etc/qgisserver/project.qgz
-      - GEOMAPFISH_OGCSERVER=QGIS server
-      # Multiple QGIS project files
-      # - QGIS_PROJECT_FILE=
-      # - GEOMAPFISH_ACCESSCONTROL_CONFIG=/etc/qgisserver/accesscontrol_config.yaml
+  ## qgisserver:
+  ##   extends:
+  ##     file: docker-compose-lib.yaml
+  ##     service: qgisserver
+  ##   volumes_from:
+  ##     - config:ro
 
   tinyows:
     extends:
