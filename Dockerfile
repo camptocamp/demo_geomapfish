@@ -1,4 +1,4 @@
-FROM camptocamp/geomapfish-tools:2.5.0.152 as builder
+FROM camptocamp/geomapfish-tools:2.5.0.153 as builder
 
 ENV LANGUAGES="en fr de"
 ENV VARS_FILE=vars.yaml
@@ -9,7 +9,8 @@ ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqla
     raster shortener hide_capabilities tinyowsproxy resourceproxy print_url print_get_redirect \
     checker check_collector default_max_age package srid \
     reset_password fulltextsearch global_headers headers authorized_referers hooks stats db_chooser \
-    dbsessions urllogin host_forward_host smtp c2c.base_path welcome_email \
+    dbsessions urllogin host_forward_host headers_whitelist headers_blacklist \
+    smtp c2c.base_path welcome_email \
     lingua_extractor interfaces_config interfaces devserver_url api authentication intranet metrics pdfreport
 
 COPY . /tmp/config/
@@ -36,7 +37,7 @@ RUN \
 
 ###############################################################################
 
-FROM camptocamp/geomapfish-config:2.5.0.152
+FROM camptocamp/geomapfish-config:2.5.0.153
 
 ARG PGSCHEMA
 ENV PGSCHEMA=$PGSCHEMA
