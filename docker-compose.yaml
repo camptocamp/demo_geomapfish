@@ -12,27 +12,37 @@ services:
       - TILEGENERATION_S3_BUCKET
       - OSM_PGDATABASE
       - RASTER_BASE_PATH
+    volumes:
+      - geomapfish:/etc/geomapfish
+      - mapserver:/etc/mapserver
+      - qgisserver:/etc/qgisserver
+      - print-apps:/usr/local/tomcat/webapps/ROOT/print-apps
+      - tilegeneration:/etc/tilegeneration
+      - gunicorn:/etc/gunicorn
+      - haproxy_dev:/etc/haproxy_dev
+      - haproxy:/etc/haproxy
 
   print:
     extends:
       file: docker-compose-lib.yaml
       service: print
-    volumes_from:
-      - config:ro
+    volumes:
+      - print-apps:/usr/local/tomcat/webapps/ROOT/print-apps:ro
 
   mapserver:
     extends:
       file: docker-compose-lib.yaml
       service: mapserver
-    volumes_from:
-      - config:ro
+    entrypoint: []
+    volumes:
+      - mapserver:/etc/mapserver:ro
 
   qgisserver:
     extends:
       file: docker-compose-lib.yaml
       service: qgisserver
-    volumes_from:
-      - config:rw
+    volumes:
+      - qgisserver:/etc/qgisserver
     environment:
       # Single QGIS project files
       - QGIS_PROJECT_FILE=/etc/qgisserver/project.qgz
@@ -41,12 +51,12 @@ services:
       # - QGIS_PROJECT_FILE=
       # - GEOMAPFISH_ACCESSCONTROL_CONFIG=/etc/qgisserver/accesscontrol_config.yaml
 
-  tinyows:
-    extends:
-      file: docker-compose-lib.yaml
-      service: tinyows
-    volumes_from:
-      - config:ro
+  #tinyows:
+  #  extends:
+  #    file: docker-compose-lib.yaml
+  #    service: tinyows
+  #  volumes_from:
+  #    - config:ro
 
   # Standalone version
   # redis:
@@ -80,15 +90,17 @@ services:
       service: tilecloudchain
     environment:
       - AWS_DEFAULT_REGION
-    volumes_from:
-      - config:ro
+    volumes:
+      - tilegeneration:/etc/tilegeneration:ro
+      - gunicorn:/etc/gunicorn:ro
 
   tilegeneration_slave:
     extends:
       file: docker-compose-lib.yaml
       service: tilegeneration_slave
-    volumes_from:
-      - config:ro
+    volumes:
+      - tilegeneration:/etc/tilegeneration:ro
+      - gunicorn:/etc/gunicorn:ro
     environment:
       - AWS_DEFAULT_REGION
 
@@ -97,8 +109,9 @@ services:
       file: docker-compose-lib.yaml
       service: geoportal
     image: camptocamp/geomapfishapp-geoportal:${DOCKER_TAG}
-    volumes_from:
-      - config:ro
+    volumes:
+      - geomapfish:/etc/geomapfish:ro
+      - gunicorn:/etc/gunicorn:ro
     environment:
       - PGSCHEMA
       - OSM_PGDATABASE
@@ -118,18 +131,33 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: front
-    volumes_from:
-      - config:ro
+    volumes:
+      - haproxy_dev:/etc/haproxy_dev:ro
+      - haproxy:/etc/haproxy:ro
 
   # Rich image for project development with e.-g. vim, tree, awscli, psql, ...
   tools:
-    volumes_from:
-      - config:rw
     volumes:
       - .:/src
+      - geomapfish:/etc/geomapfish
+      - mapserver:/etc/mapserver
+      - print-apps:/usr/local/tomcat/webapps/ROOT/print-apps
+      - gunicorn:/etc/gunicorn
+      - haproxy_dev:/etc/haproxy_dev
+      - haproxy:/etc/haproxy
     extends:
       file: docker-compose-lib.yaml
       service: tools
     environment:
       - PGSCHEMA
       - OSM_PGDATABASE
+
+volumes:
+  geomapfish:
+  mapserver:
+  qgisserver:
+  print-apps:
+  tilegeneration:
+  gunicorn:
+  haproxy_dev:
+  haproxy:

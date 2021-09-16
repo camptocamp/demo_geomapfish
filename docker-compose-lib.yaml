@@ -58,6 +58,7 @@ services:
     entrypoint: []
     environment:
       - PGOPTIONS
+      - CONFD_DIRS=/etc/apache2
 
   qgisserver:
     image: camptocamp/geomapfish-qgisserver:gmf${GEOMAPFISH_MAIN_VERSION}-qgis${QGIS_VERSION}
