@@ -677,25 +677,6 @@ vars:
         connection_kwargs:
           db: '{REDIS_DB}'
 
-  # Control the HTTP headers
-  headers:
-    dynamic: &header {}
-    index: *header
-    api: *header
-    apihelp: *header
-    profile: *header
-    raster: *header
-    error: *header
-    themes: &auth_header {}
-    config: *auth_header
-    print: *auth_header
-    fulltextsearch: *auth_header
-    mapserver: *auth_header
-    tinyows: *auth_header
-    layers: *auth_header
-    shortener: *auth_header
-    login: {}
-
 update_paths:
   - admin_interface.available_functionalities
   - admin_interface.available_metadata
