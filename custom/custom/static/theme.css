@@ -1,6 +1,6 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 body {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
   color: #ffffff;
   background: #bc2131;
@@ -11,13 +11,17 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 p {
   font-weight: 300;
 }
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   color: black;
 }
 .font-normal {
@@ -75,11 +79,13 @@ button, input, optgroup, select, textarea {
   color: #f2b7bd;
   font-weight: 400;
 }
-.starter-template .links ul li a, a {
+.starter-template .links ul li a,
+a {
   color: #f2b7bd;
   text-decoration: underline;
 }
-.starter-template .links ul li a:hover, a:hover {
+.starter-template .links ul li a:hover,
+a:hover {
   color: #ffffff;
   text-decoration: underline;
 }
