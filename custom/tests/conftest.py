@@ -1,32 +1,35 @@
-import alembic
-import alembic.config
-import alembic.command
 import os
-from pyramid.paster import get_appsettings
-from pyramid.scripting import prepare
-from pyramid.testing import DummyRequest, testConfig
+
+import alembic
+import alembic.command
+import alembic.config
 import pytest
 import transaction
 import webtest
+from pyramid.paster import get_appsettings
+from pyramid.scripting import prepare
+from pyramid.testing import DummyRequest, testConfig
 
-from custom import main
-from custom import models
+from custom import main, models
 from custom.models.meta import Base
 
 
 def pytest_addoption(parser):
-    parser.addoption('--ini', action='store', metavar='INI_FILE')
+    parser.addoption("--ini", action="store", metavar="INI_FILE")
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def ini_file(request):
     # potentially grab this path from a pytest option
-    return os.path.abspath(request.config.option.ini or 'testing.ini')
+    return os.path.abspath(request.config.option.ini or "testing.ini")
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def app_settings(ini_file):
     return get_appsettings(ini_file)
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def dbengine(app_settings, ini_file):
     engine = models.get_engine(app_settings)
 
@@ -46,9 +49,11 @@ def dbengine(app_settings, ini_file):
     Base.metadata.drop_all(bind=engine)
     alembic.command.stamp(alembic_cfg, None, purge=True)
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def app(app_settings, dbengine):
     return main({}, dbengine=dbengine, **app_settings)
+
 
 @pytest.fixture
 def tm():
@@ -60,24 +65,30 @@ def tm():
 
     tm.abort()
 
+
 @pytest.fixture
 def dbsession(app, tm):
-    session_factory = app.registry['dbsession_factory']
+    session_factory = app.registry["dbsession_factory"]
     return models.get_tm_session(session_factory, tm)
+
 
 @pytest.fixture
 def testapp(app, tm, dbsession):
     # override request.dbsession and request.tm with our own
     # externally-controlled values that are shared across requests but aborted
     # at the end
-    testapp = webtest.TestApp(app, extra_environ={
-        'HTTP_HOST': 'example.com',
-        'tm.active': True,
-        'tm.manager': tm,
-        'app.dbsession': dbsession,
-    })
+    testapp = webtest.TestApp(
+        app,
+        extra_environ={
+            "HTTP_HOST": "example.com",
+            "tm.active": True,
+            "tm.manager": tm,
+            "app.dbsession": dbsession,
+        },
+    )
 
     return testapp
+
 
 @pytest.fixture
 def app_request(app, tm, dbsession):
@@ -89,8 +100,8 @@ def app_request(app, tm, dbsession):
 
     """
     with prepare(registry=app.registry) as env:
-        request = env['request']
-        request.host = 'example.com'
+        request = env["request"]
+        request.host = "example.com"
 
         # without this, request.dbsession will be joined to the same transaction
         # manager but it will be using a different sqlalchemy.orm.Session using
@@ -99,6 +110,7 @@ def app_request(app, tm, dbsession):
         request.tm = tm
 
         yield request
+
 
 @pytest.fixture
 def dummy_request(tm, dbsession):
@@ -114,11 +126,12 @@ def dummy_request(tm, dbsession):
 
     """
     request = DummyRequest()
-    request.host = 'example.com'
+    request.host = "example.com"
     request.dbsession = dbsession
     request.tm = tm
 
     return request
+
 
 @pytest.fixture
 def dummy_config(dummy_request):
