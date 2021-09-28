@@ -1,6 +1,7 @@
 #! .build/venv/bin/python
 
 import sys
+
 from urllib3 import PoolManager
 from urllib3.util.request import make_headers
 
@@ -52,9 +53,7 @@ def check(name, path, expected, auth_expected, method="GET", content_type=None, 
         result = http.request(method, url, headers=headers)
     display_result(name, result, expected)
 
-    headers.update(make_headers(
-        basic_auth="demo:demo"
-    ))
+    headers.update(make_headers(basic_auth="demo:demo"))
     if body is not None:
         result = http.request(method, url, headers=headers, body=body)
     elif fields is not None:
@@ -74,25 +73,29 @@ def main():
     )
     check(
         "WMS GetMap",
-        "%s/wsgi/mapserv_proxy?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=&SRS=EPSG:2056&BBOX=523010,145860,557120,158880&WIDTH=1706&HEIGHT=651" % instance_id,
+        "%s/wsgi/mapserv_proxy?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo&FORMAT=image/png&TRANSPARENT=TRUE&STYLES=&SRS=EPSG:2056&BBOX=523010,145860,557120,158880&WIDTH=1706&HEIGHT=651"
+        % instance_id,
         {"Cache-Control": "no-cache"},
         {"Cache-Control": "no-cache"},
     )
     check(
         "WMS GetFeatureInfo",
-        "%s/wsgi/mapserv_proxy?REQUEST=GetFeatureInfo&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo&QUERY_LAYERS=zoo&STYLES=&BBOX=528695,148030,551435,156710&FEATURE_COUNT=200&HEIGHT=434&WIDTH=1137&FORMAT=image/png&INFO_FORMAT=application/vnd.ogc.gml&SRS=EPSG:2056&X=517&Y=224" % instance_id,
+        "%s/wsgi/mapserv_proxy?REQUEST=GetFeatureInfo&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo&QUERY_LAYERS=zoo&STYLES=&BBOX=528695,148030,551435,156710&FEATURE_COUNT=200&HEIGHT=434&WIDTH=1137&FORMAT=image/png&INFO_FORMAT=application/vnd.ogc.gml&SRS=EPSG:2056&X=517&Y=224"
+        % instance_id,
         {"Cache-Control": "no-cache"},
         {"Cache-Control": "no-cache"},
     )
     check(
         "WMS GetLegendGraphic",
-        "%s/wsgi/mapserv_proxy?REQUEST=GetLegendGraphic&SERVICE=WMS&VERSION=1.1.1&LAYER=zoo&FORMAT=image/png&TRANSPARENT=TRUE&RULE=Zoo" % instance_id,
+        "%s/wsgi/mapserv_proxy?REQUEST=GetLegendGraphic&SERVICE=WMS&VERSION=1.1.1&LAYER=zoo&FORMAT=image/png&TRANSPARENT=TRUE&RULE=Zoo"
+        % instance_id,
         {"Cache-Control": "max-age=864000, public"},
         {"Cache-Control": "max-age=864000, public"},
     )
     check(
         "WMS GetLegendGraphic with rule",
-        "%s/wsgi/mapserv_proxy?REQUEST=GetLegendGraphic&SERVICE=WMS&VERSION=1.1.1&LAYER=zoo&FORMAT=image/png&TRANSPARENT=TRUE&RULE=Zoo&SCALE=56692.9" % instance_id,
+        "%s/wsgi/mapserv_proxy?REQUEST=GetLegendGraphic&SERVICE=WMS&VERSION=1.1.1&LAYER=zoo&FORMAT=image/png&TRANSPARENT=TRUE&RULE=Zoo&SCALE=56692.9"
+        % instance_id,
         {"Cache-Control": "max-age=864000, public"},
         {"Cache-Control": "max-age=864000, public"},
     )
@@ -116,7 +119,7 @@ def main():
         {"Cache-Control": "no-cache"},
         method="POST",
         content_type="application/xml",
-        body='<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" service="WFS" version="1.1.0" maxFeatures="200" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><wfs:Query typeName="feature:zoo" xmlns:feature="http://mapserver.gis.umn.edu/mapserver"><ogc:Filter xmlns:ogc="http://www.opengis.net/ogc"><ogc:BBOX><ogc:PropertyName>geom</ogc:PropertyName><gml:Envelope xmlns:gml="http://www.opengis.net/gml"><gml:lowerCorner>538875 152070</gml:lowerCorner><gml:upperCorner>539235 152410</gml:upperCorner></gml:Envelope></ogc:BBOX></ogc:Filter></wfs:Query></wfs:GetFeature>'
+        body='<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" service="WFS" version="1.1.0" maxFeatures="200" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><wfs:Query typeName="feature:zoo" xmlns:feature="http://mapserver.gis.umn.edu/mapserver"><ogc:Filter xmlns:ogc="http://www.opengis.net/ogc"><ogc:BBOX><ogc:PropertyName>geom</ogc:PropertyName><gml:Envelope xmlns:gml="http://www.opengis.net/gml"><gml:lowerCorner>538875 152070</gml:lowerCorner><gml:upperCorner>539235 152410</gml:upperCorner></gml:Envelope></ogc:BBOX></ogc:Filter></wfs:Query></wfs:GetFeature>',
     )
     check(
         "WFS DescribeFeatureType",
@@ -138,9 +141,9 @@ def main():
         {"Cache-Control": "max-age=864000, public"},
     )
 
-# check("Print2 info.json" /wsgi/printproxy/info.json
-# print '{"units":"m","srs":"EPSG:2056","layout":"1 A4 portrait demo","dpi":254,"outputFormat":"pdf","title":"","comment":"","layers":[],"pages":[{"center":[542000,154000],"scale":100000,"rotation":0,"col0":"","table":{"data":[{"col0":""}],"columns":["col0"]},"showMap":true,"showScale":true,"showAttr":false,"showNorth":true,"showScalevalue":true,"showMapframe":true,"showMapframeQueryresult":false}],"legends":[]}' > /tmp/post
-# check("Print2 create.json" /wsgi/printproxy/create.json POST application/json
+    # check("Print2 info.json" /wsgi/printproxy/info.json
+    # print '{"units":"m","srs":"EPSG:2056","layout":"1 A4 portrait demo","dpi":254,"outputFormat":"pdf","title":"","comment":"","layers":[],"pages":[{"center":[542000,154000],"scale":100000,"rotation":0,"col0":"","table":{"data":[{"col0":""}],"columns":["col0"]},"showMap":true,"showScale":true,"showAttr":false,"showNorth":true,"showScalevalue":true,"showMapframe":true,"showMapframeQueryresult":false}],"legends":[]}' > /tmp/post
+    # check("Print2 create.json" /wsgi/printproxy/create.json POST application/json
     check(
         "Print3 capabilities.json",
         "%s/wsgi/printproxy/capabilities.json" % instance_id,
@@ -154,7 +157,7 @@ def main():
         {"Cache-Control": "no-cache"},
         method="POST",
         content_type="application/json",
-        body='{"layout":"A4 portrait","outputFormat":"pdf","attributes":{"title":"","comments":"","datasource":[],"map":{"projection":"EPSG:2056","dpi":254,"rotation":0,"center":[540065,152370],"scale":25000,"longitudeFirst":true,"layers":[{"baseURL":"http://geomapfish.demo-camptocamp.com/$INSTANCE_ID/wsgi/mapserv_proxy","opacity":1,"type":"wms","layers":["zoo"],"imageFormat":"image/png","styles":[""],"customParams":{"TRANSPARENT":true}},{"baseURL":"http://ows.asitvd.ch/wmts/","opacity":1,"type":"wmts","layer":"asitvd.fond_couleur","version":"1.0.0","requestEncoding":"REST","style":"default","dimensions":["DIM1","ELEVATION"],"dimensionParams":{"DIM1":"default","ELEVATION":"0"},"matrixSet":"2056","imageFormat":"image/png","matrices":[{"identifier":0,"matrixSize":[38,25],"scaleDenominator":178571.42857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":1,"matrixSize":[94,63],"scaleDenominator":71428.57142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":2,"matrixSize":[188,125],"scaleDenominator":35714.28571428572,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":3,"matrixSize":[375,250],"scaleDenominator":17857.14285714286,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":4,"matrixSize":[750,500],"scaleDenominator":8928.57142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":5,"matrixSize":[938,625],"scaleDenominator":7142.857142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":6,"matrixSize":[1875,1250],"scaleDenominator":3571.4285714285716,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":7,"matrixSize":[3750,2500],"scaleDenominator":1785.7142857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":8,"matrixSize":[7500,5000],"scaleDenominator":892.8571428571429,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":9,"matrixSize":[18750,12500],"scaleDenominator":357.14285714285717,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":10,"matrixSize":[37500,25000],"scaleDenominator":178.57142857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]}]}]},"legend":{"classes":[{"name":"","classes":[{"name":"zoo","icons":["http://geomapfish.demo-camptocamp.com/$INSTANCE_ID/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=zoo&FORMAT=image%2Fpng&SCALE=25000"]}]}]}}}'
+        body='{"layout":"A4 portrait","outputFormat":"pdf","attributes":{"title":"","comments":"","datasource":[],"map":{"projection":"EPSG:2056","dpi":254,"rotation":0,"center":[540065,152370],"scale":25000,"longitudeFirst":true,"layers":[{"baseURL":"http://geomapfish.demo-camptocamp.com/$INSTANCE_ID/wsgi/mapserv_proxy","opacity":1,"type":"wms","layers":["zoo"],"imageFormat":"image/png","styles":[""],"customParams":{"TRANSPARENT":true}},{"baseURL":"http://ows.asitvd.ch/wmts/","opacity":1,"type":"wmts","layer":"asitvd.fond_couleur","version":"1.0.0","requestEncoding":"REST","style":"default","dimensions":["DIM1","ELEVATION"],"dimensionParams":{"DIM1":"default","ELEVATION":"0"},"matrixSet":"2056","imageFormat":"image/png","matrices":[{"identifier":0,"matrixSize":[38,25],"scaleDenominator":178571.42857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":1,"matrixSize":[94,63],"scaleDenominator":71428.57142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":2,"matrixSize":[188,125],"scaleDenominator":35714.28571428572,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":3,"matrixSize":[375,250],"scaleDenominator":17857.14285714286,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":4,"matrixSize":[750,500],"scaleDenominator":8928.57142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":5,"matrixSize":[938,625],"scaleDenominator":7142.857142857143,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":6,"matrixSize":[1875,1250],"scaleDenominator":3571.4285714285716,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":7,"matrixSize":[3750,2500],"scaleDenominator":1785.7142857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":8,"matrixSize":[7500,5000],"scaleDenominator":892.8571428571429,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":9,"matrixSize":[18750,12500],"scaleDenominator":357.14285714285717,"tileSize":[256,256],"topLeftCorner":[420000,350000]},{"identifier":10,"matrixSize":[37500,25000],"scaleDenominator":178.57142857142858,"tileSize":[256,256],"topLeftCorner":[420000,350000]}]}]},"legend":{"classes":[{"name":"","classes":[{"name":"zoo","icons":["http://geomapfish.demo-camptocamp.com/$INSTANCE_ID/wsgi/mapserv_proxy?TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=zoo&FORMAT=image%2Fpng&SCALE=25000"]}]}]}}}',
     )
     print(_colorize("TODO manually Print status", YELLOW))
     print(_colorize("TODO manually Print get file", YELLOW))
@@ -192,7 +195,7 @@ def main():
             "layers": "srtm",
             "geom": '{"type":"LineString","coordinates":[[559570,143590],[560870,142570]]}',
             "nbPoints": 100,
-        }
+        },
     )
     check(
         "Raster profile",
@@ -204,7 +207,7 @@ def main():
             "layers": "srtm",
             "geom": '{"type":"LineString","coordinates":[[559570,143590],[560870,142570]]}',
             "nbPoints": 100,
-        }
+        },
     )
     check(
         "Main index",
@@ -249,6 +252,7 @@ def main():
         {"Cache-Control": "no-cache"},
     )
     print(_colorize("TODO manually check on Static files", YELLOW))
+
 
 if __name__ == "__main__":
     main()
