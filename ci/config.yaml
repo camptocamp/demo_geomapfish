@@ -1,13 +1,7 @@
 ---
 checks:
-  black: False
-  isort: False
-  prettier: False
   codespell: False
-  eof: False
   required_workflows: False
-  dependabot_config: False
-  prospector_config: False
   setup: False
 
 version:

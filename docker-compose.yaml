@@ -115,6 +115,16 @@ services:
     environment:
       - PGSCHEMA
 
+  custom:
+    image: ${DOCKER_BASE}-custom:${DOCKER_TAG}
+    build:
+      context: custom
+      args:
+        GIT_HASH: ${GIT_HASH}
+    environment:
+      - GUNICORN_CMD_ARGS=${GUNICORN_PARAMS}
+      - VISIBLE_WEB_HOST
+
   front:
     extends:
       file: docker-compose-lib.yaml

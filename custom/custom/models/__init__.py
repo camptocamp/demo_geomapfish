@@ -1,10 +1,10 @@
+import os
+
 import zope.sqlalchemy
-from sqlalchemy import engine_from_config
+from sqlalchemy import Column, Integer, String, engine_from_config
 from sqlalchemy.orm import configure_mappers, sessionmaker
 
-# Import or define all models here to ensure they are attached to the
-# ``Base.metadata`` prior to any initialization routines.
-from .mymodel import MyModel  # flake8: noqa
+from .meta import Base
 
 # Run ``configure_mappers`` after defining all of the models to ensure
 # all relationships can be setup.
@@ -120,3 +120,13 @@ def includeme(config):
         return dbsession
 
     config.add_request_method(dbsession, reify=True)
+
+
+class Feedback(Base):
+    __tablename__ = "feedback"
+    __table_args__ = {"schema": os.environ.get("PGSCHEMA", "main")}
+    id_feedback = Column(Integer, primary_key=True)
+    ua = Column(String(250))
+    permalink = Column(String(5000))
+    text = Column(String(1000))
+    email = Column(String(100))
