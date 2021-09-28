@@ -7,3 +7,11 @@ updates:
       time: '04:00'
     ignore:
       - dependency-name: none
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 20
+    ignore:
+      - dependency-name: none

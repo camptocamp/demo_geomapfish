@@ -78,3 +78,10 @@ services:
   #   extends:
   #     file: docker-compose-lib.yaml
   #     service: webpack_dev_server
+
+  vite_dev_server:
+    build:
+      context: '.'
+      target: custom-build
+    volumes:
+      - ./:/app/

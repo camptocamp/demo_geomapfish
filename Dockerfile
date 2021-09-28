@@ -76,3 +76,23 @@ VOLUME /etc/geomapfish \
     /etc/gunicorn \
     /etc/haproxy_dev \
     /etc/haproxy
+
+###############################################################################
+
+FROM node:16-slim AS custom-build
+
+WORKDIR /app
+COPY package.json ./
+
+RUN npm install
+
+COPY package.json tsconfig.json vite.config.ts ./
+COPY webcomponents/ ./webcomponents/
+RUN npm run build
+
+CMD [ "npm", "run", "dev" ]
+
+###############################################################################
+
+FROM gmf_config AS config
+COPY --from=custom-build /app/dist/ /etc/geomapfish/

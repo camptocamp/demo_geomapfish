@@ -143,9 +143,11 @@ vars:
         gmfContextualDataOptions:
           projections: *alternate_projections
           rasterParams: {}
+        # For dev, the corresponding value in static should also be removed.
+        gmfCustomJavascriptUrl: https://localhost:8484/vite/custom.js
       static:
-        gmfHeaderEntrypointUrl:
-          name: /etc/geomapfish/static/header.html
+        gmfCustomJavascriptUrl:
+          name: ''
 
     desktop_alt:
       extends: desktop
