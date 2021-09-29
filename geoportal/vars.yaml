@@ -125,6 +125,9 @@ vars:
         gmfContextualDataOptions:
           projections: *alternate_projections
           rasterParams: {}
+      static:
+        gmfHeaderEntrypointUrl:
+          name: header.html
 
     desktop_alt:
       extends: desktop
