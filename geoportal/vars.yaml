@@ -127,7 +127,7 @@ vars:
           rasterParams: {}
       static:
         gmfHeaderEntrypointUrl:
-          name: header.html
+          name: /etc/geomapfish/static/header.html
 
     desktop_alt:
       extends: desktop
