@@ -17,7 +17,7 @@ jobs:
       matrix:
         branch:
           - prod-2-7
-          - prod-2-7-simple
+          - prod-2-7-advance
 
     steps:
       - uses: actions/checkout@v2
