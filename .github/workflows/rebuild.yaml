@@ -6,9 +6,11 @@ on:
     - cron: '30 2 * * *'
 
 env:
-  PROJECT: geomapfish
+  PROJECT: demo
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
-  # OPENSHIFT_PROJECT: gs-gmf-geomapfish
+  OPENSHIFT_PROJECT: gs-gmf-demo
+  # The release branches
+  HELM_RELEASE_NAMES: prod-2-7
 
 jobs:
   config:
@@ -20,8 +22,8 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int-2-7
           - prod-2-7
+          - prod-2-7-advance
 
     steps:
       - uses: actions/checkout@v2
@@ -34,6 +36,7 @@ jobs:
           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
           patterns: docker
 
+      - run: sed -i '/^DOCKER_TAG=/d' env.project
       - name: Build config
         run: ./build --config
 
@@ -43,6 +46,7 @@ jobs:
       - name: Publish
         run: c2cciutils-publish --group=config --type=rebuild --branch=${{ matrix.branch }}
       - run: ci/trigger --image=config --version=${{ matrix.branch }}
+        if: "!contains(matrix.branch, '-advance')"
 
   geoportal:
     runs-on: ubuntu-20.04
@@ -53,7 +57,6 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int-2-7
           - prod-2-7
 
     steps:
@@ -61,6 +64,7 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
 
+      - run: sed -i '/^DOCKER_TAG=/d' env.project
       - name: Build geoportal
         run: ./build --geoportal
 
@@ -72,7 +76,7 @@ jobs:
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
-
-      - name: Publish
-        run: c2cciutils-publish --group=geoportal --type=rebuild --branch=${{ matrix.branch }}
-      - run: ci/trigger --image=geoportal --version=${{ matrix.branch }}
+#
+#      - name: Publish
+#        run: c2cciutils-publish --group=geoportal --type=rebuild --branch=${{ matrix.branch }}
+#      - run: ci/trigger --image=geoportal --version=${{ matrix.branch }}
