@@ -1,4 +1,7 @@
-FROM camptocamp/geomapfish-tools:latest as builder
+ARG GEOMAPFISH_VERSION
+ARG GEOMAPFISH_MAIN_VERSION
+
+FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 
 ENV VARS_FILE=vars.yaml
 ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \
@@ -30,7 +33,7 @@ RUN \
 
 ###############################################################################
 
-FROM camptocamp/geomapfish-config:2.7
+FROM camptocamp/geomapfish-config:${GEOMAPFISH_MAIN_VERSION} AS gmf_config
 
 ARG PGSCHEMA
 ENV PGSCHEMA=$PGSCHEMA
