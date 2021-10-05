@@ -1,4 +1,7 @@
-FROM camptocamp/geomapfish-tools:latest as builder
+ARG GEOMAPFISH_VERSION
+ARG GEOMAPFISH_MAIN_VERSION
+
+FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 WORKDIR /app
@@ -17,7 +20,7 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--no-in
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:2.7 as runner
+FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_VERSION} as runner
 
 COPY requirements.txt /tmp/requirements.txt
 RUN \

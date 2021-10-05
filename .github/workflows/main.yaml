@@ -43,7 +43,7 @@ jobs:
       - run: touch env.secrets
       - run: sed -i '/^DOCKER_TAG=/d' env.project
       - name: Build config
-        run: ./build --config
+        run: ./build --service=config
 
       - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
@@ -69,7 +69,7 @@ jobs:
 
       - run: touch env.secrets
       - name: Build geoportal
-        run: ./build --geoportal
+        run: ./build --service=geoportal
         if: hashFiles('geoportal/Dockerfile') != ''
 
       - uses: camptocamp/initialise-gopass-summon-action@v2
