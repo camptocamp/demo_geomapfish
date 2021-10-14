@@ -33,8 +33,8 @@ RUN cd /tmp && PIP_NO_BINARY=fiona,rasterio,shapely PROJ_DIR=/usr/local/ pipenv 
 RUN apt-get remove --autoremove --assume-yes gcc
 
 WORKDIR /app
-COPY . /app
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=/app/ && \
+COPY . ./
+RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
     python3 -m compileall -q /app/custom
 # hadolint ignore=DL3059
 RUN mkdir -p /etc/gunicorn/ && \
