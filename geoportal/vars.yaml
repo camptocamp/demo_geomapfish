@@ -514,6 +514,13 @@ vars:
       type: gdal
       round: 1
 
+  # The "vector tiles web service" configuration. See the "vector tiles"
+  # chapter in the integrator documentation.
+  vector_tiles:
+    srid: 2056
+    extent: [2420000, 1030000, 2900000, 1350000]
+    resolutions: [4000, 2000, 1000, 500, 250, 100, 50, 20, 10, 5, 2.5, 1, 0.5, 0.25, 0.1, 0.05]
+
   fulltextsearch:
     languages:
       fr: fr
