@@ -1,0 +1,31 @@
+{
+  "id": "osm_landuse",
+  "version": 8,
+  "name": "osm_landuse",
+  "metadata": {},
+  "sources": {
+    "osm_landuse": {
+      "type": "vector",
+      "tiles": [
+        "http://geomapfish-demo-2-7.camptocamp.com/vector_tiles/osm_landuse/{x}/{y}/{z}.pbf"
+      ],
+      "maxzoom": 15
+    }
+  },
+  "layers": [
+    {
+      "id": "osm_landuse",
+      "source": "osm_landuse",
+      "source-layer": "osm_landuse",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "match",
+          ["get", "type"],
+          ["forest","wood"],
+          "#9ce69c"
+        ]
+      }
+    }
+  ]
+}
