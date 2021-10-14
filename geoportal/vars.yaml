@@ -149,6 +149,21 @@ vars:
             brand-secondary: '#D3DBE3'
             theme-selector-columns: 3
             theme-selector-column-width: 8rem
+
+            # Used by https://github.com/camptocamp/ngeo/pull/7527
+            left-panel-width: 20rem;
+            app-margin: 0.62rem;
+            icon-font-size: 1.25rem;
+            border: 0.06rem solid;
+            input-height-base: 1.88rem;
+            padding-base-vertical: 0.32rem;
+            padding-small-vertical: 0.36rem;
+            border-radius-base: 0;
+            right-panel-width: 17.5rem;
+            input-height: calc(1.5em + 0.5rem + 2px);
+            grid-gutter-width: 1.88rem;
+            infobar-height-base: 1.19rem;
+
         gmfQueryGrid: True
         ngeoStreetviewOptions:
           viewer: mapillary
