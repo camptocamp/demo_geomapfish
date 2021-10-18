@@ -4,7 +4,7 @@ extends: CONST_vars.yaml
 vars:
   srid: 2056
   osm_db: '{OSM_PGDATABASE}'
-  schema: 'main_2_6'
+  schema: 'main_2_7'
 
   tiles_s3_bucket: '{TILEGENERATION_S3_BUCKET}'
   raster_base_path: '{RASTER_BASE_PATH}'
@@ -587,7 +587,7 @@ vars:
     email_body: |
       Hello {user},
 
-      You have a new account on GeoMapFish: https://geomapfish-demo-2-6.camptocamp.com
+      You have a new account on GeoMapFish: https://geomapfish-demo-2-7.camptocamp.com
       Your user name is: {user}
       Your password is: {password}
       Sincerely yours
