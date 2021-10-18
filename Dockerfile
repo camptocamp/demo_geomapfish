@@ -39,6 +39,9 @@ RUN \
 
 FROM camptocamp/geomapfish-config:${GEOMAPFISH_MAIN_VERSION} AS gmf_config
 
+ARG PGSCHEMA
+ENV PGSCHEMA=$PGSCHEMA
+
 COPY --from=builder /tmp/config/ /tmp/config/
 
 RUN \
