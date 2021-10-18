@@ -6,9 +6,7 @@
   "sources": {
     "osm_landuse": {
       "type": "vector",
-      "tiles": [
-        "http://geomapfish-demo-2-7.camptocamp.com/vector_tiles/osm_landuse/{x}/{y}/{z}.pbf"
-      ],
+      "tiles": ["http://geomapfish-demo-2-7.camptocamp.com/vector_tiles/osm_landuse/{x}/{y}/{z}.pbf"],
       "maxzoom": 15
     }
   },
@@ -19,12 +17,7 @@
       "source-layer": "osm_landuse",
       "type": "fill",
       "paint": {
-        "fill-color": [
-          "match",
-          ["get", "type"],
-          ["forest","wood"],
-          "#9ce69c"
-        ]
+        "fill-color": ["match", ["get", "type"], ["forest", "wood"], "#9ce69c"]
       }
     }
   ]
