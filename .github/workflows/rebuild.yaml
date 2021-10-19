@@ -30,6 +30,7 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
 
+      - run: touch env.secrets
       - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
@@ -64,6 +65,7 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
 
+      - run: touch env.secrets
       - run: sed -i '/^DOCKER_TAG=/d' env.project
       - name: Build geoportal
         run: ./build --service=geoportal
