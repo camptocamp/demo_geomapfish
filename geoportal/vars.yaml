@@ -654,15 +654,20 @@ vars:
     - https://arnaud-morvan.github.io
     - https://julsbreakdown.github.io
     - https://adube.github.io
-    - https://localhost:3000
     - https://localhost
-    - https://127.0.0.1:3000
-    - https://127.0.0.1
+    - https://localhost:3000
+    - https://localhost:3001
+    - http://localhost
     - http://localhost:3000
     - http://localhost:3001
-    - http://localhost
-    - http://127.0.0.1:3000
+    - http://localhost:6006
+    - https://127.0.0.1
+    - https://127.0.0.1:3000
+    - https://127.0.0.1:3001
     - http://127.0.0.1
+    - http://127.0.0.1:3000
+    - http://127.0.0.1:3001
+    - http://127.0.0.1:6006
 
   # Checker configuration
   checker_ogc_server: Main PNG
