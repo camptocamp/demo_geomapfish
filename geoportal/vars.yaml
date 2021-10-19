@@ -640,7 +640,7 @@ vars:
     tinyows: *auth_header
     layers: *auth_header
     shortener: *auth_header
-    login: {}
+    login: *auth_header
 
   authorized_referers:
     - https://camptocamp.github.io
