@@ -91,6 +91,19 @@ vars:
             <<: *view
             constrainResolution: True
           geolocalisation: True
+          cssVars: &cssVars # Used by https://github.com/camptocamp/ngeo/pull/7527
+            left-panel-width: 20rem
+            app-margin: 0.62rem
+            icon-font-size: 1.25rem
+            border: 0.06rem solid
+            input-height-base: 1.88rem
+            padding-base-vertical: 0.32rem
+            padding-small-vertical: 0.36rem
+            border-radius-base: 0
+            right-panel-width: 17.5rem
+            grid-gutter-width: 1.88rem
+            infobar-height: 2.52rem
+            width: 2.5rem
         gmfExternalOGCServers:
           - name: swisstopo WMS
             type: WMS
@@ -144,6 +157,7 @@ vars:
           showInfobar: True
           geolocalisation: False
           cssVars:
+            <<: *cssVars
             brand-primary: '#9FB6CC'
             brand-secondary: '#D3DBE3'
             theme-selector-columns: 3
@@ -592,9 +606,15 @@ vars:
   content_security_policy_main_script_src_extra: "'unsafe-eval'"
 
   headers:
-    themes: &headers
-      cache_control_max_age: 600 # 10 minutes
-      access_control_max_age: 30
+    dynamic: &header {}
+    index: *header
+    api: *header
+    apihelp: *header
+    profile: *header
+    raster: *header
+    vector_tiles: *header
+    error: *header
+    themes: &auth_header
       access_control_allow_origin:
         - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
         - https://camptocamp.github.io
@@ -613,19 +633,14 @@ vars:
         - http://127.0.0.1:3000
         - http://127.0.0.1
         - '*'
-    index: *headers
-    api: *headers
-    error: *headers
-    config: *headers
-    mapserver: *headers
-    tinyows: *headers
-    fulltextsearch: *headers
-    print: *headers
-    layers: *headers
-    raster: *headers
-    profile: *headers
-    shortener: *headers
-    login: *headers
+    config: *auth_header
+    print: *auth_header
+    fulltextsearch: *auth_header
+    mapserver: *auth_header
+    tinyows: *auth_header
+    layers: *auth_header
+    shortener: *auth_header
+    login: {}
 
   authorized_referers:
     - https://camptocamp.github.io
@@ -716,6 +731,7 @@ update_paths:
   - headers.apihelp.headers
   - headers.profile.headers
   - headers.raster.headers
+  - headers.vector_tiles.headers
   - headers.error.headers
   - headers.themes.headers
   - headers.config.headers
@@ -779,3 +795,4 @@ runtime_environment:
 
 environment:
   - name: VERSION
+  - name: PGSCHEMA
