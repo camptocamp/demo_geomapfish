@@ -105,6 +105,9 @@ services:
       - RASTER_BASE_PATH
       - SMTP_USER
       - SMTP_PASSWORD
+      - SENTRY_URL
+      - SENTRY_CLIENT_RELEASE=${DOCKER_TAG}
+      - SENTRY_CLIENT_ENVIRONMENT
 
   alembic:
     extends:
