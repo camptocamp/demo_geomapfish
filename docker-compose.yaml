@@ -95,8 +95,7 @@ services:
   geoportal:
     extends:
       file: docker-compose-lib.yaml
-      service: geoportal
-    image: camptocamp/geomapfishapp-geoportal:${DOCKER_TAG}
+      service: geoportal-advance
     volumes_from:
       - config:ro
     environment:
@@ -105,12 +104,14 @@ services:
       - RASTER_BASE_PATH
       - SMTP_USER
       - SMTP_PASSWORD
+      - SENTRY_URL
+      - SENTRY_CLIENT_RELEASE=${DOCKER_TAG}
+      - SENTRY_CLIENT_ENVIRONMENT
 
   alembic:
     extends:
       file: docker-compose-lib.yaml
-      service: alembic
-    image: camptocamp/geomapfish-geoportal:${DOCKER_TAG}
+      service: alembic-advance
     environment:
       - PGSCHEMA
 
