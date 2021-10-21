@@ -2,7 +2,7 @@
 extends: CONST_vars.yaml
 
 vars:
-  srid: 2056
+  srid: &srid 2056
   osm_db: '{OSM_PGDATABASE}'
 
   tiles_s3_bucket: '{TILEGENERATION_S3_BUCKET}'
@@ -530,7 +530,7 @@ vars:
   # The "vector tiles web service" configuration. See the "vector tiles"
   # chapter in the integrator documentation.
   vector_tiles:
-    srid: 2056
+    srid: *srid
     extent: *extent
     resolutions: *resolutions
 
