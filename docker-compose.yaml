@@ -95,8 +95,7 @@ services:
   geoportal:
     extends:
       file: docker-compose-lib.yaml
-      service: geoportal
-    image: camptocamp/geomapfishapp-geoportal:${DOCKER_TAG}
+      service: geoportal-advance
     volumes_from:
       - config:ro
     environment:
@@ -112,8 +111,7 @@ services:
   alembic:
     extends:
       file: docker-compose-lib.yaml
-      service: alembic
-    image: camptocamp/geomapfish-geoportal:${DOCKER_TAG}
+      service: alembic-advance
     environment:
       - PGSCHEMA
 
