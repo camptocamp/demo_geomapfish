@@ -5,9 +5,10 @@
 version: '2.3'
 
 services:
-  config:
-    volumes:
-      - './qgisserver:/etc/qgisserver/'
+  # config:
+  #   volumes:
+  #       # www-data should be avle to vrite in  qgisserver
+  #     - './qgisserver:/etc/qgisserver/'
 
   geoportal:
     image: ${DOCKER_BASE}-geoportal:${DOCKER_TAG}
