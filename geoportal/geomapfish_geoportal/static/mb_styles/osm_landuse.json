@@ -17,7 +17,14 @@
       "source-layer": "osm_landuse",
       "type": "fill",
       "paint": {
-        "fill-color": ["match", ["get", "type"], ["forest", "wood"], "#9ce69c"]
+        "fill-color": [
+          "match",
+          ["get", "type"],
+          "forest", "#9ce69c",
+          "farmland", "#e3b732",
+          "residential", "#de9f8e",
+          "#bed2d4"
+        ]
       }
     }
   ]
