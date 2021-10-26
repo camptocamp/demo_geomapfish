@@ -20,9 +20,12 @@
         "fill-color": [
           "match",
           ["get", "type"],
-          "forest", "#9ce69c",
-          "farmland", "#e3b732",
-          "residential", "#de9f8e",
+          "forest",
+          "#9ce69c",
+          "farmland",
+          "#e3b732",
+          "residential",
+          "#de9f8e",
           "#bed2d4"
         ]
       }
