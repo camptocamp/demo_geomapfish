@@ -86,7 +86,7 @@ COPY package.json ./
 
 RUN npm install
 
-COPY package.json tsconfig.json vite.config.ts ./
+COPY tsconfig.json vite.config.ts ./
 COPY webcomponents/ ./webcomponents/
 RUN npm run build
 
