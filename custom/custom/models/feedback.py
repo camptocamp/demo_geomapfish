@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String
 
 from .meta import Base
 
+
 class Feedback(Base):
     __tablename__ = "feedback"
     __table_args__ = {"schema": os.environ.get("PGSCHEMA", "main")}

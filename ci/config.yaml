@@ -3,6 +3,9 @@ checks:
   codespell: False
   required_workflows: False
   setup: False
+  black:
+    ignore_patterns_re:
+      - custom/custom/alembic/script\.py\.mako
 
 version:
   branch_to_version_re:
