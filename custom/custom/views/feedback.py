@@ -18,9 +18,11 @@ feedback = Service(
 
 @feedback.post()
 def feedback_post(request: pyramid.request.Request) -> Any:
+    # Just to demonstrante that we can fet the user information
     print(
         requests.get(
-            "http://geoportal:8080/loginuser", headers={"Cookie": request.headers.get("Cookie")}
+            "http://geoportal:8080/loginuser",
+            headers={"Cookie": request.headers.get("Cookie"), "Referer": request.referrer},
         ).json()
     )
 
