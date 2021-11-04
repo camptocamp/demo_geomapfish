@@ -4,14 +4,15 @@ import {defineConfig} from 'vite';
 export default defineConfig({
   server: {
     port: 3001,
-    https: true,
-    open: 'webcomponents/index.js',
+    https: false,
+    host: '0.0.0.0',
   },
   build: {
     lib: {
       entry: 'webcomponents/index.ts',
       formats: ['es'],
     },
+    target: 'esnext',
     sourcemap: true,
   },
 });

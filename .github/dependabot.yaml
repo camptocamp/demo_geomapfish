@@ -12,10 +12,8 @@ updates:
     directory: /
     schedule:
       interval: daily
-    open-pull-requests-limit: 20
     ignore:
       - dependency-name: none
-
   - package-ecosystem: docker
     directory: '/custom'
     schedule:

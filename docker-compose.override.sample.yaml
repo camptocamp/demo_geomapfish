@@ -79,9 +79,23 @@ services:
   #     file: docker-compose-lib.yaml
   #     service: webpack_dev_server
 
+  custom:
+    command:
+      - /usr/local/bin/gunicorn
+      - --reload
+      - --paste
+      - devlopement.ini
+    volumes:
+      - ./custom/custom:/app/custom
+
   vite_dev_server:
     build:
       context: '.'
       target: custom-build
+      args:
+        SIMPLE: ${SIMPLE}
+        PGSCHEMA: ${PGSCHEMA}
+        GEOMAPFISH_VERSION: ${GEOMAPFISH_VERSION}
+        GEOMAPFISH_MAIN_VERSION: ${GEOMAPFISH_MAIN_VERSION}
     volumes:
-      - ./:/app/
+      - ./webcomponents:/app/webcomponents

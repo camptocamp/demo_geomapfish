@@ -143,11 +143,15 @@ vars:
         gmfContextualDataOptions:
           projections: *alternate_projections
           rasterParams: {}
+
         # For dev, the corresponding value in static should also be removed.
-        gmfCustomJavascriptUrl: https://localhost:8484/vite/custom.js
+        gmfCustomJavascriptUrl: https://localhost:8484/webcomponents/index.ts
+        sitnFeedbackUrl: /custom/feedback
+
+      # Thoes tree lines should be commented in dev mode.
       #static:
       #  gmfCustomJavascriptUrl:
-      #    name: ''
+      #    name: '/etc/geomapfish/static/custom/custom.es.js'
 
     desktop_alt:
       extends: desktop

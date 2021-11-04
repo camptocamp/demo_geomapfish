@@ -96,4 +96,4 @@ CMD [ "npm", "run", "dev" ]
 ###############################################################################
 
 FROM gmf_config AS config
-COPY --from=custom-build /app/dist/ /etc/geomapfish/
+COPY --from=custom-build /app/dist/ /etc/geomapfish/static/custom/

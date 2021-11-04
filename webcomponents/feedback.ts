@@ -1,17 +1,27 @@
 import {customElement, state} from 'lit/decorators.js';
-import {LitElement, html} from 'lit';
+import {LitElement, html, css} from 'lit';
 
 @customElement('proj-feedback')
 export class ProjFeedback extends LitElement {
   @state()
-  private show_modal = true;
+  private show_modal = false;
   @state()
-  private permalink: string;
-  private email: string;
-  private email_optional: string;
-  private feedback_text: string;
+  private show_send = false;
+  @state()
+  private permalink: string = window.location.href;
+  private email: string = '';
+  private email_optional: string = '';
+  private feedback_text: string = '';
   private url_: string;
   private subscriptions_ = [];
+
+  static styles = css`
+    .modal-body,
+    .sitn-loader,
+    .modal-footer {
+      background-color: #fafafa;
+    }
+  `;
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -22,17 +32,34 @@ export class ProjFeedback extends LitElement {
         },
       })
     );
+    window.addEventListener('popstate', () => {
+      this.permalink = window.location.href;
+    });
   }
 
   render() {
     return html`<div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Signaler un problème</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h4
+          class="modal-title"
+          @click=${() => {
+            this.show_modal = true;
+          }}
+        >
+          Signaler un problème
+        </h4>
       </div>
       ${this.show_modal
-        ? html`<div class="modal-body">
+        ? html` <div class="modal-body">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                @click=${() => {
+                  this.show_modal = false;
+                }}
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
               Votre email (optionnel):<br />
               <input
                 input="text"
@@ -40,6 +67,9 @@ export class ProjFeedback extends LitElement {
                 name="email"
                 class="form-control"
                 .value="${this.email}"
+                @input=${(e) => {
+                  this.email = e.target.value;
+                }}
               />
               <br />
               Inclure un membre du SITN (optionnel) :<br />
@@ -49,6 +79,9 @@ export class ProjFeedback extends LitElement {
                 name="email_optional"
                 class="form-control"
                 .value="${this.email_optional}"
+                @input=${(e) => {
+                  this.email_optional = e.target.value;
+                }}
               />
               <br />
               Votre description du problème concernant la carte :<br />
@@ -57,20 +90,16 @@ export class ProjFeedback extends LitElement {
                 cols="40"
                 class="form-control"
                 .value="${this.feedback_text}"
+                @input=${(e) => {
+                  this.feedback_text = e.target.value;
+                }}
                 maxlength="1000"
                 placeholder="Taille maximale: 1000 caractères"
               >
               </textarea>
               <br />
               L'URL ci-dessous sera envoyée au SITN:
-              <input
-                type="text"
-                name="permalink"
-                class="form-control"
-                value="${window.location.href}"
-                .value="${this.permalink}"
-                readonly="True"
-              />
+              <input type="text" name="permalink" class="form-control" .value="${this.permalink}" readonly />
               <br />
               Pour contacter le SITN directement:
               <a href="mailto:sitn@ne.ch?subject=Problème Géoportail">sitn@ne.ch</a>
@@ -78,10 +107,13 @@ export class ProjFeedback extends LitElement {
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" @click="${this.feedbackSubmit}">Envoyer</button>
             </div>`
-        : html`<div class="sitn-loader">
+        : ''}
+      ${this.show_send
+        ? html`<div class="sitn-loader">
             <div class="fas fa-spinner fa-spin"></div>
             <p>En cours d'envoi...</p>
-          </div>`}`;
+          </div>`
+        : ''}`;
   }
 
   private feedbackSubmit() {
@@ -103,6 +135,7 @@ export class ProjFeedback extends LitElement {
       return;
     }
     this.show_modal = false;
+    this.show_send = true;
 
     let url = new URL(this.url_);
     let params = new URLSearchParams(url.search.slice(1));
@@ -121,7 +154,7 @@ export class ProjFeedback extends LitElement {
       body: formdata,
     }).then(
       () => {
-        this.show_modal = false;
+        this.show_send = false;
         alert(
           [
             'Merci! Votre demande est bien partie.',
@@ -135,10 +168,5 @@ export class ProjFeedback extends LitElement {
         alert('Une erreur est survenue. Merci de contacter le SITN (sitn@ne.ch)');
       }
     );
-  }
-
-  // Disable shadow DOM
-  protected createRenderRoot(): LitElement {
-    return this;
   }
 }

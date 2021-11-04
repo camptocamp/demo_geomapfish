@@ -10,8 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 # hadolint ignore=SC1091
-RUN . /etc/os-release && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install --assume-yes --no-install-recommends \
       python3-pip python3-dev python3-wheel python3-pkgconfig \
       libpq-dev binutils gcc && \
@@ -40,9 +39,8 @@ RUN cd /tmp && pipenv sync --system --clear --dev && \
 WORKDIR /app
 COPY . ./
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
-    python3 -m compileall -q /app/custom
-
-RUN prospector --output=pylint -X . && \
+    python3 -m compileall -q /app/custom && \
+    prospector --output=pylint -X . && \
     touch /tmp/lint.ok
 
 
