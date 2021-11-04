@@ -18,7 +18,7 @@ feedback = Service(
 
 @feedback.post()
 def feedback_post(request: pyramid.request.Request) -> Any:
-    # Just to demonstrante that we can fet the user information
+    # Just to demonstrate that we can fet the user information
     print(
         requests.get(
             "http://geoportal:8080/loginuser",
