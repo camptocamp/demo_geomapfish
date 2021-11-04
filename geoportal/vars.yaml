@@ -149,9 +149,9 @@ vars:
         sitnFeedbackUrl: /custom/feedback
 
       # Thoes tree lines should be commented in dev mode.
-      #static:
-      #  gmfCustomJavascriptUrl:
-      #    name: '/etc/geomapfish/static/custom/custom.es.js'
+      static:
+        gmfCustomJavascriptUrl:
+          name: '/etc/geomapfish/static/custom/custom.es.js'
 
     desktop_alt:
       extends: desktop

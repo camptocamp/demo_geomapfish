@@ -47,19 +47,21 @@ export class ProjFeedback extends LitElement {
         >
           Signaler un problème
         </h4>
+        ${this.show_modal
+          ? html`<button
+              type="button"
+              class="close"
+              aria-label="Close"
+              @click=${() => {
+                this.show_modal = false;
+              }}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>`
+          : ''}
       </div>
       ${this.show_modal
         ? html` <div class="modal-body">
-              <button
-                type="button"
-                class="close"
-                aria-label="Close"
-                @click=${() => {
-                  this.show_modal = false;
-                }}
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
               Votre email (optionnel):<br />
               <input
                 input="text"
