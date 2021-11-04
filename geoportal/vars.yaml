@@ -145,9 +145,9 @@ vars:
           rasterParams: {}
         # For dev, the corresponding value in static should also be removed.
         gmfCustomJavascriptUrl: https://localhost:8484/vite/custom.js
-      static:
-        gmfCustomJavascriptUrl:
-          name: ''
+      #static:
+      #  gmfCustomJavascriptUrl:
+      #    name: ''
 
     desktop_alt:
       extends: desktop

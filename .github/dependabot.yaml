@@ -15,3 +15,16 @@ updates:
     open-pull-requests-limit: 20
     ignore:
       - dependency-name: none
+
+  - package-ecosystem: docker
+    directory: '/custom'
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: none
+  - package-ecosystem: pip
+    directory: '/custom'
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: none

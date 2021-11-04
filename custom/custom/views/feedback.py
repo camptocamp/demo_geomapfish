@@ -4,10 +4,9 @@ from typing import Any
 import pyramid.request
 import requests
 from cornice import Service
-from pyramid.httpexceptions import HTTPBadRequest
-
 from custom.models.feedback import Feedback
 from custom.util.send_mail import send_mail
+from pyramid.httpexceptions import HTTPBadRequest
 
 feedback = Service(
     name="feedback",
