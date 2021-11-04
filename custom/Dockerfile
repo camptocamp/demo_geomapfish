@@ -25,17 +25,37 @@ RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --requirem
 COPY Pipfile Pipfile.lock /tmp/
 
 RUN cd /tmp && PIP_NO_BINARY=fiona,rasterio,shapely PROJ_DIR=/usr/local/ pipenv sync --system --clear && \
-    rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /tmp/* /root/.cache/* && \
+    rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/* && \
     strip /usr/local/lib/python3.*/dist-packages/*/*.so && \
     python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|pipenv|.*pydev.*|networkx)/'
 
 # hadolint ignore=DL3059
 RUN apt-get remove --autoremove --assume-yes gcc
 
+FROM base AS lint
+
+RUN cd /tmp && pipenv sync --system --clear --dev && \
+    rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/*
+
 WORKDIR /app
 COPY . ./
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
     python3 -m compileall -q /app/custom
+
+RUN prospector --output=pylint -X . && \
+    touch /tmp/lint.ok
+
+
+FROM base AS runtime
+
+# Force to urn the lint with BUILD KIT
+COPY --from=lint /tmp/lint.ok /tmp/
+
+WORKDIR /app
+COPY . ./
+RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
+    python3 -m compileall -q /app/custom
+
 # hadolint ignore=DL3059
 RUN mkdir -p /etc/gunicorn/ && \
   mv gunicorn_config.py /etc/gunicorn/config.py
