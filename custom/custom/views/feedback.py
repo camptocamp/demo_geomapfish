@@ -1,15 +1,13 @@
 import os
+from typing import Any
 
 import pyramid.request
+import requests
 from cornice import Service
 from pyramid.httpexceptions import HTTPBadRequest
-from pyramid.view import view_config
 
-from c2cgeoportal_commons.models import DBSession
-
-from .. import models
-from ..models import Feedback
-from ..util.sendmail import send_mail
+from custom.models.feedback import Feedback
+from custom.util.send_mail import send_mail
 
 feedback = Service(
     name="feedback",
@@ -20,7 +18,13 @@ feedback = Service(
 
 
 @feedback.post()
-def feedback_post(request: pyramid.request.Request) -> None:
+def feedback_post(request: pyramid.request.Request) -> Any:
+    print(
+        requests.get(
+            "http://geoportal:8080/loginuser", headers={"Cookie": request.headers.get("Cookie")}
+        ).json()
+    )
+
     if (
         "permalink" not in request.params
         or "ua" not in request.params
@@ -36,8 +40,8 @@ def feedback_post(request: pyramid.request.Request) -> None:
     new_feedback.email = request.params["email"]
     email_optional = request.params["email_optional"]
     new_feedback.text = request.params["feedback"]
-    DBSession.add(new_feedback)
-    DBSession.flush()
+    request.dbsession.add(new_feedback)
+    request.dbsession.flush()
 
     if "admin_email" in request.registry.settings:
         mail_list = [request.registry.settings["admin_email"]]

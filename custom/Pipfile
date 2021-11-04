@@ -17,6 +17,7 @@ sqlalchemy = "==1.4.25"
 transaction = "==3.0.1"
 "zope.sqlalchemy" = "==1.6"
 cornice = "==5.2.0"
+requests = "==2.26.0"
 
 [dev-packages]
 
