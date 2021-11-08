@@ -146,12 +146,16 @@ vars:
 
         # For dev, the corresponding value in static should also be removed.
         gmfCustomJavascriptUrl: https://localhost:8484/webcomponents/index.ts
-        sitnFeedbackUrl: /custom/feedback
+        sitnFeedbackPath: custom/feedback
 
       # Thoes tree lines should be commented in dev mode.
       static:
         gmfCustomJavascriptUrl:
           name: '/etc/geomapfish/static/custom/custom.es.js'
+
+      routes:
+        gmfBase:
+          name: base
 
     desktop_alt:
       extends: desktop

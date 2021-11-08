@@ -28,7 +28,9 @@ export class ProjFeedback extends LitElement {
     this.subscriptions_.push(
       window.gmf.config.getConfig().subscribe({
         next: (configuration) => {
-          this.url_ = configuration.sitnFeedbackUrl;
+          if (configuration) {
+            this.url_ = new URL(configuration.sitnFeedbackPath, configuration.gmfBase).href;
+          }
         },
       })
     );
@@ -154,21 +156,23 @@ export class ProjFeedback extends LitElement {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
       },
       body: formdata,
-    }).then(
-      () => {
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`${response.statusText} (${response.status})`);
+        }
         this.show_send = false;
         alert(
           [
             'Merci! Votre demande est bien partie.',
-            '\n\n',
-            'Suivant votre demande, une personne du SITN ',
-            'prendra bientôt contact avec vous.',
-          ].join('')
+            '',
+            'Suivant votre demande, une personne du SITN prendra bientôt contact avec vous.',
+          ].join('\n')
         );
-      },
-      () => {
+      })
+      .catch((error) => {
+        console.error(error);
         alert('Une erreur est survenue. Merci de contacter le SITN (sitn@ne.ch)');
-      }
-    );
+      });
   }
 }

@@ -84,18 +84,6 @@ services:
       - /usr/local/bin/gunicorn
       - --reload
       - --paste
-      - devlopement.ini
+      - development.ini
     volumes:
       - ./custom/custom:/app/custom
-
-  vite_dev_server:
-    build:
-      context: '.'
-      target: custom-build
-      args:
-        SIMPLE: ${SIMPLE}
-        PGSCHEMA: ${PGSCHEMA}
-        GEOMAPFISH_VERSION: ${GEOMAPFISH_VERSION}
-        GEOMAPFISH_MAIN_VERSION: ${GEOMAPFISH_MAIN_VERSION}
-    volumes:
-      - ./webcomponents:/app/webcomponents

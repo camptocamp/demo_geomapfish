@@ -7,19 +7,24 @@ from cornice import Service
 from custom.models.feedback import Feedback
 from custom.util.send_mail import send_mail
 from pyramid.httpexceptions import HTTPBadRequest
+import logging
+
+LOG = logging.getLogger(__name__)
 
 feedback = Service(
     name="feedback",
     description="The feedback service",
     path="/feedback",
-    cors_origins=(os.environ.get("VISIBLE_WEB_HOST", "*"),),
+    cors_origins=(
+        (f'https://{os.environ["VISIBLE_WEB_HOST"]}' if "VISIBLE_WEB_HOST" in os.environ else "*"),
+    ),
 )
 
 
 @feedback.post()
 def feedback_post(request: pyramid.request.Request) -> Any:
     # Just to demonstrate that we can fet the user information
-    print(
+    LOG.info(
         requests.get(
             "http://geoportal:8080/loginuser",
             headers={"Cookie": request.headers.get("Cookie"), "Referer": request.referrer},

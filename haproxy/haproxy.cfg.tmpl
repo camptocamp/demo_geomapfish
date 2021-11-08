@@ -69,11 +69,6 @@ backend custom
     server linked custom:8080 resolvers dns #check
 
 
-# for dev with webcomponents
-backend webcomponents
-    server linked vite_dev_server:3001 resolvers dns #check
-
-
 frontend plain
     bind :80
 
@@ -83,16 +78,6 @@ frontend plain
     # If the path starts with /custom/, use the custom backend
     acl is_custom var(req.path) -m beg ${VISIBLE_ENTRY_POINT}custom/
     use_backend custom if is_custom
-
-    # If the path starts with /webcomponents/, use the webcomponents backend
-    acl is_webcomponents var(req.path) -m beg ${VISIBLE_ENTRY_POINT}webcomponents/
-    use_backend webcomponents if is_webcomponents
-    # If the path starts with /@vite/, use the webcomponents backend
-    acl is_vite var(req.path) -m beg ${VISIBLE_ENTRY_POINT}@vite/
-    use_backend webcomponents if is_vite
-    # If the path starts with /node_modules/, use the webcomponents backend
-    acl is_node_modules var(req.path) -m beg ${VISIBLE_ENTRY_POINT}node_modules/
-    use_backend webcomponents if is_node_modules
 
     # If the path starts with /tiles/, use the tilecloudchain backend
     acl is_tiles var(req.path) -m beg ${VISIBLE_ENTRY_POINT}tiles/
