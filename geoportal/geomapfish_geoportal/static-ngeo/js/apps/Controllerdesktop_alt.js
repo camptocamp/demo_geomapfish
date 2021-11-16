@@ -42,7 +42,7 @@ import ngeoStreetviewModule from 'ngeo/streetview/module';
 import ngeoRoutingModule from 'ngeo/routing/module';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink';
 
-import '../customization_loader';
+import '../customizationLoader';
 
 /**
  * @private
