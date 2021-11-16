@@ -42,7 +42,7 @@ import ngeoStreetviewModule from 'ngeo/streetview/module';
 import ngeoRoutingModule from 'ngeo/routing/module';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink';
 
-import '../customizationLoader';
+import {customCssFn} from '../customizationLoader';
 
 /**
  * @private
@@ -67,6 +67,9 @@ class Controller extends AbstractDesktopController {
 
     const drawLidarprofilePanelActive = new ngeoMiscToolActivate(this, 'drawLidarprofilePanelActive');
     this.ngeoToolActivateMgr.registerTool('mapTools', drawLidarprofilePanelActive, false);
+
+    // CUSTOM Override style in the Shadow DOM scope.
+    customCssFn();
   }
 
   /**
