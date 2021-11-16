@@ -63,6 +63,14 @@ ngeoAuthForm.prototype.login = function(evt: Event): void {
  * CUSTOM: Manage special role (new input, new feedback once logged in).
  */
 ngeoAuthForm.prototype.render = function(): TemplateResult {
+  // CUSTOM
+  this.customCSS_ = `
+    ${this.customCSS_}
+    strong {
+      text-shadow: 1px 1px 2px black;
+    }
+  `
+  // CUSTOM END
   return html`
     <style>
       ${unsafeCSS(this.customCSS_)}
