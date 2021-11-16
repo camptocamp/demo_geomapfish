@@ -1,8 +1,10 @@
-import {html, TemplateResult} from 'lit';
+import {unsafeCSS, html, TemplateResult} from 'lit';
 import i18next from 'i18next';
 import authenticationService from 'ngeo/auth/service';
 import ngeoAuthForm from 'ngeo/auth/FormElement';
 import user from 'gmfapi/store/user';
+
+
 
 /**
  * CUSTOM
@@ -62,6 +64,10 @@ ngeoAuthForm.prototype.login = function(evt: Event): void {
  */
 ngeoAuthForm.prototype.render = function(): TemplateResult {
   return html`
+    <style>
+      ${unsafeCSS(this.customCSS_)}
+    </style>
+
     ${this.gmfUser.is_intranet
       ? html`
           <div class="form-group">

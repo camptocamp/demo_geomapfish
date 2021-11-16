@@ -151,6 +151,8 @@ vars:
       extends: desktop
       redirect_interface: mobile_alt
       constants:
+        gmfCustomCSS:
+          authentication: 'strong {color: red;}'
         sentryOptions:
           <<: *sentryOptions
           tags:
@@ -775,6 +777,7 @@ no_interpreted:
   - shortener.email_body
   - welcome_email.email_body
   - interfaces_config.mobile_alt.constants.gmfMobileMeasurePointOptions.format
+  - interfaces_config.desktop_alt.constants.gmfCustomCSS.authentication
 
 runtime_environment:
   - name: SMTP_USER
