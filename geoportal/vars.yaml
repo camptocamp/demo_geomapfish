@@ -144,14 +144,16 @@ vars:
           projections: *alternate_projections
           rasterParams: {}
 
-        # For dev, the corresponding value in static should also be removed.
-        gmfCustomJavascriptUrl: https://localhost:8484/webcomponents/index.ts
+        # For dev, the corresponding values in static should also be removed.
+        gmfCustomJavascriptUrl:
+          - http://localhost:3001/@vite/client
+          - http://localhost:3001/webcomponents/index.ts
         sitnFeedbackPath: custom/feedback
 
-      # Thoes tree lines should be commented in dev mode.
-      static:
-        gmfCustomJavascriptUrl:
-          name: '/etc/geomapfish/static/custom/custom.es.js'
+      # Those three lines should be commented in dev mode.
+      #static:
+      #  gmfCustomJavascriptUrl:
+      #    name: '/etc/geomapfish/static/custom/custom.es.js'
 
       routes:
         gmfBase:
@@ -619,7 +621,7 @@ vars:
       - 185.127.205.3/24
 
   content_security_policy_main_img_src_extra: 'blob:'
-  content_security_policy_main_script_src_extra: "'unsafe-eval'"
+  content_security_policy_main_script_src_extra: "'unsafe-eval' http://localhost:3001"
 
   headers:
     dynamic: &header {}
