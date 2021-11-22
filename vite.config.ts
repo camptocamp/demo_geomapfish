@@ -1,11 +1,8 @@
-import {defineConfig} from 'vite';
-
 // https://vitejs.dev/config/
-export default defineConfig({
+export default {
   server: {
     port: 3001,
-    https: false,
-    host: '0.0.0.0',
+    https: true,
   },
   build: {
     lib: {
@@ -15,4 +12,4 @@ export default defineConfig({
     target: 'esnext',
     sourcemap: true,
   },
-});
+};

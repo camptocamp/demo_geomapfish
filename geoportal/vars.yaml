@@ -146,8 +146,8 @@ vars:
 
         # For dev, the corresponding values in static should also be removed.
         gmfCustomJavascriptUrl:
-          - http://localhost:3001/@vite/client
-          - http://localhost:3001/webcomponents/index.ts
+          - https://localhost:3001/@vite/client
+          - https://localhost:3001/webcomponents/index.ts
         sitnFeedbackPath: custom/feedback
 
       # Those three lines should be commented in dev mode.
