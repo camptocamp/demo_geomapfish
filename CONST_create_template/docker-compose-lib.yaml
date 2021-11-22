@@ -25,7 +25,6 @@ services:
       - PGDATABASE
       - PGSSLMODE
       - PGSCHEMA_STATIC
-      - SRID
       - SQLALCHEMY_POOL_RECYCLE
       - SQLALCHEMY_POOL_SIZE
       - SQLALCHEMY_MAX_OVERFLOW
@@ -39,7 +38,6 @@ services:
       - DISABLE_MUTUALIZED_PRINT
       - DISABLE_LOCAL_PRINT
       - MAPSERVER_URL
-      - QGISSERVER_URL
       - REDIS_HOST
       - REDIS_PORT
       - REDIS_DB
