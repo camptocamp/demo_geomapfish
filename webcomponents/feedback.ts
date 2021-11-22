@@ -21,12 +21,17 @@ export class ProjFeedback extends LitElement {
     .modal-footer {
       background-color: #fafafa;
     }
+
+    input,
+    textarea {
+      margin: 5px 0;
+    }
   `;
 
   connectedCallback(): void {
     super.connectedCallback();
     this.subscriptions_.push(
-      window.gmf.config.getConfig().subscribe({
+      (window as any).gmfapi.store.config.getConfig().subscribe({
         next: (configuration) => {
           if (configuration) {
             this.url_ = new URL(configuration.sitnFeedbackPath, configuration.gmfBase).href;
@@ -64,35 +69,38 @@ export class ProjFeedback extends LitElement {
       </div>
       ${this.show_modal
         ? html` <div class="modal-body">
-              Votre email (optionnel):<br />
+              <label for="email">Votre email (optionnel):</label><br />
               <input
                 input="text"
                 placeholder="example@example.com"
                 name="email"
                 class="form-control"
+                id="email"
                 .value="${this.email}"
                 @input=${(e) => {
                   this.email = e.target.value;
                 }}
               />
               <br />
-              Inclure un membre du SITN (optionnel) :<br />
+              <label for="email_optional">Inclure un membre du SITN (optionnel) :</label><br />
               <input
                 type="text"
                 placeholder="prenom.nom@ne.ch"
                 name="email_optional"
                 class="form-control"
+                id="email_optional"
                 .value="${this.email_optional}"
                 @input=${(e) => {
                   this.email_optional = e.target.value;
                 }}
               />
               <br />
-              Votre description du problème concernant la carte :<br />
+              <label for="feedback_text"> Votre description du problème concernant la carte :</label><br />
               <textarea
                 rows="4"
                 cols="40"
                 class="form-control"
+                id="feedback_text"
                 .value="${this.feedback_text}"
                 @input=${(e) => {
                   this.feedback_text = e.target.value;
@@ -102,8 +110,15 @@ export class ProjFeedback extends LitElement {
               >
               </textarea>
               <br />
-              L'URL ci-dessous sera envoyée au SITN:
-              <input type="text" name="permalink" class="form-control" .value="${this.permalink}" readonly />
+              <label for="permalink">L'URL ci-dessous sera envoyée au SITN:</label>
+              <input
+                type="text"
+                name="permalink"
+                class="form-control"
+                id="permalink"
+                .value="${this.permalink}"
+                readonly
+              />
               <br />
               Pour contacter le SITN directement:
               <a href="mailto:sitn@ne.ch?subject=Problème Géoportail">sitn@ne.ch</a>
