@@ -33,8 +33,7 @@ RUN \
         ${CONFIG_VARS} && \
     pykwalify --data-file geomapfish_geoportal/config.yaml \
         --schema-file CONST_config-schema.yaml && \
-    rm CONST_* vars.yaml && \
-    qgisserver-plugin-config geomapfish_geoportal/config.yaml ../qgisserver/geomapfish.yaml.tmpl
+    rm CONST_* vars.yaml
 
 ###############################################################################
 
