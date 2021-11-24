@@ -17,21 +17,4 @@ __pycache__/
 /geoportal/geomapfish_geoportal/static/robot.txt
 /print/print-apps/geomapfish/config.yaml
 /mapserver/tinyows.xml
-
-# Simple mode
-/geoportal/*
-!/geoportal/vars*.yaml
-!/geoportal/CONST_vars.yaml
-!/geoportal/CONST_config-schema.yaml
-!/geoportal/geomapfish_geoportal
-/geoportal/geomapfish_geoportal/*
-!/geoportal/geomapfish_geoportal/locale/
-!/geoportal/geomapfish_geoportal/static/
-
-/CONST_create_template/geoportal/*
-!/CONST_create_template/geoportal/vars*.yaml
-!/CONST_create_template/geoportal/geomapfish_geoportal
-/CONST_create_template/geoportal/geomapfish_geoportal/*
-!/CONST_create_template/geoportal/geomapfish_geoportal/locale/
-!/CONST_create_template/geoportal/geomapfish_geoportal/static/
 /yandex
