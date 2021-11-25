@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="shortcut icon" href="${request.static_url('/etc/geomapfish/static/images/favicon.ico')}" crossorigin="anonymous" />
-<style>
-  .spinner-loading-mask {
-    width: 1em;
-  }
-</style>
+    <style>
+      .spinner-loading-mask {
+        width: 1em;
+      }
+    </style>
     ${header |n}
   </head>
   <body ng-keydown="mainCtrl.onKeydown($event)">
@@ -386,13 +386,11 @@
     </gmf-desktop-canvas>
     <script nomodule>
       alert(
-        'Your browser is not supported, please use a recent version of Firefox, Chrome or Edge.
+        `Your browser is not supported, please use a recent version of Firefox, Chrome or Edge.
 
-' +
-        "Votre navigateur n'est pas supporté, veuillez utiliser une version récente de Firefox, Chrome or Edge.
+Votre navigateur n'est pas supporté, veuillez utiliser une version récente de Firefox, Chrome or Edge.
 
-" +
-        'Ihr Browser wird nicht unterstützt, bitte verwenden Sie eine aktuelle Version von Firefox, Chrome oder Edge.'
+Ihr Browser wird nicht unterstützt, bitte verwenden Sie eine aktuelle Version von Firefox, Chrome oder Edge.`
       );
     </script>
     ${footer |n}
