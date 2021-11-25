@@ -1,0 +1,23 @@
+.logo {
+  background-image: url('../images/logo.svg');
+  height: 2.8rem;
+  margin-left: 0.62rem;
+  background-repeat: no-repeat;
+  background-size: auto 2.8rem;
+}
+.logo span {
+  left: 18.5rem;
+  position: absolute;
+  bottom: 0.2rem;
+}
+.logo span::before {
+  content: 'by Camptocamp';
+}
+.logo-right {
+  height: 2.8rem;
+  background-repeat: no-repeat;
+  background-size: auto 2.8rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

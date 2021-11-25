@@ -35,6 +35,8 @@ vars:
     - name: mobile
     - name: iframe_api
     - name: desktop_alt
+      type: canvas
+      layout: desktop
     - name: mobile_alt
     - name: oeedit
 
@@ -148,12 +150,15 @@ vars:
         gmfCustomJavascriptUrl:
           - https://localhost:3001/@vite/client
           - https://localhost:3001/webcomponents/index.ts
+
         sitnFeedbackPath: custom/feedback
 
-      # Those three lines should be commented in dev mode.
-      #static:
-      #  gmfCustomJavascriptUrl:
-      #    name: '/etc/geomapfish/static/custom/custom.es.js'
+      static:
+        # Those tow lines should be commented in dev mode.
+        #  gmfCustomJavascriptUrl:
+        #    name: '/etc/geomapfish/static/custom/custom.es.js'
+        gmfCustomStylesheetUrl:
+          name: /etc/geomapfish/static/css/desktop_alt.css
 
       routes:
         gmfBase:
