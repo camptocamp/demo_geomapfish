@@ -1,3 +1,4 @@
+import logging
 import os
 from typing import Any
 
@@ -7,7 +8,6 @@ from cornice import Service
 from custom.models.feedback import Feedback
 from custom.util.send_mail import send_mail
 from pyramid.httpexceptions import HTTPBadRequest
-import logging
 
 LOG = logging.getLogger(__name__)
 
