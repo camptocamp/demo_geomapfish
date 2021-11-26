@@ -90,8 +90,6 @@ COPY tsconfig.json vite.config.ts ./
 COPY webcomponents/ ./webcomponents/
 RUN npm run build
 
-CMD [ "npm", "run", "dev" ]
-
 ###############################################################################
 
 FROM gmf_config AS config
