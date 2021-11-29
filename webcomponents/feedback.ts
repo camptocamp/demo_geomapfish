@@ -23,7 +23,8 @@ export class ProjFeedback extends LitElement {
       width: 32ch; /* 32 characters */
     }
 
-    textarea {
+    textarea.form-control {
+      height: auto;
       width: 30ch; /* 30 characters */
     }
 
@@ -36,6 +37,51 @@ export class ProjFeedback extends LitElement {
       border-bottom-style: solid;
       border-bottom-color: var(--color-light);
       font-size: 0.8rem;
+    }
+
+    .form-control {
+      display: block;
+      height: calc(1.5em + 0.5rem + 2px);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .btn {
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      vertical-align: middle;
+      user-select: none;
+      border: 1px solid transparent;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      border-radius: 0;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    }
+
+    .btn:not(:disabled):not(.disabled) {
+      cursor: pointer;
+    }
+
+    .btn-prime {
+      background-color: var(--brand-primary);
+      border-color: var(--input-border-focus);
+      color: white;
+    }
+
+    .btn-prime:hover {
+      background-color: var(--input-border-focus);
+      border-color: var(--input-border-focus-darken);
     }
   `;
 
@@ -114,8 +160,9 @@ export class ProjFeedback extends LitElement {
         Pour contacter le SITN directement:
         <a href="mailto:sitn@ne.ch?subject=Problème Géoportail">sitn@ne.ch</a>
       </div>
+      <br />
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" @click="${this.feedbackSubmit}">Envoyer</button>
+        <button type="submit" class="btn btn-prime" @click="${this.feedbackSubmit}">Envoyer</button>
       </div>
       ${this.show_send
         ? html`<div class="sitn-loader">
