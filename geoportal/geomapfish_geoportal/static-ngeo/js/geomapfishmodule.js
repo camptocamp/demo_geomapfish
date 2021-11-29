@@ -10,9 +10,9 @@ import {decodeQueryString} from 'ngeo/utils.js';
 /**
  * @type {!angular.IModule}
  */
-const module = angular.module('geomapfish', []);
+const geomapfishModule = angular.module('geomapfish', []);
 
-module.config([
+geomapfishModule.config([
   '$compileProvider',
   function ($compileProvider) {
     if (!('debug' in decodeQueryString(window.location.search))) {
@@ -22,4 +22,4 @@ module.config([
   },
 ]);
 
-export default module;
+export default geomapfishModule;
