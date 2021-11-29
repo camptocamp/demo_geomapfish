@@ -154,7 +154,7 @@ vars:
         sitnFeedbackPath: custom/feedback
 
       static:
-        # Those tow lines should be commented in dev mode.
+        # Those two lines should be commented in dev mode.
         #  gmfCustomJavascriptUrl:
         #    name: '/etc/geomapfish/static/custom/custom.es.js'
         gmfCustomStylesheetUrl:
@@ -626,7 +626,7 @@ vars:
       - 185.127.205.3/24
 
   content_security_policy_main_img_src_extra: 'blob:'
-  content_security_policy_main_script_src_extra: "'unsafe-eval' http://localhost:3001"
+  content_security_policy_main_script_src_extra: "'unsafe-eval' https://localhost:3001"
 
   headers:
     dynamic: &header {}

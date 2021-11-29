@@ -60,6 +60,10 @@
       <gmf-auth-button slot="tool-button"></gmf-auth-button>
       <gmf-auth-panel slot="tool-panel-auth"></gmf-auth-panel>
 
+      <!-- custom feedback -->
+      <gmf-tool-button slot="tool-button" iconClasses="fas fa-file-signature" panelName="feedback"></gmf-tool-button>
+      <proj-feedback slot="tool-panel-feedback"></proj-feedback>
+
       <!-- Print -->
       <gmf-print-button slot="tool-button"></gmf-print-button>
       <div slot="tool-panel-print" class="row">

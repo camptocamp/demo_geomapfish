@@ -4,8 +4,6 @@ import {LitElement, html, css} from 'lit';
 @customElement('proj-feedback')
 export class ProjFeedback extends LitElement {
   @state()
-  private show_modal = false;
-  @state()
   private show_send = false;
   @state()
   private permalink: string = window.location.href;
@@ -16,15 +14,28 @@ export class ProjFeedback extends LitElement {
   private subscriptions_ = [];
 
   static styles = css`
-    .modal-body,
-    .sitn-loader,
-    .modal-footer {
-      background-color: #fafafa;
-    }
-
     input,
     textarea {
-      margin: 5px 0;
+      margin: 5px 0 5px 5px;
+    }
+
+    input {
+      width: 32ch; /* 32 characters */
+    }
+
+    textarea {
+      width: 30ch; /* 30 characters */
+    }
+
+    .modal-title {
+      color: var(--color-light);
+      padding-bottom: var(--app-margin);
+      margin-bottom: var(--app-margin);
+      margin-top: calc(var(--grid-gutter-width) / 2);
+      border-bottom-width: 0.06rem;
+      border-bottom-style: solid;
+      border-bottom-color: var(--color-light);
+      font-size: 0.8rem;
     }
   `;
 
@@ -46,87 +57,66 @@ export class ProjFeedback extends LitElement {
 
   render() {
     return html`<div class="modal-header">
-        <h4
-          class="modal-title"
-          @click=${() => {
-            this.show_modal = true;
-          }}
-        >
-          Signaler un problème
-        </h4>
-        ${this.show_modal
-          ? html`<button
-              type="button"
-              class="close"
-              aria-label="Close"
-              @click=${() => {
-                this.show_modal = false;
-              }}
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>`
-          : ''}
+        <div class="modal-title">Signaler un problème</div>
       </div>
-      ${this.show_modal
-        ? html` <div class="modal-body">
-              <label for="email">Votre email (optionnel):</label><br />
-              <input
-                input="text"
-                placeholder="example@example.com"
-                name="email"
-                class="form-control"
-                id="email"
-                .value="${this.email}"
-                @input=${(e) => {
-                  this.email = e.target.value;
-                }}
-              />
-              <br />
-              <label for="email_optional">Inclure un membre du SITN (optionnel) :</label><br />
-              <input
-                type="text"
-                placeholder="prenom.nom@ne.ch"
-                name="email_optional"
-                class="form-control"
-                id="email_optional"
-                .value="${this.email_optional}"
-                @input=${(e) => {
-                  this.email_optional = e.target.value;
-                }}
-              />
-              <br />
-              <label for="feedback_text"> Votre description du problème concernant la carte :</label><br />
-              <textarea
-                rows="4"
-                cols="40"
-                class="form-control"
-                id="feedback_text"
-                .value="${this.feedback_text}"
-                @input=${(e) => {
-                  this.feedback_text = e.target.value;
-                }}
-                maxlength="1000"
-                placeholder="Taille maximale: 1000 caractères"
-              >
-              </textarea>
-              <br />
-              <label for="permalink">L'URL ci-dessous sera envoyée au SITN:</label>
-              <input
-                type="text"
-                name="permalink"
-                class="form-control"
-                id="permalink"
-                .value="${this.permalink}"
-                readonly
-              />
-              <br />
-              Pour contacter le SITN directement:
-              <a href="mailto:sitn@ne.ch?subject=Problème Géoportail">sitn@ne.ch</a>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" @click="${this.feedbackSubmit}">Envoyer</button>
-            </div>`
-        : ''}
+      <div class="modal-body">
+        <label for="email">Votre email (optionnel):</label><br />
+        <input
+          input="text"
+          placeholder="example@example.com"
+          name="email"
+          class="form-control"
+          id="email"
+          .value="${this.email}"
+          @input=${(e) => {
+            this.email = e.target.value;
+          }}
+        />
+        <br />
+        <label for="email_optional">Inclure un membre du SITN (optionnel) :</label><br />
+        <input
+          type="text"
+          placeholder="prenom.nom@ne.ch"
+          name="email_optional"
+          class="form-control"
+          id="email_optional"
+          .value="${this.email_optional}"
+          @input=${(e) => {
+            this.email_optional = e.target.value;
+          }}
+        />
+        <br />
+        <label for="feedback_text"> Votre description du problème concernant la carte :</label><br />
+        <textarea
+          rows="4"
+          cols="40"
+          class="form-control"
+          id="feedback_text"
+          .value="${this.feedback_text}"
+          @input=${(e) => {
+            this.feedback_text = e.target.value;
+          }}
+          maxlength="1000"
+          placeholder="Taille maximale: 1000 caractères"
+        >
+        </textarea>
+        <br />
+        <label for="permalink">L'URL ci-dessous sera envoyée au SITN:</label>
+        <input
+          type="text"
+          name="permalink"
+          class="form-control"
+          id="permalink"
+          .value="${this.permalink}"
+          readonly
+        />
+        <br />
+        Pour contacter le SITN directement:
+        <a href="mailto:sitn@ne.ch?subject=Problème Géoportail">sitn@ne.ch</a>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" @click="${this.feedbackSubmit}">Envoyer</button>
+      </div>
       ${this.show_send
         ? html`<div class="sitn-loader">
             <div class="fas fa-spinner fa-spin"></div>
@@ -153,7 +143,6 @@ export class ProjFeedback extends LitElement {
       alert('Votre texte est trop long (max 1000 caractères).');
       return;
     }
-    this.show_modal = false;
     this.show_send = true;
 
     let url = new URL(this.url_);
