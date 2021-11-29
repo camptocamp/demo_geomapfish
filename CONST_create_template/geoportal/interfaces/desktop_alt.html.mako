@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="\{\{mainCtrl.lang\}\}" ng-controller="AlternativeDesktopController as mainCtrl" ng-strict-di>
   <head>
-    <title data-i18n="Alternative Desktop Application">GeoMapFish</title>
+    <title translate>Alternative Desktop Application</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="shortcut icon" href="${request.static_url('/etc/geomapfish/static/images/favicon.ico')}" crossorigin="anonymous" />
@@ -38,7 +38,7 @@
               <b ng-if="!mainCtrl.gmfThemeManager.isLoading()">\{\{mainCtrl.gmfThemeManager.getThemeName() | translate\}\}</b>
             </span>
             <span ng-if="!mainCtrl.gmfThemeManager.modeFlush">
-              <b ng-if="!mainCtrl.gmfThemeManager.themeName" data-i18n="Themes"></b>
+              <b ng-if="!mainCtrl.gmfThemeManager.themeName" translate>Themes</b>
             </span>
           </a>
           <gmf-themeselector class="dropdown-menu"
