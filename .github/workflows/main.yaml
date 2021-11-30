@@ -81,7 +81,7 @@ jobs:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
           patterns: docker
-        if: hashFiles('geoportal/Dockerfile') != '' and env.HAS_SECRETS == 'HAS_SECRETS'
+        if: hashFiles('geoportal/Dockerfile') != '' && env.HAS_SECRETS == 'HAS_SECRETS'
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
         if: hashFiles('geoportal/Dockerfile') != ''
