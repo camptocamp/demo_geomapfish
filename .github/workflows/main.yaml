@@ -10,6 +10,7 @@ env:
   OPENSHIFT_PROJECT: gs-gmf-demo
   # The release branches
   HELM_RELEASE_NAMES: prod-2-7
+  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
 
 jobs:
   checks:
@@ -24,6 +25,7 @@ jobs:
         with:
           ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
           github-gopass-ci-token: ${{secrets.GOPASS_CI_GITHUB_TOKEN}}
+        if: env.HAS_SECRETS == 'HAS_SECRETS'
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
@@ -50,13 +52,16 @@ jobs:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
           patterns: docker
+        if: env.HAS_SECRETS == 'HAS_SECRETS'
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
 
       - name: Publish
         run: c2cciutils-publish --group=config
+        if: env.HAS_SECRETS == 'HAS_SECRETS'
       - run: ci/trigger --image=config
+        if: env.HAS_SECRETS == 'HAS_SECRETS'
 
   geoportal:
     runs-on: ubuntu-20.04
@@ -76,7 +81,7 @@ jobs:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
           patterns: docker
-        if: hashFiles('geoportal/Dockerfile') != ''
+        if: hashFiles('geoportal/Dockerfile') != '' and env.HAS_SECRETS == 'HAS_SECRETS'
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
         if: hashFiles('geoportal/Dockerfile') != ''
@@ -107,10 +112,13 @@ jobs:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
           patterns: docker
+        if: env.HAS_SECRETS == 'HAS_SECRETS'
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
 
       - name: Publish
         run: c2cciutils-publish --group=custom
+        if: env.HAS_SECRETS == 'HAS_SECRETS'
       - run: ci/trigger --image=custom
+        if: env.HAS_SECRETS == 'HAS_SECRETS'
