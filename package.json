@@ -1,0 +1,14 @@
+{
+  "name": "custom",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lit": "2.0.2",
+    "typescript": "4.3.2",
+    "vite": "2.5.4"
+  }
+}

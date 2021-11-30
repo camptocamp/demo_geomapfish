@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+gunicorn = "==20.1.0"
+plaster-pastedeploy = "==0.7"
+pyramid = "==2.0"
+pyramid-mako = "==1.1.0"
+pyramid-debugtoolbar = "==4.9"
+waitress = "==2.0.0"
+alembic = "==1.7.3"
+pyramid-retry = "==2.1.1"
+pyramid-tm = "==2.4"
+sqlalchemy = "==1.4.25"
+transaction = "==3.0.1"
+"zope.sqlalchemy" = "==1.6"
+cornice = "==5.2.0"
+requests = "==2.26.0"
+
+[dev-packages]
+prospector = {version = "==1.5.1", extras = ["with_bandit"]}
+flake8 = "==3.9.2"
+
+[requires]
+python_version = "3.8"

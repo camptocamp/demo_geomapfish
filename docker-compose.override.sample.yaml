@@ -11,7 +11,6 @@ services:
   #     - './qgisserver:/etc/qgisserver/'
 
   geoportal:
-    image: ${DOCKER_BASE}-geoportal:${DOCKER_TAG}
     user: root
     volumes:
       # For Python project development.
@@ -30,9 +29,6 @@ services:
       # - PRINT_URL=http://print:8080/print/
     ports:
       - 5678:5678 # For remote debugging using Visual Studio Code
-
-  alembic:
-    image: ${DOCKER_BASE}-geoportal:${DOCKER_TAG}
 
   # Also uncomment the PRINT_URL in geoportal
   # print:
@@ -64,17 +60,11 @@ services:
     environment:
       - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
 
-  # For Javascript project development.
-  # The debug application will be available at ``https://<host>/<entry_point>/dev/<interface>.html``.
-  # webpack_dev_server:
-  #   # Uncomment these lines when you want to debug respectively the project js, ngeo js and/or the gmf contrib js.
-  #   # Adapt the path for ngeo / gmf contrib to point where you have checkouted the code.
-  #   # volumes:
-  #   #   - ./geoportal/${PACKAGE}_geoportal/static-ngeo:/app/${PACKAGE}_geoportal/static-ngeo
-  #   #   - ./../ngeo/src:/usr/lib/node_modules/ngeo/src
-  #   #   - ./../ngeo/contribs:/usr/lib/node_modules/ngeo/contribs
-  #   volumes_from:
-  #     - config:rw
-  #   extends:
-  #     file: docker-compose-lib.yaml
-  #     service: webpack_dev_server
+  custom:
+    command:
+      - /usr/local/bin/gunicorn
+      - --reload
+      - --paste
+      - development.ini
+    volumes:
+      - ./custom/custom:/app/custom

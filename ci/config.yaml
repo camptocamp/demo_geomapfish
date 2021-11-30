@@ -1,14 +1,12 @@
 ---
 checks:
-  black: False
-  isort: False
-  prettier: False
   codespell: False
-  eof: False
   required_workflows: False
-  dependabot_config: False
-  prospector_config: False
   setup: False
+  dependabot: False
+  black:
+    ignore_patterns_re:
+      - custom/custom/alembic/script\.py\.mako
 
 version:
   branch_to_version_re:
@@ -22,3 +20,5 @@ publish:
     images:
       - group: config
         name: camptocamp/geomapfishdemo-config
+      - group: custom
+        name: camptocamp/geomapfishdemo-custom
