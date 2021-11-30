@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{mainCtrl.lang}}" ng-controller="AlternativeDesktopController as mainCtrl" ng-strict-di>
   <head>
-    <title data-i18n="Alternative Desktop Application">GeoMapFish</title>
+    <title translate>Alternative Desktop Application</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="shortcut icon" href="${request.static_url('/etc/geomapfish/static/images/favicon.ico')}" crossorigin="anonymous" />
@@ -19,14 +19,12 @@
     </i>
   </div>
     <gmf-desktop-canvas>
-      <header slot="header">
-        <div class="logo">
-          <span></span>
-        </div>
-        <div class="logo-right">
-          <span></span>
-        </div>
-      </header>
+      <div slot="header" class="logo">
+        <span></span>
+      </div>
+      <div slot="header" class="logo-right">
+        <span></span>
+      </div>
 
       <div slot="data" class="gmf-app-header">
         <div class="dropdown">
@@ -40,7 +38,7 @@
               <b ng-if="!mainCtrl.gmfThemeManager.isLoading()">{{mainCtrl.gmfThemeManager.getThemeName() | translate}}</b>
             </span>
             <span ng-if="!mainCtrl.gmfThemeManager.modeFlush">
-              <b ng-if="!mainCtrl.gmfThemeManager.themeName" data-i18n="Themes"></b>
+              <b ng-if="!mainCtrl.gmfThemeManager.themeName" translate>Themes</b>
             </span>
           </a>
           <gmf-themeselector class="dropdown-menu"
@@ -59,10 +57,6 @@
       <!-- Login -->
       <gmf-auth-button slot="tool-button"></gmf-auth-button>
       <gmf-auth-panel slot="tool-panel-auth"></gmf-auth-panel>
-
-      <!-- custom feedback -->
-      <gmf-tool-button slot="tool-button" iconClasses="fas fa-file-signature" panelName="feedback"></gmf-tool-button>
-      <proj-feedback slot="tool-panel-feedback"></proj-feedback>
 
       <!-- Print -->
       <gmf-print-button slot="tool-button"></gmf-print-button>
@@ -318,10 +312,11 @@
       </button>
       <div slot="map" class="gmf-app-map-bottom-controls">
         <div class="gmf-backgroundlayerbutton btn-group dropup">
+          <!--  -->
           <button
               class="btn btn-default dropdown-toggle"
               data-toggle="dropdown">
-            <img src="${request.static_url('/etc/geomapfish/static/images/background-layer-button.png')}" alt="" crossorigin="anonymous" />
+            <img src="${static['background-layer-button']}" alt="" crossorigin="anonymous" />
           </button>
           <gmf-backgroundlayerselector
             gmf-backgroundlayerselector-map="::mainCtrl.map"

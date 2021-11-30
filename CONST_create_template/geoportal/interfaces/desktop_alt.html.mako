@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="\{\{mainCtrl.lang\}\}" ng-controller="AlternativeDesktopController as mainCtrl" ng-strict-di>
+<html lang="{{mainCtrl.lang}}" ng-controller="AlternativeDesktopController as mainCtrl" ng-strict-di>
   <head>
     <title translate>Alternative Desktop Application</title>
     <meta charset="utf-8">
@@ -35,7 +35,7 @@
             <span ng-if="mainCtrl.gmfThemeManager.modeFlush">
               <span translate>Theme:</span>
               <b ng-if="mainCtrl.gmfThemeManager.isLoading()" translate>Loading...</b>
-              <b ng-if="!mainCtrl.gmfThemeManager.isLoading()">\{\{mainCtrl.gmfThemeManager.getThemeName() | translate\}\}</b>
+              <b ng-if="!mainCtrl.gmfThemeManager.isLoading()">{{mainCtrl.gmfThemeManager.getThemeName() | translate}}</b>
             </span>
             <span ng-if="!mainCtrl.gmfThemeManager.modeFlush">
               <b ng-if="!mainCtrl.gmfThemeManager.themeName" translate>Themes</b>
@@ -63,7 +63,7 @@
       <div slot="tool-panel-print" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Print' | translate \}\}
+            {{ 'Print' | translate }}
           </div>
           <gmf-print
             gmf-print-map="::mainCtrl.map"
@@ -86,7 +86,7 @@
       <div slot="tool-panel-draw" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Draw and Measure' | translate \}\}
+            {{ 'Draw and Measure' | translate }}
           </div>
           <gmf-drawfeature
             gmf-drawfeature-active="mainCtrl.drawFeatureActive"
@@ -99,7 +99,7 @@
       <!-- Filter -->
       <gmf-filter-button slot="tool-button">
         <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.filterSelectorActive"
-        data-toggle="tooltip" data-placement="left" data-original-title="\{\{'Filter'|translate\}\}">
+        data-toggle="tooltip" data-placement="left" data-original-title="{{'Filter'|translate}}">
           <span
             class="fa"
             ng-class="mainCtrl.gmfDataSourceBeingFiltered.dataSource && mainCtrl.gmfDataSourceBeingFiltered.dataSource.filterRules ? 'fa-funnel-dollar' : 'fa-filter'">
@@ -109,7 +109,7 @@
       <div slot="tool-panel-filter" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Filter' | translate \}\}
+            {{ 'Filter' | translate }}
           </div>
           <gmf-filterselector
             active="mainCtrl.filterSelectorActive"
@@ -125,11 +125,11 @@
       <div slot="tool-panel-editing" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Editing' | translate \}\}
+            {{ 'Editing' | translate }}
           </div>
           <div ng-switch="mainCtrl.gmfUser.username">
             <div ng-switch-when="null">
-              \{\{ 'In order to use the editing tool, you must log in first.' | translate \}\}
+              {{ 'In order to use the editing tool, you must log in first.' | translate }}
             </div>
             <gmf-editfeatureselector
               ng-switch-default
@@ -146,7 +146,7 @@
       <div slot="tool-panel-profile" class="row profile-panel">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Elevation profile' | translate \}\}
+            {{ 'Elevation profile' | translate }}
           </div>
           <div gmf-drawprofileline
             gmf-drawprofileline-active="mainCtrl.drawProfilePanelActive"
@@ -186,7 +186,7 @@
       >
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Lidar profile (only on the canton of Neuchâtel)' | translate \}\}
+            {{ 'Lidar profile (only on the canton of Neuchâtel)' | translate }}
           </div>
           <gmf-lidarprofile-panel
             gmf-lidarprofile-panel-active="mainCtrl.drawLidarprofilePanelActive"
@@ -209,7 +209,7 @@
       <div slot="tool-panel-googlestreetview" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Google Street View' | translate \}\}
+            {{ 'Google Street View' | translate }}
           </div>
           <ngeo-streetview
             active="mainCtrl.googleStreetViewActive"
@@ -226,7 +226,7 @@
       <div slot="tool-panel-mapillary" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Mapillary Street View' | translate \}\}
+            {{ 'Mapillary Street View' | translate }}
           </div>
           <ngeo-streetview
             active="mainCtrl.mapillaryStreetViewActive"
@@ -243,7 +243,7 @@
       <div slot="tool-panel-query"  class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Selection' | translate \}\}
+            {{ 'Selection' | translate }}
           </div>
           <ngeo-query-panel></ngeo-query-panel>
         </div>
@@ -254,7 +254,7 @@
       <div slot="tool-panel-import" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Import Layer' | translate \}\}
+            {{ 'Import Layer' | translate }}
           </div>
           <gmf-importdatasource map="mainCtrl.map">
           </gmf-importdatasource>
@@ -266,7 +266,7 @@
       <div slot="tool-panel-routing" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            \{\{ 'Routing' | translate \}\}
+            {{ 'Routing' | translate }}
           </div>
           <ngeo-routing
             ngeo-routing-map="mainCtrl.map">
@@ -276,7 +276,7 @@
 
       <!-- Permalink -->
       <span slot="tool-button-separate">
-        <button ngeo-btn class="btn btn-default gmf-app-tools-bar" ng-model="mainCtrl.modalShareShown"  data-toggle="tooltip" data-placement="left" data-original-title="\{\{'Share this map'|translate\}\}">
+        <button ngeo-btn class="btn btn-default gmf-app-tools-bar" ng-model="mainCtrl.modalShareShown"  data-toggle="tooltip" data-placement="left" data-original-title="{{'Share this map'|translate}}">
           <span class="fa fa-share-alt"></span>
         </button>
       </span>
