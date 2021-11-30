@@ -17,8 +17,11 @@ sqlalchemy = "==1.4.25"
 transaction = "==3.0.1"
 "zope.sqlalchemy" = "==1.6"
 cornice = "==5.2.0"
+requests = "==2.26.0"
 
 [dev-packages]
+prospector = {version = "==1.5.1", extras = ["with_bandit"]}
+flake8 = "==3.9.2"
 
 [requires]
 python_version = "3.8"
