@@ -2,7 +2,7 @@ import {customElement, state} from 'lit/decorators.js';
 import {LitElement, html, css} from 'lit';
 
 @customElement('proj-feedback')
-export class ProjFeedback extends LitElement {
+export class ProjFeedback extends gmfapi.elements.ToolPanelElement {
   @state()
   private show_send = false;
   @state()
@@ -13,77 +13,14 @@ export class ProjFeedback extends LitElement {
   private url_: string;
   private subscriptions_ = [];
 
-  static styles = css`
-    input,
-    textarea {
-      margin: 5px 0 5px 5px;
-    }
-
-    input {
-      width: 32ch; /* 32 characters */
-    }
-
-    textarea.form-control {
-      height: auto;
-      width: 30ch; /* 30 characters */
-    }
-
-    .modal-title {
-      color: var(--color-light);
-      padding-bottom: var(--app-margin);
-      margin-bottom: var(--app-margin);
-      margin-top: calc(var(--grid-gutter-width) / 2);
-      border-bottom-width: 0.06rem;
-      border-bottom-style: solid;
-      border-bottom-color: var(--color-light);
-      font-size: 0.8rem;
-    }
-
-    .form-control {
-      display: block;
-      height: calc(1.5em + 0.5rem + 2px);
-      padding: 0.25rem 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: #495057;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #ced4da;
-      border-radius: 0;
-      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-
-    .btn {
-      display: inline-block;
-      font-weight: 400;
-      text-align: center;
-      vertical-align: middle;
-      user-select: none;
-      border: 1px solid transparent;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.8rem;
-      line-height: 1.5;
-      border-radius: 0;
-      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-        box-shadow 0.15s ease-in-out;
-    }
-
-    .btn:not(:disabled):not(.disabled) {
-      cursor: pointer;
-    }
-
-    .btn-prime {
-      background-color: var(--brand-primary);
-      border-color: var(--input-border-focus);
-      color: white;
-    }
-
-    .btn-prime:hover {
-      background-color: var(--input-border-focus);
-      border-color: var(--input-border-focus-darken);
-    }
-  `;
+  static styles = [
+    ...gmfapi.elements.ToolPanelElement.styles,
+    css`
+      .modal-footer {
+        border-top: 0.06rem solid var(--color-light);
+      }
+    `,
+  ];
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -102,7 +39,7 @@ export class ProjFeedback extends LitElement {
   }
 
   render() {
-    return html`<div class="modal-header">
+    return html`<div class="gmf-app-tools-content-heading">
         <div class="modal-title">Signaler un problème</div>
       </div>
       <div class="modal-body">
@@ -162,7 +99,7 @@ export class ProjFeedback extends LitElement {
       </div>
       <br />
       <div class="modal-footer">
-        <button type="submit" class="btn btn-prime" @click="${this.feedbackSubmit}">Envoyer</button>
+        <button type="submit" class="btn prime" @click="${this.feedbackSubmit}">Envoyer</button>
       </div>
       ${this.show_send
         ? html`<div class="sitn-loader">
