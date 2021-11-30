@@ -35,6 +35,8 @@ vars:
     - name: mobile
     - name: iframe_api
     - name: desktop_alt
+      type: canvas
+      layout: desktop
     - name: mobile_alt
     - name: oeedit
 
@@ -143,9 +145,24 @@ vars:
         gmfContextualDataOptions:
           projections: *alternate_projections
           rasterParams: {}
+
+        # For dev, the corresponding values in static should also be removed.
+        gmfCustomJavascriptUrl:
+          - https://localhost:3001/@vite/client
+          - https://localhost:3001/webcomponents/index.ts
+
+        sitnFeedbackPath: custom/feedback
+
       static:
-        gmfHeaderEntrypointUrl:
-          name: /etc/geomapfish/static/header.html
+        # Those two lines should be commented in dev mode.
+        #  gmfCustomJavascriptUrl:
+        #    name: '/etc/geomapfish/static/custom/custom.es.js'
+        gmfCustomStylesheetUrl:
+          name: /etc/geomapfish/static/css/desktop_alt.css
+
+      routes:
+        gmfBase:
+          name: base
 
     desktop_alt:
       extends: desktop
@@ -660,7 +677,7 @@ vars:
       - 185.127.205.3/24
 
   content_security_policy_main_img_src_extra: 'blob:'
-  content_security_policy_main_script_src_extra: "'unsafe-eval'"
+  content_security_policy_main_script_src_extra: "'unsafe-eval' https://localhost:3001"
 
   headers:
     dynamic: &header {}

@@ -15,7 +15,7 @@ jobs:
   checks:
     runs-on: ubuntu-20.04
     name: Checks
-    timeout-minutes: 10
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v2
