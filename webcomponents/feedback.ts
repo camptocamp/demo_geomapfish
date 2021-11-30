@@ -1,6 +1,7 @@
 import {customElement, state} from 'lit/decorators.js';
 import {html, css} from 'lit';
 
+// @ts-ignore
 @customElement('proj-feedback')
 export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelElement {
   @state()
