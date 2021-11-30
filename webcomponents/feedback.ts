@@ -2,7 +2,7 @@ import {customElement, state} from 'lit/decorators.js';
 import {html, css} from 'lit';
 
 @customElement('proj-feedback')
-export class ProjFeedback extends gmfapi.elements.ToolPanelElement {
+export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelElement {
   @state()
   private show_send = false;
   @state()
@@ -14,7 +14,7 @@ export class ProjFeedback extends gmfapi.elements.ToolPanelElement {
   private subscriptions_ = [];
 
   static styles = [
-    ...gmfapi.elements.ToolPanelElement.styles,
+    ...(window as any).gmfapi.elements.ToolPanelElement.styles,
     css`
       .modal-footer {
         border-top: 0.06rem solid var(--color-light);
@@ -54,7 +54,7 @@ export class ProjFeedback extends gmfapi.elements.ToolPanelElement {
           }}
         />
         <br />
-        <label for="email_optional">Inclure un membre du SITN (optionnel) :</label><br />
+        <label for="email_optional">Inclure un membre du SITN (optionnel):</label><br />
         <input
           type="text"
           placeholder="prenom.nom@ne.ch"
@@ -67,7 +67,7 @@ export class ProjFeedback extends gmfapi.elements.ToolPanelElement {
           }}
         />
         <br />
-        <label for="feedback_text"> Votre description du problème concernant la carte :</label><br />
+        <label for="feedback_text">Votre description du problème concernant la carte:</label><br />
         <textarea
           rows="4"
           cols="40"
