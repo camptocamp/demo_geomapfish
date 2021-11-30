@@ -20,3 +20,5 @@ publish:
     images:
       - group: config
         name: camptocamp/geomapfishdemo-config
+      - group: custom
+        name: camptocamp/geomapfishdemo-custom
