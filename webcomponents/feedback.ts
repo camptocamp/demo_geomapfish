@@ -1,5 +1,5 @@
 import {customElement, state} from 'lit/decorators.js';
-import {LitElement, html, css} from 'lit';
+import {html, css} from 'lit';
 
 @customElement('proj-feedback')
 export class ProjFeedback extends gmfapi.elements.ToolPanelElement {
@@ -39,9 +39,7 @@ export class ProjFeedback extends gmfapi.elements.ToolPanelElement {
   }
 
   render() {
-    return html`<div class="gmf-app-tools-content-heading">
-        <div class="modal-title">Signaler un problème</div>
-      </div>
+    return html`${this.getTitle('Signaler un problème')}
       <div class="modal-body">
         <label for="email">Votre email (optionnel):</label><br />
         <input
