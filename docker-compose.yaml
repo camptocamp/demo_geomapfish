@@ -131,19 +131,19 @@ services:
       service: front
     volumes_from:
       - config:ro
-
+  #
   # Rich image for project development with e.-g. vim, tree, awscli, psql, ...
-  tools:
-    volumes_from:
-      - config:rw
-    volumes:
-      - .:/src
-    extends:
-      file: docker-compose-lib.yaml
-      service: tools
-    environment:
-      - PGSCHEMA
-      - OSM_PGDATABASE
+  # tools:
+  #   volumes_from:
+  #     - config:rw
+  #   volumes:
+  #     - .:/src
+  #   extends:
+  #     file: docker-compose-lib.yaml
+  #     service: tools
+  #   environment:
+  #     - PGSCHEMA
+  #     - OSM_PGDATABASE
 
   # db:
   #   extends:
