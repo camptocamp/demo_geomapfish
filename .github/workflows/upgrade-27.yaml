@@ -33,7 +33,7 @@ jobs:
 
       - name: Update the demo
         run: >
-          scripts/upgrade ${{ 2.7 }} origin
+          scripts/upgrade ${{ master }} origin
 
       - run: id
         if: failure()
@@ -51,15 +51,15 @@ jobs:
           git add --all || true
           git add --force .UPGRADE_INSTRUCTIONS upgrade .upgrade.yaml || true
           git status
-          git commit -m "Interrupted upgrade to ${{ 2.7 }}"
-          git push --force origin HEAD:interrupted-upgrade-${{ matrix.branch }}-${{ 2.7 }}
+          git commit -m "Interrupted upgrade to ${{ master }}"
+          git push --force origin HEAD:interrupted-upgrade-${{ matrix.branch }}-${{ master }}
           python3 -c 'import requests
           response = requests.post(
               "https://api.github.com/repos/camptocamp/demo_geomapfish/pulls",
               json={
                 "title": "Upgrade failed",
-                "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.7%22",
-                "head": "interrupted-upgrade-${{ matrix.branch }}-${{ 2.7 }}",
+                "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+master%22",
+                "head": "interrupted-upgrade-${{ matrix.branch }}-${{ master }}",
                 "base": "${{ matrix.branch }}",
                 "maintainer_can_modify": True
               },
