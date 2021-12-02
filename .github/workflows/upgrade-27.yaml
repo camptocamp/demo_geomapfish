@@ -2,6 +2,7 @@
 name: Upgrade 2.7
 
 on:
+  push:
   repository_dispatch:
     types:
       - geomapfish_2.7_updated
@@ -24,6 +25,11 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
           token: ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}
+
+      - run: id
+      - run: ls -als
+      - run: ls -als .git
+      - run: ls -als .git/objects
 
       - name: Update the demo
         run: >
