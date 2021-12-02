@@ -393,7 +393,6 @@ Votre navigateur n'est pas supporté, veuillez utiliser une version récente de 
 Ihr Browser wird nicht unterstützt, bitte verwenden Sie eine aktuelle Version von Firefox, Chrome oder Edge.`
       );
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyA3NVIy-HOYT0a0CkChA6nFwqEFqHYWBVk"></script>
     ${footer |n}
   </body>
 </html>
