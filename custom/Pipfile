@@ -20,7 +20,7 @@ cornice = "==5.2.0"
 requests = "==2.26.0"
 
 [dev-packages]
-prospector = {version = "==1.5.1", extras = ["with_bandit"]}
+prospector = {version = "==1.5.2", extras = ["with_bandit"]}
 flake8 = "==3.9.2"
 
 [requires]
