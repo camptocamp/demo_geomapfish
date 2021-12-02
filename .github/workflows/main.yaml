@@ -3,6 +3,8 @@ name: Continuous integration
 
 on:
   push:
+  pull_request_target:
+    types: [labeled]
 
 env:
   PROJECT: demo
