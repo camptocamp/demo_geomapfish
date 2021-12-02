@@ -30,6 +30,7 @@ jobs:
           scripts/upgrade ${{ github.event.client_payload.version }} origin
       - name: Push interrupted Upgrade
         run: |
+          sudo chown -R $(id -u) .
           ls -als .UPGRADE*
           git add --all || true
           git add --force .UPGRADE_INSTRUCTIONS upgrade .upgrade.yaml || true
