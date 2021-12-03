@@ -24,12 +24,15 @@ feedback = Service(
 @feedback.post()
 def feedback_post(request: pyramid.request.Request) -> Any:
     # Just to demonstrate that we can fet the user information
-    LOG.info(
-        requests.get(
-            f"{os.environ['GEOPORTAL_INTERNAL_URL']}/loginuser",
-            headers={"Cookie": request.headers.get("Cookie"), "Referer": request.referrer},
-        ).json()
-    )
+    try:
+        LOG.info(
+            requests.get(
+                f"{os.environ['GEOPORTAL_INTERNAL_URL']}/loginuser",
+                headers={"Cookie": request.headers.get("Cookie"), "Referer": request.referrer},
+            ).json()
+        )
+    except Exception:
+        LOG.exception("Error on get user information")
 
     if (
         "permalink" not in request.params
