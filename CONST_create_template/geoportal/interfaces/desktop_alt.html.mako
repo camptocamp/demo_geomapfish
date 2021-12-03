@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{mainCtrl.lang}}" ng-controller="AlternativeDesktopController as mainCtrl" ng-strict-di>
   <head>
-    <title data-i18n="Alternative Desktop Application">GeoMapFish</title>
+    <title translate>Alternative Desktop Application</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <meta name="dynamicUrl" content="<%= htmlWebpackPlugin.options.vars.entry_point %>dynamic.json">
-    <meta name="interface" content="desktop_alt">
-    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.cache_version %>/images/favicon.ico" crossorigin="anonymous">
-    <% for (var css in htmlWebpackPlugin.files.css) { %>
-    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" crossorigin="anonymous">
-    <% } %>
-    <link href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.cache_version %>/css/desktop_alt.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="shortcut icon" href="${request.static_url('/etc/geomapfish/static/images/favicon.ico')}" crossorigin="anonymous" />
+    <style>
+      .spinner-loading-mask {
+        width: 1em;
+      }
+    </style>
+    ${header |n}
   </head>
   <body ng-keydown="mainCtrl.onKeydown($event)">
   <div ng-show="mainCtrl.loading" class="loading-mask">
     <i class="fa custom-spinner-loading fa-spin spinner-loading-mask">
-      <%=require('gmf/icons/spinner.svg?viewbox&height=1em')%>
+      ${static['spinner'] |n}
     </i>
   </div>
     <gmf-desktop-canvas>
@@ -38,7 +38,7 @@
               <b ng-if="!mainCtrl.gmfThemeManager.isLoading()">{{mainCtrl.gmfThemeManager.getThemeName() | translate}}</b>
             </span>
             <span ng-if="!mainCtrl.gmfThemeManager.modeFlush">
-              <b ng-if="!mainCtrl.gmfThemeManager.themeName" data-i18n="Themes"></b>
+              <b ng-if="!mainCtrl.gmfThemeManager.themeName" translate>Themes</b>
             </span>
           </a>
           <gmf-themeselector class="dropdown-menu"
@@ -63,7 +63,7 @@
       <div slot="tool-panel-print" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Print' | translate}}
+            {{ 'Print' | translate }}
           </div>
           <gmf-print
             gmf-print-map="::mainCtrl.map"
@@ -86,7 +86,7 @@
       <div slot="tool-panel-draw" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Draw and Measure' | translate}}
+            {{ 'Draw and Measure' | translate }}
           </div>
           <gmf-drawfeature
             gmf-drawfeature-active="mainCtrl.drawFeatureActive"
@@ -109,7 +109,7 @@
       <div slot="tool-panel-filter" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Filter' | translate}}
+            {{ 'Filter' | translate }}
           </div>
           <gmf-filterselector
             active="mainCtrl.filterSelectorActive"
@@ -125,11 +125,11 @@
       <div slot="tool-panel-editing" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Editing' | translate}}
+            {{ 'Editing' | translate }}
           </div>
           <div ng-switch="mainCtrl.gmfUser.username">
             <div ng-switch-when="null">
-              {{'In order to use the editing tool, you must log in first.' | translate}}
+              {{ 'In order to use the editing tool, you must log in first.' | translate }}
             </div>
             <gmf-editfeatureselector
               ng-switch-default
@@ -146,7 +146,7 @@
       <div slot="tool-panel-profile" class="row profile-panel">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Elevation profile' | translate}}
+            {{ 'Elevation profile' | translate }}
           </div>
           <div gmf-drawprofileline
             gmf-drawprofileline-active="mainCtrl.drawProfilePanelActive"
@@ -186,7 +186,7 @@
       >
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Lidar profile (only on the canton of Neuchâtel)' | translate}}
+            {{ 'Lidar profile (only on the canton of Neuchâtel)' | translate }}
           </div>
           <gmf-lidarprofile-panel
             gmf-lidarprofile-panel-active="mainCtrl.drawLidarprofilePanelActive"
@@ -209,7 +209,7 @@
       <div slot="tool-panel-googlestreetview" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Google Street View' | translate}}
+            {{ 'Google Street View' | translate }}
           </div>
           <ngeo-streetview
             active="mainCtrl.googleStreetViewActive"
@@ -226,7 +226,7 @@
       <div slot="tool-panel-mapillary" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Mapillary Street View' | translate}}
+            {{ 'Mapillary Street View' | translate }}
           </div>
           <ngeo-streetview
             active="mainCtrl.mapillaryStreetViewActive"
@@ -243,7 +243,7 @@
       <div slot="tool-panel-query"  class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Selection' | translate}}
+            {{ 'Selection' | translate }}
           </div>
           <ngeo-query-panel></ngeo-query-panel>
         </div>
@@ -254,7 +254,7 @@
       <div slot="tool-panel-import" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Import Layer' | translate}}
+            {{ 'Import Layer' | translate }}
           </div>
           <gmf-importdatasource map="mainCtrl.map">
           </gmf-importdatasource>
@@ -266,7 +266,7 @@
       <div slot="tool-panel-routing" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
-            {{'Routing' | translate}}
+            {{ 'Routing' | translate }}
           </div>
           <ngeo-routing
             ngeo-routing-map="mainCtrl.map">
@@ -316,7 +316,7 @@
           <button
               class="btn btn-default dropdown-toggle"
               data-toggle="dropdown">
-            <img src="<%=require('./image/background-layer-button.png')%>" alt="" crossorigin="anonymous" />
+            <img src="${static['background-layer-button']}" alt="" crossorigin="anonymous" />
           </button>
           <gmf-backgroundlayerselector
             gmf-backgroundlayerselector-map="::mainCtrl.map"
@@ -386,15 +386,13 @@
     </gmf-desktop-canvas>
     <script nomodule>
       alert(
-        'Your browser is not supported, please use a recent version of Firefox, Chrome or Edge.\n\n' +
-        "Votre navigateur n'est pas supporté, veuillez utiliser une version récente de Firefox, Chrome or Edge.\n\n" +
-        'Ihr Browser wird nicht unterstützt, bitte verwenden Sie eine aktuelle Version von Firefox, Chrome oder Edge.'
+        `Your browser is not supported, please use a recent version of Firefox, Chrome or Edge.
+
+Votre navigateur n'est pas supporté, veuillez utiliser une version récente de Firefox, Chrome or Edge.
+
+Ihr Browser wird nicht unterstützt, bitte verwenden Sie eine aktuelle Version von Firefox, Chrome oder Edge.`
       );
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyA3NVIy-HOYT0a0CkChA6nFwqEFqHYWBVk"></script>
-    <script src="<%= htmlWebpackPlugin.options.vars.entry_point %>static-ngeo/vendor.js?<%= htmlWebpackPlugin.options.vars.cache_version %>" crossorigin="anonymous"></script>
-    <% for (var js in htmlWebpackPlugin.files.js) { %>
-    <script src="<%= htmlWebpackPlugin.files.js[js] %>" crossorigin="anonymous"></script>
-    <% } %>
+    ${footer |n}
   </body>
 </html>
