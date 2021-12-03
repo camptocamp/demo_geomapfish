@@ -15,7 +15,7 @@
   <body ng-keydown="mainCtrl.onKeydown($event)">
   <div ng-show="mainCtrl.loading" class="loading-mask">
     <i class="fa custom-spinner-loading fa-spin spinner-loading-mask">
-      ${static['spinner'] |n}
+      ${spinner |n}
     </i>
   </div>
     <gmf-desktop-canvas>
