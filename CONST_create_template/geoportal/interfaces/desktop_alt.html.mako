@@ -15,7 +15,7 @@
   <body ng-keydown="mainCtrl.onKeydown($event)">
   <div ng-show="mainCtrl.loading" class="loading-mask">
     <i class="fa custom-spinner-loading fa-spin spinner-loading-mask">
-      ${static['spinner'] |n}
+      ${spinner |n}
     </i>
   </div>
     <gmf-desktop-canvas>
@@ -316,7 +316,7 @@
           <button
               class="btn btn-default dropdown-toggle"
               data-toggle="dropdown">
-            <img src="${static['background-layer-button']}" alt="" crossorigin="anonymous" />
+            <img src="${request.static_url('/etc/geomapfish/static/images/background-layer-button.png')}" alt="" crossorigin="anonymous" />
           </button>
           <gmf-backgroundlayerselector
             gmf-backgroundlayerselector-map="::mainCtrl.map"
