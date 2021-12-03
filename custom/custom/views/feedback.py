@@ -26,7 +26,7 @@ def feedback_post(request: pyramid.request.Request) -> Any:
     # Just to demonstrate that we can fet the user information
     LOG.info(
         requests.get(
-            "http://geoportal:8080/loginuser",
+            f"{os.environ['GEOPORTAL_INTERNAL_URL']}/loginuser",
             headers={"Cookie": request.headers.get("Cookie"), "Referer": request.referrer},
         ).json()
     )

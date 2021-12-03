@@ -124,6 +124,7 @@ services:
     environment:
       - GUNICORN_CMD_ARGS=${GUNICORN_PARAMS}
       - VISIBLE_WEB_HOST
+      - GEOPORTAL_INTERNAL_URL
 
   front:
     extends:
