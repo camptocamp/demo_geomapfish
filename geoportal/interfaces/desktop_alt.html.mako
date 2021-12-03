@@ -58,6 +58,10 @@
       <gmf-auth-button slot="tool-button"></gmf-auth-button>
       <gmf-auth-panel slot="tool-panel-auth"></gmf-auth-panel>
 
+      <!-- custom feedback -->
+      <gmf-tool-button slot="tool-button" iconClasses="fas fa-file-signature" panelName="feedback"></gmf-tool-button>
+      <proj-feedback slot="tool-panel-feedback"></proj-feedback>
+
       <!-- Print -->
       <gmf-print-button slot="tool-button"></gmf-print-button>
       <div slot="tool-panel-print" class="row">
@@ -301,7 +305,6 @@
         url="mainCtrl.displaywindowUrl"
         width="mainCtrl.displaywindowWidth"
       ></ngeo-displaywindow>
-      <!--  -->
       <button
         slot="map"
         ngeo-geolocation=""
@@ -312,11 +315,10 @@
       </button>
       <div slot="map" class="gmf-app-map-bottom-controls">
         <div class="gmf-backgroundlayerbutton btn-group dropup">
-          <!--  -->
           <button
               class="btn btn-default dropdown-toggle"
               data-toggle="dropdown">
-            <img src="${static['background-layer-button']}" alt="" crossorigin="anonymous" />
+            <img src="${request.static_url('/etc/geomapfish/static/images/background-layer-button.png')}" alt="" crossorigin="anonymous" />
           </button>
           <gmf-backgroundlayerselector
             gmf-backgroundlayerselector-map="::mainCtrl.map"
