@@ -54,10 +54,6 @@ COPY . ./
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
     python3 -m compileall -q /app/custom
 
-# hadolint ignore=DL3059
-RUN mkdir -p /etc/gunicorn/ && \
-  mv gunicorn_config.py /etc/gunicorn/config.py
-
 CMD [ "/usr/local/bin/gunicorn", "--paste", "production.ini" ]
 
 ARG GIT_HASH

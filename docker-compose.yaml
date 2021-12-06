@@ -122,16 +122,10 @@ services:
       args:
         GIT_HASH: ${GIT_HASH}
     environment:
-      - GUNICORN_CMD_ARGS=${GUNICORN_PARAMS}
+      - GUNICORN_CMD_ARGS
       - VISIBLE_WEB_HOST
       - GEOPORTAL_INTERNAL_URL
-      - PGUSER
-      - PGPASSWORD
-      - PGHOST
-      - PGPORT
-      - PGDATABASE
-      - PGSSLMODE
-      - PGSCHEMA
+      - SQLALCHEMY_URL
 
   front:
     extends:
