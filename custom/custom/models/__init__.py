@@ -1,8 +1,8 @@
+import os
+
 import zope.sqlalchemy
 from sqlalchemy import engine_from_config
 from sqlalchemy.orm import configure_mappers, sessionmaker
-
-import os
 
 # Run ``configure_mappers`` after defining all of the models to ensure
 # all relationships can be setup.

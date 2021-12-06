@@ -1,9 +1,9 @@
 import argparse
 import sys
 
+from custom.models.meta import Base
 from pyramid.paster import bootstrap, setup_logging
 from sqlalchemy.exc import OperationalError
-from custom.models.meta import Base
 
 
 def setup_models(dbsession):
