@@ -125,6 +125,7 @@ services:
       - GUNICORN_CMD_ARGS
       - VISIBLE_WEB_HOST
       - GEOPORTAL_INTERNAL_URL
+      - PGSCHEMA
       - SQLALCHEMY_URL
 
   front:
