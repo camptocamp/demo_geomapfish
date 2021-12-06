@@ -10,5 +10,8 @@ setup(
         "paste.app_factory": [
             "main = custom:main",
         ],
+        "console_scripts": [
+            "custom-initialize-db = custom.scripts.initialize_db:main",
+        ],
     },
 )

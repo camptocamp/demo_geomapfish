@@ -3,8 +3,7 @@ import sys
 
 from pyramid.paster import bootstrap, setup_logging
 from sqlalchemy.exc import OperationalError
-
-from .. import models
+from custom.models.meta import Base
 
 
 def setup_models(dbsession):
@@ -12,8 +11,7 @@ def setup_models(dbsession):
     Add or update models / fixtures in the database.
 
     """
-    model = models.mymodel.MyModel(name="one", value=1)
-    dbsession.add(model)
+    del dbsession  # Unused
 
 
 def parse_args(argv):
@@ -33,6 +31,7 @@ def main(argv=None):
     try:
         with env["request"].tm:
             dbsession = env["request"].dbsession
+            Base.metadata.create_all(dbsession.get_bind())
             setup_models(dbsession)
     except OperationalError:
         print(

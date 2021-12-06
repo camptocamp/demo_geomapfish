@@ -125,6 +125,13 @@ services:
       - GUNICORN_CMD_ARGS=${GUNICORN_PARAMS}
       - VISIBLE_WEB_HOST
       - GEOPORTAL_INTERNAL_URL
+      - PGUSER
+      - PGPASSWORD
+      - PGHOST
+      - PGPORT
+      - PGDATABASE
+      - PGSSLMODE
+      - PGSCHEMA
 
   front:
     extends:

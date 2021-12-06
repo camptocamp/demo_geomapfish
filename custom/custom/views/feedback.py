@@ -52,11 +52,13 @@ def feedback_post(request: pyramid.request.Request) -> Any:
     request.dbsession.add(new_feedback)
     request.dbsession.flush()
 
-    if "admin_email" in request.registry.settings:
-        mail_list = [request.registry.settings["admin_email"]]
+    mail_list = (
+        [request.registry.settings["admin_email"]] if "admin_email" in request.registry.settings else []
+    )
 
     if email_optional is not None and email_optional != "":
         mail_list.append(email_optional)
+
     instance = request.params["permalink"].split("?")[0]
     text = "\n\n".join(
         [
@@ -71,7 +73,7 @@ def feedback_post(request: pyramid.request.Request) -> Any:
     )
     subject = "Feedback - Guichet cartographique"
 
-    if mail_list[0] != "example@example.com":
+    if mail_list and mail_list[0] != "example@example.com":
         send_mail(mail_list, text, subject)
 
     return {"success": True}

@@ -40,71 +40,63 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
   }
 
   render() {
-    return html`${this.getTitle('Signaler un problème')}
-      <div class="modal-body">
-        <label for="email">Votre email (optionnel):</label><br />
-        <input
-          input="text"
-          placeholder="example@example.com"
-          name="email"
-          class="form-control"
-          id="email"
-          .value="${this.email}"
-          @input=${(e) => {
-            this.email = e.target.value;
-          }}
-        />
-        <br />
-        <label for="email_optional">Inclure un membre du SITN (optionnel):</label><br />
-        <input
-          type="text"
-          placeholder="prenom.nom@ne.ch"
-          name="email_optional"
-          class="form-control"
-          id="email_optional"
-          .value="${this.email_optional}"
-          @input=${(e) => {
-            this.email_optional = e.target.value;
-          }}
-        />
-        <br />
-        <label for="feedback_text">Votre description du problème concernant la carte:</label><br />
-        <textarea
-          rows="4"
-          cols="40"
-          class="form-control"
-          id="feedback_text"
-          .value="${this.feedback_text}"
-          @input=${(e) => {
-            this.feedback_text = e.target.value;
-          }}
-          maxlength="1000"
-          placeholder="Taille maximale: 1000 caractères"
-        >
-        </textarea>
-        <br />
-        <label for="permalink">L'URL ci-dessous sera envoyée au SITN:</label>
-        <input
-          type="text"
-          name="permalink"
-          class="form-control"
-          id="permalink"
-          .value="${this.permalink}"
-          readonly
-        />
-        <br />
-        Pour contacter le SITN directement:
-        <a href="mailto:sitn@ne.ch?subject=Problème Géoportail">sitn@ne.ch</a>
-      </div>
+    return html`${this.getTitle('Signaler un problème')} <label for="email">Votre email</label><br />
+      <input
+        input="text"
+        placeholder="example@example.com"
+        name="email"
+        class="form-control"
+        id="email"
+        .value="${this.email}"
+        @input=${(e) => {
+          this.email = e.target.value;
+        }}
+      />
       <br />
-      <div class="modal-footer">
-        <button type="submit" class="btn prime" @click="${this.feedbackSubmit}">Envoyer</button>
-      </div>
+      <label for="email_optional">Inclure une personne en CC</label><br />
+      <input
+        type="text"
+        placeholder="prenom.nom@ne.ch"
+        name="email_optional"
+        class="form-control"
+        id="email_optional"
+        .value="${this.email_optional}"
+        @input=${(e) => {
+          this.email_optional = e.target.value;
+        }}
+      />
+      <br />
+      <label for="feedback_text">Votre description du problème concernant la carte *</label><br />
+      <textarea
+        rows="4"
+        cols="40"
+        class="form-control"
+        id="feedback_text"
+        .value="${this.feedback_text}"
+        @input=${(e) => {
+          this.feedback_text = e.target.value;
+        }}
+        maxlength="1000"
+        placeholder="Maximum 1000 caractères"
+      >
+      </textarea>
+      <br />
+      <label for="permalink">L'URL ci-dessous sera envoyée</label>
+      <input
+        type="text"
+        name="permalink"
+        class="form-control"
+        id="permalink"
+        .value="${this.permalink}"
+        readonly
+      />
+      <br />
+      <button type="submit" class="btn prime" @click="${this.feedbackSubmit}">Envoyer</button>
       ${this.show_send
-        ? html`<div class="sitn-loader">
+        ? html`
             <div class="fas fa-spinner fa-spin"></div>
-            <p>En cours d'envoi...</p>
-          </div>`
+            En cours d'envoi...
+          `
         : ''}`;
   }
 
@@ -139,9 +131,6 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
 
     fetch(this.url_, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-      },
       body: formdata,
     })
       .then((response) => {
@@ -153,13 +142,15 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
           [
             'Merci! Votre demande est bien partie.',
             '',
-            'Suivant votre demande, une personne du SITN prendra bientôt contact avec vous.',
+            'Suivant votre demande, une personne prendra bientôt contact avec vous.',
           ].join('\n')
         );
+        (window as any).gmfapi.store.panel.closeToolPanel();
       })
       .catch((error) => {
         console.error(error);
-        alert('Une erreur est survenue. Merci de contacter le SITN (sitn@ne.ch)');
+        alert('Une erreur est survenue.');
+        this.show_send = false;
       });
   }
 }

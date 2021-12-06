@@ -2,12 +2,19 @@ import zope.sqlalchemy
 from sqlalchemy import engine_from_config
 from sqlalchemy.orm import configure_mappers, sessionmaker
 
+import os
+
 # Run ``configure_mappers`` after defining all of the models to ensure
 # all relationships can be setup.
 configure_mappers()
 
 
 def get_engine(settings, prefix="sqlalchemy."):
+    settings["sqlalchemy.url"] = (
+        f"postgresql://{os.environ['PGUSER']}:{os.environ['PGPASSWORD']}@{os.environ['PGHOST']}"
+        f":{os.environ['PGPORT']}/{os.environ['PGDATABASE']}?sslmode={os.environ['PGSSLMODE']}"
+    )
+
     return engine_from_config(settings, prefix)
 
 
