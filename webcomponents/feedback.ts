@@ -145,7 +145,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
             'Suivant votre demande, une personne prendra bientôt contact avec vous.',
           ].join('\n')
         );
-        (window as any).gmfapi.store.panel.closeToolPanel();
+        (window as any).gmfapi.store.panels.closeToolPanel();
       })
       .catch((error) => {
         console.error(error);
