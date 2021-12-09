@@ -29,6 +29,8 @@ services:
       service: mapserver
     volumes_from:
       - config:ro
+    environment:
+      - AZURE_STORAGE_CONNECTION_STRING
 
   qgisserver:
     extends:
@@ -37,6 +39,7 @@ services:
     volumes_from:
       - config:ro
     environment:
+      - AZURE_STORAGE_CONNECTION_STRING
       - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver/
       # Or
       # - QGIS_SERVER_LANDING_PAGE_PROJECTS_PG_CONNECTIONS=...
@@ -80,6 +83,7 @@ services:
       service: tilecloudchain
     environment:
       - AWS_DEFAULT_REGION
+      - AZURE_STORAGE_CONNECTION_STRING
     volumes_from:
       - config:ro
 
@@ -90,6 +94,7 @@ services:
     volumes_from:
       - config:ro
     environment:
+      - AZURE_STORAGE_CONNECTION_STRING
       - AWS_DEFAULT_REGION
 
   geoportal:
@@ -107,6 +112,7 @@ services:
       - SENTRY_URL
       - SENTRY_CLIENT_RELEASE=${DOCKER_TAG}
       - SENTRY_CLIENT_ENVIRONMENT
+      - AZURE_STORAGE_CONNECTION_STRING
 
   alembic:
     extends:
