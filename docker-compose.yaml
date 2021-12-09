@@ -12,9 +12,9 @@ services:
       file: docker-compose-lib.yaml
       service: config
     environment:
-      - TILEGENERATION_S3_BUCKET
       - OSM_PGDATABASE
       - RASTER_BASE_PATH
+      - AZURE_STORAGE_CONNECTION_STRING
 
   print:
     extends:
@@ -29,8 +29,6 @@ services:
       service: mapserver
     volumes_from:
       - config:ro
-    environment:
-      - AZURE_STORAGE_CONNECTION_STRING
 
   qgisserver:
     extends:
@@ -82,7 +80,6 @@ services:
       file: docker-compose-lib.yaml
       service: tilecloudchain
     environment:
-      - AWS_DEFAULT_REGION
       - AZURE_STORAGE_CONNECTION_STRING
     volumes_from:
       - config:ro
