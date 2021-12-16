@@ -19,7 +19,6 @@ version:
       to: \1
 
 publish:
+  pypi: False
   docker:
-    images:
-      - group: config
-        name: camptocamp/geomapfishdemo-config
+    images: []
