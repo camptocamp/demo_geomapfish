@@ -81,7 +81,7 @@ module.exports = {
   resolve: {
     modules: ['/usr/lib/node_modules'],
     alias: {
-      geomapfish: path.resolve(__dirname, 'geomapfish_geoportal/static-ngeo/js'),
+      'geomapfish': path.resolve(__dirname, 'geomapfish_geoportal/static-ngeo/js'),
     },
   },
 };
