@@ -36,6 +36,7 @@ jobs:
         run: c2cciutils-checks
 
       - run: touch env.secrets
+      - run: sed -i '/^DOCKER_TAG=/d' env.project
 
       - name: Build
         run: ./build
