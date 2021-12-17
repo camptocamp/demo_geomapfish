@@ -18,7 +18,7 @@ version:
       to: \1
 
 publish:
-  pypi: False
+  pypi: false
   docker:
     images:
       - group: config
