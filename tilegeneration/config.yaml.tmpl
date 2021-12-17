@@ -26,6 +26,13 @@ caches:
     http_url: ${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}
     cache_control: 'public, max-age=14400'
     host: ${AWS_S3_ENDPOINT}
+  azure:
+    type: azure
+    container: ${TILEGENERATION_AZURE_CONTAINER}
+    folder: ''
+    # for GetCapabilities
+    http_url: ${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}
+    cache_control: 'public, max-age=14400'
 
 # this defines some defaults values for all the layers
 defaults:
@@ -62,7 +69,7 @@ defaults:
     #        generate: ['2012']
     #        # all the available values in the WMTS capabilities
     #        values: ['2012']
-    # the meta tiles definition [default to False]
+    # the meta tiles definition [default to false]
     meta: true
     # the meta tiles size [default to 8]
     meta_size: 5
@@ -100,7 +107,7 @@ layers:
     post_process: jpegoptim
 
 generation:
-  default_cache: s3
+  default_cache: azure
 
   # maximum allowed consecutive errors, after it exit [default to 10]
   maxconsecutive_errors: 10
@@ -108,13 +115,13 @@ generation:
 redis:
   socket_timeout: ${REDIS_TIMEOUT}
   # For standalone version
-  # url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
+  url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
   # For OpenShift version
-  sentinels:
-    - - ${REDIS_HOST}
-      - ${REDIS_PORT}
-  service_name: ${REDIS_SERVICENAME}
-  db: ${REDIS_DB}
+  # sentinels:
+  #   - - ${REDIS_HOST}
+  #     - ${REDIS_PORT}
+  # service_name: ${REDIS_SERVICENAME}
+  # db: ${REDIS_DB}
 
 # Not used if the previous redis section is not commented out
 sqs:
@@ -133,8 +140,6 @@ server:
       command: generate_tiles --role=master
     - name: Generation layer map
       command: generate_tiles --role=master --layer=map
-    - name: Generation OpenLayers example
-      command: generate_controller --openlayers
     - name: Generate the legend images
       command: generate_controller --generate-legend-images
 
@@ -157,6 +162,18 @@ openlayers:
   srs: EPSG:2056
   center_x: 2600000
   center_y: 1200000
+  # The proj4js definition, get it from https://epsg.io/
+  # For EPSG:2056
+  proj4js_def: |
+    +proj=somerc
+    +lat_0=46.95240555555556
+    +lon_0=7.439583333333333
+    +k_0=1
+    +x_0=2600000
+    +y_0=1200000
+    +ellps=bessel
+    +towgs84=674.374,15.056,405.346,0,0,0,0
+    +units=m +no_defs
 
 metadata:
   title: Camptocamp GeoMapFish demo
@@ -173,8 +190,8 @@ provider:
   name: Camptocamp
   url: https://www.camptocamp.com/solutions/geospatial/
   contact:
-    name: Camtocamp
-    position: Compygny
+    name: Camptocamp
+    position: Company
     info:
       phone:
         voice: +41 21 619 10 10
