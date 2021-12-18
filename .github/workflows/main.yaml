@@ -27,6 +27,7 @@ jobs:
         with:
           ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
           github-gopass-ci-token: ${{secrets.GOPASS_CI_GITHUB_TOKEN}}
+          patterns: docker
         if: env.HAS_SECRETS == 'HAS_SECRETS'
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
@@ -36,6 +37,7 @@ jobs:
         run: c2cciutils-checks
 
       - run: touch env.secrets
+      - run: sed -i '/^DOCKER_TAG=/d' env.project
 
       - name: Build
         run: ./build
