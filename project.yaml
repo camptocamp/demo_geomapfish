@@ -14,6 +14,7 @@ managed_files:
   - geoportal/requirements\.txt
   - ci/config\.yaml
   - \.github/workflows/rebuild\.yaml
+  - \.github/workflows/update_l10n\.yaml
   - \.dockerignore
   - \.prettierignore
   - Dockerfile
