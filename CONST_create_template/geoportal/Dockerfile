@@ -4,6 +4,11 @@ ARG GEOMAPFISH_MAIN_VERSION
 FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
+COPY requirements.txt /tmp/requirements.txt
+RUN \
+  python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt && \
+  rm --recursive --force /tmp/* /var/tmp/* /root/.cache/*
+
 WORKDIR /app
 COPY webpack.*.js Makefile CONST_Makefile /app/
 COPY geomapfish_geoportal/static-ngeo /app/geomapfish_geoportal/static-ngeo
