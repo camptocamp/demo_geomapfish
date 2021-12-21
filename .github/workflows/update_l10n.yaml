@@ -57,4 +57,4 @@ jobs:
                   'Content-Type': 'application/json',
               },
           )
-          assert response.status_code < 300, response.text"
+          assert response.status_code < 300, f'{response.status_code} - {response.text}'"
