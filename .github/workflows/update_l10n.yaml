@@ -2,6 +2,7 @@
 name: Update l10n cron job
 
 on:
+  push:
   schedule:
     - cron: '*/5 * * * *'
 
