@@ -15,10 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - branch: int
-            base_url: int.customer.ch
-          - branch: prod
-            base_url: prod.customer.ch
+          - branch: prod-2-7
+            base_url: https://geomapfish-demo-2-7.camptocamp.com/
 
     steps:
       - uses: actions/checkout@v2
