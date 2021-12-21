@@ -62,13 +62,6 @@ services:
     environment:
       - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
 
-  tools:
-    extends:
-      file: docker-compose-lib.yaml
-      service: tools
-    volumes_from:
-      - config:rw
-
   custom:
     command:
       - /usr/local/bin/gunicorn
