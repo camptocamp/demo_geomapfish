@@ -39,36 +39,12 @@ Information
      The build specification has been moved to the ``docker-compose`` files.
    - The ``--geoportal`` and ``--config`` arguments have been replaced by ``--service=geoportal`` and
      ``--service=config`` respectively.
-   - The external images used in the composition are pulled from the Docker hub on each build, but the
-     ``./build`` script supports a new argument ``--no-pull`` for faster rebuild during development.
+   - The external images used in the composition are pulled from the Docker hub on each build.
    - ``./build`` script supports a new argument ``--fast-reload`` that will recreate all containers except
      Redis containers to keep the cache.
    - ``./build`` script supports a new argument ``--dry-run`` which only displays the ``docker`` and
      ``docker-compose`` commands without running them.
 
-SQLAlchemy upgrade to version 1.4
----------------------------------
-
-SQLAlchemy has been upgraded to version 1.4 which serves as potential migration point for a more dramatic
-series of API changes currently planned for release 2.0 of SQLAlchemy.
-
-For more details about SQLAlchemy 1.4 see: https://docs.sqlalchemy.org/en/14/changelog/migration_14.html
-
-To show SQLAlchemy deprecation warnings in your geoportal container logs, add this to your
-`docker-compose.override.yaml` file:
-
-```
----
-version: '2.3'
-
-services:
-  geoportal:
-    environment:
-      - PYTHONWARNINGS=default::DeprecationWarning
-      - SQLALCHEMY_WARN_20=true
-```
-
-For more information about Python warnings configuration see: https://docs.python.org/3/library/warnings.html#describing-warning-filters
 
 Changes to apply
 ================
