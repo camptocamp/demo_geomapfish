@@ -62,6 +62,12 @@ services:
     environment:
       - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
 
+  tools:
+    volumes_from:
+      - config:rw
+    volumes:
+      - .:/src
+
   custom:
     command:
       - /usr/local/bin/gunicorn
