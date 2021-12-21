@@ -2,7 +2,6 @@
 name: Update l10n cron job
 
 on:
-  push:
   schedule:
     - cron: '*/5 * * * *'
 
@@ -35,42 +34,6 @@ jobs:
           git config --global user.email "geospatial-bot@camptocamp.com"
           git config --global user.name CI
 
-      - run: |
-          echo "import requests
-          response = requests.post(
-              'https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls',
-              json={
-                'title': 'Update the l10n files on ${{ matrix.branch }}',
-                'body': '',
-                'head': 'l10n-${{ matrix.branch }}',
-                'base': '${{ matrix.branch }}',
-                'maintainer_can_modify': True
-              },
-              headers={
-                  'Accept': 'application/vnd.github.v3+json',
-                  'Authorization': 'Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}',
-                  'Content-Type': 'application/json',
-              },
-          )
-          assert response.status_code < 300, response.text"
-      - run: |
-          echo 'import requests
-          response = requests.post(
-              "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls",
-              json={
-                "title": "Update the l10n files on ${{ matrix.branch }}",
-                "body": "",
-                "head": "l10n-${{ matrix.branch }}",
-                "base": "${{ matrix.branch }}",
-                "maintainer_can_modify": True
-              },
-              headers={
-                  "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}",
-                  "Content-Type": "application/json",
-              },
-          )
-          assert response.status_code < 300, response.text'
       - name: Push l10n branch and create pull request
         run: |
           sudo chown -R $(id -u) .
