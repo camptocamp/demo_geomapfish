@@ -38,21 +38,22 @@ jobs:
       - run: |
           echo "import requests
           response = requests.post(
-              "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls",
+              'https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls',
               json={
-                "title": "Update the l10n files on ${{ matrix.branch }}",
-                "body": "",
-                "head": "l10n-${{ matrix.branch }}",
-                "base": "${{ matrix.branch }}",
-                "maintainer_can_modify": True
+                'title': 'Update the l10n files on ${{ matrix.branch }}',
+                'body': '',
+                'head': 'l10n-${{ matrix.branch }}',
+                'base': '${{ matrix.branch }}',
+                'maintainer_can_modify': True
               },
               headers={
-                  "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}",
-                  "Content-Type": "application/json",
+                  'Accept': 'application/vnd.github.v3+json',
+                  'Authorization': 'Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}',
+                  'Content-Type': 'application/json',
               },
           )
-          assert response.status_code < 300, response.text'      - run: |
+          assert response.status_code < 300, response.text"
+      - run: |
           echo 'import requests
           response = requests.post(
               "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls",
@@ -77,20 +78,20 @@ jobs:
           git status
           git commit -m "Update the l10n files"
           git push --force origin HEAD:l10n-${{ matrix.branch }}
-          python3 -c 'import requests
+          python3 -c "import requests
           response = requests.post(
-              "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls",
+              'https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls',
               json={
-                "title": "Update the l10n files on ${{ matrix.branch }}",
-                "body": "",
-                "head": "l10n-${{ matrix.branch }}",
-                "base": "${{ matrix.branch }}",
-                "maintainer_can_modify": True
+                'title': 'Update the l10n files on ${{ matrix.branch }}',
+                'body': '',
+                'head': 'l10n-${{ matrix.branch }}',
+                'base': '${{ matrix.branch }}',
+                'maintainer_can_modify': True
               },
               headers={
-                  "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}",
-                  "Content-Type": "application/json",
+                  'Accept': 'application/vnd.github.v3+json',
+                  'Authorization': 'Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}',
+                  'Content-Type': 'application/json',
               },
           )
-          assert response.status_code < 300, response.text'
+          assert response.status_code < 300, response.text"
