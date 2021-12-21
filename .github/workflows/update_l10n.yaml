@@ -25,6 +25,8 @@ jobs:
           ref: ${{ matrix.branch }}
           token: ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}
 
+      - run: touch env.secrets
+
       - run: ./build --env
       - run: PROJECT_PUBLIC_URL={{ matrix.base_url }} make -e update-po-url
 
