@@ -28,7 +28,7 @@ jobs:
       - run: touch env.secrets
 
       - run: ./build --env
-      - run: PROJECT_PUBLIC_URL={{ matrix.base_url }} make -e update-po-url
+      - run: PROJECT_PUBLIC_URL=${{ matrix.base_url }} make -e update-po-url
 
       - name: Push l10n branch and create pull request
         run: |
