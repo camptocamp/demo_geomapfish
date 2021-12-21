@@ -30,6 +30,11 @@ jobs:
       - run: ./build --env
       - run: PROJECT_PUBLIC_URL=${{ matrix.base_url }} make -e update-po-url
 
+      - name: Init Git
+        run: |
+          git config --global user.email "geospatial-bot@camptocamp.com"
+          git config --global user.name CI
+
       - name: Push l10n branch and create pull request
         run: |
           sudo chown -R $(id -u) .

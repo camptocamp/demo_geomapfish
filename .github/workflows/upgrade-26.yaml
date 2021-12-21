@@ -37,7 +37,7 @@ jobs:
           git commit -m "Interrupted upgrade to ${{ github.event.client_payload.version }}"
           git push --force origin HEAD:interrupted-upgrade-${{ matrix.branch }}-${{ github.event.client_payload.version }}
           python3 -c 'import requests
-          responce = requests.post(
+          response = requests.post(
               "https://api.github.com/repos/camptocamp/demo_geomapfish/pulls",
               json={
                 "title": "Upgrade failed",
@@ -52,5 +52,5 @@ jobs:
                   "Content-Type": "application/json",
               },
           )
-          assert responce.status_code < 300, responce.text'
+          assert response.status_code < 300, response.text'
         if: failure()
