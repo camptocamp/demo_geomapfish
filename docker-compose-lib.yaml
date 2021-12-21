@@ -284,9 +284,8 @@ services:
   tools:
     image: camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION}
     restart: unless-stopped
-    working_dir: /app
     volumes:
-      - ./geoportal/${PACKAGE}_geoportal/locale:/app/geoportal/${PACKAGE}_geoportal/locale
+      - ./geoportal/${PACKAGE}_geoportal/locale:/app/${PACKAGE}_geoportal/locale
     environment:
       - PGSCHEMA
       # From geoportal
@@ -351,7 +350,6 @@ services:
       - OTHER_LOG_LEVEL
       - DOGPILECACHE_LOG_LEVEL
       - LOG_TYPE
-      - SUFFIX=
 
   alembic: &alembic
     image: camptocamp/geomapfishapp-geoportal:${GEOMAPFISH_MAIN_VERSION}
