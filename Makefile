@@ -1,6 +1,6 @@
 PROJECT_PUBLIC_URL=https://example.camptocamp.com/
 PACKAGE=geomapfish
-LANGUAGES="en fr de it"
+LANGUAGES=en fr de it
 
 .PHONY: update-po-url
 update-po-url:
