@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE 1.0\n"
-"POT-Creation-Date: 2020-10-21 07:21+0000\n"
+"POT-Creation-Date: 2021-12-21 14:04+0000\n"
 "PO-Revision-Date: 2020-04-16 15:48+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,24 +16,9 @@ msgstr ""
 "Generated-By: Lingua 4.14\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "1 A4 portrait"
-msgstr ""
-
-msgid "2 A4 landscape"
-msgstr ""
-
-msgid "3 A3 portrait"
-msgstr ""
-
-msgid "4 A3 landscape"
-msgstr ""
-
 msgid ""
 "<a href=\"http://www.geo.admin.ch/\">Données publiques de l'infrastructure "
 "fédérale de données géographiques (IFDG)</a>"
-msgstr ""
-
-msgid "A0"
 msgstr ""
 
 msgid "Add a layer"
@@ -46,9 +31,6 @@ msgid "Add a theme"
 msgstr ""
 
 msgid "Administration"
-msgstr ""
-
-msgid "Alternative Desktop Application"
 msgstr ""
 
 msgid "Alternative Mobile Application"
@@ -173,9 +155,6 @@ msgstr ""
 msgid "Length"
 msgstr ""
 
-msgid "Loading themes, please wait..."
-msgstr ""
-
 msgid "Loading..."
 msgstr ""
 
@@ -257,9 +236,6 @@ msgstr ""
 msgid "Query"
 msgstr ""
 
-msgid "Routing"
-msgstr ""
-
 msgid "Selection"
 msgstr ""
 
@@ -278,9 +254,6 @@ msgstr ""
 msgid "Snapping tollerance"
 msgstr ""
 
-msgid "Street View"
-msgstr ""
-
 msgid "Sub group"
 msgstr ""
 
@@ -288,6 +261,15 @@ msgid "Swiss grid (LV03)"
 msgstr ""
 
 msgid "Swiss grid (LV95)"
+msgstr ""
+
+msgid "Test Layer 3"
+msgstr ""
+
+msgid "Test Layer 4"
+msgstr ""
+
+msgid "Test Layer 6"
 msgstr ""
 
 msgid "Test for a disclaimer to test metadata"
@@ -303,6 +285,9 @@ msgid "Themes"
 msgstr ""
 
 msgid "This is a test disclaimer, to test metadata addition."
+msgstr ""
+
+msgid "Timeout"
 msgstr ""
 
 msgid "Tools"
@@ -361,6 +346,9 @@ msgstr ""
 msgid "aeroways18"
 msgstr ""
 
+msgid "alpine_hut"
+msgstr ""
+
 msgid "amenity"
 msgstr ""
 
@@ -406,6 +394,9 @@ msgstr ""
 msgid "building"
 msgstr ""
 
+msgid "buildings"
+msgstr ""
+
 msgid "buildings15"
 msgstr ""
 
@@ -418,7 +409,13 @@ msgstr ""
 msgid "buildings18"
 msgstr ""
 
+msgid "buildings_query"
+msgstr ""
+
 msgid "bus_stop"
+msgstr ""
+
+msgid "cafe"
 msgstr ""
 
 msgid "ch.are.alpenkonvention"
@@ -457,16 +454,10 @@ msgstr ""
 msgid "cinema"
 msgstr ""
 
-msgid "comments"
-msgstr ""
-
 msgid "covered"
 msgstr ""
 
 msgid "crossing"
-msgstr ""
-
-msgid "datasource"
 msgstr ""
 
 msgid "date"
@@ -475,7 +466,7 @@ msgstr ""
 msgid "datetime"
 msgstr ""
 
-msgid "debug"
+msgid "default"
 msgstr ""
 
 msgid "denomination"
@@ -488,6 +479,9 @@ msgid "district"
 msgstr ""
 
 msgid "drinking_water"
+msgstr ""
+
+msgid "edit"
 msgstr ""
 
 msgid "ele"
@@ -526,6 +520,9 @@ msgstr ""
 msgid "fuel"
 msgstr ""
 
+msgid "geom_4326"
+msgstr ""
+
 msgid "good"
 msgstr ""
 
@@ -533,6 +530,9 @@ msgid "group"
 msgstr ""
 
 msgid "group no wfs"
+msgstr ""
+
+msgid "half_query"
 msgstr ""
 
 msgid "height"
@@ -545,6 +545,9 @@ msgid "hospitals"
 msgstr ""
 
 msgid "hotel"
+msgstr ""
+
+msgid "hotel_filter"
 msgstr ""
 
 msgid "hotel_label"
@@ -619,9 +622,6 @@ msgstr ""
 msgid "layer"
 msgstr ""
 
-msgid "legend"
-msgstr ""
-
 msgid "leisure"
 msgstr ""
 
@@ -655,9 +655,6 @@ msgstr ""
 msgid "many_attributes"
 msgstr ""
 
-msgid "map"
-msgstr ""
-
 msgid "motorcar"
 msgstr ""
 
@@ -685,7 +682,7 @@ msgstr ""
 msgid "no_wfs"
 msgstr ""
 
-msgid "northArrow"
+msgid "number"
 msgstr ""
 
 msgid "open"
@@ -727,6 +724,9 @@ msgstr ""
 msgid "osm_firestations_restricted"
 msgstr ""
 
+msgid "osm_firestations_restricted_ingrp"
+msgstr ""
+
 msgid "osm_group"
 msgstr ""
 
@@ -746,6 +746,9 @@ msgid "osm_hospitals_ingrp"
 msgstr ""
 
 msgid "osm_hospitals_restricted"
+msgstr ""
+
+msgid "osm_hospitals_restricted_ingrp"
 msgstr ""
 
 msgid "osm_id"
@@ -946,6 +949,9 @@ msgstr ""
 msgid "power"
 msgstr ""
 
+msgid "private"
+msgstr ""
+
 msgid "railway"
 msgstr ""
 
@@ -1006,9 +1012,6 @@ msgstr ""
 msgid "restricted"
 msgstr ""
 
-msgid "restricted_group"
-msgstr ""
-
 msgid "roads10"
 msgstr ""
 
@@ -1051,9 +1054,6 @@ msgstr ""
 msgid "roads9"
 msgstr ""
 
-msgid "scalebar"
-msgstr ""
-
 msgid "shop"
 msgstr ""
 
@@ -1064,9 +1064,6 @@ msgid "short_name2"
 msgstr ""
 
 msgid "short_name3"
-msgstr ""
-
-msgid "simple"
 msgstr ""
 
 msgid "sport"
@@ -1084,6 +1081,9 @@ msgstr ""
 msgid "sustenance"
 msgstr ""
 
+msgid "test, comma"
+msgstr ""
+
 msgid "time"
 msgstr ""
 
@@ -1094,9 +1094,6 @@ msgid "time_ingrp"
 msgstr ""
 
 msgid "timestamp"
-msgstr ""
-
-msgid "title"
 msgstr ""
 
 msgid "tourism"
@@ -1217,7 +1214,7 @@ msgid "wood"
 msgstr ""
 
 msgid ""
-"© <a href='http://asit-asso.ch'>ASIT</a>, Contributeurs d’<a href='http://"
+"© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://"
 "www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 msgstr ""
 
