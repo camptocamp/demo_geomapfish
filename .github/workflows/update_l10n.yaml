@@ -20,8 +20,6 @@ jobs:
             base_url: https://geomapfish-demo-2-7.camptocamp.com/
 
     steps:
-      - run: echo ${{ env.GITHUB_REPOSITORY }}
-      - run: echo ${GITHUB_REPOSITORY}
       - uses: actions/checkout@v2
         with:
           ref: ${{ matrix.branch }}
@@ -46,7 +44,7 @@ jobs:
           git push --force origin HEAD:l10n-${{ matrix.branch }}
           python3 -c 'import requests
           response = requests.post(
-              "https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }}/pulls",
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls",
               json={
                 "title": "Update the l10n files on ${{ matrix.branch }}",
                 "body": "",
