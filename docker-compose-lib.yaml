@@ -286,7 +286,7 @@ services:
     restart: unless-stopped
     working_dir: /app
     volumes:
-      - ./geoportal/${PACKAGE}_geoportal/locale:/app/${PACKAGE}_geoportal/locale
+      - ./geoportal/${PACKAGE}_geoportal/locale:/app/geoportal/${PACKAGE}_geoportal/locale
     environment:
       - PGSCHEMA
       # From geoportal
