@@ -3,7 +3,7 @@ name: Update l10n cron job
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   l10n:
