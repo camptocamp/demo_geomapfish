@@ -30,16 +30,17 @@ services:
     volumes_from:
       - config:ro
 
-  ## qgisserver:
-  ##   extends:
-  ##     file: docker-compose-lib.yaml
-  ##     service: qgisserver
-  ##   volumes_from:
-  ##     - config:ro
-  ##   environment:
-  ##     - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver/
-  ##     # Or
-  ##     - QGIS_SERVER_LANDING_PAGE_PROJECTS_PG_CONNECTIONS=...
+  qgisserver:
+    extends:
+      file: docker-compose-lib.yaml
+      service: qgisserver
+    volumes_from:
+      - config:ro
+    environment:
+      - AZURE_STORAGE_CONNECTION_STRING
+      - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver/
+      # Or
+      # - QGIS_SERVER_LANDING_PAGE_PROJECTS_PG_CONNECTIONS=...
 
   tinyows:
     extends:
