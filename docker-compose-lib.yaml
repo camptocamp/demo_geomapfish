@@ -350,6 +350,7 @@ services:
       - OTHER_LOG_LEVEL
       - DOGPILECACHE_LOG_LEVEL
       - LOG_TYPE
+      - SUFFIX=
 
   alembic: &alembic
     image: camptocamp/geomapfishapp-geoportal:${GEOMAPFISH_MAIN_VERSION}
