@@ -1,0 +1,2213 @@
+#
+# SOME DESCRIPTIVE TITLE
+# This file is distributed under the same license as the GeoMapFish-project package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GeoMapFish-project 1.0\n"
+"POT-Creation-Date: 2021-12-22 10:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Lingua 4.14\n"
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:34
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/oeedit.html.ejs:26
+msgid "Theme:"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:35
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/oeedit.html.ejs:27
+msgid "Loading..."
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:39
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:118
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:136
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:112
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:130
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/oeedit.html.ejs:31
+msgid "Themes"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:188
+msgid "Draw profile line"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:195
+msgid ""
+"Draw a line on the map to display the corresponding elevation profile.\n"
+"                    Use double-click to finish the drawing."
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:4
+msgid "Desktop Application"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:59
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:152
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:190
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:146
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:175
+msgid "Login"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:122
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:63
+msgid "Print"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:134
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:67
+msgid "Draw and Measure"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:147
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:71
+msgid "Filter"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:161
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:77
+msgid "Editing"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:180
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:82
+msgid "Profile"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:206
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:86
+msgid "Selection"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:215
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:93
+msgid "Import Layer"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:99
+msgid "Share this map"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/desktop.html.ejs:166
+msgid "In order to use the editing tool, you must log in first."
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/iframe_api.html.ejs:4
+msgid "Iframe API Application"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:100
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:94
+msgid "You're using the mobile application. Check out the <a href=\"{{url}}\">standard application</a>."
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:4
+msgid "Mobile Application"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:99
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:93
+msgid "Close"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:108
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:144
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:102
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:138
+msgid "Back"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:109
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:103
+msgid "Data"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:115
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:129
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:109
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:123
+msgid "Background"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:145
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:139
+msgid "Tools"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:151
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:156
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:145
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:150
+msgid "Measure tools"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:164
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:158
+msgid "Coordinate"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:173
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:167
+msgid "Length"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile.html.ejs:182
+msgid "Area"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/mobile_alt.html.ejs:4
+msgid "Alternative Mobile Application"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/oeedit.html.ejs:4
+msgid "ObjectEditing - Edit Application"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/oeedit.html.ejs:51
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/oeedit.html.ejs:64
+msgid "Query"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/oeedit.html.ejs:55
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/oeedit.html.ejs:73
+msgid "Object Editing"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/contextualdata.html:3
+msgid "Swiss grid (LV95)"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/contextualdata.html:7
+msgid "Swiss grid (LV03)"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/contextualdata.html:11
+msgid "Wgs Coord."
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/contextualdata.html:15
+msgid "Wgs Coord. DMS"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/contextualdata.html:19
+msgid "Elevation (SRTM)"
+msgstr ""
+
+#: /app/geomapfishapp_geoportal/static-ngeo/js/apps/contextualdata.html:23
+msgid "Elevation (Aster)"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait
+msgid "1 A4 portrait"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/title
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/title
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/title
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/title
+msgid "title"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/comments
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/comments
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/comments
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/comments
+msgid "comments"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/debug
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/debug
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/debug
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/debug
+msgid "debug"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/legend
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/legend
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/legend
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/legend
+msgid "legend"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/map
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/map
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/map
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/map
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/simple/map
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/A0/map
+msgid "map"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/northArrow
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/northArrow
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/northArrow
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/northArrow
+msgid "northArrow"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/scalebar
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/scalebar
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/scalebar
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/scalebar
+msgid "scalebar"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/timezone
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/timezone
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/timezone
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/timezone
+msgid "timezone"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/1 A4 portrait/datasource
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape/datasource
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait/datasource
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape/datasource
+msgid "datasource"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/2 A4 landscape
+msgid "2 A4 landscape"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/3 A3 portrait
+msgid "3 A3 portrait"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/4 A3 landscape
+msgid "4 A3 landscape"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/simple
+msgid "simple"
+msgstr ""
+
+#: /usr/local/tomcat/webapps/ROOT/print-apps/geomapfish/config.yaml:template/A0
+msgid "A0"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:raster/aster l_wms.Half query:b'aster' l_wms:b'aster' l_wms.aster:b'aster'
+#: fts:b'aster'
+msgid "aster"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:raster/srtm l_wms:b'srtm' l_wms.srtm:b'srtm' fts:b'srtm'
+msgid "srtm"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:raster/srtm-partial
+msgid "srtm-partial"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/drinking_water
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/drinking_water
+msgid "drinking_water"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/test, comma
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/test, comma
+msgid "test, comma"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/information
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/information l_wms:b'information'
+#: l_wms.information:b'information'
+msgid "information"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/fountain
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/fountain
+msgid "fountain"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/crossing
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/crossing
+msgid "crossing"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/fuel
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/fuel group:b'fuel' l_wms:b'fuel'
+#: l_wms.fuel:b'fuel' l_wms.Test Layer 4:b'fuel' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+#: fts:b'fuel' fts:b'fuel'
+msgid "fuel"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/parking
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/parking l_wms:b'parking'
+#: l_wms.parking:b'parking' fts:b'parking'
+msgid "parking"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/place_of_worship
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/place_of_worship l_wms:b'place_of_worship'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.osm:b'place_of_worship' fts:b'place_of_worship'
+msgid "place_of_worship"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/level_crossing
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/level_crossing
+msgid "level_crossing"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/traffic_signals
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/traffic_signals
+msgid "traffic_signals"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/post_box
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/post_box
+msgid "post_box"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/turning_circle
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/turning_circle
+msgid "turning_circle"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/recycling
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/recycling
+msgid "recycling"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/other
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/other
+msgid "other"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/buffer_stop
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/buffer_stop
+msgid "buffer_stop"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/restaurant
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/restaurant theme:b'restaurant'
+msgid "restaurant"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/bus_stop
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/bus_stop l_wms:b'bus_stop'
+#: l_wms.bus_stop:b'bus_stop' fts:b'bus_stop'
+msgid "bus_stop"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/picnic_site
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/picnic_site
+msgid "picnic_site"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:/layers/osm_open/values/type/bench
+#: /etc/geomapfish/config.yaml:/layers/osm_time_r_dp_2/values/type/bench
+msgid "bench"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/14 /etc/geomapfish/config.yaml:metadata/disclaimer/9
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/84 /etc/geomapfish/config.yaml:metadata/disclaimer/32
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/57 /etc/geomapfish/config.yaml:metadata/disclaimer/113
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/118 /etc/geomapfish/config.yaml:metadata/disclaimer/42
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/37 /etc/geomapfish/config.yaml:metadata/disclaimer/23
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/104 /etc/geomapfish/config.yaml:metadata/disclaimer/61
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/52 /etc/geomapfish/config.yaml:metadata/disclaimer/47
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/19 /etc/geomapfish/config.yaml:metadata/disclaimer/66
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/108 /etc/geomapfish/config.yaml:metadata/disclaimer/307
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/28
+msgid "© Les contributeurs d’<a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/87 /etc/geomapfish/config.yaml:metadata/disclaimer/89
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/92 /etc/geomapfish/config.yaml:metadata/disclaimer/94
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/98 /etc/geomapfish/config.yaml:metadata/disclaimer/100
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/289
+msgid ""
+"<a href=\"http://www.geo.admin.ch/\">Données publiques de l'infrastructure fédérale de données géographiques"
+" (IFDG)</a>"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/157 /etc/geomapfish/config.yaml:metadata/disclaimer/158
+msgid "Editing theme"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/124
+msgid ""
+"© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a "
+"href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/222
+msgid "Test for a disclaimer to test metadata"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/306
+msgid "Camptocamp"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:metadata/disclaimer/350
+msgid "This is a test disclaimer, to test metadata addition."
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:interfaces_config/default/constants/gmfSearchOptions/datasources[0]/groupActions[0]/title
+#: /etc/geomapfish/config.yaml:interfaces_config/desktop_alt/constants/gmfSearchOptions/datasources[0]/groupActions[0]/title
+#: /etc/geomapfish/config.yaml:interfaces_config/mobile_alt/constants/gmfSearchOptions/datasources[0]/groupActions[0]/title
+msgid "Add a theme"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:interfaces_config/default/constants/gmfSearchOptions/datasources[0]/groupActions[1]/title
+#: /etc/geomapfish/config.yaml:interfaces_config/desktop_alt/constants/gmfSearchOptions/datasources[0]/groupActions[1]/title
+#: /etc/geomapfish/config.yaml:interfaces_config/mobile_alt/constants/gmfSearchOptions/datasources[0]/groupActions[1]/title
+msgid "Add a sub theme"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:interfaces_config/default/constants/gmfSearchOptions/datasources[0]/groupActions[2]/title
+#: /etc/geomapfish/config.yaml:interfaces_config/desktop_alt/constants/gmfSearchOptions/datasources[0]/groupActions[2]/title
+#: /etc/geomapfish/config.yaml:interfaces_config/mobile_alt/constants/gmfSearchOptions/datasources[0]/groupActions[2]/title
+msgid "Add a layer"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:interfaces_config/desktop_alt/constants/gmfDisplayQueryGridOptions/mergeTabs/Learning
+#: [merged]/
+msgid "Learning [merged]"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:interfaces_config/desktop_alt/constants/gmfDisplayQueryGridOptions/mergeTabs/OSM_time_merged/
+msgid "OSM_time_merged"
+msgstr ""
+
+#: /etc/geomapfish/config.yaml:interfaces_config/desktop_alt/constants/gmfDisplayQueryGridOptions/mergeTabs/transport
+#: (merged)/
+msgid "transport (merged)"
+msgstr ""
+
+#: theme:b'Gestion des eaux' group:b'Gestion des eaux' fts:b'Gestion des eaux' fts:b'Gestion des eaux'
+msgid "Gestion des eaux"
+msgstr ""
+
+#: theme:b'Administration'
+msgid "Administration"
+msgstr ""
+
+#: theme:b'Edit' group:b'Edit' fts:b'Edit' fts:b'Edit'
+msgid "Edit"
+msgstr ""
+
+#: theme:b'Transport' group:b'Transport' fts:b'Transport' fts:b'Transport'
+msgid "Transport"
+msgstr ""
+
+#: theme:b'Cadastre' group:b'Cadastre' fts:b'Cadastre' fts:b'Cadastre'
+msgid "Cadastre"
+msgstr ""
+
+#: theme:b'Patrimoine' group:b'Patrimoine' fts:b'Patrimoine' fts:b'Patrimoine'
+msgid "Patrimoine"
+msgstr ""
+
+#: theme:b'Equipement' group:b'Equipement'
+msgid "Equipement"
+msgstr ""
+
+#: theme:b'Enseignement' group:b'Enseignement'
+msgid "Enseignement"
+msgstr ""
+
+#: theme:b'Enseignement 2' group:b'Enseignement 2'
+msgid "Enseignement 2"
+msgstr ""
+
+#: theme:b'ObjectEditing' group:b'ObjectEditing' fts:b'ObjectEditing' fts:b'ObjectEditing'
+msgid "ObjectEditing"
+msgstr ""
+
+#: theme:b'Filters' group:b'Filters' fts:b'Filters' fts:b'Filters'
+msgid "Filters"
+msgstr ""
+
+#: theme:b'Demo' fts:b'Demo'
+msgid "Demo"
+msgstr ""
+
+#: theme:b'Testsearchtheme' fts:b'Testsearchtheme'
+msgid "Testsearchtheme"
+msgstr ""
+
+#: theme:b'QGIS server' group:b'QGIS server' fts:b'QGIS server' fts:b'QGIS server'
+msgid "QGIS server"
+msgstr ""
+
+#: theme:b'__test__'
+msgid "__test__"
+msgstr ""
+
+#: theme:b'hotel_filter'
+msgid "hotel_filter"
+msgstr ""
+
+#: theme:b'alpine_hut'
+msgid "alpine_hut"
+msgstr ""
+
+#: theme:b'osm' l_wms:b'osm' fts:b'osm' fts:b'osm'
+msgid "osm"
+msgstr ""
+
+#: theme:b'cafe'
+msgid "cafe"
+msgstr ""
+
+#: theme:b'half_query'
+msgid "half_query"
+msgstr ""
+
+#: theme:b'edit'
+msgid "edit"
+msgstr ""
+
+#: theme:b'private'
+msgid "private"
+msgstr ""
+
+#: theme:b'default'
+msgid "default"
+msgstr ""
+
+#: theme:b'Paysage' group:b'Paysage' fts:b'Paysage' fts:b'Paysage'
+msgid "Paysage"
+msgstr ""
+
+#: group:b'Group' fts:b'Group'
+msgid "Group"
+msgstr ""
+
+#: group:b'background'
+msgid "background"
+msgstr ""
+
+#: group:b'osm_time' l_wms.osm_time_r_dp:b'osm_time' l_wms.osm_time_v_s:b'osm_time'
+#: l_wms.osm_time_v_dp:b'osm_time' l_wms.osm_time_r_s:b'osm_time' l_wms:b'osm_time' l_wms.osm_time:b'osm_time'
+#: fts:b'osm_time'
+msgid "osm_time"
+msgstr ""
+
+#: group:b'OSM functions' fts:b'OSM functions'
+msgid "OSM functions"
+msgstr ""
+
+#: group:b'OSM functions mixed' fts:b'OSM functions mixed'
+msgid "OSM functions mixed"
+msgstr ""
+
+#: group:b'Loisirs' fts:b'Loisirs'
+msgid "Loisirs"
+msgstr ""
+
+#: group:b'External' fts:b'External'
+msgid "External"
+msgstr ""
+
+#: group:b'Snapping' fts:b'Snapping'
+msgid "Snapping"
+msgstr ""
+
+#: group:b'Snapping tollerance' fts:b'Snapping tollerance'
+msgid "Snapping tollerance"
+msgstr ""
+
+#: group:b'Snapping no edge' fts:b'Snapping no edge'
+msgid "Snapping no edge"
+msgstr ""
+
+#: group:b'Snapping no vertex' fts:b'Snapping no vertex'
+msgid "Snapping no vertex"
+msgstr ""
+
+#: group:b'Filters mixed' fts:b'Filters mixed'
+msgid "Filters mixed"
+msgstr ""
+
+#: group:b'QGIS server no WFS' fts:b'QGIS server no WFS'
+msgid "QGIS server no WFS"
+msgstr ""
+
+#: group:b'Sub group' fts:b'Sub group'
+msgid "Sub group"
+msgstr ""
+
+#: group:b'Empty group'
+msgid "Empty group"
+msgstr ""
+
+#: group:b'orthophoto'
+msgid "orthophoto"
+msgstr ""
+
+#: group:b'Private group' fts:b'Private group'
+msgid "Private group"
+msgstr ""
+
+#: group:b'Floor slider' fts:b'Floor slider'
+msgid "Floor slider"
+msgstr ""
+
+#: group:b'ESRI no WFS no Geom' fts:b'ESRI no WFS no Geom'
+msgid "ESRI no WFS no Geom"
+msgstr ""
+
+#: group:b'Layers-exclusive' fts:b'Layers-exclusive'
+msgid "Layers-exclusive"
+msgstr ""
+
+#: group:b'Layers' fts:b'Layers'
+msgid "Layers"
+msgstr ""
+
+#: l_wms:b'cinema' l_wms.cinema:b'cinema' l_wms.Half query:b'cinema' fts:b'cinema'
+msgid "cinema"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.hospitals:b'hospitals'
+#: l_wms.firestations:b'firestations' l_wms.fuel:b'fuel' l_wms.two_layers:b'sustenance'
+#: l_wms.two_layers:b'entertainment' l_wms.osm_time_r_dp:b'osm_time' l_wms.osm_time_v_s:b'osm_time'
+#: l_wms.osm_time_v_dp:b'osm_time' l_wms.osm_time_r_s:b'osm_time' l_wms.osm_time_r_dp_2:b'osm_time2'
+#: l_wms.sustenance:b'sustenance' l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity'
+#: l_wms.Half query:b'half_query' l_wms.osm_time_r_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_d_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_r_mounth_year:b'osm_time_mount_year'
+#: l_wms.osm_time_v_mounth_year:b'osm_time_mount_year' l_wms.long wms-t layer name name name name name name
+#: name:b'osm_time_mount_year' l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very
+#: very long name:b'bank' l_wms.information:b'information' l_wms.osm_time_v_s_default:b'osm_time_default'
+#: l_wms.osm_time_v_dp_default:b'osm_time_default' l_wms.osm_time_r_dp_default:b'osm_time_default_slider'
+#: l_wms.osm_time_r_s_default:b'osm_time_default_slider' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.osm_time:b'osm_time' l_wms.osm_time2:b'osm_time2'
+#: l_wms.osm_time_default:b'osm_time_default' l_wms.osm_time_default_slider:b'osm_time_default_slider'
+#: l_wms.osm_time_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_mount_year:b'osm_time_mount_year'
+#: l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "display_name"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.line:b'line' edit.l_wms.111:line l_wms.polygon:b'polygon'
+#: edit.l_wms.112:polygon l_wms.osm_scale:b'osm_scale' l_wms.hospitals:b'hospitals'
+#: l_wms.firestations:b'firestations' l_wms.fuel:b'fuel' l_wms.osm_open:b'osm_open' l_wms.point:b'point'
+#: edit.l_wms.113:point l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment'
+#: l_wms.osm_time_r_dp:b'osm_time' l_wms.osm_time_v_s:b'osm_time' l_wms.osm_time_v_dp:b'osm_time'
+#: l_wms.osm_time_r_s:b'osm_time' l_wms.osm_time_r_dp_2:b'osm_time2' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.point snap:b'point' l_wms.tourism_activity:b'tourism_activity'
+#: l_wms.Half query:b'half_query' l_wms.line snap:b'line' l_wms.line snap tolerance:b'line' l_wms.polygon snap
+#: tolerance:b'polygon' l_wms.line snap no edge:b'line' l_wms.line snap no vertex:b'line' l_wms.polygon snap
+#: no edge:b'polygon' l_wms.polygon snap no vertex:b'polygon' l_wms.polygon snap:b'polygon'
+#: l_wms.Multi-Polygon Query pas éditable mais queryable:b'polygon' l_wms.Multi-Polygon Query2 pas éditable
+#: mais queryable:b'polygon' l_wms.Multi-Line pas éditable mais queryable:b'line' l_wms.Multi-Point pas
+#: éditable mais queryable:b'point' l_wms.osm_time_r_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_d_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_r_mounth_year:b'osm_time_mount_year'
+#: l_wms.osm_time_v_mounth_year:b'osm_time_mount_year' l_wms.point snap tolerance:b'point' l_wms.long wms-t
+#: layer name name name name name name name:b'osm_time_mount_year' l_wms.many_attributes:b'many_attributes'
+#: l_wms.Layer with very very very very very long name:b'bank' l_wms.landuse:b'landuse' l_wms.time:b'time'
+#: l_wms.time range:b'time' l_wms.restricted:b'restricted' l_wms.group:b'group' l_wms.group:b'group'
+#: l_wms.group:b'group' l_wms.group:b'group' l_wms.railways:b'railways' l_wms.points:b'points'
+#: l_wms.osm_firestations:b'osm_firestations' edit.l_wms.238:osm_firestations l_wms.points+landuse:b'points'
+#: l_wms.points+landuse:b'landuse' l_wms.landuse_alias:b'landuse_alias'
+#: l_wms.osm_dual_restricted:b'osm_hospitals_dual_restricted'
+#: l_wms.osm_dual_restricted:b'osm_firestations_dual_restricted' l_wms.osm_dual:b'osm_hospitals'
+#: l_wms.osm_dual:b'osm_firestations' l_wms.osm_group_restricted:b'restricted_group'
+#: l_wms.osm_group_restricted:b'restricted_group' l_wms.osm_group:b'osm' l_wms.osm_group:b'osm'
+#: l_wms.osm_hospitals_restricted:b'osm_hospitals_restricted' l_wms.information:b'information'
+#: l_wms.osm_firestations_restricted:b'osm_firestations_restricted'
+#: l_wms.osm_time_v_s_default:b'osm_time_default' l_wms.osm_time_v_dp_default:b'osm_time_default'
+#: l_wms.osm_time_r_dp_default:b'osm_time_default_slider'
+#: l_wms.osm_time_r_s_default:b'osm_time_default_slider' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double:b'hotel_filter' l_wms.filter_group:b'filter_group' l_wms.filter_group:b'filter_group'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.filter_double_all:b'hotel_filter'
+#: l_wms.osm_hospitals:b'osm_hospitals' edit.l_wms.240:osm_hospitals l_wms.entertainment:b'entertainment'
+#: l_wms.Test Layer 4:b'fuel' l_wms.hotel_label:b'hotel_label' l_wms.hotel:b'hotel' l_wms.osm_time:b'osm_time'
+#: l_wms.osm_time2:b'osm_time2' l_wms.osm_time_default:b'osm_time_default'
+#: l_wms.osm_time_default_slider:b'osm_time_default_slider' l_wms.osm_time_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_mount_year:b'osm_time_mount_year' l_wms.buildings_query:b'buildings_query'
+#: l_wms.buildings:b'buildings' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "name"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.hospitals:b'hospitals'
+#: l_wms.firestations:b'firestations' l_wms.fuel:b'fuel' l_wms.osm_open:b'osm_open'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.osm_time_r_dp:b'osm_time'
+#: l_wms.osm_time_v_s:b'osm_time' l_wms.osm_time_v_dp:b'osm_time' l_wms.osm_time_r_s:b'osm_time'
+#: l_wms.osm_time_r_dp_2:b'osm_time2' l_wms.sustenance:b'sustenance' l_wms.accommodation:b'alpine_hut'
+#: l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.osm_time_r_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_d_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_r_mounth_year:b'osm_time_mount_year' l_wms.osm_time_v_mounth_year:b'osm_time_mount_year'
+#: l_wms.long wms-t layer name name name name name name name:b'osm_time_mount_year'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.landuse:b'landuse' l_wms.time:b'time' l_wms.time range:b'time' l_wms.restricted:b'restricted'
+#: l_wms.group:b'group' l_wms.group:b'group' l_wms.group:b'group' l_wms.group:b'group'
+#: l_wms.railways:b'railways' l_wms.points:b'points' l_wms.osm_firestations:b'osm_firestations'
+#: l_wms.points+landuse:b'points' l_wms.points+landuse:b'landuse' l_wms.landuse_alias:b'landuse_alias'
+#: l_wms.osm_dual_restricted:b'osm_hospitals_dual_restricted'
+#: l_wms.osm_dual_restricted:b'osm_firestations_dual_restricted' l_wms.osm_dual:b'osm_hospitals'
+#: l_wms.osm_dual:b'osm_firestations' l_wms.osm_group_restricted:b'restricted_group'
+#: l_wms.osm_group_restricted:b'restricted_group' l_wms.osm_group:b'osm' l_wms.osm_group:b'osm'
+#: l_wms.osm_hospitals_restricted:b'osm_hospitals_restricted' l_wms.information:b'information'
+#: l_wms.osm_firestations_restricted:b'osm_firestations_restricted'
+#: l_wms.osm_time_v_s_default:b'osm_time_default' l_wms.osm_time_v_dp_default:b'osm_time_default'
+#: l_wms.osm_time_r_dp_default:b'osm_time_default_slider'
+#: l_wms.osm_time_r_s_default:b'osm_time_default_slider' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double:b'hotel_filter' l_wms.filter_group:b'filter_group' l_wms.filter_group:b'filter_group'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.filter_double_all:b'hotel_filter'
+#: l_wms.osm_hospitals:b'osm_hospitals' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.hotel:b'hotel' l_wms.osm_time:b'osm_time'
+#: l_wms.osm_time2:b'osm_time2' l_wms.osm_time_default:b'osm_time_default'
+#: l_wms.osm_time_default_slider:b'osm_time_default_slider' l_wms.osm_time_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_mount_year:b'osm_time_mount_year' l_wms.buildings_query:b'buildings_query' l_wms.Test Layer
+#: 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "osm_id"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "access"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "aerialway"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "amenity"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "barrier"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "bicycle"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "brand"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.buildings:b'buildings' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer
+#: 6:b'fuel'
+msgid "building"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "covered"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "denomination"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "ele"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "foot"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "highway"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "layer"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "leisure"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "man_made"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "motorcar"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "natural"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "operator"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "population"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "power"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "place"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "railway"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "ref"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "religion"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "shop"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "sport"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "surface"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "tourism"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "waterway"
+msgstr ""
+
+#: l_wms.cinema:b'cinema' l_wms.bank:b'bank' l_wms.bus_stop:b'bus_stop' l_wms.parking:b'parking'
+#: l_wms.place_of_worship:b'place_of_worship' l_wms.police:b'police' l_wms.post_office:b'post_office'
+#: l_wms.osm:b'osm' l_wms.osm:b'osm' l_wms.osm_scale:b'osm_scale' l_wms.fuel:b'fuel'
+#: l_wms.two_layers:b'sustenance' l_wms.two_layers:b'entertainment' l_wms.sustenance:b'sustenance'
+#: l_wms.accommodation:b'alpine_hut' l_wms.tourism_activity:b'tourism_activity' l_wms.Half query:b'half_query'
+#: l_wms.many_attributes:b'many_attributes' l_wms.Layer with very very very very very long name:b'bank'
+#: l_wms.information:b'information' l_wms.filter_double:b'hotel_filter'
+#: l_wms.filter_double_all:b'hotel_filter' l_wms.entertainment:b'entertainment' l_wms.Test Layer 4:b'fuel'
+#: l_wms.hotel_label:b'hotel_label' l_wms.Test Layer 3:b'fuel' l_wms.Test Layer 6:b'fuel'
+msgid "wood"
+msgstr ""
+
+#: l_wms:b'bank' l_wms.bank:b'bank' l_wms.osm:b'bank' l_wms.Layer with very very very very very long
+#: name:b'bank' fts:b'bank'
+msgid "bank"
+msgstr ""
+
+#: l_wms:b'police' l_wms.police:b'police' fts:b'police'
+msgid "police"
+msgstr ""
+
+#: l_wms:b'post_office' l_wms.post_office:b'post_office' fts:b'post_office'
+msgid "post_office"
+msgstr ""
+
+#: l_wms:b'line' l_wms.line:b'line' l_wms.line snap:b'line' l_wms.line snap tolerance:b'line' l_wms.line snap
+#: no edge:b'line' l_wms.line snap no vertex:b'line' l_wms.Multi-Line pas éditable mais queryable:b'line'
+#: fts:b'line'
+msgid "line"
+msgstr ""
+
+#: l_wms.line:b'line' edit.l_wms.111:line l_wms.polygon:b'polygon' edit.l_wms.112:polygon l_wms.point:b'point'
+#: edit.l_wms.113:point l_wms.point snap:b'point' l_wms.line snap:b'line' l_wms.line snap tolerance:b'line'
+#: l_wms.polygon snap tolerance:b'polygon' l_wms.line snap no edge:b'line' l_wms.line snap no vertex:b'line'
+#: l_wms.polygon snap no edge:b'polygon' l_wms.polygon snap no vertex:b'polygon' l_wms.polygon snap:b'polygon'
+#: l_wms.Multi-Polygon Query pas éditable mais queryable:b'polygon' l_wms.Multi-Polygon Query2 pas éditable
+#: mais queryable:b'polygon' l_wms.Multi-Line pas éditable mais queryable:b'line' l_wms.Multi-Point pas
+#: éditable mais queryable:b'point' l_wms.point snap tolerance:b'point'
+msgid "kind"
+msgstr ""
+
+#: l_wms:b'polygon' l_wms.polygon:b'polygon' l_wms.polygon snap tolerance:b'polygon' l_wms.polygon snap no
+#: edge:b'polygon' l_wms.polygon snap no vertex:b'polygon' l_wms.polygon snap:b'polygon' l_wms.Multi-Polygon
+#: Query pas éditable mais queryable:b'polygon' l_wms.Multi-Polygon Query2 pas éditable mais
+#: queryable:b'polygon' fts:b'polygon'
+msgid "polygon"
+msgstr ""
+
+#: edit.l_wms.112:polygon
+msgid "check"
+msgstr ""
+
+#: edit.l_wms.112:polygon l_wms.hospitals:b'hospitals' l_wms.osm_time_r_dp:b'osm_time'
+#: l_wms.osm_time_v_s:b'osm_time' l_wms.osm_time_v_dp:b'osm_time' l_wms.osm_time_r_s:b'osm_time'
+#: l_wms.osm_time_r_dp_2:b'osm_time2' l_wms.osm_time_r_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_d_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_r_mounth_year:b'osm_time_mount_year'
+#: l_wms.osm_time_v_mounth_year:b'osm_time_mount_year' l_wms.long wms-t layer name name name name name name
+#: name:b'osm_time_mount_year' l_wms.osm_dual_restricted:b'osm_hospitals_dual_restricted'
+#: l_wms.osm_dual:b'osm_hospitals' l_wms.osm_group_restricted:b'restricted_group' l_wms.osm_group:b'osm'
+#: l_wms.osm_hospitals_restricted:b'osm_hospitals_restricted' l_wms.osm_time_v_s_default:b'osm_time_default'
+#: l_wms.osm_time_v_dp_default:b'osm_time_default' l_wms.osm_time_r_dp_default:b'osm_time_default_slider'
+#: l_wms.osm_time_r_s_default:b'osm_time_default_slider' l_wms.osm_hospitals:b'osm_hospitals'
+#: edit.l_wms.240:osm_hospitals l_wms.osm_time:b'osm_time' l_wms.osm_time2:b'osm_time2'
+#: l_wms.osm_time_default:b'osm_time_default' l_wms.osm_time_default_slider:b'osm_time_default_slider'
+#: l_wms.osm_time_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_mount_year:b'osm_time_mount_year'
+msgid "date"
+msgstr ""
+
+#: edit.l_wms.112:polygon l_wms:b'time' l_wms.time:b'time' l_wms.time range:b'time' fts:b'time'
+msgid "time"
+msgstr ""
+
+#: edit.l_wms.112:polygon l_wms.hospitals:b'hospitals' l_wms.osm_time_r_dp:b'osm_time'
+#: l_wms.osm_time_v_s:b'osm_time' l_wms.osm_time_v_dp:b'osm_time' l_wms.osm_time_r_s:b'osm_time'
+#: l_wms.osm_time_r_dp_2:b'osm_time2' l_wms.osm_time_r_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_d_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_r_mounth_year:b'osm_time_mount_year'
+#: l_wms.osm_time_v_mounth_year:b'osm_time_mount_year' l_wms.long wms-t layer name name name name name name
+#: name:b'osm_time_mount_year' l_wms.osm_dual_restricted:b'osm_hospitals_dual_restricted'
+#: l_wms.osm_dual:b'osm_hospitals' l_wms.osm_group_restricted:b'restricted_group' l_wms.osm_group:b'osm'
+#: l_wms.osm_hospitals_restricted:b'osm_hospitals_restricted' l_wms.osm_time_v_s_default:b'osm_time_default'
+#: l_wms.osm_time_v_dp_default:b'osm_time_default' l_wms.osm_time_r_dp_default:b'osm_time_default_slider'
+#: l_wms.osm_time_r_s_default:b'osm_time_default_slider' l_wms.osm_hospitals:b'osm_hospitals'
+#: edit.l_wms.240:osm_hospitals l_wms.osm_time:b'osm_time' l_wms.osm_time2:b'osm_time2'
+#: l_wms.osm_time_default:b'osm_time_default' l_wms.osm_time_default_slider:b'osm_time_default_slider'
+#: l_wms.osm_time_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_mount_year:b'osm_time_mount_year'
+msgid "datetime"
+msgstr ""
+
+#: l_wms:b'osm_scale' l_wms.osm_scale:b'osm_scale' fts:b'osm_scale'
+msgid "osm_scale"
+msgstr ""
+
+#: l_wms:b'ch.swisstopo.dreiecksvermaschung' fts:b'ch.swisstopo.dreiecksvermaschung'
+msgid "ch.swisstopo.dreiecksvermaschung"
+msgstr ""
+
+#: l_wms:b'ch.swisstopo.geologie-gravimetrischer_atlas' fts:b'ch.swisstopo.geologie-gravimetrischer_atlas'
+msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
+msgstr ""
+
+#: l_wms:b'ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen'
+#: fts:b'ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen'
+msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
+msgstr ""
+
+#: l_wms:b'ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung'
+#: fts:b'ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung'
+msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
+msgstr ""
+
+#: l_wms:b'hospitals' l_wms.hospitals:b'hospitals' fts:b'hospitals'
+msgid "hospitals"
+msgstr ""
+
+#: l_wms.hospitals:b'hospitals' l_wms.osm_dual_restricted:b'osm_hospitals_dual_restricted'
+#: l_wms.osm_dual:b'osm_hospitals' l_wms.osm_group_restricted:b'restricted_group' l_wms.osm_group:b'osm'
+#: l_wms.osm_hospitals_restricted:b'osm_hospitals_restricted' l_wms.osm_hospitals:b'osm_hospitals'
+#: edit.l_wms.240:osm_hospitals
+msgid "email"
+msgstr ""
+
+#: l_wms.hospitals:b'hospitals' l_wms.osm_dual_restricted:b'osm_hospitals_dual_restricted'
+#: l_wms.osm_dual:b'osm_hospitals' l_wms.osm_group_restricted:b'restricted_group' l_wms.osm_group:b'osm'
+#: l_wms.osm_hospitals_restricted:b'osm_hospitals_restricted' l_wms.osm_hospitals:b'osm_hospitals'
+#: edit.l_wms.240:osm_hospitals
+msgid "link"
+msgstr ""
+
+#: l_wms:b'firestations' l_wms.firestations:b'firestations' fts:b'firestations'
+msgid "firestations"
+msgstr ""
+
+#: l_wms:b'osm_open' l_wms.osm_open:b'osm_open' fts:b'osm_open'
+msgid "osm_open"
+msgstr ""
+
+#: l_wms.osm_open:b'osm_open'
+msgid "open"
+msgstr ""
+
+#: l_wms.osm_open:b'osm_open'
+msgid "autolink_url"
+msgstr ""
+
+#: l_wms.osm_open:b'osm_open'
+msgid "autolink_email"
+msgstr ""
+
+#: l_wms.osm_open:b'osm_open' l_wms.osm_time_r_dp:b'osm_time' l_wms.osm_time_v_s:b'osm_time'
+#: l_wms.osm_time_v_dp:b'osm_time' l_wms.osm_time_r_s:b'osm_time' l_wms.osm_time_r_dp_2:b'osm_time2'
+#: l_wms.osm_time_r_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_d_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_r_mounth_year:b'osm_time_mount_year' l_wms.osm_time_v_mounth_year:b'osm_time_mount_year'
+#: l_wms.long wms-t layer name name name name name name name:b'osm_time_mount_year' l_wms.landuse:b'landuse'
+#: l_wms.time:b'time' l_wms.time range:b'time' l_wms.restricted:b'restricted' l_wms.group:b'group'
+#: l_wms.group:b'group' l_wms.group:b'group' l_wms.group:b'group' l_wms.railways:b'railways'
+#: l_wms.points:b'points' l_wms.points+landuse:b'points' l_wms.points+landuse:b'landuse'
+#: l_wms.landuse_alias:b'landuse_alias' l_wms.osm_time_v_s_default:b'osm_time_default'
+#: l_wms.osm_time_v_dp_default:b'osm_time_default' l_wms.osm_time_r_dp_default:b'osm_time_default_slider'
+#: l_wms.osm_time_r_s_default:b'osm_time_default_slider' l_wms.filter_group:b'filter_group'
+#: l_wms.filter_group:b'filter_group' l_wms.osm_time:b'osm_time' l_wms.osm_time2:b'osm_time2'
+#: l_wms.osm_time_default:b'osm_time_default' l_wms.osm_time_default_slider:b'osm_time_default_slider'
+#: l_wms.osm_time_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_mount_year:b'osm_time_mount_year'
+msgid "type"
+msgstr ""
+
+#: l_wms.osm_open:b'osm_open' l_wms.osm_time_r_dp:b'osm_time' l_wms.osm_time_v_s:b'osm_time'
+#: l_wms.osm_time_v_dp:b'osm_time' l_wms.osm_time_r_s:b'osm_time' l_wms.osm_time_r_dp_2:b'osm_time2'
+#: l_wms.osm_time_r_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_d_year_mounth:b'osm_time_year_mounth'
+#: l_wms.osm_time_r_mounth_year:b'osm_time_mount_year' l_wms.osm_time_v_mounth_year:b'osm_time_mount_year'
+#: l_wms.long wms-t layer name name name name name name name:b'osm_time_mount_year' l_wms.time:b'time'
+#: l_wms.time range:b'time' l_wms.restricted:b'restricted' l_wms.group:b'group' l_wms.group:b'group'
+#: l_wms.points:b'points' l_wms.points+landuse:b'points' l_wms.osm_time_v_s_default:b'osm_time_default'
+#: l_wms.osm_time_v_dp_default:b'osm_time_default' l_wms.osm_time_r_dp_default:b'osm_time_default_slider'
+#: l_wms.osm_time_r_s_default:b'osm_time_default_slider' l_wms.filter_group:b'filter_group'
+#: l_wms.filter_group:b'filter_group' l_wms.osm_time:b'osm_time' l_wms.osm_time2:b'osm_time2'
+#: l_wms.osm_time_default:b'osm_time_default' l_wms.osm_time_default_slider:b'osm_time_default_slider'
+#: l_wms.osm_time_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_mount_year:b'osm_time_mount_year'
+msgid "timestamp"
+msgstr ""
+
+#: l_wms:b'point' l_wms.point:b'point' l_wms.point snap:b'point' l_wms.Multi-Point pas éditable mais
+#: queryable:b'point' l_wms.point snap tolerance:b'point' fts:b'point'
+msgid "point"
+msgstr ""
+
+#: edit.l_wms.113:point
+msgid "short_name"
+msgstr ""
+
+#: edit.l_wms.113:point
+msgid "short_name2"
+msgstr ""
+
+#: edit.l_wms.113:point
+msgid "short_name3"
+msgstr ""
+
+#: edit.l_wms.113:point
+msgid "good"
+msgstr ""
+
+#: edit.l_wms.113:point
+msgid "internal_id"
+msgstr ""
+
+#: edit.l_wms.113:point
+msgid "height"
+msgstr ""
+
+#: l_wms:b'two_layers' fts:b'two_layers'
+msgid "two_layers"
+msgstr ""
+
+#: l_wms.two_layers:b'sustenance' l_wms:b'sustenance' l_wms.sustenance:b'sustenance' fts:b'sustenance'
+msgid "sustenance"
+msgstr ""
+
+#: l_wms.two_layers:b'entertainment' l_wms:b'entertainment' l_wms.entertainment:b'entertainment'
+#: fts:b'entertainment'
+msgid "entertainment"
+msgstr ""
+
+#: l_wms:b'osm_time_r_dp' fts:b'osm_time_r_dp'
+msgid "osm_time_r_dp"
+msgstr ""
+
+#: l_wms:b'osm_time_v_s' fts:b'osm_time_v_s'
+msgid "osm_time_v_s"
+msgstr ""
+
+#: l_wms:b'osm_time_v_dp' fts:b'osm_time_v_dp'
+msgid "osm_time_v_dp"
+msgstr ""
+
+#: l_wms:b'osm_time_r_s' fts:b'osm_time_r_s'
+msgid "osm_time_r_s"
+msgstr ""
+
+#: l_wms:b'osm_time_r_dp_2' fts:b'osm_time_r_dp_2'
+msgid "osm_time_r_dp_2"
+msgstr ""
+
+#: l_wms.osm_time_r_dp_2:b'osm_time2' l_wms:b'osm_time2' l_wms.osm_time2:b'osm_time2'
+msgid "osm_time2"
+msgstr ""
+
+#: l_wms:b'accommodation' l_wms.accommodation:b'accommodation' fts:b'accommodation'
+msgid "accommodation"
+msgstr ""
+
+#: l_wms:b'point snap' fts:b'point snap'
+msgid "point snap"
+msgstr ""
+
+#: l_wms:b'tourism_activity' l_wms.tourism_activity:b'tourism_activity' fts:b'tourism_activity'
+msgid "tourism_activity"
+msgstr ""
+
+#: l_wms:b'Half query' fts:b'Half query'
+msgid "Half query"
+msgstr ""
+
+#: l_wms:b'line snap' fts:b'line snap'
+msgid "line snap"
+msgstr ""
+
+#: l_wms:b'line snap tolerance' fts:b'line snap tolerance'
+msgid "line snap tolerance"
+msgstr ""
+
+#: l_wms:b'polygon snap tolerance' fts:b'polygon snap tolerance'
+msgid "polygon snap tolerance"
+msgstr ""
+
+#: l_wms:b'line snap no edge' fts:b'line snap no edge'
+msgid "line snap no edge"
+msgstr ""
+
+#: l_wms:b'line snap no vertex' fts:b'line snap no vertex'
+msgid "line snap no vertex"
+msgstr ""
+
+#: l_wms:b'polygon snap no edge' fts:b'polygon snap no edge'
+msgid "polygon snap no edge"
+msgstr ""
+
+#: l_wms:b'polygon snap no vertex' fts:b'polygon snap no vertex'
+msgid "polygon snap no vertex"
+msgstr ""
+
+#: l_wms:b'polygon snap' fts:b'polygon snap'
+msgid "polygon snap"
+msgstr ""
+
+#: l_wms:b'Multi-Polygon Query pas ?ditable mais queryable' fts:b'Multi-Polygon Query pas ?ditable mais
+#: queryable'
+msgid "Multi-Polygon Query pas éditable mais queryable"
+msgstr ""
+
+#: l_wms:b'Multi-Polygon Query2 pas ?ditable mais queryable' fts:b'Multi-Polygon Query2 pas ?ditable mais
+#: queryable'
+msgid "Multi-Polygon Query2 pas éditable mais queryable"
+msgstr ""
+
+#: l_wms:b'Multi-Line pas ?ditable mais queryable' fts:b'Multi-Line pas ?ditable mais queryable'
+msgid "Multi-Line pas éditable mais queryable"
+msgstr ""
+
+#: l_wms:b'Multi-Point pas ?ditable mais queryable' fts:b'Multi-Point pas ?ditable mais queryable'
+msgid "Multi-Point pas éditable mais queryable"
+msgstr ""
+
+#: l_wms:b'OSM map WMS'
+msgid "OSM map WMS"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places0' l_wms:b'places0' l_wms.places0:b'places0'
+msgid "places0"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places1' l_wms:b'places1' l_wms.places1:b'places1'
+msgid "places1"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places2' l_wms:b'places2' l_wms.places2:b'places2'
+msgid "places2"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places3' l_wms:b'places3' l_wms.places3:b'places3'
+msgid "places3"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse4' l_wms:b'landuse4' l_wms.landuse4:b'landuse4'
+msgid "landuse4"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea4' l_wms:b'waterarea4' l_wms.waterarea4:b'waterarea4'
+msgid "waterarea4"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places4' l_wms:b'places4' l_wms.places4:b'places4'
+msgid "places4"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse5' l_wms:b'landuse5' l_wms.landuse5:b'landuse5'
+msgid "landuse5"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea5' l_wms:b'waterarea5' l_wms.waterarea5:b'waterarea5'
+msgid "waterarea5"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads5' l_wms:b'roads5' l_wms.roads5:b'roads5'
+msgid "roads5"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places5' l_wms:b'places5' l_wms.places5:b'places5'
+msgid "places5"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse6' l_wms:b'landuse6' l_wms.landuse6:b'landuse6'
+msgid "landuse6"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea6' l_wms:b'waterarea6' l_wms.waterarea6:b'waterarea6'
+msgid "waterarea6"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways6' l_wms:b'waterways6' l_wms.waterways6:b'waterways6'
+msgid "waterways6"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads6' l_wms:b'roads6' l_wms.roads6:b'roads6'
+msgid "roads6"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places6' l_wms:b'places6' l_wms.places6:b'places6'
+msgid "places6"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse7' l_wms:b'landuse7' l_wms.landuse7:b'landuse7'
+msgid "landuse7"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea7' l_wms:b'waterarea7' l_wms.waterarea7:b'waterarea7'
+msgid "waterarea7"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways7' l_wms:b'waterways7' l_wms.waterways7:b'waterways7'
+msgid "waterways7"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads7' l_wms:b'roads7' l_wms.roads7:b'roads7'
+msgid "roads7"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places7' l_wms:b'places7' l_wms.places7:b'places7'
+msgid "places7"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse8' l_wms:b'landuse8' l_wms.landuse8:b'landuse8'
+msgid "landuse8"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea8' l_wms:b'waterarea8' l_wms.waterarea8:b'waterarea8'
+msgid "waterarea8"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways8' l_wms:b'waterways8' l_wms.waterways8:b'waterways8'
+msgid "waterways8"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways8' l_wms:b'railways8' l_wms.railways8:b'railways8'
+msgid "railways8"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads8' l_wms:b'roads8' l_wms.roads8:b'roads8'
+msgid "roads8"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places8' l_wms:b'places8' l_wms.places8:b'places8'
+msgid "places8"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse9' l_wms:b'landuse9' l_wms.landuse9:b'landuse9'
+msgid "landuse9"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea9' l_wms:b'waterarea9' l_wms.waterarea9:b'waterarea9'
+msgid "waterarea9"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways9' l_wms:b'waterways9' l_wms.waterways9:b'waterways9'
+msgid "waterways9"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways9' l_wms:b'railways9' l_wms.railways9:b'railways9'
+msgid "railways9"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads9' l_wms:b'roads9' l_wms.roads9:b'roads9'
+msgid "roads9"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places9' l_wms:b'places9' l_wms.places9:b'places9'
+msgid "places9"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse10' l_wms:b'landuse10' l_wms.landuse10:b'landuse10'
+msgid "landuse10"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea10' l_wms:b'waterarea10' l_wms.waterarea10:b'waterarea10'
+msgid "waterarea10"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways10' l_wms:b'waterways10' l_wms.waterways10:b'waterways10'
+msgid "waterways10"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways10' l_wms:b'railways10' l_wms.railways10:b'railways10'
+msgid "railways10"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads10' l_wms:b'roads10' l_wms.roads10:b'roads10'
+msgid "roads10"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways10' l_wms:b'aeroways10' l_wms.aeroways10:b'aeroways10'
+msgid "aeroways10"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places10' l_wms:b'places10' l_wms.places10:b'places10'
+msgid "places10"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse11' l_wms:b'landuse11' l_wms.landuse11:b'landuse11'
+msgid "landuse11"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea11' l_wms:b'waterarea11' l_wms.waterarea11:b'waterarea11'
+msgid "waterarea11"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways11' l_wms:b'waterways11' l_wms.waterways11:b'waterways11'
+msgid "waterways11"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways11' l_wms:b'railways11' l_wms.railways11:b'railways11'
+msgid "railways11"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads11' l_wms:b'roads11' l_wms.roads11:b'roads11'
+msgid "roads11"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways11' l_wms:b'aeroways11' l_wms.aeroways11:b'aeroways11'
+msgid "aeroways11"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places11' l_wms:b'places11' l_wms.places11:b'places11'
+msgid "places11"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse12' l_wms:b'landuse12' l_wms.landuse12:b'landuse12'
+msgid "landuse12"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea12' l_wms:b'waterarea12' l_wms.waterarea12:b'waterarea12'
+msgid "waterarea12"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways12' l_wms:b'waterways12' l_wms.waterways12:b'waterways12'
+msgid "waterways12"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways12' l_wms:b'railways12' l_wms.railways12:b'railways12'
+msgid "railways12"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads12' l_wms:b'roads12' l_wms.roads12:b'roads12'
+msgid "roads12"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways12' l_wms:b'aeroways12' l_wms.aeroways12:b'aeroways12'
+msgid "aeroways12"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places12' l_wms:b'places12' l_wms.places12:b'places12'
+msgid "places12"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse13' l_wms:b'landuse13' l_wms.landuse13:b'landuse13'
+msgid "landuse13"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea13' l_wms:b'waterarea13' l_wms.waterarea13:b'waterarea13'
+msgid "waterarea13"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways13' l_wms:b'waterways13' l_wms.waterways13:b'waterways13'
+msgid "waterways13"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways13' l_wms:b'railways13' l_wms.railways13:b'railways13'
+msgid "railways13"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads13' l_wms:b'roads13' l_wms.roads13:b'roads13'
+msgid "roads13"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways13' l_wms:b'aeroways13' l_wms.aeroways13:b'aeroways13'
+msgid "aeroways13"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places13' l_wms:b'places13' l_wms.places13:b'places13'
+msgid "places13"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse14' l_wms:b'landuse14' l_wms.landuse14:b'landuse14'
+msgid "landuse14"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea14' l_wms:b'waterarea14' l_wms.waterarea14:b'waterarea14'
+msgid "waterarea14"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways14' l_wms:b'waterways14' l_wms.waterways14:b'waterways14'
+msgid "waterways14"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways14' l_wms:b'railways14' l_wms.railways14:b'railways14'
+msgid "railways14"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads14' l_wms:b'roads14' l_wms.roads14:b'roads14'
+msgid "roads14"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways14' l_wms:b'aeroways14' l_wms.aeroways14:b'aeroways14'
+msgid "aeroways14"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places14' l_wms:b'places14' l_wms.places14:b'places14'
+msgid "places14"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse15' l_wms:b'landuse15' l_wms.landuse15:b'landuse15'
+msgid "landuse15"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea15' l_wms:b'waterarea15' l_wms.waterarea15:b'waterarea15'
+msgid "waterarea15"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways15' l_wms:b'waterways15' l_wms.waterways15:b'waterways15'
+msgid "waterways15"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways15' l_wms:b'railways15' l_wms.railways15:b'railways15'
+msgid "railways15"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads15' l_wms:b'roads15' l_wms.roads15:b'roads15'
+msgid "roads15"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways15' l_wms:b'aeroways15' l_wms.aeroways15:b'aeroways15'
+msgid "aeroways15"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'buildings15' l_wms:b'buildings15' l_wms.buildings15:b'buildings15'
+msgid "buildings15"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places15' l_wms:b'places15' l_wms.places15:b'places15'
+msgid "places15"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse16' l_wms:b'landuse16' l_wms.landuse16:b'landuse16'
+msgid "landuse16"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea16' l_wms:b'waterarea16' l_wms.waterarea16:b'waterarea16'
+msgid "waterarea16"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways16' l_wms:b'waterways16' l_wms.waterways16:b'waterways16'
+msgid "waterways16"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways16' l_wms:b'railways16' l_wms.railways16:b'railways16'
+msgid "railways16"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads16' l_wms:b'roads16' l_wms.roads16:b'roads16'
+msgid "roads16"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways16' l_wms:b'aeroways16' l_wms.aeroways16:b'aeroways16'
+msgid "aeroways16"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'buildings16' l_wms:b'buildings16' l_wms.buildings16:b'buildings16'
+msgid "buildings16"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places16' l_wms:b'places16' l_wms.places16:b'places16'
+msgid "places16"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse17' l_wms:b'landuse17' l_wms.landuse17:b'landuse17'
+msgid "landuse17"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea17' l_wms:b'waterarea17' l_wms.waterarea17:b'waterarea17'
+msgid "waterarea17"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways17' l_wms:b'waterways17' l_wms.waterways17:b'waterways17'
+msgid "waterways17"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways17' l_wms:b'railways17' l_wms.railways17:b'railways17'
+msgid "railways17"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads17' l_wms:b'roads17' l_wms.roads17:b'roads17'
+msgid "roads17"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways17' l_wms:b'aeroways17' l_wms.aeroways17:b'aeroways17'
+msgid "aeroways17"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'buildings17' l_wms:b'buildings17' l_wms.buildings17:b'buildings17'
+msgid "buildings17"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places17' l_wms:b'places17' l_wms.places17:b'places17'
+msgid "places17"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'landuse18' l_wms:b'landuse18' l_wms.landuse18:b'landuse18'
+msgid "landuse18"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterarea18' l_wms:b'waterarea18' l_wms.waterarea18:b'waterarea18'
+msgid "waterarea18"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'waterways18' l_wms:b'waterways18' l_wms.waterways18:b'waterways18'
+msgid "waterways18"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'railways18' l_wms:b'railways18' l_wms.railways18:b'railways18'
+msgid "railways18"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'roads18' l_wms:b'roads18' l_wms.roads18:b'roads18'
+msgid "roads18"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'aeroways18' l_wms:b'aeroways18' l_wms.aeroways18:b'aeroways18'
+msgid "aeroways18"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'buildings18' l_wms:b'buildings18' l_wms.buildings18:b'buildings18'
+msgid "buildings18"
+msgstr ""
+
+#: l_wms.OSM map WMS:b'places18' l_wms:b'places18' l_wms.places18:b'places18'
+msgid "places18"
+msgstr ""
+
+#: l_wms:b'osm_time_r_year_mounth' fts:b'osm_time_r_year_mounth'
+msgid "osm_time_r_year_mounth"
+msgstr ""
+
+#: l_wms.osm_time_r_year_mounth:b'osm_time_year_mounth' l_wms.osm_time_d_year_mounth:b'osm_time_year_mounth'
+#: l_wms:b'osm_time_year_mounth' l_wms.osm_time_year_mounth:b'osm_time_year_mounth'
+msgid "osm_time_year_mounth"
+msgstr ""
+
+#: l_wms:b'osm_time_d_year_mounth' fts:b'osm_time_d_year_mounth'
+msgid "osm_time_d_year_mounth"
+msgstr ""
+
+#: l_wms:b'osm_time_r_mounth_year' fts:b'osm_time_r_mounth_year'
+msgid "osm_time_r_mounth_year"
+msgstr ""
+
+#: l_wms.osm_time_r_mounth_year:b'osm_time_mount_year' l_wms.osm_time_v_mounth_year:b'osm_time_mount_year'
+#: l_wms.long wms-t layer name name name name name name name:b'osm_time_mount_year'
+#: l_wms:b'osm_time_mount_year' l_wms.osm_time_mount_year:b'osm_time_mount_year'
+msgid "osm_time_mount_year"
+msgstr ""
+
+#: l_wms:b'osm_time_v_mounth_year' fts:b'osm_time_v_mounth_year'
+msgid "osm_time_v_mounth_year"
+msgstr ""
+
+#: l_wms:b'no_wfs' fts:b'no_wfs'
+msgid "no_wfs"
+msgstr ""
+
+#: l_wms:b'point snap tolerance' fts:b'point snap tolerance'
+msgid "point snap tolerance"
+msgstr ""
+
+#: l_wms:b'long wms-t layer name name name name name name name' fts:b'long wms-t layer name name name name
+#: name name name'
+msgid "long wms-t layer name name name name name name name"
+msgstr ""
+
+#: l_wms:b'many_attributes' l_wms.many_attributes:b'many_attributes' fts:b'many_attributes'
+msgid "many_attributes"
+msgstr ""
+
+#: l_wms.many_attributes:b'many_attributes'
+msgid "name2"
+msgstr ""
+
+#: l_wms.many_attributes:b'many_attributes'
+msgid "name3"
+msgstr ""
+
+#: l_wms.many_attributes:b'many_attributes'
+msgid "name4"
+msgstr ""
+
+#: l_wms.many_attributes:b'many_attributes'
+msgid "name5"
+msgstr ""
+
+#: l_wms.many_attributes:b'many_attributes'
+msgid "name6"
+msgstr ""
+
+#: l_wms:b'Layer with very very very very very long name' fts:b'Layer with very very very very very long name'
+msgid "Layer with very very very very very long name"
+msgstr ""
+
+#: l_wms:b'landuse' l_wms.landuse:b'landuse' l_wms.points+landuse:b'landuse' fts:b'landuse'
+msgid "landuse"
+msgstr ""
+
+#: l_wms.landuse:b'landuse' l_wms.time:b'time' l_wms.time range:b'time' l_wms.restricted:b'restricted'
+#: l_wms.group:b'group' l_wms.group:b'group' l_wms.group:b'group' l_wms.group:b'group'
+#: l_wms.railways:b'railways' l_wms.points:b'points' l_wms.points+landuse:b'points'
+#: l_wms.points+landuse:b'landuse' l_wms.landuse_alias:b'landuse_alias' l_wms.filter_group:b'filter_group'
+#: l_wms.filter_group:b'filter_group'
+msgid "fid"
+msgstr ""
+
+#: l_wms.landuse:b'landuse' l_wms.time:b'time' l_wms.time range:b'time' l_wms.restricted:b'restricted'
+#: l_wms.group:b'group' l_wms.group:b'group' l_wms.group:b'group' l_wms.group:b'group'
+#: l_wms.railways:b'railways' l_wms.points:b'points' l_wms.points+landuse:b'points'
+#: l_wms.points+landuse:b'landuse' l_wms.landuse_alias:b'landuse_alias' l_wms.filter_group:b'filter_group'
+#: l_wms.filter_group:b'filter_group'
+msgid "geom_4326"
+msgstr ""
+
+#: l_wms:b'time range' fts:b'time range'
+msgid "time range"
+msgstr ""
+
+#: l_wms:b'restricted' l_wms.restricted:b'restricted' fts:b'restricted'
+msgid "restricted"
+msgstr ""
+
+#: l_wms:b'group' fts:b'group'
+msgid "group"
+msgstr ""
+
+#: l_wms.group:b'landuse_ingrp'
+msgid "landuse_ingrp"
+msgstr ""
+
+#: l_wms.group:b'time_ingrp'
+msgid "time_ingrp"
+msgstr ""
+
+#: l_wms.group:b'points_ingrp'
+msgid "points_ingrp"
+msgstr ""
+
+#: l_wms.group:b'railways_ingrp'
+msgid "railways_ingrp"
+msgstr ""
+
+#: l_wms:b'railways no wfs' fts:b'railways no wfs'
+msgid "railways no wfs"
+msgstr ""
+
+#: l_wms:b'points no wfs' fts:b'points no wfs'
+msgid "points no wfs"
+msgstr ""
+
+#: l_wms:b'landuse no wfs' fts:b'landuse no wfs'
+msgid "landuse no wfs"
+msgstr ""
+
+#: l_wms:b'railways' l_wms.railways:b'railways' fts:b'railways'
+msgid "railways"
+msgstr ""
+
+#: l_wms:b'group no wfs' fts:b'group no wfs'
+msgid "group no wfs"
+msgstr ""
+
+#: l_wms:b'points' l_wms.points:b'points' l_wms.points+landuse:b'points' fts:b'points'
+msgid "points"
+msgstr ""
+
+#: l_wms:b'osm_firestations' l_wms.osm_firestations:b'osm_firestations' l_wms.osm_dual:b'osm_firestations'
+#: fts:b'osm_firestations'
+msgid "osm_firestations"
+msgstr ""
+
+#: l_wms:b'osm_firestations no wfs' fts:b'osm_firestations no wfs'
+msgid "osm_firestations no wfs"
+msgstr ""
+
+#: l_wms:b'osm_hospitals no wfs' fts:b'osm_hospitals no wfs'
+msgid "osm_hospitals no wfs"
+msgstr ""
+
+#: l_wms:b'osm dual no wfs' fts:b'osm dual no wfs'
+msgid "osm dual no wfs"
+msgstr ""
+
+#: l_wms:b'osm group no wfs' fts:b'osm group no wfs'
+msgid "osm group no wfs"
+msgstr ""
+
+#: l_wms:b'points+landuse' fts:b'points+landuse'
+msgid "points+landuse"
+msgstr ""
+
+#: l_wms:b'points+landuse no wfs' fts:b'points+landuse no wfs'
+msgid "points+landuse no wfs"
+msgstr ""
+
+#: l_wms:b'landuse_alias' l_wms.landuse_alias:b'landuse_alias' fts:b'landuse_alias'
+msgid "landuse_alias"
+msgstr ""
+
+#: l_wms:b'osm_dual_restricted' fts:b'osm_dual_restricted'
+msgid "osm_dual_restricted"
+msgstr ""
+
+#: l_wms.osm_dual_restricted:b'osm_hospitals_dual_restricted'
+msgid "osm_hospitals_dual_restricted"
+msgstr ""
+
+#: l_wms.osm_dual_restricted:b'osm_firestations_dual_restricted'
+msgid "osm_firestations_dual_restricted"
+msgstr ""
+
+#: l_wms:b'osm_dual' fts:b'osm_dual'
+msgid "osm_dual"
+msgstr ""
+
+#: l_wms.osm_dual:b'osm_hospitals' l_wms:b'osm_hospitals' l_wms.osm_hospitals:b'osm_hospitals'
+#: fts:b'osm_hospitals'
+msgid "osm_hospitals"
+msgstr ""
+
+#: l_wms:b'osm_group_restricted' fts:b'osm_group_restricted'
+msgid "osm_group_restricted"
+msgstr ""
+
+#: l_wms.osm_group_restricted:b'osm_firestations_restricted_ingrp'
+msgid "osm_firestations_restricted_ingrp"
+msgstr ""
+
+#: l_wms.osm_group_restricted:b'osm_hospitals_restricted_ingrp'
+msgid "osm_hospitals_restricted_ingrp"
+msgstr ""
+
+#: l_wms:b'osm_group' fts:b'osm_group'
+msgid "osm_group"
+msgstr ""
+
+#: l_wms.osm_group:b'osm_firestations_ingrp'
+msgid "osm_firestations_ingrp"
+msgstr ""
+
+#: l_wms.osm_group:b'osm_hospitals_ingrp'
+msgid "osm_hospitals_ingrp"
+msgstr ""
+
+#: l_wms:b'osm_hospitals_restricted' l_wms.osm_hospitals_restricted:b'osm_hospitals_restricted'
+#: fts:b'osm_hospitals_restricted'
+msgid "osm_hospitals_restricted"
+msgstr ""
+
+#: l_wms:b'ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung2'
+msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung2"
+msgstr ""
+
+#: l_wms:b'osm_firestations_restricted' l_wms.osm_firestations_restricted:b'osm_firestations_restricted'
+#: fts:b'osm_firestations_restricted'
+msgid "osm_firestations_restricted"
+msgstr ""
+
+#: l_wms:b'ch.bfe.solarenergie-eignung-daecher' fts:b'ch.bfe.solarenergie-eignung-daecher'
+msgid "ch.bfe.solarenergie-eignung-daecher"
+msgstr ""
+
+#: l_wms:b'ch.bfe.solarenergie-eignung-fassaden' fts:b'ch.bfe.solarenergie-eignung-fassaden'
+msgid "ch.bfe.solarenergie-eignung-fassaden"
+msgstr ""
+
+#: l_wms:b'osm_time_v_s_default' fts:b'osm_time_v_s_default'
+msgid "osm_time_v_s_default"
+msgstr ""
+
+#: l_wms.osm_time_v_s_default:b'osm_time_default' l_wms.osm_time_v_dp_default:b'osm_time_default'
+#: l_wms:b'osm_time_default' l_wms.osm_time_default:b'osm_time_default'
+msgid "osm_time_default"
+msgstr ""
+
+#: l_wms:b'osm_time_v_dp_default' fts:b'osm_time_v_dp_default'
+msgid "osm_time_v_dp_default"
+msgstr ""
+
+#: l_wms:b'osm_time_r_dp_default' fts:b'osm_time_r_dp_default'
+msgid "osm_time_r_dp_default"
+msgstr ""
+
+#: l_wms.osm_time_r_dp_default:b'osm_time_default_slider'
+#: l_wms.osm_time_r_s_default:b'osm_time_default_slider' l_wms:b'osm_time_default_slider'
+#: l_wms.osm_time_default_slider:b'osm_time_default_slider'
+msgid "osm_time_default_slider"
+msgstr ""
+
+#: l_wms:b'osm_time_r_s_default' fts:b'osm_time_r_s_default'
+msgid "osm_time_r_s_default"
+msgstr ""
+
+#: l_wms:b'floor_slider' l_wms.floor_slider:b'floor_slider' fts:b'floor_slider'
+msgid "floor_slider"
+msgstr ""
+
+#: l_wms:b'NPA localite'
+msgid "NPA localite"
+msgstr ""
+
+#: l_wms.NPA localite:b'vd.npa_localite'
+msgid "vd.npa_localite"
+msgstr ""
+
+#: l_wms:b'NPA localite noWFS' fts:b'NPA localite noWFS'
+msgid "NPA localite noWFS"
+msgstr ""
+
+#: l_wms:b'filter_double' fts:b'filter_double'
+msgid "filter_double"
+msgstr ""
+
+#: l_wms.filter_double:b'hotel_label' l_wms.filter_double_all:b'hotel_label' l_wms:b'hotel_label'
+#: l_wms.hotel_label:b'hotel_label'
+msgid "hotel_label"
+msgstr ""
+
+#: l_wms.filter_double:b'hotel' l_wms.filter_double_all:b'hotel' l_wms:b'hotel' l_wms.hotel:b'hotel'
+msgid "hotel"
+msgstr ""
+
+#: l_wms:b'filter_group' fts:b'filter_group'
+msgid "filter_group"
+msgstr ""
+
+#: l_wms.filter_group:b'pointscopier'
+msgid "pointscopier"
+msgstr ""
+
+#: l_wms.filter_group:b'pointslabels'
+msgid "pointslabels"
+msgstr ""
+
+#: l_wms:b'vd.regime_hydrique noWFS' fts:b'vd.regime_hydrique noWFS'
+msgid "vd.regime_hydrique noWFS"
+msgstr ""
+
+#: l_wms:b'filter_double_all' fts:b'filter_double_all'
+msgid "filter_double_all"
+msgstr ""
+
+#: l_wms:b'Test Layer 4'
+msgid "Test Layer 4"
+msgstr ""
+
+#: l_wms:b'buildings_query' l_wms.buildings_query:b'buildings_query'
+msgid "buildings_query"
+msgstr ""
+
+#: l_wms:b'buildings' l_wms.buildings:b'buildings'
+msgid "buildings"
+msgstr ""
+
+#: l_wms.buildings:b'buildings'
+msgid "number"
+msgstr ""
+
+#: l_wms:b'Test Layer 3'
+msgid "Test Layer 3"
+msgstr ""
+
+#: l_wms:b'Test Layer 6'
+msgid "Test Layer 6"
+msgstr ""
+
+#: l_wmts:b'OSM map' fts:b'OSM map'
+msgid "OSM map"
+msgstr ""
+
+#: l_wmts:b'asitvd.fond_couleur'
+msgid "asitvd.fond_couleur"
+msgstr ""
+
+#: l_wmts:b'asitvd.fond_gris'
+msgid "asitvd.fond_gris"
+msgstr ""
+
+#: l_wmts:b'asitvd.fond_pourortho' fts:b'asitvd.fond_pourortho'
+msgid "asitvd.fond_pourortho"
+msgstr ""
+
+#: l_wmts:b'ch.are.alpenkonvention' fts:b'ch.are.alpenkonvention'
+msgid "ch.are.alpenkonvention"
+msgstr ""
+
+#: l_wmts:b'ch.swisstopo.swissimage'
+msgid "ch.swisstopo.swissimage"
+msgstr ""
+
+#: l_wmts:b'ch.astra.hauptstrassennetz' fts:b'ch.astra.hauptstrassennetz'
+msgid "ch.astra.hauptstrassennetz"
+msgstr ""
+
+#: l_wmts:b'Timeout'
+msgid "Timeout"
+msgstr ""
+
+#: fts:b'district'
+msgid "district"
+msgstr ""
