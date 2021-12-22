@@ -61,4 +61,4 @@ jobs:
               },
           )
           assert response.status_code < 300 or response.status_code == 422, f'{response.status_code} - {response.text}'"
-        if: "'steps.status.outputs.status' != ''"
+        if: steps.status.outputs.status != ''
