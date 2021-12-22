@@ -284,7 +284,6 @@ services:
   tools:
     image: camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION}
     restart: unless-stopped
-    working_dir: /src
     volumes:
       - .:/src
     environment:
