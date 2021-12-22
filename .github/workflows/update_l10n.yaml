@@ -16,7 +16,7 @@ jobs:
       matrix:
         include:
           - branch: prod-2-7
-            base_url: ''
+            base_url: https://geomapfish-demo-2-7.camptocamp.com/
 
     steps:
       - uses: actions/checkout@v2
