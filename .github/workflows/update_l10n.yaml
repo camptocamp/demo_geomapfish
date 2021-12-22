@@ -16,7 +16,7 @@ jobs:
       matrix:
         include:
           - branch: prod-2-7
-            base_url: https://geomapfish-demo-2-7.camptocamp.com/
+            base_url: ''
 
     steps:
       - uses: actions/checkout@v2
@@ -58,3 +58,4 @@ jobs:
               },
           )
           assert response.status_code < 300 or response.status_code == 422, f'{response.status_code} - {response.text}'"
+        if: '[[ $(git status --porcelain) != "" ]]'
