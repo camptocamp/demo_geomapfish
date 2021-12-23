@@ -13,16 +13,16 @@ services:
   geoportal:
     image: ${DOCKER_BASE}-geoportal:${DOCKER_TAG}
     user: root
-    volumes:
-      # For Python project development.
-      # - ./geoportal/${PACKAGE}_geoportal:/app/${PACKAGE}_geoportal
-      # For Python c2cgeportal development.
-      # - ./../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons
-      # - ./../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal
-      # - ./../c2cgeoportal/admin/c2cgeoportal_admin:/opt/c2cgeoportal/admin/c2cgeoportal_admin
-      # - ./../c2cwsgiutils/c2cwsgiutils:/opt/c2cwsgiutils/c2cwsgiutils
-      # - ./../dogpile.cache/dogpile:/usr/local/lib/python3.7/dist-packages/dogpile
-      # - ./../c2c.template/c2c/template:/usr/local/lib/python3.7/dist-packages/c2c/template
+    # volumes:
+    # For Python project development.
+    # - ./geoportal/${PACKAGE}_geoportal:/app/${PACKAGE}_geoportal
+    # For Python c2cgeportal development.
+    # - ./../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons
+    # - ./../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal
+    # - ./../c2cgeoportal/admin/c2cgeoportal_admin:/opt/c2cgeoportal/admin/c2cgeoportal_admin
+    # - ./../c2cwsgiutils/c2cwsgiutils:/opt/c2cwsgiutils/c2cwsgiutils
+    # - ./../dogpile.cache/dogpile:/usr/local/lib/python3.7/dist-packages/dogpile
+    # - ./../c2c.template/c2c/template:/usr/local/lib/python3.7/dist-packages/c2c/template
     environment:
       - GUNICORN_CMD_ARGS=--reload
       - C2CWSGIUTILS_CONFIG=/app/development.ini
@@ -66,6 +66,10 @@ services:
     environment:
       - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
 
+  tools:
+    volumes_from:
+      - config:rw
+  #
   # For Javascript project development.
   # The debug application will be available at ``https://<host>/<entry_point>/dev/<interface>.html``.
   # webpack_dev_server:
