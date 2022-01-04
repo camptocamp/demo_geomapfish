@@ -17,7 +17,7 @@ sqlalchemy = "==1.4.29"
 transaction = "==3.0.1"
 "zope.sqlalchemy" = "==1.6"
 cornice = "==6.0.0"
-requests = "==2.26.0"
+requests = "==2.27.0"
 psycopg2 = "==2.9.3"
 
 [dev-packages]
