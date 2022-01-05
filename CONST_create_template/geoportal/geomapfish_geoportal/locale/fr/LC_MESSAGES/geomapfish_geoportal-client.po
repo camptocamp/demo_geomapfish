@@ -65,7 +65,7 @@ msgstr ""
 "Dessine une ligne sur la carte pour afficher le profile d'altitude correspondant\n"
 "Double cliquer pour terminer la saisie."
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:162
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:163
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                Use double-click to finish the drawing."
@@ -73,18 +73,18 @@ msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:133
 #: contribs/gmf/apps/desktop/index.html.ejs:66
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:88
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:89
 msgid "Draw and Measure"
 msgstr "Mesure et dessin"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:187
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:155
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:156
 msgid "Draw profile line"
 msgstr "Dessiner une ligne de profil"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:160
 #: contribs/gmf/apps/desktop/index.html.ejs:76
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:127
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:128
 msgid "Editing"
 msgstr "Edition"
 
@@ -100,18 +100,18 @@ msgstr "Altitude (Aster)"
 msgid "Elevation (SRTM)"
 msgstr "Altitude (SRTM)"
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:148
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:149
 msgid "Elevation profile"
 msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:146
 #: contribs/gmf/apps/desktop/index.html.ejs:70
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:101
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:111
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:102
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:112
 msgid "Filter"
 msgstr "Filtre"
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:211
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:212
 msgid "Google Street View"
 msgstr ""
 
@@ -121,12 +121,12 @@ msgstr "Application iframe API"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:214
 #: contribs/gmf/apps/desktop/index.html.ejs:92
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:256
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:257
 msgid "Import Layer"
 msgstr "Importer une couche"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:165
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:131
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:132
 msgid "In order to use the editing tool, you must log in first."
 msgstr "Pour utiliser l'interface d’édition vous devez être connecté."
 
@@ -135,7 +135,7 @@ msgstr "Pour utiliser l'interface d’édition vous devez être connecté."
 msgid "Length"
 msgstr "Longueur"
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:188
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:189
 msgid "Lidar profile (only on the canton of Neuchâtel)"
 msgstr ""
 
@@ -153,7 +153,7 @@ msgstr "Chargement..."
 msgid "Login"
 msgstr "Connection"
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:228
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:229
 msgid "Mapillary Street View"
 msgstr ""
 
@@ -193,18 +193,18 @@ msgstr "Profil"
 msgid "Query"
 msgstr "Interrogation"
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:268
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:269
 msgid "Routing"
 msgstr "Trajet"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:205
 #: contribs/gmf/apps/desktop/index.html.ejs:85
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:245
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:246
 msgid "Selection"
 msgstr "Sélection"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:98
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:278
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:279
 msgid "Share this map"
 msgstr "Partager cette carte"
 
@@ -262,6 +262,6 @@ msgstr ""
 "Vous utilisez l'application mobile. Allez sur l'<a "
 "href=\"{{url}}\">application standard</a>."
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:75
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:76
 msgid "debug"
 msgstr "Debug"
