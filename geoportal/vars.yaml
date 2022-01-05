@@ -877,10 +877,6 @@ runtime_environment:
     default: xxx
   - name: AWS_S3_ENDPOINT
     default: xxx
-  - name: SENTRY_CLIENT_ENVIRONMENT
-    default: xxx
-  - name: SENTRY_URL
-    default: xxx
 
 environment:
   - name: VERSION
