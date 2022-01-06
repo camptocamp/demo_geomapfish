@@ -64,7 +64,7 @@
 
       <!-- Print -->
       <gmf-print-button slot="tool-button"></gmf-print-button>
-      <div slot="tool-panel-print" class="row">
+      <div slot="tool-panel-print" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Print' | translate }}
@@ -72,7 +72,8 @@
           <gmf-print
             gmf-print-map="::mainCtrl.map"
             gmf-print-active="mainCtrl.printActive"
-            gmf-print-attributes-out="::attributes">
+            gmf-print-attributes-out="::attributes"
+            class="pointer-events-auto">
             <span ng-if="mainCtrl.gmfUser.username">
               <div ng-repeat="attribute in ::attributes">
                 <label ng-if="attribute.name == 'debug'">
@@ -87,7 +88,7 @@
 
       <!-- Drawing -->
       <gmf-draw-button slot="tool-button"></gmf-draw-button>
-      <div slot="tool-panel-draw" class="row">
+      <div slot="tool-panel-draw" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Draw and Measure' | translate }}
@@ -95,7 +96,7 @@
           <gmf-drawfeature
             gmf-drawfeature-active="mainCtrl.drawFeatureActive"
             gmf-drawfeature-layer="::mainCtrl.drawFeatureLayer"
-            gmf-drawfeature-map="::mainCtrl.map">
+            gmf-drawfeature-map="::mainCtrl.map" class="pointer-events-auto">
           </gmf-drawfeature>
         </div>
       </div>
@@ -110,7 +111,7 @@
           </span>
         </button>
       </gmf-filter-button>
-      <div slot="tool-panel-filter" class="row">
+      <div slot="tool-panel-filter" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Filter' | translate }}
@@ -119,19 +120,19 @@
             active="mainCtrl.filterSelectorActive"
             map="mainCtrl.map"
             tool-group="::mainCtrl.mapToolsGroup"
-            filter-is-applied="mainCtrl.filterIsApplied">
+            filter-is-applied="mainCtrl.filterIsApplied" class="pointer-events-auto">
           </gmf-filterselector>
         </div>
       </div>
 
       <!-- Editing -->
       <gmf-editing-button slot="tool-button"></gmf-editing-button>
-      <div slot="tool-panel-editing" class="row">
+      <div slot="tool-panel-editing" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Editing' | translate }}
           </div>
-          <div ng-switch="mainCtrl.gmfUser.username">
+          <div ng-switch="mainCtrl.gmfUser.username" class="pointer-events-auto">
             <div ng-switch-when="null">
               {{ 'In order to use the editing tool, you must log in first.' | translate }}
             </div>
@@ -147,7 +148,7 @@
 
       <!-- Profile -->
       <gmf-profile-button slot="tool-button"></gmf-profile-button>
-      <div slot="tool-panel-profile" class="row profile-panel">
+      <div slot="tool-panel-profile" class="row profile-panel pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Elevation profile' | translate }}
@@ -155,7 +156,7 @@
           <div gmf-drawprofileline
             gmf-drawprofileline-active="mainCtrl.drawProfilePanelActive"
             gmf-drawprofileline-map="::mainCtrl.map"
-            gmf-drawprofileline-line="mainCtrl.profileLine">
+            gmf-drawprofileline-line="mainCtrl.profileLine" class="pointer-events-auto">
             <p>
               <button class="btn prime"
                 ngeo-btn ng-model="ctrl.interaction.active"
@@ -186,7 +187,7 @@
       <gmf-lidarprofile-button slot="tool-button"></gmf-lidarprofile-button>
       <div
         slot="tool-panel-lidarprofile"
-        class="row lidar-profile-panel"
+        class="row lidar-profile-panel pointer-events-none"
       >
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
@@ -195,7 +196,7 @@
           <gmf-lidarprofile-panel
             gmf-lidarprofile-panel-active="mainCtrl.drawLidarprofilePanelActive"
             gmf-lidarprofile-panel-map="::mainCtrl.map"
-            gmf-lidarprofile-panel-line="mainCtrl.lidarProfileLine">
+            gmf-lidarprofile-panel-line="mainCtrl.lidarProfileLine" class="pointer-events-auto">
           </gmf-lidarprofile-panel>
         </div>
       </div>
@@ -210,7 +211,7 @@
 
       <!-- Google Street View -->
       <gmf-googlestreetview-button slot="tool-button"></gmf-googlestreetview-button>
-      <div slot="tool-panel-googlestreetview" class="row">
+      <div slot="tool-panel-googlestreetview" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Google Street View' | translate }}
@@ -220,14 +221,14 @@
             feature-style="mainCtrl.streetViewStyle"
             map="mainCtrl.map"
             panel-width="mainCtrl.toolsPanelWidth"
-            options-name="ngeoGoogleStreetviewOptions">
+            options-name="ngeoGoogleStreetviewOptions" class="pointer-events-auto">
           </ngeo-streetview>
         </div>
       </div>
 
       <!-- Mapillary -->
       <gmf-mapillary-button slot="tool-button"></gmf-mapillary-button>
-      <div slot="tool-panel-mapillary" class="row">
+      <div slot="tool-panel-mapillary" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Mapillary Street View' | translate }}
@@ -237,43 +238,43 @@
             feature-style="mainCtrl.streetViewStyle"
             map="mainCtrl.map"
             panel-width="mainCtrl.toolsPanelWidth"
-            options-name="ngeoStreetviewOptions">
+            options-name="ngeoStreetviewOptions" class="pointer-events-auto">
           </ngeo-streetview>
         </div>
       </div>
 
       <!-- Selection -->
       <gmf-selection-button slot="tool-button"></gmf-selection-button>
-      <div slot="tool-panel-query"  class="row">
+      <div slot="tool-panel-query"  class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Selection' | translate }}
           </div>
-          <ngeo-query-panel></ngeo-query-panel>
+          <ngeo-query-panel></ngeo-query-panel class="pointer-events-auto">
         </div>
       </div>
 
       <!-- Import Layer -->
       <gmf-import-button slot="tool-button"></gmf-import-button>
-      <div slot="tool-panel-import" class="row">
+      <div slot="tool-panel-import" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Import Layer' | translate }}
           </div>
-          <gmf-importdatasource map="mainCtrl.map">
+          <gmf-importdatasource map="mainCtrl.map" class="pointer-events-auto">
           </gmf-importdatasource>
         </div>
       </div>
 
       <!-- Routing -->
       <gmf-routing-button slot="tool-button"></gmf-routing-button>
-      <div slot="tool-panel-routing" class="row">
+      <div slot="tool-panel-routing" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Routing' | translate }}
           </div>
           <ngeo-routing
-            ngeo-routing-map="mainCtrl.map">
+            ngeo-routing-map="mainCtrl.map" class="pointer-events-auto">
           </ngeo-routing>
         </div>
       </div>
