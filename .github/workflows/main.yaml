@@ -13,6 +13,8 @@ env:
   # The release branches
   HELM_RELEASE_NAMES: prod-2-7
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+  SENTRY_PROJECT: geomapfish-demo
+  SENTRY_ENVIRONMENT: prod-2-7
 
 jobs:
   main:
@@ -48,3 +50,12 @@ jobs:
       - name: Publish
         run: c2cciutils-publish
       - run: ci/trigger
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: camptocamp
+          SENTRY_PROJECT: ${{ env.SENTRY_PROJECT }}
+        with:
+          environment: ${{ env.SENTRY_ENVIRONMENT }}
