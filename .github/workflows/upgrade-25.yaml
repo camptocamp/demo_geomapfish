@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: 'prod-2-5'
-          token: ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}
+          token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
 
       - name: Update the demo
         run: scripts/upgrade ${{ github.event.client_payload.version }} origin
@@ -40,7 +40,7 @@ jobs:
               },
               headers={
                   "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}",
+                  "Authorization": "Bearer ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}",
                   "Content-Type": "application/json",
               },
           )

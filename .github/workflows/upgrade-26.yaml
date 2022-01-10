@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ matrix.branch }}
-          token: ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}
+          token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
 
       - name: Update the demo
         run: >
@@ -48,7 +48,7 @@ jobs:
               },
               headers={
                   "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}",
+                  "Authorization": "Bearer ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}",
                   "Content-Type": "application/json",
               },
           )
