@@ -76,9 +76,6 @@ vars:
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           attachStacktrace: True
           autoSessionTracking: True
-          whitelistUrls:
-            - .*\.camptocamp\.com.*
-            - https://camptocamp\.github\.io/ngeo/.*
           tags:
             service: js
             interface: desktop
