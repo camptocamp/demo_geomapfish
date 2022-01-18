@@ -38,7 +38,8 @@ services:
       - config:ro
     environment:
       - AZURE_STORAGE_CONNECTION_STRING
-      - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver/
+      - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver
+      - QGIS_SERVER_LANDING_PAGE_PREFIX=/mapserv_proxy/qgis
       # Or
       # - QGIS_SERVER_LANDING_PAGE_PROJECTS_PG_CONNECTIONS=...
 
