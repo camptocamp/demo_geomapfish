@@ -21,7 +21,7 @@ requests = "==2.27.1"
 psycopg2 = "==2.9.3"
 
 [dev-packages]
-prospector = {version = "==1.5.3.1", extras = ["with_bandit"]}
+prospector = {version = "==1.6.0", extras = ["with_bandit"]}
 flake8 = "==3.9.2"
 
 [requires]
