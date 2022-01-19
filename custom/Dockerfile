@@ -6,8 +6,10 @@ LABEL maintainer Camptocamp "info@camptocamp.com"
 # Print commands and their arguments as they are executed.
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
+# SETUPTOOLS_USE_DISTUTILS: Workaround for setuptools >= 60.0.0
 ENV DEBIAN_FRONTEND=noninteractive \
-    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+    SETUPTOOLS_USE_DISTUTILS=stdlib
 
 # hadolint ignore=SC1091
 RUN apt-get update && \
@@ -54,7 +56,7 @@ COPY . ./
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
     python3 -m compileall -q /app/custom
 
-CMD [ "/usr/local/bin/gunicorn", "--paste", "production.ini" ]
+CMD [ "/usr/local/bin/gunicorn", "--paste=production.ini" ]
 
 ARG GIT_HASH
 ENV GIT_HASH=${GIT_HASH}

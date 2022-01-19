@@ -72,9 +72,8 @@ services:
 
   custom:
     command:
-      - /usr/local/bin/gunicorn
+      - /usr/local/bin/pserve
       - --reload
-      - --paste
       - development.ini
     volumes:
       - ./custom/custom:/app/custom
