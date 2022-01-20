@@ -59,3 +59,4 @@ jobs:
           SENTRY_PROJECT: ${{ env.SENTRY_PROJECT }}
         with:
           environment: ${{ env.SENTRY_ENVIRONMENT }}
+        if: github.ref == 'refs/heads/prod-2-7'
