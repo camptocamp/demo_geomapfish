@@ -201,7 +201,7 @@
         </div>
       </div>
       <gmf-lidarprofile
-        slot="footer-profileresult"
+        slot="footer-lidarresult"
         gmf-lidarprofile-active="lidarProfileChartActive"
         gmf-lidarprofile-line="mainCtrl.lidarProfileLine"
         ngeo-resizemap="mainCtrl.map"
@@ -344,8 +344,7 @@
         slot="map"
         class="gmf-map"
         gmf-map-map="mainCtrl.map"
-        gmf-map-manage-resize="mainCtrl.manageResize"
-        gmf-map-resize-transition="mainCtrl.resizeTransition">
+        gmf-file-drop-zone>
       </gmf-map>
       <ngeo-query
         slot="map"
