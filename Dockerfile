@@ -60,7 +60,6 @@ RUN \
         /etc/qgisserver \
         /etc/tilegeneration \
         /usr/local/tomcat/webapps/ROOT/print-apps \
-        /etc/gunicorn \
         /etc/haproxy_dev \
         /etc/haproxy && \
     adduser www-data root && \
@@ -73,7 +72,6 @@ VOLUME /etc/geomapfish \
     /etc/qgisserver \
     /etc/tilegeneration \
     /usr/local/tomcat/webapps/ROOT/print-apps \
-    /etc/gunicorn \
     /etc/haproxy_dev \
     /etc/haproxy
 

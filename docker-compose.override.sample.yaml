@@ -7,7 +7,7 @@ version: '2.3'
 services:
   # config:
   #   volumes:
-  #       # www-data should be avle to vrite in  qgisserver
+  #       # www-data should be able to write in qgisserver
   #     - './qgisserver:/etc/qgisserver/'
 
   geoportal:
@@ -24,9 +24,14 @@ services:
       # - ./../c2cwsgiutils/c2cwsgiutils:/opt/c2cwsgiutils/c2cwsgiutils
       # - ./../dogpile.cache/dogpile:/usr/local/lib/python3.7/dist-packages/dogpile
       # - ./../c2c.template/c2c/template:/usr/local/lib/python3.7/dist-packages/c2c/template
+    command:
+      - /usr/local/bin/pserve
+      - --reload
+      - c2c:///app/development.ini
     environment:
-      - GUNICORN_CMD_ARGS=--reload
-      - C2CWSGIUTILS_CONFIG=/app/development.ini
+      - DEVELOPMENT=1
+      - C2C_SQL_PROFILER_ENABLED=1
+      - C2C_DEBUG_VIEW_ENABLED=1
       - C2CGEOPORTAL_LOG_LEVEL=DEBUG
       # - PRINT_URL=http://print:8080/print/
       - PYTHONWARNINGS=default::DeprecationWarning
