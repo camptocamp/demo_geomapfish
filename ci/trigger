@@ -102,25 +102,19 @@ def main():
                 ]
             )
 
-    for image in images_full:
-        print(
-            subprocess.run(["gopass", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE)
+    response = requests.post(
+        "https://api.github.com/repos/camptocamp/argocd-gs-platform-ch-development-apps/dispatches",
+        headers={
+            "Content-Type": "application/json2",
+            "Accept": "application/vnd.github.v3+json",
+            "Authorization": "token "
+            + subprocess.run(["gopass", "show", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE)
             .stdout.decode()
-            .strip()
-        )
-        responce = requests.post(
-            "https://api.github.com/repos/camptocamp/argocd-gs-platform-ch-development-apps/dispatches",
-            headers={
-                "Content-Type": "application/json2",
-                "Accept": "application/vnd.github.v3+json",
-                "Authorization": "token "
-                + subprocess.run(["gopass", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE)
-                .stdout.decode()
-                .strip(),
-            },
-            json={"event_type": "image-update", "client_payload": {"name": f"{image}:{version}"}},
-        )
-        responce.raise_for_status()
+            .strip(),
+        },
+        json={"event_type": "image-update", "client_payload": {"name": " ".join([f"{image}:{version}" for image in images_full])}},
+    )
+    response.raise_for_status()
 
 
 if __name__ == "__main__":
