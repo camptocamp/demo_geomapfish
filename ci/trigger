@@ -108,11 +108,16 @@ def main():
             "Content-Type": "application/json2",
             "Accept": "application/vnd.github.v3+json",
             "Authorization": "token "
-            + subprocess.run(["gopass", "show", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE)
+            + subprocess.run(
+                ["gopass", "show", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE
+            )
             .stdout.decode()
             .strip(),
         },
-        json={"event_type": "image-update", "client_payload": {"name": " ".join([f"{image}:{version}" for image in images_full])}},
+        json={
+            "event_type": "image-update",
+            "client_payload": {"name": " ".join([f"{image}:{version}" for image in images_full])},
+        },
     )
     response.raise_for_status()
 
