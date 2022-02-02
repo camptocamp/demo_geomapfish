@@ -103,9 +103,11 @@ def main():
             )
 
     for image in images_full:
-        print(subprocess.run(["gopass", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE)
-                .stdout.decode()
-                .strip())
+        print(
+            subprocess.run(["gopass", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE)
+            .stdout.decode()
+            .strip()
+        )
         responce = requests.post(
             "https://api.github.com/repos/camptocamp/argocd-gs-platform-ch-development-apps/dispatches",
             headers={
