@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import argparse
-import json
 import os.path
 import subprocess
 import sys
@@ -104,6 +103,9 @@ def main():
             )
 
     for image in images_full:
+        print(subprocess.run(["gopass", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE)
+                .stdout.decode()
+                .strip())
         responce = requests.post(
             "https://api.github.com/repos/camptocamp/argocd-gs-platform-ch-development-apps/dispatches",
             headers={
@@ -114,7 +116,7 @@ def main():
                 .stdout.decode()
                 .strip(),
             },
-            data=json.dumps({"event_type": "image-update", "client_payload": {"name": f"{image}:{version}"}}),
+            json={"event_type": "image-update", "client_payload": {"name": f"{image}:{version}"}},
         )
         responce.raise_for_status()
 
