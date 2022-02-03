@@ -5,8 +5,8 @@ import os.path
 import subprocess
 import sys
 
-import requests
 import yaml
+from yaml.loader import Loader
 
 
 def main():
@@ -72,11 +72,9 @@ def main():
                 docker_base = env.split("=")[1]
 
     images = []
-    images_full = []
     with open("ci/config.yaml", encoding="utf-8") as config_file:
         ci_config = yaml.load(config_file, Loader=yaml.SafeLoader)
         for image_config in ci_config.get("publish", {}).get("docker", {}).get("images", []):
-            images_full.append(image_config["name"])
             if image_config["name"].startswith(f"{docker_base}-"):
                 images.append(image_config["name"][len(docker_base) + 1 :])
 
@@ -101,25 +99,6 @@ def main():
                     "--namespace=" + os.environ["OPENSHIFT_PROJECT"],
                 ]
             )
-
-    response = requests.post(
-        "https://api.github.com/repos/camptocamp/argocd-gs-platform-ch-development-apps/dispatches",
-        headers={
-            "Content-Type": "application/json2",
-            "Accept": "application/vnd.github.v3+json",
-            "Authorization": "token "
-            + subprocess.run(
-                ["gopass", "show", "gs/ci/github/token/gopass"], check=True, stdout=subprocess.PIPE
-            )
-            .stdout.decode()
-            .strip(),
-        },
-        json={
-            "event_type": "image-update",
-            "client_payload": {"name": " ".join([f"{image}:{version}" for image in images_full])},
-        },
-    )
-    response.raise_for_status()
 
 
 if __name__ == "__main__":
