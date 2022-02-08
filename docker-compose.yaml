@@ -126,11 +126,11 @@ services:
       args:
         GIT_HASH: ${GIT_HASH}
     environment:
-      - GUNICORN_CMD_ARGS
       - VISIBLE_WEB_HOST
       - GEOPORTAL_INTERNAL_URL
       - PGSCHEMA
       - SQLALCHEMY_URL
+      - SQLALCHEMY_SLAVE_URL=${SQLALCHEMY_URL}
 
   front:
     extends:

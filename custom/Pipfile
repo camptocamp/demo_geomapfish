@@ -19,6 +19,7 @@ transaction = "==3.0.1"
 cornice = "==6.0.1"
 requests = "==2.27.1"
 psycopg2 = "==2.9.3"
+c2cwsgiutils = {extras = ["standard", "broadcast"], version = "==5.0.0"}
 
 [dev-packages]
 prospector = {version = "==1.6.0", extras = ["with_bandit"]}
