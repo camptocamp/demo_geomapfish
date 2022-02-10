@@ -1,6 +1,7 @@
-from pyramid.config import Configurator
-import c2cwsgiutils.health_check
 import c2cwsgiutils.db
+import c2cwsgiutils.health_check
+from pyramid.config import Configurator
+
 
 def main(global_config, **settings):
     """This function returns a Pyramid WSGI application."""
