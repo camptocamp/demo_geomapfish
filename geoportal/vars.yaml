@@ -457,6 +457,9 @@ vars:
   urllogin:
     aes_key: foobarfoobar1234
 
+  servers:
+    wmts: '{WMTS_URL}'
+
   admin_interface:
     # Default values for the admin interface's maps.
     map: &map_config
@@ -736,6 +739,9 @@ vars:
     login: *auth_header
 
   authorized_referers:
+    - https://geomapfish-demo-2-7.apps.gs-ch-dev.camptocamp.com
+    - https://geomapfish-demo-2-7.apps.blue.gs-ch-dev.camptocamp.com
+    - https://geomapfish-demo-2-7.apps.green.gs-ch-dev.camptocamp.com
     - https://camptocamp.github.io
     - https://fredj.github.io
     - https://ger-benjamin.github.io
@@ -890,6 +896,8 @@ runtime_environment:
   - name: AWS_DEFAULT_REGION
     default: xxx
   - name: AWS_S3_ENDPOINT
+    default: xxx
+  - name: WMTS_URL
     default: xxx
 
 environment:
