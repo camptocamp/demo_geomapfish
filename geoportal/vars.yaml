@@ -606,6 +606,12 @@ vars:
     # Used to send a confirmation email
     email_from: info@camptocamp.com
     email_subject: Geoportal URL
+    # Email template, can contain:
+    # - {full_url}
+    # - {short_url}
+    # - {message}
+    # - {application_url}
+    # - {current_url}
     email_body: |
       Hello,
       Somebody sent you the following link:
@@ -630,6 +636,11 @@ vars:
     # Used to send a confirmation email
     email_from: info@camptocamp.com
     email_subject: New password generated for GeoMapFish
+    # Email template, can contain:
+    # - {user}
+    # - {password}
+    # - {application_url}
+    # - {current_url}
     email_body: |
       Hello {user},
       You have asked for an new password,
@@ -640,10 +651,15 @@ vars:
     # Used to send a welcome email for new user
     email_from: info@camptocamp.com
     email_subject: Welcome to GeoMapFish
+    # Email template, can contain:
+    # - {user}
+    # - {password}
+    # - {application_url}
+    # - {current_url}
     email_body: |
       Hello {user},
 
-      You have a new account on GeoMapFish: https://geomapfish-demo-2-7.camptocamp.com
+      You have a new account on GeoMapFish: {application_url}
       Your user name is: {user}
       Your password is: {password}
       Sincerely yours
