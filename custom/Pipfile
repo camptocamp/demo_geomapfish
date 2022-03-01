@@ -23,7 +23,7 @@ c2cwsgiutils = {extras = ["standard", "broadcast"], version = "==5.0.0"}
 
 [dev-packages]
 prospector = {version = "==1.7.2", extras = ["with_bandit"]}
-flake8 = "==3.9.2"
+flake8 = "==4.0.1"
 
 [requires]
 python_version = "3.8"
