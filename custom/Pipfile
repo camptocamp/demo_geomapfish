@@ -22,7 +22,7 @@ psycopg2 = "==2.9.3"
 c2cwsgiutils = {extras = ["standard", "broadcast"], version = "==5.0.0"}
 
 [dev-packages]
-prospector = {version = "==1.7.5", extras = ["with_bandit"]}
+prospector = {version = "==1.7.6", extras = ["with_bandit"]}
 flake8 = "==4.0.1"
 
 [requires]
