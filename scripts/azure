@@ -57,7 +57,7 @@ def main():
             for c in container_client.list_blobs():
                 src = c["name"]
                 if src.startswith(src_path):
-                    dest = os.path.join(args.sync_download[1], src[len(src_path):])
+                    dest = os.path.join(args.sync_download[1], src[len(src_path) :])
                     print(f"{src} -> {dest}")
                     os.makedirs(os.path.dirname(dest), exist_ok=True)
                     with open(dest, "wb") as data:
