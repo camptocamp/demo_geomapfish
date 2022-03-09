@@ -29,3 +29,7 @@ secrets:
 		--output secrets.tar.bz2 secrets.tar.bz2.gpg
 	tar --touch -jxf secrets.tar.bz2
 	rm secrets.tar.bz2
+
+.PHONY: qgis
+qgis: ## Run QGIS desktop
+	docker-compose -f docker-compose.yaml -f docker-compose-qgis.yaml run --rm qgis
