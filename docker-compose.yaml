@@ -13,6 +13,12 @@ services:
       service: config
     environment:
       - OSM_PGDATABASE
+      - OSM_PGPGHOST
+      - OSM_PGPGHOST_SLAVE
+      - OSM_PGPOST
+      - OSM_PGPOST_SLAVE
+      - OSM_PGPASSWORD
+      - OSM_PGUSER
       - RASTER_BASE_PATH
       - AZURE_STORAGE_CONNECTION_STRING
 
@@ -104,6 +110,12 @@ services:
     environment:
       - PGSCHEMA
       - OSM_PGDATABASE
+      - OSM_PGPGHOST
+      - OSM_PGPGHOST_SLAVE
+      - OSM_PGPOST
+      - OSM_PGPOST_SLAVE
+      - OSM_PGPASSWORD
+      - OSM_PGUSER
       - RASTER_BASE_PATH
       - SMTP_USER
       - SMTP_PASSWORD
@@ -146,6 +158,12 @@ services:
       service: tools
     environment:
       - OSM_PGDATABASE
+      - OSM_PGPGHOST
+      - OSM_PGPGHOST_SLAVE
+      - OSM_PGPOST
+      - OSM_PGPOST_SLAVE
+      - OSM_PGPASSWORD
+      - OSM_PGUSER
   # db:
   #   extends:
   #     file: docker-compose-lib.yaml
