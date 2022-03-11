@@ -457,9 +457,6 @@ vars:
   urllogin:
     aes_key: foobarfoobar1234
 
-  servers:
-    wmts: '{WMTS_URL}'
-
   admin_interface:
     # Default values for the admin interface's maps.
     map: &map_config
@@ -564,7 +561,7 @@ vars:
 
   dbsessions:
     osm:
-      url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{OSM_PGDATABASE}
+      url: postgresql://{OSM_PGUSER}:{OSM_PGPASSWORD}@{OSM_PGHOST}:{OSM_PGPORT}/{OSM_PGDATABASE}
 
   layers:
     geometry_validation: True
@@ -897,8 +894,6 @@ runtime_environment:
   - name: AWS_DEFAULT_REGION
     default: xxx
   - name: AWS_S3_ENDPOINT
-    default: xxx
-  - name: WMTS_URL
     default: xxx
 
 environment:
