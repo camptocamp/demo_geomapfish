@@ -883,6 +883,14 @@ runtime_environment:
     default: pass
   - name: OSM_PGDATABASE
     default: osm
+  - name: OSM_PGHOST
+    default: osm
+  - name: OSM_PGPORT
+    default: osm
+  - name: OSM_PGUSER
+    default: osm
+  - name: OSM_PGPASSWORD
+    default: osm
   - name: TILEGENERATION_S3_BUCKET
     default: camptocamp-gmf-demo-tiles
   - name: RASTER_BASE_PATH
