@@ -36,11 +36,11 @@ import gmfControllersAbstractDesktopController, {
 import geomapfishBase from '../geomapfishmodule';
 import gmfImportModule from 'gmf/import/module';
 import gmfFloorModule from 'gmf/floor/module';
-import gmfLidarprofileModule from 'gmf/lidarprofile/module';
 import ngeoMiscToolActivate from 'ngeo/misc/ToolActivate';
 import ngeoStreetviewModule from 'ngeo/streetview/module';
 import ngeoRoutingModule from 'ngeo/routing/module';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink';
+import panels from 'gmfapi/store/panels';
 
 /**
  * @private
@@ -65,6 +65,15 @@ class Controller extends AbstractDesktopController {
 
     const drawLidarprofilePanelActive = new ngeoMiscToolActivate(this, 'drawLidarprofilePanelActive');
     this.ngeoToolActivateMgr.registerTool('mapTools', drawLidarprofilePanelActive, false);
+    const $timeout = $injector.get('$timeout');
+
+    panels.getActiveToolPanel().subscribe({
+      next: (panel) => {
+        this.drawLidarprofilePanelActive = panel === 'lidar';
+
+        $timeout(() => {}); // this triggered on DOM click, we call $timeout to force Angular diggest
+      },
+    });
   }
 
   /**
@@ -81,7 +90,6 @@ const geomapfishModule = angular.module('Appdesktop_alt', [
   gmfControllersAbstractDesktopController.name,
   gmfImportModule.name,
   gmfFloorModule.name,
-  gmfLidarprofileModule.name,
   ngeoRoutingModule.name,
   ngeoStreetviewModule.name,
   ngeoStatemanagerWfsPermalink.name,
