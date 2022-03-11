@@ -886,7 +886,7 @@ runtime_environment:
   - name: OSM_PGHOST
     default: osm
   - name: OSM_PGPORT
-    default: osm
+    default: '5432'
   - name: OSM_PGUSER
     default: osm
   - name: OSM_PGPASSWORD
