@@ -24,6 +24,7 @@ jobs:
         branch:
           - prod-2-7
           - prod-2-7-advance
+          - prod-2-8
 
     steps:
       - uses: actions/checkout@v2
