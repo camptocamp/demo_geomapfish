@@ -443,6 +443,10 @@ Redis
 
 - Redis can be used in a scalable architecture (with sentinel), this is disabled by default.
 
+Environment
+-----------
+
+C2C_SECRET: Default value "c2crulez" has been removed for evident security reason.
 
 Changes to apply
 ================
@@ -451,7 +455,7 @@ Changes to apply
    interfaces_config. To ease future migration, you should remove any existing custom JavaScript code which is
    setting such variables.
    There is some new documentation about the constants in ngeo
-   https://camptocamp.github.io/ngeo/2.7/apidoc/index.html.
+   https://camptocamp.github.io/ngeo/2.8/apidoc/index.html.
 
 
 =============
@@ -741,7 +745,7 @@ Information
 
 1. Basic authentication is disabled by default from this version onward.
    To enable basic auth see:
-   https://camptocamp.github.io/c2cgeoportal/2.7/integrator/security.html#basic-auth
+   https://camptocamp.github.io/c2cgeoportal/2.8/integrator/security.html#basic-auth
 
 2. We change the secret name from `GITHUB_GOPASS_CI_TOKEN` to `GOPASS_CI_GITHUB_TOKEN` because we can't
    anymore create create secret started with `GITHUB_`.
@@ -756,7 +760,7 @@ Changes to apply
 
 1. Now we need to have PyYAML python package installed in the home,
    see the documentation for more information:
-   https://camptocamp.github.io/c2cgeoportal/2.7/integrator/requirements.html
+   https://camptocamp.github.io/c2cgeoportal/2.8/integrator/requirements.html
 
 2. The configuration vars `vars/functionalities/anonymous` and `vars/functionalities/registered` should
    be moved to the new roles `anonymous` and `registered` that will be created once the database has been upgraded.
@@ -773,7 +777,7 @@ Changes to apply
    `request.static_url('/etc/geomapfish/static/`.
 
 6. Optional, change your mapfiles according the documentation:
-   https://camptocamp.github.io/c2cgeoportal/2.7/administrator/mapfile.html
+   https://camptocamp.github.io/c2cgeoportal/2.8/administrator/mapfile.html
 
 
 Version 2.4.2
