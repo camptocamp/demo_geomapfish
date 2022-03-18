@@ -11,10 +11,10 @@ env:
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
   OPENSHIFT_PROJECT: gs-gmf-demo
   # The release branches
-  HELM_RELEASE_NAMES: prod-2-7
+  HELM_RELEASE_NAMES: prod-2-8
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
   SENTRY_PROJECT: geomapfish-demo
-  SENTRY_ENVIRONMENT: prod-2-7
+  SENTRY_ENVIRONMENT: prod-2-8
 
 jobs:
   main:
@@ -49,7 +49,7 @@ jobs:
 
       - name: Publish
         run: c2cciutils-publish
-      - run: ci/trigger
+      - run: c2cciutils-trigger-image-update
 
       - name: Create Sentry release
         uses: getsentry/action-release@v1
@@ -59,4 +59,4 @@ jobs:
           SENTRY_PROJECT: ${{ env.SENTRY_PROJECT }}
         with:
           environment: ${{ env.SENTRY_ENVIRONMENT }}
-        if: github.ref == 'refs/heads/prod-2-7'
+        if: github.ref == 'refs/heads/prod-2-8'
