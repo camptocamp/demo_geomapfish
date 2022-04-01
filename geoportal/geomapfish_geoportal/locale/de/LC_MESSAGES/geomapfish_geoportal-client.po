@@ -75,12 +75,11 @@ msgid "Desktop Application"
 msgstr "Desktop Applikation"
 
 msgid ""
-"Draw a line on the map to display the corresponding elevation profile.\n"
-"                    Use double-click to finish the drawing."
+"Draw a line on the map to display the corresponding elevation profile. Use "
+"double-click to finish the drawing."
 msgstr ""
 "Zeichnen Sie eine Linie auf der Karte um das entsprechende Höhenprofil an zu "
-"zeigen.\n"
-"Benutzen Sie Doppelklick um die Linie fertig zu zeichnen."
+"zeigen. Benutzen Sie Doppelklick um die Linie fertig zu zeichnen."
 
 msgid "Draw and Measure"
 msgstr "Zeichnen und messen"
@@ -205,6 +204,10 @@ msgstr "OSM Funktion"
 msgid "OSM functions mixed"
 msgstr "Gemischte OSM Funktionen"
 
+#, fuzzy
+msgid "OSM functions mixed test"
+msgstr "Gemischte OSM Funktionen"
+
 msgid "OSM map"
 msgstr "OSM Karte"
 
@@ -246,6 +249,9 @@ msgstr "QGIS server ohne WFS"
 
 msgid "Query"
 msgstr "Abfrage"
+
+msgid "SRTM"
+msgstr ""
 
 msgid "Selection"
 msgstr "Selektion"
