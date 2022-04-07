@@ -310,6 +310,11 @@ vars:
         gmfShareOptions:
           enableEmail: False
         pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
+      routes:
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: QGIS server
 
     mobile:
       constants:
