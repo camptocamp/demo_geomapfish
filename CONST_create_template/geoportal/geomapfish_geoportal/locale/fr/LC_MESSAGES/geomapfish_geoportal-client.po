@@ -1,11 +1,12 @@
 #
 # Translators:
 # Camptocamp geospatial <geospatial-bot@camptocamp.com>, 2021
+# Laurent Lienher <laurent.lienher@camptocamp.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Camptocamp geospatial <geospatial-bot@camptocamp.com>, 2021\n"
+"Last-Translator: Laurent Lienher <laurent.lienher@camptocamp.com>, 2022\n"
 "Language-Team: French (https://www.transifex.com/camptocamp/teams/36764/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,7 +15,7 @@ msgstr ""
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:4
 msgid "Alternative Desktop Application"
-msgstr ""
+msgstr "Application bureau alternative"
 
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:4
 msgid "Alternative Mobile Application"
@@ -70,6 +71,8 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                Use double-click to finish the drawing."
 msgstr ""
+"Dessine une ligne sur la carte pour afficher le profile d'altitude correspondant.\n"
+"                Double cliquer pour terminer la saisie."
 
 #: contribs/gmf/apps/desktop/index.html.ejs:133
 #: contribs/gmf/apps/desktop/index.html.ejs:66
@@ -102,7 +105,7 @@ msgstr "Altitude (SRTM)"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:149
 msgid "Elevation profile"
-msgstr ""
+msgstr "Profile d'altitude"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:146
 #: contribs/gmf/apps/desktop/index.html.ejs:70

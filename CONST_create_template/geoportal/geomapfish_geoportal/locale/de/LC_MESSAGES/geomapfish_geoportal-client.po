@@ -1,11 +1,12 @@
 #
 # Translators:
 # Camptocamp geospatial <geospatial-bot@camptocamp.com>, 2021
+# Wolfgang Kaltz <wolfgang.kaltz@camptocamp.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Camptocamp geospatial <geospatial-bot@camptocamp.com>, 2021\n"
+"Last-Translator: Wolfgang Kaltz <wolfgang.kaltz@camptocamp.com>, 2022\n"
 "Language-Team: German (https://www.transifex.com/camptocamp/teams/36764/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,77 +15,81 @@ msgstr ""
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:4
 msgid "Alternative Desktop Application"
-msgstr ""
+msgstr "Alternative Desktop-Anwendung"
 
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:4
 msgid "Alternative Mobile Application"
-msgstr ""
+msgstr "Alternative Mobile-Anwendung"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:179
 msgid "Area"
-msgstr ""
+msgstr "Fläche"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:105
 #: contribs/gmf/apps/mobile/index.html.ejs:141
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:135
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:99
 msgid "Back"
-msgstr ""
+msgstr "Zurück"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:112
 #: contribs/gmf/apps/mobile/index.html.ejs:126
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:106
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:120
 msgid "Background"
-msgstr ""
+msgstr "Hintergrund"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:96
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:90
 msgid "Close"
-msgstr ""
+msgstr "Schliessen"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:161
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:155
 msgid "Coordinate"
-msgstr ""
+msgstr "Koordinate"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:106
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:100
 msgid "Data"
-msgstr ""
+msgstr "Daten"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:4
 msgid "Desktop Application"
-msgstr ""
+msgstr "Desktop-Anwendung"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:194
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
+"Zeichnen Sie eine Linie auf die Karte, um das entsprechende Höhenprofil "
+"anzuzeigen. Schliessen Sie mit einem Doppelklick ab."
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:163
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                Use double-click to finish the drawing."
 msgstr ""
+"Zeichnen Sie eine Linie auf die Karte, um das entsprechende Höhenprofil "
+"anzuzeigen. Schliessen Sie mit einem Doppelklick ab."
 
 #: contribs/gmf/apps/desktop/index.html.ejs:133
 #: contribs/gmf/apps/desktop/index.html.ejs:66
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:89
 msgid "Draw and Measure"
-msgstr ""
+msgstr "Zeichnen und messen"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:187
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:156
 msgid "Draw profile line"
-msgstr ""
+msgstr "Profil-Linie zeichnen"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:160
 #: contribs/gmf/apps/desktop/index.html.ejs:76
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:128
 msgid "Editing"
-msgstr ""
+msgstr "Editieren"
 
 #: contribs/gmf/apps/desktop/contextualdata.html:23
 #: contribs/gmf/apps/iframe_api/contextualdata.html:23
@@ -100,44 +105,44 @@ msgstr "Höhe (SRTM)"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:149
 msgid "Elevation profile"
-msgstr ""
+msgstr "Höhenprofil"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:146
 #: contribs/gmf/apps/desktop/index.html.ejs:70
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:102
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:112
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:191
 msgid "Google Street View"
-msgstr ""
+msgstr "Google Street View"
 
 #: contribs/gmf/apps/iframe_api/index.html.ejs:4
 msgid "Iframe API Application"
-msgstr ""
+msgstr "Iframe-API-Anwendung"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:214
 #: contribs/gmf/apps/desktop/index.html.ejs:92
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:236
 msgid "Import Layer"
-msgstr ""
+msgstr "Ebene importieren"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:165
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:132
 msgid "In order to use the editing tool, you must log in first."
-msgstr ""
+msgstr "Sie müssen angemeldet sein, um das Editier-Werkzeug zu verwenden."
 
 #: contribs/gmf/apps/mobile/index.html.ejs:170
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:164
 msgid "Length"
-msgstr ""
+msgstr "Länge"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:34
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:36
 #: contribs/gmf/apps/oeedit/index.html.ejs:26
 msgid "Loading..."
-msgstr ""
+msgstr "Laden..."
 
 #: contribs/gmf/apps/desktop/index.html.ejs:58
 #: contribs/gmf/apps/mobile/index.html.ejs:149
@@ -145,62 +150,62 @@ msgstr ""
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:143
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:172
 msgid "Login"
-msgstr ""
+msgstr "Anmelden"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:208
 msgid "Mapillary Street View"
-msgstr ""
+msgstr "Mapillary Street View"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:148
 #: contribs/gmf/apps/mobile/index.html.ejs:153
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:142
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:147
 msgid "Measure tools"
-msgstr ""
+msgstr "Messwerkzeuge"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:4
 msgid "Mobile Application"
-msgstr ""
+msgstr "Mobile Anwendung"
 
 #: contribs/gmf/apps/oeedit/index.html.ejs:54
 #: contribs/gmf/apps/oeedit/index.html.ejs:72
 msgid "Object Editing"
-msgstr ""
+msgstr "Objektbasierte Editierung"
 
 #: contribs/gmf/apps/oeedit/index.html.ejs:4
 msgid "ObjectEditing - Edit Application"
-msgstr ""
+msgstr "Objektbasierte Editierung - Bearbeitung"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:121
 #: contribs/gmf/apps/desktop/index.html.ejs:62
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:65
 msgid "Print"
-msgstr ""
+msgstr "Drucken"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:179
 #: contribs/gmf/apps/desktop/index.html.ejs:81
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: contribs/gmf/apps/oeedit/index.html.ejs:50
 #: contribs/gmf/apps/oeedit/index.html.ejs:63
 msgid "Query"
-msgstr ""
+msgstr "Abfrage"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:248
 msgid "Routing"
-msgstr ""
+msgstr "Routing"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:205
 #: contribs/gmf/apps/desktop/index.html.ejs:85
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:225
 msgid "Selection"
-msgstr ""
+msgstr "Auswahl"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:98
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:258
 msgid "Share this map"
-msgstr ""
+msgstr "Diese Karte teilen"
 
 #: contribs/gmf/apps/desktop/contextualdata.html:7
 #: contribs/gmf/apps/iframe_api/contextualdata.html:7
@@ -212,13 +217,13 @@ msgstr "Swiss Grid (LV03)"
 #: contribs/gmf/apps/iframe_api/contextualdata.html:3
 #: contribs/gmf/apps/oeedit/contextualdata.html:3
 msgid "Swiss grid (LV95)"
-msgstr ""
+msgstr "Swiss Grid (LV95)"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:33
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:35
 #: contribs/gmf/apps/oeedit/index.html.ejs:25
 msgid "Theme:"
-msgstr ""
+msgstr "Thema:"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:38
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:40
@@ -228,12 +233,12 @@ msgstr ""
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:127
 #: contribs/gmf/apps/oeedit/index.html.ejs:30
 msgid "Themes"
-msgstr ""
+msgstr "Themen"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:142
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:136
 msgid "Tools"
-msgstr ""
+msgstr "Werkzeuge"
 
 #: contribs/gmf/apps/desktop/contextualdata.html:11
 #: contribs/gmf/apps/iframe_api/contextualdata.html:11
@@ -253,7 +258,9 @@ msgid ""
 "You're using the mobile application. Check out the <a "
 "href=\"{{url}}\">standard application</a>."
 msgstr ""
+"Sie verwenden die mobile Anwendung. Wechsel zur <a "
+"href=\"{{url}}\">Standard-Anwendung.</a>"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:76
 msgid "debug"
-msgstr ""
+msgstr "debug"
