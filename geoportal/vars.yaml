@@ -141,6 +141,7 @@ vars:
         #   - https://localhost:3001/webcomponents/index.ts
 
         sitnFeedbackPath: custom/feedback
+        pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
 
       static:
         # Those two lines should be commented in dev mode.
@@ -311,7 +312,6 @@ vars:
           isExpanded: False
         gmfShareOptions:
           enableEmail: False
-        pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
 
     mobile:
       constants:
