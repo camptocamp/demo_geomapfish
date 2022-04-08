@@ -2,6 +2,8 @@
 extends: CONST_vars.yaml
 
 vars:
+  main_ogc_server: QGIS server
+
   srid: &srid 2056
 
   alternate_projections: &alternate_projections
@@ -310,11 +312,6 @@ vars:
         gmfShareOptions:
           enableEmail: False
         pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
-      routes:
-        ngeoPermalinkOgcserverUrl:
-          name: mapserverproxy
-          params:
-            ogcserver: QGIS server
 
     mobile:
       constants:
@@ -419,11 +416,6 @@ vars:
           zoom: 8
           autoRotate: True
           atLoadingTime: True
-      routes:
-        ngeoPermalinkOgcserverUrl:
-          name: mapserverproxy
-          params:
-            ogcserver: QGIS server
 
     api:
       constants:
