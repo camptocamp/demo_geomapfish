@@ -12,7 +12,7 @@
     </style>
     ${header |n}
   </head>
-  <body ng-keydown="mainCtrl.onKeydown($event)">
+  <body ng-keydown="mainCtrl.onKeydown($event)" tabindex="0">
   <div ng-show="mainCtrl.loading" class="loading-mask">
     <i class="fa custom-spinner-loading fa-spin spinner-loading-mask">
       ${spinner |n}
