@@ -12,7 +12,7 @@
     <% } %>
     <link href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.cache_version %>/css/desktop_alt.css" rel="stylesheet" crossorigin="anonymous">
   </head>
-  <body ng-class="{'gmf-profile-chart-active': !!profileChartActive, 'gmf-lidarprofile-chart-active': !!lidarProfileChartActive, 'gmf-query-grid-active': !!mainCtrl.queryGridActive}" ng-keydown="mainCtrl.onKeydown($event)">
+  <body ng-class="{'gmf-profile-chart-active': !!profileChartActive, 'gmf-lidarprofile-chart-active': !!lidarProfileChartActive, 'gmf-query-grid-active': !!mainCtrl.queryGridActive}" ng-keydown="mainCtrl.onKeydown($event)" tabindex="0">
     <div ng-show="mainCtrl.loading" class="loading-mask">
       <i class="fa custom-spinner-loading fa-spin spinner-loading-mask">
         <%=require('gmf/icons/spinner.svg?viewbox&height=1em')%>
