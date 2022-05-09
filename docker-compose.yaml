@@ -13,10 +13,10 @@ services:
       service: config
     environment:
       - OSM_PGDATABASE
-      - OSM_PGPGHOST
-      - OSM_PGPGHOST_SLAVE
-      - OSM_PGPOST
-      - OSM_PGPOST_SLAVE
+      - OSM_PGHOST
+      - OSM_PGHOST_SLAVE
+      - OSM_PGPORT
+      - OSM_PGPORT_SLAVE
       - OSM_PGPASSWORD
       - OSM_PGUSER
       - RASTER_BASE_PATH
@@ -110,10 +110,10 @@ services:
     environment:
       - PGSCHEMA
       - OSM_PGDATABASE
-      - OSM_PGPGHOST
-      - OSM_PGPGHOST_SLAVE
-      - OSM_PGPOST
-      - OSM_PGPOST_SLAVE
+      - OSM_PGHOST
+      - OSM_PGHOST_SLAVE
+      - OSM_PGPORT
+      - OSM_PGPORT_SLAVE
       - OSM_PGPASSWORD
       - OSM_PGUSER
       - RASTER_BASE_PATH
@@ -164,10 +164,10 @@ services:
       service: tools
     environment:
       - OSM_PGDATABASE
-      - OSM_PGPGHOST
-      - OSM_PGPGHOST_SLAVE
-      - OSM_PGPOST
-      - OSM_PGPOST_SLAVE
+      - OSM_PGHOST
+      - OSM_PGHOST_SLAVE
+      - OSM_PGPORT
+      - OSM_PGPORT_SLAVE
       - OSM_PGPASSWORD
       - OSM_PGUSER
   # db:
