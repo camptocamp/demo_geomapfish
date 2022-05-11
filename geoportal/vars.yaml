@@ -2,17 +2,9 @@
 extends: CONST_vars.yaml
 
 vars:
+  main_ogc_server: QGIS server
+
   srid: &srid 2056
-  osm_db: '{OSM_PGDATABASE}'
-
-  tiles_s3_bucket: '{TILEGENERATION_S3_BUCKET}'
-  raster_base_path: '{RASTER_BASE_PATH}'
-  aws_access_key_id: '{AWS_ACCESS_KEY_ID}'
-  aws_secret_access_key: '{AWS_SECRET_ACCESS_KEY}'
-  aws_default_region: '{AWS_DEFAULT_REGION}'
-  aws_s3_endpoint: '{AWS_S3_ENDPOINT}'
-
-  main_ogc_server: Main PNG
 
   alternate_projections: &alternate_projections
     - EPSG:4326
@@ -35,6 +27,8 @@ vars:
     - name: mobile
     - name: iframe_api
     - name: desktop_alt
+      type: canvas
+      layout: desktop
     - name: mobile_alt
     - name: oeedit
 
@@ -84,9 +78,6 @@ vars:
           environment: '{SENTRY_CLIENT_ENVIRONMENT}'
           attachStacktrace: True
           autoSessionTracking: True
-          whitelistUrls:
-            - .*\.camptocamp\.com.*
-            - https://camptocamp\.github\.io/ngeo/.*
           tags:
             service: js
             interface: desktop
@@ -143,9 +134,24 @@ vars:
         gmfContextualDataOptions:
           projections: *alternate_projections
           rasterParams: {}
+
+        # For dev, the corresponding values in static should also be removed.
+        # gmfCustomJavascriptUrl:
+        #   - https://localhost:3001/@vite/client
+        #   - https://localhost:3001/webcomponents/index.ts
+
+        sitnFeedbackPath: custom/feedback
+
       static:
-        gmfHeaderEntrypointUrl:
-          name: /etc/geomapfish/static/header.html
+        # Those two lines should be commented in dev mode.
+        gmfCustomJavascriptUrl:
+          name: '/etc/geomapfish/static/custom/custom.es.js'
+        gmfCustomStylesheetUrl:
+          name: /etc/geomapfish/static/css/desktop_alt.css
+
+      routes:
+        gmfBase:
+          name: base
 
     desktop_alt:
       extends: desktop
@@ -191,7 +197,13 @@ vars:
           linesConfiguration:
             srtm-partial: {}
         gmfDisplayQueryGridOptions:
-          featuresStyle: {}
+          featuresStyle:
+            fill:
+              color: [255, 170, 0, 0.6]
+            stroke:
+              color: [255, 170, 0, 1]
+              width: 2
+            zIndex: 10
           removeEmptyColumns: True
           mergeTabs:
             OSM_time_merged: [osm_time, osm_time2]
@@ -290,7 +302,7 @@ vars:
                 angle: 0
             - regularShape:
                 stroke:
-                  color: red
+                  color: blue
                   width: 2
                 points: 4
                 radius: 10
@@ -346,6 +358,14 @@ vars:
         gmfTreeManagerModeFlush: False
         gmfDisplayQueryWindowOptions:
           defaultCollapsed: False
+        gmfDisplayQueryGridOptions:
+          featuresStyle:
+            fill:
+              color: [255, 170, 0, 0.6]
+            stroke:
+              color: [255, 170, 0, 1]
+              width: 2
+            zIndex: 10
         gmfSearchOptions:
           coordinatesProjections: *alternate_projections
           delay: 50
@@ -410,11 +430,6 @@ vars:
           zoom: 8
           autoRotate: True
           atLoadingTime: True
-      routes:
-        ngeoPermalinkOgcserverUrl:
-          name: mapserverproxy
-          params:
-            ogcserver: QGIS server
 
     api:
       constants:
@@ -553,10 +568,11 @@ vars:
 
   api:
     ogc_server: Main PNG
+    name: demo
 
   dbsessions:
     osm:
-      url: postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{osm_db}
+      url: postgresql://{OSM_PGUSER}:{OSM_PGPASSWORD}@{OSM_PGHOST}:{OSM_PGPORT}/{OSM_PGDATABASE}
 
   layers:
     geometry_validation: True
@@ -572,15 +588,15 @@ vars:
   # chapter in the integrator documentation.
   raster:
     srtm:
-      file: '{raster_base_path}/SRTM2056.vrt'
+      file: '{RASTER_BASE_PATH}/SRTM2056.vrt'
       type: gdal
       round: 1
     srtm-partial:
-      file: '{raster_base_path}/SRTM2056-partial.vrt'
+      file: '{RASTER_BASE_PATH}/SRTM2056-partial.vrt'
       type: gdal
       round: 0.1
     aster:
-      file: '{raster_base_path}/Aster2056.vrt'
+      file: '{RASTER_BASE_PATH}/Aster2056.vrt'
       type: gdal
       round: 1
 
@@ -676,7 +692,17 @@ vars:
       - 185.127.205.3/24
 
   content_security_policy_main_img_src_extra: 'blob:'
-  content_security_policy_main_script_src_extra: "'unsafe-eval'"
+  # For production.
+  content_security_policy_main_script_src_extra: "'unsafe-eval'
+    https://maps.google.com/
+    https://maps.googleapis.com/
+    https://www.google-analytics.com/"
+  # For development.
+  # content_security_policy_main_script_src_extra: "'unsafe-eval'
+  #   https://maps.google.com/
+  #   https://maps.googleapis.com/
+  #   https://www.google-analytics.com/
+  #   https://localhost:3001"
 
   headers:
     dynamic: &header {}
@@ -696,15 +722,20 @@ vars:
         - https://arnaud-morvan.github.io
         - https://julsbreakdown.github.io
         - https://adube.github.io
-        - https://localhost:3000
-        - https://localhost
-        - https://127.0.0.1:3000
-        - https://127.0.0.1
+        - http://localhost
         - http://localhost:3000
         - http://localhost:3001
-        - http://localhost
-        - http://127.0.0.1:3000
+        - http://localhost:6006
+        - https://localhost
+        - https://localhost:3000
+        - https://localhost:3001
         - http://127.0.0.1
+        - http://127.0.0.1:3000
+        - http://127.0.0.1:3001
+        - http://127.0.0.1:6006
+        - https://127.0.0.1
+        - https://127.0.0.1:3000
+        - https://127.0.0.1:3001
         - '*'
     config: *auth_header
     print: *auth_header
@@ -713,24 +744,32 @@ vars:
     tinyows: *auth_header
     layers: *auth_header
     shortener: *auth_header
-    login: {}
+    login: *auth_header
 
   authorized_referers:
+    - https://geomapfish-demo-2-7.apps.gs-ch-dev.camptocamp.com
+    - https://geomapfish-demo-2-7.apps.blue.gs-ch-dev.camptocamp.com
+    - https://geomapfish-demo-2-7.apps.green.gs-ch-dev.camptocamp.com
     - https://camptocamp.github.io
     - https://fredj.github.io
     - https://ger-benjamin.github.io
     - https://arnaud-morvan.github.io
     - https://julsbreakdown.github.io
     - https://adube.github.io
-    - https://localhost:3000
     - https://localhost
-    - https://127.0.0.1:3000
-    - https://127.0.0.1
+    - https://localhost:3000
+    - https://localhost:3001
+    - http://localhost
     - http://localhost:3000
     - http://localhost:3001
-    - http://localhost
-    - http://127.0.0.1:3000
+    - http://localhost:6006
+    - https://127.0.0.1
+    - https://127.0.0.1:3000
+    - https://127.0.0.1:3001
     - http://127.0.0.1
+    - http://127.0.0.1:3000
+    - http://127.0.0.1:3001
+    - http://127.0.0.1:6006
 
   # Checker configuration
   checker_ogc_server: Main PNG
@@ -855,6 +894,14 @@ runtime_environment:
     default: pass
   - name: OSM_PGDATABASE
     default: osm
+  - name: OSM_PGHOST
+    default: osm
+  - name: OSM_PGPORT
+    default: '5432'
+  - name: OSM_PGUSER
+    default: osm
+  - name: OSM_PGPASSWORD
+    default: osm
   - name: TILEGENERATION_S3_BUCKET
     default: camptocamp-gmf-demo-tiles
   - name: RASTER_BASE_PATH
@@ -866,10 +913,6 @@ runtime_environment:
   - name: AWS_DEFAULT_REGION
     default: xxx
   - name: AWS_S3_ENDPOINT
-    default: xxx
-  - name: SENTRY_CLIENT_ENVIRONMENT
-    default: xxx
-  - name: SENTRY_URL
     default: xxx
 
 environment:

@@ -1,5 +1,6 @@
 ---
-name: Is up to date
+# Compare branch prod-2-7-advance to prod-2-7 except some files removed in file ci/cleanup.
+name: Compare simple and advance branch
 
 on:
   push:
@@ -13,7 +14,7 @@ env:
 jobs:
   main:
     runs-on: ubuntu-20.04
-    name: Is up to date
+    name: Compare simple and advance branch
     timeout-minutes: 10
 
     steps:

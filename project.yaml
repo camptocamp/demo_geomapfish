@@ -8,18 +8,22 @@ managed_files:
   - pattern: Makefile
     no_touch: True
   - \.gitignore
-  - qgisserver/pg_service.conf.tmpl
+  - qgisserver/pg_service\.conf\.tmpl
   - docker-compose\.override\.sample\.yaml
   - geoportal/Dockerfile
   - geoportal/requirements\.txt
   - ci/config\.yaml
   - \.github/workflows/rebuild\.yaml
+  - \.github/workflows/update_l10n\.yaml
+  - \.dockerignore
+  - \.prettierignore
+  - Dockerfile
+  - geoportal/interfaces/desktop_alt\.html\.mako
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/sass/.*
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/image/.*
-  - geoportal/geomapfish_geoportal/static-ngeo/js/geomapfishmodule\.js
   - geoportal/geomapfish_geoportal/static-ngeo/api/api.css
   - geoportal/geomapfish_geoportal/static-ngeo/api/index\.js
   - geoportal/geomapfish_geoportal/static/apihelp/.*

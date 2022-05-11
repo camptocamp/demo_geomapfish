@@ -1,5 +1,8 @@
 #!/bin/bash -eux
 
+# Used to preper the projects when we want to compare the simple and advance branches.
+# This will remove all items that's deffer between the simple ans advance project.
+
 rm -rf $1/.git
 rm -rf $1/CONST_*
 rm $1/geoportal/CONST_*
