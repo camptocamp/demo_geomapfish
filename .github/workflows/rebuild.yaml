@@ -13,44 +13,7 @@ env:
   HELM_RELEASE_NAMES: prod-2-8
 
 jobs:
-  config:
-    runs-on: ubuntu-20.04
-    name: Config
-    timeout-minutes: 10
-
-    strategy:
-      fail-fast: false
-      matrix:
-        branch:
-          - prod-2-7
-          - prod-2-7-advance
-          - prod-2-8
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ matrix.branch }}
-
-      - run: touch env.secrets
-      - uses: camptocamp/initialise-gopass-summon-action@v2
-        with:
-          ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
-          github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
-          patterns: docker
-
-      - run: sed -i '/^DOCKER_TAG=/d' env.project
-      - name: Build config
-        run: ./build --service=config
-
-      - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
-      - run: python3 -m pip install --user --requirement=ci/requirements.txt
-
-      - name: Publish
-        run: c2cciutils-publish --group=config --type=rebuild --branch=${{ matrix.branch }}
-      - run: ci/trigger --image=config --version=${{ matrix.branch }}
-        if: "!contains(matrix.branch, '-advance')"
-
-  geoportal:
+  main:
     runs-on: ubuntu-20.04
     name: Geoportal
     timeout-minutes: 10
@@ -67,11 +30,6 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
 
-      - run: touch env.secrets
-      - run: sed -i '/^DOCKER_TAG=/d' env.project
-      - name: Build geoportal
-        run: ./build --service=geoportal
-
       - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
@@ -80,7 +38,12 @@ jobs:
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
-#
-#      - name: Publish
-#        run: c2cciutils-publish --group=geoportal --type=rebuild --branch=${{ matrix.branch }}
-#      - run: ci/trigger --image=geoportal --version=${{ matrix.branch }}
+
+      - run: touch env.secrets
+      - run: sed -i '/^DOCKER_TAG=/d' env.project
+
+      - name: Build
+        run: ./build
+
+      - name: Publish
+        run: c2cciutils-publish --group=geoportal --type=rebuild --branch=${{ matrix.branch }}
