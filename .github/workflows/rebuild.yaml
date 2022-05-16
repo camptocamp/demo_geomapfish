@@ -13,9 +13,9 @@ env:
   HELM_RELEASE_NAMES: prod-2-7
 
 jobs:
-  config:
+  rebuild:
     runs-on: ubuntu-20.04
-    name: Config
+    name: Rebuild
     timeout-minutes: 10
 
     strategy:
@@ -37,6 +37,7 @@ jobs:
           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
           patterns: docker
 
+<<<<<<< ours
       - run: sed -i '/^DOCKER_TAG=/d' env.project
       - name: Build config
         run: ./build --service=config
@@ -82,3 +83,13 @@ jobs:
 #      - name: Publish
 #        run: c2cciutils-publish --group=geoportal --type=rebuild --branch=${{ matrix.branch }}
 #      - run: ci/trigger --image=geoportal --version=${{ matrix.branch }}
+=======
+      - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
+      - run: python3 -m pip install --user --requirement=ci/requirements.txt
+
+      - name: Build
+        run: ./build
+
+      - name: Publish
+        run: c2cciutils-publish
+>>>>>>> theirs
