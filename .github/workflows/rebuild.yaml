@@ -13,9 +13,9 @@ env:
   HELM_RELEASE_NAMES: prod-2-8
 
 jobs:
-  main:
+  rebuild:
     runs-on: ubuntu-20.04
-    name: Geoportal
+    name: Rebuild
     timeout-minutes: 10
 
     strategy:
@@ -26,7 +26,7 @@ jobs:
           - prod-2-8
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           ref: ${{ matrix.branch }}
 
@@ -46,4 +46,4 @@ jobs:
         run: ./build
 
       - name: Publish
-        run: c2cciutils-publish --group=geoportal --type=rebuild --branch=${{ matrix.branch }}
+        run: c2cciutils-publish
