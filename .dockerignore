@@ -12,3 +12,8 @@
 !geoportal/geomapfish_geoportal/static
 !geoportal/geomapfish_geoportal/locale
 geoportal/geomapfish_geoportal/locale/*.pot
+!webcomponents
+!package.json
+!package-lock.json
+!tsconfig.json
+!vite.config.ts

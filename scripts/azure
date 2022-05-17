@@ -1,0 +1,69 @@
+#!/usr/bin/env python3.8
+# ./test.py --connection-string=$(gopass private/azure-connection-string) --list-containers --container=data-gmf-demo --list --sync ~/blob ''
+
+import argparse
+import glob
+import os
+
+import yaml
+from azure.storage.blob import BlobServiceClient, __version__
+
+
+def main():
+    print(f"Azure Blob Storage version: {__version__}")
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--connection-string", help="Azure Storage connection string")
+    parser.add_argument("--list-containers", help="List the files in the container", action="store_true")
+    parser.add_argument("--container", help="Container name")
+    parser.add_argument("--list", help="List the files in the container", action="store_true")
+    parser.add_argument("--sync-upload", help="Sync the files in the container (local, azure)", nargs=2)
+    parser.add_argument("--sync-download", help="Sync the files in the container (local, azure)", nargs=2)
+    args = parser.parse_args()
+
+    blob_service_client = BlobServiceClient.from_connection_string(args.connection_string)
+    print()
+    print(f"Connected as {blob_service_client.account_name}, account information:")
+    print(yaml.dump(blob_service_client.get_account_information(), Dumper=yaml.SafeDumper))
+
+    if args.list_containers:
+        print()
+        print("Containers:")
+        for container in blob_service_client.list_containers():
+            print(container["name"])
+
+    if args.container:
+        container_client = blob_service_client.get_container_client(container=args.container)
+        if args.list:
+            print()
+            for c in container_client.list_blobs():
+                print(c["name"])
+
+        if args.sync_upload:
+            print()
+            for filename in glob.glob(f"{args.sync_upload[0]}/**", recursive=True):
+                if os.path.isfile(filename):
+                    relative = filename[len(args.sync_upload[0]) + 1 :]
+                    dest = os.path.join(args.sync_upload[1], relative) if args.sync_upload[1] else relative
+                    print(f"{filename} -> {dest}")
+                    blob_client = container_client.get_blob_client(blob=dest)
+                    with open(filename, "rb") as data:
+                        blob_client.upload_blob(data, overwrite=True)
+
+        if args.sync_download:
+            src_path = args.sync_download[0]
+            if src_path and src_path[-1] != "/":
+                src_path += "/"
+            for c in container_client.list_blobs():
+                src = c["name"]
+                if src.startswith(src_path):
+                    dest = os.path.join(args.sync_download[1], src[len(src_path) :])
+                    print(f"{src} -> {dest}")
+                    os.makedirs(os.path.dirname(dest), exist_ok=True)
+                    with open(dest, "wb") as data:
+                        content = container_client.get_blob_client(blob=src).download_blob().readall()
+                        data.write(content)
+
+
+if __name__ == "__main__":
+    main()

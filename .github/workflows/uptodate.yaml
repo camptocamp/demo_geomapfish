@@ -1,0 +1,33 @@
+---
+# Compare branch prod-2-7-advance to prod-2-7 except some files removed in file ci/cleanup.
+name: Compare simple and advance branch
+
+on:
+  push:
+    branches:
+      - prod-2-7-advance
+  pull_request:
+
+env:
+  REF_BRANCH: prod-2-7
+
+jobs:
+  main:
+    runs-on: ubuntu-20.04
+    name: Compare simple and advance branch
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ env.REF_BRANCH }}
+          path: ref
+
+      - run: mv ref ../
+      - run: ci/cleanup .
+      - run: ci/cleanup ../ref
+      - run: rm ci/cleanup
+
+      - run: diff --recursive --new-file ../ref .
+        if: always()

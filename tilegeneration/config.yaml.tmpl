@@ -115,13 +115,13 @@ generation:
 ${DISABLE_LOCAL}redis:
 ${DISABLE_LOCAL}  socket_timeout: ${REDIS_TIMEOUT}
 ${DISABLE_LOCAL}  # For standalone version
-${DISABLE_LOCAL}  url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
+${DISABLE_LOCAL}  # url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
 ${DISABLE_LOCAL}  # For OpenShift version
-${DISABLE_LOCAL}  # sentinels:
-${DISABLE_LOCAL}  #   - - ${REDIS_HOST}
-${DISABLE_LOCAL}  #     - ${REDIS_PORT}
-${DISABLE_LOCAL}  # service_name: ${REDIS_SERVICENAME}
-${DISABLE_LOCAL}  # db: ${REDIS_DB}
+${DISABLE_LOCAL}  sentinels:
+${DISABLE_LOCAL}    - - ${REDIS_HOST}
+${DISABLE_LOCAL}      - ${REDIS_PORT}
+${DISABLE_LOCAL}  service_name: ${REDIS_SERVICENAME}
+${DISABLE_LOCAL}  db: ${REDIS_DB}
 
 server:
 ${DISABLE_LOCAL}  wmts_path: tiles
@@ -130,9 +130,9 @@ ${DISABLE_LOCAL}  admin_path: tiles/admin
   expires: 8 # 8 hours
   predefined_commands:
     - name: Generation all layers
-      command: generate_tiles --role=master
+      command: generate_tiles
     - name: Generation layer map
-      command: generate_tiles --role=master --layer=map
+      command: generate_tiles --layer=map
     - name: Generate the legend images
       command: generate_controller --generate-legend-images
 
@@ -183,7 +183,7 @@ provider:
   name: Camptocamp
   url: https://www.camptocamp.com/solutions/geospatial/
   contact:
-    name: Camptocamp
+    name: Camtocamp
     position: Company
     info:
       phone:

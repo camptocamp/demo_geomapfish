@@ -1,0 +1,32 @@
+#!/bin/bash -eux
+
+# Used to preper the projects when we want to compare the simple and advance branches.
+# This will remove all items that's deffer between the simple ans advance project.
+
+rm -rf $1/.git
+rm -rf $1/CONST_*
+rm $1/geoportal/CONST_*
+rm $1/docker-compose-lib.yaml $1/docker-compose.override.sample.yaml $1/docker-compose.yaml
+rm $1/.github/dependabot.yaml $1/.github/renovate.json5 \
+    $1/.github/workflows/backport.yaml \
+    $1/.github/workflows/main.yaml \
+    $1/.github/workflows/update_l10n.yaml \
+    $1/.github/workflows/uptodate.yaml \
+    $1/.github/workflows/dependabot-auto-merge.yaml  \
+    $1/.github/workflows/rebuild*.yaml \
+    $1/.github/workflows/upgrade*.yaml || true
+rm $1/ci/config.yaml $1/project.yaml
+rm $1/geoportal/.prospector.yaml $1/geoportal/alembic.ini $1/geoportal/alembic.yaml \
+    $1/geoportal/Dockerfile $1/geoportal/.dockerignore \
+    $1/geoportal/.eslintrc.yaml $1/geoportal/Makefile $1/geoportal/eval_templates.sh \
+    $1/geoportal/development.ini $1/geoportal/production.ini \
+    $1/geoportal/geomapfish_geoportal/*.py \
+    $1/geoportal/geomapfish_geoportal/static/apihelp/index.html.tmpl \
+    $1/geoportal/*.py \
+    $1/geoportal/language_mapping \
+    $1/geoportal/lingua-* \
+    $1/geoportal/tsconfig.json \
+    $1/geoportal/webpack.* \
+    $1/geoportal/requirements.txt \
+    $1/geoportal/interfaces/desktop_alt.html.mako || true
+rm -rf $1/geoportal/geomapfish_geoportal/static-ngeo $1/geoportal/tools || true

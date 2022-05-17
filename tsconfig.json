@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "lib": ["es2020", "dom"],
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "noEmit": true
+  },
+  "include": ["webcomponents/**/*.ts"],
+  "files": ["webcomponents/window.d.ts"]
+}
