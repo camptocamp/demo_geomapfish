@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  REF_BRANCH: prod-2-7
+  REF_BRANCH: prod-2-8
 
 jobs:
   main:
