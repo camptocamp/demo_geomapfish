@@ -13,16 +13,18 @@ services:
   geoportal:
     image: ${DOCKER_BASE}-geoportal:${DOCKER_TAG}
     user: root
-    # volumes:
-    # For Python project development.
-    # - ./geoportal/${PACKAGE}_geoportal:/app/${PACKAGE}_geoportal
-    # For Python c2cgeportal development.
-    # - ./../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons
-    # - ./../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal
-    # - ./../c2cgeoportal/admin/c2cgeoportal_admin:/opt/c2cgeoportal/admin/c2cgeoportal_admin
-    # - ./../c2cwsgiutils/c2cwsgiutils:/opt/c2cwsgiutils/c2cwsgiutils
-    # - ./../dogpile.cache/dogpile:/usr/local/lib/python3.7/dist-packages/dogpile
-    # - ./../c2c.template/c2c/template:/usr/local/lib/python3.7/dist-packages/c2c/template
+    volumes:
+      []
+      # For Python project development.
+      # - ./geoportal/${PACKAGE}_geoportal:/app/${PACKAGE}_geoportal
+      # For Python c2cgeportal development.
+      # - ./../c2cgeoportal/commons/c2cgeoportal_commons:/opt/c2cgeoportal/commons/c2cgeoportal_commons
+      # - ./../c2cgeoportal/geoportal/c2cgeoportal_geoportal:/opt/c2cgeoportal/geoportal/c2cgeoportal_geoportal
+      # - ./../c2cgeoportal/admin/c2cgeoportal_admin:/opt/c2cgeoportal/admin/c2cgeoportal_admin
+      # - ./../c2cgeoportal/bin:/opt/bin
+      # - ./../c2cwsgiutils/c2cwsgiutils:/usr/local/lib/python3.8/dist-packages/c2cwsgiutils
+      # - ./../dogpile.cache/dogpile:/usr/local/lib/python3.8/dist-packages/dogpile
+      # - ./../c2c.template/c2c/template:/usr/local/lib/python3.8/dist-packages/c2c/template
     command:
       - /usr/local/bin/pserve
       - --reload
@@ -59,15 +61,20 @@ services:
   tilecloudchain:
     # volumes:
     #   - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
-    #   - ../tilecloud/tilecloud:/usr/local/lib/python3.7/dist-packages/tilecloud
+    #   - ../tilecloud/tilecloud:/usr/local/lib/python3.8/dist-packages/tilecloud
+    #   - ../c2cwsgiutils/c2cwsgiutils:/usr/local/lib/python3.8/dist-packages/c2cwsgiutils
+    command:
+      - gunicorn
+      - --reload
+      - --paste=/app/production.ini
     environment:
-      - GUNICORN_CMD_ARGS=--reload
       - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
 
   tilegeneration_slave:
     # volumes:
     #   - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
     #   - ../tilecloud/tilecloud:/usr/local/lib/python3.7/dist-packages/tilecloud
+    #   - ../c2cwsgiutils/c2cwsgiutils:/usr/local/lib/python3.8/dist-packages/c2cwsgiutils
     environment:
       - TILECLOUD_CHAIN_LOG_LEVEL=DEBUG
 
