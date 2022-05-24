@@ -12,9 +12,15 @@ services:
       file: docker-compose-lib.yaml
       service: config
     environment:
-      - TILEGENERATION_S3_BUCKET
       - OSM_PGDATABASE
+      - OSM_PGHOST
+      - OSM_PGHOST_SLAVE
+      - OSM_PGPORT
+      - OSM_PGPORT_SLAVE
+      - OSM_PGPASSWORD
+      - OSM_PGUSER
       - RASTER_BASE_PATH
+      - AZURE_STORAGE_CONNECTION_STRING
 
   print:
     extends:
@@ -38,7 +44,8 @@ services:
       - config:ro
     environment:
       - AZURE_STORAGE_CONNECTION_STRING
-      - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver/
+      - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver
+      - QGIS_SERVER_LANDING_PAGE_PREFIX=/mapserv_proxy/qgis
       # Or
       # - QGIS_SERVER_LANDING_PAGE_PROJECTS_PG_CONNECTIONS=...
 
@@ -80,7 +87,7 @@ services:
       file: docker-compose-lib.yaml
       service: tilecloudchain
     environment:
-      - AWS_DEFAULT_REGION
+      - AZURE_STORAGE_CONNECTION_STRING
     volumes_from:
       - config:ro
 
@@ -91,7 +98,7 @@ services:
     volumes_from:
       - config:ro
     environment:
-      - AWS_DEFAULT_REGION
+      - AZURE_STORAGE_CONNECTION_STRING
 
   geoportal:
     extends:
@@ -102,12 +109,19 @@ services:
     environment:
       - PGSCHEMA
       - OSM_PGDATABASE
+      - OSM_PGHOST
+      - OSM_PGHOST_SLAVE
+      - OSM_PGPORT
+      - OSM_PGPORT_SLAVE
+      - OSM_PGPASSWORD
+      - OSM_PGUSER
       - RASTER_BASE_PATH
       - SMTP_USER
       - SMTP_PASSWORD
       - SENTRY_URL
       - SENTRY_CLIENT_RELEASE=${DOCKER_TAG}
       - SENTRY_CLIENT_ENVIRONMENT
+      - AZURE_STORAGE_CONNECTION_STRING
 
   alembic:
     extends:
@@ -129,8 +143,13 @@ services:
       file: docker-compose-lib.yaml
       service: tools
     environment:
-      - PGSCHEMA
       - OSM_PGDATABASE
+      - OSM_PGHOST
+      - OSM_PGHOST_SLAVE
+      - OSM_PGPORT
+      - OSM_PGPORT_SLAVE
+      - OSM_PGPASSWORD
+      - OSM_PGUSER
 
   # db:
   #   extends:
