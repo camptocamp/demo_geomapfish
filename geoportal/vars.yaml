@@ -502,6 +502,7 @@ vars:
     # through the admin interface.
     available_functionalities:
       - name: location
+        description: 'List of location, no more used?'
 
   getitfixed:
     enabled: True
