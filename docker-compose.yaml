@@ -88,6 +88,16 @@ services:
       service: tilecloudchain
     environment:
       - AZURE_STORAGE_CONNECTION_STRING
+      - C2C_SECRET=
+      - C2C_AUTH_GITHUB_PROXY_URL=https://mutualize-int.apps.gs-ch-dev.camptocamp.com/redirect
+      - C2C_AUTH_GITHUB_REPOSITORY=camptocamp/argocd-gs-platform-ch-development-apps
+      - C2C_AUTH_GITHUB_ACCESS_TYPE=admin
+      - C2C_USE_SESSION=true
+      - C2C_AUTH_GITHUB_CLIENT_ID
+      - C2C_AUTH_GITHUB_CLIENT_SECRET
+      - C2C_AUTH_GITHUB_SECRET
+      - TILECLOUD_CHAIN_SESSION_SECRET
+      - TILECLOUD_CHAIN_SESSION_SALT
     volumes_from:
       - config:ro
 
