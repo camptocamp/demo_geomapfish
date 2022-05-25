@@ -15,8 +15,8 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           repository: camptocamp/demo_geomapfish_data
           ref: master
