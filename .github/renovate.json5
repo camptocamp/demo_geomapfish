@@ -15,7 +15,7 @@
       automerge: true,
     },
     {
-      matchPaths: ['^(?!custom\\/.*).*'],
+      matchPaths: ['!custom/**'],
       enabled: false,
     },
     /** Group the patch and the minor */
