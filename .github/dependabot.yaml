@@ -3,26 +3,25 @@ updates:
   - package-ecosystem: pip
     directory: custom
     schedule:
-      interval: daily
-      time: '04:00'
+      interval: monthly
     ignore:
       - dependency-name: none
 
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: daily
+      interval: monthly
     ignore:
       - dependency-name: none
   - package-ecosystem: docker
     directory: '/custom'
     schedule:
-      interval: daily
+      interval: monthly
     ignore:
       - dependency-name: none
   - package-ecosystem: pip
     directory: '/custom'
     schedule:
-      interval: daily
+      interval: monthly
     ignore:
       - dependency-name: none
