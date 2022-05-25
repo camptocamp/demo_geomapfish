@@ -10,6 +10,7 @@ env:
   OPENSHIFT_PROJECT: gs-gmf-demo
   # The release branches
   HELM_RELEASE_NAMES: prod-2-8
+  DOCKER_BUILDKIT: '1'
 
 jobs:
   main:
