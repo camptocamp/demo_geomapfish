@@ -1,46 +1,62 @@
-FROM osgeo/gdal:ubuntu-small-3.4.2 AS base
-LABEL maintainer Camptocamp "info@camptocamp.com"
+FROM osgeo/gdal:ubuntu-small-3.4.2 AS base-all
 
 # Fail on error on pipe, see: https://github.com/hadolint/hadolint/wiki/DL4006.
 # Treat unset variables as an error when substituting.
 # Print commands and their arguments as they are executed.
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
-# SETUPTOOLS_USE_DISTUTILS: Workaround for setuptools >= 60.0.0
 ENV DEBIAN_FRONTEND=noninteractive \
     SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
     SETUPTOOLS_USE_DISTUTILS=stdlib
 
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    apt-get update
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    apt-get install --assume-yes --no-install-recommends python3-pip python3-dev python3-wheel python3-pkgconfig
+
+FROM base-all as poetry
+
+WORKDIR /tmp
+COPY requirements.txt ./
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --requirement=requirements.txt && \
+    rm requirements.txt
+
+COPY poetry.lock pyproject.toml ./
+RUN poetry export --output=requirements.txt && \
+    poetry export --dev --output=requirements-dev.txt
+
+FROM base-all AS base
+LABEL maintainer Camptocamp "info@camptocamp.com"
+
 # hadolint ignore=SC1091
 RUN apt-get update && \
     apt-get install --assume-yes --no-install-recommends \
-      python3-pip python3-dev python3-wheel python3-pkgconfig \
       libpq-dev binutils gcc && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/*
 
-COPY requirements.txt /tmp/
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt && \
-    rm --recursive --force /tmp/*
-
-COPY Pipfile Pipfile.lock /tmp/
-
-RUN cd /tmp && PIP_NO_BINARY=fiona,rasterio,shapely PROJ_DIR=/usr/local/ pipenv sync --system --clear && \
-    rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/* && \
+RUN --mount=type=cache,target=/root/.cache \
+    --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
+    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements.txt && \
     strip /usr/local/lib/python3.*/dist-packages/*/*.so && \
-    python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|pipenv|.*pydev.*|networkx)/'
+    python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|.*pydev.*|networkx)/'
 
 # hadolint ignore=DL3059
 RUN apt-get remove --autoremove --assume-yes gcc
 
 FROM base AS lint
 
-RUN cd /tmp && pipenv sync --system --clear --dev && \
-    rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/*
+RUN --mount=type=cache,target=/root/.cache \
+    --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
+    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements-dev.txt
 
 WORKDIR /app
 COPY . ./
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
+RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=. && \
     python3 -m compileall -q /app/custom && \
     prospector --output=pylint -X . && \
     touch /tmp/lint.ok
@@ -53,7 +69,7 @@ COPY --from=lint /tmp/lint.ok /tmp/
 
 WORKDIR /app
 COPY . ./
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
+RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=. && \
     python3 -m compileall -q /app/custom
 
 CMD [ "/usr/local/bin/gunicorn", "--paste=production.ini" ]
