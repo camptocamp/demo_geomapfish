@@ -15,6 +15,7 @@ env:
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
   SENTRY_PROJECT: geomapfish-demo
   SENTRY_ENVIRONMENT: prod-2-8
+  DOCKER_BUILDKIT: '1'
 
 jobs:
   main:
