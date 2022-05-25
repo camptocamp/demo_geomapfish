@@ -3,7 +3,12 @@
   baseBranches: ['prod-2-7', 'prod-2-7-advance', 'prod-2-8', 'prod-2-8-advance'],
   separateMajorMinor: true,
   lockFileMaintenance: {enabled: true, automerge: true},
-  ignorePaths: ["'!custom/**'"],
+  ignorePaths: [
+    'CONST_create_template/**',
+    'docker-compose-lib.yaml',
+    'docker-compose-qgis.yaml',
+    'docker-compose.yaml',
+  ],
   packageRules: [
     /** Automerge the patch, the minor and the dev dependency */
     {
