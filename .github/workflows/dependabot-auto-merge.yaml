@@ -1,19 +1,25 @@
----
-name: Auto merge Dependabot updates
+name: Auto reviews updates
 
 on:
+  pull_request:
   workflow_run:
     workflows:
-      - Continuous integration
+      - None
     types:
       - completed
+
 jobs:
   auto-merge:
-    name: Auto merge Dependabot updates
+    name: Auto reviews updates
     runs-on: ubuntu-20.04
     timeout-minutes: 5
 
     steps:
-      - uses: ridedott/merge-me-action@master
+      - run: echo ${GITHUB_EVENT}
+        env:
+          GITHUB_EVENT: ${{ toJSON(github) }}
+      - name: Auto reviews updates
+        uses: golfzaptw/action-auto-reviews-from-branches@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUTHOR: renovate[bot]
