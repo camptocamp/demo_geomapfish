@@ -16,7 +16,7 @@
       automerge: true,
     },
     {
-      fileMatch: 'custom/.*',
+      matchPaths: ['custom/.*'],
       enabled: true,
     },
     /** Group the patch and the minor */
