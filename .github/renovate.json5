@@ -3,7 +3,6 @@
   baseBranches: ['prod-2-7', 'prod-2-7-advance', 'prod-2-8', 'prod-2-8-advance'],
   separateMajorMinor: true,
   lockFileMaintenance: {enabled: true, automerge: true},
-  enabled: false,
   packageRules: [
     /** Automerge the patch, the minor and the dev dependency */
     {
@@ -16,8 +15,8 @@
       automerge: true,
     },
     {
-      matchPaths: ['custom/.*'],
-      enabled: true,
+      matchPaths: ['^(?!custom/.*).*'],
+      enabled: false,
     },
     /** Group the patch and the minor */
     {
