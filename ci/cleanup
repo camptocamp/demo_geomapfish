@@ -30,3 +30,9 @@ rm $1/geoportal/.prospector.yaml $1/geoportal/alembic.ini $1/geoportal/alembic.y
     $1/geoportal/requirements.txt \
     $1/geoportal/interfaces/desktop_alt.html.mako || true
 rm -rf $1/geoportal/geomapfish_geoportal/static-ngeo $1/geoportal/tools || true
+# files with version
+rm $1/package.json
+rm $1/package-lock.json
+rm $1/custom/requirements.txt
+rm $1/custom/pyproject.toml
+rm $1/custom/poetry.lock
