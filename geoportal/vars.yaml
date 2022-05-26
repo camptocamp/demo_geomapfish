@@ -198,7 +198,13 @@ vars:
           linesConfiguration:
             srtm-partial: {}
         gmfDisplayQueryGridOptions:
-          featuresStyle: {}
+          featuresStyle:
+            fill:
+              color: [255, 170, 0, 0.6]
+            stroke:
+              color: [255, 170, 0, 1]
+              width: 2
+            zIndex: 10
           removeEmptyColumns: True
           mergeTabs:
             OSM_time_merged: [osm_time, osm_time2]
@@ -352,6 +358,14 @@ vars:
         gmfTreeManagerModeFlush: False
         gmfDisplayQueryWindowOptions:
           defaultCollapsed: False
+        gmfDisplayQueryGridOptions:
+          featuresStyle:
+            fill:
+              color: [255, 170, 0, 0.6]
+            stroke:
+              color: [255, 170, 0, 1]
+              width: 2
+            zIndex: 10
         gmfSearchOptions:
           coordinatesProjections: *alternate_projections
           delay: 50
