@@ -109,8 +109,8 @@ layers:
 generation:
   default_cache: azure
 
-${DISABLE_LOCAL}  # maximum allowed consecutive errors, after it exit [default to 10]
-${DISABLE_LOCAL}  maxconsecutive_errors: 10
+  # maximum allowed consecutive errors, after it exit [default to 10]
+  maxconsecutive_errors: 10
 
 ${DISABLE_LOCAL}redis:
 ${DISABLE_LOCAL}  socket_timeout: ${REDIS_TIMEOUT}
