@@ -185,3 +185,48 @@ LAYER
         "gml_geometries" "geom"
     END
 END
+LAYER
+    NAME "tinyows"
+    EXTENT 2420000 1040500 2839000 1306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "host=${PGHOST} port=${PGPORT} user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE}"
+    DATA "geom FROM (SELECT * FROM edit.tinyows) AS foo USING unique id USING srid=2056"
+    LABELITEM "name"
+    PROJECTION
+      "init=epsg:2056"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Tinyows"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+            COLOR 0 230 0
+        END
+        LABEL
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            FONT arial_bold
+            TYPE truetype
+            SIZE 10
+            OFFSET 0 -13
+        END
+    END
+
+    METADATA
+        "wms_title" "Tinyows"
+        "gml_include_items" "all"
+        "gml_exclude_items" "id"
+        "gml_types" "auto"
+        "gml_featureid" "id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+    END
+END
