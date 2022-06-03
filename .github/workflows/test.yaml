@@ -4,8 +4,8 @@ name: Test the docker-compose application
 on:
   push:
     branches:
-      - prod-2-7
-      - prod-2-7-advance
+      - prod-2-8
+      - prod-2-8-advance
   pull_request:
 
 env:
