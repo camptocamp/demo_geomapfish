@@ -20,12 +20,12 @@ FROM base-all as poetry
 WORKDIR /tmp
 COPY requirements.txt ./
 RUN --mount=type=cache,target=/root/.cache \
-    python3 -m pip install --disable-pip-version-check --requirement=requirements.txt && \
-    rm requirements.txt
+    python3 -m pip install --disable-pip-version-check --requirement=requirements.txt \
+    && rm requirements.txt
 
 COPY poetry.lock pyproject.toml ./
-RUN poetry export --output=requirements.txt && \
-    poetry export --dev --output=requirements-dev.txt
+RUN poetry export --output=requirements.txt \
+    && poetry export --dev --output=requirements-dev.txt
 
 FROM base-all AS base
 LABEL maintainer Camptocamp "info@camptocamp.com"
@@ -33,15 +33,15 @@ LABEL maintainer Camptocamp "info@camptocamp.com"
 # hadolint ignore=SC1091
 RUN --mount=type=cache,target=/var/cache,sharing=locked \
     --mount=type=cache,target=/root/.cache \
-    apt-get update && \
-    apt-get install --assume-yes --no-install-recommends \
-      libpq-dev binutils gcc
+    apt-get update \
+    && apt-get install --assume-yes --no-install-recommends \
+        libpq-dev binutils gcc
 
 RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
-    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements.txt && \
-    strip /usr/local/lib/python3.*/dist-packages/*/*.so && \
-    python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|.*pydev.*|networkx)/'
+    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements.txt \
+    && strip /usr/local/lib/python3.*/dist-packages/*/*.so \
+    && python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|.*pydev.*|networkx)/'
 
 # hadolint ignore=DL3059
 RUN apt-get remove --autoremove --assume-yes gcc
@@ -55,11 +55,10 @@ RUN --mount=type=cache,target=/root/.cache \
 WORKDIR /app
 COPY . ./
 RUN --mount=type=cache,target=/root/.cache \
-    python3 -m pip install --disable-pip-version-check --no-deps --editable=. && \
-    python3 -m compileall -q /app/custom && \
-    prospector --output=pylint -X . && \
-    touch /tmp/lint.ok
-
+    python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
+    && python3 -m compileall -q /app/custom \
+    && prospector --output=pylint -X . \
+    && touch /tmp/lint.ok
 
 FROM base AS runtime
 
@@ -69,8 +68,8 @@ COPY --from=lint /tmp/lint.ok /tmp/
 WORKDIR /app
 COPY . ./
 RUN --mount=type=cache,target=/root/.cache \
-    python3 -m pip install --disable-pip-version-check --no-deps --editable=. && \
-    python3 -m compileall -q /app/custom
+    python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
+    && python3 -m compileall -q /app/custom
 
 CMD [ "/usr/local/bin/gunicorn", "--paste=production.ini" ]
 
