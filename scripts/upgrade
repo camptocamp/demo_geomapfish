@@ -2,8 +2,7 @@
 
 function printdiff {
     ls -l .UPGRADE*
-    for f in $(ls -1 *.diff || true)
-    do
+    for f in $(ls -1 *.diff || true); do
         echo "--- $f ---"
         cat "$f"
     done
@@ -13,42 +12,35 @@ git config user.email "<ci@camptocamp.com>"
 git config user.name "Continuous integration"
 ./build --upgrade $1
 VERSION=$1
-if [ ${VERSION} = "master" ]
-then
+if [ ${VERSION} = "master" ]; then
     VERSION=latest
 fi
 
-if [ -e .UPGRADE6 ]
-then
+if [ -e .UPGRADE6 ]; then
     ./upgrade ${VERSION} 7
 fi
-if [ -e .UPGRADE8 ]
-then
+if [ -e .UPGRADE8 ]; then
     ./upgrade ${VERSION} 9
 fi
-if [ -e .UPGRADE9 ]
-then
+if [ -e .UPGRADE9 ]; then
     # Workaround
     git status > /dev/null
     git apply --3way ngeo.diff
     ./upgrade ${VERSION} 10
 fi
-if [ -e .UPGRADE10 ]
-then
+if [ -e .UPGRADE10 ]; then
     # Workaround
     git status > /dev/null
     git apply --3way create.diff
     ./upgrade ${VERSION} 11
 fi
-if [ ! -e .UPGRADE_SUCCESS ]
-then
+if [ ! -e .UPGRADE_SUCCESS ]; then
     printdiff
     echo "Fail to upgrade"
     exit 1
 fi
 
-if [[ $(git status --porcelain) == "" ]]
-then
+if [[ $(git status --porcelain) == "" ]]; then
     echo Nothing to commit
     exit 0
 fi
