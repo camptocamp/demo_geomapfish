@@ -2,7 +2,7 @@
 
 function printdiff {
     ls -l .UPGRADE*
-    for f in $(ls -1 *.diff | true)
+    for f in $(ls -1 *.diff || true)
     do
         echo "--- $f ---"
         cat "$f"
