@@ -5,45 +5,43 @@ FROM osgeo/gdal:ubuntu-small-3.5.0 AS base-all
 # Print commands and their arguments as they are executed.
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
     SETUPTOOLS_USE_DISTUTILS=stdlib
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     apt-get update
 
-ENV DEBIAN_FRONTEND=noninteractive
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache,sharing=locked \
-    apt-get install --assume-yes --no-install-recommends python3-pip python3-dev python3-wheel python3-pkgconfig
+    apt-get install --assume-yes --no-install-recommends python3-pip python3-dev
 
 FROM base-all as poetry
 
 WORKDIR /tmp
 COPY requirements.txt ./
 RUN --mount=type=cache,target=/root/.cache \
-    python3 -m pip install --disable-pip-version-check --requirement=requirements.txt && \
-    rm requirements.txt
+    python3 -m pip install --disable-pip-version-check --requirement=requirements.txt \
+    && rm requirements.txt
 
 COPY poetry.lock pyproject.toml ./
-RUN poetry export --output=requirements.txt && \
-    poetry export --dev --output=requirements-dev.txt
+RUN poetry export --output=requirements.txt \
+    && poetry export --dev --output=requirements-dev.txt
 
 FROM base-all AS base
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 # hadolint ignore=SC1091
-RUN apt-get update && \
-    apt-get install --assume-yes --no-install-recommends \
-      libpq-dev binutils gcc && \
-    apt-get clean && \
-    rm --recursive --force /var/lib/apt/lists/*
+RUN --mount=type=cache,target=/var/cache,sharing=locked \
+    --mount=type=cache,target=/root/.cache \
+    apt-get update \
+    && apt-get install --assume-yes --no-install-recommends \
+        libpq-dev binutils gcc
 
 RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
-    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements.txt && \
-    strip /usr/local/lib/python3.*/dist-packages/*/*.so && \
-    python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|.*pydev.*|networkx)/'
+    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements.txt \
+    && strip /usr/local/lib/python3.*/dist-packages/*/*.so \
+    && python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|.*pydev.*|networkx)/'
 
 # hadolint ignore=DL3059
 RUN apt-get remove --autoremove --assume-yes gcc
@@ -56,11 +54,11 @@ RUN --mount=type=cache,target=/root/.cache \
 
 WORKDIR /app
 COPY . ./
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=. && \
-    python3 -m compileall -q /app/custom && \
-    prospector --output=pylint -X . && \
-    touch /tmp/lint.ok
-
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
+    && python3 -m compileall -q /app/custom \
+    && prospector --output=pylint -X . \
+    && touch /tmp/lint.ok
 
 FROM base AS runtime
 
@@ -69,8 +67,9 @@ COPY --from=lint /tmp/lint.ok /tmp/
 
 WORKDIR /app
 COPY . ./
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --no-deps --editable=. && \
-    python3 -m compileall -q /app/custom
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
+    && python3 -m compileall -q /app/custom
 
 CMD [ "/usr/local/bin/gunicorn", "--paste=production.ini" ]
 
