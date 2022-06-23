@@ -53,32 +53,32 @@ msgstr ""
 msgid "Desktop Application"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:194
+#: contribs/gmf/apps/desktop/index.html.ejs:210
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:163
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:179
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                Use double-click to finish the drawing."
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:133
+#: contribs/gmf/apps/desktop/index.html.ejs:149
 #: contribs/gmf/apps/desktop/index.html.ejs:66
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:89
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:105
 msgid "Draw and Measure"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:187
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:156
+#: contribs/gmf/apps/desktop/index.html.ejs:203
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:172
 msgid "Draw profile line"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:160
+#: contribs/gmf/apps/desktop/index.html.ejs:176
 #: contribs/gmf/apps/desktop/index.html.ejs:76
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:128
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:144
 msgid "Editing"
 msgstr ""
 
@@ -94,18 +94,18 @@ msgstr ""
 msgid "Elevation (SRTM)"
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:149
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:165
 msgid "Elevation profile"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:146
+#: contribs/gmf/apps/desktop/index.html.ejs:162
 #: contribs/gmf/apps/desktop/index.html.ejs:70
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:102
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:112
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:118
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:128
 msgid "Filter"
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:191
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:207
 msgid "Google Street View"
 msgstr ""
 
@@ -113,14 +113,14 @@ msgstr ""
 msgid "Iframe API Application"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:214
+#: contribs/gmf/apps/desktop/index.html.ejs:230
 #: contribs/gmf/apps/desktop/index.html.ejs:92
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:236
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:252
 msgid "Import Layer"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:165
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:132
+#: contribs/gmf/apps/desktop/index.html.ejs:181
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:148
 msgid "In order to use the editing tool, you must log in first."
 msgstr ""
 
@@ -143,7 +143,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:208
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:224
 msgid "Mapillary Street View"
 msgstr ""
 
@@ -167,13 +167,20 @@ msgstr ""
 msgid "ObjectEditing - Edit Application"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:121
+#: contribs/gmf/apps/desktop/index.html.ejs:130
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:73
+#: contribs/gmf/apps/mobile/index.html.ejs:204
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:189
+msgid "Password"
+msgstr ""
+
+#: contribs/gmf/apps/desktop/index.html.ejs:137
 #: contribs/gmf/apps/desktop/index.html.ejs:62
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:65
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:81
 msgid "Print"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:179
+#: contribs/gmf/apps/desktop/index.html.ejs:195
 #: contribs/gmf/apps/desktop/index.html.ejs:81
 msgid "Profile"
 msgstr ""
@@ -183,18 +190,18 @@ msgstr ""
 msgid "Query"
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:248
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:264
 msgid "Routing"
 msgstr ""
 
-#: contribs/gmf/apps/desktop/index.html.ejs:205
+#: contribs/gmf/apps/desktop/index.html.ejs:221
 #: contribs/gmf/apps/desktop/index.html.ejs:85
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:225
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:241
 msgid "Selection"
 msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:98
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:258
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:274
 msgid "Share this map"
 msgstr ""
 
@@ -231,6 +238,13 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
+#: contribs/gmf/apps/desktop/index.html.ejs:122
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:65
+#: contribs/gmf/apps/mobile/index.html.ejs:196
+#: contribs/gmf/apps/mobile_alt/index.html.ejs:181
+msgid "Username"
+msgstr ""
+
 #: contribs/gmf/apps/desktop/contextualdata.html:11
 #: contribs/gmf/apps/iframe_api/contextualdata.html:11
 #: contribs/gmf/apps/oeedit/contextualdata.html:11
@@ -250,6 +264,6 @@ msgid ""
 "href=\"{{url}}\">standard application</a>."
 msgstr ""
 
-#: contribs/gmf/apps/desktop_alt/index.html.ejs:76
+#: contribs/gmf/apps/desktop_alt/index.html.ejs:92
 msgid "debug"
 msgstr ""
