@@ -56,7 +56,23 @@
 
       <!-- Login -->
       <gmf-auth-button slot="tool-button"></gmf-auth-button>
-      <gmf-auth-panel slot="tool-panel-auth"></gmf-auth-panel>
+      <gmf-auth-panel slot="tool-panel-auth">
+        <input
+          slot="gmf-auth-login"
+          type="text"
+          class="form-control"
+          name="login"
+          autocomplete="username"
+          placeholder="{{'Username'|translate}}" />
+        <input
+          slot="gmf-auth-password"
+          type="password"
+          class="form-control"
+          name="password"
+          autocomplete="current-password"
+          aria-describedby="password-constraints"
+          placeholder="{{'Password'|translate}}"
+        /></gmf-auth-panel>
 
       <!-- custom feedback -->
       <gmf-tool-button slot="tool-button" iconClasses="fas fa-file-signature" panelName="feedback"></gmf-tool-button>

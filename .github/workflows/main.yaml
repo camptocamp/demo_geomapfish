@@ -45,6 +45,9 @@ jobs:
       - name: Build
         run: ./build
 
+      - name: Application checks
+        run: make checks
+
       - name: Publish
         run: c2cciutils-publish
 
