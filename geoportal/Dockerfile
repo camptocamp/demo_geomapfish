@@ -5,9 +5,8 @@ FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 COPY requirements.txt /tmp/requirements.txt
-RUN \
-    python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt \
-    && rm --recursive --force /tmp/* /var/tmp/* /root/.cache/*
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --requirement=/tmp/requirements.txt
 
 WORKDIR /app
 COPY webpack.*.js Makefile CONST_Makefile /app/
@@ -16,7 +15,6 @@ RUN make apps
 
 COPY . /app
 
-RUN make checks
 RUN make build
 RUN mv webpack.apps.js webpack.apps.js.tmpl && \
     ln --symbolic /usr/lib/node_modules/ .
@@ -31,9 +29,8 @@ FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_VERSION} as runner
 #RUN apt update
 #RUN apt install --yes gcc python3.7-dev
 COPY requirements.txt /tmp/requirements.txt
-RUN \
-    python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt \
-    && rm --recursive --force /tmp/* /var/tmp/* /root/.cache/*
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --requirement=/tmp/requirements.txt
 
 WORKDIR /app
 COPY . /app
@@ -44,9 +41,10 @@ COPY --from=builder /etc/static-ngeo/* /etc/static-ngeo/
 COPY --from=builder /app/alembic.ini /app/alembic.yaml ./
 RUN chmod go+w /etc/static-ngeo/
 
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=/app/ \
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --editable=/app/ \
     && python3 -m compileall -q /usr/local/lib/python3.* \
-        -x '/(ptvsd|pipenv|.*pydev.*|networkx)/' \
+        -x '/(ptvsd|.*pydev.*|networkx)/' \
     && python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
 
 ARG GIT_HASH
