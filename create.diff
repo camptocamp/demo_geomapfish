@@ -1,0 +1,118 @@
+diff --git a/.github/workflows/main.yaml b/.github/workflows/main.yaml
+index 23e01f3..a72fa5f 100644
+--- a/.github/workflows/main.yaml
++++ b/.github/workflows/main.yaml
+@@ -36,5 +36,8 @@ jobs:
+       - name: Build
+         run: ./build
+ 
++      - name: Application checks
++        run: make checks
++
+       - name: Publish
+         run: c2cciutils-publish
+diff --git a/Dockerfile b/Dockerfile
+index 7cb51cb..05a10bd 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -53,7 +53,7 @@ RUN \
+     && mkdir --parent /usr/local/tomcat/webapps/ROOT/ \
+     && mvif /tmp/config/print /tmp/config/print/print-apps /usr/local/tomcat/webapps/ROOT/ \
+     && mv /tmp/config/geoportal/geomapfish_geoportal/ /etc/geomapfish/ \
+-    && mv /tmp/config/geoportal/* /etc/geomapfish/ | true \
++    && mv /tmp/config/geoportal/* /etc/geomapfish/ || true \
+     && chmod g+w -R \
+         /etc/geomapfish \
+         /etc/mapserver \
+diff --git a/Makefile b/Makefile
+index 813953e..28ec461 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,12 +2,35 @@ PROJECT_PUBLIC_URL=https://example.camptocamp.com/
+ PACKAGE=geomapfish
+ LANGUAGES=en fr de it
+ 
++.PHONY: help
++help: ## Display this help message
++	@echo "Usage: make <target>"
++	@echo
++	@echo "Available targets:"
++	@grep --extended-regexp --no-filename '^[a-zA-Z_-]+:.*## ' $(MAKEFILE_LIST) | sort | \
++		awk 'BEGIN {FS = ":.*?## "}; {printf "	%-20s%s\n", $$1, $$2}'
++
+ .PHONY: update-po-from-url
+-update-po-from-url:
++update-po-from-url: ## Update the po files from the URL provide by PROJECT_PUBLIC_URL
+ 	curl $(PROJECT_PUBLIC_URL)locale.pot > geoportal/${PACKAGE}_geoportal/locale/${PACKAGE}_geoportal-client${SUFFIX}.pot
+ 	sed -i '/^"POT-Creation-Date: /d' geoportal/${PACKAGE}_geoportal/locale/${PACKAGE}_geoportal-client${SUFFIX}.pot
+ 	docker-compose run --rm -T tools update-po-only `id --user` `id --group` $(LANGUAGES)
+ 
+ .PHONY: update-po
+-update-po:
+-	docker-compose exec -T tools sh -c "USER_ID=`id --user` GROUP_ID=`id --group` make -C geoportal update-po"
++update-po: ## Update the po files from the running composition
++	docker-compose exec -T tools sh -c "USER_ID=`id --user` GROUP_ID=`id --group` make --directory=geoportal update-po"
++
++.PHONY: checks
++checks: prospector eslint ## Runs the checks
++
++.PHONY: prospector
++prospector: ## Runs the Prospector checks
++	docker-compose run --entrypoint= --no-deps --rm --volume=$(pwd)/geoportal:/app geoportal \
++		prospector --output-format=pylint --die-on-tool-error
++
++.PHONY: eslint
++eslint: ## Runs the eslint checks
++	docker-compose run --entrypoint= --no-deps --rm --volume=$(pwd)/geoportal:/app geoportal \
++		eslint $(find geomapfish -type f -name '*.js' -print 2> /dev/null)
++	docker-compose run --entrypoint= --no-deps --rm --volume=$(pwd)/geoportal:/app geoportal \
++		eslint $(find geomapfish -type f -name '*.ts' -print 2> /dev/null)
+diff --git a/geoportal/Dockerfile b/geoportal/Dockerfile
+index 0758459..84ba397 100644
+--- a/geoportal/Dockerfile
++++ b/geoportal/Dockerfile
+@@ -5,9 +5,8 @@ FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
+ LABEL maintainer Camptocamp "info@camptocamp.com"
+ 
+ COPY requirements.txt /tmp/requirements.txt
+-RUN \
+-    python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt \
+-    && rm --recursive --force /tmp/* /var/tmp/* /root/.cache/*
++RUN --mount=type=cache,target=/root/.cache \
++    python3 -m pip install --disable-pip-version-check --requirement=/tmp/requirements.txt
+ 
+ WORKDIR /app
+ COPY webpack.*.js Makefile CONST_Makefile /app/
+@@ -16,7 +15,6 @@ RUN make apps
+ 
+ COPY . /app
+ 
+-RUN make checks
+ RUN make build
+ RUN mv webpack.apps.js webpack.apps.js.tmpl
+ 
+@@ -28,9 +26,8 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--no-in
+ FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_VERSION} as runner
+ 
+ COPY requirements.txt /tmp/requirements.txt
+-RUN \
+-    python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt \
+-    && rm --recursive --force /tmp/* /var/tmp/* /root/.cache/*
++RUN --mount=type=cache,target=/root/.cache \
++    python3 -m pip install --disable-pip-version-check --requirement=/tmp/requirements.txt
+ 
+ WORKDIR /app
+ COPY . /app
+@@ -41,9 +38,10 @@ COPY --from=builder /etc/static-ngeo/* /etc/static-ngeo/
+ COPY --from=builder /app/alembic.ini /app/alembic.yaml ./
+ RUN chmod go+w /etc/static-ngeo/
+ 
+-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=/app/ \
++RUN --mount=type=cache,target=/root/.cache \
++    python3 -m pip install --disable-pip-version-check --editable=/app/ \
+     && python3 -m compileall -q /usr/local/lib/python3.* \
+-        -x '/(ptvsd|pipenv|.*pydev.*|networkx)/' \
++        -x '/(ptvsd|.*pydev.*|networkx)/' \
+     && python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
+ 
+ ARG GIT_HASH
