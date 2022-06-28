@@ -12,8 +12,8 @@ rm $1/.github/dependabot.yaml $1/.github/renovate.json5 \
     $1/.github/workflows/main.yaml \
     $1/.github/workflows/update_l10n.yaml \
     $1/.github/workflows/uptodate.yaml \
-    $1/.github/workflows/dependabot-auto-merge.yaml  \
-    $1/.github/workflows/auto-review.yaml  \
+    $1/.github/workflows/dependabot-auto-merge.yaml \
+    $1/.github/workflows/auto-review.yaml \
     $1/.github/workflows/rebuild*.yaml \
     $1/.github/workflows/upgrade*.yaml || true
 rm $1/ci/config.yaml $1/project.yaml
