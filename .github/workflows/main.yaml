@@ -5,12 +5,16 @@ on:
   push:
 
 env:
+<<<<<<< ours
   PROJECT: demo
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
   OPENSHIFT_PROJECT: gs-gmf-demo
   # The release branches
   HELM_RELEASE_NAMES: prod-2-8
   DOCKER_BUILDKIT: '1'
+=======
+  PROJECT: geomapfish
+>>>>>>> theirs
 
 jobs:
   main:
@@ -31,10 +35,26 @@ jobs:
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
 
+      # Can be used to have some secrets (with mask)
+      # - run: make secrets
+      # - run: cat env.secrets |grep '^[# A-Z0-9_]\+='|sed -e 's/^[# A-Z0-9_]\+=\(.*\)/::add-mask::\1/g'
+
       - name: Checks
         run: c2cciutils-checks
 
+<<<<<<< ours
       - run: touch env.secrets
+=======
+      # - name: Initialize the acceptance tests
+      #   run: make acceptance-init
+      # - run: c2cciutils-docker-logs
+      #   if: always()
+
+      # - name: Run the acceptance tests
+      #   run: make acceptance
+      # - run: c2cciutils-docker-logs
+      #   if: always()
+>>>>>>> theirs
 
       - name: Build
         run: ./build

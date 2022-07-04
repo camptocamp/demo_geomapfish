@@ -1,4 +1,9 @@
+<<<<<<< ours
 PROJECT_PUBLIC_URL=https://geomapfish-demo-2-7.camptocamp.com/
+=======
+PROJECT_PUBLIC_URL=https://example.camptocamp.com/
+DUMP_FILE=dump.backup
+>>>>>>> theirs
 PACKAGE=geomapfish
 LANGUAGES=en fr de it
 
@@ -35,11 +40,19 @@ eslint: ## Runs the eslint checks
 	docker-compose run --entrypoint= --no-deps --rm --volume=$(pwd)/geoportal:/app geoportal \
 		eslint $(find geomapfish -type f -name '*.ts' -print 2> /dev/null)
 
+<<<<<<< ours
 .PHONY: build
 build:
 	./build --config
 
 secrets.tar.bz2.gpg: env.secrets secrets.md
+=======
+.PHONY: qgis
+qgis: ## Run QGIS desktop
+	docker-compose -f docker-compose.yaml -f docker-compose-qgis.yaml run --rm qgis
+
+secrets.tar.bz2.gpg: env.secrets ## Encrypt the secrets for committing changes
+>>>>>>> theirs
 	tar -jcf secrets.tar.bz2 $^
 	rm -f $@
 	gpg --symmetric --cipher-algo AES256 --batch \
@@ -47,12 +60,17 @@ secrets.tar.bz2.gpg: env.secrets secrets.md
 	rm secrets.tar.bz2
 
 .PHONY: secrets
+<<<<<<< ours
 secrets:
+=======
+secrets: ## Decrypt the secrets.tar.bz2.gpg file
+>>>>>>> theirs
 	gpg --quiet --batch --yes --decrypt --passphrase=$(shell gopass show gs/ci/large-secret-passphrase) \
 		--output secrets.tar.bz2 secrets.tar.bz2.gpg
 	tar --touch -jxf secrets.tar.bz2
 	rm secrets.tar.bz2
 
+<<<<<<< ours
 .PHONY: qgis
 qgis: ## Run QGIS desktop
 	docker-compose -f docker-compose.yaml -f docker-compose-qgis.yaml run --rm qgis
@@ -78,4 +96,17 @@ acceptance:
 acceptance-dev:
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml up -d
 	docker-compose exec -T tools pytest tests/
+=======
+.PHONY: acceptance-init
+acceptance-init: ## Initialize the acceptance tests
+	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
+	docker-compose exec -T geoportal wait-db
+	docker-compose exec -T tools psql --command="DROP EXTENSION IF EXISTS postgis CASCADE"
+	scripts/db-restore --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
+		--arg=--clean --arg=--if-exists --arg=--verbose $(DUMP_FILE)
+
+.PHONY: acceptance
+acceptance: ## Run the acceptance tests
+	docker-compose exec -T tools pytest -vv tests/
+>>>>>>> theirs
 	ci/docker-compose-check
