@@ -1,4 +1,5 @@
 PROJECT_PUBLIC_URL=https://geomapfish-demo-2-7.camptocamp.com/
+DUMP_FILE=data/prod-2-7.dump
 PACKAGE=geomapfish
 LANGUAGES=en fr de it
 
@@ -37,9 +38,13 @@ eslint: ## Runs the eslint checks
 
 .PHONY: build
 build:
-	./build --config
+	./build
 
-secrets.tar.bz2.gpg: env.secrets secrets.md
+.PHONY: qgis
+qgis: ## Run QGIS desktop
+	docker-compose -f docker-compose.yaml -f docker-compose-qgis.yaml run --rm qgis
+
+secrets.tar.bz2.gpg: env.secrets secrets.md ## Encrypt the secrets for committing changes
 	tar -jcf secrets.tar.bz2 $^
 	rm -f $@
 	gpg --symmetric --cipher-algo AES256 --batch \
@@ -47,35 +52,25 @@ secrets.tar.bz2.gpg: env.secrets secrets.md
 	rm secrets.tar.bz2
 
 .PHONY: secrets
-secrets:
+secrets: ## Decrypt the secrets.tar.bz2.gpg file
 	gpg --quiet --batch --yes --decrypt --passphrase=$(shell gopass show gs/ci/large-secret-passphrase) \
 		--output secrets.tar.bz2 secrets.tar.bz2.gpg
 	tar --touch -jxf secrets.tar.bz2
 	rm secrets.tar.bz2
 
-.PHONY: qgis
-qgis: ## Run QGIS desktop
-	docker-compose -f docker-compose.yaml -f docker-compose-qgis.yaml run --rm qgis
-
 .PHONY: acceptance-init
-acceptance-init:
+acceptance-init: ## Initialize the acceptance tests
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
 	docker-compose exec -T geoportal wait-db
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS postgis'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS pg_trgm'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS hstore'
 	scripts/db-restore --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
-		--arg=--clean --arg=--if-exists --arg=--verbose data/prod-2-7.dump
+		--arg=--clean --arg=--if-exists --arg=--verbose $(DUMP_FILE)
 	docker-compose restart geoportal alembic
 	docker-compose exec -T geoportal wait-db
 
 .PHONY: acceptance
-acceptance:
-	docker-compose exec -T tools pytest tests/
-	ci/docker-compose-check
-
-.PHONY: acceptance-dev
-acceptance-dev:
-	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml up -d
-	docker-compose exec -T tools pytest tests/
+acceptance: ## Run the acceptance tests
+	docker-compose exec -T tools pytest -vv tests/
 	ci/docker-compose-check
