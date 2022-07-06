@@ -21,7 +21,11 @@ import requests
         ("http://mapserver:8080/mapserv_proxy", {"SERVICE": "WMS", "REQUEST": "GetCapabilities"}),
         (
             "https://front/mapserv_proxy",
-            {"ogcserver": "source for image/png", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+            {"ogcserver": "Main PNG", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+        ),
+        (
+            "https://front/mapserv_proxy",
+            {"ogcserver": "QGIS server", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
         ),
     ],
 )
