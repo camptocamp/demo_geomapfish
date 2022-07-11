@@ -19,7 +19,7 @@ managed_files:
   - \.prettierignore
   - Dockerfile
   - geoportal/interfaces/desktop_alt\.html\.mako
-  - test/test_app.py
+  - tests/test_app.py
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
