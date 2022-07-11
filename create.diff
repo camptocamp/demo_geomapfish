@@ -1,0 +1,29 @@
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+index a9e1103..3ed5463 100644
+--- a/docker-compose.yaml
++++ b/docker-compose.yaml
+@@ -106,7 +106,7 @@ services:
+     volumes_from:
+       - config:ro
+ 
+-  # Rich image for project development with e.-g. vim, tree, awscli, psql, ...
++  # Rich image for project development with e.-g. vim, psql, ...
+   tools:
+     extends:
+       file: docker-compose-lib.yaml
+diff --git a/env.project b/env.project
+index 58f5f6c..dc2edf1 100644
+--- a/env.project
++++ b/env.project
+@@ -52,3 +52,11 @@ C2C_REDIS_URL=redis://redis:6379/0
+ 
+ # Set a strong password here for authentication on technical interfaces behind path /c2c
+ C2C_SECRET=
++C2C_AUTH_GITHUB_REPOSITORY=camptocamp/geomapfish
++C2C_AUTH_GITHUB_ACCESS_TYPE=admin
++C2C_AUTH_GITHUB_CLIENT_ID=210aefe26259de1e9532
++#C2C_AUTH_GITHUB_CLIENT_SECRET=<github OAuth application client secret>
++C2C_AUTH_GITHUB_SCOPE=repo
++#C2C_AUTH_GITHUB_SECRET=<secret>
++#C2C_AUTH_GITHUB_PROXY_URL=https://geoservicies.camptocamp.com/redirect
++C2C_USE_SESSION=true
