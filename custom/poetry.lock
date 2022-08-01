@@ -794,7 +794,7 @@ astroid = ">=1.4"
 
 [[package]]
 name = "sentry-sdk"
-version = "1.7.0"
+version = "1.9.0"
 description = "Python client for Sentry (https://sentry.io)"
 category = "main"
 optional = false
@@ -805,22 +805,24 @@ certifi = "*"
 urllib3 = ">=1.10.0"
 
 [package.extras]
-tornado = ["tornado (>=5)"]
-sqlalchemy = ["sqlalchemy (>=1.2)"]
-sanic = ["sanic (>=0.8)"]
-rq = ["rq (>=0.6)"]
-quart = ["blinker (>=1.1)", "quart (>=0.16.1)"]
-pyspark = ["pyspark (>=2.4.4)"]
-pure_eval = ["asttokens", "executing", "pure-eval"]
-httpx = ["httpx (>=0.16.0)"]
-flask = ["blinker (>=1.1)", "flask (>=0.11)"]
-falcon = ["falcon (>=1.4)"]
-django = ["django (>=1.8)"]
-chalice = ["chalice (>=1.16.0)"]
-celery = ["celery (>=3)"]
-bottle = ["bottle (>=0.12.13)"]
-beam = ["apache-beam (>=2.12)"]
 aiohttp = ["aiohttp (>=3.5)"]
+beam = ["apache-beam (>=2.12)"]
+bottle = ["bottle (>=0.12.13)"]
+celery = ["celery (>=3)"]
+chalice = ["chalice (>=1.16.0)"]
+django = ["django (>=1.8)"]
+falcon = ["falcon (>=1.4)"]
+fastapi = ["fastapi (>=0.79.0)"]
+flask = ["flask (>=0.11)", "blinker (>=1.1)"]
+httpx = ["httpx (>=0.16.0)"]
+pure_eval = ["pure-eval", "executing", "asttokens"]
+pyspark = ["pyspark (>=2.4.4)"]
+quart = ["quart (>=0.16.1)", "blinker (>=1.1)"]
+rq = ["rq (>=0.6)"]
+sanic = ["sanic (>=0.8)"]
+sqlalchemy = ["sqlalchemy (>=1.2)"]
+starlette = ["starlette (>=0.19.1)"]
+tornado = ["tornado (>=5)"]
 
 [[package]]
 name = "setoptconf-tmp"
@@ -1072,7 +1074,7 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "3858f4d7d0f7e2c4e220d7f4f4bcfd3877fbb6d81f5550a6d48a873887057c2b"
+content-hash = "9ac715522c2f871f847a7db7b6d0017bf912bc2f5cacbcd48f2a43a9fd9094a9"
 
 [metadata.files]
 alembic = [
@@ -1507,8 +1509,8 @@ requirements-detector = [
     {file = "requirements-detector-0.7.tar.gz", hash = "sha256:0d1e13e61ed243f9c3c86e6cbb19980bcb3a0e0619cde2ec1f3af70fdbee6f7b"},
 ]
 sentry-sdk = [
-    {file = "sentry-sdk-1.7.0.tar.gz", hash = "sha256:741762816cdd32f647fca94a4515098cd52cb09dfe8c78f7d70eb28d2eaf89c5"},
-    {file = "sentry_sdk-1.7.0-py2.py3-none-any.whl", hash = "sha256:54cc2db9d85fcad557b2269f72f82f6f6b3a52eb93ae840a02a6eca4d9a0b707"},
+    {file = "sentry-sdk-1.9.0.tar.gz", hash = "sha256:f185c53496d79b280fe5d9d21e6572aee1ab802d3354eb12314d216cfbaa8d30"},
+    {file = "sentry_sdk-1.9.0-py2.py3-none-any.whl", hash = "sha256:60b13757d6344a94bf0ccb3c0a006c4de77daab09871b30fbbd05d5ec24e54fb"},
 ]
 setoptconf-tmp = [
     {file = "setoptconf-tmp-0.3.1.tar.gz", hash = "sha256:e0480addd11347ba52f762f3c4d8afa3e10ad0affbc53e3ffddc0ca5f27d5778"},
