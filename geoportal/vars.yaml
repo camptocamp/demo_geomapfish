@@ -876,7 +876,11 @@ update_paths:
   - sqlalchemy
   - sqlalchemy_slave
   - tinyowsproxy
+<<<<<<< ours
 #  - cache.std
+=======
+  - authentication
+>>>>>>> theirs
 
 no_interpreted:
   - getitfixed.admin_new_issue_email.email_body

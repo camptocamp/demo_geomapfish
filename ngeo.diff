@@ -1,0 +1,12 @@
+diff --git a/geoportal/vars.yaml b/geoportal/vars.yaml
+index e86e2e4..246c93c 100644
+--- a/geoportal/vars.yaml
++++ b/geoportal/vars.yaml
+@@ -369,6 +369,7 @@ update_paths:
+   - sqlalchemy
+   - sqlalchemy_slave
+   - tinyowsproxy
++  - authentication
+ 
+ no_interpreted:
+   - reset_password.email_body
