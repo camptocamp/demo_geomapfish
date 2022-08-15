@@ -1,39 +1,46 @@
 {
-    extends: ['config:base', 'schedule:earlyMondays'],
-    baseBranches: ['prod-2-7', 'prod-2-7-advance', 'prod-2-8', 'prod-2-8-advance'],
-    separateMajorMinor: true,
-    lockFileMaintenance: {enabled: true, automerge: true},
-    ignorePaths: ['CONST_create_template/**', 'docker-compose-lib.yaml', 'ci/**'],
-    packageRules: [
-        /** Automerge the patch, the minor and the dev dependency */
-        {
-            matchBaseBranches: ['prod-2-8', 'prod-2-8-advance'],
-            matchUpdateTypes: ['minor', 'patch'],
-            automerge: true,
-        },
-        {
-            matchDepTypes: ['devDependencies'],
-            automerge: true,
-        },
-        /** Group the patch and the minor */
-        {
-            matchUpdateTypes: ['patch'],
-            groupName: 'all patch versions',
-        },
-        {
-            matchUpdateTypes: ['minor'],
-            groupName: 'all minor versions',
-        },
-        /** Accept only the patch on the stabilization branches */
-        {
-            matchBaseBranches: ['prod-2-7', 'prod-2-7-advance'],
-            matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'rollback', 'bump'],
-            enabled: false,
-        },
-        {
-            matchBaseBranches: ['prod-2-7', 'prod-2-7-advance'],
-            matchDatasources: ['docker-compose', 'github-actions'],
-            enabled: false,
-        },
-    ],
+  extends: ['config:base'],
+  timezone: 'Europe/Zurich',
+  schedule: 'before 1am on Sunday',
+  labels: ['dependencies'],
+  separateMajorMinor: true,
+  separateMinorPatch: true,
+  prHourlyLimit: 0,
+  prConcurrentLimit: 0,
+  labels: ['dependencies'],
+  lockFileMaintenance: {enabled: true, automerge: true},
+  baseBranches: ['prod-2-7', 'prod-2-7-advance', 'prod-2-8', 'prod-2-8-advance'],
+  ignorePaths: ['CONST_create_template/**', 'docker-compose-lib.yaml', 'ci/**'],
+  packageRules: [
+    /** Automerge the patch, the minor and the dev dependency */
+    {
+      matchBaseBranches: ['prod-2-8', 'prod-2-8-advance'],
+      matchUpdateTypes: ['minor', 'patch'],
+      automerge: true,
+    },
+    {
+      matchDepTypes: ['devDependencies'],
+      automerge: true,
+    },
+    /** Group the patch and the minor */
+    {
+      matchUpdateTypes: ['patch'],
+      groupName: 'all patch versions',
+    },
+    {
+      matchUpdateTypes: ['minor'],
+      groupName: 'all minor versions',
+    },
+    /** Accept only the patch on the stabilization branches */
+    {
+      matchBaseBranches: ['prod-2-7', 'prod-2-7-advance'],
+      matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'rollback', 'bump'],
+      enabled: false,
+    },
+    {
+      matchBaseBranches: ['prod-2-7', 'prod-2-7-advance'],
+      matchDatasources: ['docker-compose', 'github-actions'],
+      enabled: false,
+    },
+  ],
 }
