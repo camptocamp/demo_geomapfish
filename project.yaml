@@ -20,6 +20,7 @@ managed_files:
   - Dockerfile
   - geoportal/interfaces/desktop_alt\.html\.mako
   - tests/test_app.py
+  - .editorconfig
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
