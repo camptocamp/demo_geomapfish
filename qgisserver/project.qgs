@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2022-04-24T08:54:35" saveUser="amorvan" saveUserFull="" version="3.22.0-Białowieża">
+<qgis projectname="" saveDateTime="2022-08-16T15:55:18" saveUser="sbrunner" saveUserFull="" version="3.22.10-Białowieża">
   <homePath path=""></homePath>
   <title></title>
   <autotransaction active="0"></autotransaction>
@@ -46,6 +46,21 @@
         </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="testpoint_type_147a22fa_e585_4713_b6ca_625c5ab8763e" legend_exp="" legend_split_behavior="0" name="testpoint_type" patch_size="-1,-1" providerKey="postgres" source="service='demo' sslmode=require key='testpoint_id,type_id' checkPrimaryKeyUnicity='1' table=&quot;tests&quot;.&quot;testpoint_type&quot;">
+      <customproperties>
+        <Option></Option>
+      </customproperties>
+    </layer-tree-layer>
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="type_911d0c40_9495_40d9_8cfb_212bcffac9cc" legend_exp="" legend_split_behavior="0" name="type" patch_size="-1,-1" providerKey="postgres" source="service='demo' sslmode=require key='id' checkPrimaryKeyUnicity='1' table=&quot;tests&quot;.&quot;type&quot;">
+      <customproperties>
+        <Option></Option>
+      </customproperties>
+    </layer-tree-layer>
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="testpoint_5147eafe_c1f8_4576_82c6_0fc8f7ad5376" legend_exp="" legend_split_behavior="0" name="testpoint" patch_size="-1,-1" providerKey="postgres" source="service='demo' sslmode=require key='id' srid=21781 type=Point checkPrimaryKeyUnicity='1' table=&quot;tests&quot;.&quot;testpoint&quot; (geom)">
+      <customproperties>
+        <Option></Option>
+      </customproperties>
+    </layer-tree-layer>
     <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" legend_exp="" legend_split_behavior="0" name="landuse" patch_size="0,0" providerKey="postgres" source="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)">
       <customproperties>
         <Option></Option>
@@ -215,32 +230,36 @@
       <item>Aster_c455e495_494c_46dc_b849_afe5d70a095a</item>
       <item>SRTM_95c7ea30_14df_44f6_bdc0_a102f993de49</item>
       <item>SRTM_c2466b30_e116_4ec7_94a9_7b878ce000cc</item>
+      <item>testpoint_5147eafe_c1f8_4576_82c6_0fc8f7ad5376</item>
+      <item>type_911d0c40_9495_40d9_8cfb_212bcffac9cc</item>
+      <item>testpoint_type_147a22fa_e585_4713_b6ca_625c5ab8763e</item>
     </custom-order>
   </layer-tree-group>
   <snapping-settings enabled="0" intersection-snapping="0" maxScale="0" minScale="0" mode="2" scaleDependencyMode="0" self-snapping="0" tolerance="12" type="1" unit="1">
     <individual-layer-settings>
-      <layer-setting enabled="0" id="points_a060cc2b_0cab_44dc_bc7d_92d7d92bb7a3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="osm_firestations_e959231c_b187_4fc6_87e3_719e7b753925" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="points_9c10feca_b2b5_460f_b785_ed02128abb67" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="points_6a5b936c_d582_4292_a354_ae8190f0657c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="railways_d11080f7_9314_4079_8835_2593b5b42ca3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="osm_firestations_beafadf3_069e_414e_b3fc_33b9e2322400" maxScale="0" minScale="0" tolerance="0" type="1" units="2"></layer-setting>
-      <layer-setting enabled="1" id="osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="points_copier_c7d9a0aa_c771_475d_b5ab_000ef97bfe51" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="time_762bcf93_4529_466e_ba8a_31ed5f11df15" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="osm_hospitals_5a51f681_47cb_41cb_bd38_996a7609a7b5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="points_6d11674c_db6d_47ab_8c20_66671ac95b8c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="osm_hospitals_cbf1ede7_5be7_43e2_9417_df7acb124d2c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="landuse_fcd94bff_16be_4208_b610_9eab540f670d" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="1" id="osm_hospitals_f6e2ed71_c4f5_4e66_94d3_b9268679b2cc" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="osm_firestations_ingrp_f5a21449_2f45_4ddd_8b83_0c4b46714170" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="railways_c4be1c69_274c_417a_b968_8abcf9043eb1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="osm_firestations_b858d1b4_9d89_40c6_9834_2ebd980e5bda" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="time_762bcf93_4529_466e_ba8a_31ed5f11df15" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="osm_hospitals_restricted_0e16aa67_bad1_428e_b579_200e777612ab" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="points_2f642e02_74c7_45d3_aa0a_c8c90aa55e19" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="osm_firestations_ingrp_f5a21449_2f45_4ddd_8b83_0c4b46714170" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="points_6d11674c_db6d_47ab_8c20_66671ac95b8c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="points_9c10feca_b2b5_460f_b785_ed02128abb67" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="osm_firestations_b858d1b4_9d89_40c6_9834_2ebd980e5bda" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="points_copier_c7d9a0aa_c771_475d_b5ab_000ef97bfe51" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="points_6a5b936c_d582_4292_a354_ae8190f0657c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="osm_hospitals_5a51f681_47cb_41cb_bd38_996a7609a7b5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="landuse_fcd94bff_16be_4208_b610_9eab540f670d" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="railways_c4be1c69_274c_417a_b968_8abcf9043eb1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="osm_firestations_beafadf3_069e_414e_b3fc_33b9e2322400" maxScale="0" minScale="0" tolerance="0" type="1" units="2"></layer-setting>
+      <layer-setting enabled="0" id="osm_hospitals_cbf1ede7_5be7_43e2_9417_df7acb124d2c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="osm_firestations_e959231c_b187_4fc6_87e3_719e7b753925" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="points_a060cc2b_0cab_44dc_bc7d_92d7d92bb7a3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="testpoint_5147eafe_c1f8_4576_82c6_0fc8f7ad5376" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
@@ -270,7 +289,6 @@
     <rendermaptile>0</rendermaptile>
     <expressionContextScope></expressionContextScope>
   </mapcanvas>
-  <projectModels></projectModels>
   <legend updateDrawingOrder="true">
     <legendgroup checked="Qt::Unchecked" name="group" open="true">
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="landuse_ingrp" open="true" showFeatureCount="0">
@@ -294,6 +312,21 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="testpoint_type" open="true" showFeatureCount="0">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" layerid="testpoint_type_147a22fa_e585_4713_b6ca_625c5ab8763e" visible="1"></legendlayerfile>
+      </filegroup>
+    </legendlayer>
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="type" open="true" showFeatureCount="0">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" layerid="type_911d0c40_9495_40d9_8cfb_212bcffac9cc" visible="1"></legendlayerfile>
+      </filegroup>
+    </legendlayer>
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="testpoint" open="true" showFeatureCount="0">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" layerid="testpoint_5147eafe_c1f8_4576_82c6_0fc8f7ad5376" visible="1"></legendlayerfile>
+      </filegroup>
+    </legendlayer>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="landuse" open="false" showFeatureCount="0">
       <filegroup hidden="false" open="false">
         <legendlayerfile isInOverview="0" layerid="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" visible="0"></legendlayerfile>
@@ -1303,16 +1336,16 @@
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>2484967.80278088012710214</xmin>
-        <ymin>1075174.05512964003719389</ymin>
-        <xmax>2832276.0121929501183331</xmax>
-        <ymax>1295749.3957807500846684</ymax>
+        <xmin>2484967.802780881524086</xmin>
+        <ymin>1075174.05512963933870196</ymin>
+        <xmax>2832276.01219294918701053</xmax>
+        <ymax>1295749.39578074542805552</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.90310073163771865</xmin>
-        <ymin>45.78842504623653298</ymin>
-        <xmax>10.53794701515238685</xmax>
-        <ymax>47.81226746760549418</ymax>
+        <xmin>5.9031007316377373</xmin>
+        <ymin>45.78842504623654008</ymin>
+        <xmax>10.5379470151521577</xmax>
+        <ymax>47.81226746760545865</ymax>
       </wgs84extent>
       <id>landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_landuse" (geom)</datasource>
@@ -1498,7 +1531,7 @@
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -1718,16 +1751,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>2484967.80278088012710214</xmin>
-        <ymin>1075174.05512964003719389</ymin>
-        <xmax>2832276.0121929501183331</xmax>
-        <ymax>1295749.3957807500846684</ymax>
+        <xmin>2484967.802780881524086</xmin>
+        <ymin>1075174.05512963933870196</ymin>
+        <xmax>2832276.01219294918701053</xmax>
+        <ymax>1295749.39578074542805552</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.90310073163771865</xmin>
-        <ymin>45.78842504623653298</ymin>
-        <xmax>10.53794701515238685</xmax>
-        <ymax>47.81226746760549418</ymax>
+        <xmin>5.9031007316377373</xmin>
+        <ymin>45.78842504623654008</ymin>
+        <xmax>10.5379470151521577</xmax>
+        <ymax>47.81226746760545865</ymax>
       </wgs84extent>
       <id>landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_landuse" (geom)</datasource>
@@ -2022,7 +2055,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -2242,16 +2275,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>2484967.80278088012710214</xmin>
-        <ymin>1075174.05512964003719389</ymin>
-        <xmax>2832276.0121929501183331</xmax>
-        <ymax>1295749.3957807500846684</ymax>
+        <xmin>2484967.802780881524086</xmin>
+        <ymin>1075174.05512963933870196</ymin>
+        <xmax>2832276.01219294918701053</xmax>
+        <ymax>1295749.39578074542805552</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.90310073163771865</xmin>
-        <ymin>45.78842504623653298</ymin>
-        <xmax>10.53794701515238685</xmax>
-        <ymax>47.81226746760549418</ymax>
+        <xmin>5.9031007316377373</xmin>
+        <ymin>45.78842504623654008</ymin>
+        <xmax>10.5379470151521577</xmax>
+        <ymax>47.81226746760545865</ymax>
       </wgs84extent>
       <id>landuse_fcd94bff_16be_4208_b610_9eab540f670d</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_landuse" (geom)</datasource>
@@ -2696,7 +2729,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -2925,16 +2958,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>629870</xmin>
-        <ymin>184715.9375</ymin>
-        <xmax>2828458.23932840023189783</xmax>
-        <ymax>1294219.57423252006992698</ymax>
+        <xmin>629869.99999999988358468</xmin>
+        <ymin>184715.93749999997089617</ymin>
+        <xmax>2828458.23932839836925268</xmax>
+        <ymax>1294219.57423252472653985</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.94232969543327627</xmin>
+        <xmin>-17.94232969543329048</xmin>
         <ymin>35.40615912608381421</ymin>
-        <xmax>10.48626460855004616</xmax>
-        <ymax>47.79815800454426267</ymax>
+        <xmax>10.48626460854995379</xmax>
+        <ymax>47.79815800454427688</ymax>
       </wgs84extent>
       <id>osm_firestations_b858d1b4_9d89_40c6_9834_2ebd980e5bda</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_firestations" (geom)</datasource>
@@ -3230,7 +3263,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -3417,16 +3450,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>629870</xmin>
-        <ymin>184715.9375</ymin>
-        <xmax>2828458.23932840023189783</xmax>
-        <ymax>1294219.57423252006992698</ymax>
+        <xmin>629869.99999999988358468</xmin>
+        <ymin>184715.93749999997089617</ymin>
+        <xmax>2828458.23932839836925268</xmax>
+        <ymax>1294219.57423252472653985</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.94232969543327627</xmin>
+        <xmin>-17.94232969543329048</xmin>
         <ymin>35.40615912608381421</ymin>
-        <xmax>10.48626460855004616</xmax>
-        <ymax>47.79815800454426267</ymax>
+        <xmax>10.48626460854995379</xmax>
+        <ymax>47.79815800454427688</ymax>
       </wgs84extent>
       <id>osm_firestations_beafadf3_069e_414e_b3fc_33b9e2322400</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_firestations" (geom)</datasource>
@@ -3568,7 +3601,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -3755,16 +3788,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>629870</xmin>
-        <ymin>184715.9375</ymin>
-        <xmax>2828458.23932840023189783</xmax>
-        <ymax>1294219.57423252006992698</ymax>
+        <xmin>629869.99999999988358468</xmin>
+        <ymin>184715.93749999997089617</ymin>
+        <xmax>2828458.23932839836925268</xmax>
+        <ymax>1294219.57423252472653985</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.94232969543327627</xmin>
+        <xmin>-17.94232969543329048</xmin>
         <ymin>35.40615912608381421</ymin>
-        <xmax>10.48626460855004616</xmax>
-        <ymax>47.79815800454426267</ymax>
+        <xmax>10.48626460854995379</xmax>
+        <ymax>47.79815800454427688</ymax>
       </wgs84extent>
       <id>osm_firestations_e959231c_b187_4fc6_87e3_719e7b753925</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_firestations" (geom)</datasource>
@@ -4051,7 +4084,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -4238,16 +4271,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>629870</xmin>
-        <ymin>184715.9375</ymin>
-        <xmax>2828458.23932840023189783</xmax>
-        <ymax>1294219.57423252006992698</ymax>
+        <xmin>629869.99999999988358468</xmin>
+        <ymin>184715.93749999997089617</ymin>
+        <xmax>2828458.23932839836925268</xmax>
+        <ymax>1294219.57423252472653985</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.94232969543327627</xmin>
+        <xmin>-17.94232969543329048</xmin>
         <ymin>35.40615912608381421</ymin>
-        <xmax>10.48626460855004616</xmax>
-        <ymax>47.79815800454426267</ymax>
+        <xmax>10.48626460854995379</xmax>
+        <ymax>47.79815800454427688</ymax>
       </wgs84extent>
       <id>osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_firestations" (geom)</datasource>
@@ -4534,7 +4567,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -4721,16 +4754,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>629870</xmin>
-        <ymin>184715.9375</ymin>
-        <xmax>2828458.23932840023189783</xmax>
-        <ymax>1294219.57423252006992698</ymax>
+        <xmin>629869.99999999988358468</xmin>
+        <ymin>184715.93749999997089617</ymin>
+        <xmax>2828458.23932839836925268</xmax>
+        <ymax>1294219.57423252472653985</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.94232969543327627</xmin>
+        <xmin>-17.94232969543329048</xmin>
         <ymin>35.40615912608381421</ymin>
-        <xmax>10.48626460855004616</xmax>
-        <ymax>47.79815800454426267</ymax>
+        <xmax>10.48626460854995379</xmax>
+        <ymax>47.79815800454427688</ymax>
       </wgs84extent>
       <id>osm_firestations_ingrp_f5a21449_2f45_4ddd_8b83_0c4b46714170</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_firestations" (geom)</datasource>
@@ -5017,7 +5050,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -5204,16 +5237,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>623955</xmin>
-        <ymin>178303.00003051798557863</ymin>
-        <xmax>2781401.16824844013899565</xmax>
-        <ymax>1284051.4757227199152112</ymax>
+        <xmin>623954.99999999988358468</xmin>
+        <ymin>178303.00003051754902117</ymin>
+        <xmax>2781401.16824844107031822</xmax>
+        <ymax>1284051.47572272270917892</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.97307684950220263</xmin>
+        <xmin>-17.97307684950220619</xmin>
         <ymin>35.3369017308470319</ymin>
-        <xmax>9.85479551640252538</xmax>
-        <ymax>47.7067817714871083</ymax>
+        <xmax>9.85479551640252005</xmax>
+        <ymax>47.70678177148714383</ymax>
       </wgs84extent>
       <id>osm_hospitals_5a51f681_47cb_41cb_bd38_996a7609a7b5</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_hospitals" (geom)</datasource>
@@ -5472,7 +5505,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -5696,16 +5729,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>623955</xmin>
-        <ymin>178303.00003051798557863</ymin>
-        <xmax>2781401.16824844013899565</xmax>
-        <ymax>1284051.4757227199152112</ymax>
+        <xmin>623954.99999999988358468</xmin>
+        <ymin>178303.00003051754902117</ymin>
+        <xmax>2781401.16824844107031822</xmax>
+        <ymax>1284051.47572272270917892</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.97307684950220263</xmin>
+        <xmin>-17.97307684950220619</xmin>
         <ymin>35.3369017308470319</ymin>
-        <xmax>9.85479551640252538</xmax>
-        <ymax>47.7067817714871083</ymax>
+        <xmax>9.85479551640252005</xmax>
+        <ymax>47.70678177148714383</ymax>
       </wgs84extent>
       <id>osm_hospitals_cbf1ede7_5be7_43e2_9417_df7acb124d2c</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_hospitals" (geom)</datasource>
@@ -5964,7 +5997,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -6188,16 +6221,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>623955</xmin>
-        <ymin>178303.00003051798557863</ymin>
-        <xmax>2781401.16824844013899565</xmax>
-        <ymax>1284051.4757227199152112</ymax>
+        <xmin>623954.99999999988358468</xmin>
+        <ymin>178303.00003051754902117</ymin>
+        <xmax>2781401.16824844107031822</xmax>
+        <ymax>1284051.47572272270917892</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.97307684950220263</xmin>
+        <xmin>-17.97307684950220619</xmin>
         <ymin>35.3369017308470319</ymin>
-        <xmax>9.85479551640252538</xmax>
-        <ymax>47.7067817714871083</ymax>
+        <xmax>9.85479551640252005</xmax>
+        <ymax>47.70678177148714383</ymax>
       </wgs84extent>
       <id>osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_hospitals" (geom)</datasource>
@@ -6362,7 +6395,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -6605,16 +6638,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>623955</xmin>
-        <ymin>178303.00003051798557863</ymin>
-        <xmax>2781401.16824844013899565</xmax>
-        <ymax>1284051.4757227199152112</ymax>
+        <xmin>623954.99999999988358468</xmin>
+        <ymin>178303.00003051754902117</ymin>
+        <xmax>2781401.16824844107031822</xmax>
+        <ymax>1284051.47572272270917892</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.97307684950220263</xmin>
+        <xmin>-17.97307684950220619</xmin>
         <ymin>35.3369017308470319</ymin>
-        <xmax>9.85479551640252538</xmax>
-        <ymax>47.7067817714871083</ymax>
+        <xmax>9.85479551640252005</xmax>
+        <ymax>47.70678177148714383</ymax>
       </wgs84extent>
       <id>osm_hospitals_f6e2ed71_c4f5_4e66_94d3_b9268679b2cc</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_hospitals" (geom)</datasource>
@@ -6772,7 +6805,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -6997,16 +7030,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>623955</xmin>
-        <ymin>178303.00003051798557863</ymin>
-        <xmax>2781401.16824844013899565</xmax>
-        <ymax>1284051.4757227199152112</ymax>
+        <xmin>623954.99999999988358468</xmin>
+        <ymin>178303.00003051754902117</ymin>
+        <xmax>2781401.16824844107031822</xmax>
+        <ymax>1284051.47572272270917892</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-17.97307684950220263</xmin>
+        <xmin>-17.97307684950220619</xmin>
         <ymin>35.3369017308470319</ymin>
-        <xmax>9.85479551640252538</xmax>
-        <ymax>47.7067817714871083</ymax>
+        <xmax>9.85479551640252005</xmax>
+        <ymax>47.70678177148714383</ymax>
       </wgs84extent>
       <id>osm_hospitals_restricted_0e16aa67_bad1_428e_b579_200e777612ab</id>
       <datasource>service='demo' sslmode=require key='osm_id' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_hospitals" (geom)</datasource>
@@ -7310,7 +7343,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -7535,16 +7568,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>2483015.42930848011747003</xmin>
-        <ymin>1075272.65337609010748565</ymin>
-        <xmax>2835597.80719962017610669</xmax>
-        <ymax>1295977.22191859991289675</ymax>
+        <xmin>2483015.42930847592651844</xmin>
+        <ymin>1075272.65337608894333243</ymin>
+        <xmax>2835597.80719961877912283</xmax>
+        <ymax>1295977.22191859618760645</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.87698560936446945</xmin>
-        <ymin>45.78816533296168245</ymin>
-        <xmax>10.58234508827704268</xmax>
-        <ymax>47.81431643112541963</ymax>
+        <xmin>5.87698560936441528</xmin>
+        <ymin>45.78816533296164693</ymin>
+        <xmax>10.58234508827697873</xmax>
+        <ymax>47.81431643112537699</ymax>
       </wgs84extent>
       <id>points_2f642e02_74c7_45d3_aa0a_c8c90aa55e19</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_points" (geom)</datasource>
@@ -7702,7 +7735,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -7936,16 +7969,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>2483015.42930848011747003</xmin>
-        <ymin>1075272.65337609010748565</ymin>
-        <xmax>2835597.80719962017610669</xmax>
-        <ymax>1295977.22191859991289675</ymax>
+        <xmin>2483015.42930847592651844</xmin>
+        <ymin>1075272.65337608894333243</ymin>
+        <xmax>2835597.80719961877912283</xmax>
+        <ymax>1295977.22191859618760645</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.87698560936446945</xmin>
-        <ymin>45.78816533296168245</ymin>
-        <xmax>10.58234508827704268</xmax>
-        <ymax>47.81431643112541963</ymax>
+        <xmin>5.87698560936441528</xmin>
+        <ymin>45.78816533296164693</ymin>
+        <xmax>10.58234508827697873</xmax>
+        <ymax>47.81431643112537699</ymax>
       </wgs84extent>
       <id>points_6a5b936c_d582_4292_a354_ae8190f0657c</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_points" (geom)</datasource>
@@ -8103,7 +8136,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -8337,16 +8370,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="50000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>2483015.42930848011747003</xmin>
-        <ymin>1075272.65337609010748565</ymin>
-        <xmax>2835597.80719962017610669</xmax>
-        <ymax>1295977.22191859991289675</ymax>
+        <xmin>2483015.42930847592651844</xmin>
+        <ymin>1075272.65337608894333243</ymin>
+        <xmax>2835597.80719961877912283</xmax>
+        <ymax>1295977.22191859618760645</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.87698560936446945</xmin>
-        <ymin>45.78816533296168245</ymin>
-        <xmax>10.58234508827704268</xmax>
-        <ymax>47.81431643112541963</ymax>
+        <xmin>5.87698560936441528</xmin>
+        <ymin>45.78816533296164693</ymin>
+        <xmax>10.58234508827697873</xmax>
+        <ymax>47.81431643112537699</ymax>
       </wgs84extent>
       <id>points_6d11674c_db6d_47ab_8c20_66671ac95b8c</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_points" (geom)</datasource>
@@ -8510,7 +8543,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -8744,16 +8777,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>2483015.42930848011747003</xmin>
-        <ymin>1075272.65337609010748565</ymin>
-        <xmax>2835597.80719962017610669</xmax>
-        <ymax>1295977.22191859991289675</ymax>
+        <xmin>2483015.42930847592651844</xmin>
+        <ymin>1075272.65337608894333243</ymin>
+        <xmax>2835597.80719961877912283</xmax>
+        <ymax>1295977.22191859618760645</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.87698560936446945</xmin>
-        <ymin>45.78816533296168245</ymin>
-        <xmax>10.58234508827704268</xmax>
-        <ymax>47.81431643112541963</ymax>
+        <xmin>5.87698560936441528</xmin>
+        <ymin>45.78816533296164693</ymin>
+        <xmax>10.58234508827697873</xmax>
+        <ymax>47.81431643112537699</ymax>
       </wgs84extent>
       <id>points_9c10feca_b2b5_460f_b785_ed02128abb67</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_points" (geom)</datasource>
@@ -9117,7 +9150,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -9351,16 +9384,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>2483015.42930848011747003</xmin>
-        <ymin>1075272.65337609010748565</ymin>
-        <xmax>2835597.80719962017610669</xmax>
-        <ymax>1295977.22191859991289675</ymax>
+        <xmin>2483015.42930847592651844</xmin>
+        <ymin>1075272.65337608894333243</ymin>
+        <xmax>2835597.80719961877912283</xmax>
+        <ymax>1295977.22191859618760645</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.87698560936446945</xmin>
-        <ymin>45.78816533296168245</ymin>
-        <xmax>10.58234508827704268</xmax>
-        <ymax>47.81431643112541963</ymax>
+        <xmin>5.87698560936441528</xmin>
+        <ymin>45.78816533296164693</ymin>
+        <xmax>10.58234508827697873</xmax>
+        <ymax>47.81431643112537699</ymax>
       </wgs84extent>
       <id>points_a060cc2b_0cab_44dc_bc7d_92d7d92bb7a3</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_points" (geom)</datasource>
@@ -9692,7 +9725,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -9926,16 +9959,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="1" labelsEnabled="1" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>2483015.42930848011747003</xmin>
-        <ymin>1075272.65337609010748565</ymin>
-        <xmax>2835597.80719962017610669</xmax>
-        <ymax>1295977.22191859991289675</ymax>
+        <xmin>2483015.42930847592651844</xmin>
+        <ymin>1075272.65337608894333243</ymin>
+        <xmax>2835597.80719961877912283</xmax>
+        <ymax>1295977.22191859618760645</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.87698560936446945</xmin>
-        <ymin>45.78816533296168245</ymin>
-        <xmax>10.58234508827704268</xmax>
-        <ymax>47.81431643112541963</ymax>
+        <xmin>5.87698560936441528</xmin>
+        <ymin>45.78816533296164693</ymin>
+        <xmax>10.58234508827697873</xmax>
+        <ymax>47.81431643112537699</ymax>
       </wgs84extent>
       <id>points_copier_c7d9a0aa_c771_475d_b5ab_000ef97bfe51</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_points" (geom)</datasource>
@@ -10372,7 +10405,7 @@ def my_form_open(dialog, layer, feature):
               <Option name="drawToAllParts" type="bool" value="false"></Option>
               <Option name="enabled" type="QString" value="0"></Option>
               <Option name="labelAnchorPoint" type="QString" value="point_on_exterior"></Option>
-              <Option name="lineSymbol" type="QString" value="&lt;symbol force_rhr=&quot;0&quot; type=&quot;line&quot; clip_to_extent=&quot;1&quot; alpha=&quot;1&quot; name=&quot;symbol&quot;>&lt;data_defined_properties>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; value=&quot;&quot; name=&quot;name&quot;/>&lt;Option name=&quot;properties&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;collection&quot; name=&quot;type&quot;/>&lt;/Option>&lt;/data_defined_properties>&lt;layer class=&quot;SimpleLine&quot; pass=&quot;0&quot; enabled=&quot;1&quot; locked=&quot;0&quot;>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;align_dash_pattern&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;square&quot; name=&quot;capstyle&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;5;2&quot; name=&quot;customdash&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;customdash_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;customdash_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;dash_pattern_offset&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;dash_pattern_offset_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;dash_pattern_offset_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;draw_inside_polygon&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;bevel&quot; name=&quot;joinstyle&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;60,60,60,255&quot; name=&quot;line_color&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;solid&quot; name=&quot;line_style&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0.3&quot; name=&quot;line_width&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;line_width_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;offset&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;offset_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;offset_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;ring_filter&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;trim_distance_end&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;trim_distance_end_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;trim_distance_end_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;trim_distance_start&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;trim_distance_start_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;trim_distance_start_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;tweak_dash_pattern_on_corners&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;use_custom_dash&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;width_map_unit_scale&quot;/>&lt;/Option>&lt;prop k=&quot;align_dash_pattern&quot; v=&quot;0&quot;/>&lt;prop k=&quot;capstyle&quot; v=&quot;square&quot;/>&lt;prop k=&quot;customdash&quot; v=&quot;5;2&quot;/>&lt;prop k=&quot;customdash_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;customdash_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;dash_pattern_offset&quot; v=&quot;0&quot;/>&lt;prop k=&quot;dash_pattern_offset_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;dash_pattern_offset_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;draw_inside_polygon&quot; v=&quot;0&quot;/>&lt;prop k=&quot;joinstyle&quot; v=&quot;bevel&quot;/>&lt;prop k=&quot;line_color&quot; v=&quot;60,60,60,255&quot;/>&lt;prop k=&quot;line_style&quot; v=&quot;solid&quot;/>&lt;prop k=&quot;line_width&quot; v=&quot;0.3&quot;/>&lt;prop k=&quot;line_width_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;offset&quot; v=&quot;0&quot;/>&lt;prop k=&quot;offset_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;offset_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;ring_filter&quot; v=&quot;0&quot;/>&lt;prop k=&quot;trim_distance_end&quot; v=&quot;0&quot;/>&lt;prop k=&quot;trim_distance_end_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;trim_distance_end_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;trim_distance_start&quot; v=&quot;0&quot;/>&lt;prop k=&quot;trim_distance_start_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;trim_distance_start_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;tweak_dash_pattern_on_corners&quot; v=&quot;0&quot;/>&lt;prop k=&quot;use_custom_dash&quot; v=&quot;0&quot;/>&lt;prop k=&quot;width_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;data_defined_properties>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; value=&quot;&quot; name=&quot;name&quot;/>&lt;Option name=&quot;properties&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;collection&quot; name=&quot;type&quot;/>&lt;/Option>&lt;/data_defined_properties>&lt;/layer>&lt;/symbol>"></Option>
+              <Option name="lineSymbol" type="QString" value="&lt;symbol type=&quot;line&quot; force_rhr=&quot;0&quot; name=&quot;symbol&quot; clip_to_extent=&quot;1&quot; alpha=&quot;1&quot;>&lt;data_defined_properties>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; name=&quot;name&quot; value=&quot;&quot;/>&lt;Option name=&quot;properties&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;type&quot; value=&quot;collection&quot;/>&lt;/Option>&lt;/data_defined_properties>&lt;layer class=&quot;SimpleLine&quot; pass=&quot;0&quot; enabled=&quot;1&quot; locked=&quot;0&quot;>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; name=&quot;align_dash_pattern&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;capstyle&quot; value=&quot;square&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;customdash&quot; value=&quot;5;2&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;customdash_map_unit_scale&quot; value=&quot;3x:0,0,0,0,0,0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;customdash_unit&quot; value=&quot;MM&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;dash_pattern_offset&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;dash_pattern_offset_map_unit_scale&quot; value=&quot;3x:0,0,0,0,0,0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;dash_pattern_offset_unit&quot; value=&quot;MM&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;draw_inside_polygon&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;joinstyle&quot; value=&quot;bevel&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;line_color&quot; value=&quot;60,60,60,255&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;line_style&quot; value=&quot;solid&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;line_width&quot; value=&quot;0.3&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;line_width_unit&quot; value=&quot;MM&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;offset&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;offset_map_unit_scale&quot; value=&quot;3x:0,0,0,0,0,0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;offset_unit&quot; value=&quot;MM&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;ring_filter&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;trim_distance_end&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;trim_distance_end_map_unit_scale&quot; value=&quot;3x:0,0,0,0,0,0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;trim_distance_end_unit&quot; value=&quot;MM&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;trim_distance_start&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;trim_distance_start_map_unit_scale&quot; value=&quot;3x:0,0,0,0,0,0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;trim_distance_start_unit&quot; value=&quot;MM&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;tweak_dash_pattern_on_corners&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;use_custom_dash&quot; value=&quot;0&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;width_map_unit_scale&quot; value=&quot;3x:0,0,0,0,0,0&quot;/>&lt;/Option>&lt;prop v=&quot;0&quot; k=&quot;align_dash_pattern&quot;/>&lt;prop v=&quot;square&quot; k=&quot;capstyle&quot;/>&lt;prop v=&quot;5;2&quot; k=&quot;customdash&quot;/>&lt;prop v=&quot;3x:0,0,0,0,0,0&quot; k=&quot;customdash_map_unit_scale&quot;/>&lt;prop v=&quot;MM&quot; k=&quot;customdash_unit&quot;/>&lt;prop v=&quot;0&quot; k=&quot;dash_pattern_offset&quot;/>&lt;prop v=&quot;3x:0,0,0,0,0,0&quot; k=&quot;dash_pattern_offset_map_unit_scale&quot;/>&lt;prop v=&quot;MM&quot; k=&quot;dash_pattern_offset_unit&quot;/>&lt;prop v=&quot;0&quot; k=&quot;draw_inside_polygon&quot;/>&lt;prop v=&quot;bevel&quot; k=&quot;joinstyle&quot;/>&lt;prop v=&quot;60,60,60,255&quot; k=&quot;line_color&quot;/>&lt;prop v=&quot;solid&quot; k=&quot;line_style&quot;/>&lt;prop v=&quot;0.3&quot; k=&quot;line_width&quot;/>&lt;prop v=&quot;MM&quot; k=&quot;line_width_unit&quot;/>&lt;prop v=&quot;0&quot; k=&quot;offset&quot;/>&lt;prop v=&quot;3x:0,0,0,0,0,0&quot; k=&quot;offset_map_unit_scale&quot;/>&lt;prop v=&quot;MM&quot; k=&quot;offset_unit&quot;/>&lt;prop v=&quot;0&quot; k=&quot;ring_filter&quot;/>&lt;prop v=&quot;0&quot; k=&quot;trim_distance_end&quot;/>&lt;prop v=&quot;3x:0,0,0,0,0,0&quot; k=&quot;trim_distance_end_map_unit_scale&quot;/>&lt;prop v=&quot;MM&quot; k=&quot;trim_distance_end_unit&quot;/>&lt;prop v=&quot;0&quot; k=&quot;trim_distance_start&quot;/>&lt;prop v=&quot;3x:0,0,0,0,0,0&quot; k=&quot;trim_distance_start_map_unit_scale&quot;/>&lt;prop v=&quot;MM&quot; k=&quot;trim_distance_start_unit&quot;/>&lt;prop v=&quot;0&quot; k=&quot;tweak_dash_pattern_on_corners&quot;/>&lt;prop v=&quot;0&quot; k=&quot;use_custom_dash&quot;/>&lt;prop v=&quot;3x:0,0,0,0,0,0&quot; k=&quot;width_map_unit_scale&quot;/>&lt;data_defined_properties>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; name=&quot;name&quot; value=&quot;&quot;/>&lt;Option name=&quot;properties&quot;/>&lt;Option type=&quot;QString&quot; name=&quot;type&quot; value=&quot;collection&quot;/>&lt;/Option>&lt;/data_defined_properties>&lt;/layer>&lt;/symbol>"></Option>
               <Option name="minLength" type="double" value="0"></Option>
               <Option name="minLengthMapUnitScale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               <Option name="minLengthUnit" type="QString" value="MM"></Option>
@@ -10395,7 +10428,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -10629,16 +10662,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="LineString">
       <extent>
-        <xmin>2481221.94092437997460365</xmin>
-        <ymin>1076408.43441836000420153</ymin>
-        <xmax>2817635.25373661005869508</xmax>
-        <ymax>1291185.15252526011317968</ymax>
+        <xmin>2481221.94092437950894237</xmin>
+        <ymin>1076408.43441835814155638</ymin>
+        <xmax>2817635.2537366128526628</xmax>
+        <ymax>1291185.15252525801770389</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.85434409615557794</xmin>
+        <xmin>5.85434409615557261</xmin>
         <ymin>45.80437878812949748</ymin>
-        <xmax>10.34052431944581052</xmax>
-        <ymax>47.77121929769339204</ymax>
+        <xmax>10.34052431944580519</xmax>
+        <ymax>47.77121929769337783</ymax>
       </wgs84extent>
       <id>railways_c4be1c69_274c_417a_b968_8abcf9043eb1</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=LineString checkPrimaryKeyUnicity='1' table="geodata"."osm_railways" (geom)</datasource>
@@ -10969,7 +11002,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -11189,16 +11222,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="LineString">
       <extent>
-        <xmin>2481221.94092437997460365</xmin>
-        <ymin>1076408.43441836000420153</ymin>
-        <xmax>2817635.25373661005869508</xmax>
-        <ymax>1291185.15252526011317968</ymax>
+        <xmin>2481221.94092437950894237</xmin>
+        <ymin>1076408.43441835814155638</ymin>
+        <xmax>2817635.2537366128526628</xmax>
+        <ymax>1291185.15252525801770389</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.85434409615557794</xmin>
+        <xmin>5.85434409615557261</xmin>
         <ymin>45.80437878812949748</ymin>
-        <xmax>10.34052431944581052</xmax>
-        <ymax>47.77121929769339204</ymax>
+        <xmax>10.34052431944580519</xmax>
+        <ymax>47.77121929769337783</ymax>
       </wgs84extent>
       <id>railways_d11080f7_9314_4079_8835_2593b5b42ca3</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=LineString checkPrimaryKeyUnicity='1' table="geodata"."osm_railways" (geom)</datasource>
@@ -11372,7 +11405,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -11587,18 +11620,578 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>osm_id</previewExpression>
       <mapTip></mapTip>
     </maplayer>
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
+      <id>testpoint_5147eafe_c1f8_4576_82c6_0fc8f7ad5376</id>
+      <datasource>service='demo' sslmode=require key='id' srid=21781 type=Point checkPrimaryKeyUnicity='1' table="tests"."testpoint" (geom)</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>testpoint</layername>
+      <srs>
+        <spatialrefsys>
+          <wkt>PROJCRS["CH1903 / LV03",BASEGEOGCRS["CH1903",DATUM["CH1903",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4149]],CONVERSION["Swiss Oblique Mercator 1903M",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth of initial line",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor on initial line",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["easting (Y)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (X)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.82,5.96,47.81,10.49]],ID["EPSG",21781]]</wkt>
+          <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>1919</srsid>
+          <srid>21781</srid>
+          <authid>EPSG:21781</authid>
+          <description>CH1903 / LV03</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>EPSG:7004</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
+        <links></links>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <wkt>PROJCRS["CH1903 / LV03",BASEGEOGCRS["CH1903",DATUM["CH1903",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4149]],CONVERSION["Swiss Oblique Mercator 1903M",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth of initial line",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor on initial line",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["easting (Y)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (X)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.82,5.96,47.81,10.49]],ID["EPSG",21781]]</wkt>
+            <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+            <srsid>1919</srsid>
+            <srid>21781</srid>
+            <authid>EPSG:21781</authid>
+            <description>CH1903 / LV03</description>
+            <projectionacronym>somerc</projectionacronym>
+            <ellipsoidacronym>EPSG:7004</ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent>
+          <spatial crs="EPSG:21781" dimensions="2" maxx="0" maxy="0" maxz="0" minx="0" miny="0" minz="0"></spatial>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
+      </resourceMetadata>
+      <provider encoding="">postgres</provider>
+      <vectorjoins></vectorjoins>
+      <layerDependencies></layerDependencies>
+      <dataDependencies></dataDependencies>
+      <expressionfields></expressionfields>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"></map-layer-style>
+      </map-layer-style-manager>
+      <auxiliaryLayer></auxiliaryLayer>
+      <metadataUrls></metadataUrls>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal accumulate="0" durationField="" durationUnit="min" enabled="0" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="0" startExpression="" startField="">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <renderer-v2 enableorderby="0" forceraster="0" referencescale="-1" symbollevels="0" type="singleSymbol">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="0" type="marker">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option name="name" type="QString" value=""></Option>
+                <Option name="properties"></Option>
+                <Option name="type" type="QString" value="collection"></Option>
+              </Option>
+            </data_defined_properties>
+            <layer class="SimpleMarker" enabled="1" locked="0" pass="0">
+              <Option type="Map">
+                <Option name="angle" type="QString" value="0"></Option>
+                <Option name="cap_style" type="QString" value="square"></Option>
+                <Option name="color" type="QString" value="125,139,143,255"></Option>
+                <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
+                <Option name="joinstyle" type="QString" value="bevel"></Option>
+                <Option name="name" type="QString" value="circle"></Option>
+                <Option name="offset" type="QString" value="0,0"></Option>
+                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="offset_unit" type="QString" value="MM"></Option>
+                <Option name="outline_color" type="QString" value="35,35,35,255"></Option>
+                <Option name="outline_style" type="QString" value="solid"></Option>
+                <Option name="outline_width" type="QString" value="0"></Option>
+                <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="outline_width_unit" type="QString" value="MM"></Option>
+                <Option name="scale_method" type="QString" value="diameter"></Option>
+                <Option name="size" type="QString" value="2"></Option>
+                <Option name="size_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="size_unit" type="QString" value="MM"></Option>
+                <Option name="vertical_anchor_point" type="QString" value="1"></Option>
+              </Option>
+              <prop k="angle" v="0"></prop>
+              <prop k="cap_style" v="square"></prop>
+              <prop k="color" v="125,139,143,255"></prop>
+              <prop k="horizontal_anchor_point" v="1"></prop>
+              <prop k="joinstyle" v="bevel"></prop>
+              <prop k="name" v="circle"></prop>
+              <prop k="offset" v="0,0"></prop>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+              <prop k="offset_unit" v="MM"></prop>
+              <prop k="outline_color" v="35,35,35,255"></prop>
+              <prop k="outline_style" v="solid"></prop>
+              <prop k="outline_width" v="0"></prop>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+              <prop k="outline_width_unit" v="MM"></prop>
+              <prop k="scale_method" v="diameter"></prop>
+              <prop k="size" v="2"></prop>
+              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+              <prop k="size_unit" v="MM"></prop>
+              <prop k="vertical_anchor_point" v="1"></prop>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""></Option>
+                  <Option name="properties"></Option>
+                  <Option name="type" type="QString" value="collection"></Option>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation></rotation>
+        <sizescale></sizescale>
+      </renderer-v2>
+      <customproperties>
+        <Option type="Map">
+          <Option name="embeddedWidgets/count" type="int" value="0"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
+        </Option>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
+          <fontProperties description="Sans Serif,9,-1,5,50,0,0,0,0,0" style=""></fontProperties>
+          <axisSymbol>
+            <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""></Option>
+                  <Option name="properties"></Option>
+                  <Option name="type" type="QString" value="collection"></Option>
+                </Option>
+              </data_defined_properties>
+              <layer class="SimpleLine" enabled="1" locked="0" pass="0">
+                <Option type="Map">
+                  <Option name="align_dash_pattern" type="QString" value="0"></Option>
+                  <Option name="capstyle" type="QString" value="square"></Option>
+                  <Option name="customdash" type="QString" value="5;2"></Option>
+                  <Option name="customdash_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                  <Option name="customdash_unit" type="QString" value="MM"></Option>
+                  <Option name="dash_pattern_offset" type="QString" value="0"></Option>
+                  <Option name="dash_pattern_offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                  <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
+                  <Option name="draw_inside_polygon" type="QString" value="0"></Option>
+                  <Option name="joinstyle" type="QString" value="bevel"></Option>
+                  <Option name="line_color" type="QString" value="35,35,35,255"></Option>
+                  <Option name="line_style" type="QString" value="solid"></Option>
+                  <Option name="line_width" type="QString" value="0.26"></Option>
+                  <Option name="line_width_unit" type="QString" value="MM"></Option>
+                  <Option name="offset" type="QString" value="0"></Option>
+                  <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                  <Option name="offset_unit" type="QString" value="MM"></Option>
+                  <Option name="ring_filter" type="QString" value="0"></Option>
+                  <Option name="trim_distance_end" type="QString" value="0"></Option>
+                  <Option name="trim_distance_end_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                  <Option name="trim_distance_end_unit" type="QString" value="MM"></Option>
+                  <Option name="trim_distance_start" type="QString" value="0"></Option>
+                  <Option name="trim_distance_start_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                  <Option name="trim_distance_start_unit" type="QString" value="MM"></Option>
+                  <Option name="tweak_dash_pattern_on_corners" type="QString" value="0"></Option>
+                  <Option name="use_custom_dash" type="QString" value="0"></Option>
+                  <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                </Option>
+                <prop k="align_dash_pattern" v="0"></prop>
+                <prop k="capstyle" v="square"></prop>
+                <prop k="customdash" v="5;2"></prop>
+                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+                <prop k="customdash_unit" v="MM"></prop>
+                <prop k="dash_pattern_offset" v="0"></prop>
+                <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+                <prop k="dash_pattern_offset_unit" v="MM"></prop>
+                <prop k="draw_inside_polygon" v="0"></prop>
+                <prop k="joinstyle" v="bevel"></prop>
+                <prop k="line_color" v="35,35,35,255"></prop>
+                <prop k="line_style" v="solid"></prop>
+                <prop k="line_width" v="0.26"></prop>
+                <prop k="line_width_unit" v="MM"></prop>
+                <prop k="offset" v="0"></prop>
+                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+                <prop k="offset_unit" v="MM"></prop>
+                <prop k="ring_filter" v="0"></prop>
+                <prop k="trim_distance_end" v="0"></prop>
+                <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+                <prop k="trim_distance_end_unit" v="MM"></prop>
+                <prop k="trim_distance_start" v="0"></prop>
+                <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+                <prop k="trim_distance_start_unit" v="MM"></prop>
+                <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
+                <prop k="use_custom_dash" v="0"></prop>
+                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
+                <data_defined_properties>
+                  <Option type="Map">
+                    <Option name="name" type="QString" value=""></Option>
+                    <Option name="properties"></Option>
+                    <Option name="type" type="QString" value="collection"></Option>
+                  </Option>
+                </data_defined_properties>
+              </layer>
+            </symbol>
+          </axisSymbol>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings dist="0" linePlacementFlags="18" obstacle="0" placement="0" priority="0" showAll="1" zIndex="0">
+        <properties>
+          <Option type="Map">
+            <Option name="name" type="QString" value=""></Option>
+            <Option name="properties"></Option>
+            <Option name="type" type="QString" value="collection"></Option>
+          </Option>
+        </properties>
+      </DiagramLayerSettings>
+      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+        <activeChecks></activeChecks>
+        <checkConfiguration></checkConfiguration>
+      </geometryOptions>
+      <legend showLabelLegend="0" type="default-vector"></legend>
+      <referencedLayers></referencedLayers>
+      <fieldConfiguration>
+        <field configurationFlags="None" name="id">
+          <editWidget type="TextEdit">
+            <config>
+              <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="name">
+          <editWidget type="TextEdit">
+            <config>
+              <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias field="id" index="0" name=""></alias>
+        <alias field="name" index="1" name=""></alias>
+      </aliases>
+      <defaults>
+        <default applyOnUpdate="0" expression="" field="id"></default>
+        <default applyOnUpdate="0" expression="" field="name"></default>
+      </defaults>
+      <constraints>
+        <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"></constraint>
+        <constraint constraints="0" exp_strength="0" field="name" notnull_strength="0" unique_strength="0"></constraint>
+      </constraints>
+      <constraintExpressions>
+        <constraint desc="" exp="" field="id"></constraint>
+        <constraint desc="" exp="" field="name"></constraint>
+      </constraintExpressions>
+      <expressionfields></expressionfields>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns>
+          <column hidden="0" name="id" type="field" width="-1"></column>
+          <column hidden="0" name="name" type="field" width="-1"></column>
+          <column hidden="1" type="actions" width="-1"></column>
+        </columns>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles></rowstyles>
+        <fieldstyles></fieldstyles>
+      </conditionalstyles>
+      <storedexpressions></storedexpressions>
+      <editform tolerant="1"></editform>
+      <editforminit></editforminit>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode># -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+    geom = feature.geometry()
+    control = dialog.findChild(QWidget, "MyLineEdit")
+</editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable>
+        <field editable="1" name="id"></field>
+        <field editable="1" name="name"></field>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="id"></field>
+        <field labelOnTop="0" name="name"></field>
+      </labelOnTop>
+      <reuseLastValue>
+        <field name="id" reuseLastValue="0"></field>
+        <field name="name" reuseLastValue="0"></field>
+      </reuseLastValue>
+      <dataDefinedFieldProperties></dataDefinedFieldProperties>
+      <widgets></widgets>
+      <previewExpression>"name"</previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" legendPlaceholderImage="" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector" wkbType="NoGeometry">
+      <id>testpoint_type_147a22fa_e585_4713_b6ca_625c5ab8763e</id>
+      <datasource>service='demo' sslmode=require key='testpoint_id,type_id' checkPrimaryKeyUnicity='1' table="tests"."testpoint_type"</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>testpoint_type</layername>
+      <srs>
+        <spatialrefsys>
+          <wkt></wkt>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
+        <links></links>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <wkt></wkt>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent>
+          <spatial crs="" dimensions="2" maxx="0" maxy="0" maxz="0" minx="0" miny="0" minz="0"></spatial>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
+      </resourceMetadata>
+      <provider encoding="">postgres</provider>
+      <vectorjoins>
+        <join cascadedDelete="0" dynamicForm="0" editable="0" joinFieldName="id" joinLayerId="type_911d0c40_9495_40d9_8cfb_212bcffac9cc" memoryCache="1" targetFieldName="type_id" upsertOnEdit="0"></join>
+        <join cascadedDelete="0" dynamicForm="0" editable="0" joinFieldName="id" joinLayerId="testpoint_5147eafe_c1f8_4576_82c6_0fc8f7ad5376" memoryCache="1" targetFieldName="testpoint_id" upsertOnEdit="0"></join>
+      </vectorjoins>
+      <layerDependencies></layerDependencies>
+      <dataDependencies></dataDependencies>
+      <expressionfields></expressionfields>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"></map-layer-style>
+      </map-layer-style-manager>
+      <auxiliaryLayer></auxiliaryLayer>
+      <metadataUrls></metadataUrls>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal accumulate="0" durationField="" durationUnit="min" enabled="0" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="0" startExpression="" startField="">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <customproperties>
+        <Option type="Map">
+          <Option name="embeddedWidgets/count" type="int" value="0"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
+        </Option>
+      </customproperties>
+      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+        <activeChecks></activeChecks>
+        <checkConfiguration></checkConfiguration>
+      </geometryOptions>
+      <legend showLabelLegend="0" type="default-vector"></legend>
+      <referencedLayers></referencedLayers>
+      <fieldConfiguration>
+        <field configurationFlags="None" name="testpoint_id">
+          <editWidget type="Range">
+            <config>
+              <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="type_id">
+          <editWidget type="Range">
+            <config>
+              <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="type_name">
+          <editWidget type="TextEdit">
+            <config>
+              <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="testpoint_name">
+          <editWidget type="TextEdit">
+            <config>
+              <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias field="testpoint_id" index="0" name=""></alias>
+        <alias field="type_id" index="1" name=""></alias>
+        <alias field="type_name" index="2" name=""></alias>
+        <alias field="testpoint_name" index="3" name=""></alias>
+      </aliases>
+      <defaults>
+        <default applyOnUpdate="0" expression="" field="testpoint_id"></default>
+        <default applyOnUpdate="0" expression="" field="type_id"></default>
+        <default applyOnUpdate="0" expression="" field="type_name"></default>
+        <default applyOnUpdate="0" expression="" field="testpoint_name"></default>
+      </defaults>
+      <constraints>
+        <constraint constraints="1" exp_strength="0" field="testpoint_id" notnull_strength="1" unique_strength="0"></constraint>
+        <constraint constraints="1" exp_strength="0" field="type_id" notnull_strength="1" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="type_name" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="testpoint_name" notnull_strength="0" unique_strength="0"></constraint>
+      </constraints>
+      <constraintExpressions>
+        <constraint desc="" exp="" field="testpoint_id"></constraint>
+        <constraint desc="" exp="" field="type_id"></constraint>
+        <constraint desc="" exp="" field="type_name"></constraint>
+        <constraint desc="" exp="" field="testpoint_name"></constraint>
+      </constraintExpressions>
+      <expressionfields></expressionfields>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns>
+          <column hidden="0" name="testpoint_id" type="field" width="-1"></column>
+          <column hidden="0" name="type_id" type="field" width="-1"></column>
+          <column hidden="0" name="type_name" type="field" width="-1"></column>
+          <column hidden="0" name="testpoint_name" type="field" width="-1"></column>
+          <column hidden="1" type="actions" width="-1"></column>
+        </columns>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles></rowstyles>
+        <fieldstyles></fieldstyles>
+      </conditionalstyles>
+      <storedexpressions></storedexpressions>
+      <editform tolerant="1"></editform>
+      <editforminit></editforminit>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode># -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+    geom = feature.geometry()
+    control = dialog.findChild(QWidget, "MyLineEdit")
+</editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable>
+        <field editable="1" name="testpoint_id"></field>
+        <field editable="0" name="testpoint_name"></field>
+        <field editable="1" name="type_id"></field>
+        <field editable="0" name="type_name"></field>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="testpoint_id"></field>
+        <field labelOnTop="0" name="testpoint_name"></field>
+        <field labelOnTop="0" name="type_id"></field>
+        <field labelOnTop="0" name="type_name"></field>
+      </labelOnTop>
+      <reuseLastValue>
+        <field name="testpoint_id" reuseLastValue="0"></field>
+        <field name="testpoint_name" reuseLastValue="0"></field>
+        <field name="type_id" reuseLastValue="0"></field>
+        <field name="type_name" reuseLastValue="0"></field>
+      </reuseLastValue>
+      <dataDefinedFieldProperties></dataDefinedFieldProperties>
+      <widgets></widgets>
+      <previewExpression>"testpoint_id"</previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="200000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
       <extent>
-        <xmin>2483015.42930848011747003</xmin>
-        <ymin>1075272.65337609010748565</ymin>
-        <xmax>2835597.80719962017610669</xmax>
-        <ymax>1295977.22191859991289675</ymax>
+        <xmin>2483015.42930847592651844</xmin>
+        <ymin>1075272.65337608894333243</ymin>
+        <xmax>2835597.80719961877912283</xmax>
+        <ymax>1295977.22191859618760645</ymax>
       </extent>
       <wgs84extent>
-        <xmin>5.87698560936446945</xmin>
-        <ymin>45.78816533296168245</ymin>
-        <xmax>10.58234508827704268</xmax>
-        <ymax>47.81431643112541963</ymax>
+        <xmin>5.87698560936441528</xmin>
+        <ymin>45.78816533296164693</ymin>
+        <xmax>10.58234508827697873</xmax>
+        <ymax>47.81431643112537699</ymax>
       </wgs84extent>
       <id>time_762bcf93_4529_466e_ba8a_31ed5f11df15</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Point checkPrimaryKeyUnicity='1' table="geodata"."osm_points" (geom)</datasource>
@@ -11930,7 +12523,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="1" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="0" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="0" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
-          <attribute color="#000000" field="" label=""></attribute>
+          <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <data_defined_properties>
@@ -12162,6 +12755,143 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>osm_id</previewExpression>
       <mapTip></mapTip>
     </maplayer>
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" legendPlaceholderImage="" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector" wkbType="NoGeometry">
+      <id>type_911d0c40_9495_40d9_8cfb_212bcffac9cc</id>
+      <datasource>service='demo' sslmode=require key='id' checkPrimaryKeyUnicity='1' table="tests"."type"</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>type</layername>
+      <srs>
+        <spatialrefsys>
+          <wkt></wkt>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <links></links>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <wkt></wkt>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent></extent>
+      </resourceMetadata>
+      <provider encoding="">postgres</provider>
+      <vectorjoins></vectorjoins>
+      <layerDependencies></layerDependencies>
+      <dataDependencies></dataDependencies>
+      <expressionfields></expressionfields>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"></map-layer-style>
+      </map-layer-style-manager>
+      <auxiliaryLayer></auxiliaryLayer>
+      <metadataUrls></metadataUrls>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal accumulate="0" durationField="" durationUnit="min" enabled="0" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="0" startExpression="" startField="">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <customproperties>
+        <Option></Option>
+      </customproperties>
+      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+        <activeChecks type="StringList">
+          <Option type="QString" value=""></Option>
+        </activeChecks>
+        <checkConfiguration></checkConfiguration>
+      </geometryOptions>
+      <legend showLabelLegend="0" type="default-vector"></legend>
+      <referencedLayers></referencedLayers>
+      <fieldConfiguration>
+        <field configurationFlags="None" name="id">
+          <editWidget type="">
+            <config>
+              <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="name">
+          <editWidget type="">
+            <config>
+              <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias field="id" index="0" name=""></alias>
+        <alias field="name" index="1" name=""></alias>
+      </aliases>
+      <defaults>
+        <default applyOnUpdate="0" expression="" field="id"></default>
+        <default applyOnUpdate="0" expression="" field="name"></default>
+      </defaults>
+      <constraints>
+        <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"></constraint>
+        <constraint constraints="0" exp_strength="0" field="name" notnull_strength="0" unique_strength="0"></constraint>
+      </constraints>
+      <constraintExpressions>
+        <constraint desc="" exp="" field="id"></constraint>
+        <constraint desc="" exp="" field="name"></constraint>
+      </constraintExpressions>
+      <expressionfields></expressionfields>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns></columns>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles></rowstyles>
+        <fieldstyles></fieldstyles>
+      </conditionalstyles>
+      <storedexpressions></storedexpressions>
+      <editform tolerant="1"></editform>
+      <editforminit></editforminit>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable></editable>
+      <labelOnTop></labelOnTop>
+      <reuseLastValue></reuseLastValue>
+      <dataDefinedFieldProperties></dataDefinedFieldProperties>
+      <widgets></widgets>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
   </projectlayers>
   <layerorder>
     <layer id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318"></layer>
@@ -12192,6 +12922,9 @@ def my_form_open(dialog, layer, feature):
     <layer id="Aster_c455e495_494c_46dc_b849_afe5d70a095a"></layer>
     <layer id="SRTM_95c7ea30_14df_44f6_bdc0_a102f993de49"></layer>
     <layer id="SRTM_c2466b30_e116_4ec7_94a9_7b878ce000cc"></layer>
+    <layer id="testpoint_5147eafe_c1f8_4576_82c6_0fc8f7ad5376"></layer>
+    <layer id="type_911d0c40_9495_40d9_8cfb_212bcffac9cc"></layer>
+    <layer id="testpoint_type_147a22fa_e585_4713_b6ca_625c5ab8763e"></layer>
   </layerorder>
   <properties>
     <DefaultStyles>
@@ -12384,7 +13117,36 @@ def my_form_open(dialog, layer, feature):
     </Option>
   </dataDefinedServerProperties>
   <visibility-presets></visibility-presets>
-  <transformContext></transformContext>
+  <transformContext>
+    <srcDest allowFallback="1" coordinateOp="+proj=pipeline +step +inv +proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +step +proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel">
+      <src>
+        <spatialrefsys>
+          <wkt>PROJCRS["CH1903 / LV03",BASEGEOGCRS["CH1903",DATUM["CH1903",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4149]],CONVERSION["Swiss Oblique Mercator 1903M",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth of initial line",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor on initial line",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["easting (Y)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (X)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.82,5.96,47.81,10.49]],ID["EPSG",21781]]</wkt>
+          <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>1919</srsid>
+          <srid>21781</srid>
+          <authid>EPSG:21781</authid>
+          <description>CH1903 / LV03</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>EPSG:7004</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </src>
+      <dest>
+        <spatialrefsys>
+          <wkt>PROJCRS["CH1903+ / LV95",BASEGEOGCRS["CH1903+",DATUM["CH1903+",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4150]],CONVERSION["Swiss Oblique Mercator 1995",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth of initial line",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor on initial line",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",2600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",1200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.82,5.96,47.81,10.49]],ID["EPSG",2056]]</wkt>
+          <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>EPSG:7004</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </dest>
+    </srcDest>
+  </transformContext>
   <projectMetadata>
     <identifier></identifier>
     <parentidentifier></parentidentifier>
@@ -12410,7 +13172,7 @@ def my_form_open(dialog, layer, feature):
   <Bookmarks></Bookmarks>
   <ProjectViewSettings UseProjectScales="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="2576041.41168968938291073" xmin="2561002.08129413891583681" ymax="1153770.31198436138220131" ymin="1139964.85854076803661883">
+    <DefaultViewExtent xmax="2579224.32746856193989515" xmin="2557819.16551526635885239" ymax="1151103.71171905612573028" ymin="1142631.45880607329308987">
       <spatialrefsys>
         <wkt>PROJCRS["CH1903+ / LV95",BASEGEOGCRS["CH1903+",DATUM["CH1903+",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4150]],CONVERSION["Swiss Oblique Mercator 1995",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth of initial line",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor on initial line",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",2600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",1200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.82,5.96,47.81,10.49]],ID["EPSG",2056]]</wkt>
         <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
