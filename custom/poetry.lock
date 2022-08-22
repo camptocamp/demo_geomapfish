@@ -64,9 +64,9 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-standard = ["waitress", "setuptools", "requests-oauthlib", "pyjwt", "pyyaml", "zope.sqlalchemy", "zope.interface", "sqlalchemy-utils", "sqlalchemy", "cee-syslog-handler", "ujson", "requests", "sentry-sdk", "pyramid-tm", "pyramid", "psycopg2", "pipfile", "objgraph", "netifaces", "lxml", "gunicorn", "cornice", "boltons", "alembic"]
-profiler = ["linesman"]
 broadcast = ["redis"]
+profiler = ["linesman"]
+standard = ["alembic", "boltons", "cornice", "gunicorn", "lxml", "netifaces", "objgraph", "pipfile", "psycopg2", "pyramid", "pyramid-tm", "sentry-sdk", "requests", "ujson", "cee-syslog-handler", "sqlalchemy", "sqlalchemy-utils", "zope.interface", "zope.sqlalchemy", "pyyaml", "pyjwt", "requests-oauthlib", "setuptools", "waitress"]
 
 [[package]]
 name = "cee-syslog-handler"
@@ -704,8 +704,8 @@ pyramid = ">=1.9"
 "zope.interface" = "*"
 
 [package.extras]
-testing = ["webtest", "pytest-cov", "pytest"]
-docs = ["repoze.sphinx.autointerface", "pylons-sphinx-themes", "sphinx"]
+docs = ["sphinx", "pylons-sphinx-themes", "repoze.sphinx.autointerface"]
+testing = ["pytest", "pytest-cov", "webtest"]
 
 [[package]]
 name = "pyramid-tm"
@@ -720,8 +720,8 @@ pyramid = ">=1.5"
 transaction = ">=2.0"
 
 [package.extras]
-testing = ["coverage (>=5.0)", "pytest-cov", "pytest", "webtest"]
-docs = ["pylons-sphinx-themes (>=1.0.9)", "Sphinx (>=1.8.1)"]
+docs = ["Sphinx (>=1.8.1)", "pylons-sphinx-themes (>=1.0.9)"]
+testing = ["webtest", "pytest", "pytest-cov", "coverage (>=5.0)"]
 
 [[package]]
 name = "pyyaml"
