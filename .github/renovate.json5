@@ -11,6 +11,11 @@
   baseBranches: ['prod-2-7', 'prod-2-7-advance', 'prod-2-8', 'prod-2-8-advance'],
   ignorePaths: ['CONST_create_template/**', 'docker-compose-lib.yaml', 'ci/**'],
   packageRules: [
+    /** Docker images versioning */
+    {
+      matchDatasources: ['docker'],
+      versioning: 'loose',
+    },
     /** Automerge the patch, the minor and the dev dependency */
     {
       matchBaseBranches: ['prod-2-8', 'prod-2-8-advance'],
