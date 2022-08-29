@@ -48,7 +48,7 @@
     /** Accept only the patch on the stabilization branches */
     {
       matchBaseBranches: ['prod-2-7', 'prod-2-7-advance'],
-      matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'rollback', 'bump'],
+      matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'rollback', 'bump', 'lockFileMaintenance'],
       enabled: false,
     },
     {
