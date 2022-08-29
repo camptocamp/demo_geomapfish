@@ -7,7 +7,7 @@
   separateMinorPatch: true,
   prHourlyLimit: 0,
   prConcurrentLimit: 0,
-  lockFileMaintenance: {enabled: true, automerge: true},
+  lockFileMaintenance: {enabled: true, automerge: true, schedule: 'before 1am on Tuesday'},
   baseBranches: ['prod-2-7', 'prod-2-7-advance', 'prod-2-8', 'prod-2-8-advance'],
   ignorePaths: ['CONST_create_template/**', 'docker-compose-lib.yaml', 'ci/**'],
   packageRules: [
