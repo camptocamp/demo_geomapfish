@@ -43,10 +43,7 @@ class Controller extends AbstractAPIController {}
 /**
  * @hidden
  */
-const geomapfishModule = angular.module('Appiframe_api', [
-  geomapfishBase.name,
-  gmfControllersAbstractAPIController.name,
-]);
+const geomapfishModule = angular.module('Appiframe_api', [geomapfishBase.name, gmfControllersAbstractAPIController.name]);
 
 geomapfishModule.controller('IframeAPIController', Controller);
 
