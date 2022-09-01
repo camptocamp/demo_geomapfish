@@ -57,7 +57,7 @@ yaml = ["pyyaml"]
 
 [[package]]
 name = "c2cwsgiutils"
-version = "5.1.0"
+version = "5.1.2"
 description = "Common utilities for Camptocamp WSGI applications"
 category = "main"
 optional = false
@@ -66,6 +66,7 @@ python-versions = "*"
 [package.extras]
 broadcast = ["redis"]
 standard = ["alembic", "boltons", "cee-syslog-handler", "cornice", "gunicorn", "lxml", "netifaces", "objgraph", "pipfile", "psycopg2", "pyjwt", "pyramid", "pyramid-tm", "pyyaml", "requests", "requests-oauthlib", "sentry-sdk", "sqlalchemy", "sqlalchemy-utils", "ujson", "waitress", "zope.interface", "zope.sqlalchemy"]
+test_images = ["scikit-image"]
 
 [[package]]
 name = "cee-syslog-handler"
@@ -1088,7 +1089,7 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "9c2e0c0aa561492973b07aba152efbc4357bea7dec60dc4305cf43d8fe004a2a"
+content-hash = "75c3cf935c5b2bb463ce24a7f7fbf63c48c36e00fe79c2f4e2d194cc299d324b"
 
 [metadata.files]
 alembic = [
@@ -1108,7 +1109,7 @@ bandit = [
     {file = "bandit-1.7.4.tar.gz", hash = "sha256:2d63a8c573417bae338962d4b9b06fbc6080f74ecd955a092849e1e65c717bd2"},
 ]
 c2cwsgiutils = [
-    {file = "c2cwsgiutils-5.1.0-py3-none-any.whl", hash = "sha256:e203358c25f1fa1affc3ab2d33318f4666d62e21aae6e4df3bc542369b98a216"},
+    {file = "c2cwsgiutils-5.1.2-py3-none-any.whl", hash = "sha256:0096db066dff964e5e49ccc19fc509ba7f9845c3113f5df407dd2a6848cdac2f"},
 ]
 cee-syslog-handler = [
     {file = "cee_syslog_handler-0.6.0-py3-none-any.whl", hash = "sha256:13b60f5b4f9f04e2868316d88bf63d51b4b4b273ba7df12af6f21ee10e223ca3"},
