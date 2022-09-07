@@ -434,7 +434,6 @@ vars:
             partitionlimit: 5
     oeedit:
       extends: desktop
-  print_get_redirect: True
 
   urllogin:
     aes_key: foobarfoobar1234
