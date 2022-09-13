@@ -1,6 +1,2 @@
-pylint:
-  disable:
-    - missing-timeout # Default timeout set by c2cwsgiutils
-
 bandit:
   run: true
