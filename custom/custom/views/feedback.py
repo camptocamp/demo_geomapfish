@@ -29,6 +29,7 @@ def feedback_post(request: pyramid.request.Request) -> Any:
             requests.get(
                 f"{os.environ['GEOPORTAL_INTERNAL_URL']}/loginuser",
                 headers={"Cookie": request.headers.get("Cookie"), "Referer": request.referrer},
+                timeout=60,
             ).json()
         )
     except Exception:
