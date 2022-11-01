@@ -149,6 +149,7 @@ services:
         GIT_HASH: ${GIT_HASH}
     environment:
       - VISIBLE_WEB_HOST
+      - VISIBLE_ENTRY_POINT
       - GEOPORTAL_INTERNAL_URL
       - PGSCHEMA
       - SQLALCHEMY_POOL_RECYCLE
