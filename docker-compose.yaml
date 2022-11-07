@@ -26,6 +26,7 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: mapserver
+
     volumes_from:
       - config:ro
 
