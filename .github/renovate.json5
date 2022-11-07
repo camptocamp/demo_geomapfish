@@ -56,5 +56,14 @@
       matchDatasources: ['docker-compose', 'github-actions'],
       enabled: false,
     },
+    /** Group Poetry packages */
+    {
+      matchPackageNames: ['poetry', 'pip'],
+      matchPackagePrefixes: ['poetry-'],
+      groupName: 'Poetry',
+      automerge: true,
+      separateMajorMinor: false,
+      separateMinorPatch: false,
+    },
   ],
 }
