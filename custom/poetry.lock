@@ -433,11 +433,11 @@ testing = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "plaster-pastedeploy"
-version = "0.7"
+version = "1.0.1"
 description = "A loader implementing the PasteDeploy syntax to be used by plaster."
 category = "main"
 optional = false
-python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
+python-versions = ">=3.7"
 
 [package.dependencies]
 PasteDeploy = ">=2.0"
@@ -1113,7 +1113,7 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "d618ce8632823281b445ee70d565247377174ec279c3fd6fc5bc89a9b9197fd9"
+content-hash = "f78c10fabffa68aeb0f315e8c6fcd4a682fad5bcf5d761bdb38aa6a76ac7942d"
 
 [metadata.files]
 alembic = [
@@ -1405,8 +1405,8 @@ plaster = [
     {file = "plaster-1.1.tar.gz", hash = "sha256:136c09ecbd2a8eab1544fb8513cbd77a32f6e7052b1034fe53856bf74a172faa"},
 ]
 plaster-pastedeploy = [
-    {file = "plaster_pastedeploy-0.7-py2.py3-none-any.whl", hash = "sha256:7c8aa37c917b615c70bf942b24dc1e0455c49f62f1a2214b1a0dd98871644bbb"},
-    {file = "plaster_pastedeploy-0.7.tar.gz", hash = "sha256:391d93a4e1ff81fc3bae27508ebb765b61f1724ae6169f83577f06b6357be7fd"},
+    {file = "plaster_pastedeploy-1.0.1-py2.py3-none-any.whl", hash = "sha256:ad3550cc744648969ed3b810f33c9344f515ee8d8a8cec18e8f2c4a643c2181f"},
+    {file = "plaster_pastedeploy-1.0.1.tar.gz", hash = "sha256:be262e6d2e41a7264875daa2fe2850cbb0615728bcdc92828fdc72736e381412"},
 ]
 platformdirs = [
     {file = "platformdirs-2.5.4-py3-none-any.whl", hash = "sha256:af0276409f9a02373d540bf8480021a048711d572745aef4b7842dad245eba10"},
