@@ -8,11 +8,11 @@ on:
 
 env:
   PROJECT: demo
+  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
   OPENSHIFT_PROJECT: gs-gmf-demo
   # The release branches
   HELM_RELEASE_NAMES: prod-2-7
-  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
   SENTRY_PROJECT: geomapfish-demo
   SENTRY_ENVIRONMENT: prod-2-7
   DOCKER_BUILDKIT: '1'
