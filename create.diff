@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/main.yaml b/.github/workflows/main.yaml
+index 63865d9..df0aa63 100644
+--- a/.github/workflows/main.yaml
++++ b/.github/workflows/main.yaml
+@@ -6,6 +6,7 @@ on:
+ 
+ env:
+   PROJECT: geomapfish
++  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
+   # OPENSHIFT_PROJECT: gs-gmf-geomapfish
+   # The release branches
+diff --git a/.github/workflows/rebuild.yaml b/.github/workflows/rebuild.yaml
+index 3e182dd..edbf64b 100644
+--- a/.github/workflows/rebuild.yaml
++++ b/.github/workflows/rebuild.yaml
+@@ -43,4 +43,4 @@ jobs:
+         run: ./build
+ 
+       - name: Publish
+-        run: c2cciutils-publish
++        run: c2cciutils-publish --branch=${{ matrix.branch }} --type=rebuild

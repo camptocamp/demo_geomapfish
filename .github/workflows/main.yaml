@@ -7,7 +7,12 @@ on:
     types: [labeled]
 
 env:
+<<<<<<< ours
   PROJECT: demo
+=======
+  PROJECT: geomapfish
+  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+>>>>>>> theirs
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
   OPENSHIFT_PROJECT: gs-gmf-demo
   # The release branches
