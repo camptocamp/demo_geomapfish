@@ -25,7 +25,7 @@ RUN --mount=type=cache,target=/root/.cache \
 
 COPY poetry.lock pyproject.toml ./
 RUN poetry export --output=requirements.txt \
-    && poetry export --dev --output=requirements-dev.txt
+    && poetry export --with=dev --output=requirements-dev.txt
 
 FROM base-all AS base
 LABEL maintainer Camptocamp "info@camptocamp.com"
