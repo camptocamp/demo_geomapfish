@@ -1,14 +1,13 @@
 #
 # Translators:
 # Camptocamp geospatial <geospatial-bot@camptocamp.com>, 2020
-# Stéphane Brunner <stephane.brunner@camptocamp.com>, 2020
-# Wolfgang Kaltz <wolfgang.kaltz@camptocamp.com>, 2022
 # Laurent Lienher <laurent.lienher@camptocamp.com>, 2022
+# Stéphane Brunner <stephane.brunner@camptocamp.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Laurent Lienher <laurent.lienher@camptocamp.com>, 2022\n"
+"Last-Translator: Stéphane Brunner <stephane.brunner@camptocamp.com>, 2022\n"
 "Language-Team: French (https://www.transifex.com/camptocamp/teams/36764/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,8 +65,8 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
-"Dessiner une ligne sur la carte pour afficher le profile d'altitude correspondant.\n"
-"Double cliquer pour terminer la saisie."
+"Dessiner une ligne sur la carte pour afficher le profil d'altitude correspondant.\n"
+"Double-cliquer pour terminer la saisie."
 
 #: contribs/gmf/apps/desktop/index.html.ejs:138
 #: contribs/gmf/apps/desktop/index.html.ejs:66
@@ -103,7 +102,7 @@ msgstr "Altitude (SRTM)"
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:210
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:82
 msgid "Elevation profile"
-msgstr "Profile d'altitude"
+msgstr "Profil d'altitude"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:151
 #: contribs/gmf/apps/desktop/index.html.ejs:70
@@ -135,7 +134,7 @@ msgstr "Pour utiliser l'interface d’édition vous devez être connecté."
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:86
 msgid "LIDAR profile"
-msgstr "Profile LIDAR"
+msgstr "Profil LiDAR"
 
 #: contribs/gmf/apps/mobile/index.html.ejs:172
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:166
@@ -144,7 +143,7 @@ msgstr "Longueur"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:236
 msgid "Lidar profile (only on the canton of Neuchâtel)"
-msgstr "Profile LIDAR (seulement le canton de Neuchâtel)"
+msgstr "Profil LiDAR (seulement le canton de Neuchâtel)"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:119
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:136
@@ -166,7 +165,7 @@ msgstr "Chargement..."
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:145
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:171
 msgid "Login"
-msgstr "Connection"
+msgstr "Connexion"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:94
 msgid "Mapillary"
