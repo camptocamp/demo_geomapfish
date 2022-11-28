@@ -74,3 +74,9 @@ acceptance-init: ## Initialize the acceptance tests
 acceptance: ## Run the acceptance tests
 	docker-compose exec -T tools pytest -vv tests/
 	ci/docker-compose-check
+
+.PHONY: acceptance-dev
+acceptance-dev:
+	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml up -d
+	docker-compose exec -T tools pytest tests/
+	ci/docker-compose-check
