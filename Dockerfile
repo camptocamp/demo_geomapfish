@@ -77,7 +77,7 @@ VOLUME /etc/geomapfish \
 
 ###############################################################################
 
-FROM node:19.1.0-slim AS custom-build
+FROM node:19.2.0-slim AS custom-build
 
 WORKDIR /app
 COPY package.json ./
