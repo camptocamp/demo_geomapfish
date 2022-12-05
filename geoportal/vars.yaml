@@ -84,9 +84,7 @@ vars:
         gmfOptions:
           map:
             maxTilesLoading: 128
-          view:
-            <<: *view
-            constrainResolution: True
+          view: *view
           geolocalisation: True
           cssVars: &cssVars # Used by https://github.com/camptocamp/ngeo/pull/7527
             left-panel-width: 20rem
