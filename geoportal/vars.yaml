@@ -45,6 +45,7 @@ vars:
             zoom: 3
             resolutions: *resolutions
             extent: *extent
+            constrainRotation: false
           geolocalisation: True
         ngeoWfsPermalinkOptions:
           wfsTypes:
