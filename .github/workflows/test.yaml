@@ -14,7 +14,7 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     name: Test the docker-compose application
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v2
