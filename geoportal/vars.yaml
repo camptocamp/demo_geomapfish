@@ -805,7 +805,7 @@ vars:
       #   host: '{REDIS_HOST}'
       #   port: '{REDIS_PORT}'
       #   db: '{REDIS_DB}'
-      # Openshift version
+      # Kubernetes version
       arguments: &redis-cache-arguments
         sentinels:
           - - '{REDIS_HOST}'
