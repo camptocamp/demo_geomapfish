@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.8
+#!/usr/bin/env python3
 # ./test.py --connection-string=$(gopass private/azure-connection-string) --list-containers --container=data-gmf-demo --list --sync ~/blob ''
 
 import argparse
@@ -19,6 +19,7 @@ def main():
     parser.add_argument("--list", help="List the files in the container", action="store_true")
     parser.add_argument("--sync-upload", help="Sync the files in the container (local, azure)", nargs=2)
     parser.add_argument("--sync-download", help="Sync the files in the container (local, azure)", nargs=2)
+    parser.add_argument("--dry-run", action='store_true', help="Dry run")
     args = parser.parse_args()
 
     blob_service_client = BlobServiceClient.from_connection_string(args.connection_string)
@@ -46,9 +47,10 @@ def main():
                     relative = filename[len(args.sync_upload[0]) + 1 :]
                     dest = os.path.join(args.sync_upload[1], relative) if args.sync_upload[1] else relative
                     print(f"{filename} -> {dest}")
-                    blob_client = container_client.get_blob_client(blob=dest)
-                    with open(filename, "rb") as data:
-                        blob_client.upload_blob(data, overwrite=True)
+                    if not args.dry_run:
+                        blob_client = container_client.get_blob_client(blob=dest)
+                        with open(filename, "rb") as data:
+                            blob_client.upload_blob(data, overwrite=True)
 
         if args.sync_download:
             src_path = args.sync_download[0]
@@ -60,9 +62,10 @@ def main():
                     dest = os.path.join(args.sync_download[1], src[len(src_path) :])
                     print(f"{src} -> {dest}")
                     os.makedirs(os.path.dirname(dest), exist_ok=True)
-                    with open(dest, "wb") as data:
-                        content = container_client.get_blob_client(blob=src).download_blob().readall()
-                        data.write(content)
+                    if not args.dry_run:
+                        with open(dest, "wb") as data:
+                            content = container_client.get_blob_client(blob=src).download_blob().readall()
+                            data.write(content)
 
 
 if __name__ == "__main__":
