@@ -19,7 +19,7 @@ def main():
     parser.add_argument("--list", help="List the files in the container", action="store_true")
     parser.add_argument("--sync-upload", help="Sync the files in the container (local, azure)", nargs=2)
     parser.add_argument("--sync-download", help="Sync the files in the container (local, azure)", nargs=2)
-    parser.add_argument("--dry-run", action='store_true', help="Dry run")
+    parser.add_argument("--dry-run", action="store_true", help="Dry run")
     args = parser.parse_args()
 
     blob_service_client = BlobServiceClient.from_connection_string(args.connection_string)
