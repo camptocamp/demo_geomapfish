@@ -7,12 +7,6 @@ resourceBundle: localisation
 allowedReferers: &allowedHosts
   ${DISABLE_MUTUALIZED_PRINT}- !hostnameMatch
   ${DISABLE_MUTUALIZED_PRINT}  host: ${MUTUALIZED_PRINT_URL}
-  ${DISABLE_MUTUALIZED_PRINT}- !hostnameMatch
-  ${DISABLE_MUTUALIZED_PRINT}  host: 2-7.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-  ${DISABLE_MUTUALIZED_PRINT}- !hostnameMatch
-  ${DISABLE_MUTUALIZED_PRINT}  host: 2-7.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-  ${DISABLE_MUTUALIZED_PRINT}- !hostnameMatch
-  ${DISABLE_MUTUALIZED_PRINT}  host: 2-7.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
   ${DISABLE_LOCAL_PRINT}- !hostnameMatch
   ${DISABLE_LOCAL_PRINT}  host: ${VISIBLE_WEB_HOST}
   - !localMatch {}
