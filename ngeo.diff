@@ -1,0 +1,37 @@
+diff --git a/geoportal/vars.yaml b/geoportal/vars.yaml
+index e9dfc83..5f1dd53 100644
+--- a/geoportal/vars.yaml
++++ b/geoportal/vars.yaml
+@@ -276,22 +276,17 @@ vars:
+     std:
+       # Standalone version
+       backend: c2cgeoportal.hybrid
+-      arguments: &redis-cache-arguments
++      arguments:
+         host: '{REDIS_HOST}'
+         port: '{REDIS_PORT}'
+         db: '{REDIS_DB}'
+       # Kubernetes version
+-      # arguments: &redis-cache-arguments
++      # arguments:
+       #   sentinels:
+       #     - - '{REDIS_HOST}'
+       #       - '{REDIS_PORT}'
+       #   connection_kwargs:
+       #     db: '{REDIS_DB}'
+-    ogc-server:
+-      # Standalone version
+-      backend: dogpile.cache.redis
+-      # All versions
+-      arguments: *redis-cache-arguments
+ 
+   # Control the HTTP headers
+   headers:
+@@ -321,7 +316,6 @@ update_paths:
+   - api
+   - authorized_referers
+   - cache.std.arguments
+-  - cache.ogc-server.arguments
+   - cache.obj
+   - check_collector.disabled
+   - check_collector.hosts
