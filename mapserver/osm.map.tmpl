@@ -9,7 +9,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
     FILTER ('[tourism]' = 'hotel')
     LABELITEM "name"
@@ -47,7 +47,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
     FILTER ('[tourism]' = 'hotel')
     LABELITEM "name"
@@ -86,7 +86,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -138,7 +138,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -190,7 +190,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -242,7 +242,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -294,7 +294,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -336,7 +336,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -390,7 +390,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -500,7 +500,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -545,7 +545,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -728,7 +728,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -792,7 +792,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\", operator, population, power, place, railway, ref, religion, shop, sport, surface, tourism, waterway, wood, way AS geom FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
     FILTER ('[amenity]' = 'place_of_worship')
     LABELITEM "name"
@@ -871,7 +871,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -962,7 +962,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (
         SELECT
             regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,
@@ -1071,7 +1071,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     EXTENT 2473743 1074095 2839000 1306400
@@ -1118,7 +1118,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     EXTENT 2473743 1074095 2839000 1306400
@@ -1165,7 +1165,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     EXTENT 2473743 1074095 2839000 1306400
@@ -1213,7 +1213,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     EXTENT 2473743 1074095 2839000 1306400
@@ -1261,7 +1261,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     EXTENT 2473743 1074095 2839000 1306400
@@ -1308,7 +1308,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     EXTENT 2473743 1074095 2839000 1306400
@@ -1356,7 +1356,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     EXTENT 2473743 1074095 2839000 1306400
@@ -2267,7 +2267,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geom FROM (SELECT '<a href=\"javascript:cgxp.tools.openInfoWindow(''https://example.com'',''OSM'',800,500)\">Open</a>' AS open, 'https://geomapfish-demo-dc.camptocamp.com/2.4/resourceproxy?target=point&values='||osm_id AS autolink_url,type||'@camptocamp.com' AS autolink_email,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING unique osm_id USING srid=2056"
     LABELITEM "name"
     EXTENT 2473743 1074095 2839000 1306400
@@ -2315,7 +2315,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "way FROM (SELECT regexp_replace(format('%s', name), '^$', osm_id::text) AS display_name,name,osm_id,access,aerialway,amenity,barrier,bicycle,brand,building,covered,denomination,ele,foot,highway,layer,leisure,man_made,motorcar,\"natural\",operator,population,power,place,railway,ref,religion,shop,sport,surface,tourism,waterway,wood,way FROM planet_osm_point) AS foo USING unique osm_id USING srid=2056"
     FILTER ('[amenity]' = 'cinema')
     LABELITEM "name"
@@ -2358,7 +2358,7 @@ LAYER
     TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
-    CONNECTION "host=${PGHOST_SLAVE} port=${PGPORT_SLAVE} user=${PGUSER} password=${PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
     DATA "geometry FROM (SELECT way AS geometry, osm_id, name FROM planet_osm_polygon WHERE building IS NOT NULL) as foo USING unique osm_id USING srid=2056"
     PROJECTION
         "init=epsg:2056"
