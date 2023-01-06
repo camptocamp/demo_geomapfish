@@ -753,9 +753,9 @@ vars:
     login: *auth_header
 
   authorized_referers:
-    - https://geomapfish-demo-2-7.apps.gs-ch-dev.camptocamp.com
-    - https://geomapfish-demo-2-7.apps.blue.gs-ch-dev.camptocamp.com
-    - https://geomapfish-demo-2-7.apps.green.gs-ch-dev.camptocamp.com
+    - https://2-7.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+    - https://2-7.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+    - https://2-7.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
     - https://camptocamp.github.io
     - https://fredj.github.io
     - https://ger-benjamin.github.io
