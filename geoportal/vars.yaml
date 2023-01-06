@@ -777,9 +777,6 @@ vars:
     - http://127.0.0.1:3001
     - http://127.0.0.1:6006
 
-  servers:
-    tiles: '{WMTS_URL}'
-
   # Checker configuration
   checker_ogc_server: Main PNG
   checker:
