@@ -588,15 +588,15 @@ vars:
   # chapter in the integrator documentation.
   raster:
     srtm:
-      file: '{RASTER_BASE_PATH}/SRTM2056.vrt'
+      file: '{RASTER_BASE_PATH}SRTM2056.vrt'
       type: gdal
       round: 1
     srtm-partial:
-      file: '{RASTER_BASE_PATH}/SRTM2056-partial.vrt'
+      file: '{RASTER_BASE_PATH}SRTM2056-partial.vrt'
       type: gdal
       round: 0.1
     aster:
-      file: '{RASTER_BASE_PATH}/Aster2056.vrt'
+      file: '{RASTER_BASE_PATH}Aster2056.vrt'
       type: gdal
       round: 1
 
