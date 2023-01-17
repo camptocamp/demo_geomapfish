@@ -43,6 +43,8 @@ defaults:
     min_resolution_seed: 5
     # the URL of the WMS server to used
     url: ${MAPSERVER_URL}
+    params:
+      ogc_server: Main PNG
     # Set the headers to get the right virtual host, and don't get any cached result
     headers:
       Host: '${VISIBLE_WEB_HOST}'
