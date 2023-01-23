@@ -39,7 +39,7 @@
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[
-					"T2 " + $R{date_pre} + " " + java.time.ZonedDateTime.now().format(
+					$R{date_pre} + " " + java.time.ZonedDateTime.now().format(
 						java.time.format.DateTimeFormatter.
 						ofPattern("EEEE dd MMMM yyyy HH:mm").
 						withLocale($P{REPORT_LOCALE}).
