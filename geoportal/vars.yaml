@@ -145,7 +145,7 @@ vars:
       static:
         # Those two lines should be commented in dev mode.
         gmfCustomJavascriptUrl:
-          name: '/etc/geomapfish/static/custom/custom.es.js'
+          name: '/etc/geomapfish/static/custom/custom.mjs'
         gmfCustomStylesheetUrl:
           name: /etc/geomapfish/static/css/desktop_alt.css
 
