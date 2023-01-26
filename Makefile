@@ -1,5 +1,5 @@
-PROJECT_PUBLIC_URL=https://geomapfish-demo-2-7.camptocamp.com/
-DUMP_FILE=data/prod-2-7.dump
+PROJECT_PUBLIC_URL=https://geomapfish-demo-2-8.camptocamp.com/
+DUMP_FILE=data/prod-2-8.dump
 PACKAGE=geomapfish
 LANGUAGES=en fr de it
 

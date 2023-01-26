@@ -638,9 +638,9 @@ vars:
       The GeoMapfish team
     allowed_hosts:
       - '{VISIBLE_WEB_HOST}'
-      - 2-7.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-      - 2-7.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-      - 2-7.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
+      - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+      - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+      - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
       - camptocamp.github.io
       - geomapfish-demo-dc.camptocamp.com
       - fredj.github.io
@@ -719,9 +719,9 @@ vars:
     themes: &auth_header
       access_control_allow_origin:
         - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
-        - 2-7.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-        - 2-7.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-        - 2-7.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
+        - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+        - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+        - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
         - https://camptocamp.github.io
         - https://fredj.github.io
         - https://ger-benjamin.github.io
@@ -753,9 +753,9 @@ vars:
     login: *auth_header
 
   authorized_referers:
-    - https://2-7.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-    - https://2-7.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-    - https://2-7.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
+    - https://2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+    - https://2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+    - https://2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
     - https://camptocamp.github.io
     - https://fredj.github.io
     - https://ger-benjamin.github.io
