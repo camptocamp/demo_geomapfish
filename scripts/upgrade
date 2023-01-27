@@ -10,29 +10,33 @@ function printdiff {
 
 git config user.email "<ci@camptocamp.com>"
 git config user.name "Continuous integration"
-./build --upgrade $1
 VERSION=$1
-if [ ${VERSION} = "latest" ]; then
-    VERSION=master
+VERSION_UPGRADE=$1
+if [ "${VERSION}" == "master" ]; then
+    VERSION=latest
 fi
+if [ "${VERSION_UPGRADE}" == "latest" ]; then
+    VERSION_UPGRADE=master
+fi
+./build --upgrade "$VERSION_UPGRADE"
 
 if [ -e .UPGRADE6 ]; then
-    ./upgrade ${VERSION} 7
+    ./upgrade "${VERSION}" 7
 fi
 if [ -e .UPGRADE8 ]; then
-    ./upgrade ${VERSION} 9
+    ./upgrade "${VERSION}" 9
 fi
 if [ -e .UPGRADE9 ]; then
     # Workaround
     git status > /dev/null
     git apply --3way ngeo.diff
-    ./upgrade ${VERSION} 10
+    ./upgrade "${VERSION}" 10
 fi
 if [ -e .UPGRADE10 ]; then
     # Workaround
     git status > /dev/null
     git apply --3way create.diff
-    ./upgrade ${VERSION} 11
+    ./upgrade "${VERSION}" 11
 fi
 if [ ! -e .UPGRADE_SUCCESS ]; then
     printdiff
