@@ -15,8 +15,8 @@ VERSION_UPGRADE=$1
 if [ "${VERSION}" == "master" ]; then
     VERSION=latest
 fi
-if [ "${VERSION_UPGRADE}" == "2.8" ]; then
-    VERSION_UPGRADE=master
+if [[ "${VERSION_UPGRADE}" == "master" || "${VERSION_UPGRADE}" == "latest" ]]; then
+    VERSION_UPGRADE=2.8
 fi
 ./build --upgrade "$VERSION_UPGRADE"
 
