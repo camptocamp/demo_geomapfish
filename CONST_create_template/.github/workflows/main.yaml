@@ -5,9 +5,12 @@ on:
   push:
 
 # To publish the images to be used on Kubernetes
-# env:
-#   PROJECT: geomapfish
-#   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+#env:
+#  PROJECT: geomapfish
+#  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+#  # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
+#  # The release branches
+#  HELM_RELEASE_NAMES: int-2-7,prod-2-7
 
 jobs:
   main:
@@ -29,28 +32,11 @@ jobs:
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
 
-      # Can be used to have some secrets (with mask)
-      # - run: make secrets
-      # - run: cat env.secrets |grep '^[# A-Z0-9_]\+='|sed -e 's/^[# A-Z0-9_]\+=\(.*\)/::add-mask::\1/g'
-
       - name: Checks
         run: c2cciutils-checks
 
-      # - name: Initialize the acceptance tests
-      #   run: make acceptance-init
-      # - run: c2cciutils-docker-logs
-      #   if: always()
-
-      # - name: Run the acceptance tests
-      #   run: make acceptance
-      # - run: c2cciutils-docker-logs
-      #   if: always()
-
       - name: Build
         run: ./build
-
-      - name: Application checks
-        run: make checks
 
       # To publish the images to be used on Kubernetes
       # - name: Publish
