@@ -1,11 +1,12 @@
 #
 # Translators:
-# Stéphane Brunner <stephane.brunner@camptocamp.com>, 2022
+# Camptocamp geospatial <geospatial-bot@camptocamp.com>, 2021
+# Laurent Lienher <laurent.lienher@camptocamp.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Stéphane Brunner <stephane.brunner@camptocamp.com>, 2022\n"
+"Last-Translator: Laurent Lienher <laurent.lienher@camptocamp.com>, 2022\n"
 "Language-Team: French (https://www.transifex.com/camptocamp/teams/36764/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,16 +63,16 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
-"Dessine une ligne sur la carte pour afficher le profil d'altitude correspondant\n"
-"Double-cliquer pour terminer la saisie."
+"Dessine une ligne sur la carte pour afficher le profile d'altitude correspondant\n"
+"Double cliquer pour terminer la saisie."
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:179
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                Use double-click to finish the drawing."
 msgstr ""
-"Dessine une ligne sur la carte pour afficher le profil d'altitude correspondant.\n"
-"                Double-cliquer pour terminer la saisie."
+"Dessine une ligne sur la carte pour afficher le profile d'altitude correspondant.\n"
+"                Double cliquer pour terminer la saisie."
 
 #: contribs/gmf/apps/desktop/index.html.ejs:149
 #: contribs/gmf/apps/desktop/index.html.ejs:66
@@ -104,7 +105,7 @@ msgstr "Altitude (SRTM)"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:165
 msgid "Elevation profile"
-msgstr "Profil d'altitude"
+msgstr "Profile d'altitude"
 
 #: contribs/gmf/apps/desktop/index.html.ejs:162
 #: contribs/gmf/apps/desktop/index.html.ejs:70
@@ -149,7 +150,7 @@ msgstr "Chargement..."
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:143
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:172
 msgid "Login"
-msgstr "Connexion"
+msgstr "Connection"
 
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:224
 msgid "Mapillary Street View"
@@ -180,7 +181,7 @@ msgstr "Edition objet - Application d'édition"
 #: contribs/gmf/apps/mobile/index.html.ejs:204
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:189
 msgid "Password"
-msgstr "Mot de passe"
+msgstr ""
 
 #: contribs/gmf/apps/desktop/index.html.ejs:137
 #: contribs/gmf/apps/desktop/index.html.ejs:62
@@ -251,7 +252,7 @@ msgstr "Outils"
 #: contribs/gmf/apps/mobile/index.html.ejs:196
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:181
 msgid "Username"
-msgstr "Nom d'utilisateur"
+msgstr ""
 
 #: contribs/gmf/apps/desktop/contextualdata.html:11
 #: contribs/gmf/apps/iframe_api/contextualdata.html:11

@@ -833,7 +833,6 @@ update_paths:
   - api
   - authorized_referers
   - cache.std.arguments
-  - cache.ogc-server.arguments
   - cache.obj
   - check_collector.disabled
   - check_collector.hosts
@@ -868,7 +867,6 @@ update_paths:
   - headers.shortener.headers
   - headers.login.headers
   - interfaces_config.default.constants.ngeoWfsPermalinkOptions
-  - interfaces_config.default.constants.gmfOptions.view
   - interfaces_config.default.constants.gmfSearchOptions
   - interfaces_config.default.constants.gmfPermalinkOptions
   - interfaces_config.default.constants.gmfVectorTilesOptions
@@ -889,7 +887,6 @@ update_paths:
   - sqlalchemy
   - sqlalchemy_slave
   - tinyowsproxy
-  - authentication
 
 no_interpreted:
   - getitfixed.admin_new_issue_email.email_body
