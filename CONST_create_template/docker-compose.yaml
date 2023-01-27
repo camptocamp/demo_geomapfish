@@ -1,4 +1,5 @@
-# The project Docker compose file.
+---
+# The project Docker compose file for development.
 
 version: '2.3'
 
@@ -22,7 +23,6 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: mapserver
-
     volumes_from:
       - config:ro
     volumes:
@@ -107,7 +107,7 @@ services:
     volumes_from:
       - config:ro
 
-  # Rich image for project development with e.-g. vim, psql, ...
+  # Rich image for project development with e.-g. vim, tree, awscli, psql, ...
   tools:
     extends:
       file: docker-compose-lib.yaml

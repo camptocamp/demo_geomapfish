@@ -10,7 +10,7 @@ env:
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
   # OPENSHIFT_PROJECT: gs-gmf-geomapfish
   # The release branches
-  HELM_RELEASE_NAMES: int-2-8,prod-2-8
+  HELM_RELEASE_NAMES: int-2-7,prod-2-7
 
 jobs:
   rebuild:
@@ -22,8 +22,8 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - int-2-8
-          - prod-2-8
+          - int-2-7
+          - prod-2-7
 
     steps:
       - uses: actions/checkout@v2

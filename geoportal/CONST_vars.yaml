@@ -466,19 +466,15 @@ vars:
   cache:
     std:
       backend: c2cgeoportal.hybridsentinel
-      arguments: &redis-cache-arguments
+      arguments:
         lock_timeout: '{REDIS_LOCK_TIMEOUT}' # seconds
         redis_expiration_time: '{REDIS_EXPIRATION_TIME}' # seconds
         distributed_lock: True
-        thread_local_lock: False
         service_name: '{REDIS_SERVICENAME}'
         socket_timeout: '{REDIS_TIMEOUT}' # seconds
         db: 0
     obj:
       backend: dogpile.cache.memory
-    ogc-server:
-      backend: dogpile.cache.redis_sentinel
-      arguments: *redis-cache-arguments
 
   admin_interface:
     layer_tree_max_nodes: 1000
@@ -492,12 +488,6 @@ vars:
           Comma separated list of search aliases (keywords) to be added to the tsearch.ts field for
           the considered tree item (theme, layer group or layer), that is to say that considered
           tree item will match when searching for the search aliases.
-        relevant_for:
-          - treeitem
-      - name: searchLabelPattern
-        description: >
-          Template string for the label of tree items in the search results
-          (TODO GSGMF-1935: complete description after implementation)
         relevant_for:
           - treeitem
       # Layers group
@@ -782,7 +772,7 @@ vars:
         description: >
           MapServer substitution of a variable in the mapfile.
           See the documentation here:
-          https://camptocamp.github.io/c2cgeoportal/2.8/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
+          https://camptocamp.github.io/c2cgeoportal/2.7/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
       - name: filterable_layers
         description: >
           Grant access for filtering considered layer.
@@ -1309,10 +1299,6 @@ runtime_postprocess:
       - cache.std.arguments.redis_expiration_time
       - cache.std.arguments.socket_timeout
       - cache.std.arguments.db
-      - cache.ogc-server.arguments.lock_timeout
-      - cache.ogc-server.arguments.redis_expiration_time
-      - cache.ogc-server.arguments.socket_timeout
-      - cache.ogc-server.arguments.db
       - sqlalchemy\.pool_recycle
       - sqlalchemy\.pool_size
       - sqlalchemy\.max_overflow
