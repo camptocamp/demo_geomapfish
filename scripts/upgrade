@@ -12,8 +12,8 @@ git config user.email "<ci@camptocamp.com>"
 git config user.name "Continuous integration"
 ./build --upgrade $1
 VERSION=$1
-if [ ${VERSION} = "master" ]; then
-    VERSION=latest
+if [ ${VERSION} = "latest" ]; then
+    VERSION=master
 fi
 
 if [ -e .UPGRADE6 ]; then
