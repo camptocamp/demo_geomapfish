@@ -682,6 +682,7 @@ vars:
       Your user name is: {user}
       Your password is: {password}
       Sincerely yours
+<<<<<<< ours
       The GeoMapfish team
   smtp:
     host: email-smtp.eu-west-1.amazonaws.com
@@ -706,6 +707,55 @@ vars:
   #   https://maps.googleapis.com/
   #   https://www.google-analytics.com/
   #   https://localhost:3001"
+=======
+      The GeoMapFish team
+
+  # Checker configuration
+  checker:
+    fulltextsearch:
+      search: text to search
+    # print:
+    #   spec:
+    #     layout: "1 A4 portrait"
+    #     outputFormat: "pdf"
+    #     attributes:
+    #       title: ""
+    #       comments: ""
+    #       datasource: []
+    #       map:
+    #         projection: "EPSG:{srid}"
+    #         dpi: 254
+    #         rotation: 0
+    #         center: [2600000, 1200000]
+    #         scale: 100000
+    #         longitudeFirst: True
+    #         layers: []
+    #       legend: {}
+    phantomjs:
+      disable: [apihelp]
+
+  check_collector:
+    hosts: []
+    # - display: Child:
+    #   url: {web_protocol}://{host}/child/wsgi
+
+  # The dogpile.cache configuration.
+  cache:
+    std:
+      # Standalone version
+      backend: c2cgeoportal.hybrid
+      arguments:
+        host: '{REDIS_HOST}'
+        port: '{REDIS_PORT}'
+        db: '{REDIS_DB}'
+      # Openshift version
+      # arguments:
+      #   sentinels:
+      #     - - '{REDIS_HOST}'
+      #       - '{REDIS_PORT}'
+      #   connection_kwargs:
+      #     db: '{REDIS_DB}'
+>>>>>>> theirs
 
   headers:
     dynamic: &header {}
@@ -832,7 +882,6 @@ update_paths:
   - api
   - authorized_referers
   - cache.std.arguments
-  - cache.ogc-server.arguments
   - cache.obj
   - check_collector.disabled
   - check_collector.hosts
@@ -867,7 +916,6 @@ update_paths:
   - headers.shortener.headers
   - headers.login.headers
   - interfaces_config.default.constants.ngeoWfsPermalinkOptions
-  - interfaces_config.default.constants.gmfOptions.view
   - interfaces_config.default.constants.gmfSearchOptions
   - interfaces_config.default.constants.gmfPermalinkOptions
   - interfaces_config.default.constants.gmfVectorTilesOptions
@@ -888,7 +936,6 @@ update_paths:
   - sqlalchemy
   - sqlalchemy_slave
   - tinyowsproxy
-  - authentication
 
 no_interpreted:
   - getitfixed.admin_new_issue_email.email_body
@@ -898,6 +945,7 @@ no_interpreted:
   - reset_password.email_body
   - shortener.email_body
   - welcome_email.email_body
+<<<<<<< ours
   - interfaces_config.mobile_alt.constants.gmfMobileMeasurePointOptions.format
 
 runtime_environment:
@@ -931,3 +979,11 @@ runtime_environment:
 environment:
   - name: VERSION
   - name: PGSCHEMA
+=======
+#
+# Standalone version
+# runtime_postprocess:
+#   - expression: "int({})"
+#     vars:
+#       - cache.std.arguments.port
+>>>>>>> theirs

@@ -215,7 +215,6 @@ vars:
             zoom: 3
             resolutions: [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
             extent: [2420000, 1030000, 2900000, 1350000]
-            constrainRotation: false
         gmfSearchOptions:
           styles:
             default:
@@ -466,19 +465,15 @@ vars:
   cache:
     std:
       backend: c2cgeoportal.hybridsentinel
-      arguments: &redis-cache-arguments
+      arguments:
         lock_timeout: '{REDIS_LOCK_TIMEOUT}' # seconds
         redis_expiration_time: '{REDIS_EXPIRATION_TIME}' # seconds
         distributed_lock: True
-        thread_local_lock: False
         service_name: '{REDIS_SERVICENAME}'
         socket_timeout: '{REDIS_TIMEOUT}' # seconds
         db: 0
     obj:
       backend: dogpile.cache.memory
-    ogc-server:
-      backend: dogpile.cache.redis_sentinel
-      arguments: *redis-cache-arguments
 
   admin_interface:
     layer_tree_max_nodes: 1000
@@ -492,12 +487,6 @@ vars:
           Comma separated list of search aliases (keywords) to be added to the tsearch.ts field for
           the considered tree item (theme, layer group or layer), that is to say that considered
           tree item will match when searching for the search aliases.
-        relevant_for:
-          - treeitem
-      - name: searchLabelPattern
-        description: >
-          Template string for the label of tree items in the search results
-          (TODO GSGMF-1935: complete description after implementation)
         relevant_for:
           - treeitem
       # Layers group
@@ -575,7 +564,6 @@ vars:
         relevant_for:
           - layer_wms
           - layer_wmts
-          - layergroup
       - name: disclaimer
         translate: True
         description: >
@@ -782,7 +770,7 @@ vars:
         description: >
           MapServer substitution of a variable in the mapfile.
           See the documentation here:
-          https://camptocamp.github.io/c2cgeoportal/2.8/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
+          https://camptocamp.github.io/c2cgeoportal/2.7/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
       - name: filterable_layers
         description: >
           Grant access for filtering considered layer.
@@ -1012,8 +1000,6 @@ vars:
     https://stackpath.bootstrapcdn.com/
     {content_security_policy_c2c_style_src_extra}"
 
-  content_security_policy_iframe_api_frame_ancestors: "'self'"
-
   global_headers:
     - pattern: '^/admin/.*'
       headers: &c2cgeoform_headers
@@ -1051,14 +1037,6 @@ vars:
         Content-Security-Policy: 'default-src {content_security_policy_c2c_default_src};
           script-src {content_security_policy_c2c_script_src};
           style-src {content_security_policy_c2c_style_src};'
-    - pattern: '^/iframe_api(/theme/.*)?$'
-      headers:
-        Content-Security-Policy: 'default-src {content_security_policy_main_default_src};
-          script-src {content_security_policy_main_script_src};
-          style-src {content_security_policy_main_style_src};
-          img-src {content_security_policy_main_img_src};
-          connect-src {content_security_policy_main_connect_src};
-          frame-ancestors {content_security_policy_iframe_api_frame_ancestors};'
 
   # Control the HTTP headers
   headers:
@@ -1220,7 +1198,7 @@ vars:
 
   # The c2cwsgiutils base path
   c2c:
-    base_path: /c2c
+    base_path: '{VISIBLE_ENTRY_POINT}c2c'
 
   db_chooser:
     # List of {method path} regexes to force the usage of the master, even for GET and OPTIONS
@@ -1309,10 +1287,6 @@ runtime_postprocess:
       - cache.std.arguments.redis_expiration_time
       - cache.std.arguments.socket_timeout
       - cache.std.arguments.db
-      - cache.ogc-server.arguments.lock_timeout
-      - cache.ogc-server.arguments.redis_expiration_time
-      - cache.ogc-server.arguments.socket_timeout
-      - cache.ogc-server.arguments.db
       - sqlalchemy\.pool_recycle
       - sqlalchemy\.pool_size
       - sqlalchemy\.max_overflow
