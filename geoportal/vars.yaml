@@ -47,6 +47,7 @@ vars:
             extent: *extent
             constrainRotation: false
           geolocalisation: True
+        ngeoTilesPreloadingLimit: 0
         ngeoWfsPermalinkOptions:
           wfsTypes:
             - featureType: fuel
