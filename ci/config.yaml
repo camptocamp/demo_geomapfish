@@ -20,6 +20,7 @@ version:
 publish:
   pypi: false
   docker:
+    dispatch: {}
     images:
       - name: camptocamp/geomapfishdemo-config
       - name: camptocamp/geomapfishdemo-custom
