@@ -17,4 +17,5 @@ version:
 publish:
   pypi: false
   docker:
+    dispatch: {}
     images: []

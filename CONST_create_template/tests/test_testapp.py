@@ -18,7 +18,6 @@ def test_po(test_number: int) -> None:
 
     with open(
         "geoportal/geomapfish_geoportal/locale/geomapfish_geoportal-client.pot",
-        "r",
         encoding="utf-8",
     ) as current_file:
         current_content = current_file.read()
