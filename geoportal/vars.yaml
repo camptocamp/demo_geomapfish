@@ -2,11 +2,9 @@
 extends: CONST_vars.yaml
 
 vars:
-  main_ogc_server: QGIS server
-
   srid: &srid 2056
 
-  main_ogc_server: source for image/png
+  main_ogc_server: Main PNG
 
   alternate_projections: &alternate_projections
     - EPSG:4326
