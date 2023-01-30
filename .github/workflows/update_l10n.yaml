@@ -17,6 +17,8 @@ jobs:
         include:
           - branch: prod-2-7
             base_url: https://geomapfish-demo-2-7.camptocamp.com/
+          - branch: prod-2-8
+            base_url: https://geomapfish-demo-2-8.camptocamp.com/
 
     steps:
       - uses: actions/checkout@v3
