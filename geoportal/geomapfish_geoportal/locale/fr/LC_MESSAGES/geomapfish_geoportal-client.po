@@ -383,9 +383,6 @@ msgstr "Thèmes"
 msgid "This is a test disclaimer, to test metadata addition."
 msgstr "Ceci est un avertissement de test, pour tester l'ajout de métadonnées."
 
-msgid "Timeout"
-msgstr ""
-
 msgid "Tools"
 msgstr "Outils"
 
@@ -402,11 +399,11 @@ msgid "Wgs Coord. DMS"
 msgstr "Coordonée WGS DMS"
 
 msgid ""
-"You're using the mobile application. Check out the <a href="
-"\"{{url}}\">standard application</a>."
+"You're using the mobile application. Check out the <a "
+"href=\"{{url}}\">standard application</a>."
 msgstr ""
-"Vous utilisez l'application mobile. Passer à l'<a href="
-"\"{{url}}\">application standard</a>."
+"Vous utilisez l'application mobile. Passer à l'<a "
+"href=\"{{url}}\">application standard</a>."
 
 msgid "__test__"
 msgstr "Test"
@@ -1250,6 +1247,9 @@ msgstr "Deux couches"
 
 msgid "type"
 msgstr "Type"
+
+msgid "username"
+msgstr "Nom d'utilisateur"
 
 msgid "vd.npa_localite"
 msgstr "N° postal"

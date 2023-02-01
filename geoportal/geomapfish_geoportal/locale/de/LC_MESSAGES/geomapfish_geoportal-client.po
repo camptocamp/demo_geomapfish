@@ -383,9 +383,6 @@ msgid "This is a test disclaimer, to test metadata addition."
 msgstr ""
 "Dies ist ein Test-Disclaimer, um das Hinzufügen von Metadaten zu testen."
 
-msgid "Timeout"
-msgstr ""
-
 msgid "Tools"
 msgstr "Werkzeuge"
 
@@ -403,8 +400,8 @@ msgid "Wgs Coord. DMS"
 msgstr "Wgs. Koord. DMS"
 
 msgid ""
-"You're using the mobile application. Check out the <a href="
-"\"{{url}}\">standard application</a>."
+"You're using the mobile application. Check out the <a "
+"href=\"{{url}}\">standard application</a>."
 msgstr ""
 "Sie verwenden die mobile Anwendung. Hier <a href=\"{{url}}\">erreichen Sie "
 "die Standardanwendung</a>."
@@ -1260,6 +1257,10 @@ msgstr "zwei Ebenen"
 
 msgid "type"
 msgstr "Typ"
+
+#, fuzzy
+msgid "username"
+msgstr "Name"
 
 msgid "vd.npa_localite"
 msgstr "PLZ"
