@@ -1,4 +1,4 @@
-FROM osgeo/gdal:ubuntu-small-3.6.1 AS base-all
+FROM osgeo/gdal:ubuntu-small-3.6.2 AS base-all
 
 # Fail on error on pipe, see: https://github.com/hadolint/hadolint/wiki/DL4006.
 # Treat unset variables as an error when substituting.
