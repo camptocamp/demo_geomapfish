@@ -66,6 +66,12 @@ jobs:
       - run: c2cciutils-docker-logs
         if: always()
 
+      # Rebuild the image with the right schema
+      - run: rm env.secrets
+      - run: touch env.secrets
+      - name: Build
+        run: ./build --no-pull
+
       - name: Publish
         run: c2cciutils-publish
 
