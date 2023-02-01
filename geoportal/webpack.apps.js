@@ -21,7 +21,7 @@ for (const filename of ls(path.resolve(__dirname, 'geomapfish_geoportal/static-n
       chunks: [name],
       vars: {
         entry_point: '${VISIBLE_ENTRY_POINT}',
-        version: '2.7.0.178',
+        version: '2.7.0.179',
         cache_version: '${CACHE_VERSION}',
       },
     })
