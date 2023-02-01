@@ -2,6 +2,8 @@
 extends: CONST_vars.yaml
 
 vars:
+  # The package name
+  package: geomapfishapp
   srid: &srid 2056
 
   main_ogc_server: Main PNG
