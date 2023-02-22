@@ -23,6 +23,7 @@ rm $1/geoportal/.prospector.yaml $1/geoportal/alembic.ini $1/geoportal/alembic.y
     $1/geoportal/development.ini $1/geoportal/production.ini \
     $1/geoportal/geomapfish_geoportal/*.py \
     $1/geoportal/geomapfish_geoportal/static/apihelp/index.html.tmpl \
+    $1/geoportal/vars.yaml \
     $1/geoportal/*.py \
     $1/geoportal/language_mapping \
     $1/geoportal/lingua-* \
