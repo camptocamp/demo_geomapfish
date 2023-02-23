@@ -24,18 +24,3 @@ services:
       service: db
     volumes:
       - postgresql_data:/var/lib/postgresql/data
-
-  alembic-main:
-    extends:
-      file: docker-compose-lib.yaml
-      service: alembic
-    command:
-      - alembic
-      - --name=main
-      - upgrade
-      - head
-    environment:
-      - PGHOST=db
-      - PGHOST_SLAVE=db
-      - PGSSLMODE=prefer
-      - PGSCHEMA
