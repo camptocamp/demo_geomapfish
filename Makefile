@@ -60,15 +60,17 @@ secrets: ## Decrypt the secrets.tar.bz2.gpg file
 
 .PHONY: acceptance-init
 acceptance-init: ## Initialize the acceptance tests
-	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
-	docker-compose exec -T geoportal wait-db
+	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d db tools
+	docker-compose exec -T tools wait-db
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS postgis'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS pg_trgm'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS hstore'
 	scripts/db-restore --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
 		--arg=--clean --arg=--if-exists --arg=--verbose $(DUMP_FILE)
-	docker-compose restart geoportal alembic
-	docker-compose exec -T geoportal wait-db
+	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml stop -- geoportal
+	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml rm --force -- geoportal
+	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
+	docker-compose exec -T tools wait-db
 
 .PHONY: acceptance
 acceptance: ## Run the acceptance tests
