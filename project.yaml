@@ -10,6 +10,7 @@ managed_files:
   - \.gitignore
   - qgisserver/pg_service\.conf\.tmpl
   - docker-compose\.override\.sample\.yaml
+  - docker-compose-db\.yaml
   - geoportal/Dockerfile
   - geoportal/requirements\.txt
   - ci/config\.yaml
