@@ -62,6 +62,7 @@ secrets: ## Decrypt the secrets.tar.bz2.gpg file
 acceptance-init: ## Initialize the acceptance tests
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d db tools
 	docker-compose exec -T tools wait-db
+<<<<<<< ours
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS postgis'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS pg_trgm'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS hstore'
@@ -71,6 +72,12 @@ acceptance-init: ## Initialize the acceptance tests
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml rm --force -- geoportal
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
 	docker-compose exec -T tools wait-db
+=======
+	docker-compose exec -T tools psql --command="DROP EXTENSION IF EXISTS postgis CASCADE"
+	scripts/db-restore --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
+		--arg=--clean --arg=--if-exists --arg=--verbose $(DUMP_FILE)
+	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
+>>>>>>> theirs
 
 .PHONY: acceptance
 acceptance: ## Run the acceptance tests
