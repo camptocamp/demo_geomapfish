@@ -8,7 +8,14 @@
   prHourlyLimit: 0,
   prConcurrentLimit: 0,
   lockFileMaintenance: {enabled: true, automerge: true, schedule: 'on the first day of the month'},
-  baseBranches: ['prod-2-7', 'prod-2-7-advance', 'prod-2-8', 'prod-2-8-advance', 'prod-2-9', 'prod-2-9-advance'],
+  baseBranches: [
+    'prod-2-7',
+    'prod-2-7-advance',
+    'prod-2-8',
+    'prod-2-8-advance',
+    'prod-2-9',
+    'prod-2-9-advance',
+  ],
   ignorePaths: ['CONST_create_template/**', 'docker-compose-lib.yaml', 'ci/**'],
   packageRules: [
     /** Docker images versioning */
