@@ -7,7 +7,7 @@ on:
 
 jobs:
   l10n:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     name: Update l10n cron job
     timeout-minutes: 10
 
@@ -15,10 +15,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - branch: int
-            base_url: int.customer.ch
-          - branch: prod
-            base_url: prod.customer.ch
+          - branch: prod-2-7
+            base_url: https://geomapfish-demo-2-7.camptocamp.com/
+          - branch: prod-2-8
+            base_url: https://geomapfish-demo-2-8.camptocamp.com/
+          - branch: prod-2-9
+            base_url: https://geomapfish-demo-2-8.camptocamp.com/
 
     steps:
       - uses: actions/checkout@v3
