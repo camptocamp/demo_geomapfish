@@ -10,6 +10,7 @@
         width: 1em;
       }
     </style>
+    <meta name="appName" content="Appdesktop_alt_alt">
     ${header |n}
   </head>
   <body ng-keydown="mainCtrl.onKeydown($event)" tabindex="0">
