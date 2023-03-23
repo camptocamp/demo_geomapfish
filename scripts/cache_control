@@ -27,7 +27,7 @@ def display_result(name, result, expected):
     if status >= 300 or cache_control != expected["Cache-Control"]:
         print(_colorize("Error", RED))
         print("The status is %i" % status)
-        print("The Cache-Control is %s, expected %s" % (cache_control, expected["Cache-Control"]))
+        print("The Cache-Control is {}, expected {}".format(cache_control, expected["Cache-Control"]))
         print("The Content-Type is %s" % content_type)
         print("")
 
