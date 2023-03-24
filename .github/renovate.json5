@@ -17,6 +17,13 @@
     'prod-2-9-advance',
   ],
   ignorePaths: ['CONST_create_template/**', 'docker-compose-lib.yaml', 'ci/**'],
+  'pre-commit': {enabled: true},
+  regexManagers: [
+    {
+      fileMatch: ['^.pre-commit-config.yaml$'],
+      matchStrings: [" +- '?(?<depName>[^' @=]+)(@|==)(?<currentValue>[^' @=]+)'? # (?<datasource>.+)"],
+    },
+  ],
   packageRules: [
     /** Docker images versioning */
     {
