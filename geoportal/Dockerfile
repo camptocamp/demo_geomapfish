@@ -1,5 +1,5 @@
 ARG GEOMAPFISH_VERSION
-ARG GEOMAPFISH_MAIN_VERSION
+ARG GEOMAPFISH_MAIN_MINOR_VERSION
 
 FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
@@ -26,7 +26,7 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--no-in
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_VERSION} as runner
+FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} as runner
 
 #RUN apt update
 #RUN apt install --yes gcc python3.7-dev
