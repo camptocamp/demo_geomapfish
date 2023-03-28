@@ -74,6 +74,10 @@ vars:
           params:
             limit: 30
             partitionlimit: 5
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: 'QGIS server'
 
     desktop:
       constants:
