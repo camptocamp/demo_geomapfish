@@ -697,7 +697,7 @@ vars:
   intranet:
     networks:
       - 172.18.0.1/16
-      - 185.127.205.3/24
+      - 128.179.66.0/24 # c2c epnet
 
   content_security_policy_main_img_src_extra: 'blob:'
   # For production.
