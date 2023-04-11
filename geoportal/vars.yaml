@@ -701,6 +701,9 @@ vars:
     networks:
       - 172.18.0.1/16
       - 128.179.66.0/24 # c2c epnet
+      - 5.1.102.68/32 # c2c lausanne outgoing traffic
+      - 5.1.102.69/32 # c2c lausanne VPN
+      - 148.196.7.213/24 # VPN c2c
 
   content_security_policy_main_img_src_extra: 'blob:'
   # For production.
