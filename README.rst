@@ -20,7 +20,7 @@ gopass and init gopass with the store `gs/ci`. Then run:
 .. code::
 
   make secrets
-  ./build
+  DOCKER_BUILDKIT=1 ./build
 
 Run locally
 -----------
