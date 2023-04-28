@@ -567,7 +567,7 @@ vars:
     ogc_server: Main PNG
 
   api:
-    ogc_server: Main PNG
+    # The name of the API in JavaScript
     name: demo
 
   dbsessions:
@@ -599,13 +599,6 @@ vars:
       file: '{RASTER_BASE_PATH}Aster2056.vrt'
       type: gdal
       round: 1
-
-  api:
-    {}
-    # The OGC server used by the API.
-    # ogc_server: Main PNG
-    # The name of the API in JavaScript
-    # name: <package>
 
   # The "vector tiles web service" configuration. See the "vector tiles"
   # chapter in the integrator documentation.
