@@ -52,7 +52,6 @@ vars:
       - geomapfish
     defaultNS: geomapfish
     debug: false
-    keySeparator: false
     detection:
       order:
         - querystring
