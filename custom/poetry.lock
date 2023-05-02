@@ -1298,14 +1298,14 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==20.0.1)", "requests (>=2.26.0)"
 
 [[package]]
 name = "requests"
-version = "2.28.2"
+version = "2.29.0"
 description = "Python HTTP for Humans."
 category = "main"
 optional = false
-python-versions = ">=3.7, <4"
+python-versions = ">=3.7"
 files = [
-    {file = "requests-2.28.2-py3-none-any.whl", hash = "sha256:64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa"},
-    {file = "requests-2.28.2.tar.gz", hash = "sha256:98b1b2782e3c6c4904938b84c0eb932721069dfdb9134313beff7c83c2df24bf"},
+    {file = "requests-2.29.0-py3-none-any.whl", hash = "sha256:e8f3c9be120d3333921d213eef078af392fba3933ab7ed2d1cba3b56f2568c3b"},
+    {file = "requests-2.29.0.tar.gz", hash = "sha256:f2e34a75f4749019bb0e3effb66683630e4ffeaf75819fb51bebef1bf5aef059"},
 ]
 
 [package.dependencies]
@@ -1377,14 +1377,14 @@ jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [[package]]
 name = "sentry-sdk"
-version = "1.18.0"
+version = "1.21.1"
 description = "Python client for Sentry (https://sentry.io)"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "sentry-sdk-1.18.0.tar.gz", hash = "sha256:d07b9569a151033b462f7a7113ada94cc41ecf49daa83d35f5f852a0b9cf3b44"},
-    {file = "sentry_sdk-1.18.0-py2.py3-none-any.whl", hash = "sha256:714203a9adcac4a4a35e348dc9d3e294ad0200a66cdca26c068967d728f34fcb"},
+    {file = "sentry-sdk-1.21.1.tar.gz", hash = "sha256:99c15556a23621be9f18c2955f7ce63321713bf1c0ad396b27b61399bac5f458"},
+    {file = "sentry_sdk-1.21.1-py2.py3-none-any.whl", hash = "sha256:092888f3abf7a2ea78f0bfcefc3e0465caee2b6f0efb26f538ccc60f95dca179"},
 ]
 
 [package.dependencies]
@@ -1402,6 +1402,7 @@ django = ["django (>=1.8)"]
 falcon = ["falcon (>=1.4)"]
 fastapi = ["fastapi (>=0.79.0)"]
 flask = ["blinker (>=1.1)", "flask (>=0.11)"]
+grpcio = ["grpcio (>=1.21.1)"]
 httpx = ["httpx (>=0.16.0)"]
 huey = ["huey (>=2)"]
 opentelemetry = ["opentelemetry-distro (>=0.35b0)"]
@@ -1980,4 +1981,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.11"
-content-hash = "1a9ddde48ed60b5f02491bc3f2a1330ac33155b49221b52108c715e699b109af"
+content-hash = "fd3f5df08d85cc0e97d5cc3c8e046f7a807eada072f9b5e50000916da4d469a6"
