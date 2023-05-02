@@ -69,9 +69,6 @@ vars:
             extent: *extent
             origin: [2485071.54, 1299941.84]
             resolutions: *resolutions
-        # Should be moved in CONST_VARS.yaml
-        gmfWMSSourceOptions:
-          ratio: 2
       routes:
         fulltextsearchUrl:
           params:
