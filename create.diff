@@ -1,0 +1,87 @@
+diff --git a/.github/workflows/main.yaml b/.github/workflows/main.yaml
+index 40ad426..2c12c26 100644
+--- a/.github/workflows/main.yaml
++++ b/.github/workflows/main.yaml
+@@ -11,7 +11,7 @@ on:
+ 
+ jobs:
+   main:
+-    runs-on: ubuntu-20.04
++    runs-on: ubuntu-22.04
+     name: Continuous integration
+     timeout-minutes: 10
+ 
+diff --git a/.github/workflows/rebuild.yaml b/.github/workflows/rebuild.yaml
+index ae4c4a1..38fca6b 100644
+--- a/.github/workflows/rebuild.yaml
++++ b/.github/workflows/rebuild.yaml
+@@ -10,11 +10,11 @@ env:
+   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
+   # OPENSHIFT_PROJECT: gs-gmf-geomapfish
+   # The release branches
+-  HELM_RELEASE_NAMES: int-2-8,prod-2-8
++  HELM_RELEASE_NAMES: int-2-9,prod-2-9
+ 
+ jobs:
+   rebuild:
+-    runs-on: ubuntu-20.04
++    runs-on: ubuntu-22.04
+     name: Rebuild
+     timeout-minutes: 10
+ 
+@@ -22,8 +22,8 @@ jobs:
+       fail-fast: false
+       matrix:
+         branch:
+-          - int-2-8
+-          - prod-2-8
++          - int-2-9
++          - prod-2-9
+ 
+     steps:
+       - uses: actions/checkout@v2
+diff --git a/.github/workflows/update_l10n.yaml b/.github/workflows/update_l10n.yaml
+index 365ae26..044aa01 100644
+--- a/.github/workflows/update_l10n.yaml
++++ b/.github/workflows/update_l10n.yaml
+@@ -7,7 +7,7 @@ on:
+ 
+ jobs:
+   l10n:
+-    runs-on: ubuntu-18.04
++    runs-on: ubuntu-22.04
+     name: Update l10n cron job
+     timeout-minutes: 10
+ 
+diff --git a/README.rst b/README.rst
+index daaf089..e6761b1 100644
+--- a/README.rst
++++ b/README.rst
+@@ -1,7 +1,7 @@
+ demo_geomapfish project
+ ===================
+ 
+-Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.8/>`_
++Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.9/>`_
+ 
+ Checkout
+ --------
+diff --git a/tilegeneration/config.yaml.tmpl b/tilegeneration/config.yaml.tmpl
+index fa57a34..66ed794 100644
+--- a/tilegeneration/config.yaml.tmpl
++++ b/tilegeneration/config.yaml.tmpl
+@@ -127,11 +127,11 @@ ${DISABLE_LOCAL}  admin_path: tiles/admin
+   expires: 8 # 8 hours
+   predefined_commands:
+     - name: Generation all layers
+-      command: generate_tiles
++      command: generate-tiles
+     - name: Generation layer plan
+-      command: generate_tiles --layer=plan
++      command: generate-tiles --layer=plan
+     - name: Generation layer ortho
+-      command: generate_tiles --layer=ortho
++      command: generate-tiles --layer=ortho
+     - name: Generate the legend images
+       command: generate_controller --generate-legend-images
+ 
