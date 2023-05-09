@@ -51,7 +51,6 @@ vars:
     ns:
       - geomapfish
     defaultNS: geomapfish
-    keySeparator: false
     debug: false
     detection:
       order:
@@ -810,7 +809,7 @@ vars:
         description: >
           MapServer substitution of a variable in the mapfile.
           See the documentation here:
-          https://camptocamp.github.io/c2cgeoportal/2.8/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
+          https://camptocamp.github.io/c2cgeoportal/2.9/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
       - name: filterable_layers
         description: >
           Grant access for filtering considered layer.
