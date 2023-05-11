@@ -320,6 +320,9 @@ vars:
         gmfLayerTreeOptions:
           openLinksInNewWindow: True
           isExpanded: False
+          layerIcon:
+            width: 20
+            height: 20
         gmfShareOptions:
           enableEmail: False
 
@@ -397,6 +400,9 @@ vars:
         gmfLayerTreeOptions:
           openLinksInNewWindow: True
           isExpanded: False
+          layerIcon:
+            width: 20
+            height: 20
         gmfMobileMeasurePointOptions:
           decimals: 2
           rasterLayers: []
