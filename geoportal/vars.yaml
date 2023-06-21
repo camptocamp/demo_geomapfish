@@ -4,6 +4,16 @@ extends: CONST_vars.yaml
 vars:
   # The package name
   package: geomapfishapp
+
+  # To use an other SRID you should change:
+  #  - vars.srid
+  #  - vars.alternate_projections
+  #  - vars.resolutions
+  #  - vars.extent
+  #  - vars.tilesOrigin
+  #  - vars.interfaces_config.default.constants.gmfOptions.view.center
+  #  - vars.interfaces_config.default.constants.gmfOptions.wmtsTopLeft
+  #  - vars.interfaces_config.default.constants.gmfVectorTilesOptions.tileGrid.origin
   srid: &srid 2056
 
   main_ogc_server: Main PNG
@@ -17,6 +27,9 @@ vars:
 
   # extent: &extent [2485071.54, 175346.36, 2828515.78, 1299941.84]
   extent: &extent [2485071.54, 175346.36, 3171913, 1709347]
+
+  # Origin of the tiles [left, top]
+  tilesOrigin: &tilesOrigin [2420000, 1350000]
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -50,6 +63,8 @@ vars:
             extent: *extent
             constrainRotation: false
           geolocalisation: True
+          # Used to get pixel perfect render on WMTS layers [left, top]
+          wmtsTopLeft: *tilesOrigin
         ngeoTilesPreloadingLimit: 0
         ngeoWfsPermalinkOptions:
           wfsTypes:
@@ -67,7 +82,8 @@ vars:
           projection: EPSG:{srid}
           tileGrid:
             extent: *extent
-            origin: [2485071.54, 1299941.84]
+            # origin: [2485071.54, 1299941.84]
+            origin: *tilesOrigin
             resolutions: *resolutions
       routes:
         fulltextsearchUrl:
