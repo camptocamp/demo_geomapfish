@@ -62,6 +62,7 @@ vars:
             resolutions: *resolutions
             extent: *extent
             constrainRotation: false
+            constrainResolution: true
           geolocalisation: True
           # Used to get pixel perfect render on WMTS layers [left, top]
           wmtsTopLeft: *tilesOrigin
