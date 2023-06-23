@@ -459,6 +459,10 @@ vars:
           autoRotate: True
           atLoadingTime: True
 
+    iframe_api:
+      constants:
+        gmfOptions: *gmfOptions
+
     api:
       constants:
         # The resolutions list.
