@@ -53,7 +53,7 @@ vars:
       constants:
         defaultTheme: Demo
         defaultLang: '{default_locale_name}'
-        gmfOptions:
+        gmfOptions: &gmfOptions
           map: {}
           view: &view
             projection: EPSG:{srid}
@@ -61,8 +61,6 @@ vars:
             zoom: 3
             resolutions: *resolutions
             extent: *extent
-            constrainRotation: false
-            constrainResolution: true
           geolocalisation: True
           # Used to get pixel perfect render on WMTS layers [left, top]
           wmtsTopLeft: *tilesOrigin
@@ -108,10 +106,10 @@ vars:
             service: js
             interface: desktop
         gmfOptions:
+          <<: *gmfOptions
           map:
             maxTilesLoading: 128
           view: *view
-          geolocalisation: True
           cssVars: &cssVars # Used by https://github.com/camptocamp/ngeo/pull/7527
             left-panel-width: 20rem
             app-margin: 0.62rem
@@ -188,6 +186,7 @@ vars:
             service: js
             interface: desktop_alt
         gmfOptions:
+          <<: *gmfOptions
           map:
             maxTilesLoading: 9999
           view: *view
@@ -354,11 +353,10 @@ vars:
             service: js
             interface: mobile
         gmfOptions:
-          map: {}
+          <<: *gmfOptions
           view:
             <<: *view
             autoRotate: True
-          geolocalisation: True
         gmfMobileMeasurePointOptions:
           rasterLayers:
             - name: aster
@@ -376,12 +374,12 @@ vars:
             service: js
             interface: mobile_alt
         gmfOptions:
+          <<: *gmfOptions
           map:
             pixelRatio: 1
           view:
             <<: *view
             autoRotate: True
-          geolocalisation: True
         gmfTreeManagerModeFlush: False
         gmfDisplayQueryWindowOptions:
           defaultCollapsed: False
