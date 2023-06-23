@@ -360,6 +360,7 @@ vars:
             - name: srtm
               unit: m
 
+<<<<<<< ours
     mobile_alt:
       extends: mobile
       redirect_interface: desktop_alt
@@ -454,6 +455,11 @@ vars:
           zoom: 8
           autoRotate: True
           atLoadingTime: True
+=======
+    iframe_api:
+      constants:
+        gmfOptions: *gmfOptions
+>>>>>>> theirs
 
     api:
       constants:

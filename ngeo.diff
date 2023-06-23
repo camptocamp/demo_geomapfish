@@ -1,0 +1,15 @@
+diff --git a/geoportal/vars.yaml b/geoportal/vars.yaml
+index 6ef7478..50d085d 100644
+--- a/geoportal/vars.yaml
++++ b/geoportal/vars.yaml
+@@ -130,6 +130,10 @@ vars:
+             - name: srtm
+               unit: m
+ 
++    iframe_api:
++      constants:
++        gmfOptions: *gmfOptions
++
+     api:
+       constants:
+         # The resolutions list.
