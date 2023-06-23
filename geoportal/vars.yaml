@@ -49,7 +49,7 @@ vars:
       constants:
         defaultTheme: Demo
         defaultLang: '{default_locale_name}'
-        gmfOptions:
+        gmfOptions: &gmfOptions
           map: {}
           view: &view
             projection: EPSG:{srid}
@@ -103,8 +103,10 @@ vars:
             service: js
             interface: desktop
         gmfOptions:
+          <<: *gmfOptions
           map:
             maxTilesLoading: 128
+<<<<<<< ours
           view: *view
           geolocalisation: True
           cssVars: &cssVars # Used by https://github.com/camptocamp/ngeo/pull/7527
@@ -120,6 +122,11 @@ vars:
             grid-gutter-width: 1.88rem
             infobar-height: 2.52rem
             width: 2.5rem
+=======
+          view:
+            <<: *view
+            constrainResolution: True
+>>>>>>> theirs
         gmfExternalOGCServers:
           - name: swisstopo WMS
             type: WMS
@@ -349,11 +356,10 @@ vars:
             service: js
             interface: mobile
         gmfOptions:
-          map: {}
+          <<: *gmfOptions
           view:
             <<: *view
             autoRotate: True
-          geolocalisation: True
         gmfMobileMeasurePointOptions:
           rasterLayers:
             - name: aster
