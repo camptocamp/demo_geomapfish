@@ -1000,14 +1000,14 @@ plugins = ["importlib-metadata"]
 
 [[package]]
 name = "pyjwt"
-version = "2.7.0"
+version = "2.8.0"
 description = "JSON Web Token implementation in Python"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "PyJWT-2.7.0-py3-none-any.whl", hash = "sha256:ba2b425b15ad5ef12f200dc67dd56af4e26de2331f965c5439994dad075876e1"},
-    {file = "PyJWT-2.7.0.tar.gz", hash = "sha256:bd6ca4a3c4285c1a2d4349e5a035fdf8fb94e04ccd0fcbe6ba289dae9cc3e074"},
+    {file = "PyJWT-2.8.0-py3-none-any.whl", hash = "sha256:59127c392cc44c2da5bb3192169a91f429924e17aff6534d70fdc02ab3e04320"},
+    {file = "PyJWT-2.8.0.tar.gz", hash = "sha256:57e28d156e3d5c10088e0c68abb90bfac3df82b40a71bd0daa20c65ccd5c23de"},
 ]
 
 [package.extras]
@@ -1378,14 +1378,14 @@ files = [
 
 [[package]]
 name = "sentry-sdk"
-version = "1.26.0"
+version = "1.29.0"
 description = "Python client for Sentry (https://sentry.io)"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "sentry-sdk-1.26.0.tar.gz", hash = "sha256:760e4fb6d01c994110507133e08ecd4bdf4d75ee4be77f296a3579796cf73134"},
-    {file = "sentry_sdk-1.26.0-py2.py3-none-any.whl", hash = "sha256:0c9f858337ec3781cf4851972ef42bba8c9828aea116b0dbed8f38c5f9a1896c"},
+    {file = "sentry-sdk-1.29.0.tar.gz", hash = "sha256:5053aa7647533b207417cea5f3ee2d5e13aea7001dbb711f46348d7a72597d60"},
+    {file = "sentry_sdk-1.29.0-py2.py3-none-any.whl", hash = "sha256:78c764cbec1967c41e24967e9a4a5d1e67a7bc960d125d905f94c068a0300ac9"},
 ]
 
 [package.dependencies]
@@ -1982,4 +1982,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.11"
-content-hash = "5c7c3e64d0cca4232acc19401851c53f48e87133b929414ef7501b0557089e22"
+content-hash = "4a2de10dfd81e854d680dcf7986d51ddf834c90f27df9781273ec56258c07491"
