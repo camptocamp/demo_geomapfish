@@ -17,6 +17,15 @@
     'prod-2-9-advance',
   ],
   ignorePaths: ['CONST_create_template/**', 'docker-compose-lib.yaml', 'ci/**'],
+  regexManagers: [
+    {
+      'fileMatch': ['^ci/config\\\\.yaml$'],
+      'matchStrings': [
+        '.*https://raw\\\\.githubusercontent\\\\.com/(?<depName>[^\\\\s]+)/(?<currentValue>[0-9\\\\.]+)/.*',
+      ],
+      'datasourceTemplate': 'github-tags',
+    },
+  ],
   packageRules: [
     /** Docker images versioning */
     {
@@ -71,6 +80,10 @@
       automerge: true,
       separateMajorMinor: false,
       separateMinorPatch: false,
+    },
+    {
+      'matchPackageNames': ['shellcheck-py/shellcheck-py'],
+      'versioning': 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$',
     },
   ],
 }
