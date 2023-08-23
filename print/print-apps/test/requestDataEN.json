@@ -1,0 +1,178 @@
+{
+  "attributes": {
+    "map": {
+      "dpi": 254,
+      "rotation": 0,
+      "center": [537667.8392100265, 152527.76089525849],
+      "projection": "EPSG:2056",
+      "scale": 5000,
+      "layers": [
+        {
+          "baseURL": "https://geomapfish-demo-2-8.camptocamp.com/mapserv_proxy",
+          "imageFormat": "image/png",
+          "layers": ["osm_hospitals", "osm_firestations", "landuse", "railways"],
+          "customParams": {
+            "TRANSPARENT": "true",
+            "ogcserver": "QGIS server",
+            "cache_version": "cfe127c3bd2c4d3a80c3f37d6c4eca1a",
+            "STYLES": ",,,"
+          },
+          "serverType": "qgisserver",
+          "type": "wms",
+          "opacity": 1,
+          "useNativeAngle": true
+        },
+        {
+          "baseURL": "https://geomapfish-demo-2-8.camptocamp.com/tiles/1.0.0/map/default/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.png",
+          "dimensions": [],
+          "dimensionParams": {},
+          "imageFormat": "image/png",
+          "layer": "map",
+          "matrices": [
+            {
+              "identifier": "0",
+              "scaleDenominator": 3571428.571428572,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [1, 1]
+            },
+            {
+              "identifier": "1",
+              "scaleDenominator": 1785714.285714286,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [3, 2]
+            },
+            {
+              "identifier": "2",
+              "scaleDenominator": 892857.142857143,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [7, 4]
+            },
+            {
+              "identifier": "3",
+              "scaleDenominator": 357142.85714285716,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [18, 12]
+            },
+            {
+              "identifier": "4",
+              "scaleDenominator": 178571.42857142858,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [37, 24]
+            },
+            {
+              "identifier": "5",
+              "scaleDenominator": 71428.57142857143,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [93, 62]
+            },
+            {
+              "identifier": "6",
+              "scaleDenominator": 35714.28571428572,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [187, 124]
+            },
+            {
+              "identifier": "7",
+              "scaleDenominator": 17857.14285714286,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [374, 249]
+            },
+            {
+              "identifier": "8",
+              "scaleDenominator": 7142.857142857143,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [937, 624]
+            },
+            {
+              "identifier": "9",
+              "scaleDenominator": 3571.4285714285716,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [1874, 1249]
+            },
+            {
+              "identifier": "10",
+              "scaleDenominator": 1785.7142857142858,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [3749, 2499]
+            },
+            {
+              "identifier": "11",
+              "scaleDenominator": 892.8571428571429,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [7499, 4999]
+            },
+            {
+              "identifier": "12",
+              "scaleDenominator": 357.14285714285717,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [18749, 12499]
+            },
+            {
+              "identifier": "13",
+              "scaleDenominator": 178.57142857142858,
+              "tileSize": [256, 256],
+              "topLeftCorner": [420000, 350000],
+              "matrixSize": [37499, 24999]
+            }
+          ],
+          "matrixSet": "swissgrid_005",
+          "opacity": 1,
+          "requestEncoding": "REST",
+          "style": "default",
+          "type": "WMTS",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    "datasource": [],
+    "debug": false,
+    "legend": {
+      "classes": [
+        {
+          "classes": [
+            {
+              "name": "Hôpitaux OSM",
+              "icons": [
+                "https://geomapfish-demo-2-8.camptocamp.com/mapserv_proxy?ogcserver=QGIS+server&cache_version=cfe127c3bd2c4d3a80c3f37d6c4eca1a&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=osm_hospitals&SCALE=5000&DPI=254&BBOX=537178.3590643996%2C151932.4472046311%2C538157.3193556535%2C153123.07458588586&SRS=EPSG%3A2056&WIDTH=1958&HEIGHT=2381"
+              ]
+            },
+            {
+              "name": "Caserne de pompiers OSM",
+              "icons": [
+                "https://geomapfish-demo-2-8.camptocamp.com/mapserv_proxy?ogcserver=QGIS+server&cache_version=cfe127c3bd2c4d3a80c3f37d6c4eca1a&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=osm_firestations&SCALE=5000&DPI=254&BBOX=537178.3590643996%2C151932.4472046311%2C538157.3193556535%2C153123.07458588586&SRS=EPSG%3A2056&WIDTH=1958&HEIGHT=2381"
+              ]
+            },
+            {
+              "name": "Utilisation du sol",
+              "icons": [
+                "https://geomapfish-demo-2-8.camptocamp.com/mapserv_proxy?ogcserver=QGIS+server&cache_version=cfe127c3bd2c4d3a80c3f37d6c4eca1a&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=landuse&SCALE=5000&DPI=254&BBOX=537178.3590643996%2C151932.4472046311%2C538157.3193556535%2C153123.07458588586&SRS=EPSG%3A2056&WIDTH=1958&HEIGHT=2381"
+              ]
+            },
+            {
+              "name": "Voies ferrées",
+              "icons": [
+                "https://geomapfish-demo-2-8.camptocamp.com/mapserv_proxy?ogcserver=QGIS+server&cache_version=cfe127c3bd2c4d3a80c3f37d6c4eca1a&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=railways&SCALE=5000&DPI=254&BBOX=537178.3590643996%2C151932.4472046311%2C538157.3193556535%2C153123.07458588586&SRS=EPSG%3A2056&WIDTH=1958&HEIGHT=2381"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "format": "pdf",
+  "lang": "en",
+  "layout": "4 A3 landscape"
+}
