@@ -842,21 +842,24 @@ vars:
   cache:
     std:
       # Standalone version
-      # backend: c2cgeoportal.hybrid
-      # arguments: &redis-cache-arguments
-      #   host: '{REDIS_HOST}'
-      #   port: '{REDIS_PORT}'
-      #   db: '{REDIS_DB}'
-      # Kubernetes version
+      backend: c2cgeoportal.hybrid
       arguments: &redis-cache-arguments
-        sentinels:
-          - - '{REDIS_HOST}'
-            - '{REDIS_PORT}'
+        host: '{REDIS_HOST}'
+        port: '{REDIS_PORT}'
+        db: '{REDIS_DB}'
+        password: '{REDIS_PASSWORD}'
         connection_kwargs:
-          db: '{REDIS_DB}'
+          ssl: '{REDIS_SSL}'
+      # Kubernetes version
+      #arguments: &redis-cache-arguments
+      #  sentinels:
+      #    - - '{REDIS_HOST}'
+      #      - '{REDIS_PORT}'
+      #  connection_kwargs:
+      #    db: '{REDIS_DB}'
     ogc-server:
       # Standalone version
-      # backend: dogpile.cache.redis
+      backend: dogpile.cache.redis
       # All versions
       arguments: *redis-cache-arguments
 
@@ -967,6 +970,16 @@ runtime_environment:
     default: xxx
   - name: WMTS_URL
     default: https://geomapfish-demo-2-8.camptocamp.com/tiles/1.0.0/WMTSCapabilities.xml
+  - name: REDIS_PASSWORD
+    default: ''
+  - name: REDIS_SSL
+    default: 'false'
 
 environment:
   - name: VERSION
+
+runtime_postprocess:
+  - expression: str({}).lower() in ("true", "yes", "1")
+    vars:
+      - cache.std.arguments.connection_kwargs.ssl
+      - cache.ogc-server.arguments.connection_kwargs.ssl
