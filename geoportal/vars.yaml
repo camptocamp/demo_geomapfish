@@ -974,6 +974,8 @@ runtime_environment:
     default: xxx
   - name: WMTS_URL
     default: https://geomapfish-demo-2-8.camptocamp.com/tiles/1.0.0/WMTSCapabilities.xml
+  - name: REDIS_PASSWORD
+    default: xxx
 
 environment:
   - name: VERSION
