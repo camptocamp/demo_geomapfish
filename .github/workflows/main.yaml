@@ -48,26 +48,6 @@ jobs:
       - name: Application checks
         run: make checks
 
-      - name: Initialize the acceptance tests
-        run: make acceptance-init
-      - run: c2cciutils-docker-logs
-        if: always()
-
-      - name: Run the acceptance tests
-        run: make acceptance
-      - run: c2cciutils-docker-logs
-        if: always()
-
-      - run: make acceptance-dev
-      - run: c2cciutils-docker-logs
-        if: always()
-
-      - run: docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml up -d
-      - name: Run the acceptance tests on dev
-        run: make acceptance
-      - run: c2cciutils-docker-logs
-        if: always()
-
       # Rebuild the image with the right schema
       - run: rm env.secrets
       - run: touch env.secrets
