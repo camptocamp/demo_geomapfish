@@ -846,18 +846,21 @@ vars:
   cache:
     std:
       # Standalone version
-      # backend: c2cgeoportal.hybrid
-      # arguments: &redis-cache-arguments
-      #   host: '{REDIS_HOST}'
-      #   port: '{REDIS_PORT}'
-      #   db: '{REDIS_DB}'
-      # Kubernetes version
+      backend: c2cgeoportal.hybrid
       arguments: &redis-cache-arguments
-        sentinels:
-          - - '{REDIS_HOST}'
-            - '{REDIS_PORT}'
+        host: '{REDIS_HOST}'
+        port: '{REDIS_PORT}'
+        db: '{REDIS_DB}'
+        password: '{REDIS_PASSWORD}'
         connection_kwargs:
-          db: '{REDIS_DB}'
+          ssl: true
+      # Kubernetes version
+      #arguments: &redis-cache-arguments
+      #  sentinels:
+      #    - - '{REDIS_HOST}'
+      #      - '{REDIS_PORT}'
+      #  connection_kwargs:
+      #    db: '{REDIS_DB}'
     ogc-server:
       # Standalone version
       # backend: dogpile.cache.redis
