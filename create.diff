@@ -1,0 +1,13 @@
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+index 1de3322..dffc6b7 100644
+--- a/docker-compose.yaml
++++ b/docker-compose.yaml
+@@ -112,6 +112,8 @@ services:
+     extends:
+       file: docker-compose-lib.yaml
+       service: tools
++    volumes_from:
++      - config:ro
+ 
+   # db:
+   #   extends:
