@@ -173,6 +173,8 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: tools
+    volumes_from:
+      - config:ro
     environment:
       - OSM_PGDATABASE
       - OSM_PGHOST
@@ -181,6 +183,7 @@ services:
       - OSM_PGPORT_SLAVE
       - OSM_PGPASSWORD
       - OSM_PGUSER
+
   # db:
   #   extends:
   #     file: docker-compose-lib.yaml
