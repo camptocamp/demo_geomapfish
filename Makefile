@@ -67,7 +67,7 @@ acceptance-init: ## Initialize the acceptance tests
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS pg_trgm'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS hstore'
 	scripts/db-restore --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
-		--arg=--clean --arg=--if-exists --arg=--verbose $(DUMP_FILE)
+		--arg=--clean --arg=--if-exists --arg=--verbose --arg=--no-privileges --arg=--no-owner $(DUMP_FILE)
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
 
 .PHONY: acceptance
