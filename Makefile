@@ -61,6 +61,8 @@ secrets: ## Decrypt the secrets.tar.bz2.gpg file
 
 .PHONY: acceptance-init
 acceptance-init: ## Initialize the acceptance tests
+	cat env.acceptance-test >> .env
+	docker volume rm demo_postgresql_data || true
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d db tools
 	docker-compose exec -T tools wait-db
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS postgis'
