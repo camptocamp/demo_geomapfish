@@ -56,30 +56,30 @@ services:
       - config:ro
 
   # Standalone version
-  # redis:
+  redis:
+    extends:
+      file: docker-compose-lib.yaml
+      service: redis
+
+  # To test Sentinel version
+  # redis_master:
   #   extends:
   #     file: docker-compose-lib.yaml
-  #     service: redis
+  #     service: redis_master
 
-  # To test OpenShift version
-  redis_master:
-    extends:
-      file: docker-compose-lib.yaml
-      service: redis_master
+  # redis_slave:
+  #   extends:
+  #     file: docker-compose-lib.yaml
+  #     service: redis_slave
+  #   depends_on:
+  #     - redis_master
 
-  redis_slave:
-    extends:
-      file: docker-compose-lib.yaml
-      service: redis_slave
-    depends_on:
-      - redis_master
-
-  redis_sentinel:
-    extends:
-      file: docker-compose-lib.yaml
-      service: redis_sentinel
-    depends_on:
-      - redis_master
+  # redis_sentinel:
+  #   extends:
+  #     file: docker-compose-lib.yaml
+  #     service: redis_sentinel
+  #   depends_on:
+  #     - redis_master
 
   tilecloudchain:
     extends:
