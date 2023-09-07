@@ -61,13 +61,15 @@ secrets: ## Decrypt the secrets.tar.bz2.gpg file
 
 .PHONY: acceptance-init
 acceptance-init: ## Initialize the acceptance tests
+	cat env.acceptance-test >> .env
+	docker volume rm demo_postgresql_data || true
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d db tools
 	docker-compose exec -T tools wait-db
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS postgis'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS pg_trgm'
 	docker-compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS hstore'
 	scripts/db-restore --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
-		--arg=--clean --arg=--if-exists --arg=--verbose $(DUMP_FILE)
+		--arg=--clean --arg=--if-exists --arg=--verbose --arg=--no-privileges --arg=--no-owner $(DUMP_FILE)
 	docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
 
 .PHONY: acceptance
