@@ -41,7 +41,7 @@ If you modify the content of the `geoportal` folder and want to use these change
 Backup database
 ---------------
 
-```bask
+```bash
 ./build
 scripts/db-backup --arg=--schema='edit' edit.backup
 scripts/db-backup --arg=--schema='edit21781' edit21781.backup
