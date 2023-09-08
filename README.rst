@@ -41,12 +41,12 @@ If you modify the content of the `geoportal` folder and want to use these change
 Backup database
 ---------------
 
-```bash
-./build
-scripts/db-backup --arg=--schema='edit' edit.backup
-scripts/db-backup --arg=--schema='edit21781' edit21781.backup
-scripts/db-backup --arg=--schema='geodata' geodata.backup
-scripts/db-backup --arg=--schema='geodata21781' geodata21781.backup
-scripts/db-backup --arg=--schema='main_2_7' main_2_7.backup
-scripts/db-backup --arg=--schema='static_2_7' static_2_7.backup
-```
+.. code::
+
+  ./build
+  scripts/db-backup --arg=--schema='edit' edit.backup
+  scripts/db-backup --arg=--schema='edit21781' edit21781.backup
+  scripts/db-backup --arg=--schema='geodata' geodata.backup
+  scripts/db-backup --arg=--schema='geodata21781' geodata21781.backup
+  scripts/db-backup --arg=--schema='main_2_7' main_2_7.backup
+  scripts/db-backup --arg=--schema='static_2_7' static_2_7.backup
