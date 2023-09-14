@@ -21,7 +21,7 @@ for (const filename of ls(path.resolve(__dirname, 'geomapfish_geoportal/static-n
       chunks: [name],
       vars: {
         entry_point: '${VISIBLE_ENTRY_POINT}',
-        version: '2.8.0.95',
+        version: '2.8.0.96',
         cache_version: '${CACHE_VERSION}',
       },
     })
@@ -32,9 +32,7 @@ const babelPresets = [
   [
     require.resolve('@babel/preset-env'),
     {
-      targets: {
-        browsers: ['defaults', '> 0.7% in CH', '> 0.9% in FR', 'Firefox ESR', 'supports es6-class'],
-      },
+      targets: 'defaults, > 0.1% in CH, > 0.1% in FR, Firefox ESR and supports es6-class and not iOS < 10',
       modules: false,
       loose: true,
     },
