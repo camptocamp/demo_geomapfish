@@ -627,9 +627,6 @@ msgstr "Email"
 msgid "entertainment"
 msgstr "Entertainment"
 
-msgid "fid"
-msgstr "ID"
-
 msgid "filter_double"
 msgstr "Filter double"
 
@@ -653,9 +650,6 @@ msgstr "Fountain"
 
 msgid "fuel"
 msgstr "Fuel"
-
-msgid "geom_4326"
-msgstr "Geom"
 
 msgid "good"
 msgstr "Good"
@@ -749,9 +743,6 @@ msgstr "Landuse"
 
 msgid "landuse_alias"
 msgstr "Landuse (alias)"
-
-msgid "landuse_ingrp"
-msgstr "Landuse (group)"
 
 msgid "layer"
 msgstr "Layer"
@@ -861,14 +852,8 @@ msgstr "OSM Fire stations (no WFS)"
 msgid "osm_firestations_dual_restricted"
 msgstr "OSM Fire stations dual restricted"
 
-msgid "osm_firestations_ingrp"
-msgstr "OSM Fire stations (group)"
-
 msgid "osm_firestations_restricted"
 msgstr "OSM Fire stations (restricted)"
-
-msgid "osm_firestations_restricted_ingrp"
-msgstr "OSM Fire stations (restricted, ingroup)"
 
 msgid "osm_group"
 msgstr "OSM group"
@@ -885,14 +870,8 @@ msgstr "OSM Hospitals (no WFS)"
 msgid "osm_hospitals_dual_restricted"
 msgstr "OSM Hospitals (dual, restricted)"
 
-msgid "osm_hospitals_ingrp"
-msgstr "OSM Hospitals (group)"
-
 msgid "osm_hospitals_restricted"
 msgstr "OSM Hospitals (restricted)"
-
-msgid "osm_hospitals_restricted_ingrp"
-msgstr "OSM Hospitals (restricted, ingroup)"
 
 msgid "osm_id"
 msgstr "OSM ID"
@@ -1053,15 +1032,6 @@ msgstr "Points & Landuse"
 msgid "points+landuse no wfs"
 msgstr "Points & Landuse (no WFS)"
 
-msgid "points_ingrp"
-msgstr "Points in group"
-
-msgid "pointscopier"
-msgstr "Point copier"
-
-msgid "pointslabels"
-msgstr "Points label"
-
 msgid "police"
 msgstr "Police"
 
@@ -1137,9 +1107,6 @@ msgstr "Railways"
 msgid "railways9"
 msgstr "Railways"
 
-msgid "railways_ingrp"
-msgstr "Railways in group"
-
 msgid "recycling"
 msgstr "Recycling"
 
@@ -1154,6 +1121,9 @@ msgstr "Restaurant"
 
 msgid "restricted"
 msgstr "Restricted"
+
+msgid "restricted_group"
+msgstr "Restricted group"
 
 msgid "roads10"
 msgstr "Roads"
@@ -1238,9 +1208,6 @@ msgstr "Time"
 
 msgid "time range"
 msgstr "Time (range)"
-
-msgid "time_ingrp"
-msgstr "Time (group)"
 
 msgid "timestamp"
 msgstr "Timestamp"
@@ -1453,20 +1420,53 @@ msgstr ""
 #~ msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
 #~ msgstr "Solarenergie: Eignung Fassaden"
 
+#~ msgid "fid"
+#~ msgstr "ID"
+
+#~ msgid "geom_4326"
+#~ msgstr "Geom"
+
+#~ msgid "landuse_ingrp"
+#~ msgstr "Landuse (group)"
+
 #~ msgid "last_update_timestamp"
 #~ msgstr "Timestamp"
 
 #~ msgid "last_update_user"
 #~ msgstr "User"
 
-#~ msgid "restricted_group"
-#~ msgstr "Restricted group"
+#~ msgid "osm_firestations_ingrp"
+#~ msgstr "OSM Fire stations (group)"
+
+#~ msgid "osm_firestations_restricted_ingrp"
+#~ msgstr "OSM Fire stations (restricted, ingroup)"
+
+#~ msgid "osm_hospitals_ingrp"
+#~ msgstr "OSM Hospitals (group)"
+
+#~ msgid "osm_hospitals_restricted_ingrp"
+#~ msgstr "OSM Hospitals (restricted, ingroup)"
+
+#~ msgid "points_ingrp"
+#~ msgstr "Points in group"
+
+#~ msgid "pointscopier"
+#~ msgstr "Point copier"
+
+#~ msgid "pointslabels"
+#~ msgstr "Points label"
+
+#~ msgid "railways_ingrp"
+#~ msgstr "Railways in group"
 
 #~ msgid "standard application"
 #~ msgstr "Standard version"
 
 #~ msgid "test2"
 #~ msgstr "Second test"
+
+#~ msgid "time_ingrp"
+#~ msgstr "Time (group)"
 
 #~ msgid "vd.batiment_rcb"
 #~ msgstr "Buildings VD RCB"
