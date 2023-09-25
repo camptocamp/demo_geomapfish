@@ -167,6 +167,14 @@ services:
     environment:
       - PGSCHEMA
       - OSM_PGDATABASE
+      - OSM_PGHOST
+      - OSM_PGHOST_SLAVE
+      - OSM_PGPORT
+      - OSM_PGPORT_SLAVE
+      - OSM_PGPASSWORD
+      - OSM_PGUSER
+    volumes_from:
+      - config:ro
 
   # db:
   #   extends:
