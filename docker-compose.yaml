@@ -164,9 +164,14 @@ services:
     extends:
       file: docker-compose-lib.yaml
       service: tools
+<<<<<<< ours
     environment:
       - PGSCHEMA
       - OSM_PGDATABASE
+=======
+    volumes_from:
+      - config:ro
+>>>>>>> theirs
 
   # db:
   #   extends:
