@@ -80,9 +80,9 @@ VOLUME /etc/geomapfish \
 FROM node:20.5.1-slim AS custom-build
 
 WORKDIR /app
-COPY package.json ./
+COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm install --ignore-scripts
 
 COPY tsconfig.json vite.config.ts ./
 COPY webcomponents/ ./webcomponents/
