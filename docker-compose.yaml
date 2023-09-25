@@ -181,6 +181,9 @@ services:
       - OSM_PGPORT_SLAVE
       - OSM_PGPASSWORD
       - OSM_PGUSER
+    volumes_from:
+      - config:ro
+
   # db:
   #   extends:
   #     file: docker-compose-lib.yaml
