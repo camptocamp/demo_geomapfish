@@ -1,4 +1,3 @@
----
 name: Rebuild
 
 on:
@@ -28,7 +27,7 @@ jobs:
           - prod-2-9
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
 
