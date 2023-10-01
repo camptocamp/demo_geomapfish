@@ -19,7 +19,7 @@ jobs:
           - prod-2-7-simple
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
           token: ${{ secrets.GITHUB_GOPASS_CI_TOKEN }}
