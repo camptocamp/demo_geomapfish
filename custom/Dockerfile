@@ -49,7 +49,7 @@ FROM base AS lint
 
 RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
-    python3 -m pip install --disable-pip-version-check --requirement=/tmp/requirements-dev.txt
+    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements-dev.txt
 
 WORKDIR /app
 COPY . ./
