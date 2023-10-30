@@ -651,6 +651,12 @@ vars:
       - localhost
       - 127.0.0.1
 
+  smtp:
+    host: email-smtp.eu-west-1.amazonaws.com
+    ssl: True
+    user: '{SMTP_USER}'
+    password: '{SMTP_PASSWORD}'
+
   reset_password:
     # Used to send a confirmation email
     email_from: info@camptocamp.com
@@ -666,6 +672,7 @@ vars:
       the newly generated password is: {password}
       Sincerely yours
       The GeoMapfish team
+
   welcome_email:
     # Used to send a welcome email for new user
     email_from: info@camptocamp.com
@@ -683,20 +690,61 @@ vars:
       Your password is: {password}
       Sincerely yours
       The GeoMapfish team
-  smtp:
-    host: email-smtp.eu-west-1.amazonaws.com
-    ssl: True
-    user: '{SMTP_USER}'
-    password: '{SMTP_PASSWORD}'
 
-  intranet:
-    networks:
-      - 172.18.0.1/16
-      - 128.179.66.0/24 # c2c epnet
-      - 5.1.102.68/32 # c2c lausanne outgoing traffic
-      - 5.1.102.69/32 # c2c lausanne VPN
-      - 148.196.7.213/24 # VPN c2c
+  # Checker configuration
+  checker_ogc_server: Main PNG
+  checker:
+    fulltextsearch:
+      search: pau
+    phantomjs:
+      disable: [apihelp]
+    print:
+      spec:
+        layout: '1 A4 portrait'
+        outputFormat: 'pdf'
+        attributes:
+          title: ''
+          comments: ''
+          datasource: []
+          map:
+            projection: 'EPSG:21781'
+            dpi: 254
+            rotation: 0
+            center: [600000, 200000]
+            scale: 100000
+            longitudeFirst: True
+            layers: []
+          legend: {}
 
+  check_collector:
+    hosts: []
+    # - display: Child:
+    #   url: {web_protocol}://{host}/child/wsgi
+
+  # The dogpile.cache configuration.
+  cache:
+    std:
+      # Standalone version
+      backend: c2cgeoportal.hybrid
+      arguments:
+        host: '{REDIS_HOST}'
+        port: '{REDIS_PORT}'
+        db: '{REDIS_DB}'
+        password: '{REDIS_PASSWORD}'
+        connection_kwargs:
+          ssl: '{REDIS_SSL}'
+      # Kubernetes version
+      #arguments:
+      #  sentinels:
+      #    - - '{REDIS_HOST}'
+      #      - '{REDIS_PORT}'
+      #  connection_kwargs:
+      #    db: '{REDIS_DB}'
+
+  # This parameter set the list of hosts allowed to use the iframe api.
+  # 'self' will block all external usage, you must add additional hosts separated by space.
+  # see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors
+  content_security_policy_iframe_api_frame_ancestors: "'self'"
   content_security_policy_main_img_src_extra: 'blob:'
   # For production.
   content_security_policy_main_script_src_extra: "'unsafe-eval'
@@ -783,50 +831,13 @@ vars:
   servers:
     wmts: '{WMTS_URL}'
 
-  # Checker configuration
-  checker_ogc_server: Main PNG
-  checker:
-    fulltextsearch:
-      search: pau
-    phantomjs:
-      disable: [apihelp]
-    print:
-      spec:
-        layout: '1 A4 portrait'
-        outputFormat: 'pdf'
-        attributes:
-          title: ''
-          comments: ''
-          datasource: []
-          map:
-            projection: 'EPSG:21781'
-            dpi: 254
-            rotation: 0
-            center: [600000, 200000]
-            scale: 100000
-            longitudeFirst: True
-            layers: []
-          legend: {}
-
-  # The dogpile.cache configuration.
-  cache:
-    std:
-      # Standalone version
-      backend: c2cgeoportal.hybrid
-      arguments:
-        host: '{REDIS_HOST}'
-        port: '{REDIS_PORT}'
-        db: '{REDIS_DB}'
-        password: '{REDIS_PASSWORD}'
-        connection_kwargs:
-          ssl: '{REDIS_SSL}'
-      # Kubernetes version
-      #arguments:
-      #  sentinels:
-      #    - - '{REDIS_HOST}'
-      #      - '{REDIS_PORT}'
-      #  connection_kwargs:
-      #    db: '{REDIS_DB}'
+  intranet:
+    networks:
+      - 172.18.0.1/16
+      - 128.179.66.0/24 # c2c epnet
+      - 5.1.102.68/32 # c2c lausanne outgoing traffic
+      - 5.1.102.69/32 # c2c lausanne VPN
+      - 148.196.7.213/24 # VPN c2c
 
 update_paths:
   - admin_interface.available_functionalities
