@@ -138,9 +138,9 @@ ${DISABLE_LOCAL}  admin_path: tiles/admin
     - name: Generate the legend images
       command: generate-controller --generate-legend-images
     - name: Get the hash for layer map
-      command: generate-tiles --layer=map --get-hash 15/0/0
+      command: generate-tiles --layer=map --get-hash=15/0/0
     - name: Get the bbox of a tile
-      command: generate-tiles --bbox 0/0/0
+      command: generate-tiles --layer=map --get-bbox=0/0/0
 
 process:
   optipng_test:
