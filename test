@@ -1,0 +1,48 @@
+#!/bin/bash
+
+docker-compose stop mapserver
+docker-compose start mapserver
+sleep 10
+docker stats --no-stream demo-mapserver-1
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
+docker stats --no-stream demo-mapserver-1
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
+docker stats --no-stream demo-mapserver-1
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WFS&VERSION=1.0.0&REQUEST=DescribeFeatureType"
+docker stats --no-stream demo-mapserver-1
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WFS&VERSION=1.0.0&REQUEST=DescribeFeatureType"
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WFS&VERSION=1.0.0&REQUEST=DescribeFeatureType"
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WFS&VERSION=1.0.0&REQUEST=DescribeFeatureType"
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WFS&VERSION=1.0.0&REQUEST=DescribeFeatureType"
+curl -s -o /dev/null "http://localhost:8086/?SERVICE=WFS&VERSION=1.0.0&REQUEST=DescribeFeatureType"
+docker stats --no-stream demo-mapserver-1
+
+
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=osm_scale&RULE=OSM&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=post_office&RULE=Office+de+poste&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=osm_time&RULE=Dans+les+temps&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=osm_time2&RULE=Dans+les+temps&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=entertainment&RULE=Caf%C3%A9s&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=sustenance&RULE=Restaurant&WIDTH=20&HEIGHT=20"
+docker stats --no-stream demo-mapserver-1
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=post_office&STYLES=&CRS=EPSG%3A2056&WIDTH=2231&HEIGHT=1892&BBOX=2610160%2C1166540%2C2654780%2C1204380"
+docker stats --no-stream demo-mapserver-1
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=post_office&STYLES=&TIME=2006-01%2F2013-12&CRS=EPSG%3A2056&WIDTH=2231&HEIGHT=1892&BBOX=2610160%2C1166540%2C2654780%2C1204380"
+docker stats --no-stream demo-mapserver-1
+
+
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=osm_scale&RULE=OSM&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=post_office&RULE=Office+de+poste&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=osm_time&RULE=Dans+les+temps&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=osm_time2&RULE=Dans+les+temps&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=entertainment&RULE=Caf%C3%A9s&WIDTH=20&HEIGHT=20"
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&FORMAT=image%2Fpng&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&LAYER=sustenance&RULE=Restaurant&WIDTH=20&HEIGHT=20"
+docker stats --no-stream demo-mapserver-1
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=post_office&STYLES=&CRS=EPSG%3A2056&WIDTH=2231&HEIGHT=1892&BBOX=2610160%2C1166540%2C2654780%2C1204380"
+docker stats --no-stream demo-mapserver-1
+curl -s -o /dev/null "http://localhost:8086/?ogcserver=Main+PNG&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=post_office&STYLES=&TIME=2006-01%2F2013-12&CRS=EPSG%3A2056&WIDTH=2231&HEIGHT=1892&BBOX=2610160%2C1166540%2C2654780%2C1204380"
+docker stats --no-stream demo-mapserver-1

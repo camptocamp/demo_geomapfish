@@ -36,6 +36,12 @@ services:
     volumes_from:
       - config:ro
 
+    environment:
+      MAX_PROCESSES: 1
+
+    ports:
+      - 8086:8080
+
   qgisserver:
     extends:
       file: docker-compose-lib.yaml
