@@ -80,6 +80,8 @@ vars:
             # origin: [2485071.54, 1299941.84]
             origin: *tilesOrigin
             resolutions: *resolutions
+        gmfDatasourceOptions:
+          arcgisWMSInfoFormat: application/geo+json
       routes:
         fulltextsearchUrl:
           params:
