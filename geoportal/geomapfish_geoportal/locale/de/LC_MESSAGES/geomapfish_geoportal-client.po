@@ -729,9 +729,6 @@ msgstr "Bodennutzung"
 msgid "landuse_alias"
 msgstr "Bodennutzung (alias)"
 
-msgid "landuse_ingrp"
-msgstr "Bodennutzung (Gruppe)"
-
 msgid "layer"
 msgstr "Ebene"
 
@@ -840,14 +837,7 @@ msgstr "OSM Feuerwehrstation (ohne WFS)"
 msgid "osm_firestations_dual_restricted"
 msgstr "OSM Feuerwehrstation (doppelt, begrenzt)"
 
-msgid "osm_firestations_ingrp"
-msgstr "OSM Feuerwehrstation (Gruppe)"
-
 msgid "osm_firestations_restricted"
-msgstr "OSM Feuerwehrstation (begrenzt)"
-
-#, fuzzy
-msgid "osm_firestations_restricted_ingrp"
 msgstr "OSM Feuerwehrstation (begrenzt)"
 
 msgid "osm_group"
@@ -865,14 +855,7 @@ msgstr "OSM Spital (ohne WFS)"
 msgid "osm_hospitals_dual_restricted"
 msgstr "OSM Spital (doppelt, begrenzt)"
 
-msgid "osm_hospitals_ingrp"
-msgstr "OSM Spital (Gruppe)"
-
 msgid "osm_hospitals_restricted"
-msgstr "OSM Spital (begrenzt)"
-
-#, fuzzy
-msgid "osm_hospitals_restricted_ingrp"
 msgstr "OSM Spital (begrenzt)"
 
 msgid "osm_id"
@@ -1034,15 +1017,6 @@ msgstr "Punkte und Bodennutzung"
 msgid "points+landuse no wfs"
 msgstr "Punkte und Bodennutzung (ohne WFS)"
 
-msgid "points_ingrp"
-msgstr "Punkte (in einer Gruppe)"
-
-msgid "pointscopier"
-msgstr "Kopierte Punkte"
-
-msgid "pointslabels"
-msgstr "Label-Punkte"
-
 msgid "police"
 msgstr "Polizei"
 
@@ -1119,9 +1093,6 @@ msgstr "Eisenbahn"
 msgid "railways9"
 msgstr "Eisenbahn"
 
-msgid "railways_ingrp"
-msgstr "Eisenbahn (in einer Gruppe)"
-
 msgid "recycling"
 msgstr "Sammelstelle"
 
@@ -1136,6 +1107,9 @@ msgstr "Restaurant"
 
 msgid "restricted"
 msgstr "Bezirk"
+
+msgid "restricted_group"
+msgstr "Begrenzte Gruppe"
 
 msgid "roads10"
 msgstr "Straßen"
@@ -1220,9 +1194,6 @@ msgstr "Zeit"
 
 msgid "time range"
 msgstr "Zeit (Intervall)"
-
-msgid "time_ingrp"
-msgstr "Zeit (in einer Gruppe)"
 
 msgid "timestamp"
 msgstr "Zeitstempel"
@@ -1385,14 +1356,40 @@ msgstr ""
 #~ msgid "You must change your password"
 #~ msgstr "Sie müssen Ihr Passwort ändern"
 
+#~ msgid "landuse_ingrp"
+#~ msgstr "Bodennutzung (Gruppe)"
+
 #~ msgid "last_update_timestamp"
 #~ msgstr "zuletzt aktualisierter Zeitstempel"
 
 #~ msgid "last_update_user"
 #~ msgstr "zuletzt aktualisierter Nutzer"
 
-#~ msgid "restricted_group"
-#~ msgstr "Begrenzte Gruppe"
+#~ msgid "osm_firestations_ingrp"
+#~ msgstr "OSM Feuerwehrstation (Gruppe)"
+
+#, fuzzy
+#~ msgid "osm_firestations_restricted_ingrp"
+#~ msgstr "OSM Feuerwehrstation (begrenzt)"
+
+#~ msgid "osm_hospitals_ingrp"
+#~ msgstr "OSM Spital (Gruppe)"
+
+#, fuzzy
+#~ msgid "osm_hospitals_restricted_ingrp"
+#~ msgstr "OSM Spital (begrenzt)"
+
+#~ msgid "points_ingrp"
+#~ msgstr "Punkte (in einer Gruppe)"
+
+#~ msgid "pointscopier"
+#~ msgstr "Kopierte Punkte"
+
+#~ msgid "pointslabels"
+#~ msgstr "Label-Punkte"
+
+#~ msgid "railways_ingrp"
+#~ msgstr "Eisenbahn (in einer Gruppe)"
 
 #, fuzzy
 #~ msgid "standard application"
@@ -1400,3 +1397,6 @@ msgstr ""
 
 #~ msgid "test2"
 #~ msgstr "Test2"
+
+#~ msgid "time_ingrp"
+#~ msgstr "Zeit (in einer Gruppe)"
