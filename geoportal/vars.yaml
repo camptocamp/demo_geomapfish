@@ -64,6 +64,10 @@ vars:
           geolocalisation: True
           # Used to get pixel perfect render on WMTS layers [left, top]
           wmtsTopLeft: *tilesOrigin
+        gmfWMSSourceOptions:
+          # The default value is 1.5 but it add a slight blur on the layer,
+          # 1 is also possible but the application will do a getMap on all the pan.
+          ratio: 1
         ngeoTilesPreloadingLimit: 0
         ngeoWfsPermalinkOptions:
           wfsTypes:
