@@ -35,6 +35,7 @@ import gmfControllersAbstractDesktopController, {
   AbstractDesktopController,
 } from 'gmf/controllers/AbstractDesktopController';
 import geomapfishBase from '../geomapfishmodule';
+import ngeoMiscFilters from '../filters/Number';
 
 /**
  * @private
@@ -56,6 +57,7 @@ class Controller extends AbstractDesktopController {
  */
 const geomapfishModule = angular.module('Appdesktop', [
   geomapfishBase.name,
+  ngeoMiscFilters.name,
   gmfControllersAbstractDesktopController.name,
 ]);
 
