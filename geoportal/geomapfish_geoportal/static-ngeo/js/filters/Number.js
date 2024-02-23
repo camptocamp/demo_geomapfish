@@ -22,7 +22,7 @@ export function customNumber($locale) {
    */
   const result = function (number, opt_precision, opt_ignore_format) {
     const groupSep = opt_ignore_format ? '' : formats.GROUP_SEP;
-    const decimalSep = opt_ignore_format ? '' : formats.DECIMAL_SEP;
+    const decimalSep = opt_ignore_format ? '.' : formats.DECIMAL_SEP;
     if (opt_precision === undefined) {
       opt_precision = 3;
     }
