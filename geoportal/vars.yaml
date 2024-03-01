@@ -729,64 +729,6 @@ vars:
       - 5.1.102.69/32 # c2c lausanne VPN
       - 148.196.7.213/24 # VPN c2c
 
-  content_security_policy_main_img_src_extra: 'blob:'
-  # For production.
-  content_security_policy_main_script_src_extra: "'unsafe-eval'
-    https://maps.google.com/
-    https://maps.googleapis.com/
-    https://www.google-analytics.com/"
-  # For development.
-  # content_security_policy_main_script_src_extra: "'unsafe-eval'
-  #   https://maps.google.com/
-  #   https://maps.googleapis.com/
-  #   https://www.google-analytics.com/
-  #   https://localhost:3001"
-
-  headers:
-    dynamic: &header {}
-    index: *header
-    api: *header
-    apihelp: *header
-    profile: *header
-    raster: *header
-    vector_tiles: *header
-    error: *header
-    themes: &auth_header
-      access_control_allow_origin:
-        - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
-        - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-        - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-        - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
-        - https://camptocamp.github.io
-        - https://fredj.github.io
-        - https://ger-benjamin.github.io
-        - https://arnaud-morvan.github.io
-        - https://julsbreakdown.github.io
-        - https://adube.github.io
-        - http://localhost
-        - http://localhost:3000
-        - http://localhost:3001
-        - http://localhost:6006
-        - https://localhost
-        - https://localhost:3000
-        - https://localhost:3001
-        - http://127.0.0.1
-        - http://127.0.0.1:3000
-        - http://127.0.0.1:3001
-        - http://127.0.0.1:6006
-        - https://127.0.0.1
-        - https://127.0.0.1:3000
-        - https://127.0.0.1:3001
-        - '*'
-    config: *auth_header
-    print: *auth_header
-    fulltextsearch: *auth_header
-    mapserver: *auth_header
-    tinyows: *auth_header
-    layers: *auth_header
-    shortener: *auth_header
-    login: *auth_header
-
   authorized_referers:
     - https://2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
     - https://2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
@@ -864,6 +806,70 @@ vars:
       backend: dogpile.cache.redis
       # All versions
       arguments: *redis-cache-arguments
+
+  content_security_policy_main_img_src_extra: 'blob:'
+
+  # For production.
+  content_security_policy_main_script_src_extra: "'unsafe-eval'
+    https://maps.google.com/
+    https://maps.googleapis.com/
+    https://www.google-analytics.com/"
+  # For development.
+  # content_security_policy_main_script_src_extra: "'unsafe-eval'
+  #   https://maps.google.com/
+  #   https://maps.googleapis.com/
+  #   https://www.google-analytics.com/
+  #   https://localhost:3001"
+
+  # This parameter set the list of hosts allowed to use the iframe api.
+  # 'self' will block all external usage, you must add additional hosts separated by space.
+  # see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors
+  content_security_policy_iframe_api_frame_ancestors: "'self'"
+
+  headers:
+    dynamic: &header {}
+    index: *header
+    api: *header
+    apihelp: *header
+    profile: *header
+    raster: *header
+    vector_tiles: *header
+    error: *header
+    themes: &auth_header
+      access_control_allow_origin:
+        - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
+        - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+        - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+        - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
+        - https://camptocamp.github.io
+        - https://fredj.github.io
+        - https://ger-benjamin.github.io
+        - https://arnaud-morvan.github.io
+        - https://julsbreakdown.github.io
+        - https://adube.github.io
+        - http://localhost
+        - http://localhost:3000
+        - http://localhost:3001
+        - http://localhost:6006
+        - https://localhost
+        - https://localhost:3000
+        - https://localhost:3001
+        - http://127.0.0.1
+        - http://127.0.0.1:3000
+        - http://127.0.0.1:3001
+        - http://127.0.0.1:6006
+        - https://127.0.0.1
+        - https://127.0.0.1:3000
+        - https://127.0.0.1:3001
+        - '*'
+    config: *auth_header
+    print: *auth_header
+    fulltextsearch: *auth_header
+    mapserver: *auth_header
+    tinyows: *auth_header
+    layers: *auth_header
+    shortener: *auth_header
+    login: *auth_header
 
 update_paths:
   - admin_interface.available_functionalities
