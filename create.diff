@@ -1,0 +1,12 @@
+diff --git a/env.project b/env.project
+index 04099ae..d3ef889 100644
+--- a/env.project
++++ b/env.project
+@@ -58,6 +58,7 @@ C2C_REDIS_URL=redis://redis:6379/0
+ 
+ # Set a strong password here for authentication on technical interfaces behind path /c2c
+ C2C_SECRET=
++# Or use connection via GitHub, see: https://camptocamp.github.io/c2cgeoportal/2.8/integrator/c2cwsgiutils.html#authentication
+ C2C_AUTH_GITHUB_REPOSITORY=camptocamp/geomapfish
+ C2C_AUTH_GITHUB_ACCESS_TYPE=admin
+ C2C_AUTH_GITHUB_CLIENT_ID=210aefe26259de1e9532
