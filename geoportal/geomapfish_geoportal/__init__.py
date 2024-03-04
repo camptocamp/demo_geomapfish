@@ -1,4 +1,4 @@
-import distutils.core
+import distutils.core  # pylint: disable=deprecated-module
 
 from pyramid.config import Configurator
 
