@@ -67,6 +67,12 @@ vars:
               label: display_name
             - featureType: osm_scale
               label: display_name
+            - featureType: point
+              label: name
+            - featureType: line
+              label: name
+            - featureType: polygon
+              label: name
         gmfElevationOptions:
           layers: [aster, srtm]
         gmfSearchOptions:
