@@ -18,7 +18,6 @@ managed_files:
   - \.dockerignore
   - \.prettierignore
   - Dockerfile
-  - geoportal/interfaces/desktop_alt\.html\.mako
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
@@ -27,6 +26,7 @@ unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/api/api.css
   - geoportal/geomapfish_geoportal/static-ngeo/api/index\.js
   - geoportal/geomapfish_geoportal/static/apihelp/.*
+  - geoportal/interfaces/.*
   - print/print-apps/demo/.*\.jrxml
 template_vars:
   package: geomapfish
