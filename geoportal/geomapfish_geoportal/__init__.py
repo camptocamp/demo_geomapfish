@@ -1,5 +1,3 @@
-import distutils.core  # pylint: disable=deprecated-module
-
 import geomapfish_geoportal.authentication
 import geomapfish_geoportal.dev
 import geomapfish_geoportal.multi_organization
@@ -27,10 +25,7 @@ def main(global_config, **settings):
 
     config.add_translation_dirs(LOCALE_PATH)
 
-    # Workaround to not have the error: distutils.errors.DistutilsArgError: no commands supplied
-    distutils.core._setup_stop_after = "config"  # pylint: disable=protected-access
     config.include("c2cgeoportal_geoportal")
-    distutils.core._setup_stop_after = None  # pylint: disable=protected-access
 
     config.include(geomapfish_geoportal.multi_organization.includeme)
 
