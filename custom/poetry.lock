@@ -72,13 +72,13 @@ yaml = ["PyYAML"]
 
 [[package]]
 name = "c2cwsgiutils"
-version = "6.0.7"
+version = "6.0.8"
 description = "Common utilities for Camptocamp WSGI applications"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "c2cwsgiutils-6.0.7-py3-none-any.whl", hash = "sha256:adfc2c9bf3aef5cc8fc2c990f91806c96f39526a7306b2c9f465b4b1484d505f"},
-    {file = "c2cwsgiutils-6.0.7.tar.gz", hash = "sha256:f16bf681c179c2fba6a701235bcdc2b3fed3af6b38b61b868fba9ca732cb328a"},
+    {file = "c2cwsgiutils-6.0.8-py3-none-any.whl", hash = "sha256:2190e9e064ff7190e434767a13c132911e53d0d15fe99e0072da6e7c9586880f"},
+    {file = "c2cwsgiutils-6.0.8.tar.gz", hash = "sha256:b416a20a8490e30deed307811fba1b93d662c5d849fc36b0f94927f0440f2048"},
 ]
 
 [package.dependencies]
@@ -1368,13 +1368,13 @@ files = [
 
 [[package]]
 name = "redis"
-version = "5.0.3"
+version = "5.0.4"
 description = "Python client for Redis database and key-value store"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "redis-5.0.3-py3-none-any.whl", hash = "sha256:5da9b8fe9e1254293756c16c008e8620b3d15fcc6dde6babde9541850e72a32d"},
-    {file = "redis-5.0.3.tar.gz", hash = "sha256:4973bae7444c0fbed64a06b87446f79361cb7e4ec1538c022d696ed7a5015580"},
+    {file = "redis-5.0.4-py3-none-any.whl", hash = "sha256:7adc2835c7a9b5033b7ad8f8918d09b7344188228809c98df07af226d39dec91"},
+    {file = "redis-5.0.4.tar.gz", hash = "sha256:ec31f2ed9675cc54c21ba854cfe0462e6faf1d83c8ce5944709db8a4700b9c61"},
 ]
 
 [package.dependencies]
@@ -1513,13 +1513,13 @@ files = [
 
 [[package]]
 name = "sentry-sdk"
-version = "1.44.0"
+version = "1.44.1"
 description = "Python client for Sentry (https://sentry.io)"
 optional = false
 python-versions = "*"
 files = [
-    {file = "sentry-sdk-1.44.0.tar.gz", hash = "sha256:f7125a9235795811962d52ff796dc032cd1d0dd98b59beaced8380371cd9c13c"},
-    {file = "sentry_sdk-1.44.0-py2.py3-none-any.whl", hash = "sha256:eb65289da013ca92fad2694851ad2f086aa3825e808dc285bd7dcaf63602bb18"},
+    {file = "sentry-sdk-1.44.1.tar.gz", hash = "sha256:24e6a53eeabffd2f95d952aa35ca52f0f4201d17f820ac9d3ff7244c665aaf68"},
+    {file = "sentry_sdk-1.44.1-py2.py3-none-any.whl", hash = "sha256:5f75eb91d8ab6037c754a87b8501cc581b2827e923682f593bed3539ce5b3999"},
 ]
 
 [package.dependencies]
@@ -2125,4 +2125,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "5ca275eea0633262adb514c665236ae169b89ff4c45e59d2695757fd760f89fd"
+content-hash = "c51829adea390dca92df3b9ab6f448a5233347bbcbeac6cf1573ef0d38c670cd"
