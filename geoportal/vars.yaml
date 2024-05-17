@@ -852,9 +852,9 @@ vars:
     themes: &auth_header
       access_control_allow_origin:
         - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
-        - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-        - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-        - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
+        - https://2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+        - https://2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+        - https://2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
         - https://camptocamp.github.io
         - https://fredj.github.io
         - https://ger-benjamin.github.io
