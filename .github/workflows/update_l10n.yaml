@@ -14,9 +14,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - branch: int
+          - branch: int-2-8
             base_url: int.customer.ch
-          - branch: prod
+          - branch: prod-2-8
             base_url: prod.customer.ch
 
     steps:
