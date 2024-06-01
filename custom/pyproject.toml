@@ -19,16 +19,16 @@ sqlalchemy = "2.0.30"
 transaction = "4.0"
 "zope.sqlalchemy" = "3.1"
 cornice = "6.1.0"
-requests = "2.31.0"
+requests = "2.32.3"
 psycopg2 = "2.9.9"
 c2cwsgiutils = { version = "6.0.8", extras = ["webserver"] }
 cee-syslog-handler = "0.6.0"
 PyJWT = "2.8.0"
 redis = "5.0.4"
 PyYAML = "6.0.1"
-sentry-sdk = "2.0.1"
+sentry-sdk = "2.3.1"
 requests-oauthlib = "2.0.0"
-ujson = "5.9.0"
+ujson = "5.10.0"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
