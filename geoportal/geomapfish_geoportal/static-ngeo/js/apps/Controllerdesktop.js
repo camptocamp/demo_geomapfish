@@ -35,11 +35,47 @@ import gmfControllersAbstractDesktopController, {
   AbstractDesktopController,
 } from 'gmf/controllers/AbstractDesktopController';
 import geomapfishBase from '../geomapfishmodule';
+import ngeoMiscToolActivate from 'ngeo/misc/ToolActivate';
+import panels from 'gmfapi/store/panels';
 
 /**
  * @private
  */
 class Controller extends AbstractDesktopController {
+  constructor($scope, $injector) {
+    super($scope, $injector);
+
+    const $timeout = $injector.get('$timeout');
+
+    // Open the 'web-component' lidar panel
+    $scope.$watch(
+      () => this.drawLidarprofilePanelActive,
+      (newVal) => {
+        if (newVal) {
+          panels.openToolPanel('lidar');
+        } else {
+          panels.closeToolPanel();
+        }
+      }
+    );
+
+    // Make visible the footer
+    panels.getActiveFooterPanel().subscribe({
+      next: (panel) => {
+        this.lidarProfileFooterActive = panel === 'lidar';
+        $timeout(() => {}); // this triggered on DOM click, we call $timeout to force Angular diggest
+      },
+    });
+
+    /**
+     * @type {boolean}
+     */
+    this.drawLidarprofilePanelActive = false;
+
+    const drawLidarprofilePanelActive = new ngeoMiscToolActivate(this, 'drawLidarprofilePanelActive');
+    this.ngeoToolActivateMgr.registerTool('mapTools', drawLidarprofilePanelActive, false);
+  }
+
   /**
    * @param {JQuery.Event} event keydown event.
    */
