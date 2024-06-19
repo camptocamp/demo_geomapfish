@@ -61,7 +61,7 @@ jobs:
         if: always()
 
       - run:
-          docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml
+          docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml
           up -d
       - name: Run the acceptance tests on dev
         run: make acceptance
