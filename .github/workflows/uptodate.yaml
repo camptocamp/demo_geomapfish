@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
     name: Compare simple and advance branch
     timeout-minutes: 10
+    if: github.actor != 'renovate[bot]'
 
     steps:
       - uses: actions/checkout@v4
