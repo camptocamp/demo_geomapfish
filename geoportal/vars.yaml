@@ -992,8 +992,10 @@ environment:
   - name: VERSION
 
 runtime_postprocess:
-  - expression: str({}).lower() in ("true", "yes", "1")
+  - expression: int({})
     vars:
       - cache.std.arguments.port
+  - expression: str({}).lower() in ("true", "yes", "1")
+    vars:
       - cache.std.arguments.connection_kwargs.ssl
       - cache.ogc-server.arguments.connection_kwargs.ssl
