@@ -1,11 +1,12 @@
 #
 # Translators:
-# Stéphane Brunner <stephane.brunner@camptocamp.com>, 2022
+# Stéphane Brunner <stephane.brunner@camptocamp.com>, 2023
+# Wolfgang Kaltz <wolfgang.kaltz@camptocamp.com>, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Stéphane Brunner <stephane.brunner@camptocamp.com>, 2022\n"
+"Last-Translator: Wolfgang Kaltz <wolfgang.kaltz@camptocamp.com>, 2023\n"
 "Language-Team: German (https://app.transifex.com/camptocamp/teams/36764/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -75,8 +76,8 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
-"Zeichnen Sie eine Linie auf die Karte, um das entsprechende Höhenprofil "
-"anzuzeigen. Schliessen Sie mit einem Doppelklick ab."
+"Zeichnen Sie eine Linie auf die Karte, um das entsprechende Höhenprofil anzuzeigen.\n"
+"                    Schliessen Sie mit einem Doppelklick ab."
 
 #: contribs/gmf/apps/desktop_alt.html:179
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:179
@@ -84,8 +85,8 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                Use double-click to finish the drawing."
 msgstr ""
-"Zeichnen Sie eine Linie auf die Karte, um das entsprechende Höhenprofil "
-"anzuzeigen. Schliessen Sie mit einem Doppelklick ab."
+"Zeichnen Sie eine Linie auf die Karte, um das entsprechende Höhenprofil anzuzeigen.\n"
+"                Schliessen Sie mit einem Doppelklick ab."
 
 #: contribs/gmf/apps/desktop.html:149 contribs/gmf/apps/desktop.html:66
 #: contribs/gmf/apps/desktop/index.html.ejs:149
@@ -135,7 +136,7 @@ msgstr "Höhenprofil"
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:118
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:128
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtrieren"
 
 #: contribs/gmf/apps/desktop_alt.html:207
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:207
@@ -250,7 +251,7 @@ msgstr "Abfrage"
 #: contribs/gmf/apps/desktop_alt.html:264
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:264
 msgid "Routing"
-msgstr "Routing"
+msgstr "Routenplanung"
 
 #: contribs/gmf/apps/desktop.html:221 contribs/gmf/apps/desktop.html:85
 #: contribs/gmf/apps/desktop/index.html.ejs:221
@@ -338,10 +339,10 @@ msgid ""
 "You're using the mobile application. Check out the <a "
 "href=\"{{url}}\">standard application</a>."
 msgstr ""
-"Sie verwenden die mobile Anwendung. Wechsel zur <a "
+"Sie verwenden die Mobile-Anwendung. Wechsel zur <a "
 "href=\"{{url}}\">Standard-Anwendung.</a>"
 
 #: contribs/gmf/apps/desktop_alt.html:92
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:92
 msgid "debug"
-msgstr "debug"
+msgstr "Debug"
