@@ -1,5 +1,5 @@
 ARG GEOMAPFISH_VERSION
-ARG GEOMAPFISH_MAIN_VERSION
+ARG GEOMAPFISH_MAIN_MINOR_VERSION
 
 FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 
@@ -38,7 +38,7 @@ RUN \
 
 ###############################################################################
 
-FROM camptocamp/geomapfish-config:${GEOMAPFISH_MAIN_VERSION} AS gmf_config
+FROM camptocamp/geomapfish-config:${GEOMAPFISH_MAIN_MINOR_VERSION} AS gmf_config
 
 ARG PGSCHEMA
 ENV PGSCHEMA=$PGSCHEMA
@@ -77,12 +77,12 @@ VOLUME /etc/geomapfish \
 
 ###############################################################################
 
-FROM node:19.5.0-slim AS custom-build
+FROM node:21.2-slim AS custom-build
 
 WORKDIR /app
-COPY package.json ./
+COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm install --ignore-scripts
 
 COPY tsconfig.json vite.config.ts ./
 COPY webcomponents/ ./webcomponents/

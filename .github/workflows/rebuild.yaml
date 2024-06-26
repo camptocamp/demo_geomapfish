@@ -1,4 +1,3 @@
----
 name: Rebuild
 
 on:
@@ -15,8 +14,8 @@ env:
 
 jobs:
   rebuild:
-    runs-on: ubuntu-22.04
     name: Rebuild
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
 
     strategy:
@@ -28,7 +27,7 @@ jobs:
           - prod-2-9
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
 

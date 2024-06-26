@@ -10,6 +10,7 @@
         width: 1em;
       }
     </style>
+    <meta name="appName" content="Appdesktop_alt">
     ${header |n}
   </head>
   <body ng-keydown="mainCtrl.onKeydown($event)" tabindex="0">
@@ -281,7 +282,7 @@
         </button>
       </span>
 
-      <gmf-search slot="map" gmf-search-map="::mainCtrl.map"></gmf-search>
+      <gmf-search slot="map" gmf-search-map="::mainCtrl.map" gmf-search-listeners="::mainCtrl.searchListeners"></gmf-search>
       <ngeo-mapswipe
         slot="map"
         ng-if="mainCtrl.gmfLayerBeingSwipe.layer != null"

@@ -13,13 +13,13 @@ env:
 
 jobs:
   main:
-    runs-on: ubuntu-22.04
     name: Continuous integration
+    runs-on: ubuntu-22.04
     timeout-minutes: 20
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: camptocamp/demo_geomapfish_data
           ref: master
@@ -35,8 +35,7 @@ jobs:
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
 
-      - run: cp env.acceptance-test env.secrets
-      - run: sed -i '/^DOCKER_TAG=/d' env.project
+      - run: touch env.secrets
 
       - name: Checks
         run: c2cciutils-checks
@@ -62,7 +61,7 @@ jobs:
         if: always()
 
       - run:
-          docker-compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml
+          docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml
           up -d
       - name: Run the acceptance tests on dev
         run: make acceptance
@@ -78,12 +77,20 @@ jobs:
       - name: Publish
         run: c2cciutils-publish
 
-        # - name: Create Sentry release
-        #   uses: getsentry/action-release@v1
-        #   env:
-        #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-        #     SENTRY_ORG: camptocamp
-        #     SENTRY_PROJECT: ${{ env.SENTRY_PROJECT }}
-        #   with:
-        #     environment: ${{ env.SENTRY_ENVIRONMENT }}
-        #   if: github.ref == 'refs/heads/prod-2-8'
+      # - name: Create Sentry release
+      #   uses: getsentry/action-release@v1
+      #   env:
+      #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      #     SENTRY_ORG: camptocamp
+      #     SENTRY_PROJECT: ${{ env.SENTRY_PROJECT }}
+      #   with:
+      #     environment: ${{ env.SENTRY_ENVIRONMENT }}
+      #   if: github.ref == 'refs/heads/prod-2-8'
+      - run: git diff --exit-code --patch > /tmp/dpkg-versions.patch || true
+        if: failure()
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Update dpkg versions list.patch
+          path: /tmp/dpkg-versions.patch
+          retention-days: 1
+        if: failure()

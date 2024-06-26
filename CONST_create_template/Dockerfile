@@ -1,5 +1,5 @@
 ARG GEOMAPFISH_VERSION
-ARG GEOMAPFISH_MAIN_VERSION
+ARG GEOMAPFISH_MAIN_MINOR_VERSION
 
 FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 
@@ -38,7 +38,7 @@ RUN \
 
 ###############################################################################
 
-FROM camptocamp/geomapfish-config:${GEOMAPFISH_MAIN_VERSION} AS gmf_config
+FROM camptocamp/geomapfish-config:${GEOMAPFISH_MAIN_MINOR_VERSION} AS gmf_config
 
 ARG PGSCHEMA
 ENV PGSCHEMA=$PGSCHEMA

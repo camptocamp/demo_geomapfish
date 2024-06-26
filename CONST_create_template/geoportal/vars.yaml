@@ -2,6 +2,15 @@
 extends: CONST_vars.yaml
 
 vars:
+  # To use an other SRID you should change:
+  #  - vars.srid
+  #  - vars.alternate_projections
+  #  - vars.resolutions
+  #  - vars.extent
+  #  - vars.tilesOrigin
+  #  - vars.interfaces_config.default.constants.gmfOptions.view.center
+  #  - vars.interfaces_config.default.constants.gmfOptions.wmtsTopLeft
+  #  - vars.interfaces_config.default.constants.gmfVectorTilesOptions.tileGrid.origin
   srid: &srid 2056
 
   main_ogc_server: source for image/png
@@ -11,9 +20,12 @@ vars:
     - EPSG:{srid}
     - EPSG:21781
 
-  resolutions: &resolutions [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+  resolutions: &resolutions [250, 100, 50, 20, 10, 5, 2.5, 1, 0.5, 0.25, 0.1, 0.05]
 
   extent: &extent [2420000, 1030000, 2900000, 1350000]
+
+  # Origin of the tiles [left, top]
+  tilesOrigin: &tilesOrigin [2420000, 1350000]
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -32,7 +44,7 @@ vars:
       constants:
         defaultTheme: Demo
         defaultLang: '{default_locale_name}'
-        gmfOptions:
+        gmfOptions: &gmfOptions
           map: {}
           view: &view
             projection: EPSG:{srid}
@@ -41,6 +53,8 @@ vars:
             resolutions: *resolutions
             extent: *extent
           geolocalisation: True
+          # Used to get pixel perfect render on WMTS layers [left, top]
+          wmtsTopLeft: *tilesOrigin
         gmfElevationOptions:
           layers: [aster, srtm]
         gmfSearchOptions:
@@ -51,7 +65,7 @@ vars:
           projection: EPSG:{srid}
           tileGrid:
             extent: *extent
-            origin: [2420000, 1350000]
+            origin: *tilesOrigin
             resolutions: *resolutions
       routes:
         fulltextsearchUrl:
@@ -62,12 +76,12 @@ vars:
     desktop:
       constants:
         gmfOptions:
+          <<: *gmfOptions
           map:
             maxTilesLoading: 128
           view:
             <<: *view
             constrainResolution: True
-          geolocalisation: True
         gmfExternalOGCServers:
           - name: swisstopo WMS
             type: WMS
@@ -105,17 +119,20 @@ vars:
     mobile:
       constants:
         gmfOptions:
-          map: {}
+          <<: *gmfOptions
           view:
             <<: *view
             autoRotate: True
-          geolocalisation: True
         gmfMobileMeasurePointOptions:
           rasterLayers:
             - name: aster
               unit: m
             - name: srtm
               unit: m
+
+    iframe_api:
+      constants:
+        gmfOptions: *gmfOptions
 
     api:
       constants:
@@ -162,6 +179,10 @@ vars:
 
   layers:
     geometry_validation: True
+
+  api:
+    # The name of the API in JavaScript
+    name: 'geomapfish'
 
   # The "vector tiles web service" configuration. See the "vector tiles"
   # chapter in the integrator documentation.
@@ -291,9 +312,14 @@ vars:
       #     db: '{REDIS_DB}'
     ogc-server:
       # Standalone version
-      backend: dogpile.cache.redis
+      backend: c2cgeoportal.hybrid
       # All versions
       arguments: *redis-cache-arguments
+
+  # This parameter set the list of hosts allowed to use the iframe api.
+  # 'self' will block all external usage, you must add additional hosts separated by space.
+  # see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors
+  content_security_policy_iframe_api_frame_ancestors: "'self'"
 
   # Control the HTTP headers
   headers:
@@ -364,10 +390,12 @@ update_paths:
   - interfaces_config.default.dynamic_constants
   - interfaces_config.default.static
   - interfaces_config.default.routes.fulltextsearchUrl
-  - interfaces_config.desktop.constants
+  - interfaces_config.desktop.constants.gmfOptions.view
+  - interfaces_config.desktop.constants.gmfPrintOptions
   - interfaces_config.desktop.routes
+  - interfaces_config.mobile.constants.gmfOptions.view
   - interfaces_config.mobile.constants.gmfMobileMeasurePointOptions
-  - interfaces_config.iframe_api.constants
+  - interfaces_config.iframe_api.constants.gmfOptions.view
   - interfaces_config.api.constants
   - interfaces_config.api.routes.searchUrl
   - interfaces_theme

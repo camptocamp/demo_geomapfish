@@ -84,11 +84,11 @@ defaults:
     #        -   sql: <column> AS geom FROM <table>
     # size and hash used to detect empty tiles and metatiles [optional, default is None]
     empty_metatile_detection:
-      size: 740
-      hash: 3237839c217b51b8a9644d596982f342f8041546
+        size: 394
+        hash: ad8ba7a37e97f64fefd25baaf962625c2ee7e707
     empty_tile_detection:
-      size: 921
-      hash: 1e3da153be87a493c4c71198366485f290cad43c
+        size: 116
+        hash: 9b1f93c807ba92a48f8e484ea839e21ce90bf278
     post_process: optipng
 
 layers:
@@ -117,11 +117,11 @@ generation:
 ${DISABLE_LOCAL}redis:
 ${DISABLE_LOCAL}  socket_timeout: ${REDIS_TIMEOUT}
 ${DISABLE_LOCAL}  # For standalone version
-${DISABLE_LOCAL}  # url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
+${DISABLE_LOCAL}  url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
 ${DISABLE_LOCAL}  # For OpenShift version
-${DISABLE_LOCAL}  sentinels:
-${DISABLE_LOCAL}    - - ${REDIS_HOST}
-${DISABLE_LOCAL}      - ${REDIS_PORT}
+${DISABLE_LOCAL}  #sentinels:
+${DISABLE_LOCAL}  #  - - ${REDIS_HOST}
+${DISABLE_LOCAL}  #    - ${REDIS_PORT}
 ${DISABLE_LOCAL}  service_name: ${REDIS_SERVICENAME}
 ${DISABLE_LOCAL}  db: ${REDIS_DB}
 
@@ -132,11 +132,15 @@ ${DISABLE_LOCAL}  admin_path: tiles/admin
   expires: 8 # 8 hours
   predefined_commands:
     - name: Generation all layers
-      command: generate_tiles
+      command: generate-tiles
     - name: Generation layer map
-      command: generate_tiles --layer=map
+      command: generate-tiles --layer=map
     - name: Generate the legend images
-      command: generate_controller --generate-legend-images
+      command: generate-controller --generate-legend-images
+    - name: Get the hash for layer map
+      command: generate-tiles --layer=map --get-hash=15/0/0
+    - name: Get the bbox of a tile
+      command: generate-tiles --layer=map --get-bbox=0/0/0
 
 process:
   optipng_test:
