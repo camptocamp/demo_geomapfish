@@ -20,6 +20,21 @@
   html: {
     fileMatch: ['\\.html?$', '\\.html?.mako$'],
   },
+  regexManagers: [
+    /** Do updates on pre-commit additional dependencies */
+    {
+      fileMatch: ['^\\.pre\\-commit\\-config\\.yaml$'],
+      matchStrings: [" +- '?(?<depName>[^' @=]+)(@|==)(?<currentValue>[^' @=]+)'? # (?<datasource>.+)"],
+    },
+    /** Do update on the schema present in the ci/config.yaml */
+    {
+      fileMatch: ['^ci/config\\.yaml$'],
+      matchStrings: [
+        '.*https://raw\\.githubusercontent\\.com/(?<depName>[^\\s]+)/(?<currentValue>[0-9\\.]+)/.*',
+      ],
+      datasourceTemplate: 'github-tags',
+    },
+  ],
   packageRules: [
     /** Docker images versioning */
     {
@@ -101,21 +116,6 @@
       matchFileNames: ['.github/**', '.pre-commit-config.yaml', 'ci/**'],
       groupName: 'CI dependencies',
       automerge: true,
-    },
-  ],
-  regexManagers: [
-    /** Do updates on pre-commit additional dependencies */
-    {
-      fileMatch: ['^\\.pre\\-commit\\-config\\.yaml$'],
-      matchStrings: [" +- '?(?<depName>[^' @=]+)(@|==)(?<currentValue>[^' @=]+)'? # (?<datasource>.+)"],
-    },
-    /** Do update on the schema present in the ci/config.yaml */
-    {
-      fileMatch: ['^ci/config\\.yaml$'],
-      matchStrings: [
-        '.*https://raw\\.githubusercontent\\.com/(?<depName>[^\\s]+)/(?<currentValue>[0-9\\.]+)/.*',
-      ],
-      datasourceTemplate: 'github-tags',
     },
     {
       'matchPackageNames': ['shellcheck-py/shellcheck-py'],
