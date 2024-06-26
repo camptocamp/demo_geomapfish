@@ -15,7 +15,9 @@ rm $1/.github/dependabot.yaml $1/.github/renovate.json5 \
     $1/.github/workflows/dependabot-auto-merge.yaml \
     $1/.github/workflows/auto-review.yaml \
     $1/.github/workflows/rebuild*.yaml \
-    $1/.github/workflows/upgrade*.yaml || true
+    $1/.github/workflows/upgrade*.yaml \
+    $1/.github/workflows/pull-request-automation.yaml \
+    $1/.github/workflows/delete-old-workflows-run.yaml || true
 rm $1/ci/config.yaml $1/project.yaml
 rm $1/geoportal/.prospector.yaml $1/geoportal/alembic.ini $1/geoportal/alembic.yaml \
     $1/geoportal/Dockerfile $1/geoportal/.dockerignore \

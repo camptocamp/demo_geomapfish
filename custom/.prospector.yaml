@@ -4,3 +4,5 @@ pylint:
 
 bandit:
   run: true
+  options:
+    config: .bandit.yaml

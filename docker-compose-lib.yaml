@@ -12,6 +12,7 @@ services:
         PGSCHEMA: ${PGSCHEMA}
         GEOMAPFISH_VERSION: ${GEOMAPFISH_VERSION}
         GEOMAPFISH_MAIN_VERSION: ${GEOMAPFISH_MAIN_VERSION}
+        GEOMAPFISH_MAIN_MINOR_VERSION: ${GEOMAPFISH_MAIN_MINOR_VERSION}
     user: www-data
     environment:
       - VISIBLE_WEB_HOST
@@ -64,9 +65,11 @@ services:
       - AZURE_STORAGE_SAS_TOKEN
       - TILEGENERATION_AZURE_CONTAINER
       - RASTER_BASE_PATH
+      - DISABLE_HAPROXY_LOGGING
+      - HAPROXY_LOGGING_OPTIONS
 
   print:
-    image: camptocamp/mapfish_print:3.29
+    image: camptocamp/mapfish_print:3.30
     user: www-data
     restart: unless-stopped
     environment:
@@ -74,7 +77,7 @@ services:
       - PGOPTIONS
 
   mapserver:
-    image: camptocamp/mapserver:8.0
+    image: camptocamp/mapserver:8.0-gdal3.7
     user: www-data
     restart: unless-stopped
     entrypoint: []
@@ -107,30 +110,26 @@ services:
       - CPL_VSIL_CURL_CACHE_SIZE
       - CPL_VSIL_CURL_USE_HEAD
       - GDAL_DISABLE_READDIR_ON_OPEN
-      - QGIS_SERVER_LOG_LEVEL=2
+      - QGIS_SERVER_LOG_LEVEL
       - QGIS_AUTH_DB_DIR_PATH
       - QGIS_SERVER_IGNORE_BAD_LAYERS
       - QGIS_SERVER_DISABLE_GETPRINT
       - PGSERVICEFILE
-      - LOG_LEVEL=INFO
+      - LOG_LEVEL=${QGIS_LOG_LEVEL}
       - LOG_TYPE
       - C2CGEOPORTAL_LOG_LEVEL
       - SQL_LOG_LEVEL
       - OTHER_LOG_LEVEL
       - GEOMAPFISH_ACCESSCONTROL_BASE_URL=${QGISSERVER_URL}
-      - QGIS_SERVER_TRUST_LAYER_METADATA=TRUE
-      - QGIS_SERVER_PARALLEL_RENDERING=FALSE
-      - MAX_CACHE_LAYERS=100
-      - QGIS_SERVER_IGNORE_BAD_LAYERS=TRUE
-      - QGIS_SERVER_CACHE_SIZE=60 # MB
-      - QGIS_SERVER_WMS_MAX_HEIGHT=5000
-      - QGIS_SERVER_WMS_MAX_WIDTH=5000
-      - QGIS_SERVER_API_WFS3_MAX_LIMIT=10000
-      - QGIS_SERVER_DISABLE_GETPRINT=TRUE
-      - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver/
-      - QGIS_SERVER_OVERRIDE_SYSTEM_LOCALE=fr
-      - QGIS_AUTH_DB_DIR_PATH=/etc/qgisserver/
-      - PGSERVICEFILE=/etc/qgisserver/pg_service.conf
+      - QGIS_SERVER_TRUST_LAYER_METADATA
+      - QGIS_SERVER_PARALLEL_RENDERING
+      - MAX_CACHE_LAYERS
+      - QGIS_SERVER_CACHE_SIZE
+      - QGIS_SERVER_WMS_MAX_HEIGHT
+      - QGIS_SERVER_WMS_MAX_WIDTH
+      - QGIS_SERVER_API_WFS3_MAX_LIMIT
+      - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES
+      - QGIS_SERVER_OVERRIDE_SYSTEM_LOCALE
 
   tinyows:
     image: camptocamp/tinyows:master
@@ -232,7 +231,7 @@ services:
       - AZURE_STORAGE_ACCOUNT_URL
 
   geoportal:
-    image: camptocamp/geomapfishapp-geoportal:${GEOMAPFISH_MAIN_VERSION}
+    image: camptocamp/geomapfishapp-geoportal:${GEOMAPFISH_MAIN_MINOR_VERSION}
     user: www-data
     restart: unless-stopped
     environment: &geoportal-env
@@ -325,6 +324,7 @@ services:
         PGSCHEMA: ${PGSCHEMA}
         GEOMAPFISH_VERSION: ${GEOMAPFISH_VERSION}
         GEOMAPFISH_MAIN_VERSION: ${GEOMAPFISH_MAIN_VERSION}
+        GEOMAPFISH_MAIN_MINOR_VERSION: ${GEOMAPFISH_MAIN_MINOR_VERSION}
     user: www-data
     restart: unless-stopped
     environment: *geoportal-env
@@ -449,6 +449,7 @@ services:
       args:
         GEOMAPFISH_VERSION: ${GEOMAPFISH_VERSION}
         GEOMAPFISH_MAIN_VERSION: ${GEOMAPFISH_MAIN_VERSION}
+        GEOMAPFISH_MAIN_MINOR_VERSION: ${GEOMAPFISH_MAIN_MINOR_VERSION}
     volumes:
       - ./geoportal/${PACKAGE}_geoportal/static-ngeo:/app/${PACKAGE}_geoportal/static-ngeo
     environment:
@@ -477,9 +478,6 @@ services:
   db:
     image: camptocamp/postgres:${POSTGRES_TAG}
     environment:
-      - PGUSER
-      - PGPASSWORD
-      - PGDATABASE
       - POSTGRES_PASSWORD=${PGPASSWORD}
       - POSTGRES_DB=${PGDATABASE}
       - POSTGRES_USER=${PGUSER}

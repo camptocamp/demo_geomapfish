@@ -110,8 +110,6 @@
               <div class="col-sm-12">
                 <a class="btn close gmf-close" ng-click="mainCtrl.loginActive = false">&times;</a>
                 <gmf-auth-panel ng-show="mainCtrl.loginActive"
-                  ng-prop-login_info_message="mainCtrl.loginInfoMessage"
-                  ng-prop-post_loading="mainCtrl.postLoading"
                   ng-prop-password_validator="mainCtrl.passwordValidator"
                 >
                   <input
@@ -238,7 +236,7 @@
         </div>
       </div>
       <div class="gmf-app-map-container" ng-class="{'gmf-app-infobar-active': mainCtrl.options.showInfobar}">
-        <gmf-search gmf-search-map="::mainCtrl.map"></gmf-search>
+        <gmf-search gmf-search-map="::mainCtrl.map" gmf-search-listeners="::mainCtrl.searchListeners"></gmf-search>
         <ngeo-mapswipe
           ng-if="mainCtrl.gmfLayerBeingSwipe.layer != null"
           map="::mainCtrl.map"

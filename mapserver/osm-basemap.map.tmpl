@@ -10,6 +10,23 @@
 # wget http://api.openstreetmap.org/api/0.6/relation/332617/full -O lac-leman.osm
 # osm2pgsql --append --proj 2056 --cache-strategy sparse --database osm --username www-data --password --host localhost lac-leman.osm
 
+
+LAYER
+  EXTENT 2420000 1040500 2839000 1306400
+  STATUS ON
+  GROUP "default"
+  NAME "background"
+  TYPE POLYGON
+  FEATURE
+    WKT "POLYGON((2420000 1040500, 2420000 1306400, 2839000 1306400, 2839000 1040500, 2420000 1040500))"
+  END
+  CLASS
+    STYLE
+      COLOR 255 255 255
+    END
+  END
+END
+
 LAYER
  EXTENT 2420000 1040500 2839000 1306400
  STATUS ON

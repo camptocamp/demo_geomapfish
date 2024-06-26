@@ -1,5 +1,5 @@
 ARG GEOMAPFISH_VERSION
-ARG GEOMAPFISH_MAIN_VERSION
+ARG GEOMAPFISH_MAIN_MINOR_VERSION
 
 FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
@@ -23,7 +23,7 @@ CMD [ "webpack-dev-server", "--mode=development", "--debug", "--watch", "--no-in
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_VERSION} as runner
+FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} as runner
 
 COPY requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache \
@@ -66,7 +66,6 @@ ENV VISIBLE_ENTRY_POINT=/ \
     C2CGEOPORTAL_LOG_LEVEL=INFO \
     C2CWSGIUTILS_LOG_LEVEL=INFO \
     GUNICORN_LOG_LEVEL=INFO \
-    GUNICORN_ACCESS_LOG_LEVEL=INFO \
     SQL_LOG_LEVEL=WARNING \
     DOGPILECACHE_LOG_LEVEL=INFO \
     OTHER_LOG_LEVEL=WARNING \

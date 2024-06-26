@@ -2,6 +2,15 @@
 extends: CONST_vars.yaml
 
 vars:
+  # To use an other SRID you should change:
+  #  - vars.srid
+  #  - vars.alternate_projections
+  #  - vars.resolutions
+  #  - vars.extent
+  #  - vars.tilesOrigin
+  #  - vars.interfaces_config.default.constants.gmfOptions.view.center
+  #  - vars.interfaces_config.default.constants.gmfOptions.wmtsTopLeft
+  #  - vars.interfaces_config.default.constants.gmfVectorTilesOptions.tileGrid.origin
   srid: &srid 2056
 
   main_ogc_server: Main PNG
@@ -11,9 +20,12 @@ vars:
     - EPSG:{srid}
     - EPSG:21781
 
-  resolutions: &resolutions [250, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05]
+  resolutions: &resolutions [250, 100, 50, 20, 10, 5, 2.5, 1, 0.5, 0.25, 0.1, 0.05]
 
   extent: &extent [2485071.54, 175346.36, 2828515.78, 1299941.84]
+
+  # Origin of the tiles [left, top]
+  tilesOrigin: &tilesOrigin [2420000, 1350000]
 
   # The application's default language. This is the language used by
   # the application if no specific language is specified in the URLs.
@@ -37,7 +49,7 @@ vars:
       constants:
         defaultTheme: Demo
         defaultLang: '{default_locale_name}'
-        gmfOptions:
+        gmfOptions: &gmfOptions
           map: {}
           view: &view
             projection: EPSG:{srid}
@@ -45,8 +57,9 @@ vars:
             zoom: 3
             resolutions: *resolutions
             extent: *extent
-            constrainRotation: false
           geolocalisation: True
+          # Used to get pixel perfect render on WMTS layers [left, top]
+          wmtsTopLeft: *tilesOrigin
         ngeoTilesPreloadingLimit: 0
         ngeoWfsPermalinkOptions:
           wfsTypes:
@@ -54,6 +67,12 @@ vars:
               label: display_name
             - featureType: osm_scale
               label: display_name
+            - featureType: point
+              label: name
+            - featureType: line
+              label: name
+            - featureType: polygon
+              label: name
         gmfElevationOptions:
           layers: [aster, srtm]
         gmfSearchOptions:
@@ -64,13 +83,20 @@ vars:
           projection: EPSG:{srid}
           tileGrid:
             extent: *extent
-            origin: [2485071.54, 1299941.84]
+            # origin: [2485071.54, 1299941.84]
+            origin: *tilesOrigin
             resolutions: *resolutions
+        gmfDatasourceOptions:
+          arcgisWMSInfoFormat: application/geo+json
       routes:
         fulltextsearchUrl:
           params:
             limit: 30
             partitionlimit: 5
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: Main PNG
 
     desktop:
       constants:
@@ -84,10 +110,10 @@ vars:
             service: js
             interface: desktop
         gmfOptions:
+          <<: *gmfOptions
           map:
             maxTilesLoading: 128
           view: *view
-          geolocalisation: True
           cssVars: &cssVars # Used by https://github.com/camptocamp/ngeo/pull/7527
             left-panel-width: 20rem
             app-margin: 0.62rem
@@ -164,6 +190,7 @@ vars:
             service: js
             interface: desktop_alt
         gmfOptions:
+          <<: *gmfOptions
           map:
             maxTilesLoading: 9999
           view: *view
@@ -316,6 +343,9 @@ vars:
         gmfLayerTreeOptions:
           openLinksInNewWindow: True
           isExpanded: False
+          layerIcon:
+            width: 20
+            height: 20
         gmfShareOptions:
           enableEmail: False
 
@@ -327,11 +357,10 @@ vars:
             service: js
             interface: mobile
         gmfOptions:
-          map: {}
+          <<: *gmfOptions
           view:
             <<: *view
             autoRotate: True
-          geolocalisation: True
         gmfMobileMeasurePointOptions:
           rasterLayers:
             - name: aster
@@ -349,12 +378,12 @@ vars:
             service: js
             interface: mobile_alt
         gmfOptions:
+          <<: *gmfOptions
           map:
             pixelRatio: 1
           view:
             <<: *view
             autoRotate: True
-          geolocalisation: True
         gmfTreeManagerModeFlush: False
         gmfDisplayQueryWindowOptions:
           defaultCollapsed: False
@@ -393,6 +422,9 @@ vars:
         gmfLayerTreeOptions:
           openLinksInNewWindow: True
           isExpanded: False
+          layerIcon:
+            width: 20
+            height: 20
         gmfMobileMeasurePointOptions:
           decimals: 2
           rasterLayers: []
@@ -430,6 +462,10 @@ vars:
           zoom: 8
           autoRotate: True
           atLoadingTime: True
+
+    iframe_api:
+      constants:
+        gmfOptions: *gmfOptions
 
     api:
       constants:
@@ -568,7 +604,7 @@ vars:
     ogc_server: Main PNG
 
   api:
-    ogc_server: Main PNG
+    # The name of the API in JavaScript
     name: demo
 
   dbsessions:
@@ -684,6 +720,7 @@ vars:
       Your password is: {password}
       Sincerely yours
       The GeoMapfish team
+
   smtp:
     host: email-smtp.eu-west-1.amazonaws.com
     ssl: True
@@ -693,65 +730,10 @@ vars:
   intranet:
     networks:
       - 172.18.0.1/16
-      - 185.127.205.3/24
-
-  content_security_policy_main_img_src_extra: 'blob:'
-  # For production.
-  content_security_policy_main_script_src_extra: "'unsafe-eval'
-    https://maps.google.com/
-    https://maps.googleapis.com/
-    https://www.google-analytics.com/"
-  # For development.
-  # content_security_policy_main_script_src_extra: "'unsafe-eval'
-  #   https://maps.google.com/
-  #   https://maps.googleapis.com/
-  #   https://www.google-analytics.com/
-  #   https://localhost:3001"
-
-  headers:
-    dynamic: &header {}
-    index: *header
-    api: *header
-    apihelp: *header
-    profile: *header
-    raster: *header
-    vector_tiles: *header
-    error: *header
-    themes: &auth_header
-      access_control_allow_origin:
-        - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
-        - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-        - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-        - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
-        - https://camptocamp.github.io
-        - https://fredj.github.io
-        - https://ger-benjamin.github.io
-        - https://arnaud-morvan.github.io
-        - https://julsbreakdown.github.io
-        - https://adube.github.io
-        - http://localhost
-        - http://localhost:3000
-        - http://localhost:3001
-        - http://localhost:6006
-        - https://localhost
-        - https://localhost:3000
-        - https://localhost:3001
-        - http://127.0.0.1
-        - http://127.0.0.1:3000
-        - http://127.0.0.1:3001
-        - http://127.0.0.1:6006
-        - https://127.0.0.1
-        - https://127.0.0.1:3000
-        - https://127.0.0.1:3001
-        - '*'
-    config: *auth_header
-    print: *auth_header
-    fulltextsearch: *auth_header
-    mapserver: *auth_header
-    tinyows: *auth_header
-    layers: *auth_header
-    shortener: *auth_header
-    login: *auth_header
+      - 128.179.66.0/24 # c2c epnet
+      - 5.1.102.68/32 # c2c lausanne outgoing traffic
+      - 5.1.102.69/32 # c2c lausanne VPN
+      - 148.196.7.213/24 # VPN c2c
 
   authorized_referers:
     - https://2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
@@ -810,23 +792,90 @@ vars:
   cache:
     std:
       # Standalone version
-      # backend: c2cgeoportal.hybrid
-      # arguments: &redis-cache-arguments
-      #   host: '{REDIS_HOST}'
-      #   port: '{REDIS_PORT}'
-      #   db: '{REDIS_DB}'
-      # Kubernetes version
+      backend: c2cgeoportal.hybrid
       arguments: &redis-cache-arguments
-        sentinels:
-          - - '{REDIS_HOST}'
-            - '{REDIS_PORT}'
+        host: '{REDIS_HOST}'
+        port: '{REDIS_PORT}'
+        db: '{REDIS_DB}'
+        password: '{REDIS_PASSWORD}'
         connection_kwargs:
-          db: '{REDIS_DB}'
+          ssl: '{REDIS_SSL}'
+      # Kubernetes version
+      #arguments: &redis-cache-arguments
+      #  sentinels:
+      #    - - '{REDIS_HOST}'
+      #      - '{REDIS_PORT}'
+      #  connection_kwargs:
+      #    db: '{REDIS_DB}'
     ogc-server:
       # Standalone version
-      # backend: dogpile.cache.redis
+      backend: dogpile.cache.redis
       # All versions
       arguments: *redis-cache-arguments
+
+  content_security_policy_main_img_src_extra: 'blob:'
+
+  # For production.
+  content_security_policy_main_script_src_extra: "'unsafe-eval'
+    https://maps.google.com/
+    https://maps.googleapis.com/
+    https://www.google-analytics.com/"
+  # For development.
+  # content_security_policy_main_script_src_extra: "'unsafe-eval'
+  #   https://maps.google.com/
+  #   https://maps.googleapis.com/
+  #   https://www.google-analytics.com/
+  #   https://localhost:3001"
+
+  # This parameter set the list of hosts allowed to use the iframe api.
+  # 'self' will block all external usage, you must add additional hosts separated by space.
+  # see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors
+  content_security_policy_iframe_api_frame_ancestors: "'self'"
+
+  headers:
+    dynamic: &header {}
+    index: *header
+    api: *header
+    apihelp: *header
+    profile: *header
+    raster: *header
+    vector_tiles: *header
+    error: *header
+    themes: &auth_header
+      access_control_allow_origin:
+        - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
+        - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+        - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+        - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
+        - https://camptocamp.github.io
+        - https://fredj.github.io
+        - https://ger-benjamin.github.io
+        - https://arnaud-morvan.github.io
+        - https://julsbreakdown.github.io
+        - https://adube.github.io
+        - http://localhost
+        - http://localhost:3000
+        - http://localhost:3001
+        - http://localhost:6006
+        - https://localhost
+        - https://localhost:3000
+        - https://localhost:3001
+        - http://127.0.0.1
+        - http://127.0.0.1:3000
+        - http://127.0.0.1:3001
+        - http://127.0.0.1:6006
+        - https://127.0.0.1
+        - https://127.0.0.1:3000
+        - https://127.0.0.1:3001
+        - '*'
+    config: *auth_header
+    print: *auth_header
+    fulltextsearch: *auth_header
+    mapserver: *auth_header
+    tinyows: *auth_header
+    layers: *auth_header
+    shortener: *auth_header
+    login: *auth_header
 
 update_paths:
   - admin_interface.available_functionalities
@@ -878,10 +927,12 @@ update_paths:
   - interfaces_config.default.dynamic_constants
   - interfaces_config.default.static
   - interfaces_config.default.routes.fulltextsearchUrl
-  - interfaces_config.desktop.constants
+  - interfaces_config.desktop.constants.gmfOptions.view
+  - interfaces_config.desktop.constants.gmfPrintOptions
   - interfaces_config.desktop.routes
+  - interfaces_config.mobile.constants.gmfOptions.view
   - interfaces_config.mobile.constants.gmfMobileMeasurePointOptions
-  - interfaces_config.iframe_api.constants
+  - interfaces_config.iframe_api.constants.gmfOptions.view
   - interfaces_config.api.constants
   - interfaces_config.api.routes.searchUrl
   - interfaces_theme
@@ -933,7 +984,16 @@ runtime_environment:
     default: xxx
   - name: WMTS_URL
     default: https://geomapfish-demo-2-8.camptocamp.com/tiles/1.0.0/WMTSCapabilities.xml
+  - name: REDIS_PASSWORD
+    default: ''
+  - name: REDIS_SSL
+    default: 'false'
 
 environment:
   - name: VERSION
-  - name: PGSCHEMA
+
+runtime_postprocess:
+  - expression: str({}).lower() in ("true", "yes", "1")
+    vars:
+      - cache.std.arguments.connection_kwargs.ssl
+      - cache.ogc-server.arguments.connection_kwargs.ssl
