@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  REF_BRANCH: prod-2-8
+  REF_BRANCH: prod-2-9
 
 jobs:
   main:
@@ -29,5 +29,13 @@ jobs:
       - run: ci/cleanup ../ref
       - run: rm ci/cleanup
 
-      - run: diff --recursive --new-file ../ref .
+      - run: cd ..; diff --unified --recursive --new-file demo_geomapfish ref
         if: always()
+      - run: cd ..; diff --unified --recursive --new-file demo_geomapfish ref  > /tmp/base.patch || true
+        if: failure()
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Update from base branch.patch
+          path: /tmp/base.patch
+          retention-days: 1
+        if: failure()
