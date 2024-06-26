@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2016-2021 Camptocamp SA
+// Copyright (c) 2016-2024 Camptocamp SA
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
 // this software and associated documentation files (the "Software"), to deal in
@@ -171,14 +171,14 @@ geomapfishModule.run(
   ($templateCache) => {
     // @ts-ignore: webpack
     $templateCache.put('gmf/contextualdata', require('./contextualdata.html'));
-  }
+  },
 );
 
 geomapfishModule.value(
   'gmfPermalinkOptions',
   /** @type {import('gmf/options').gmfPermalinkOptions} */ ({
     pointRecenterZoom: 10,
-  })
+  }),
 );
 
 geomapfishModule.controller('OEEditController', Controller);
