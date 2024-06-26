@@ -1,0 +1,56 @@
+name: Upgrade 2.9
+
+on:
+  repository_dispatch:
+    types:
+      - geomapfish_2.9_updated
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-22.04
+    name: Upgrade 2.9
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        branch:
+          - prod-2-9
+          - prod-2-9-advance
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
+
+      - name: Update the demo
+        run: >
+          scripts/upgrade ${{ github.event.client_payload.version }} origin
+      - name: Push interrupted Upgrade
+        run: |
+          sudo chown -R $(id -u) .
+          ls -als .UPGRADE*
+          git add --all || true
+          git add --force .UPGRADE_INSTRUCTIONS upgrade .upgrade.yaml || true
+          git status
+          git commit -m "Interrupted upgrade to ${{ github.event.client_payload.version }}"
+          git push --force origin HEAD:interrupted-upgrade-${{ matrix.branch }}-${{ github.event.client_payload.version }}
+          python3 -c 'import requests
+          response = requests.post(
+              "https://api.github.com/repos/camptocamp/demo_geomapfish/pulls",
+              json={
+                "title": "Upgrade failed",
+                "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.9%22",
+                "head": "interrupted-upgrade-${{ matrix.branch }}-${{ github.event.client_payload.version }}",
+                "base": "${{ matrix.branch }}",
+                "maintainer_can_modify": True
+              },
+              headers={
+                  "Accept": "application/vnd.github.v3+json",
+                  "Authorization": "Bearer ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}",
+                  "Content-Type": "application/json",
+              },
+          )
+          assert response.status_code < 300, response.text'
+        if: failure()
