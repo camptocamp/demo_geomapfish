@@ -549,7 +549,7 @@ vars:
         description: 'List of location, no more used?'
 
   getitfixed:
-    enabled: True
+    enabled: False
     map: *map_config
 
     admin_new_issue_email:
