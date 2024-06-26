@@ -32,7 +32,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
             this.url_ = new URL(configuration.sitnFeedbackPath, configuration.gmfBase).href;
           }
         },
-      })
+      }),
     );
     window.addEventListener('popstate', () => {
       this.permalink = window.location.href;
@@ -143,7 +143,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
             'Merci! Votre demande est bien partie.',
             '',
             'Suivant votre demande, une personne prendra bientôt contact avec vous.',
-          ].join('\n')
+          ].join('\n'),
         );
         (window as any).gmfapi.store.panels.closeToolPanel();
       })

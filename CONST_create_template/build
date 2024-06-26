@@ -22,17 +22,13 @@ def run(
     args: argparse.Namespace, command: List[str], exit_on_error: bool = True, **kwargs: Any
 ) -> Optional[CompletedProcess]:
     if args.verbose or args.dry_run:
-        print(" ".join([shlex.quote(c) for c in command]))
+        print(shlex.join(command))
     if not args.dry_run or "stdout" in kwargs:
         if args.stack_trace and exit_on_error and not "checks" in kwargs:
             kwargs["check"] = True
         process = subprocess.run(command, **kwargs)  # nosec
         if exit_on_error and process.returncode != 0:
-            print(
-                "An error occurred during execution of `{}`".format(
-                    " ".join([shlex.quote(c) for c in command])
-                )
-            )
+            print(f"An error occurred during execution of `{shlex.join(command)}`")
             sys.exit(process.returncode)
         return process
     return None
@@ -103,6 +99,7 @@ def main() -> None:
             sys.exit(1)
         sys.exit(0)
 
+    docker_compose_command = ["docker", "compose"]
     with open("project.yaml", encoding="utf-8") as project_file:
         project_env = yaml.load(project_file, Loader=yaml.SafeLoader)["env"]
     if len(args.env_files) != project_env["required_args"]:
@@ -112,7 +109,7 @@ def main() -> None:
     print("Use env files: {}".format(", ".join(env_files)))
     for env_file in env_files:
         if not os.path.exists(env_file):
-            print("Error: the env file '{env_file}' does not exist.".format(env_file=env_file))
+            print(f"Error: the env file '{env_file}' does not exist.")
             sys.exit(1)
 
     with open(".env", "w", encoding="utf-8") as dest:
@@ -128,18 +125,18 @@ def main() -> None:
 
             git_hash = run(args, ["git", "rev-parse", "HEAD"], stdout=subprocess.PIPE).stdout.decode().strip()
 
-            dest.write("SIMPLE={}\n".format(str(simple).upper()))
-            dest.write("GIT_HASH={git_hash}\n".format(git_hash=git_hash))
+            dest.write(f"SIMPLE={str(simple).upper()}\n")
+            dest.write(f"GIT_HASH={git_hash}\n")
 
         dest.write("# Used env files: {}\n".format(", ".join(env_files)))
 
     if not args.env:
-        docker_compose_build_cmd = ["docker-compose", "build"]
+        docker_compose_build_cmd = [*docker_compose_command, "build"]
 
         if not args.no_pull:
             # Pull all the images
             if not args.service:
-                run(args, ["docker-compose", "pull", "--ignore-pull-failures"])  # nosec
+                run(args, [*docker_compose_command, "pull", "--ignore-buildable"])  # nosec
             docker_compose_build_cmd.append("--pull")
 
         if args.service:
@@ -163,7 +160,7 @@ def main() -> None:
             service
             for service in run(
                 args,
-                ["docker-compose", "ps", "--services", "--all"],
+                [*docker_compose_command, "ps", "--services", "--all"],
                 stdout=subprocess.PIPE,
                 exit_on_error=True,
             )
@@ -173,9 +170,9 @@ def main() -> None:
         ]
 
     if args.reload is not None:
-        run(args, ["docker-compose", "rm", "--force", "-v", "config"])
+        run(args, [*docker_compose_command, "rm", "--force", "-v", "config"])
         for service in services:
-            run(args, ["docker-compose", "up", "--detach", "--force-recreate", service])
+            run(args, [*docker_compose_command, "up", "--detach", "--force-recreate", service])
 
 
 if __name__ == "__main__":

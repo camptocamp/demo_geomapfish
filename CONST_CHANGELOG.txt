@@ -1,14 +1,28 @@
 This file includes migration steps for each release of c2cgeoportal.
 
 =============
-Version 2.8.1
+Version 2.9.0
 =============
 
-1. Update dependencies to use GDAL 3.7
+Information to know before starting the upgrade
+===============================================
 
-   Use MapServer 8.0 with GDAL 3.7 (instead of 3.6)
-   Use QGIS server 3.28 with GDAL 3.7 (instead of 3.6)
-   Use GDAL 3.7 as based image (instead of 3.6)
+1. The build command will use Docker Compose version 2 (with the `docker compose` command).
+
+Information
+===========
+
+1. Hostname check:
+   We add a hostname check on the `came_from` parameter, in the oauth2 login, allowed by
+   `vars.authentication.allowed_hosts` and in the OGC server clear cache, allowed by `vars.allowed_hosts`.
+   The behavior change a little bit in the `shortener.allowed_hosts` and in the `authorized_referers`.
+   Now everywhere:
+   - If the hostname (with port) of the candidate URL equals to the request's header "Host", then it's OK.
+   - If the hostname (with port) of the candidate URL is in the allowed list, then it's OK.
+   And they should be netloc (hostname with port) without schema or path.
+
+2. We replace checks (formatting) done by `c2cciutils` by `pre-commit` hooks.
+   This will me more standard and transparent for the project.
 
 =============
 Version 2.8.0

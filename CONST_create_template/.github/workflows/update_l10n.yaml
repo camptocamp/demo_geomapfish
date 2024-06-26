@@ -15,13 +15,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - branch: int-2-8
+          - branch: int-2-9
             base_url: int.customer.ch
-          - branch: prod-2-8
+          - branch: prod-2-9
             base_url: prod.customer.ch
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
           token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}

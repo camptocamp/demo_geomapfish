@@ -891,7 +891,6 @@ update_paths:
   - admin_interface.functionalities
   - admin_interface.available_in_templates
   - api
-  - authorized_referers
   - cache.std.arguments
   - cache.ogc-server.arguments
   - cache.obj
@@ -1003,5 +1002,6 @@ environment:
 runtime_postprocess:
   - expression: str({}).lower() in ("true", "yes", "1")
     vars:
+      - cache.std.arguments.port
       - cache.std.arguments.connection_kwargs.ssl
       - cache.ogc-server.arguments.connection_kwargs.ssl
