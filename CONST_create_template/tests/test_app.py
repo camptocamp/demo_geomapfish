@@ -1,5 +1,3 @@
-from typing import Dict
-
 import pytest
 import requests
 
@@ -7,7 +5,7 @@ import requests
 @pytest.mark.parametrize(
     "url,params,timeout",
     [
-        ("https://front", {}, 10),
+        ("https://front/", {}, 10),
         ("https://front/themes", {}, 120),
         ("https://front/static-geomapfish/0/locales/fr.json", {}, 2),
         ("https://front/dynamic.json", {"interface": "desktop"}, 10),
@@ -25,7 +23,7 @@ import requests
         ),
     ],
 )
-def test_url(url: str, params: Dict[str, str], timeout: int) -> None:
+def test_url(url: str, params: dict[str, str], timeout: int) -> None:
     """Tests that some URL didn't return an error."""
     response = requests.get(url, params=params, verify=False, timeout=timeout)  # nosec
     assert response.status_code == 200, response.text

@@ -549,7 +549,7 @@ vars:
         description: 'List of location, no more used?'
 
   getitfixed:
-    enabled: True
+    enabled: False
     map: *map_config
 
     admin_new_issue_email:
@@ -891,7 +891,6 @@ update_paths:
   - admin_interface.functionalities
   - admin_interface.available_in_templates
   - api
-  - authorized_referers
   - cache.std.arguments
   - cache.ogc-server.arguments
   - cache.obj
@@ -1001,6 +1000,9 @@ environment:
   - name: VERSION
 
 runtime_postprocess:
+  - expression: int({})
+    vars:
+      - cache.std.arguments.port
   - expression: str({}).lower() in ("true", "yes", "1")
     vars:
       - cache.std.arguments.connection_kwargs.ssl

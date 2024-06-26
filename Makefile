@@ -80,5 +80,6 @@ acceptance: ## Run the acceptance tests
 .PHONY: acceptance-dev
 acceptance-dev:
 	docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml up -d
+	sleep 2
 	docker compose exec -T tools pytest tests/
 	ci/docker-compose-check
