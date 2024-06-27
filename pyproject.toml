@@ -5,9 +5,3 @@ target-version = ['py38']
 [tool.isort]
 profile = "black"
 line_length = 110
-
-[tool.poetry]
-name = "GeoMapFish demo"
-version = "0.0.0"
-description = "GeoMapFish demo"
-authors = ["Camptocamp"]
