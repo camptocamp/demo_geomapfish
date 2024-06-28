@@ -824,12 +824,12 @@ vars:
   content_security_policy_main_img_src_extra: 'blob:'
 
   # For production.
-  content_security_policy_main_script_src_extra: '
+  content_security_policy_main_script_src_extra: "'unsafe-eval'
     https://maps.google.com/
     https://maps.googleapis.com/
-    https://www.google-analytics.com/'
+    https://www.google-analytics.com/"
   # For development.
-  # content_security_policy_main_script_src_extra: "
+  # content_security_policy_main_script_src_extra: "'unsafe-eval'
   #   https://maps.google.com/
   #   https://maps.googleapis.com/
   #   https://www.google-analytics.com/
