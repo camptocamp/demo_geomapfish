@@ -812,7 +812,7 @@ vars:
     login: *auth_header
 
   global_headers:
-    - pattern: '^/desktop_alt(/.*|?.*)?$'
+    - pattern: '^/desktop_alt(/.*|\?.*)?$'
       headers:
         Content-Security-Policy: "default-src {content_security_policy_main_default_src};
           script-src 'unsafe-eval' {content_security_policy_main_script_src};
