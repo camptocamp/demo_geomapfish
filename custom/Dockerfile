@@ -5,15 +5,17 @@ FROM ghcr.io/osgeo/gdal:ubuntu-small-3.9.2 AS base-all
 # Print commands and their arguments as they are executed.
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
-ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
-    SETUPTOOLS_USE_DISTUTILS=stdlib
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     apt-get update
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache,sharing=locked \
-    apt-get install --assume-yes --no-install-recommends python3-pip python3-dev
+    apt-get install --assume-yes --no-install-recommends python3-pip python3-dev python3-venv \
+    && python3 -m venv /venv
+
+ENV PATH=/venv/bin:$PATH
 
 FROM base-all as poetry
 
@@ -40,7 +42,7 @@ RUN --mount=type=cache,target=/var/cache,sharing=locked \
 RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
     python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements.txt \
-    && strip /usr/local/lib/python3.*/dist-packages/*/*.so \
+    && strip /usr/lib/python3/dist-packages/*/*.so \
     && python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|.*pydev.*|networkx)/'
 
 # hadolint ignore=DL3059
