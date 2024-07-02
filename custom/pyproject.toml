@@ -6,7 +6,7 @@ description = 'Not used'
 authors = []
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
+python = ">=3.12,<3.13"
 gunicorn = "23.0.0"
 plaster-pastedeploy = "1.0.1"
 pyramid = "2.0.2"
