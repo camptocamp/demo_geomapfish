@@ -756,6 +756,9 @@ msgstr "Bodennutzung"
 msgid "landuse_alias"
 msgstr "Bodennutzung (alias)"
 
+msgid "landuse_ingrp"
+msgstr "Bodennutzung (Gruppe)"
+
 msgid "layer"
 msgstr "Ebene"
 
@@ -1058,6 +1061,9 @@ msgstr "Punkte und Bodennutzung"
 msgid "points+landuse no wfs"
 msgstr "Punkte und Bodennutzung (ohne WFS)"
 
+msgid "points_ingrp"
+msgstr "Punkte (in einer Gruppe)"
+
 msgid "pointscopier"
 msgstr "Kopierte Punkte"
 
@@ -1139,6 +1145,9 @@ msgstr "Eisenbahn"
 
 msgid "railways9"
 msgstr "Eisenbahn"
+
+msgid "railways_ingrp"
+msgstr "Eisenbahn (in einer Gruppe)"
 
 msgid "recycling"
 msgstr "Sammelstelle"
@@ -1238,6 +1247,9 @@ msgstr "Zeit"
 
 msgid "time range"
 msgstr "Zeit (Intervall)"
+
+msgid "time_ingrp"
+msgstr "Zeit (in einer Gruppe)"
 
 msgid "timestamp"
 msgstr "Zeitstempel"
@@ -1404,20 +1416,11 @@ msgstr ""
 #~ msgid "You must change your password"
 #~ msgstr "Sie müssen Ihr Passwort ändern"
 
-#~ msgid "landuse_ingrp"
-#~ msgstr "Bodennutzung (Gruppe)"
-
 #~ msgid "last_update_timestamp"
 #~ msgstr "zuletzt aktualisierter Zeitstempel"
 
 #~ msgid "last_update_user"
 #~ msgstr "zuletzt aktualisierter Nutzer"
-
-#~ msgid "points_ingrp"
-#~ msgstr "Punkte (in einer Gruppe)"
-
-#~ msgid "railways_ingrp"
-#~ msgstr "Eisenbahn (in einer Gruppe)"
 
 #~ msgid "restricted_group"
 #~ msgstr "Begrenzte Gruppe"
@@ -1428,6 +1431,3 @@ msgstr ""
 
 #~ msgid "test2"
 #~ msgstr "Test2"
-
-#~ msgid "time_ingrp"
-#~ msgstr "Zeit (in einer Gruppe)"
