@@ -30,6 +30,7 @@
 
 import argparse
 import subprocess
+import sys
 
 
 def main() -> None:
@@ -62,7 +63,7 @@ def main() -> None:
                         except ValueError:
                             # Ignore lines that don't have a '='
                             pass
-            subprocess.run(
+            proc = subprocess.run(
                 [
                     "docker",
                     "run",
@@ -84,10 +85,11 @@ def main() -> None:
                 ]
                 + args.arg,
                 stdout=file_out,
-                check=True,
             )
+            if proc.returncode != 0:
+                sys.exit(proc.returncode)
         else:
-            subprocess.run(
+            proc = subprocess.run(
                 [
                     "docker-compose",
                     "exec",
@@ -99,8 +101,9 @@ def main() -> None:
                 ]
                 + args.arg,
                 stdout=file_out,
-                check=True,
             )
+            if proc.returncode != 0:
+                sys.exit(proc.returncode)
 
 
 if __name__ == "__main__":

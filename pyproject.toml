@@ -1,3 +1,9 @@
 [tool.black]
 line-length = 110
 target-version = ['py38']
+
+[tool.poetry]
+name = "demo_geomapfish"
+version = "0.0.0"
+description = "Demo of GeoMapFish Application"
+authors = ["Camptocamp <info@camptocamp.com>"]
