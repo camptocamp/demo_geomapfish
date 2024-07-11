@@ -513,6 +513,8 @@ vars:
     aes_key: foobarfoobar1234
 
   admin_interface:
+    exclude_pages: []
+
     # Default values for the admin interface's maps.
     map: &map_config
       srid: 2056
