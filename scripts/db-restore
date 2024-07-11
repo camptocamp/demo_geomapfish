@@ -29,6 +29,7 @@
 
 import argparse
 import subprocess
+import sys
 
 
 def main() -> None:
@@ -66,7 +67,7 @@ def main() -> None:
                         except ValueError:
                             # Ignore lines that don't have a '='
                             pass
-            subprocess.run(
+            proc = subprocess.run(
                 [
                     "docker",
                     "run",
@@ -88,10 +89,11 @@ def main() -> None:
                 ]
                 + args.arg,
                 stdin=file_in,
-                check=True,
             )
+            if proc.returncode != 0:
+                sys.exit(proc.returncode)
         else:
-            subprocess.run(
+            proc = subprocess.run(
                 ["docker-compose"]
                 + ["--file={}".format(f) for f in args.docker_compose_file]
                 + [
@@ -103,8 +105,9 @@ def main() -> None:
                     'pg_restore --dbname="$PGDATABASE" ' + " ".join(args.arg),
                 ],
                 stdin=file_in,
-                check=True,
             )
+            if proc.returncode != 0:
+                sys.exit(proc.returncode)
 
 
 if __name__ == "__main__":
