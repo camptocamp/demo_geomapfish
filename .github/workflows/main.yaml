@@ -47,7 +47,6 @@ jobs:
       - name: Initialize the acceptance tests
         run: make acceptance-init
       - run: c2cciutils-docker-logs
-        if: always()
 
       - name: Fix null values
         run: docker compose exec tools psql -c "UPDATE main_2_7.tsearch SET label = 'no-label' WHERE label is NULL;"
@@ -55,15 +54,18 @@ jobs:
         run: |
           docker compose exec tools psql -c "ALTER SCHEMA main_2_7 RENAME TO main_2_9;"
           docker compose exec tools psql -c "ALTER SCHEMA static_2_7 RENAME TO static_2_9;"
+      - name: Run Alembic main
+        run: docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml up alembic-main
+      - name: Run Alembic static
+        run: docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml up alembic
+      - run: c2cciutils-docker-logs
 
       - name: Run the acceptance tests
         run: make acceptance
       - run: c2cciutils-docker-logs
-        if: always()
 
       - run: make acceptance-dev
       - run: c2cciutils-docker-logs
-        if: always()
 
       - run:
           docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml
