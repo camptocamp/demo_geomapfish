@@ -51,6 +51,9 @@ jobs:
       - run: c2cciutils-docker-logs
         if: always()
 
+      - name: Fix null values
+        run: docker compose exec tools psql -c "UPDATE main_2_7.tsearch SET label = 'no-label' WHERE label is NULL;"
+
       - name: Run the acceptance tests
         run: make acceptance
       - run: c2cciutils-docker-logs
