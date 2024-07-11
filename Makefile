@@ -42,7 +42,7 @@ acceptance-init:
 	docker compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS postgis'
 	docker compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS pg_trgm'
 	docker compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS hstore'
-	scripts/db-restore --docker compose-file=docker-compose.yaml --docker compose-file=docker-compose-db.yaml \
+	scripts/db-restore --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
 		--arg=--clean --arg=--if-exists --arg=--verbose data/prod-2-7.dump
 	docker compose restart geoportal alembic
 	docker compose exec -T geoportal wait-db
@@ -50,9 +50,9 @@ acceptance-init:
 .PHONY: acceptance
 acceptance:
 	docker compose exec -T tools pytest tests/
-	ci/docker compose-check
+	ci/docker-compose-check
 
 acceptance-dev:
 	docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml up -d
 	docker compose exec -T tools pytest tests/
-	ci/docker compose-check
+	ci/docker-compose-check
