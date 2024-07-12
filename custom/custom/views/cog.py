@@ -60,4 +60,5 @@ def swissalti3d(request: pyramid.request.Request) -> pyramid.response.Response:
 
     blob_data = blob.download_blob(offset=start, length=end - start + 1)
     request.response.body = blob_data.readall()
+    request.response.status_code = 206
     return request.response
