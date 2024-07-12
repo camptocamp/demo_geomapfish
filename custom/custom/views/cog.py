@@ -40,7 +40,7 @@ def swissalti3d(request: pyramid.request.Request) -> pyramid.response.Response:
     # Just to demonstrate that we can fet the user information
     global _CLIENT
     if _CLIENT is None:
-        _CLIENT = _get_azure_container_client(os.environ["AZURE_CONTAINER"])
+        _CLIENT = _get_azure_container_client(os.environ["AZURE_CONTAINER_NAME"])
     blob = _CLIENT.get_blob_client(blob="swissalti3d_2m_archeo.tif")
     range_header = request.headers.get("Range")
     if range_header is None:
