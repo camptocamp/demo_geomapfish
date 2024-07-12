@@ -34,6 +34,12 @@
       ],
       datasourceTemplate: 'github-tags',
     },
+    /** Manage jsdelivr */
+    {
+      fileMatch: ['.*\\.html$'],
+      matchStrings: ['cdn\\.jsdelivr\\.net/npm/(?<depName>[^@]+)@(?<currentValue>[^/]+)'],
+      datasourceTemplate: 'npm',
+    },
   ],
   packageRules: [
     /** Docker images versioning */
