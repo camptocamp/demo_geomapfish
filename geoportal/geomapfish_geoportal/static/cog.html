@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Test swissalti3d COG</title>
     <link
       crossorigin="anonymous"
       href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css"
@@ -13,9 +13,12 @@
       rel="stylesheet"
     />
     <style>
+      html,
+      body,
       #map {
         width: 100%;
-        height: 100vh;
+        height: 100%;
+        margin: 0;
       }
     </style>
   </head>
@@ -34,12 +37,6 @@
       referrerpolicy="no-referrer"
       src="https://cdn.jsdelivr.net/npm/geotiff@2.1.3/dist-browser/geotiff.js"
     ></script>
-    <script
-      crossorigin="anonymous"
-      integrity="sha512-cgJnZ1VX2G0MAN4C5OGShwI3zHhfQ6RLriXuukhblNu+T082/ZRGoWLP/0xMKObvB6AUKdnm27hQKj8hKZPjXA=="
-      referrerpolicy="no-referrer"
-      src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.2/proj4.js"
-    ></script>
     <script type="text/javascript">
       const source = new ol.source.GeoTIFF({
         sources: [
@@ -48,20 +45,6 @@
           },
         ],
       });
-      proj4.defs(
-        'EPSG:2056',
-        '+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1' +
-          ' +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs',
-      );
-      ol.proj.proj4.register(proj4);
-
-      const projection = new ol.proj.Projection({
-        code: 'EPSG:2056',
-        units: 'm',
-      });
-
-      const sourceExtent = [2420000, 1030000, 2900000, 1350000];
-
       const map = new ol.Map({
         target: 'map',
         layers: [
@@ -69,12 +52,7 @@
             source,
           }),
         ],
-        view: new ol.View({
-          projection,
-          extent: sourceExtent,
-          center: ol.extent.getCenter(sourceExtent),
-          zoom: 1,
-        }),
+        view: source.getView(),
       });
     </script>
   </body>
