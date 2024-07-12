@@ -5,7 +5,7 @@
 
 rm -rf "$1/.git"
 rm -rf "$1/CONST_*"
-rm "$1/geoportal/CONST_*"
+rm "$1"/geoportal/CONST_*
 rm "$1/docker-compose-lib.yaml" "$1/docker-compose.override.sample.yaml" "$1/docker-compose.yaml"
 rm "$1/.github/dependabot.yaml" "$1/.github/renovate.json5" \
     "$1/.github/workflows/backport.yaml" \
