@@ -35,7 +35,7 @@ rm "$1/geoportal/.prospector.yaml" "$1/geoportal/alembic.ini" "$1/geoportal/alem
     "$1/geoportal/interfaces/desktop_alt.html.mako" || true
 rm -rf "$1/geoportal/geomapfish_geoportal/static-ngeo" "$1/geoportal/tools" || true
 rm "$1/README.rst"
-rm "$1/SECURITY.md"
+rm "$1/SECURITY.md" || true
 # Files with version
 rm "$1/package.json"
 rm "$1/package-lock.json"
