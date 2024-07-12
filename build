@@ -19,8 +19,8 @@ CompletedProcess = subprocess.CompletedProcess[str] if TYPE_CHECKING else subpro
 
 
 def run(
-    args: argparse.Namespace, command: List[str], exit_on_error: bool = True, **kwargs: Any
-) -> Optional[CompletedProcess]:
+    args: argparse.Namespace, command: list[str], exit_on_error: bool = True, **kwargs: Any
+) -> CompletedProcess | None:
     if args.verbose or args.dry_run:
         print(shlex.join(command))
     if not args.dry_run or "stdout" in kwargs:
