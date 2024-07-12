@@ -45,7 +45,7 @@ def swissalti3d(request: pyramid.request.Request) -> pyramid.response.Response:
     range_header = request.headers.get("Range")
     if range_header is None:
         raise HTTPBadRequest("Range header is required")
-    if not range_header.startsWith("bytes="):
+    if not range_header.startswith("bytes="):
         raise HTTPBadRequest("Range header must of type bytes")
     range_header = range_header[6:]
     start_str, end_str = range_header.split("-")
