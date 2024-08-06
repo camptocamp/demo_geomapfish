@@ -27,14 +27,14 @@ checks: prospector eslint ## Runs the checks
 
 .PHONY: prospector
 prospector: ## Runs the Prospector checks
-	docker-compose run --entrypoint= --no-deps --rm --volume=$(CURDIR)/geoportal:/app geoportal \
+	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
 		prospector --output-format=pylint --die-on-tool-error
 
 .PHONY: eslint
 eslint: ## Runs the eslint checks
-	docker compose run --entrypoint= --no-deps --rm --volume=$(CURDIR)/geoportal:/app geoportal \
+	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
 		eslint $(find geomapfish -type f -name '*.js' -print 2> /dev/null)
-	docker compose run --entrypoint= --no-deps --rm --volume=$(CURDIR)/geoportal:/app geoportal \
+	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
 		eslint $(find geomapfish -type f -name '*.ts' -print 2> /dev/null)
 
 .PHONY: build
@@ -68,7 +68,7 @@ acceptance-init: ## Initialize the acceptance tests
 	docker compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS postgis'
 	docker compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS pg_trgm'
 	docker compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS hstore'
-	scripts/db-restore --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
+	scripts/db-restore --docker-compose-version-2 --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
 		--arg=--clean --arg=--if-exists --arg=--verbose --arg=--no-privileges --arg=--no-owner $(DUMP_FILE)
 	docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml up -d
 
