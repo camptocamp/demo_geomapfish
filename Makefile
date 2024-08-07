@@ -74,6 +74,7 @@ acceptance-init: ## Initialize the acceptance tests
 
 .PHONY: acceptance
 acceptance: ## Run the acceptance tests
+	sleep 1
 	docker compose exec -T tools pytest -vv tests/
 	ci/docker-compose-check
 
