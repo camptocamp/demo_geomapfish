@@ -38,7 +38,7 @@ jobs:
       - run: cp docker-compose.override.acceptance-test.yaml docker-compose.override.yaml
 
       - name: Build
-        run: ./build
+        run: ./build --docker-compose-version-2
 
       - run: make acceptance-init
       - run: c2cciutils-docker-logs
