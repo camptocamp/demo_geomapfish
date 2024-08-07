@@ -1,19 +1,11 @@
-name: Continuous integration
+name: Pre commit
 
 on:
   push:
-  pull_request_target:
-    types: [labeled]
-
-env:
-  PROJECT: demo
-  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
-  # SENTRY_PROJECT: geomapfish-demo
-  # SENTRY_ENVIRONMENT: prod-2-8
 
 jobs:
   main:
-    name: Continuous integration
+    name: Pre commit
     runs-on: ubuntu-22.04
     timeout-minutes: 20
 
