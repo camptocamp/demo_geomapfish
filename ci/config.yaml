@@ -9,6 +9,22 @@ checks:
   versions: False
   setup: False
   prettier: False
+  print_versions:
+    versions:
+      - cmd:
+          - python3
+          - --version
+        name: python
+      - cmd:
+          - python3
+          - -m
+          - pip
+          - --version
+        name: pip
+      - cmd:
+          - docker
+          - --version
+        name: docker
 
 version:
   branch_to_version_re:
