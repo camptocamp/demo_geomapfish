@@ -27,7 +27,7 @@ checks: prospector eslint ## Runs the checks
 
 .PHONY: prospector
 prospector: ## Runs the Prospector checks
-	docker-compose run --entrypoint= --no-deps --rm --volume=$(CURDIR)/geoportal:/app geoportal \
+	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
 		prospector --output-format=pylint --die-on-tool-error
 
 .PHONY: eslint
