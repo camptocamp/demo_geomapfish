@@ -21,10 +21,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        branch:
-          - prod-2-7
-          - prod-2-8
-          - prod-2-9
+        include:
+          - branch: prod-2-7
+            build_options: --docker-compose-version-2
+          - branch: prod-2-8
+            build_options: --docker-compose-version-2
+          - branch: prod-2-9
+            build_options: ''
 
     steps:
       - uses: actions/checkout@v4
@@ -44,7 +47,7 @@ jobs:
       - run: sed -i '/^DOCKER_TAG=/d' env.project
 
       - name: Build
-        run: ./build
+        run: ./build ${{ matrix.build_options }}
 
       - name: Publish
         run: c2cciutils-publish --branch=${{ matrix.branch }} --type=rebuild
