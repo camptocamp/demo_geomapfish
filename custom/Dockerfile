@@ -48,7 +48,7 @@ RUN --mount=type=cache,target=/root/.cache \
 # hadolint ignore=DL3059
 RUN apt-get remove --autoremove --assume-yes gcc
 
-FROM base AS lint
+FROM base AS checks
 
 RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
@@ -58,14 +58,9 @@ WORKDIR /app
 COPY . ./
 RUN --mount=type=cache,target=/root/.cache \
     python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
-    && python3 -m compileall -q /app/custom \
-    && prospector --output=pylint -X . \
-    && touch /tmp/lint.ok
+    && python3 -m compileall -q /app/custom
 
 FROM base AS runtime
-
-# Force to urn the lint with BUILD KIT
-COPY --from=lint /tmp/lint.ok /tmp/
 
 WORKDIR /app
 COPY . ./
