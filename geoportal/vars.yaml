@@ -97,6 +97,9 @@ vars:
         gmfDatasourceOptions:
           arcgisWMSInfoFormat: application/geo+json
       routes:
+        # TODO: remove when the OpenId Connect pull request is merged
+        oidcLoginUrl:
+          name: login
         fulltextsearchUrl:
           params:
             limit: 30
