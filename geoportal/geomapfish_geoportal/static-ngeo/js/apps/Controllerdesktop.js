@@ -28,7 +28,6 @@
 
 import './sass/desktop.scss';
 import './sass/vars_desktop.scss';
-
 import angular from 'angular';
 import {isEventUsingCtrlKey} from 'ngeo/utils';
 import gmfControllersAbstractDesktopController, {
@@ -58,19 +57,18 @@ const geomapfishModule = angular.module('Appdesktop', [
   geomapfishBase.name,
   gmfControllersAbstractDesktopController.name,
 ]);
-
 geomapfishModule.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
 geomapfishModule.run(
   /**
-   * @ngInject
    * @param {angular.ITemplateCacheService} $templateCache
    */
-  ($templateCache) => {
-    // @ts-ignore: webpack
-    $templateCache.put('gmf/contextualdata', require('./contextualdata.html'));
-  },
+  [
+    '$templateCache',
+    ($templateCache) => {
+      // @ts-ignore: webpack
+      $templateCache.put('gmf/contextualdata', require('./contextualdata.html'));
+    },
+  ],
 );
-
 geomapfishModule.controller('DesktopController', Controller);
-
 export default geomapfishModule;
