@@ -1,9 +1,10 @@
 """Pyramid bootstrap environment. """
 
 from alembic import context
-from custom.models.meta import Base
 from pyramid.paster import get_appsettings, setup_logging
 from sqlalchemy import engine_from_config
+
+from custom.models.meta import Base
 
 config = context.config
 
