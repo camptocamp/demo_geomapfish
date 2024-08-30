@@ -22,6 +22,7 @@ managed_files:
   - geoportal/interfaces/desktop_alt\.html\.mako
   - tests/test_app.py
   - .editorconfig
+  - .pre-commit-config\.yaml
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs

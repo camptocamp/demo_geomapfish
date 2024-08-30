@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -aux
 
-cd /var/sig/demo/c2cgeoportal
+cd /var/sig/demo/c2cgeoportal || exit 1
 
 rm switzerland-latest.osm.pbf
 wget http://download.geofabrik.de/europe/switzerland-latest.osm.pbf
@@ -16,8 +16,8 @@ wget http://download.geofabrik.de/europe/switzerland-latest.shp.zip
 unzip switzerland-latest.shp.zip
 shp2pgsql -c -s 4326:2056 -g geom -I osm_switzerland/points swiss_points | psql -h localhost -U www-data -W osm
 
-sudo -u postgres psql -c "ALTER TABLE swiss_points RENAME COLUMN "timestamp" TO timestamp_;" osm
-sudo -u postgres psql -c "ALTER TABLE swiss_points ADD COLUMN "timestamp" timestamp;" osm
-sudo -u postgres psql -c "UPDATE ONLY swiss_points SET "timestamp" = timestamp_::timestamp;" osm
-sudo -u postgres psql -c "CREATE INDEX ON swiss_points("timestamp");" osm
-sudo -u postgres psql -c "ALTER TABLE swiss_points DROP COLUMN timestamp_;" osm
+sudo -u postgres psql -c 'ALTER TABLE swiss_points RENAME COLUMN "timestamp" TO timestamp_;' osm
+sudo -u postgres psql -c 'ALTER TABLE swiss_points ADD COLUMN "timestamp" timestamp;' osm
+sudo -u postgres psql -c 'UPDATE ONLY swiss_points SET "timestamp" = timestamp_::timestamp;' osm
+sudo -u postgres psql -c 'CREATE INDEX ON swiss_points("timestamp");' osm
+sudo -u postgres psql -c 'ALTER TABLE swiss_points DROP COLUMN timestamp_;' osm
