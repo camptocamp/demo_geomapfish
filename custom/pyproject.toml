@@ -33,6 +33,7 @@ azure-storage-blob = "12.20.0"
 azure-identity = "1.16.1"
 urllib3 = { version = "2.2.2", optional = true }
 certifi = { version = "2024.7.4", optional = true }
+webob = { version = "1.8.8", optional = true }
 
 [tool.poetry.group.dev.dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
