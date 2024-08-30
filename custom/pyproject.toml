@@ -34,8 +34,9 @@ idna = "3.7"
 mako = "1.2.4"
 oauthlib = "3.2.2"
 pygments = "2.15.1"
-urllib3 = "1.26.19"
-zipp = "3.19.2"
+urllib3 = { version = "1.26.19", optional = true }
+zipp = { version = "3.19.2", optional = true }
+webob = { version = "1.8.8", optional = true }
 
 
 [tool.poetry.dev-dependencies]
