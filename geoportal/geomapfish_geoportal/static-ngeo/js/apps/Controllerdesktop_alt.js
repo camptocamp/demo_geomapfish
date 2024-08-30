@@ -71,7 +71,7 @@ class Controller extends AbstractDesktopController {
       next: (panel) => {
         this.drawLidarprofilePanelActive = panel === 'lidar';
 
-        $timeout(() => {}); // this triggered on DOM click, we call $timeout to force Angular diggest
+        $timeout(() => {}); // this triggered on DOM click, we call $timeout to force Angular digest
       },
     });
   }
