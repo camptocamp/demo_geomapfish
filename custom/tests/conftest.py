@@ -6,11 +6,12 @@ import alembic.config
 import pytest
 import transaction
 import webtest
-from custom import main, models
-from custom.models.meta import Base
 from pyramid.paster import get_appsettings
 from pyramid.scripting import prepare
 from pyramid.testing import DummyRequest, testConfig
+
+from custom import main, models
+from custom.models.meta import Base
 
 
 def pytest_addoption(parser):
