@@ -6,7 +6,7 @@ authors = []
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
-gunicorn = "22.0.0"
+gunicorn = "23.0.0"
 plaster-pastedeploy = "1.0.1"
 pyramid = "2.0.2"
 pyramid-mako = "1.1.0"
