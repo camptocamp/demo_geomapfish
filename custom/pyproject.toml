@@ -25,7 +25,7 @@ c2cwsgiutils = "5.0.2"
 cee-syslog-handler = "0.6.0"
 PyJWT = "2.4.0"
 redis = "4.3.6"
-PyYAML = "6.0.1"
+PyYAML = "6.0.2"
 sentry-sdk = "2.8.0"
 requests-oauthlib = "1.3.1"
 ujson = "5.4.0"
@@ -34,8 +34,8 @@ idna = "3.7"
 mako = "1.2.4"
 oauthlib = "3.2.2"
 pygments = "2.15.1"
-urllib3 = { version = "1.26.19", optional = true }
-zipp = { version = "3.19.2", optional = true }
+urllib3 = { version = "1.26.20", optional = true }
+zipp = { version = "3.19.3", optional = true }
 webob = { version = "1.8.8", optional = true }
 
 
