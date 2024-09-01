@@ -22,6 +22,11 @@ repos:
     rev: v3.1.0
     hooks:
       - id: prettier
+        exclude: |-
+          (?x)^(
+            geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*.js
+            |geoportal/webpack.apps.js
+          )$
   - repo: https://github.com/sbrunner/integrity-updater
     rev: 0.1.0
     hooks:
@@ -38,6 +43,10 @@ repos:
     rev: 5.13.2
     hooks:
       - id: isort
+        exclude: |-
+          (?x)^(
+            geoportal/.*
+          )$
   - repo: https://github.com/psf/black
     rev: 24.8.0
     hooks:

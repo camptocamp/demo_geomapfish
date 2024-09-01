@@ -9,7 +9,9 @@ const entry = {};
 const nodeEnv = process.env['NODE_ENV'] || 'development';
 const dev = nodeEnv == 'development';
 
-for (const filename of ls(path.resolve(__dirname, 'geomapfish_geoportal/static-ngeo/js/apps/*.html.ejs'))) {
+for (const filename of ls(
+  path.resolve(__dirname, 'geomapfish_geoportal/static-ngeo/js/apps/*.html.ejs')
+)) {
   const name = filename.file.substr(0, filename.file.length - '.html.ejs'.length);
   entry[name] = 'geomapfish/apps/Controller' + name + '.js';
   plugins.push(
@@ -24,7 +26,7 @@ for (const filename of ls(path.resolve(__dirname, 'geomapfish_geoportal/static-n
         version: '2.9',
         cache_version: '${CACHE_VERSION}',
       },
-    }),
+    })
   );
 }
 
@@ -79,7 +81,10 @@ module.exports = {
   resolve: {
     modules: ['/usr/lib/node_modules'],
     alias: {
-      'geomapfish': path.resolve(__dirname, 'geomapfish_geoportal/static-ngeo/js'),
+      'geomapfish': path.resolve(
+        __dirname,
+        'geomapfish_geoportal/static-ngeo/js'
+      ),
     },
   },
 };

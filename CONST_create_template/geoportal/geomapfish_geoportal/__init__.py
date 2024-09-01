@@ -1,10 +1,11 @@
+from pyramid.config import Configurator
+
 import geomapfish_geoportal.authentication
 import geomapfish_geoportal.dev
 import geomapfish_geoportal.multi_organization
 from c2cgeoportal_geoportal import add_interface_config, locale_negotiator
 from c2cgeoportal_geoportal.lib.i18n import LOCALE_PATH
 from geomapfish_geoportal.resources import Root
-from pyramid.config import Configurator
 
 
 def main(global_config, **settings):
