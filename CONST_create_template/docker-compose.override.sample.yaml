@@ -25,7 +25,6 @@ services:
     ports:
       - 5678:5678 # For remote debugging using Visual Studio Code
 
-
   # Also uncomment the PRINT_URL in geoportal
   # print:
   #   extends:
