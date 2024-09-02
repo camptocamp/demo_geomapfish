@@ -23,16 +23,16 @@ requests = "2.32.3"
 psycopg2 = "2.9.9"
 c2cwsgiutils = { version = "6.0.8", extras = ["webserver"] }
 cee-syslog-handler = "0.6.0"
-PyJWT = "2.8.0"
+PyJWT = "2.9.0"
 redis = "5.0.8"
 PyYAML = "6.0.2"
-sentry-sdk = "2.8.0"
+sentry-sdk = "2.13.0"
 requests-oauthlib = "2.0.0"
 ujson = "5.10.0"
-azure-storage-blob = "12.20.0"
-azure-identity = "1.16.1"
+azure-storage-blob = "12.22.0"
+azure-identity = "1.17.1"
 urllib3 = { version = "2.2.2", optional = true }
-certifi = { version = "2024.7.4", optional = true }
+certifi = { version = "2024.8.30", optional = true }
 webob = { version = "1.8.8", optional = true }
 
 [tool.poetry.group.dev.dependencies]
