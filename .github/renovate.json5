@@ -113,7 +113,7 @@
     },
     /** Accept only the patch on stabilization branches */
     {
-      matchBaseBranches: ['/^[0-9]+\\.[0-9]+$/'],
+      matchBaseBranches: ['prod-2-7.*', 'prod-2-8.*'],
       matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'lockFileMaintenance', 'rollback', 'bump'],
       enabled: false,
     },
