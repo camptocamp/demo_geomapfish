@@ -34,6 +34,7 @@ azure-identity = "1.17.1"
 urllib3 = { version = "2.2.2", optional = true }
 certifi = { version = "2024.8.30", optional = true }
 webob = { version = "1.8.8", optional = true }
+cryptography = "43.0.1"
 
 [tool.poetry.group.dev.dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
