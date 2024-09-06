@@ -21,32 +21,5 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-@import './vars_oeedit.scss';
-@import 'gmf/controllers/desktop.scss';
-
-header {
-  .logo {
-    background-image: url('../image/logo.png');
-    span {
-      left: 19.5rem;
-      position: absolute;
-      bottom: 0.2rem;
-    }
-    span::before {
-      content: 'by Camptocamp';
-    }
-  }
-}
-
-.gmf-displayquerywindow {
-  width: 22.5rem;
-  max-width: 22.5rem;
-}
-
-.gmf-displayquerywindow .details {
-  overflow-x: auto;
-}
-
-::-webkit-scrollbar {
-  height: $half-app-margin;
-}
+@import 'gmf/controllers/vars_desktop.scss';
+@import 'gmf/controllers/iframe_api.scss';
