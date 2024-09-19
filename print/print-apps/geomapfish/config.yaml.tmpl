@@ -4,23 +4,6 @@ throwErrorOnExtraParameters: true
 defaultToSvg: true
 resourceBundle: localisation
 
-smtp:
-  username: ${SMTP_USER}
-  password: ${SMTP_PASSWORD}
-  fromAddress: info@camptocamp.com
-  host: email-smtp.eu-west-1.amazonaws.com
-  port: 465
-  ssl: True
-  subject: Map from GeoMapFish demo
-  body: Your printed map form GeoMapFish demo is <a href="{url}">here</a>.
-  storage: !s3reportStorage
-    bucket: print-mutualized
-    prefix: gmf_demo
-    endpointUrl: https://sos-ch-dk-2.exo.io/
-    region: ch-dk-2
-    accessKey: ${AWS_ACCESS_KEY_ID}
-    secretKey: ${AWS_SECRET_ACCESS_KEY}
-
 allowedReferers: &allowedHosts
   ${DISABLE_MUTUALIZED_PRINT}- !hostnameMatch
   ${DISABLE_MUTUALIZED_PRINT}  host: ${MUTUALIZED_PRINT_URL}
