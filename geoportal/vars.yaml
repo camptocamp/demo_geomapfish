@@ -763,6 +763,10 @@ vars:
   servers:
     wmts: '{WMTS_URL}'
 
+  allowed_hosts:
+    # TODO: Add the allowed hosts for the application (themes and dynamic.json)
+    - localhost:8484
+
   # Checker configuration
   checker_ogc_server: Main PNG
   checker:
@@ -947,7 +951,6 @@ update_paths:
   - interfaces_theme
   - resourceproxy
   - servers
-  - shortener.allowed_hosts
   - smtp
   - sqlalchemy
   - sqlalchemy_slave
