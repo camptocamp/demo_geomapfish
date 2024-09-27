@@ -55,8 +55,10 @@ jobs:
       # - run: cat env.secrets |grep '^[# A-Z0-9_]\+='|sed -e 's/^[# A-Z0-9_]\+=\(.*\)/::add-mask::\1/g'
       - run: touch env.secrets
 
-      - name: Checks
-        run: c2cciutils-checks
+      - name: Print environment information
+        run: c2cciutils-env
+        env:
+          GITHUB_EVENT: ${{ toJson(github) }}
 
       - name: Build
         run: ./build

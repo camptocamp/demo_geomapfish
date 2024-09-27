@@ -124,8 +124,13 @@
       automerge: true,
     },
     {
-      'matchPackageNames': ['shellcheck-py/shellcheck-py'],
-      'versioning': 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$',
+      matchPackageNames: ['shellcheck-py/shellcheck-py'],
+      versioning: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$',
+    },
+    /** For security reason don't takes the too early packages on stabilization branches */
+    {
+      matchBaseBranches: ['/^[0-9]+\\.[0-9]+$/'],
+      minimumReleaseAge: '7 days',
     },
   ],
 }
