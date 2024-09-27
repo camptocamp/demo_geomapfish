@@ -1,14 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/c2cciutils/1.4.16/c2cciutils/schema.json
-
-checks:
-  codespell: False
-  required_workflows: False
-  setup: False
-  dependabot: False
-  dependabot_config: False
-  black:
-    ignore_patterns_re:
-      - custom/custom/alembic/script\.py\.mako
+# yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/c2cciutils/1.6.22/c2cciutils/schema.json
 
 version:
   branch_to_version_re:
