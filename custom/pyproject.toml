@@ -24,9 +24,9 @@ psycopg2 = "2.9.9"
 c2cwsgiutils = { version = "6.0.8", extras = ["webserver"] }
 cee-syslog-handler = "0.6.0"
 PyJWT = "2.9.0"
-redis = "5.0.8"
+redis = "5.1.0"
 PyYAML = "6.0.2"
-sentry-sdk = "2.13.0"
+sentry-sdk = "2.15.0"
 requests-oauthlib = "2.0.0"
 ujson = "5.10.0"
 webob = { version = "1.8.8", optional = true }
