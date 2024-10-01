@@ -12,10 +12,10 @@ pyramid = "2.0.2"
 pyramid-mako = "1.1.0"
 pyramid-debugtoolbar = "4.12.1"
 waitress = "3.0.0"
-alembic = "1.13.2"
+alembic = "1.13.3"
 pyramid-retry = "2.1.1"
 pyramid-tm = "2.5"
-sqlalchemy = "2.0.32"
+sqlalchemy = "2.0.35"
 transaction = "4.0"
 "zope.sqlalchemy" = "3.1"
 cornice = "6.1.0"
@@ -31,7 +31,7 @@ requests-oauthlib = "2.0.0"
 ujson = "5.10.0"
 azure-storage-blob = "12.22.0"
 azure-identity = "1.17.1"
-urllib3 = { version = "2.2.2", optional = true }
+urllib3 = { version = "2.2.3", optional = true }
 certifi = { version = "2024.8.30", optional = true }
 webob = { version = "1.8.8", optional = true }
 cryptography = "43.0.1"
