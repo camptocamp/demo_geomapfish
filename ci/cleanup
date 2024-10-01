@@ -28,7 +28,7 @@ rm "$1/geoportal/.prospector.yaml" "$1/geoportal/alembic.ini" "$1/geoportal/alem
     "$1/geoportal/vars.yaml" \
     "$1"/geoportal/*.py \
     "$1/geoportal/language_mapping" \
-    "$1"/geoportal/lingua-* \
+    "$1"/geoportal/lingva-* \
     "$1/geoportal/tsconfig.json" \
     "$1"/geoportal/webpack.* \
     "$1/geoportal/requirements.txt" \
