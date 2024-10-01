@@ -21,6 +21,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+@import './vars_desktop_alt.scss';
+@import 'gmf/controllers/desktop.scss';
+@import 'mapillary-js';
+
+html {
+  body {
+    padding: 0;
+  }
+}
 header {
   .logo {
     background-image: url('../image/logo.svg');

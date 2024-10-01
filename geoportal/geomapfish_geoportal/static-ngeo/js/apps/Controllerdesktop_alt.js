@@ -27,7 +27,6 @@
  */
 
 import './sass/desktop_alt.scss';
-import './sass/vars_desktop_alt.scss';
 
 import angular from 'angular';
 import gmfControllersAbstractDesktopController, {
@@ -36,11 +35,9 @@ import gmfControllersAbstractDesktopController, {
 import geomapfishBase from '../geomapfishmodule';
 import gmfImportModule from 'gmf/import/module';
 import gmfFloorModule from 'gmf/floor/module';
-import ngeoMiscToolActivate from 'ngeo/misc/ToolActivate';
 import ngeoStreetviewModule from 'ngeo/streetview/module';
 import ngeoRoutingModule from 'ngeo/routing/module';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink';
-import panels from 'gmfapi/store/panels';
 
 /**
  * @private
