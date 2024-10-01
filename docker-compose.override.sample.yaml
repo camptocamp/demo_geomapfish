@@ -54,6 +54,21 @@ services:
   #     - QGIS_SERVER_LOG_LEVEL=0
   #     - QGIS_CATCH_SEGV=1 # The result stack traces will be available in /var/log/qgis.log
 
+  # For Javascript project development.
+  # The debug application will be available at ``https://<host>/<entry_point>/dev/<interface>.html``.
+  # webpack_dev_server:
+  #   # Uncomment these lines when you want to debug respectively the project js, ngeo js and/or the gmf contrib js.
+  #   # Adapt the path for ngeo / gmf contrib to point where you have checkouted the code.
+  #   # volumes:
+  #   #   - ./geoportal/${PACKAGE}_geoportal/static-ngeo:/app/${PACKAGE}_geoportal/static-ngeo
+  #   #   - ./../ngeo/src:/opt/c2cgeoportal/geoportal/node_modules/ngeo/src
+  #   #   - ./../ngeo/contribs:/opt/c2cgeoportal/geoportal/node_modules/ngeo/contribs
+  #   volumes_from:
+  #     - config:rw
+  #   extends:
+  #     file: docker-compose-lib.yaml
+  #     service: webpack_dev_server
+
   tilecloudchain:
     # volumes:
     #   - ../tilecloud-chain/tilecloud_chain:/app/tilecloud_chain
