@@ -13,8 +13,8 @@ env:
 
 jobs:
   main:
-    name: Continuous integration
     runs-on: ubuntu-24.04
+    name: Continuous integration
     timeout-minutes: 20
 
     steps:
