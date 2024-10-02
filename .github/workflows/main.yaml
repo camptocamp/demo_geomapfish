@@ -33,7 +33,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+<<<<<<< ours
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
+=======
+      - run: python3 -m pip install --requirement=ci/requirements.txt
+      - name: Environment information
+        run: c2cciutils-env
+>>>>>>> theirs
 
       - uses: actions/cache@v4
         with:
@@ -55,8 +61,20 @@ jobs:
       # - run: cat env.secrets |grep '^[# A-Z0-9_]\+='|sed -e 's/^[# A-Z0-9_]\+=\(.*\)/::add-mask::\1/g'
       - run: touch env.secrets
 
+<<<<<<< ours
       - name: Checks
         run: c2cciutils-checks
+=======
+      # - name: Initialize the acceptance tests
+      #   run: make acceptance-init
+      # - run: c2cciutils-docker-logs
+      #   if: always()
+
+      # - name: Run the acceptance tests
+      #   run: make acceptance
+      # - run: c2cciutils-docker-logs
+      #   if: always()
+>>>>>>> theirs
 
       - name: Build
         run: ./build
