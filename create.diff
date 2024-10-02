@@ -1,0 +1,48 @@
+diff --git a/.github/workflows/main.yaml b/.github/workflows/main.yaml
+index 415de6d..7d1f9ee 100644
+--- a/.github/workflows/main.yaml
++++ b/.github/workflows/main.yaml
+@@ -26,8 +26,12 @@ jobs:
+       #     patterns: docker
+       #   if: env.HAS_SECRETS == 'HAS_SECRETS'
+ 
+-      - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
+-      - run: python3 -m pip install --user --requirement=ci/requirements.txt
++      - uses: actions/setup-python@v5
++        with:
++          python-version: '3.11'
++      - run: python3 -m pip install --requirement=ci/requirements.txt
++      - name: Environment information
++        run: c2cciutils-env
+ 
+       - uses: actions/cache@v4
+         with:
+@@ -48,9 +52,6 @@ jobs:
+       # - run: make secrets
+       # - run: cat env.secrets |grep '^[# A-Z0-9_]\+='|sed -e 's/^[# A-Z0-9_]\+=\(.*\)/::add-mask::\1/g'
+ 
+-      - name: Environment information
+-        run: c2cciutils-env
+-
+       # - name: Initialize the acceptance tests
+       #   run: make acceptance-init
+       # - run: c2cciutils-docker-logs
+diff --git a/.github/workflows/rebuild.yaml b/.github/workflows/rebuild.yaml
+index 963d0ad..8394b62 100644
+--- a/.github/workflows/rebuild.yaml
++++ b/.github/workflows/rebuild.yaml
+@@ -36,8 +36,12 @@ jobs:
+           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
+           patterns: docker
+ 
+-      - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
+-      - run: python3 -m pip install --user --requirement=ci/requirements.txt
++      - uses: actions/setup-python@v5
++        with:
++          python-version: '3.11'
++      - run: python3 -m pip install --requirement=ci/requirements.txt
++      - name: Environment information
++        run: c2cciutils-env
+ 
+       - name: Build
+         run: ./build
