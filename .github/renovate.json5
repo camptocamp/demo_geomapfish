@@ -61,7 +61,7 @@
     },
     /** Automerge the patch, the minor and the dev dependency */
     {
-      matchBaseBranches: ['prod-2-7.*', 'prod-2-8.*'],
+      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
       matchUpdateTypes: ['minor', 'patch'],
       automerge: true,
     },
@@ -84,12 +84,12 @@
     },
     /** Accept only the patch on the stabilization branches */
     {
-      matchBaseBranches: ['prod-2-7.*', 'prod-2-8.*'],
+      matchBaseBranches: ['/^prod-^-7.*/', '/^prod-2-8.*/'],
       matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'rollback', 'bump', 'lockFileMaintenance'],
       enabled: false,
     },
     {
-      matchBaseBranches: ['prod-2-7.*'],
+      matchBaseBranches: ['/^prod-2-7.*/'],
       matchDatasources: ['docker-compose', 'github-actions'],
       enabled: false,
     },
@@ -115,7 +115,7 @@
     },
     /** Accept only the patch on stabilization branches */
     {
-      matchBaseBranches: ['prod-2-7.*', 'prod-2-8.*'],
+      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
       matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'lockFileMaintenance', 'rollback', 'bump'],
       enabled: false,
     },
