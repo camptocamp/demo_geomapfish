@@ -36,6 +36,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: python3 -m pip install --requirement=ci/requirements.txt
+      - name: Environment information
+        run: c2cciutils-env
 
       - uses: actions/cache@v4
         with:
@@ -56,11 +58,6 @@ jobs:
       # - run: make secrets
       # - run: cat env.secrets |grep '^[# A-Z0-9_]\+='|sed -e 's/^[# A-Z0-9_]\+=\(.*\)/::add-mask::\1/g'
       - run: touch env.secrets
-
-      - name: Print environment information
-        run: c2cciutils-env
-        env:
-          GITHUB_EVENT: ${{ toJson(github) }}
 
       - name: Build
         run: ./build
