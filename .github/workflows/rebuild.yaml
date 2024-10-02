@@ -14,8 +14,8 @@ env:
 
 jobs:
   rebuild:
-    name: Rebuild
     runs-on: ubuntu-24.04
+    name: Rebuild
     timeout-minutes: 10
 
     strategy:
