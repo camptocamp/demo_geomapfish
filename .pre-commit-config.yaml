@@ -31,10 +31,6 @@ repos:
     rev: 0.1.0
     hooks:
       - id: integrity-updater
-        include: |-
-          (?x)^(
-            geoportal/geomapfish_geoportal/static/.*
-          )$
   - repo: https://github.com/PyCQA/autoflake
     rev: v2.3.1
     hooks:
