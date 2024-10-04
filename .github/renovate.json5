@@ -146,6 +146,11 @@
       matchDepNames: ['python'],
       groupName: 'Python',
     },
+    /** Ungroup Gdal dependencies */
+    {
+      matchDepNames: ['ghcr.io/osgeo/gdal'],
+      groupName: 'Gdal',
+    },
     /** In file .python-version, use the <major>.<minor> version */
     {
       matchFileNames: ['.python-version'],
