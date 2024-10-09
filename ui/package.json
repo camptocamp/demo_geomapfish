@@ -1,0 +1,31 @@
+{
+  "name": "gmf-ui",
+  "private": true,
+  "version": "1.0.0",
+  "description": "GMF desktop using ngeo standalone",
+  "author": "Camptocamp SA <info@camptocamp.com> (https://www.camptocamp.com)",
+  "license": "BSD-2-Clause license",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-inject": "^5.0.5",
+    "sass-embedded": "^1.79.4",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.8"
+  },
+  "dependencies": {
+    "ngeo": "^2.9.0-latest.20241008T114053Z.cbd40b665"
+  },
+  "alias": {
+    "ngeo/": "ngeo/distlib/src/",
+    "gmf/": "ngeo/distlib/src/",
+    "gmfapi/": "ngeo/distlib/srcapi/",
+    "api/": "ngeo/distlib/api/",
+    "jquery-ui/datepicker": "jquery-ui/ui/widgets/datepicker"
+  }
+}
