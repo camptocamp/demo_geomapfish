@@ -13,7 +13,6 @@ LOG = logging.getLogger(__name__)
 api = SwisscomHeatmapApi()
 
 
-
 swisscom_heatmap_get_config = Service(
     name="swisscom-heatmap-get-config",
     description="The swisscom-heatmap get config service",

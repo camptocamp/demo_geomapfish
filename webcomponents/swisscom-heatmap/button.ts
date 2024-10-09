@@ -3,7 +3,7 @@ import {customElement} from 'lit/decorators.js';
 
 // @ts-ignore
 @customElement('swisscom-heatmap-button')
-export default class ToolButtonSwisscomHeatmap extends (window as any).gmfapi.elements.ToolButtonElement  {
+export default class ToolButtonSwisscomHeatmap extends (window as any).gmfapi.elements.ToolButtonElement {
   constructor() {
     super('swisscom-heatmap');
   }

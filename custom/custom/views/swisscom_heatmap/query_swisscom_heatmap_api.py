@@ -25,6 +25,7 @@ HEADERS = {"scs-version": "2"}  # API version
 class ExternalAPIError(Exception):
     pass
 
+
 class APIUsageExceededError(Exception):
     pass
 
@@ -70,7 +71,7 @@ class SwisscomHeatmapApi:
             + "&tiles=".join(map(str, tile_ids))
         )
 
-    def response_to_geojson_result(self, data: dict[str, Any]) -> dict[str, str|list]:
+    def response_to_geojson_result(self, data: dict[str, Any]) -> dict[str, str | list]:
         geo_content = {"type": "FeatureCollection", "features": []}
         for element in data["tiles"]:
             coordinate = tile_id_to_ll(element["tileId"])
@@ -83,7 +84,7 @@ class SwisscomHeatmapApi:
             )
         return geo_content
 
-    def get_dwell_density(self, postal_code: int, date_time: datetime) -> dict[str,Any] | Response:
+    def get_dwell_density(self, postal_code: int, date_time: datetime) -> dict[str, Any] | Response:
         self.error = None
         try:
             self.limit_query()
@@ -95,7 +96,7 @@ class SwisscomHeatmapApi:
             return self.error
         return self.response_to_geojson_result(response.json())
 
-    def get_dwell_demographics(self, postal_code: int, date_time: datetime) -> dict[str,Any] | Response:
+    def get_dwell_demographics(self, postal_code: int, date_time: datetime) -> dict[str, Any] | Response:
         self.error = None
         try:
             self.limit_query()

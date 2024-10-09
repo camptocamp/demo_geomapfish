@@ -11,9 +11,7 @@ export default class SwisscomHeatmapService {
   private data: BehaviorSubject<Record<string, unknown> | null> = new BehaviorSubject<
     Record<string, unknown>
   >(null);
-  private config: BehaviorSubject<ConfigType | null> = new BehaviorSubject<ConfigType | null>(
-    null
-  );
+  private config: BehaviorSubject<ConfigType | null> = new BehaviorSubject<ConfigType | null>(null);
   private baseUrl: string;
 
   setBaseUrl(baseUrl: string) {
