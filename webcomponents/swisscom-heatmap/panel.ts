@@ -20,11 +20,11 @@ import SwisscomHeatmapService, {ConfigType} from './service';
 const QUERY_TYPE = {
   dwellDensity: 'dwell-density.json',
   dwellDemo: 'dwell-demographics.json',
-}
+};
 
 // @ts-ignore
 @customElement('swisscom-heatmap')
-export default class SwisscomHeatmap extends (window as any).gmfapi.elements.ToolPanelElement  {
+export default class SwisscomHeatmap extends (window as any).gmfapi.elements.ToolPanelElement {
   @state() private active = false;
   @state() private customCSS_ = '';
   @state() private waitingConfig = true;
@@ -49,7 +49,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
     features: [],
   });
   private heatmapLayer = new HeatmapLayer({
-    source: this.vectorSource,
+    source: this.vectorSource as VectorSource<Point>,
     blur: this.blur,
     radius: this.radius,
     opacity: 0.8,
@@ -177,11 +177,11 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   }
 
   private updateHeatmapStyle() {
-    let gradient = ['#00f', '#8ff', '#D8f',  '#f00'];
-    let meaning = 'Blue means deserted, red means crowded.'
+    let gradient = ['#00f', '#8ff', '#D8f', '#f00'];
+    let meaning = 'Blue means deserted, red means crowded.';
     if (this.queryType === QUERY_TYPE.dwellDemo) {
       gradient = ['#ff00d8', '#AAA', '#00d4ff'];
-      meaning = 'Pink means woman , blue means men.'
+      meaning = 'Pink means woman , blue means men.';
     }
     this.meaning = meaning;
     this.heatmapLayer.setGradient(gradient);
@@ -213,7 +213,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   }
 
   private getDateLabel(date: Date): string {
-    return moment(date).format("YYYY-MM-DD");
+    return moment(date).format('YYYY-MM-DD');
   }
 
   private getDateFullLabel(): string {
@@ -222,7 +222,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   }
 
   private getDateTime(): string {
-    const date = moment(this.date).format("DD.MM.YYYY");
+    const date = moment(this.date).format('DD.MM.YYYY');
     return `${date}T${this.time}:00`;
   }
 
@@ -268,7 +268,6 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   }
 
   static styles: CSSResult[] = [
-    
     ...(window as any).gmfapi.elements.ToolPanelElement.styles,
     css`
       .svg-spinner {

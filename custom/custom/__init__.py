@@ -1,7 +1,7 @@
 import c2cwsgiutils.db
 import c2cwsgiutils.health_check
-from pyramid.config import Configurator
 from papyrus.renderers import GeoJSON
+from pyramid.config import Configurator
 
 
 def main(global_config, **settings):
