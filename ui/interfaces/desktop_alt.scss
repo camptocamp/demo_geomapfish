@@ -1,0 +1,70 @@
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (c) Camptocamp SA
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+@import 'ngeo/controllers/desktop.scss';
+@import 'mapillary-js';
+
+html {
+  body {
+    padding: 0;
+  }
+}
+header {
+  .logo {
+    background-image: url('../image/logo.svg');
+    span {
+      left: 18.5rem;
+      position: absolute;
+      bottom: 0.2rem;
+    }
+    span::before {
+      content: 'by Camptocamp';
+    }
+  }
+}
+
+.gmf-theme-selector li {
+  flex-direction: column;
+  span.gmf-text {
+    width: auto;
+  }
+}
+.gmf-theme-selector .gmf-thumb {
+  height: 3rem;
+}
+
+.gmf-layertree-node .gmf-layertree-legend {
+  border: none;
+  background-color: transparent;
+}
+
+div .ngeo-displaywindow {
+  $displaywindow-min-height: 15rem;
+  left: $app-margin + $left-panel-width + $displaywindow-min-height / 2;
+  right: initial;
+  top: $topbar-height + $app-margin + 3 * $map-tools-size;
+}
+
+.offset-info-icon {
+  position: absolute;
+}
