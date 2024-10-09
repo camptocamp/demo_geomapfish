@@ -32,13 +32,17 @@ requests-oauthlib = "2.0.0"
 ujson = "5.10.0"
 azure-storage-blob = "12.23.1"
 azure-identity = "1.18.0"
+papyrus = "2.6.2"
+geojson = "3.1.0"
+# To fix CVE
 urllib3 = { version = "2.2.3", optional = true }
 certifi = { version = "2024.8.30", optional = true }
 webob = { version = "1.8.8", optional = true }
-cryptography = "43.0.1"
+cryptography = { version = "43.0.1", optional = true }
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.12.0", extras = ["with_bandit", "with_mypy", "with_pyroma"] }
 prospector-profile-utils = "1.9.1"
 prospector-profile-duplicated = "1.6.0"
 types-requests = "2.32.0.20240914"
+types-oauthlib = "3.2.0.20240806"
