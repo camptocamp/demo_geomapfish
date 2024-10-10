@@ -7,7 +7,7 @@
       "gmf/*": ["node_modules/ngeo/distlib/src"],
       "gmfapi/*": ["node_modules/ngeo/distlib/srcapi"],
       "api/*": ["node_modules/ngeo/distlib/api"],
-      "jquery-ui/datepicker": ["node_modules/jquery-ui/ui/widgets/datepicker"], // For angular-ui-date
+      "jquery-ui/datepicker": ["node_modules/jquery-ui/ui/widgets/datepicker"] // For angular-ui-date
     },
 
     "target": "ES2020",

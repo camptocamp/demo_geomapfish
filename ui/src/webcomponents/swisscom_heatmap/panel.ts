@@ -80,7 +80,7 @@ export default class SwisscomHeatmap extends ToolPanelElement {
             }
           }
         },
-      })
+      }),
     );
     this.subscriptions.push(
       this.swisscomHeatmapService.getConfig().subscribe((config) => {
@@ -89,7 +89,7 @@ export default class SwisscomHeatmap extends ToolPanelElement {
           this.waitingConfig = false;
           this.showComponent();
         }
-      })
+      }),
     );
     this.subscriptions.push(
       mapModel.getMap().subscribe({
@@ -100,7 +100,7 @@ export default class SwisscomHeatmap extends ToolPanelElement {
           this.map = map;
           this.view = this.map.getView();
         },
-      })
+      }),
     );
   }
 
@@ -232,7 +232,7 @@ export default class SwisscomHeatmap extends ToolPanelElement {
     const extent =
       features.reduce(
         (currentExtent, feature) => extend(currentExtent, feature.getGeometry()?.getExtent() ?? []),
-        createEmpty()
+        createEmpty(),
       ) ?? null;
     return extent && !isEmpty(extent) ? extent : null;
   }
@@ -249,7 +249,7 @@ export default class SwisscomHeatmap extends ToolPanelElement {
     const data = await this.swisscomHeatmapService.fetchGeoJson(
       this.queryType,
       this.postalCode,
-      this.getDateTime()
+      this.getDateTime(),
     );
     this.vectorSource.clear();
     this.waitingData = false;

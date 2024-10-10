@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
-import path from "path";
+import {defineConfig} from 'vite';
+import path from 'path';
 import inject from '@rollup/plugin-inject';
 
 export default defineConfig({
@@ -17,11 +17,11 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "ngeo": path.resolve(__dirname, "node_modules/ngeo/distlib/src"),
-      "gmf": path.resolve(__dirname, "node_modules/ngeo/distlib/src"),
-      "gmfapi": path.resolve(__dirname, "node_modules/ngeo/distlib/srcapi"),
-      "api": path.resolve(__dirname, "node_modules/ngeo/distlib/api"),
-      "jquery-ui/datepicker": path.resolve(__dirname, "node_modules/jquery-ui/ui/widgets/datepicker"), // For angular-ui-date
+      'ngeo': path.resolve(__dirname, 'node_modules/ngeo/distlib/src'),
+      'gmf': path.resolve(__dirname, 'node_modules/ngeo/distlib/src'),
+      'gmfapi': path.resolve(__dirname, 'node_modules/ngeo/distlib/srcapi'),
+      'api': path.resolve(__dirname, 'node_modules/ngeo/distlib/api'),
+      'jquery-ui/datepicker': path.resolve(__dirname, 'node_modules/jquery-ui/ui/widgets/datepicker'), // For angular-ui-date
     },
   },
   plugins: [
@@ -31,6 +31,6 @@ export default defineConfig({
     }),
   ],
   optimizeDeps: {
-    include: ["jquery"],
+    include: ['jquery'],
   },
 });
