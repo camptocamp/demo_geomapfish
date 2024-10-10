@@ -17,7 +17,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
 
 ENV PATH=/venv/bin:$PATH
 
-FROM base-all as poetry
+FROM base-all AS poetry
 
 WORKDIR /tmp
 COPY requirements.txt ./

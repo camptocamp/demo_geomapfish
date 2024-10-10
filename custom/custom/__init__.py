@@ -1,6 +1,6 @@
 import c2cwsgiutils.db
 import c2cwsgiutils.health_check
-from pyramid.config import Configurator
+from pyramid.config import Configurator  # type: ignore[import-untyped]
 
 
 def main(global_config, **settings):
