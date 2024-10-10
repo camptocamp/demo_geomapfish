@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="{{mainCtrl.lang}}" ng-controller="IframeAPIController as mainCtrl" ng-strict-di>
+  <head>
+    <title ng-bind-template="{{'Renovated Iframe API Application'|translate}}">GeoMapFish</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+    <meta name="dynamicUrl" content="https://geomapfish-demo-2-9.camptocamp.com/dynamic.json" />
+    <meta name="interface" content="iframe_api_renovated" />
+    <meta name="appName" content="IframeAPI" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div ng-show="mainCtrl.loading" class="loading-mask">
+      <i class="fa-solid custom-spinner-loading fa-spin spinner-loading-mask"
+        ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em">
+          <circle
+            cx="256"
+            cy="48"
+            r="48"
+            style="
+              opacity: 1;
+              fill-opacity: 1;
+              stroke: #000;
+              stroke-width: 0;
+              stroke-miterlimit: 4;
+              stroke-dasharray: none;
+              stroke-opacity: 1;
+            "
+          />
+          <circle
+            cx="109.17"
+            cy="108.313"
+            r="43"
+            style="
+              opacity: 1;
+              fill-opacity: 1;
+              stroke: #000;
+              stroke-width: 0;
+              stroke-miterlimit: 4;
+              stroke-dasharray: none;
+              stroke-opacity: 1;
+            "
+          />
+          <circle
+            cx="46.537"
+            cy="257.328"
+            r="38"
+            style="
+              opacity: 1;
+              fill-opacity: 1;
+              stroke: #000;
+              stroke-width: 0;
+              stroke-miterlimit: 4;
+              stroke-dasharray: none;
+              stroke-opacity: 1;
+            "
+          />
+          <circle
+            cx="108.028"
+            cy="403.972"
+            r="33"
+            style="
+              opacity: 1;
+              fill-opacity: 1;
+              stroke: #000;
+              stroke-width: 0;
+              stroke-miterlimit: 4;
+              stroke-dasharray: none;
+              stroke-opacity: 1;
+            "
+          />
+          <circle
+            cx="255.794"
+            cy="463.935"
+            r="28"
+            style="
+              opacity: 1;
+              fill-opacity: 1;
+              stroke: #000;
+              stroke-width: 0;
+              stroke-miterlimit: 4;
+              stroke-dasharray: none;
+              stroke-opacity: 1;
+            "
+          />
+          <circle
+            cx="402.894"
+            cy="402.936"
+            r="23"
+            style="
+              opacity: 1;
+              fill-opacity: 1;
+              stroke: #000;
+              stroke-width: 0;
+              stroke-miterlimit: 4;
+              stroke-dasharray: none;
+              stroke-opacity: 1;
+            "
+          />
+          <circle
+            cx="463.623"
+            cy="256.106"
+            r="18"
+            style="
+              opacity: 1;
+              fill-opacity: 1;
+              stroke: #000;
+              stroke-width: 0;
+              stroke-miterlimit: 4;
+              stroke-dasharray: none;
+              stroke-opacity: 1;
+            "
+          /></svg
+      ></i>
+    </div>
+    <main>
+      <div class="gmf-app-map-container" ng-class="{'gmf-app-infobar-active': mainCtrl.options.showInfobar}">
+        <div id="ol-zoom-control"></div>
+        <ngeo-displaywindow
+          content="mainCtrl.displaywindowContent"
+          desktop="true"
+          height="mainCtrl.displaywindowHeight"
+          open="mainCtrl.displaywindowOpen"
+          title="mainCtrl.displaywindowTitle"
+          url="mainCtrl.displaywindowUrl"
+          width="mainCtrl.displaywindowWidth"
+        ></ngeo-displaywindow>
+        <div class="gmf-app-map-bottom-controls">
+          <div class="gmf-backgroundlayerbutton btn-group dropup">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              <img src="./background-layer-button.png" alt="" crossorigin="anonymous" />
+            </button>
+            <gmf-backgroundlayerselector
+              gmf-backgroundlayerselector-map="::mainCtrl.map"
+              class="dropdown-menu"
+            >
+            </gmf-backgroundlayerselector>
+          </div>
+          <div class="gmf-app-map-messages">
+            <gmf-disclaimer gmf-disclaimer-map="::mainCtrl.map"> </gmf-disclaimer>
+          </div>
+          <gmf-displayquerywindow
+            gmf-displayquerywindow-draggable-containment="::mainCtrl.displaywindowDraggableContainment"
+            gmf-displayquerywindow-desktop="::true"
+          >
+          </gmf-displayquerywindow>
+        </div>
+        <gmf-map class="gmf-map" gmf-map-map="mainCtrl.map"> </gmf-map>
+        <ngeo-query active="mainCtrl.queryActive" autoclear="mainCtrl.queryAutoClear" map="::mainCtrl.map">
+        </ngeo-query>
+        <div id="scaleline"></div>
+        <gmf-layertree gmf-layertree-dimensions="mainCtrl.dimensions" gmf-layertree-map="::mainCtrl.map">
+        </gmf-layertree>
+      </div>
+      <ngeo-modal ng-model="mainCtrl.modalShareShown">
+        <gmf-share ng-if="mainCtrl.modalShareShown"></gmf-share>
+      </ngeo-modal>
+    </main>
+    <script nomodule>
+      alert(
+        'Your browser is not supported, please use a recent version of Firefox, Chrome or Edge.\n\n' +
+          "Votre navigateur n'est pas supporté, veuillez utiliser une version récente de Firefox, Chrome or Edge.\n\n" +
+          'Ihr Browser wird nicht unterstützt, bitte verwenden Sie eine aktuelle Version von Firefox, Chrome oder Edge.',
+      );
+    </script>
+    <script type="module" src="./src/interfaces/ControllerIframeAPI.ts" crossorigin="anonymous"></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
+      referrerpolicy="no-referrer"
+      src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha384-8EM386r8XMMzwGPUxfGNr6c1wIOYnPQBJ6VFxzKCZeklpQarHoZGB40kdNDA3gYr"
+      referrerpolicy="no-referrer"
+      src="https://cdn.jsdelivr.net/npm/jquery-ui@1.14.0/dist/jquery-ui.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha384-peWBzIR34qrcVdzkYr85fMlweNX6Csifb2a+6SMQqOG25NfQUyPJt4z2SPnZSKZ+"
+      referrerpolicy="no-referrer"
+      src="https://cdn.jsdelivr.net/npm/corejs-typeahead@1.3.4/dist/typeahead.bundle.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      referrerpolicy="no-referrer"
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+      referrerpolicy="no-referrer"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+    ></script>
+  </body>
+</html>

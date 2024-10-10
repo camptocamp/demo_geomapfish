@@ -29,15 +29,13 @@
 // Various fixies
 // delete src/controllers/bootstrap.js webpack things and remove .vite/deps
 
-//import './desktop_alt.scss';
+import './desktop.css';
 
-import 'jquery';
-import 'jquery-ui/dist/jquery-ui.js';
 import angular from 'angular';
 import gmfControllersAbstractDesktopController, {
   AbstractDesktopController,
 } from 'ngeo/controllers/AbstractDesktopController';
-import geomapfishBase from './geomapfishmodule.js';
+import appBase from './geomapfishmodule.js';
 import gmfImportModule from 'ngeo/import/module';
 import gmfFloorModule from 'ngeo/floor/module';
 import ngeoStreetviewModule from 'ngeo/streetview/module';
@@ -70,8 +68,8 @@ class Controller extends AbstractDesktopController {
 /**
  * @hidden
  */
-const geomapfishModule = angular.module('Appdesktop_alt', [
-  geomapfishBase.name,
+const geomapfishModule = angular.module('Desktop', [
+  appBase.name,
   gmfControllersAbstractDesktopController.name,
   gmfImportModule.name,
   gmfFloorModule.name,
@@ -80,6 +78,6 @@ const geomapfishModule = angular.module('Appdesktop_alt', [
   ngeoStatemanagerWfsPermalink.name,
 ]);
 
-geomapfishModule.controller('AlternativeDesktopController', Controller);
+geomapfishModule.controller('DesktopController', Controller);
 
 export default geomapfishModule;
