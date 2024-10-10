@@ -49,7 +49,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
     features: [],
   });
   private heatmapLayer = new HeatmapLayer({
-    source: this.vectorSource as VectorSource<Point>,
+    source: this.vectorSource,
     blur: this.blur,
     radius: this.radius,
     opacity: 0.8,
