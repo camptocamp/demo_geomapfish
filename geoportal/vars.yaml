@@ -903,7 +903,8 @@ vars:
           style-src {content_security_policy_main_style_src};
           img-src {content_security_policy_main_img_src};
           connect-src {content_security_policy_main_connect_src};
-          frame-ancestors {content_security_policy_iframe_api_frame_ancestors};"
+          frame-ancestors {content_security_policy_iframe_api_frame_ancestors};
+          worker-src 'self' blob:;"
 
 update_paths:
   - admin_interface.available_functionalities
