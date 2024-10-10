@@ -1,7 +1,7 @@
 import logging
 import os
 from datetime import datetime
-from typing import Any, List
+from typing import Any
 
 from oauthlib.oauth2 import BackendApplicationClient
 from pyramid.response import Response

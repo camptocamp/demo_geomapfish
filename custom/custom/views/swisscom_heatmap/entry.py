@@ -1,7 +1,6 @@
 import logging
 import os
 from datetime import datetime
-from typing import Tuple
 
 from cornice import Service
 from pyramid import httpexceptions, request
