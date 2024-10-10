@@ -13,7 +13,7 @@ env:
 
 jobs:
   config:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     name: Config
     timeout-minutes: 10
 
