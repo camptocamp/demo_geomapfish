@@ -48,7 +48,7 @@ def entry_get_config(_request: request.Request) -> request.Response:
     return api.get_config()
 
 
-def get_params(request: request.Request) -> Tuple[int, datetime]:
+def get_params(request: request.Request) -> tuple[int, datetime]:
     try:
         postal_code = int(request.params["postal_code"])
         date_time = api.parse_date_time(request.params["date_time"])

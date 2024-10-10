@@ -82,7 +82,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
             }
           }
         },
-      })
+      }),
     );
     this.subscriptions.push(
       this.swisscomHeatmapService.getConfig().subscribe((config) => {
@@ -91,7 +91,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
           this.waitingConfig = false;
           this.showComponent();
         }
-      })
+      }),
     );
     this.subscriptions.push(
       (window as any).gmfapi.store.map.getMap().subscribe({
@@ -102,7 +102,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
           this.map = map;
           this.view = this.map.getView();
         },
-      })
+      }),
     );
   }
 
@@ -230,7 +230,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
     const extent =
       features.reduce(
         (currentExtent, feature) => extend(currentExtent, feature.getGeometry()?.getExtent() ?? []),
-        createEmpty()
+        createEmpty(),
       ) ?? null;
     return extent && !isEmpty(extent) ? extent : null;
   }
@@ -247,7 +247,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
     const data = await this.swisscomHeatmapService.fetchGeoJson(
       this.queryType,
       this.postalCode,
-      this.getDateTime()
+      this.getDateTime(),
     );
     this.vectorSource.clear();
     this.waitingData = false;

@@ -49,7 +49,7 @@ class SwisscomHeatmapApi:
         oauth.fetch_token(token_url=TKN_URL, client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
         return oauth
 
-    def get_tiles_ids(self, oauth: OAuth2Session, postal_code: int) -> List[int]:
+    def get_tiles_ids(self, oauth: OAuth2Session, postal_code: int) -> list[int]:
         # For muni/district id, see https://www.atlas.bfs.admin.ch/maps/13/fr/17804_229_228_227/27579.html
         # Municipalities and Districts doesn't work well probably because of the free plan
         # Get all the first MAX_NB_TILES_REQUEST tile ids associated with the postal code of interest
