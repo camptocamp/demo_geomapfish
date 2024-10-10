@@ -1,5 +1,5 @@
 {
-  "name": "gmf-ui",
+  "name": "GgeoMapFish-demo",
   "private": true,
   "version": "1.0.0",
   "description": "GMF desktop using ngeo standalone",
@@ -7,19 +7,20 @@
   "license": "BSD-2-Clause license",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "cp node_modules/ngeo/dist/fa-* public/ && vite",
+    "build": "vite build",
     "preview": "vite preview",
+    "checks": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@rollup/plugin-inject": "^5.0.5",
-    "sass-embedded": "^1.79.4",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.8"
+    "@rollup/plugin-inject": "5.0.5",
+    "sass-embedded": "1.79.4",
+    "typescript": "5.5.3",
+    "vite": "5.4.8"
   },
   "dependencies": {
-    "ngeo": "^2.9.0-latest.20241008T114053Z.cbd40b665"
+    "ngeo": "2.9.0-latest.20241011T123514Z.2c17b03be"
   },
   "alias": {
     "ngeo/": "ngeo/distlib/src/",

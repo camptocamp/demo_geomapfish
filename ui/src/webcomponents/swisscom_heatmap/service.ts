@@ -12,7 +12,7 @@ export default class SwisscomHeatmapService {
     Record<string, unknown>
   >(null);
   private config: BehaviorSubject<Record<string, Date> | null> = new BehaviorSubject<Record<string, Date>>(
-    null
+    null,
   );
   private baseUrl: string;
 
@@ -58,7 +58,7 @@ export default class SwisscomHeatmapService {
   async fetchGeoJson(
     path: string,
     postalCode: number,
-    dateTime: string
+    dateTime: string,
   ): Promise<Record<string, unknown> | null> {
     const url = `${this.baseUrl}/${path}?postal_code=${postalCode}&date_time=${dateTime}`;
     const data = await fetch(url)
