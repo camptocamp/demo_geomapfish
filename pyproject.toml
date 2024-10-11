@@ -5,3 +5,12 @@ target-version = ['py39']
 [tool.isort]
 profile = "black"
 line_length = 110
+
+[package]
+name = "custom"
+
+[project.entry-points."paste.app_factory"]
+main = "custom:main"
+
+[project.entry-points."console_scripts"]
+custom-initialize-db = "custom.scripts.initialize_db:main"

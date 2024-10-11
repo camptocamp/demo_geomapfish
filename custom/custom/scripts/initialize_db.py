@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from pyramid.paster import bootstrap, setup_logging
+from pyramid.paster import bootstrap, setup_logging  # type: ignore[import-untyped]
 from sqlalchemy.exc import OperationalError
 
 from custom.models.meta import Base

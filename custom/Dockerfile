@@ -1,21 +1,23 @@
-FROM ghcr.io/osgeo/gdal:ubuntu-small-3.6.4 AS base-all
+FROM ghcr.io/osgeo/gdal:ubuntu-small-3.9.2 AS base-all
 
 # Fail on error on pipe, see: https://github.com/hadolint/hadolint/wiki/DL4006.
 # Treat unset variables as an error when substituting.
 # Print commands and their arguments as they are executed.
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
-ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
-    SETUPTOOLS_USE_DISTUTILS=stdlib
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     apt-get update
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache,sharing=locked \
-    apt-get install --assume-yes --no-install-recommends python3-pip python3-dev
+    apt-get install --assume-yes --no-install-recommends python3-pip python3-dev python3-venv \
+    && python3 -m venv /venv
 
-FROM base-all as poetry
+ENV PATH=/venv/bin:$PATH
+
+FROM base-all AS poetry
 
 WORKDIR /tmp
 COPY requirements.txt ./
@@ -40,13 +42,13 @@ RUN --mount=type=cache,target=/var/cache,sharing=locked \
 RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
     python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements.txt \
-    && strip /usr/local/lib/python3.*/dist-packages/*/*.so \
+    && strip /usr/lib/python3/dist-packages/*/*.so \
     && python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|.*pydev.*|networkx)/'
 
 # hadolint ignore=DL3059
 RUN apt-get remove --autoremove --assume-yes gcc
 
-FROM base AS lint
+FROM base AS checks
 
 RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
@@ -56,14 +58,9 @@ WORKDIR /app
 COPY . ./
 RUN --mount=type=cache,target=/root/.cache \
     python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
-    && python3 -m compileall -q /app/custom \
-    && prospector --output=pylint -X . \
-    && touch /tmp/lint.ok
+    && python3 -m compileall -q /app/custom
 
 FROM base AS runtime
-
-# Force to urn the lint with BUILD KIT
-COPY --from=lint /tmp/lint.ok /tmp/
 
 WORKDIR /app
 COPY . ./
@@ -71,7 +68,7 @@ RUN --mount=type=cache,target=/root/.cache \
     python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
     && python3 -m compileall -q /app/custom
 
-CMD [ "/usr/local/bin/gunicorn", "--paste=production.ini" ]
+CMD [ "/venv/bin/gunicorn", "--paste=production.ini" ]
 
 ARG GIT_HASH
 ENV GIT_HASH=${GIT_HASH}

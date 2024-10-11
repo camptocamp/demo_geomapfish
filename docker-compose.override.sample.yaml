@@ -22,7 +22,7 @@ services:
       # - ./../dogpile.cache/dogpile:/usr/local/lib/python3.8/dist-packages/dogpile
       # - ./../c2c.template/c2c/template:/usr/local/lib/python3.8/dist-packages/c2c/template
     command:
-      - /usr/local/bin/pserve
+      - /venv/bin/pserve
       - --reload
       - c2c:///app/development.ini
     environment:
@@ -97,7 +97,7 @@ services:
 
   custom:
     command:
-      - /usr/local/bin/pserve
+      - /venv/bin/pserve
       - --reload
       - c2c://development.ini
     volumes:

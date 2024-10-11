@@ -6,7 +6,7 @@ description = 'Not used'
 authors = []
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
+python = ">=3.12,<3.13"
 gunicorn = "23.0.0"
 plaster-pastedeploy = "1.0.1"
 pyramid = "2.0.2"
@@ -38,4 +38,7 @@ webob = { version = "1.8.8", optional = true }
 cryptography = "43.0.1"
 
 [tool.poetry.dev-dependencies]
-prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
+prospector = { version = "1.12.0", extras = ["with_bandit", "with_mypy", "with_pyroma"] }
+prospector-profile-utils = "1.9.1"
+prospector-profile-duplicated = "1.6.0"
+types-requests = "2.32.0.20240914"

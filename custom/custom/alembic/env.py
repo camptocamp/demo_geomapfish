@@ -1,7 +1,7 @@
 """Pyramid bootstrap environment. """
 
 from alembic import context
-from pyramid.paster import get_appsettings, setup_logging
+from pyramid.paster import get_appsettings, setup_logging  # type: ignore[import-untyped]
 from sqlalchemy import engine_from_config
 
 from custom.models.meta import Base
