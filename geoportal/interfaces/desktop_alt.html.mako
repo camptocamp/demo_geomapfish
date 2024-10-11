@@ -72,6 +72,10 @@
           placeholder="{{'Password'|translate}}"
         /></gmf-auth-panel>
 
+      <!-- custom Swisscom heatmap -->
+      <swisscom-heatmap-button slot="tool-button"></swisscom-heatmap-button>
+      <swisscom-heatmap slot="tool-panel-swisscom-heatmap"></swisscom-heatmap>
+
       <!-- custom feedback -->
       <gmf-tool-button slot="tool-button" iconClasses="fas fa-file-signature" panelName="feedback"></gmf-tool-button>
       <proj-feedback slot="tool-panel-feedback"></proj-feedback>
