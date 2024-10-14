@@ -45,7 +45,7 @@ jobs:
           python-version: '3.11'
       - run: python3 -m pip install --requirement=ci/requirements.txt
       - name: Environment information
-        run: c2cciutils-env
+        run: c2cciutils-env || true
 
       - run: touch env.secrets
       - run: sed -i '/^DOCKER_TAG=/d' env.project
