@@ -741,6 +741,18 @@ vars:
     user: '{SMTP_USER}'
     password: '{SMTP_PASSWORD}'
 
+  authentication:
+    openid_connect:
+      enabled: true
+      url: https://sso.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+      client_id: '288833770369390672'
+      query_user_info: True
+      create_user: True
+      match_field: email
+      update_fields:
+        - username
+        - display_name
+
   intranet:
     networks:
       - 172.18.0.1/16
