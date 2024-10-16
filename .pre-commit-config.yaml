@@ -31,6 +31,11 @@ repos:
     rev: 0.1.0
     hooks:
       - id: integrity-updater
+        include: |-
+          (?x)^(
+            geoportal/geomapfish_geoportal/static/.*
+            |ui/.*
+          )$
   - repo: https://github.com/PyCQA/autoflake
     rev: v2.3.1
     hooks:
@@ -67,6 +72,10 @@ repos:
       - id: check-toml
       - id: check-yaml
       - id: check-json
+        exclude: |-
+          (?x)^(
+            ui/tsconfig\.json
+          )$
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: mixed-line-ending
@@ -95,12 +104,14 @@ repos:
         exclude: |-
           (?x)^(
             (.*/)?poetry\.lock
+            |(.*/)?package-lock\.json
             |ci/cleanup
             |geoportal/geomapfish_geoportal/locale/.*
             |qgisserver/.*\.qg[sz]
             |geoportal/geomapfish_geoportal/static/story-map\.html
             |tilegeneration/config\.yaml\.tmpl
             |webcomponents/feedback\.ts
+            |ui/src/webcomponents/feedback\.ts
           )$
         args:
           - --ignore-words=.github/spell-ignore-words.txt

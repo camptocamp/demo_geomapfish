@@ -42,10 +42,19 @@ vars:
       default: True
     - name: mobile
     - name: iframe_api
+    - name: iframe_api_renovated
+      type: custom
+      html_filename: iframe_api.html
     - name: desktop_alt
       type: canvas
       layout: desktop
+    - name: desktop_renovated
+      type: custom
+      html_filename: desktop.html
     - name: mobile_alt
+    - name: mobile_renovated
+      type: custom
+      html_filename: mobile.html
     - name: oeedit
 
   interfaces_config:
@@ -361,6 +370,14 @@ vars:
         gmfShareOptions:
           enableEmail: False
 
+    desktop_renovated:
+      extends: desktop_alt
+      redirect_interface: mobile_renovated
+      constants:
+        # Those two lines should be commented in dev mode.
+        gmfCustomJavascriptUrl: ''
+        gmfCustomStylesheetUrl: ''
+
     mobile:
       constants:
         sentryOptions:
@@ -475,9 +492,16 @@ vars:
           autoRotate: True
           atLoadingTime: True
 
+    mobile_renovated:
+      extends: mobile_alt
+      redirect_interface: mobile_renovated
+
     iframe_api:
       constants:
         gmfOptions: *gmfOptions
+
+    iframe_api_renovated:
+      extends: iframe_api
 
     api:
       constants:
@@ -762,6 +786,8 @@ vars:
     - https://localhost
     - https://localhost:3000
     - https://localhost:3001
+    - http://localhost:3002
+    - https://localhost:3002
     - http://localhost
     - http://localhost:3000
     - http://localhost:3001
@@ -874,6 +900,7 @@ vars:
         - http://localhost
         - http://localhost:3000
         - http://localhost:3001
+        - http://localhost:3002
         - http://localhost:6006
         - https://localhost
         - https://localhost:3000

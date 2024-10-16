@@ -17,3 +17,7 @@ geoportal/geomapfish_geoportal/locale/*.pot
 !package-lock.json
 !tsconfig.json
 !vite.config.ts
+!ui
+ui/dist/
+ui/node_modules/
+ui/static/fa-*
