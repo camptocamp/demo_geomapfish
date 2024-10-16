@@ -5,6 +5,12 @@ version = '0.0.0'
 description = 'Not used'
 authors = []
 
+[tool.poetry.scripts]
+custom-initialize-db = "custom.scripts.initialize_db:main"
+
+[tool.poetry.plugins."paste.app_factory"]
+main = "custom:main"
+
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 gunicorn = "23.0.0"
