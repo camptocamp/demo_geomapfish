@@ -47,6 +47,9 @@ msgstr "Alternative Mobile Applikation"
 msgid "Area"
 msgstr "Fläche"
 
+msgid "Aster copier"
+msgstr ""
+
 msgid "BS Offizieller Stadtplan farbig 1:12'500"
 msgstr ""
 
@@ -334,6 +337,12 @@ msgstr "Abfrage"
 msgid "SRTM"
 msgstr ""
 
+msgid "SRTM copier"
+msgstr ""
+
+msgid "SRTM shadow"
+msgstr ""
+
 msgid "Selection"
 msgstr "Selektion"
 
@@ -465,12 +474,6 @@ msgstr "ASIT VD Basiskarte Ortho"
 
 msgid "aster"
 msgstr "ASTER"
-
-msgid "autolink_email"
-msgstr "Automatischer E-Mail-Link"
-
-msgid "autolink_url"
-msgstr "Automatische URL"
 
 msgid "background"
 msgstr "Hintergrund"
@@ -834,9 +837,6 @@ msgstr "Nordpfeil"
 msgid "number"
 msgstr ""
 
-msgid "open"
-msgstr "offen"
-
 msgid "operator"
 msgstr "Betreiber"
 
@@ -1149,6 +1149,10 @@ msgstr "Eisenbahn"
 msgid "railways_ingrp"
 msgstr "Eisenbahn (in einer Gruppe)"
 
+#, fuzzy
+msgid "raster"
+msgstr "ASTER"
+
 msgid "recycling"
 msgstr "Sammelstelle"
 
@@ -1163,6 +1167,9 @@ msgstr "Restaurant"
 
 msgid "restricted"
 msgstr "Bezirk"
+
+msgid "restricted_group"
+msgstr "Begrenzte Gruppe"
 
 msgid "roads10"
 msgstr "Straßen"
@@ -1416,14 +1423,20 @@ msgstr ""
 #~ msgid "You must change your password"
 #~ msgstr "Sie müssen Ihr Passwort ändern"
 
+#~ msgid "autolink_email"
+#~ msgstr "Automatischer E-Mail-Link"
+
+#~ msgid "autolink_url"
+#~ msgstr "Automatische URL"
+
 #~ msgid "last_update_timestamp"
 #~ msgstr "zuletzt aktualisierter Zeitstempel"
 
 #~ msgid "last_update_user"
 #~ msgstr "zuletzt aktualisierter Nutzer"
 
-#~ msgid "restricted_group"
-#~ msgstr "Begrenzte Gruppe"
+#~ msgid "open"
+#~ msgstr "offen"
 
 #, fuzzy
 #~ msgid "standard application"
