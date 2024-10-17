@@ -51,6 +51,9 @@ msgstr "Alternative Mobile Application"
 msgid "Area"
 msgstr "Area"
 
+msgid "Aster copier"
+msgstr ""
+
 msgid "BS Offizieller Stadtplan farbig 1:12'500"
 msgstr ""
 
@@ -337,6 +340,12 @@ msgstr "Query"
 msgid "SRTM"
 msgstr ""
 
+msgid "SRTM copier"
+msgstr ""
+
+msgid "SRTM shadow"
+msgstr ""
+
 msgid "Selection"
 msgstr ""
 
@@ -464,12 +473,6 @@ msgstr "ASIT VD - background for orthophoto"
 
 msgid "aster"
 msgstr "ASTER"
-
-msgid "autolink_email"
-msgstr "Autolink email"
-
-msgid "autolink_url"
-msgstr "Autolink URL"
 
 msgid "background"
 msgstr "Background"
@@ -828,9 +831,6 @@ msgstr "North arrow"
 msgid "number"
 msgstr "Number"
 
-msgid "open"
-msgstr "Open"
-
 msgid "operator"
 msgstr "Operator"
 
@@ -1140,6 +1140,10 @@ msgstr "Railways"
 msgid "railways_ingrp"
 msgstr "Railways in group"
 
+#, fuzzy
+msgid "raster"
+msgstr "ASTER"
+
 msgid "recycling"
 msgstr "Recycling"
 
@@ -1154,6 +1158,9 @@ msgstr "Restaurant"
 
 msgid "restricted"
 msgstr "Restricted"
+
+msgid "restricted_group"
+msgstr "Restricted group"
 
 msgid "roads10"
 msgstr "Roads"
@@ -1435,6 +1442,12 @@ msgstr ""
 #~ msgid "You must change your password"
 #~ msgstr "You must change your password"
 
+#~ msgid "autolink_email"
+#~ msgstr "Autolink email"
+
+#~ msgid "autolink_url"
+#~ msgstr "Autolink URL"
+
 #~ msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
 #~ msgstr "Solar energy: suitability of roofs"
 
@@ -1459,8 +1472,8 @@ msgstr ""
 #~ msgid "last_update_user"
 #~ msgstr "User"
 
-#~ msgid "restricted_group"
-#~ msgstr "Restricted group"
+#~ msgid "open"
+#~ msgstr "Open"
 
 #~ msgid "standard application"
 #~ msgstr "Standard version"

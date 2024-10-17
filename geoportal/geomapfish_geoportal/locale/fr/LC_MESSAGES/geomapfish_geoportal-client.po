@@ -49,6 +49,9 @@ msgstr "Application mobile alternative"
 msgid "Area"
 msgstr "Aire"
 
+msgid "Aster copier"
+msgstr ""
+
 msgid "BS Offizieller Stadtplan farbig 1:12'500"
 msgstr ""
 
@@ -335,6 +338,12 @@ msgstr "Interrogation"
 msgid "SRTM"
 msgstr "SRTM"
 
+msgid "SRTM copier"
+msgstr ""
+
+msgid "SRTM shadow"
+msgstr ""
+
 msgid "Selection"
 msgstr "Sélection"
 
@@ -464,12 +473,6 @@ msgstr "ASIT VD - Fond pour orthophoto"
 
 msgid "aster"
 msgstr "ASTER"
-
-msgid "autolink_email"
-msgstr "Lien automatique courriel"
-
-msgid "autolink_url"
-msgstr "Lien automatique URL"
 
 msgid "background"
 msgstr "Fond de carte"
@@ -828,9 +831,6 @@ msgstr "Fléche du nord"
 msgid "number"
 msgstr "Nombre"
 
-msgid "open"
-msgstr "Ouvert"
-
 msgid "operator"
 msgstr "Opérateur"
 
@@ -1140,6 +1140,10 @@ msgstr "Voies ferrées"
 msgid "railways_ingrp"
 msgstr "Voies ferrées dans groupe"
 
+#, fuzzy
+msgid "raster"
+msgstr "ASTER"
+
 msgid "recycling"
 msgstr "Recyclage"
 
@@ -1154,6 +1158,9 @@ msgstr "Restaurants"
 
 msgid "restricted"
 msgstr "Restrain"
+
+msgid "restricted_group"
+msgstr "Restrain dans groupe"
 
 msgid "roads10"
 msgstr "Routes"
@@ -1436,6 +1443,12 @@ msgstr ""
 #~ msgid "You must change your password"
 #~ msgstr "Vous devez changer votre mot de passe"
 
+#~ msgid "autolink_email"
+#~ msgstr "Lien automatique courriel"
+
+#~ msgid "autolink_url"
+#~ msgstr "Lien automatique URL"
+
 #~ msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
 #~ msgstr "Solaire: aptitude des toitures"
 
@@ -1469,8 +1482,8 @@ msgstr ""
 #~ msgid "last_update_user"
 #~ msgstr "User"
 
-#~ msgid "restricted_group"
-#~ msgstr "Restrain dans groupe"
+#~ msgid "open"
+#~ msgstr "Ouvert"
 
 #~ msgid "standard application"
 #~ msgstr "Application bureau"
