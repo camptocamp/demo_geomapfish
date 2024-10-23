@@ -117,13 +117,17 @@ class SwisscomHeatmapApi:
             raise ExternalAPIError("External api error")
 
     def limit_query(self):
-        now = datetime.now()
-        if now.day > self.request_date.day:
+        """
+        Limit amount of allowed queries per day.
+        [bgerber] It's rude, but we are using my own key !
+        """
+        delta = datetime.now() - self.request_date
+        if delta.total_seconds() > 86400:
+            self.request_date = datetime.now()
             self.nb_requests = 0
         self.nb_requests += 1
         LOG.info("Request today %s", self.nb_requests)
         if self.nb_requests > 500:
-            # [bgerber] It's rude, but we are using my own key !
             error = "Too much query today, try again tomorrow"
             self.error = Response(error, status=403)
             raise APIUsageExceededError(error)
