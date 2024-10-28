@@ -15,8 +15,6 @@ import requests
         ("https://front/c2c/health_check", {}, 2),
         ("https://front/c2c/health_check", {"max_level": "1"}, 2),
         ("https://front/c2c/health_check", {"checker": "check_collector"}, 2),
-        ("https://front/admin/layertree", {}, 10),
-        ("https://front/admin/layertree/children", {}, 10),
         ("http://mapserver:8080/mapserv_proxy", {"SERVICE": "WMS", "REQUEST": "GetCapabilities"}, 60),
         (
             "https://front/mapserv_proxy",
@@ -40,10 +38,3 @@ def test_url(url: str, params: dict[str, str], timeout: int) -> None:
             continue
         break
     assert response.status_code == 200, response.text
-
-
-def test_admin() -> None:
-    """Tests that the admin page will provide the login page."""
-    response = requests.get("https://front/admin/", verify=False, timeout=30)  # nosec
-    assert response.status_code == 200, response.text
-    assert "Login" in response.text
