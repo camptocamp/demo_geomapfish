@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-controller="AlternativeDesktopController as mainCtrl" ng-strict-di>
+<html lang="{{mainCtrl.lang}}" ng-controller="DesktopController as mainCtrl" ng-strict-di>
   <head>
     <title translate>Alternative Desktop Application</title>
     <meta charset="utf-8">
