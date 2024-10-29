@@ -45,6 +45,7 @@ swisscom_heatmap_dwell_demographics = Service(
 )  # type: ignore[import-untyped]
 
 
+@swisscom_heatmap_get_config.get(renderer="json")
 def entry_get_config(_request: pyramid.request.Request) -> pyramid.response.Response:
     return api.get_config()
 
