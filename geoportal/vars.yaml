@@ -870,6 +870,11 @@ vars:
       arguments: *redis-cache-arguments
 
   content_security_policy_main_img_src_extra: 'blob:'
+  content_security_policy_main_script_src_extra: '
+    https://*.google.com/
+    https://*.googleapis.com/
+    https://*.googletagmanager.com/
+    https://cdn.jsdelivr.net/'
 
   # For production.
   #content_security_policy_main_script_src_extra: "'unsafe-eval'
