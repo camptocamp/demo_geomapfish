@@ -1,5 +1,5 @@
 import {defineConfig} from 'vite';
-import basicSsl from '@vitejs/plugin-basic-ssl'
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import path from 'path';
 
 let build_config =
@@ -17,9 +17,7 @@ export default defineConfig({
     port: 3002,
     https: true,
   },
-  plugins: [
-    basicSsl()
-  ],
+  plugins: [basicSsl()],
   base: '/static-frontend/',
   build: {
     lib: {

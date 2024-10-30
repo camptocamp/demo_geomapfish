@@ -187,7 +187,11 @@
       <swisscom-heatmap slot="tool-panel-swisscom-heatmap"></swisscom-heatmap>
 
       <!-- custom feedback -->
-      <gmf-tool-button slot="tool-button" iconClasses="fas fa-file-signature" panelName="feedback"></gmf-tool-button>
+      <gmf-tool-button
+        slot="tool-button"
+        iconClasses="fas fa-file-signature"
+        panelName="feedback"
+      ></gmf-tool-button>
       <proj-feedback slot="tool-panel-feedback"></proj-feedback>
 
       <!-- Print -->
@@ -388,8 +392,6 @@
           <span class="fa fa-share-alt"></span>
         </button>
       </span>
-
-
 
       <gmf-search slot="map" gmf-search-map="::mainCtrl.map"></gmf-search>
       <ngeo-mapswipe
