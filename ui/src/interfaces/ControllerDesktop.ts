@@ -38,6 +38,7 @@ import gmfFloorModule from 'ngeo/floor/module';
 import ngeoStreetviewModule from 'ngeo/streetview/module';
 import ngeoRoutingModule from 'ngeo/routing/module';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink';
+import '../webcomponents/index';
 
 /**
  * @private

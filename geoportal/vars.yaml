@@ -377,6 +377,8 @@ vars:
         # Those two lines should be commented in dev mode.
         gmfCustomJavascriptUrl: ''
         gmfCustomStylesheetUrl: ''
+        sitnFeedbackPath: custom/feedback
+        swisscomHeatmapPath: custom/swisscom-heatmap
 
     mobile:
       constants:
@@ -712,19 +714,24 @@ vars:
       Sincerely yours
       The GeoMapfish team
     allowed_hosts:
-      - '{VISIBLE_WEB_HOST}'
-      - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-      - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-      - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
       - camptocamp.github.io
-      - geomapfish-demo-dc.camptocamp.com
       - fredj.github.io
       - ger-benjamin.github.io
       - arnaud-morvan.github.io
       - julsbreakdown.github.io
       - adube.github.io
       - localhost
+      - localhost:8484
+      - localhost:3000
+      - localhost:3001
+      - localhost:3002
+      - localhost:6006
       - 127.0.0.1
+      - 127.0.0.1:8484
+      - 127.0.0.1:3000
+      - 127.0.0.1:3001
+      - 127.0.0.1:3002
+      - 127.0.0.1:6006
 
   reset_password:
     # Used to send a confirmation email
@@ -786,31 +793,24 @@ vars:
       - 148.196.7.213/24 # VPN c2c
 
   authorized_referers:
-    - https://2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-    - https://2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-    - https://2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
-    - https://camptocamp.github.io
-    - https://fredj.github.io
-    - https://ger-benjamin.github.io
-    - https://arnaud-morvan.github.io
-    - https://julsbreakdown.github.io
-    - https://adube.github.io
-    - https://localhost
-    - https://localhost:3000
-    - https://localhost:3001
-    - http://localhost:3002
-    - https://localhost:3002
-    - http://localhost
-    - http://localhost:3000
-    - http://localhost:3001
-    - http://localhost:6006
-    - https://127.0.0.1
-    - https://127.0.0.1:3000
-    - https://127.0.0.1:3001
-    - http://127.0.0.1
-    - http://127.0.0.1:3000
-    - http://127.0.0.1:3001
-    - http://127.0.0.1:6006
+    - camptocamp.github.io
+    - fredj.github.io
+    - ger-benjamin.github.io
+    - arnaud-morvan.github.io
+    - julsbreakdown.github.io
+    - adube.github.io
+    - localhost
+    - localhost:8484
+    - localhost:3000
+    - localhost:3001
+    - localhost:3002
+    - localhost:6006
+    - 127.0.0.1
+    - 127.0.0.1:8484
+    - 127.0.0.1:3000
+    - 127.0.0.1:3001
+    - 127.0.0.1:3002
+    - 127.0.0.1:6006
 
   servers:
     wmts: '{WMTS_URL}'
@@ -818,6 +818,15 @@ vars:
   allowed_hosts:
     # TODO: Add the allowed hosts for the application (themes and dynamic.json)
     - localhost:8484
+    - localhost:3000
+    - localhost:3001
+    - localhost:3002
+    - localhost:6006
+    - 127.0.0.1:8484
+    - 127.0.0.1:3000
+    - 127.0.0.1:3001
+    - 127.0.0.1:3002
+    - 127.0.0.1:6006
 
   # Checker configuration
   checker_ogc_server: Main PNG
@@ -905,9 +914,9 @@ vars:
     themes: &auth_header
       access_control_allow_origin:
         - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
-        - https://2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-        - https://2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-        - https://2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
+        - https://2-9.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+        - https://2-9.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+        - https://2-9.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
         - https://camptocamp.github.io
         - https://fredj.github.io
         - https://ger-benjamin.github.io
@@ -917,7 +926,7 @@ vars:
         - http://localhost
         - http://localhost:3000
         - http://localhost:3001
-        - http://localhost:3002
+        - https://localhost:3002
         - http://localhost:6006
         - https://localhost
         - https://localhost:3000

@@ -21,6 +21,11 @@ swisscom_heatmap_get_config = Service(
     path="/swisscom-heatmap/get-config.json",
     cors_origins=(
         (f'https://{os.environ["VISIBLE_WEB_HOST"]}' if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        *(
+            ["https://localhost:3002"]
+            if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
+            else []
+        ),
     ),
 )
 
@@ -31,6 +36,11 @@ swisscom_heatmap_dwell_density = Service(
     path="/swisscom-heatmap/dwell-density.json",
     cors_origins=(
         (f'https://{os.environ["VISIBLE_WEB_HOST"]}' if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        *(
+            ["https://localhost:3002"]
+            if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
+            else []
+        ),
     ),
 )
 
@@ -41,6 +51,11 @@ swisscom_heatmap_dwell_demographics = Service(
     path="/swisscom-heatmap/dwell-demographics.json",
     cors_origins=(
         (f'https://{os.environ["VISIBLE_WEB_HOST"]}' if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        *(
+            ["https://localhost:3002"]
+            if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
+            else []
+        ),
     ),
 )  # type: ignore[import-untyped]
 

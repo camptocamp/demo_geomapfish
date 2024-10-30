@@ -14,7 +14,7 @@ npm install
 npm run dev
 ```
 
-Open the application in your browser at [http://localhost:3002/static-frontend/desktop.html](http://localhost:3002/static-frontend/desktop.html), fir the desktop interface.
+Open the application in your browser at [https://localhost:3002/static-frontend/desktop.html](https://localhost:3002/static-frontend/desktop.html), fir the desktop interface.
 
 ## Integration in the application
 

@@ -33,6 +33,7 @@ services:
       # - PRINT_URL=http://print:8080/print/
       - PYTHONWARNINGS=default::DeprecationWarning
       - SQLALCHEMY_WARN_20=true
+      - C2CWSGIUTILS_FORCE_PROTO=https
     ports:
       - 5678:5678 # For remote debugging using Visual Studio Code
 
@@ -102,3 +103,5 @@ services:
       - c2c://development.ini
     volumes:
       - ./custom/custom:/app/custom
+    environment:
+      DEV: 'true'

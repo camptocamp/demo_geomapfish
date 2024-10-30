@@ -1,9 +1,11 @@
 import {customElement, state} from 'lit/decorators.js';
 import {html, css} from 'lit';
+import ToolPanelElement from 'gmfapi/elements/ToolPanelElement';
+import configModel from 'gmfapi/store/config';
+import panelsModel from 'gmfapi/store/panels';
 
-// @ts-ignore
 @customElement('proj-feedback')
-export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelElement {
+export class ProjFeedback extends ToolPanelElement {
   @state()
   private show_send = false;
   @state()
@@ -15,7 +17,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
   private subscriptions_ = [];
 
   static styles = [
-    ...(window as any).gmfapi.elements.ToolPanelElement.styles,
+    ToolPanelElement.styles,
     css`
       .modal-footer {
         border-top: 0.06rem solid var(--color-light);
@@ -26,7 +28,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
   connectedCallback(): void {
     super.connectedCallback();
     this.subscriptions_.push(
-      (window as any).gmfapi.store.config.getConfig().subscribe({
+      configModel.getConfig().subscribe({
         next: (configuration?: any) => {
           if (configuration) {
             this.url_ = new URL(configuration.sitnFeedbackPath, configuration.gmfBase).href;
@@ -144,7 +146,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
             'Suivant votre demande, une personne prendra bientôt contact avec vous.',
           ].join('\n'),
         );
-        (window as any).gmfapi.store.panels.closeToolPanel();
+        panelsModel.closeToolPanel();
       })
       .catch((error) => {
         console.error(error);

@@ -46,10 +46,9 @@ export default class SwisscomHeatmapService {
         this.lastError = error;
         return null;
       });
-    const parsedData = JSON.parse(data);
     const config = {
-      minDate: moment(parsedData['minDate'], 'DD.MM.YYYY').toDate(),
-      maxDate: moment(parsedData['maxDate'], 'DD.MM.YYYY').toDate(),
+      minDate: moment(data['minDate'], 'DD.MM.YYYY').toDate(),
+      maxDate: moment(data['maxDate'], 'DD.MM.YYYY').toDate(),
     };
     this.config.next(config);
     return config;
