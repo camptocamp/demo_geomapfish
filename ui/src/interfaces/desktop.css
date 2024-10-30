@@ -69,5 +69,8 @@ body {
 }
 
 .gmf-streetview-panel {
+  height: calc(100% - 1rem);
+}
+.gmf-streetview {
   height: 100%;
 }
