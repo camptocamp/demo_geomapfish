@@ -2286,13 +2286,13 @@ testing = ["coverage", "pytest", "pytest-cov"]
 
 [[package]]
 name = "waitress"
-version = "3.0.0"
+version = "3.0.1"
 description = "Waitress WSGI server"
 optional = false
-python-versions = ">=3.8.0"
+python-versions = ">=3.9.0"
 files = [
-    {file = "waitress-3.0.0-py3-none-any.whl", hash = "sha256:2a06f242f4ba0cc563444ca3d1998959447477363a2d7e9b8b4d75d35cfd1669"},
-    {file = "waitress-3.0.0.tar.gz", hash = "sha256:005da479b04134cdd9dd602d1ee7c49d79de0537610d653674cc6cbde222b8a1"},
+    {file = "waitress-3.0.1-py3-none-any.whl", hash = "sha256:26cdbc593093a15119351690752c99adc13cbc6786d75f7b6341d1234a3730ac"},
+    {file = "waitress-3.0.1.tar.gz", hash = "sha256:ef0c1f020d9f12a515c4ec65c07920a702613afcad1dbfdc3bcec256b6c072b3"},
 ]
 
 [package.extras]
@@ -2486,4 +2486,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "02f888e6b00f4d70de163b3e6f362faa4e6a061cb0925b65893bd33c8075e765"
+content-hash = "3373b95cc5ee5fc9a49c7f313f98c1727cd88c3abf005303d4c7cb1d269649eb"
