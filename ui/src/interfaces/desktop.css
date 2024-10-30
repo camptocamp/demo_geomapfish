@@ -60,3 +60,14 @@ body {
   top: 0;
   right: 0;
 }
+
+.pointer-events-none {
+  pointer-events: none;
+}
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
+.gmf-streetview-panel {
+  height: 100%;
+}
