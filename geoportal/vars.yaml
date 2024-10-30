@@ -788,31 +788,25 @@ vars:
       - 148.196.7.213/24 # VPN c2c
 
   authorized_referers:
-    - https://2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
-    - https://2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
-    - https://2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
-    - https://camptocamp.github.io
-    - https://fredj.github.io
-    - https://ger-benjamin.github.io
-    - https://arnaud-morvan.github.io
-    - https://julsbreakdown.github.io
-    - https://adube.github.io
-    - https://localhost
-    - https://localhost:3000
-    - https://localhost:3001
-    - http://localhost:3002
-    - https://localhost:3002
-    - http://localhost
-    - http://localhost:3000
-    - http://localhost:3001
-    - http://localhost:6006
-    - https://127.0.0.1
-    - https://127.0.0.1:3000
-    - https://127.0.0.1:3001
-    - http://127.0.0.1
-    - http://127.0.0.1:3000
-    - http://127.0.0.1:3001
-    - http://127.0.0.1:6006
+    - 2-8.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+    - 2-8.geomapfish-demo.prod.apps.blue.gs-ch-prod.camptocamp.com
+    - 2-8.geomapfish-demo.prod.apps.green.gs-ch-prod.camptocamp.com
+    - camptocamp.github.io
+    - fredj.github.io
+    - ger-benjamin.github.io
+    - arnaud-morvan.github.io
+    - julsbreakdown.github.io
+    - adube.github.io
+    - localhost
+    - localhost:3000
+    - localhost:3001
+    - localhost:3002
+    - localhost:6006
+    - 127.0.0.1
+    - 127.0.0.1:3000
+    - 127.0.0.1:3001
+    - 127.0.0.1:3002
+    - 127.0.0.1:6006
 
   servers:
     wmts: '{WMTS_URL}'
