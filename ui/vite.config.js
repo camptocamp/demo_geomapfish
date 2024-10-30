@@ -26,6 +26,7 @@ export default defineConfig({
     },
     publicDir: true,
     sourcemap: true,
+    cssCodeSplit: true,
     rollupOptions: {
       input: {
         desktop: path.resolve(__dirname, 'desktop.html'),
@@ -34,6 +35,7 @@ export default defineConfig({
       },
       output: {
         inlineDynamicImports: false,
+        assetFileNames: '[name]-[hash].[ext]',
       },
     },
     ...build_config,
