@@ -1,8 +1,13 @@
+inherits:
+  - utils:base
+  - utils:fix
+  - utils:no-design-checks
+  - duplicated
+
 pylint:
   disable:
     - missing-timeout # Default timeout set by c2cwsgiutils
 
 bandit:
-  run: true
   options:
     config: .bandit.yaml

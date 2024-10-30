@@ -29,6 +29,8 @@ checks: prospector eslint ## Runs the checks
 prospector: ## Runs the Prospector checks
 	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
 		prospector --output-format=pylint --die-on-tool-error
+	docker build --tag=custom-checks --target=checks custom
+	docker run --rm custom-checks prospector --output-format=pylint --die-on-tool-error
 
 .PHONY: eslint
 eslint: ## Runs the eslint checks

@@ -1,12 +1,12 @@
 import logging
 import os
 
-import pyramid.request
-import pyramid.response
+import pyramid.request  # type: ignore[import-untyped]
+import pyramid.response  # type: ignore[import-untyped]
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient, ContainerClient
-from cornice import Service
-from pyramid.httpexceptions import HTTPBadRequest
+from cornice import Service  # type: ignore[import-untyped]
+from pyramid.httpexceptions import HTTPBadRequest  # type: ignore[import-untyped]
 
 _LOGGING = logging.getLogger(__name__)
 _CLIENT = None
@@ -38,7 +38,7 @@ feedback = Service(
 @feedback.get()
 def swissalti3d(request: pyramid.request.Request) -> pyramid.response.Response:
     # Just to demonstrate that we can fet the user information
-    global _CLIENT
+    global _CLIENT  # pylint: disable=global-statement
     if _CLIENT is None:
         _CLIENT = _get_azure_container_client(os.environ["AZURE_CONTAINER_NAME"])
     blob = _CLIENT.get_blob_client(blob="swissalti3d_2m_archeo.tif")

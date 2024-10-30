@@ -14,7 +14,7 @@ ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqla
     dbsessions urllogin host_forward_host headers_whitelist headers_blacklist \
     smtp c2c.base_path welcome_email \
     lingva_extractor interfaces_config interfaces devserver_url api authentication intranet metrics pdfreport \
-    vector_tiles i18next main_ogc_server
+    vector_tiles i18next main_ogc_server static_files
 
 COPY . /tmp/config/
 
@@ -77,7 +77,7 @@ VOLUME /etc/geomapfish \
 
 ###############################################################################
 
-FROM node:21.2-slim AS custom-build
+FROM node:20.18.0-slim AS webcomponent-build
 
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -86,9 +86,26 @@ RUN npm install --ignore-scripts
 
 COPY tsconfig.json vite.config.ts ./
 COPY webcomponents/ ./webcomponents/
-RUN npm run build
+RUN NODE_ENV=production npm run build
+
+###############################################################################
+
+FROM node:20.18.0-slim AS ui-build
+
+WORKDIR /app
+COPY ui/package.json ui/package-lock.json ./
+
+RUN npm install --ignore-scripts
+
+COPY ui/ ./
+RUN NODE_ENV=production npm run build
 
 ###############################################################################
 
 FROM gmf_config AS config
-COPY --from=custom-build /app/dist/ /etc/geomapfish/static/custom/
+
+COPY --from=webcomponent-build /app/dist/ /etc/geomapfish/static/custom/
+
+COPY --from=ui-build /app/dist/* /etc/static-frontend/
+COPY --from=ui-build /app/node_modules/ngeo/dist/fa-* /etc/static-frontend/
+VOLUME /etc/static-frontend/
