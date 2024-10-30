@@ -102,3 +102,5 @@ services:
       - c2c://development.ini
     volumes:
       - ./custom/custom:/app/custom
+    environment:
+      DEV: 'true'

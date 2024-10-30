@@ -18,6 +18,11 @@ feedback = Service(
     path="/feedback",
     cors_origins=(
         (f'https://{os.environ["VISIBLE_WEB_HOST"]}' if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        *(
+            [f"https://localhost:3002"]
+            if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
+            else []
+        ),
     ),
 )
 
