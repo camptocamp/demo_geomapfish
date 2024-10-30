@@ -377,6 +377,8 @@ vars:
         # Those two lines should be commented in dev mode.
         gmfCustomJavascriptUrl: ''
         gmfCustomStylesheetUrl: ''
+        sitnFeedbackPath: custom/feedback
+        swisscomHeatmapPath: custom/swisscom-heatmap
 
     mobile:
       constants:
