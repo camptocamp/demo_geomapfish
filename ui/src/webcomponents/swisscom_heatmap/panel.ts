@@ -1,7 +1,7 @@
 import {html, TemplateResult, CSSResult, css, unsafeCSS} from 'lit';
 import {customElement, state, property} from 'lit/decorators.js';
 import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
-import loadingSvg from 'gmf/icons/spinner.svg';
+import loadingSvg from 'gmf/icons/spinner_svg.js';
 import ToolPanelElement from 'gmfapi/elements/ToolPanelElement';
 import mapModel from 'gmfapi/store/map';
 import configModel from 'gmfapi/store/config';
@@ -313,7 +313,7 @@ export default class SwisscomHeatmap extends ToolPanelElement {
 
   private spinnerTemplate = html`
     <div>
-      <i class="fa fa-spin svg-spinner"> ${unsafeSVG(loadingSvg)} </i>
+      <i class="fa fa-spin svg-spinner"> ${unsafeSVG(loadingSvg(20))} </i>
       Loading data...
     </div>
   `;
