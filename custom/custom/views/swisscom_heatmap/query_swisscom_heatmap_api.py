@@ -8,7 +8,7 @@ from oauthlib.oauth2 import BackendApplicationClient
 from pyramid.response import Response  # type: ignore[import-untyped]
 from requests_oauthlib import OAuth2Session  # type: ignore[import-untyped]
 
-from .tile_id_to_coordinates import tile_id_to_ll
+from custom.views.swisscom_heatmap.tile_id_to_coordinates import tile_id_to_ll
 
 LOG = logging.getLogger(__name__)
 
