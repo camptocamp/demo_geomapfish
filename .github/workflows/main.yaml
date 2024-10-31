@@ -8,8 +8,6 @@ on:
 env:
   PROJECT: demo
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
-  # SENTRY_PROJECT: geomapfish-demo
-  # SENTRY_ENVIRONMENT: prod-2-8
 
 jobs:
   main:
@@ -105,15 +103,6 @@ jobs:
       - name: Publish
         run: c2cciutils-publish
 
-      # - name: Create Sentry release
-      #   uses: getsentry/action-release@v1
-      #   env:
-      #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      #     SENTRY_ORG: camptocamp
-      #     SENTRY_PROJECT: ${{ env.SENTRY_PROJECT }}
-      #   with:
-      #     environment: ${{ env.SENTRY_ENVIRONMENT }}
-      #   if: github.ref == 'refs/heads/prod-2-8'
       - run: git diff --exit-code --patch > /tmp/dpkg-versions.patch || true
         if: failure()
       - uses: actions/upload-artifact@v4
