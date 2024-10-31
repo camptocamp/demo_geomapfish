@@ -2,10 +2,10 @@ import logging
 import os
 from typing import Any
 
-import pyramid.request
+import pyramid.request  # type: ignore[import-untyped]
 import requests
-from cornice import Service
-from pyramid.httpexceptions import HTTPBadRequest
+from cornice import Service  # type: ignore[import-untyped]
+from pyramid.httpexceptions import HTTPBadRequest  # type: ignore[import-untyped]
 
 from custom.models.feedback import Feedback
 from custom.util.send_mail import send_mail
@@ -18,6 +18,11 @@ feedback = Service(
     path="/feedback",
     cors_origins=(
         (f'https://{os.environ["VISIBLE_WEB_HOST"]}' if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        *(
+            ["https://localhost:3002"]
+            if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
+            else []
+        ),
     ),
 )
 
@@ -32,7 +37,7 @@ def feedback_post(request: pyramid.request.Request) -> Any:
                 headers={"Cookie": request.headers.get("Cookie"), "Referer": request.referrer},
             ).json()
         )
-    except Exception:
+    except Exception:  # pylint: disable=broad-exception-caught
         LOG.exception("Error on get user information")
 
     if (
@@ -64,12 +69,12 @@ def feedback_post(request: pyramid.request.Request) -> Any:
     text = "\n\n".join(
         [
             "Ceci est un email automatique. Un nouveau feedback a été inséré dans la BD.",
-            "Cela concerne l'instance : " + instance,
-            "Son identifiant est le : " + str(new_feedback.id_feedback),
-            "User agent : " + new_feedback.ua,
-            "Permalink : " + new_feedback.permalink,
-            "User email : " + new_feedback.email,
-            "User text : " + new_feedback.text,
+            "Cela concerne l'instance: " + instance,
+            "Son identifiant est le: " + str(new_feedback.id_feedback),
+            "User agent: " + new_feedback.ua,  # type: ignore[list-item]
+            "Permalink: " + new_feedback.permalink,  # type: ignore[list-item]
+            "User email: " + new_feedback.email,  # type: ignore[list-item]
+            "User text: " + new_feedback.text,  # type: ignore[list-item]
         ]
     )
     subject = "Feedback - Guichet cartographique"

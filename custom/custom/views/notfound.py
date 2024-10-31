@@ -1,4 +1,4 @@
-from pyramid.view import notfound_view_config
+from pyramid.view import notfound_view_config  # type: ignore[import-untyped]
 
 
 @notfound_view_config(renderer="custom:templates/404.mako")

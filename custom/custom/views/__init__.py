@@ -1,8 +1,8 @@
 import os
 
-import pyramid.request
-import pyramid.response
-from cornice import Service
+import pyramid.request  # type: ignore[import-untyped]
+import pyramid.response  # type: ignore[import-untyped]
+from cornice import Service  # type: ignore[import-untyped]
 
 index = Service(
     name="index",

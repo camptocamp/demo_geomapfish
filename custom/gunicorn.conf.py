@@ -7,15 +7,15 @@ import os
 
 from c2cwsgiutils import get_config_defaults
 
-bind = ":8080"
+bind = ":8080"  # pylint: disable=invalid-name
 
-worker_class = "gthread"
+worker_class = "gthread"  # pylint: disable=invalid-name
 workers = os.environ.get("GUNICORN_WORKERS", 2)
 threads = os.environ.get("GUNICORN_THREADS", 10)
 
-preload = "true"
+preload = "true"  # pylint: disable=invalid-name
 
-accesslog = "-"
+accesslog = "-"  # pylint: disable=invalid-name
 access_log_format = os.environ.get(
     "GUNICORN_ACCESS_LOG_FORMAT",
     '%(H)s %({Host}i)s %(m)s %(U)s?%(q)s "%(f)s" "%(a)s" %(s)s %(B)s %(D)s %(p)s',
