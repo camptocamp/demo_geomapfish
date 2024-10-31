@@ -8,7 +8,7 @@ import pyramid.response  # type: ignore[import-untyped]
 from cornice import Service  # type: ignore[import-untyped]
 from geojson import FeatureCollection  # type: ignore[import-untyped]
 
-from .query_swisscom_heatmap_api import SwisscomHeatmapApi
+from custom.views.swisscom_heatmap.query_swisscom_heatmap_api import SwisscomHeatmapApi
 
 LOG = logging.getLogger(__name__)
 
