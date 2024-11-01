@@ -5,13 +5,13 @@ description = 'Not used'
 authors = []
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.11"
+python = ">=3.10,<3.11"
 gunicorn = "22.0.0"
 plaster-pastedeploy = "0.7"
 pyramid = "2.0.2"
 pyramid-mako = "1.1.0"
 pyramid-debugtoolbar = "4.9"
-waitress = "2.1.2"
+waitress = "3.0.1"
 alembic = "1.7.7"
 pyramid-retry = "2.1.1"
 pyramid-tm = "2.5"
