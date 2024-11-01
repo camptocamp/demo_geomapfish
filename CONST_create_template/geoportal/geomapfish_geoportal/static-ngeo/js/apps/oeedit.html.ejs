@@ -160,7 +160,7 @@
         'Ihr Browser wird nicht unterstützt, bitte verwenden Sie eine aktuelle Version von Firefox, Chrome oder Edge.'
       );
     </script>
-
+    
     <% for (var js in htmlWebpackPlugin.files.js) { %>
     <script src="<%= htmlWebpackPlugin.files.js[js] %>" crossorigin="anonymous"></script>
     <% } %>
