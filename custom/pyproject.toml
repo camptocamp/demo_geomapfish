@@ -16,22 +16,22 @@ waitress = "3.0.1"
 alembic = "1.13.3"
 pyramid-retry = "2.1.1"
 pyramid-tm = "2.5"
-sqlalchemy = "2.0.35"
+sqlalchemy = "2.0.36"
 transaction = "4.0"
 "zope.sqlalchemy" = "3.1"
 cornice = "6.1.0"
 requests = "2.32.3"
-psycopg2 = "2.9.9"
+psycopg2 = "2.9.10"
 c2cwsgiutils = { version = "6.0.8", extras = ["webserver"] }
 cee-syslog-handler = "0.6.0"
 PyJWT = "2.9.0"
-redis = "5.1.0"
+redis = "5.1.1"
 PyYAML = "6.0.2"
 sentry-sdk = "2.15.0"
 requests-oauthlib = "2.0.0"
 ujson = "5.10.0"
 urllib3 = "2.2.3"
-webob = { version = "1.8.8", optional = true }
+webob = { version = "1.8.9", optional = true }
 papyrus = "2.6.2"
 
 [tool.poetry.dev-dependencies]
