@@ -163,5 +163,11 @@
       matchDepNames: ['bootstrap'],
       enabled: false,
     },
+    /** Don't update major version on package.json */
+    {
+      matchFileNames: ['package.json'],
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
   ],
 }
