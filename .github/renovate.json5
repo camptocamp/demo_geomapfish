@@ -156,5 +156,12 @@
       matchFileNames: ['.python-version'],
       versioning: 'regex:^(?<major>\\d+)\\.(?<minor>\\d+)$',
     },
+    /** Don't update major version of bootstrap on ui/*.html files */
+    {
+      matchFileNames: ['ui/*.html'],
+      matchUpdateTypes: ['major'],
+      matchDepNames: ['bootstrap'],
+      enabled: false,
+    },
   ],
 }
