@@ -1,0 +1,19 @@
+curl 'http://localhost:8090/mapserv_proxy/MapServer/ogcapi/collections/osm_open/items?bbox=6.0,46.0,7.0,47.0&limit=100&offset=0'
+curl 'http://localhost:8091/mapserv_proxy/QGIS_Server/wfs3/collections/points/items?bbox=6.0,46.0,7.0,47.0&limit=100&map=/etc/qgisserver/project.qgs'
+
+
+curl -k 'https://localhost:8484/mapserv_proxy?ogcserver=MapServer&SERVICE=WMS&REQUEST=GetCapabilities'
+curl -k 'https://localhost:8484/mapserv_proxy?ogcserver=QGIS_Server&SERVICE=WMS&REQUEST=GetCapabilities'
+
+
+curl -k 'https://localhost:8484/mapserv_proxy/MapServer/ogcapi/collections/osm_open/items?bbox=6.0,46.0,7.0,47.0&limit=100&offset=0'
+curl -k 'https://localhost:8484/mapserv_proxy/QGIS_Server/wfs3/collections/points/items?bbox=6.0,46.0,7.0,47.0&limit=100'
+
+
+
+curl 'https://geomapfish-demo-2-9.camptocamp.com/mapserv_proxy?ogcserver=MapServer&SERVICE=WMS&REQUEST=GetCapabilities'
+curl 'https://geomapfish-demo-2-9.camptocamp.com/mapserv_proxy?ogcserver=QGIS_Server&SERVICE=WMS&REQUEST=GetCapabilities'
+
+
+curl 'https://geomapfish-demo-2-9.camptocamp.com/mapserv_proxy/MapServer/ogcapi/collections/osm_open/items?bbox=6.0,46.0,7.0,47.0&limit=100&offset=0'
+curl 'https://geomapfish-demo-2-9.camptocamp.com/mapserv_proxy/QGIS_Server/wfs3/collections/points/items?bbox=6.0,46.0,7.0,47.0&limit=100'

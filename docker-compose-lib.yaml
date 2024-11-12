@@ -97,6 +97,8 @@ services:
       - CPL_VSIL_CURL_CACHE_SIZE
       - CPL_VSIL_CURL_USE_HEAD
       - GDAL_DISABLE_READDIR_ON_OPEN
+    ports:
+      - 8090:8080
 
   qgisserver:
     image: camptocamp/geomapfish-qgisserver:gmf${GEOMAPFISH_MAIN_VERSION}-qgis${QGIS_VERSION}
@@ -143,6 +145,8 @@ services:
       - QGIS_SERVER_API_WFS3_MAX_LIMIT
       - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES
       - QGIS_SERVER_OVERRIDE_SYSTEM_LOCALE
+    ports:
+      - 8091:8080
 
   tinyows:
     image: camptocamp/tinyows:master
