@@ -877,6 +877,9 @@ vars:
         - https://127.0.0.1:3000
         - https://127.0.0.1:3001
         - '*'
+        # GeoGirafe
+        - https://app.localhost:8080
+        - https://demo.geomapfish.dev
     config: *auth_header
     print: *auth_header
     fulltextsearch: *auth_header
