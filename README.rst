@@ -1,7 +1,7 @@
 GeoMapFish demo project
 =======================
 
-Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.8/>`_
+Read the `Documentation <https://camptocamp.github.io/c2cgeoportal/2.9/>`_
 
 Checkout
 --------
@@ -37,6 +37,11 @@ Notes
 If you use the default database (as configured in the env.project file), you must enable the Camptocamp VPN.
 
 If you modify the content of the `geoportal` folder and want to use these changes, you must comment this line to use the correct image with you local composition: https://github.com/camptocamp/demo_geomapfish/blob/a319b78a0a381204ff90bf4d9dd5ab8fa60f4e95/docker-compose.yaml#L100
+
+Custom UI
+---------
+
+If you want to develop customs interfaces, look at the README in the `ui` folder.
 
 Backup database
 ---------------
