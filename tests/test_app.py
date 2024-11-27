@@ -15,30 +15,39 @@ import requests
         ("https://front/c2c/health_check", {}, 2),
         ("https://front/c2c/health_check", {"max_level": "1"}, 2),
         ("https://front/c2c/health_check", {"checker": "check_collector"}, 2),
-<<<<<<< ours
-        ("http://mapserver:8080/mapserv_proxy", {"SERVICE": "WMS", "REQUEST": "GetCapabilities"}, 60),
+        # ("https://front/admin/layertree", {}, 10),
+        # ("https://front/admin/layertree/children", {}, 10),
         (
-            "https://front/mapserv_proxy",
-            {"ogcserver": "Main PNG", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
-            60,
-        ),
-        (
-            "https://front/mapserv_proxy",
-            {"ogcserver": "QGIS server", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
-=======
-        ("https://front/admin/layertree", {}, 10),
-        ("https://front/admin/layertree/children", {}, 10),
-        (
-            "http://mapserver:8080/mapserv_proxy/mapserver",
+            "http://mapserver:8080/mapserv_proxy/MainPNG",
             {"SERVICE": "WMS", "REQUEST": "GetCapabilities"},
             60,
         ),
         (
-            "https://front/mapserv_proxy",
-            {"ogcserver": "mapserver", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
->>>>>>> theirs
+            "http://mapserver:8080/mapserv_proxy/",
+            {"MAP": "MainPNG", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
             60,
         ),
+        # (
+        #     "https://front/mapserv_proxy",
+        #     {"ogcserver": "Main PNG", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+        #     60,
+        # ),
+        # (
+        #     "https://front/mapserv_proxy/Main+PNG",
+        #     {"SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+        #     60,
+        # ),
+        # QGIS Server
+        (
+            "https://front/mapserv_proxy",
+            {"ogcserver": "QGIS server", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+            60,
+        ),
+        # (
+        #     "https://front/mapserv_proxy/QGIS+server",
+        #     {"SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+        #     60,
+        # ),
         # (
         #     "http://qgisserver:8080/mapserv_proxy/",
         #     {"SERVICE": "WMS", "REQUEST": "GetCapabilities", "MAP": "/etc/qgisserver/project.qgs"},
