@@ -18,22 +18,22 @@ import requests
         # ("https://front/admin/layertree", {}, 10),
         # ("https://front/admin/layertree/children", {}, 10),
         (
-            "http://mapserver:8080/mapserv_proxy/MainPNG",
+            "http://mapserver:8080/mapserv_proxy/MapServer",
             {"SERVICE": "WMS", "REQUEST": "GetCapabilities"},
             60,
         ),
         (
             "http://mapserver:8080/mapserv_proxy/",
-            {"MAP": "MainPNG", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+            {"MAP": "MapServer", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
             60,
         ),
         # (
         #     "https://front/mapserv_proxy",
-        #     {"ogcserver": "Main PNG", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+        #     {"ogcserver": "MapServer", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
         #     60,
         # ),
         # (
-        #     "https://front/mapserv_proxy/Main+PNG",
+        #     "https://front/mapserv_proxy/MapServer",
         #     {"SERVICE": "WMS", "REQUEST": "GetCapabilities"},
         #     60,
         # ),
@@ -44,7 +44,7 @@ import requests
             60,
         ),
         # (
-        #     "https://front/mapserv_proxy/QGIS+server",
+        #     "https://front/mapserv_proxy/QGIS_Server",
         #     {"SERVICE": "WMS", "REQUEST": "GetCapabilities"},
         #     60,
         # ),
@@ -55,27 +55,27 @@ import requests
         # ),
         # (
         #     "https://front/mapserv_proxy",
-        #     {"ogcserver": "qgisserver", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
+        #     {"ogcserver": "QGIS_Server", "SERVICE": "WMS", "REQUEST": "GetCapabilities"},
         #     60,
         # ),
         # OGC API - Features
         # (
-        #     "http://mapserver:8080/mapserv_proxy/mapserver/ogcapi/collections/osm_protected/items",
+        #     "http://mapserver:8080/mapserv_proxy/MapServer/ogcapi/collections/osm_protected/items",
         #     {"bbox": "6.0,46.0,7.0,47.0", "limit": "100"},
         #     60,
         # ),
         # (
-        #     "https://front/mapserv_proxy/mapserver/mapserver/ogcapi/collections/osm_open/items",
+        #     "https://front/mapserv_proxy/MapServer/ogcapi/collections/osm_open/items",
         #     {"bbox": "6.0,46.0,7.0,47.0", "limit": "100"},
         #     60,
         # ),
         # (
-        #     "http://qgisserver:8080/mapserv_proxy/qgisserver/wfs3/collections/points/items",
+        #     "http://qgisserver:8080/mapserv_proxy/QGIS_Server/wfs3/collections/points/items",
         #     {"map": "/etc/qgisserver/project.qgs", "bbox": "6.0,46.0,7.0,47.0", "limit": "100"},
         #     60,
         # ),
         # (
-        #     "https://front/mapserv_proxy/qgisserver/wfs3/collections/points/items",
+        #     "https://front/mapserv_proxy/QGIS_Server/wfs3/collections/points/items",
         #     {"bbox": "6.0,46.0,7.0,47.0", "limit": "100"},
         #     60,
         # ),
