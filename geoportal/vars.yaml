@@ -13,7 +13,7 @@ vars:
   #  - vars.interfaces_config.default.constants.gmfVectorTilesOptions.tileGrid.origin
   srid: &srid 2056
 
-  main_ogc_server: Main PNG
+  main_ogc_server: MapServer
 
   alternate_projections: &alternate_projections
     - EPSG:4326
@@ -96,7 +96,7 @@ vars:
         ngeoPermalinkOgcserverUrl:
           name: mapserverproxy
           params:
-            ogcserver: Main PNG
+            ogcserver: MapServer
 
     desktop:
       constants:
@@ -601,7 +601,7 @@ vars:
       - location
 
   tinyowsproxy:
-    ogc_server: Main PNG
+    ogc_server: MapServer
 
   api:
     # The name of the API in JavaScript
@@ -768,7 +768,7 @@ vars:
     - localhost:8484
 
   # Checker configuration
-  checker_ogc_server: Main PNG
+  checker_ogc_server: MapServer
   checker:
     fulltextsearch:
       search: pau
