@@ -13,7 +13,11 @@ vars:
   #  - vars.interfaces_config.default.constants.gmfVectorTilesOptions.tileGrid.origin
   srid: &srid 2056
 
+<<<<<<< ours
   main_ogc_server: Main PNG
+=======
+  main_ogc_server: MapServer
+>>>>>>> theirs
 
   alternate_projections: &alternate_projections
     - EPSG:4326
