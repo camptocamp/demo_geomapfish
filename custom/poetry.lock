@@ -72,13 +72,13 @@ yaml = ["PyYAML"]
 
 [[package]]
 name = "c2cwsgiutils"
-version = "6.0.8"
+version = "6.0.9"
 description = "Common utilities for Camptocamp WSGI applications"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "c2cwsgiutils-6.0.8-py3-none-any.whl", hash = "sha256:2190e9e064ff7190e434767a13c132911e53d0d15fe99e0072da6e7c9586880f"},
-    {file = "c2cwsgiutils-6.0.8.tar.gz", hash = "sha256:b416a20a8490e30deed307811fba1b93d662c5d849fc36b0f94927f0440f2048"},
+    {file = "c2cwsgiutils-6.0.9-py3-none-any.whl", hash = "sha256:77e91d0bb74a62ab58b10e493b34a94e4a223dd33f35edef30d7b79d5424c374"},
+    {file = "c2cwsgiutils-6.0.9.tar.gz", hash = "sha256:f93ee7cb03a7d72cbb6699710963eb0d0cba25b0afae9a56ff5617b639b2b11d"},
 ]
 
 [package.dependencies]
@@ -86,6 +86,7 @@ cee_syslog_handler = "*"
 certifi = "*"
 cornice = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"webserver\" or extra == \"all\""}
 gunicorn = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"webserver\" or extra == \"all\""}
+idna = "*"
 pillow = "*"
 prometheus-client = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"webserver\" or extra == \"all\""}
 psycopg2 = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"webserver\" or extra == \"all\""}
@@ -99,6 +100,7 @@ SQLAlchemy = {version = "*", optional = true, markers = "extra == \"standard\" o
 SQLAlchemy-Utils = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"webserver\" or extra == \"all\""}
 ujson = "*"
 urllib3 = "*"
+webob = "*"
 "zope.interface" = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"webserver\" or extra == \"all\""}
 "zope.sqlalchemy" = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"webserver\" or extra == \"all\""}
 
@@ -1990,18 +1992,18 @@ testing = ["coverage", "pytest", "pytest-cov"]
 
 [[package]]
 name = "waitress"
-version = "3.0.0"
+version = "3.0.2"
 description = "Waitress WSGI server"
 optional = false
-python-versions = ">=3.8.0"
+python-versions = ">=3.9.0"
 files = [
-    {file = "waitress-3.0.0-py3-none-any.whl", hash = "sha256:2a06f242f4ba0cc563444ca3d1998959447477363a2d7e9b8b4d75d35cfd1669"},
-    {file = "waitress-3.0.0.tar.gz", hash = "sha256:005da479b04134cdd9dd602d1ee7c49d79de0537610d653674cc6cbde222b8a1"},
+    {file = "waitress-3.0.2-py3-none-any.whl", hash = "sha256:c56d67fd6e87c2ee598b76abdd4e96cfad1f24cacdea5078d382b1f9d7b5ed2e"},
+    {file = "waitress-3.0.2.tar.gz", hash = "sha256:682aaaf2af0c44ada4abfb70ded36393f0e307f4ab9456a215ce0020baefc31f"},
 ]
 
 [package.extras]
 docs = ["Sphinx (>=1.8.1)", "docutils", "pylons-sphinx-themes (>=1.0.9)"]
-testing = ["coverage (>=5.0)", "pytest", "pytest-cov"]
+testing = ["coverage (>=7.6.0)", "pytest", "pytest-cov"]
 
 [[package]]
 name = "webob"
@@ -2190,4 +2192,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "8566820fe252212e2be99e83cd08f5d779a064e165ccedb3bdcdb0a147d8aa97"
+content-hash = "c1f52d9349795269512ed808447a38a8ae7df3ba8575ea8138b45b5ab1a536c2"
