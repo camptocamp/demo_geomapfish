@@ -136,13 +136,13 @@ virtualenv = ["virtualenv (>=20.0.35)"]
 
 [[package]]
 name = "c2cwsgiutils"
-version = "6.1.0"
+version = "6.1.4"
 description = "Common utilities for Camptocamp WSGI applications"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "c2cwsgiutils-6.1.0-py3-none-any.whl", hash = "sha256:d81ee9a65061490d93b7b53a7f5f3138118a3ee35feb10541e44676b5c7fc396"},
-    {file = "c2cwsgiutils-6.1.0.tar.gz", hash = "sha256:e783a0d372be2cbeb1afaaf415fdc60811a56ea5544b0cb3ae53a111242877cd"},
+    {file = "c2cwsgiutils-6.1.4-py3-none-any.whl", hash = "sha256:40237b9ab0378b956198c75a408fb2f6396ea65caaa4487ef6101a5a86a4e6e0"},
+    {file = "c2cwsgiutils-6.1.4.tar.gz", hash = "sha256:8c061fad7ad3d47399a2981246484ca371adfca3e487c0b4f379de872dcb0a10"},
 ]
 
 [package.dependencies]
@@ -2329,18 +2329,18 @@ testing = ["coverage", "pytest", "pytest-cov"]
 
 [[package]]
 name = "waitress"
-version = "3.0.1"
+version = "3.0.2"
 description = "Waitress WSGI server"
 optional = false
 python-versions = ">=3.9.0"
 files = [
-    {file = "waitress-3.0.1-py3-none-any.whl", hash = "sha256:26cdbc593093a15119351690752c99adc13cbc6786d75f7b6341d1234a3730ac"},
-    {file = "waitress-3.0.1.tar.gz", hash = "sha256:ef0c1f020d9f12a515c4ec65c07920a702613afcad1dbfdc3bcec256b6c072b3"},
+    {file = "waitress-3.0.2-py3-none-any.whl", hash = "sha256:c56d67fd6e87c2ee598b76abdd4e96cfad1f24cacdea5078d382b1f9d7b5ed2e"},
+    {file = "waitress-3.0.2.tar.gz", hash = "sha256:682aaaf2af0c44ada4abfb70ded36393f0e307f4ab9456a215ce0020baefc31f"},
 ]
 
 [package.extras]
 docs = ["Sphinx (>=1.8.1)", "docutils", "pylons-sphinx-themes (>=1.0.9)"]
-testing = ["coverage (>=5.0)", "pytest", "pytest-cov"]
+testing = ["coverage (>=7.6.0)", "pytest", "pytest-cov"]
 
 [[package]]
 name = "webob"
@@ -2453,4 +2453,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.13"
-content-hash = "cec8950318b7798410422be5f584e28c617b60046f41027b4c02f583d7a8bbff"
+content-hash = "4a405ec5eca133025cc82c271fbbfa955a84e86f52fa8e65d3e4677a3f9c5b75"
