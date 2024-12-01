@@ -71,12 +71,12 @@ yaml = ["PyYAML"]
 
 [[package]]
 name = "c2cwsgiutils"
-version = "5.0.2"
+version = "5.0.4"
 description = "Common utilities for Camptocamp WSGI applications"
 optional = false
 python-versions = "*"
 files = [
-    {file = "c2cwsgiutils-5.0.2-py3-none-any.whl", hash = "sha256:7aa23190b2c76a321bfb91e45c057da648f26e4d05665f168f706eacf217c9f6"},
+    {file = "c2cwsgiutils-5.0.4-py3-none-any.whl", hash = "sha256:910c6c5299f89978292dc1336bfb03313808161878916d610db3f998f1b7e5d4"},
 ]
 
 [package.extras]
@@ -1785,4 +1785,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.11"
-content-hash = "0d8e3949d30e5de566a08533dd9bf18e0fcf685a53d557f8de420d731cb7c746"
+content-hash = "253a9a4ccd65e89598406dc04d98c611b580ae06a9c4d05cd8353f43f79ce752"
