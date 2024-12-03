@@ -2,12 +2,15 @@ inherits:
   - utils:base
   - utils:fix
   - utils:no-design-checks
+  - utils:c2cwsgiutils
   - duplicated
 
-pylint:
+ruff:
   disable:
-    - missing-timeout # Default timeout set by c2cwsgiutils
+    - D101 # Missing docstring in public class
+    - D102 # Missing docstring in public method
+    - D103 # Missing docstring in public function
 
-bandit:
+mypy:
   options:
-    config: .bandit.yaml
+    python_version: '3.10'

@@ -8,10 +8,7 @@ from custom.models.meta import Base
 
 
 def setup_models(dbsession):
-    """
-    Add or update models / fixtures in the database.
-
-    """
+    """Add or update models / fixtures in the database."""
     del dbsession  # Unused
 
 
