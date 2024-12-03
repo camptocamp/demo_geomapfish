@@ -5,16 +5,16 @@ description = 'Not used'
 authors = []
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.13"
+python = ">=3.12,<3.14"
 gunicorn = "23.0.0"
 plaster-pastedeploy = "1.0.1"
 pyramid = "2.0.2"
 pyramid-mako = "1.1.0"
 pyramid-debugtoolbar = "4.12.1"
 waitress = "3.0.2"
-alembic = "1.13.3"
+alembic = "1.14.0"
 pyramid-retry = "2.1.1"
-pyramid-tm = "2.5"
+pyramid-tm = "2.6"
 sqlalchemy = "2.0.36"
 transaction = "5.0"
 "zope.sqlalchemy" = "3.1"
@@ -23,13 +23,13 @@ requests = "2.32.3"
 psycopg2 = "2.9.10"
 c2cwsgiutils = { version = "6.1.4", extras = ["webserver"] }
 cee-syslog-handler = "0.6.0"
-PyJWT = "2.9.0"
+PyJWT = "2.10.0"
 redis = "5.2.0"
 PyYAML = "6.0.2"
-sentry-sdk = "2.17.0"
+sentry-sdk = "2.19.0"
 requests-oauthlib = "2.0.0"
 ujson = "5.10.0"
-azure-storage-blob = "12.23.1"
+azure-storage-blob = "12.24.0"
 azure-identity = "1.19.0"
 papyrus = "2.6.2"
 geojson = "3.1.0"
@@ -40,8 +40,8 @@ webob = { version = "1.8.9", optional = true }
 cryptography = { version = "43.0.3", optional = true }
 
 [tool.poetry.group.dev.dependencies]
-prospector = { version = "1.12.1", extras = ["with_bandit", "with_mypy", "with_pyroma"] }
-prospector-profile-utils = "1.9.1"
-prospector-profile-duplicated = "1.6.0"
+prospector = { version = "1.13.3", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
+prospector-profile-utils = "1.14.0"
+prospector-profile-duplicated = "1.8.1"
 types-requests = "2.32.0.20241016"
 types-oauthlib = "3.2.0.20240806"
