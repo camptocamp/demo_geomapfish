@@ -103,7 +103,7 @@ class SwisscomHeatmapApi:
             return self.error
         return self.response_to_geojson_result(response.json())
 
-    def check_api_error(self, response: Response):
+    def check_api_error(self, response: Response) -> None:
         if response.status_code != 200:
             err_code = response.status_code
             err_txt = response.text
@@ -111,9 +111,10 @@ class SwisscomHeatmapApi:
             self.error = Response(err_txt, status=err_code)
             raise ExternalAPIError("External api error")
 
-    def limit_query(self):
+    def limit_query(self) -> None:
         """
         Limit amount of allowed queries per day.
+
         [bgerber] It's rude, but we are using my own key !
         """
         delta = datetime.now() - self.request_date
