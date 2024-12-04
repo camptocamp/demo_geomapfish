@@ -198,40 +198,6 @@
       <gmf-lidar-panel slot="tool-panel-lidar"></gmf-lidar-panel>
       <gmf-lidar-footer id="lidar-footer" slot="footer-lidar"></gmf-lidar-footer>
 
-      <!-- Google Street View -->
-      <gmf-googlestreetview-button slot="tool-button"></gmf-googlestreetview-button>
-      <div slot="tool-panel-googlestreetview" class="row pointer-events-none gmf-streetview-panel">
-        <div class="col-sm-12">
-          <div class="gmf-app-tools-content-heading">
-            {{ 'Google Street View' | translate }}
-          </div>
-          <ngeo-streetview
-            active="mainCtrl.googleStreetViewActive"
-            feature-style="mainCtrl.streetViewStyle"
-            map="mainCtrl.map"
-            panel-width="mainCtrl.toolsPanelWidth"
-            options-name="ngeoGoogleStreetviewOptions" class="pointer-events-auto">
-          </ngeo-streetview>
-        </div>
-      </div>
-
-      <!-- Mapillary -->
-      <gmf-mapillary-button slot="tool-button"></gmf-mapillary-button>
-      <div slot="tool-panel-mapillary" class="row pointer-events-none gmf-streetview-panel">
-        <div class="col-sm-12">
-          <div class="gmf-app-tools-content-heading">
-            {{ 'Mapillary Street View' | translate }}
-          </div>
-          <ngeo-streetview
-            active="mainCtrl.mapillaryStreetViewActive"
-            feature-style="mainCtrl.streetViewStyle"
-            map="mainCtrl.map"
-            panel-width="mainCtrl.toolsPanelWidth"
-            options-name="ngeoStreetviewOptions" class="pointer-events-auto">
-          </ngeo-streetview>
-        </div>
-      </div>
-
       <!-- Selection -->
       <gmf-selection-button slot="tool-button"></gmf-selection-button>
       <div slot="tool-panel-selection"  class="row pointer-events-none">
@@ -252,19 +218,6 @@
           </div>
           <gmf-importdatasource map="mainCtrl.map" class="pointer-events-auto">
           </gmf-importdatasource>
-        </div>
-      </div>
-
-      <!-- Routing -->
-      <gmf-routing-button slot="tool-button"></gmf-routing-button>
-      <div slot="tool-panel-routing" class="row pointer-events-none">
-        <div class="col-sm-12">
-          <div class="gmf-app-tools-content-heading">
-            {{ 'Routing' | translate }}
-          </div>
-          <ngeo-routing
-            ngeo-routing-map="mainCtrl.map" class="pointer-events-auto">
-          </ngeo-routing>
         </div>
       </div>
 
