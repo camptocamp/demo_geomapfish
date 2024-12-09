@@ -39,6 +39,7 @@ import ngeoStreetviewModule from 'ngeo/streetview/module';
 import ngeoRoutingModule from 'ngeo/routing/module';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink';
 import '../webcomponents/index';
+import {OgcApiEndpoint} from '@camptocamp/ogc-client';
 
 /**
  * @private
@@ -55,6 +56,37 @@ class Controller extends AbstractDesktopController {
     if (this.dimensions.FLOOR == undefined) {
       this.dimensions.FLOOR = '*';
     }
+
+    // const baseUrl = 'http://localhost:8090/mapserv_proxy/mapserver/MainPNG/ogcapi';
+    // const ogcAPIManager = new OgcApiEndpoint(baseUrl);
+    //
+    // // features in the bbox
+    // const bbox: [number, number, number, number] = [-6.8824, 58.1736, -6.7937, 58.2042];
+    // ogcAPIManager.getCollectionItems('osm_open', 100, 0, false, undefined, bbox).then((features) => {
+    //   console.log(features);
+    // });
+
+    // MapServer route: /mapserv_proxy/<ogc-server>/ogcapi/*
+    fetch(
+      'https://localhost:8484/mapserv_proxy/<ogc-server>/ogcapi/collections/<layer>/items?bbox=6.0,46.0,7.0,47.0&limit=100&offset=0',
+    );
+    fetch(
+      'http://localhost:8090/mapserv_proxy/MainPNG/ogcapi/collections/osm_open/items?bbox=6.0,46.0,7.0,47.0&limit=100&offset=0&ogcserver=MainPNG',
+    );
+
+    // QGISServer route: /mapserv_proxy/<ogc-server>/wfs3/*
+    fetch(
+      'https://localhost:8484/mapserv_proxy/<ogc-server>/wfs3/collections/<layer-name/items?bbox=6.0,46.0,7.0,47.0&limit=100&offset=0',
+    );
+    fetch(
+      'http://localhost:8091/mapserv_proxy/wfs3/collections/points/items?bbox=6.0,46.0,7.0,47.0&limit=100&map=/etc/qgisserver/project.qgs',
+    );
+
+    //fetch(
+    //  'http://localhost:8090/mapserv_proxy/mapserver/MainPNG/ogcapi/collections/osm_open/items?bbox=2600000.0,1200000.0,2800000.0,1400000.0&limit=100&offset=0&bbox-crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F2056'
+    //);
+    //view-source:http://www.opengis.net/def/crs/EPSG/0/2056
+    //fetch('https://localhost:8484/mapserv_proxy?ogcserver=Main%20PNG&bbox=-6.8824,58.1736,-6.7937,58.2042&limit=100&offset=0');
   }
 
   /**
