@@ -95,7 +95,7 @@ repos:
           )$
       - id: poetry-lock
         additional_dependencies:
-          - poetry==1.8.4 # pypi
+          - poetry==1.8.5 # pypi
         exclude: |-
           (?x)^(
             pyproject\.toml
