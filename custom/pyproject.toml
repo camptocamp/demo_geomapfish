@@ -21,12 +21,12 @@ transaction = "5.0"
 cornice = "6.1.0"
 requests = "2.32.3"
 psycopg2 = "2.9.10"
-c2cwsgiutils = { version = "6.1.4", extras = ["webserver"] }
+c2cwsgiutils = { version = "6.1.5", extras = ["webserver"] }
 cee-syslog-handler = "0.6.0"
-PyJWT = "2.10.0"
-redis = "5.2.0"
+PyJWT = "2.10.1"
+redis = "5.2.1"
 PyYAML = "6.0.2"
-sentry-sdk = "2.19.0"
+sentry-sdk = "2.19.2"
 requests-oauthlib = "2.0.0"
 ujson = "5.10.0"
 azure-storage-blob = "12.24.0"
@@ -41,7 +41,7 @@ cryptography = { version = "43.0.3", optional = true }
 
 [tool.poetry.group.dev.dependencies]
 prospector = { version = "1.13.3", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
-prospector-profile-utils = "1.14.0"
+prospector-profile-utils = "1.14.1"
 prospector-profile-duplicated = "1.8.1"
 types-requests = "2.32.0.20241016"
 types-oauthlib = "3.2.0.20240806"
