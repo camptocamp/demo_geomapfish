@@ -3412,6 +3412,7 @@ def my_form_open(dialog, layer, feature):
       </wgs84extent>
       <id>landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_landuse" (geom)</datasource>
+      <title wfs="">Landuse test</title>
       <keywordList>
         <value></value>
       </keywordList>

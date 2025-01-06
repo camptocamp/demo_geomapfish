@@ -342,7 +342,7 @@
 
       <!-- Selection -->
       <gmf-selection-button slot="tool-button"></gmf-selection-button>
-      <div slot="tool-panel-query" class="row">
+      <div slot="tool-panel-selection" class="row">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">{{'Selection' | translate}}</div>
           <ngeo-query-panel></ngeo-query-panel>
@@ -441,6 +441,9 @@
         gmf-map-map="mainCtrl.map"
         gmf-map-manage-resize="mainCtrl.manageResize"
         gmf-map-resize-transition="mainCtrl.resizeTransition"
+        gmf-contextualdata=""
+        gmf-contextualdata-display="mainCtrl.contextualdataActive"
+        gmf-contextualdata-map="::mainCtrl.map"
       >
       </gmf-map>
       <ngeo-query
