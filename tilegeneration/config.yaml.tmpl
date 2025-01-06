@@ -144,9 +144,9 @@ ${DISABLE_LOCAL}  admin_path: tiles/admin
 
 process:
   optipng_test:
-    - cmd: optipng -o7 -simulate %(in)s
+    - cmd: optipng -fix -o7 -simulate %(in)s
   optipng:
-    - cmd: optipng %(args)s -zc9 -zm8 -zs3 -f5 %(in)s
+    - cmd: optipng %(args)s -fix -zc9 -zm8 -zs3 -f5 %(in)s
       arg:
         default: '-q'
         quiet: '-q'

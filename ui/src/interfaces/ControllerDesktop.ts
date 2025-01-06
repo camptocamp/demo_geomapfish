@@ -39,6 +39,7 @@ import ngeoStreetviewModule from 'ngeo/streetview/module';
 import ngeoRoutingModule from 'ngeo/routing/module';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink';
 import '../webcomponents/index';
+import contextualDataHtmlTemplate from './contextualdata.html';
 
 /**
  * @private
@@ -75,6 +76,20 @@ const geomapfishModule = angular.module('Desktop', [
   ngeoStreetviewModule.name,
   ngeoStatemanagerWfsPermalink.name,
 ]);
+
+geomapfishModule.value('gmfContextualdatacontentTemplateUrl', 'gmf/contextualdata');
+geomapfishModule.run(
+  /**
+   * @param {angular.ITemplateCacheService} $templateCache
+   */
+  [
+    '$templateCache',
+    ($templateCache) => {
+      // @ts-ignore: webpack
+      $templateCache.put('gmf/contextualdata', contextualDataHtmlTemplate);
+    },
+  ],
+);
 
 geomapfishModule.controller('DesktopController', Controller);
 
