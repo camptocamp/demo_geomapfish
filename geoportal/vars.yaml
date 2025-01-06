@@ -369,6 +369,9 @@ vars:
         gmfCustomJavascriptUrl: ''
         gmfCustomStylesheetUrl: ''
 
+    desktop_alt:
+      extends: desktop_renovated
+
     mobile:
       constants:
         sentryOptions:
