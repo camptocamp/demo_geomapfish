@@ -5,7 +5,7 @@ import mapModel from 'gmfapi/store/map';
 import configModel from 'gmfapi/store/config';
 import panelsModel from 'gmfapi/store/panels';
 import {html, TemplateResult, CSSResult, css, unsafeCSS} from 'lit';
-import {customElement, state } from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import {Subscription} from 'rxjs';
 import moment from 'moment';
 
