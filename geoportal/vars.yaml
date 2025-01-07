@@ -45,6 +45,9 @@ vars:
     - name: iframe_api_renovated
       type: custom
       html_filename: iframe_api.html
+    - name: desktop_alt
+      type: canvas
+      layout: desktop
     - name: desktop_renovated
       type: custom
       html_filename: desktop.html
