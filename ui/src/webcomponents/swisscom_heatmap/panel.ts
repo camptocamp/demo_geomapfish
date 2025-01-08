@@ -1,12 +1,13 @@
-import {html, TemplateResult, CSSResult, css, unsafeCSS} from 'lit';
-import {customElement, state, property} from 'lit/decorators.js';
 import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
 import loadingSvg from 'gmf/icons/spinner_svg.js';
 import ToolPanelElement from 'gmfapi/elements/ToolPanelElement';
 import mapModel from 'gmfapi/store/map';
 import configModel from 'gmfapi/store/config';
 import panelsModel from 'gmfapi/store/panels';
+import {html, TemplateResult, CSSResult, css, unsafeCSS} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
 import {Subscription} from 'rxjs';
+import moment from 'moment';
 
 import Map from 'ol/Map.js';
 import VectorSource from 'ol/source/Vector.js';
@@ -19,6 +20,11 @@ import {Feature} from 'ol/Feature.js';
 import {extend, Extent, createEmpty, isEmpty, buffer} from 'ol/extent.js';
 
 import SwisscomHeatmapService, {ConfigType} from './service';
+
+const QUERY_TYPE = {
+  dwellDensity: 'dwell-density.json',
+  dwellDemo: 'dwell-demographics.json',
+};
 
 @customElement('swisscom-heatmap')
 export default class SwisscomHeatmap extends ToolPanelElement {
@@ -106,7 +112,8 @@ export default class SwisscomHeatmap extends ToolPanelElement {
 
   private showComponent() {
     if (this.config) {
-      this.dateLabel = this.getDateLabel();
+      this.setDate(this.config.minDate);
+      this.updateHeatmapStyle();
       this.addLayer();
     }
     this.active = true;
@@ -136,10 +143,12 @@ export default class SwisscomHeatmap extends ToolPanelElement {
   }
 
   private getHeatmapWeight(feature: Feature): number {
-    if (this.queryType === 'dwell-density.json') {
-      return feature.get('score') / 100;
+    if (this.queryType === QUERY_TYPE.dwellDensity) {
+      // Small villages get 0-100, big 100-1000. Smooth the curve.
+      return Math.min(Math.log(feature.get('score')) / 6.6, 1);
     }
-    if (this.queryType === 'dwell-demographics.json') {
+    if (this.queryType === QUERY_TYPE.dwellDemo) {
+      // Score is between 0 (woman) and 1 (men). Show a bigger polarisation.
       const prop = feature.get('maleProportion');
       const factor = 1.5;
       return prop > 0.5 ? Math.min(prop * factor, 1) : Math.max(prop / factor, 0);
@@ -167,25 +176,34 @@ export default class SwisscomHeatmap extends ToolPanelElement {
   private queryOnChange(event: Event) {
     const target = event.target as HTMLInputElement;
     this.queryType = target.value;
+    this.vectorSource.clear();
+    this.updateHeatmapStyle();
+  }
+
+  private updateHeatmapStyle() {
+    let gradient = ['#00f', '#8ff', '#D8f', '#f00'];
+    let meaning = 'Blue means deserted, red means crowded.';
+    if (this.queryType === QUERY_TYPE.dwellDemo) {
+      gradient = ['#ff00d8', '#AAA', '#00d4ff'];
+      meaning = 'Pink means woman , blue means men.';
+    }
+    this.meaning = meaning;
+    this.heatmapLayer.setGradient(gradient);
   }
 
   private timeOnChange(event: Event) {
     this.time = this.getIntValueFromEvent(event);
   }
 
-  private yearOnChange(event: Event) {
-    this.year = this.getIntValueFromEvent(event);
-    this.dateLabel = this.getDateLabel();
+  private dateOnChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const date = moment(target.value, 'YYYY-MM-DD');
+    this.setDate(date.toDate());
   }
 
-  private monthOnChange(event: Event) {
-    this.month = this.getIntValueFromEvent(event);
-    this.dateLabel = this.getDateLabel();
-  }
-
-  private dayOnChange(event: Event) {
-    this.day = this.getIntValueFromEvent(event);
-    this.dateLabel = this.getDateLabel();
+  private setDate(date: Date) {
+    this.date = date;
+    this.dateLabel = this.getDateLabel(date);
   }
 
   private postalCodeOnChange(event: Event) {
@@ -193,39 +211,23 @@ export default class SwisscomHeatmap extends ToolPanelElement {
     this.postalCode = this.getIntValueFromEvent(event);
   }
 
-  private days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  private getDayName(dateTxt: string): string {
-    const date = new Date(dateTxt);
-    return this.days[date.getDay()];
+  private getDayName(date: Date): string {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return days[date.getDay()];
   }
 
-  private getDateLabel(): string {
-    const dayName = this.getDayName(`${this.year}.${this.month}.${this.day}`);
-    return `${dayName} ${this.day.toString()}`;
+  private getDateLabel(date: Date): string {
+    return moment(date).format('YYYY-MM-DD');
   }
 
-  private getDateTime() {
-    return `${this.day}.${this.month}.${this.year}T${this.time}:00`;
+  private getDateFullLabel(): string {
+    const dayName = this.getDayName(this.date);
+    return `${dayName} ${this.getDateLabel(this.date)}`;
   }
 
-  private getLimit(kind: 'day' | 'month' | 'year', isMin: boolean) {
-    const date1 = this.config.minDate;
-    const date2 = this.config.maxDate;
-    let limit1, limit2;
-    if (kind === 'day') {
-      limit1 = date1.getDate();
-      limit2 = date2.getDate();
-    } else if (kind === 'month') {
-      limit1 = date1.getMonth() + 1;
-      limit2 = date2.getMonth() + 1;
-    } else {
-      limit1 = date1.getFullYear();
-      limit2 = date2.getFullYear();
-    }
-    if (limit1 === limit2) {
-      return -1;
-    }
-    return isMin ? Math.min(limit1, limit2) : Math.max(limit1, limit2);
+  private getDateTime(): string {
+    const date = moment(this.date).format('DD.MM.YYYY');
+    return `${date}T${this.time}:00`;
   }
 
   private getFeaturesExtent(features: Feature[]): Extent | null {
@@ -245,7 +247,7 @@ export default class SwisscomHeatmap extends ToolPanelElement {
 
   private async onRequest() {
     this.waitingData = true;
-    this.messageText = `Request ${this.queryType} on ${this.getDateLabel()} at ${this.time}:00`;
+    this.messageText = `Request ${this.queryType} on ${this.getDateFullLabel()} at ${this.time}:00`;
     const data = await this.swisscomHeatmapService.fetchGeoJson(
       this.queryType,
       this.postalCode,
@@ -369,52 +371,18 @@ export default class SwisscomHeatmap extends ToolPanelElement {
             <option value="dwell-demographics.json">dwell-demographics</option>
           </select>
         </div>
+        <p class="italic">${this.meaning}</p>
         <div class="input two-item">
-          <label for="year">
-            <span>Year:&nbsp;</span>
-            <span id="day-label">${this.year}</span>
+          <label for="date">
+            <span>Date</span>
           </label>
           <input
-            ?disabled="${this.getLimit('year', true) === -1}"
-            id="year"
-            type="range"
-            min="${this.getLimit('year', true)}"
-            max="${this.getLimit('year', false)}"
-            step="1"
-            value="${this.year}"
-            @input=${this.yearOnChange}
-          />
-        </div>
-        <div class="input two-item">
-          <label for="month">
-            <span>Month:&nbsp;</span>
-            <span id="day-label">${this.month}</span>
-          </label>
-          <input
-            ?disabled="${this.getLimit('month', true) === -1}"
-            id="month"
-            type="range"
-            min="${this.getLimit('month', true)}"
-            max="${this.getLimit('month', false)}"
-            step="1"
-            value="${this.month}"
-            @input=${this.monthOnChange}
-          />
-        </div>
-        <div class="input two-item">
-          <label for="day">
-            <span>Date:&nbsp;</span>
-            <span id="day-label">${this.dateLabel}</span>
-          </label>
-          <input
-            ?disabled="${this.getLimit('day', true) === -1}"
-            id="day"
-            type="range"
-            min="${this.getLimit('day', true)}"
-            max="${this.getLimit('day', false)}"
-            step="1"
-            value="${this.day}"
-            @input=${this.dayOnChange}
+            id="date"
+            type="date"
+            min="${this.getDateLabel(this.config.minDate)}"
+            max="${this.getDateLabel(this.config.maxDate)}"
+            value="${this.getDateLabel(this.config.minDate)}"
+            @input=${this.dateOnChange}
           />
         </div>
         <div class="input two-item">
