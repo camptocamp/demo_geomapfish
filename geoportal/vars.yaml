@@ -494,6 +494,7 @@ vars:
 
     mobile_alt:
       extends: mobile_renovated
+      redirect_interface: desktop_alt
 
     iframe_api:
       constants:
