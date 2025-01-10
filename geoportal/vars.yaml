@@ -46,14 +46,11 @@ vars:
       type: custom
       html_filename: iframe_api.html
     - name: desktop_alt
-      type: custom
-      html_filename: desktop.html
+      type: canvas
+      layout: desktop
     - name: desktop_renovated
       type: custom
       html_filename: desktop.html
-    - name: mobile_alt
-      type: custom
-      html_filename: mobile.html
     - name: mobile_renovated
       type: custom
       html_filename: mobile.html
@@ -491,9 +488,6 @@ vars:
           zoom: 8
           autoRotate: True
           atLoadingTime: True
-
-    mobile_alt:
-      extends: mobile_renovated
 
     iframe_api:
       constants:
