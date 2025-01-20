@@ -28,6 +28,7 @@ ENV PGSCHEMA=$PGSCHEMA
 
 RUN \
     cd /tmp/config/geoportal/ \
+    && [ "${SIMPLE}" == "TRUE" ] || rm -f geomapfish_geoportal/*.py \
     && c2c-template --vars ${VARS_FILE} \
         --get-config geomapfish_geoportal/config.yaml \
         ${CONFIG_VARS} \
