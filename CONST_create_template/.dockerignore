@@ -12,3 +12,6 @@
 !geoportal/geomapfish_geoportal/static
 !geoportal/geomapfish_geoportal/locale
 geoportal/geomapfish_geoportal/locale/*.pot
+!geoportal/geomapfish_geoportal/authentication.py
+!geoportal/geomapfish_geoportal/multi_tenant.py
+!geoportal/geomapfish_geoportal/dev.py

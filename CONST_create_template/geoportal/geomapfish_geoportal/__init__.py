@@ -1,6 +1,7 @@
 import geomapfish_geoportal.authentication
 import geomapfish_geoportal.dev
 import geomapfish_geoportal.multi_organization
+import geomapfish_geoportal.multi_tenant
 from c2cgeoportal_geoportal import add_interface_config, locale_negotiator
 from c2cgeoportal_geoportal.lib.i18n import LOCALE_PATH
 from geomapfish_geoportal.resources import Root
@@ -28,6 +29,7 @@ def main(global_config, **settings):
     config.include("c2cgeoportal_geoportal")
 
     config.include(geomapfish_geoportal.multi_organization.includeme)
+    config.include(geomapfish_geoportal.multi_tenant.includeme)
 
     # Scan view decorator for adding routes
     config.scan()
