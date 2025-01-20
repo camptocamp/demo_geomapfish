@@ -42,7 +42,8 @@ RUN --mount=type=cache,target=/root/.cache \
     python3 -m pip install --disable-pip-version-check --editable=/app/ \
     && python3 -m compileall -q /usr/local/lib/python3.* \
         -x '/(ptvsd|.*pydev.*|networkx)/' \
-    && python3 -m compileall -q /app/geomapfish_geoportal -x /app/geomapfish_geoportal/static.*
+    && python3 -m compileall -q "/app/geomapfish_geoportal" -x "/app/geomapfish_geoportal/static".* \
+    && chmod go+w "/app/geomapfish_geoportal" "/app/geomapfish_geoportal/authentication.py" "/app/geomapfish_geoportal/multi_tenant.py" "/app/geomapfish_geoportal/dev.py"
 
 ARG GIT_HASH
 RUN c2cwsgiutils-genversion ${GIT_HASH}
