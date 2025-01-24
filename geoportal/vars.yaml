@@ -370,6 +370,12 @@ vars:
         gmfShareOptions:
           enableEmail: False
 
+      routes:
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: QGIS_Server
+
     desktop_renovated:
       extends: desktop_alt
       redirect_interface: mobile_renovated
