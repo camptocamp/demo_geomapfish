@@ -16,12 +16,12 @@
   "devDependencies": {
     "@rollup/plugin-inject": "5.0.5",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
-    "sass-embedded": "1.83.0",
-    "typescript": "5.7.2",
-    "vite": "6.0.5"
+    "sass-embedded": "1.83.4",
+    "typescript": "5.7.3",
+    "vite": "6.0.11"
   },
   "dependencies": {
-    "ngeo": "2.9.0-version-2.9-latest.20241206T104704Z.0bc3efb55.2.9"
+    "ngeo": "2.9.0-version-2.9-latest.20250115T074000Z.4d31fc0fa.2.9"
   },
   "alias": {
     "ngeo/": "ngeo/distlib/src/",
