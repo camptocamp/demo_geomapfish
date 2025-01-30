@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveDateTime="2025-01-30T13:23:09" saveUser="sbrunner" version="3.40.3-Bratislava" saveUserFull="Stéphane Brunner" projectname="">
+<qgis saveDateTime="2025-01-30T13:25:24" saveUser="sbrunner" version="3.40.3-Bratislava" saveUserFull="Stéphane Brunner" projectname="">
   <homePath path=""/>
   <title></title>
   <transaction mode="Disabled"/>
@@ -60,7 +60,7 @@
         </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-layer checked="Qt::Checked" source="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" expanded="1" id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" legend_split_behavior="0" patch_size="0,0" name="landuse" legend_exp="" providerKey="postgres">
+    <layer-tree-layer checked="Qt::Unchecked" source="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" expanded="1" id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" legend_split_behavior="0" patch_size="0,0" name="landuse" legend_exp="" providerKey="postgres">
       <customproperties>
         <Option/>
       </customproperties>
@@ -227,28 +227,28 @@
   </layer-tree-group>
   <snapping-settings minScale="0" scaleDependencyMode="0" type="1" enabled="0" mode="2" tolerance="12" maxScale="0" intersection-snapping="0" self-snapping="0" unit="1">
     <individual-layer-settings>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="railways_c4be1c69_274c_417a_b968_8abcf9043eb1"/>
       <layer-setting units="1" minScale="0" type="1" enabled="1" tolerance="12" maxScale="0" id="osm_hospitals_f6e2ed71_c4f5_4e66_94d3_b9268679b2cc"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="railways_d11080f7_9314_4079_8835_2593b5b42ca3"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_hospitals_cbf1ede7_5be7_43e2_9417_df7acb124d2c"/>
-      <layer-setting units="2" minScale="0" type="1" enabled="0" tolerance="0" maxScale="0" id="osm_firestations_beafadf3_069e_414e_b3fc_33b9e2322400"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_copier_c7d9a0aa_c771_475d_b5ab_000ef97bfe51"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="landuse_fcd94bff_16be_4208_b610_9eab540f670d"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_2f642e02_74c7_45d3_aa0a_c8c90aa55e19"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_9c10feca_b2b5_460f_b785_ed02128abb67"/>
       <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="time_762bcf93_4529_466e_ba8a_31ed5f11df15"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_hospitals_cbf1ede7_5be7_43e2_9417_df7acb124d2c"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="landuse_fcd94bff_16be_4208_b610_9eab540f670d"/>
       <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_a060cc2b_0cab_44dc_bc7d_92d7d92bb7a3"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="1" tolerance="12" maxScale="0" id="osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_9c10feca_b2b5_460f_b785_ed02128abb67"/>
       <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_6a5b936c_d582_4292_a354_ae8190f0657c"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_2f642e02_74c7_45d3_aa0a_c8c90aa55e19"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_firestations_b858d1b4_9d89_40c6_9834_2ebd980e5bda"/>
       <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_hospitals_5a51f681_47cb_41cb_bd38_996a7609a7b5"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_copier_c7d9a0aa_c771_475d_b5ab_000ef97bfe51"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="time_762bcf93_4529_466e_ba8a_31ed5f11df15"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="1" tolerance="12" maxScale="0" id="osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_a060cc2b_0cab_44dc_bc7d_92d7d92bb7a3"/>
+      <layer-setting units="2" minScale="0" type="1" enabled="0" tolerance="0" maxScale="0" id="osm_firestations_beafadf3_069e_414e_b3fc_33b9e2322400"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_firestations_ingrp_f5a21449_2f45_4ddd_8b83_0c4b46714170"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_firestations_e959231c_b187_4fc6_87e3_719e7b753925"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="railways_c4be1c69_274c_417a_b968_8abcf9043eb1"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="railways_d11080f7_9314_4079_8835_2593b5b42ca3"/>
       <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_hospitals_restricted_0e16aa67_bad1_428e_b579_200e777612ab"/>
       <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="points_6d11674c_db6d_47ab_8c20_66671ac95b8c"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_firestations_ingrp_f5a21449_2f45_4ddd_8b83_0c4b46714170"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_firestations_b858d1b4_9d89_40c6_9834_2ebd980e5bda"/>
-      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_firestations_e959231c_b187_4fc6_87e3_719e7b753925"/>
+      <layer-setting units="1" minScale="0" type="1" enabled="0" tolerance="12" maxScale="0" id="osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a"/>
     </individual-layer-settings>
   </snapping-settings>
   <relations/>
@@ -256,10 +256,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>meters</units>
     <extent>
-      <xmin>2531450.95041574677452445</xmin>
-      <ymin>1149711.80396116874180734</ymin>
-      <xmax>2542489.51224239310249686</xmax>
-      <ymax>1156759.16502405307255685</ymax>
+      <xmin>2514290.21204727562144399</xmin>
+      <ymin>1145377.47322653885930777</ymin>
+      <xmax>2558444.45935386093333364</xmax>
+      <ymax>1173566.91747807618230581</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -302,9 +302,9 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0" open="true" name="landuse">
+    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="true" name="landuse">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318"/>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="true" name="landuse_alias">
@@ -2931,18 +2931,6 @@
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" simplifyDrawingTol="1" readOnly="0" legendPlaceholderImage="" refreshOnNotifyMessage="" autoRefreshTime="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" simplifyLocal="1" geometry="Polygon" maxScale="0" simplifyAlgorithm="0" minScale="200000" type="vector" symbologyReferenceScale="-1" refreshOnNotifyEnabled="0" simplifyDrawingHints="1" wkbType="Polygon">
-      <extent>
-        <xmin>2484967.802780881524086</xmin>
-        <ymin>1075174.05512963933870196</ymin>
-        <xmax>2832276.01219294918701053</xmax>
-        <ymax>1295749.39578074542805552</ymax>
-      </extent>
-      <wgs84extent>
-        <xmin>5.9031007316377373</xmin>
-        <ymin>45.78842504623654008</ymin>
-        <xmax>10.5379470151521577</xmax>
-        <ymax>47.81226746760545865</ymax>
-      </wgs84extent>
       <id>landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_landuse" (geom)</datasource>
       <keywordList>
@@ -3161,8 +3149,8 @@
       </elevation>
       <renderer-v2 type="RuleRenderer" enableorderby="0" referencescale="-1" forceraster="0" symbollevels="0">
         <rules key="{00139cd0-e690-4915-af90-7c7365c9dec0}">
-          <rule key="{93893bf3-00c2-4e39-9152-393cf41b1634}" label="landuse high" checkstate="0" symbol="0" scalemindenom="10000" scalemaxdenom="1000000000"/>
-          <rule key="{3989ef6c-a0e3-4957-8b46-cfa2c4529e18}" label="landuse" checkstate="0" symbol="1" scalemindenom="1" scalemaxdenom="10000"/>
+          <rule key="{93893bf3-00c2-4e39-9152-393cf41b1634}" label="landuse high" symbol="0" scalemindenom="10000" scalemaxdenom="1000000000"/>
+          <rule key="{3989ef6c-a0e3-4957-8b46-cfa2c4529e18}" label="landuse" symbol="1" scalemindenom="1" scalemaxdenom="10000"/>
         </rules>
         <symbols>
           <symbol frame_rate="10" type="fill" alpha="1" is_animated="0" name="0" clip_to_extent="1" force_rhr="0">
@@ -3275,8 +3263,8 @@
       <customproperties>
         <Option type="Map">
           <Option type="int" value="0" name="embeddedWidgets/count"/>
-          <Option name="variableNames"/>
-          <Option name="variableValues"/>
+          <Option type="invalid" name="variableNames"/>
+          <Option type="invalid" name="variableValues"/>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -3352,7 +3340,7 @@
           <Option type="Map" name="QgsGeometryGapCheck">
             <Option type="double" value="0" name="allowedGapsBuffer"/>
             <Option type="bool" value="false" name="allowedGapsEnabled"/>
-            <Option type="QString" value="" name="allowedGapsLayer"/>
+            <Option type="invalid" name="allowedGapsLayer"/>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -14847,18 +14835,6 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" simplifyDrawingTol="1" readOnly="0" legendPlaceholderImage="" refreshOnNotifyMessage="" autoRefreshTime="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" simplifyLocal="1" geometry="Line" maxScale="0" simplifyAlgorithm="0" minScale="100000000" type="vector" symbologyReferenceScale="-1" refreshOnNotifyEnabled="0" simplifyDrawingHints="1" wkbType="LineString">
-      <extent>
-        <xmin>2481221.94092437950894237</xmin>
-        <ymin>1076408.43441835814155638</ymin>
-        <xmax>2817635.2537366128526628</xmax>
-        <ymax>1291185.15252525801770389</ymax>
-      </extent>
-      <wgs84extent>
-        <xmin>5.85434409615557261</xmin>
-        <ymin>45.80437878812949748</ymin>
-        <xmax>10.34052431944580519</xmax>
-        <ymax>47.77121929769337783</ymax>
-      </wgs84extent>
       <id>railways_d11080f7_9314_4079_8835_2593b5b42ca3</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=LineString checkPrimaryKeyUnicity='1' table="geodata"."osm_railways" (geom)</datasource>
       <keywordList>
@@ -16272,7 +16248,7 @@ def my_form_open(dialog, layer, feature):
   <Sensors/>
   <ProjectViewSettings rotation="0" UseProjectScales="0">
     <Scales/>
-    <DefaultViewExtent ymax="1156759.16502405307255685" ymin="1149711.80396116874180734" xmax="2543268.04647543933242559" xmin="2530672.41618270054459572">
+    <DefaultViewExtent ymax="1173566.91747807618230581" ymin="1145377.47322653885930777" xmax="2561558.59628604631870985" xmin="2511176.07511509023606777">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>PROJCRS["CH1903+ / LV95",BASEGEOGCRS["CH1903+",DATUM["CH1903+",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4150]],CONVERSION["Swiss Oblique Mercator 1995",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth of initial line",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor on initial line",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",2600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",1200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.82,5.96,47.81,10.49]],ID["EPSG",2056]]</wkt>
         <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
@@ -16286,7 +16262,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </DefaultViewExtent>
   </ProjectViewSettings>
-  <ProjectStyleSettings RandomizeDefaultSymbolColor="1" iccProfileId="attachment:///" DefaultSymbolOpacity="1" colorModel="Rgb" projectStyleId="attachment:///dDcLQP_styles.db">
+  <ProjectStyleSettings RandomizeDefaultSymbolColor="1" iccProfileId="attachment:///QGIS3-jvOiaO" DefaultSymbolOpacity="1" colorModel="Rgb" projectStyleId="attachment:///dDcLQP_styles.db">
     <databases/>
   </ProjectStyleSettings>
   <ProjectTimeSettings cumulativeTemporalRange="0" frameRate="1" timeStep="1" totalMovieFrames="100" timeStepUnit="h"/>
@@ -16337,7 +16313,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings destinationLayerProvider="postgres" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayerSource="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" destinationLayerName="landuse" destinationLayer="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" autoAddTrackVertices="0">
+  <ProjectGpsSettings destinationLayerProvider="postgres" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayerSource="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" destinationLayerName="landuse_ingrp" destinationLayer="landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13" autoAddTrackVertices="0">
     <timeStampFields/>
   </ProjectGpsSettings>
 </qgis>
