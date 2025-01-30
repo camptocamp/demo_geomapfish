@@ -68,7 +68,7 @@
     },
     /** Automerge the patch, the minor and the dev dependency */
     {
-      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
+      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/', '/^prod-2-9.*/'],
       matchUpdateTypes: ['minor', 'patch'],
       automerge: true,
     },
