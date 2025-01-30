@@ -163,5 +163,12 @@
       matchUpdateTypes: ['major'],
       enabled: false,
     },
+    /** Make ngeo as loose, daily updates */
+    {
+      matchDepNames: ['ngeo'],
+      groupName: 'Ngeo',
+      versioning: 'loose',
+      schedule: 'after 5am',
+    },
   ],
 }
