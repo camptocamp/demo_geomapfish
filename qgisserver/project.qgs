@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveDateTime="2025-01-30T13:19:04" saveUser="sbrunner" version="3.40.3-Bratislava" saveUserFull="Stéphane Brunner" projectname="">
+<qgis saveDateTime="2025-01-30T13:23:09" saveUser="sbrunner" version="3.40.3-Bratislava" saveUserFull="Stéphane Brunner" projectname="">
   <homePath path=""/>
   <title></title>
   <transaction mode="Disabled"/>
@@ -39,7 +39,7 @@
       <customproperties>
         <Option/>
       </customproperties>
-      <layer-tree-layer checked="Qt::Checked" source="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" expanded="1" id="landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13" legend_split_behavior="0" patch_size="0,0" name="landuse_ingrp" legend_exp="" providerKey="postgres">
+      <layer-tree-layer checked="Qt::Unchecked" source="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" expanded="1" id="landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13" legend_split_behavior="0" patch_size="0,0" name="landuse_ingrp" legend_exp="" providerKey="postgres">
         <customproperties>
           <Option/>
         </customproperties>
@@ -60,7 +60,7 @@
         </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-layer checked="Qt::Unchecked" source="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" expanded="0" id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" legend_split_behavior="0" patch_size="0,0" name="landuse" legend_exp="" providerKey="postgres">
+    <layer-tree-layer checked="Qt::Checked" source="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" expanded="1" id="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" legend_split_behavior="0" patch_size="0,0" name="landuse" legend_exp="" providerKey="postgres">
       <customproperties>
         <Option/>
       </customproperties>
@@ -85,7 +85,7 @@
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" source="service='demo' sslmode=require key='fid' srid=2056 type=LineString checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_railways&quot; (geom)" expanded="1" id="railways_d11080f7_9314_4079_8835_2593b5b42ca3" legend_split_behavior="0" patch_size="0,0" name="railways" legend_exp="" providerKey="postgres">
+    <layer-tree-layer checked="Qt::Checked" source="service='demo' sslmode=require key='fid' srid=2056 type=LineString checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_railways&quot; (geom)" expanded="1" id="railways_d11080f7_9314_4079_8835_2593b5b42ca3" legend_split_behavior="0" patch_size="0,0" name="railways" legend_exp="" providerKey="postgres">
       <customproperties>
         <Option/>
       </customproperties>
@@ -120,7 +120,7 @@
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-group checked="Qt::Checked" groupLayer="" expanded="0" name="osm">
+    <layer-tree-group checked="Qt::Unchecked" groupLayer="" expanded="0" name="osm">
       <customproperties>
         <Option/>
       </customproperties>
@@ -150,7 +150,7 @@
         </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-group checked="Qt::Checked" groupLayer="" expanded="0" name="filter_group">
+    <layer-tree-group checked="Qt::Unchecked" groupLayer="" expanded="0" name="filter_group">
       <customproperties>
         <Option/>
       </customproperties>
@@ -165,7 +165,7 @@
         </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-group checked="Qt::Checked" groupLayer="" expanded="1" name="raster">
+    <layer-tree-group checked="Qt::Unchecked" groupLayer="" expanded="1" name="raster">
       <customproperties>
         <Option/>
       </customproperties>
@@ -256,10 +256,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>meters</units>
     <extent>
-      <xmin>2770549.2168187890201807</xmin>
-      <ymin>1041742.78441412840038538</ymin>
-      <xmax>2770549.33155977353453636</xmax>
-      <ymax>1041742.84905228856950998</ymax>
+      <xmin>2531450.95041574677452445</xmin>
+      <ymin>1149711.80396116874180734</ymin>
+      <xmax>2542489.51224239310249686</xmax>
+      <ymax>1156759.16502405307255685</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -281,7 +281,7 @@
   <projectModels/>
   <legend updateDrawingOrder="true">
     <legendgroup checked="Qt::Unchecked" open="true" name="group">
-      <legendlayer checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0" open="true" name="landuse_ingrp">
+      <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="true" name="landuse_ingrp">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" visible="0" layerid="landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13"/>
         </filegroup>
@@ -302,9 +302,9 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="false" name="landuse">
-      <filegroup open="false" hidden="false">
-        <legendlayerfile isInOverview="0" visible="0" layerid="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318"/>
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0" open="true" name="landuse">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" visible="1" layerid="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318"/>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="true" name="landuse_alias">
@@ -327,9 +327,9 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="points_6a5b936c_d582_4292_a354_ae8190f0657c"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="true" name="railways">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0" open="true" name="railways">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="0" layerid="railways_d11080f7_9314_4079_8835_2593b5b42ca3"/>
+        <legendlayerfile isInOverview="0" visible="1" layerid="railways_d11080f7_9314_4079_8835_2593b5b42ca3"/>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="true" name="osm_firestations">
@@ -362,7 +362,7 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="osm_hospitals_f6e2ed71_c4f5_4e66_94d3_b9268679b2cc"/>
       </filegroup>
     </legendlayer>
-    <legendgroup checked="Qt::Checked" open="false" name="osm">
+    <legendgroup checked="Qt::Unchecked" open="false" name="osm">
       <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="true" name="osm_firestations_ingrp">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" visible="0" layerid="osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a"/>
@@ -386,22 +386,22 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup checked="Qt::Checked" open="false" name="filter_group">
+    <legendgroup checked="Qt::Unchecked" open="false" name="filter_group">
       <legendlayer checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0" open="true" name="pointscopier">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" visible="1" layerid="points_9c10feca_b2b5_460f_b785_ed02128abb67"/>
+          <legendlayerfile isInOverview="0" visible="0" layerid="points_9c10feca_b2b5_460f_b785_ed02128abb67"/>
         </filegroup>
       </legendlayer>
       <legendlayer checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0" open="true" name="pointslabels">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" visible="1" layerid="points_copier_c7d9a0aa_c771_475d_b5ab_000ef97bfe51"/>
+          <legendlayerfile isInOverview="0" visible="0" layerid="points_copier_c7d9a0aa_c771_475d_b5ab_000ef97bfe51"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup checked="Qt::Checked" open="true" name="raster">
+    <legendgroup checked="Qt::Unchecked" open="true" name="raster">
       <legendlayer checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0" open="false" name="SRTM">
         <filegroup open="false" hidden="false">
-          <legendlayerfile isInOverview="0" visible="1" layerid="SRTM_vrt_6f97185d_a7e7_4bbd_a82e_ffbc4c9dadeb"/>
+          <legendlayerfile isInOverview="0" visible="0" layerid="SRTM_vrt_6f97185d_a7e7_4bbd_a82e_ffbc4c9dadeb"/>
         </filegroup>
       </legendlayer>
       <legendlayer checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0" open="true" name="SRTM copier">
@@ -2931,6 +2931,18 @@
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" simplifyDrawingTol="1" readOnly="0" legendPlaceholderImage="" refreshOnNotifyMessage="" autoRefreshTime="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" simplifyLocal="1" geometry="Polygon" maxScale="0" simplifyAlgorithm="0" minScale="200000" type="vector" symbologyReferenceScale="-1" refreshOnNotifyEnabled="0" simplifyDrawingHints="1" wkbType="Polygon">
+      <extent>
+        <xmin>2484967.802780881524086</xmin>
+        <ymin>1075174.05512963933870196</ymin>
+        <xmax>2832276.01219294918701053</xmax>
+        <ymax>1295749.39578074542805552</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>5.9031007316377373</xmin>
+        <ymin>45.78842504623654008</ymin>
+        <xmax>10.5379470151521577</xmax>
+        <ymax>47.81226746760545865</ymax>
+      </wgs84extent>
       <id>landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table="geodata"."osm_landuse" (geom)</datasource>
       <keywordList>
@@ -2984,7 +2996,7 @@
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial minz="0" maxz="0" crs="" minx="0" dimensions="2" miny="0" maxy="0" maxx="0"/>
+          <spatial minz="0" maxz="0" crs="EPSG:2056" minx="0" dimensions="2" miny="0" maxy="0" maxx="0"/>
           <temporal>
             <period>
               <start></start>
@@ -3009,7 +3021,7 @@
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal startField="" fixedDuration="0" durationField="" accumulate="0" enabled="0" mode="0" endField="" startExpression="" durationUnit="min" limitMode="0" endExpression="">
+      <temporal startField="" fixedDuration="0" durationField="fid" accumulate="0" enabled="0" mode="0" endField="" startExpression="" durationUnit="min" limitMode="0" endExpression="">
         <fixedRange>
           <start></start>
           <end></end>
@@ -3149,8 +3161,8 @@
       </elevation>
       <renderer-v2 type="RuleRenderer" enableorderby="0" referencescale="-1" forceraster="0" symbollevels="0">
         <rules key="{00139cd0-e690-4915-af90-7c7365c9dec0}">
-          <rule key="{93893bf3-00c2-4e39-9152-393cf41b1634}" label="landuse high" checkstate="0" symbol="0" scalemindenom="10000" scalemaxdenom="10000000"/>
-          <rule key="{3989ef6c-a0e3-4957-8b46-cfa2c4529e18}" label="landuse" checkstate="0" symbol="1" scalemaxdenom="10000"/>
+          <rule key="{93893bf3-00c2-4e39-9152-393cf41b1634}" label="landuse high" checkstate="0" symbol="0" scalemindenom="10000" scalemaxdenom="1000000000"/>
+          <rule key="{3989ef6c-a0e3-4957-8b46-cfa2c4529e18}" label="landuse" checkstate="0" symbol="1" scalemindenom="1" scalemaxdenom="10000"/>
         </rules>
         <symbols>
           <symbol frame_rate="10" type="fill" alpha="1" is_animated="0" name="0" clip_to_extent="1" force_rhr="0">
@@ -3226,14 +3238,51 @@
       </renderer-v2>
       <selection mode="Default">
         <selectionColor invalid="1"/>
+        <selectionSymbol>
+          <symbol frame_rate="10" type="fill" alpha="1" is_animated="0" name="" clip_to_extent="1" force_rhr="0">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer class="SimpleFill" locked="0" enabled="1" id="{6ac43225-ec6b-4b21-96e1-57127c816806}" pass="0">
+              <Option type="Map">
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale"/>
+                <Option type="QString" value="0,0,255,255,rgb:0,0,1,1" name="color"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="35,35,35,255,rgb:0.13725490196078433,0.13725490196078433,0.13725490196078433,1" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0.26" name="outline_width"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="solid" name="style"/>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </selectionSymbol>
       </selection>
       <customproperties>
-        <Option/>
+        <Option type="Map">
+          <Option type="int" value="0" name="embeddedWidgets/count"/>
+          <Option name="variableNames"/>
+          <Option name="variableValues"/>
+        </Option>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
+      <LinearlyInterpolatedDiagramRenderer upperValue="0" lowerWidth="0" diagramType="Histogram" attributeLegend="1" lowerHeight="0" upperHeight="5" lowerValue="0" classificationAttributeExpression="" upperWidth="5">
         <DiagramCategory rotationOffset="270" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramSpacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" scaleBasedVisibility="0" stackedDiagramMode="Horizontal" lineSizeType="MM" minScaleDenominator="0" barWidth="5" minimumSize="0" sizeType="MM" enabled="0" stackedDiagramSpacing="0" maxScaleDenominator="1e+08" width="15" lineSizeScale="3x:0,0,0,0,0,0" penWidth="0" penAlpha="255" spacingUnit="MM" backgroundColor="#ffffff" sizeScale="3x:0,0,0,0,0,0" diagramOrientation="Up" labelPlacementMethod="XHeight" backgroundAlpha="255" spacing="0" penColor="#000000" direction="1" showAxis="0" height="15" opacity="1" scaleDependency="Area">
           <fontProperties strikethrough="0" bold="0" italic="0" description="Ubuntu,11,-1,5,50,0,0,0,0,0" style="" underline="0"/>
           <attribute field="" label="" colorOpacity="1" color="#000000"/>
@@ -3287,7 +3336,7 @@
             </symbol>
           </axisSymbol>
         </DiagramCategory>
-      </SingleCategoryDiagramRenderer>
+      </LinearlyInterpolatedDiagramRenderer>
       <DiagramLayerSettings linePlacementFlags="18" placement="0" zIndex="0" showAll="1" priority="0" dist="0" obstacle="0">
         <properties>
           <Option type="Map">
@@ -3299,7 +3348,13 @@
       </DiagramLayerSettings>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
         <activeChecks/>
-        <checkConfiguration/>
+        <checkConfiguration type="Map">
+          <Option type="Map" name="QgsGeometryGapCheck">
+            <Option type="double" value="0" name="allowedGapsBuffer"/>
+            <Option type="bool" value="false" name="allowedGapsEnabled"/>
+            <Option type="QString" value="" name="allowedGapsLayer"/>
+          </Option>
+        </checkConfiguration>
       </geometryOptions>
       <legend type="default-vector" showLabelLegend="0"/>
       <referencedLayers/>
@@ -3333,7 +3388,7 @@
           </editWidget>
         </field>
         <field configurationFlags="NoFlag" name="geom_4326">
-          <editWidget type="">
+          <editWidget type="Geometry">
             <config>
               <Option/>
             </config>
@@ -3392,6 +3447,7 @@
           <column type="field" name="name" hidden="0" width="-1"/>
           <column type="field" name="type" hidden="0" width="-1"/>
           <column type="actions" hidden="1" width="-1"/>
+          <column type="field" name="geom_4326" hidden="0" width="-1"/>
           <column type="field" name="fid" hidden="0" width="-1"/>
         </columns>
       </attributetableconfig>
@@ -3425,20 +3481,28 @@ def my_form_open(dialog, layer, feature):
       <editorlayout>generatedlayout</editorlayout>
       <editable>
         <field name="fid" editable="1"/>
+        <field name="geom_4326" editable="1"/>
         <field name="name" editable="1"/>
         <field name="osm_id" editable="1"/>
         <field name="type" editable="1"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="fid"/>
+        <field labelOnTop="0" name="geom_4326"/>
         <field labelOnTop="0" name="name"/>
         <field labelOnTop="0" name="osm_id"/>
         <field labelOnTop="0" name="type"/>
       </labelOnTop>
-      <reuseLastValue/>
+      <reuseLastValue>
+        <field name="fid" reuseLastValue="0"/>
+        <field name="geom_4326" reuseLastValue="0"/>
+        <field name="name" reuseLastValue="0"/>
+        <field name="osm_id" reuseLastValue="0"/>
+        <field name="type" reuseLastValue="0"/>
+      </reuseLastValue>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression>osm_id</previewExpression>
+      <previewExpression>"osm_id"</previewExpression>
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" simplifyDrawingTol="1" readOnly="0" legendPlaceholderImage="" refreshOnNotifyMessage="" autoRefreshTime="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="1" labelsEnabled="0" simplifyLocal="1" geometry="Polygon" maxScale="0" simplifyAlgorithm="0" minScale="200000" type="vector" symbologyReferenceScale="-1" refreshOnNotifyEnabled="0" simplifyDrawingHints="1" wkbType="Polygon">
@@ -14783,6 +14847,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" simplifyDrawingTol="1" readOnly="0" legendPlaceholderImage="" refreshOnNotifyMessage="" autoRefreshTime="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" simplifyLocal="1" geometry="Line" maxScale="0" simplifyAlgorithm="0" minScale="100000000" type="vector" symbologyReferenceScale="-1" refreshOnNotifyEnabled="0" simplifyDrawingHints="1" wkbType="LineString">
+      <extent>
+        <xmin>2481221.94092437950894237</xmin>
+        <ymin>1076408.43441835814155638</ymin>
+        <xmax>2817635.2537366128526628</xmax>
+        <ymax>1291185.15252525801770389</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>5.85434409615557261</xmin>
+        <ymin>45.80437878812949748</ymin>
+        <xmax>10.34052431944580519</xmax>
+        <ymax>47.77121929769337783</ymax>
+      </wgs84extent>
       <id>railways_d11080f7_9314_4079_8835_2593b5b42ca3</id>
       <datasource>service='demo' sslmode=require key='fid' srid=2056 type=LineString checkPrimaryKeyUnicity='1' table="geodata"."osm_railways" (geom)</datasource>
       <keywordList>
@@ -16196,7 +16272,7 @@ def my_form_open(dialog, layer, feature):
   <Sensors/>
   <ProjectViewSettings rotation="0" UseProjectScales="0">
     <Scales/>
-    <DefaultViewExtent ymax="1041742.84905228856950998" ymin="1041742.78441412840038538" xmax="2770549.33195263147354126" xmin="2770549.2164259310811758">
+    <DefaultViewExtent ymax="1156759.16502405307255685" ymin="1149711.80396116874180734" xmax="2543268.04647543933242559" xmin="2530672.41618270054459572">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>PROJCRS["CH1903+ / LV95",BASEGEOGCRS["CH1903+",DATUM["CH1903+",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4150]],CONVERSION["Swiss Oblique Mercator 1995",METHOD["Hotine Oblique Mercator (variant B)",ID["EPSG",9815]],PARAMETER["Latitude of projection centre",46.9524055555556,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8811]],PARAMETER["Longitude of projection centre",7.43958333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8812]],PARAMETER["Azimuth of initial line",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8813]],PARAMETER["Angle from Rectified to Skew Grid",90,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8814]],PARAMETER["Scale factor on initial line",1,SCALEUNIT["unity",1],ID["EPSG",8815]],PARAMETER["Easting at projection centre",2600000,LENGTHUNIT["metre",1],ID["EPSG",8816]],PARAMETER["Northing at projection centre",1200000,LENGTHUNIT["metre",1],ID["EPSG",8817]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Cadastre, engineering survey, topographic mapping (large and medium scale)."],AREA["Liechtenstein; Switzerland."],BBOX[45.82,5.96,47.81,10.49]],ID["EPSG",2056]]</wkt>
         <proj4>+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
@@ -16261,7 +16337,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings destinationLayerProvider="postgres" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayerSource="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" destinationLayerName="landuse_ingrp" destinationLayer="landuse_7fa0e9e8_a78c_4702_acc7_937cb583ed13" autoAddTrackVertices="0">
+  <ProjectGpsSettings destinationLayerProvider="postgres" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayerSource="service='demo' sslmode=require key='fid' srid=2056 type=Polygon checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_landuse&quot; (geom)" destinationLayerName="landuse" destinationLayer="landuse_6c0b2f03_d191_4c63_a62d_a7ed0e2fb318" autoAddTrackVertices="0">
     <timeStampFields/>
   </ProjectGpsSettings>
 </qgis>
