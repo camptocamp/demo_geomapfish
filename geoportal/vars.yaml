@@ -783,8 +783,8 @@ vars:
 
   authentication:
     openid_connect:
-      url: https://sso.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com/
-      #url: https://geomapfish-demo-sso.camptocamp.com/
+      url: https://sso.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com
+      #url: https://geomapfish-demo-sso.camptocamp.com
       client_id: '288833770369390672'
       query_user_info: True
       create_user: True
