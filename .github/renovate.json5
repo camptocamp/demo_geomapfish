@@ -169,6 +169,7 @@
       groupName: 'Ngeo',
       versioning: 'loose',
       schedule: 'after 5am',
+      minimumReleaseAge: '0',
     },
   ],
 }
