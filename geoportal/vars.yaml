@@ -793,7 +793,7 @@ vars:
         - username
         - display_name
       login_extra_params:
-        login_hint: select_account
+        prompt: select_account
 
   intranet:
     networks:
