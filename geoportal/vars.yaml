@@ -259,8 +259,7 @@ vars:
           removeEmptyColumns: True
           mergeTabs:
             OSM_time_merged: [osm_time, osm_time2]
-            transport (merged): [fuel, parking]
-            Learning [merged]: [information, bus_stop]
+            transport (merged): [fuel, bus_stop]
         gmfSearchOptions:
           coordinatesProjections: *alternate_projections
           delay: 500
