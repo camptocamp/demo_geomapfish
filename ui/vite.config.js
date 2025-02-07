@@ -50,6 +50,7 @@ export default defineConfig({
       'api': path.resolve(__dirname, 'node_modules/ngeo/distlib/api'),
       'jquery-ui/datepicker': path.resolve(__dirname, 'empty.js'), // For angular-ui-date
       // Save about of 45k os bandwidth (gzipped) by unworking ignoring import done by a script downloaded from a CDN.
+      'jquery-datetimepicker/jquery.datetimepicker': path.resolve(__dirname, 'empty.js'),
       'bootstrap/js/src/popover': path.resolve(__dirname, 'empty.js'),
       'bootstrap/js/src/tooltip': path.resolve(__dirname, 'empty.js'),
       'bootstrap/js/src/alert': path.resolve(__dirname, 'empty.js'),
