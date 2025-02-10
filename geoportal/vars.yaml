@@ -106,7 +106,6 @@ vars:
         gmfDatasourceOptions:
           arcgisWMSInfoFormat: application/geo+json
         gmfAuthenticationConfig:
-          # oidcUserInformationUrl: https://sso.geomapfish-demo.prod.apps.gs-ch-prod.camptocamp.com/ui/console/users/me
           oidcUserInformationUrl: https://geomapfish-demo-sso.camptocamp.com/ui/console/users/me
       routes:
         # TODO: remove when the OpenId Connect pull request is merged
@@ -259,7 +258,7 @@ vars:
           removeEmptyColumns: True
           mergeTabs:
             OSM_time_merged: [osm_time, osm_time2]
-            transport (merged): [fuel, bus_stop]
+            transport (merged): [fuel, bus_stop, tourism_activity]
         gmfSearchOptions:
           coordinatesProjections: *alternate_projections
           delay: 500
@@ -323,9 +322,6 @@ vars:
             label: '4'
           - value: '*'
             label: '*'
-        gmfAuthenticationConfig:
-          allowPasswordReset: False
-          allowPasswordChange: False
         ngeoRoutingOptions:
           - backendUrl: https://routing.osm.ch/
           - profiles:
