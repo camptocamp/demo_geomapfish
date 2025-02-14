@@ -1,13 +1,16 @@
 {
-  'extends': ['config:base'],
-  timezone: 'Europe/Zurich',
-  schedule: 'after 5pm on the first day of the month',
-  labels: ['dependencies'],
-  separateMajorMinor: true,
-  separateMinorPatch: true,
-  prHourlyLimit: 0,
-  prConcurrentLimit: 0,
-  lockFileMaintenance: {enabled: true, automerge: true, schedule: 'after 5pm on the first day of the month'},
+  'extends': [
+    'github>camptocamp/gs-renovate-config-preset:base.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:group.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:stabilization-branches.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:ci.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:preset.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:pre-commit.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:docker.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:own.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:json-schema.json5#0.8.1',
+    'github>camptocamp/gs-renovate-config-preset:shellcheck.json5#0.8.1',
+  ],
   baseBranches: [
     'prod-2-7',
     'prod-2-7-advance',
@@ -22,25 +25,13 @@
   html: {
     fileMatch: ['\\.html?$', '\\.html?.mako$'],
   },
-  regexManagers: [
-    /** Do updates on pre-commit additional dependencies */
-    {
-      fileMatch: ['^\\.pre\\-commit\\-config\\.yaml$'],
-      matchStrings: [" +- '?(?<depName>[^' @=]+)(@|==)(?<currentValue>[^' @=]+)'? # (?<datasource>.+)"],
-    },
-    /** Do update on the schema present in the ci/config.yaml */
-    {
-      fileMatch: ['^ci/config\\.yaml$'],
-      matchStrings: [
-        '.*https://raw\\.githubusercontent\\.com/(?<depName>[^\\s]+)/(?<currentValue>[0-9\\.]+)/.*',
-      ],
-      datasourceTemplate: 'github-tags',
-    },
+  customManagers: [
     /** Manage jsdelivr */
     {
       fileMatch: ['.*\\.html$'],
       matchStrings: ['cdn\\.jsdelivr\\.net/npm/(?<depName>[^@]+)@(?<currentValue>[^/]+)'],
       datasourceTemplate: 'npm',
+      customType: 'regex',
     },
   ],
   packageRules: [
@@ -66,23 +57,6 @@
       versioning: 'regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$',
       matchDepNames: ['node'],
     },
-    /** Auto merge the dev dependency update */
-    {
-      matchDepTypes: ['devDependencies'],
-      automerge: true,
-    },
-    /** Group and auto merge the patch updates */
-    {
-      matchUpdateTypes: ['patch'],
-      groupName: 'all patch versions',
-      automerge: true,
-    },
-    /** Group and auto merge the minor updates */
-    {
-      matchUpdateTypes: ['minor'],
-      groupName: 'all minor versions',
-      automerge: true,
-    },
     /** Accept only the patch on the stabilization branches */
     {
       matchBaseBranches: ['/^prod-^-7.*/', '/^prod-2-8.*/', '/^prod-2-9.*/'],
@@ -94,37 +68,17 @@
       matchDatasources: ['docker-compose', 'github-actions'],
       enabled: false,
     },
-    /** Group Poetry packages */
-    {
-      matchPackagePrefixes: ['poetry-'],
-      groupName: 'Poetry',
-      automerge: true,
-      separateMajorMinor: false,
-      separateMinorPatch: false,
-      matchDepNames: ['poetry', 'pip'],
-    },
     /** Disable upgrading the supported Python version */
     {
       matchFileNames: ['custom/pyproject.toml'],
       enabled: false,
       matchDepNames: ['python'],
     },
-    /** Support the 4 parts of shellcheck-py version with a v prefix */
-    {
-      versioning: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$',
-      matchDepNames: ['shellcheck-py/shellcheck-py'],
-    },
     /** Accept only the patch on stabilization branches */
     {
       matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
       matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'lockFileMaintenance', 'rollback', 'bump'],
       enabled: false,
-    },
-    /** Group and auto merge the CI dependencies */
-    {
-      matchFileNames: ['.github/**', '.pre-commit-config.yaml', 'ci/**'],
-      groupName: 'CI dependencies',
-      automerge: true,
     },
     {
       matchPackageNames: ['shellcheck-py/shellcheck-py'],
@@ -135,20 +89,10 @@
       matchBaseBranches: ['/^prod-[0-9]+-[0-9]+(-advance)?$/'],
       minimumReleaseAge: '7 days',
     },
-    /** Ungroup Python dependencies */
-    {
-      matchDepNames: ['python'],
-      groupName: 'Python',
-    },
     /** Ungroup Gdal dependencies */
     {
       matchDepNames: ['ghcr.io/osgeo/gdal'],
       groupName: 'Gdal',
-    },
-    /** In file `.python-version`, use the `<major>.<minor>` version */
-    {
-      matchFileNames: ['.python-version'],
-      versioning: 'regex:^(?<major>\\d+)\\.(?<minor>\\d+)$',
     },
     /** Don't update major version of bootstrap on ui/*.html files */
     {
@@ -170,6 +114,11 @@
       versioning: 'loose',
       schedule: 'after 5am',
       minimumReleaseAge: '0',
+    },
+    /** In file `.python-version`, use the `<major>.<minor>` version */
+    {
+      matchFileNames: ['.python-version'],
+      versioning: 'regex:^(?<major>\\d+)\\.(?<minor>\\d+)$',
     },
   ],
 }
