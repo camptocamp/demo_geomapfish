@@ -48,7 +48,6 @@ export default defineConfig({
       'gmf': path.resolve(__dirname, 'node_modules/ngeo/distlib/src'),
       'gmfapi': path.resolve(__dirname, 'node_modules/ngeo/distlib/srcapi'),
       'api': path.resolve(__dirname, 'node_modules/ngeo/distlib/api'),
-      'jquery-ui/datepicker': path.resolve(__dirname, 'empty.js'), // For angular-ui-date
       // Save about of 45k os bandwidth (gzipped) by unworking ignoring import done by a script downloaded from a CDN.
       'jquery-datetimepicker/jquery.datetimepicker': path.resolve(__dirname, 'empty.js'),
       'bootstrap/js/src/popover': path.resolve(__dirname, 'empty.js'),
@@ -62,10 +61,6 @@ export default defineConfig({
       'jquery-ui/ui/widgets/resizable': path.resolve(__dirname, 'empty.js'),
       'jquery-ui/ui/widgets/slider': path.resolve(__dirname, 'empty.js'),
       'jquery-ui/ui/widgets/sortable': path.resolve(__dirname, 'empty.js'),
-      'jquery-ui/ui/i18n/datepicker-fr': path.resolve(__dirname, 'empty.js'),
-      'jquery-ui/ui/i18n/datepicker-en-GB': path.resolve(__dirname, 'empty.js'),
-      'jquery-ui/ui/i18n/datepicker-de': path.resolve(__dirname, 'empty.js'),
-      'jquery-ui/ui/i18n/datepicker-it': path.resolve(__dirname, 'empty.js'),
       'jquery-ui': path.resolve(__dirname, 'empty.js'),
     },
   },
