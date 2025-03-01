@@ -15,7 +15,7 @@ waitress = "3.0.2"
 alembic = "1.14.1"
 pyramid-retry = "2.1.1"
 pyramid-tm = "2.6"
-sqlalchemy = "2.0.37"
+sqlalchemy = "2.0.38"
 transaction = "5.0"
 "zope.sqlalchemy" = "3.1"
 cornice = "6.1.0"
@@ -37,7 +37,7 @@ geojson = "3.2.0"
 urllib3 = { version = "2.3.0", optional = true }
 certifi = { version = "2024.12.14", optional = true }
 webob = { version = "1.8.9", optional = true }
-cryptography = { version = "44.0.0", optional = true }
+cryptography = { version = "44.0.1", optional = true }
 
 [tool.poetry.group.dev.dependencies]
 prospector = { version = "1.13.3", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
