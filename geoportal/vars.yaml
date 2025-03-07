@@ -839,8 +839,6 @@ vars:
   checker:
     fulltextsearch:
       search: pau
-    phantomjs:
-      disable: [apihelp]
     print:
       spec:
         layout: '1 A4 portrait'
