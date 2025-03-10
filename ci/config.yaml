@@ -1,4 +1,9 @@
+<<<<<<< ours
 # yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/c2cciutils/1.6.23/c2cciutils/schema.json
+=======
+# yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/c2cciutils/1.7/c2cciutils/schema.json
+
+>>>>>>> theirs
 version:
   branch_to_version_re:
     - from: (prod-[0-9]+-[0-9]+)
