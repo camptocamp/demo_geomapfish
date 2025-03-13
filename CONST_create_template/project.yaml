@@ -10,8 +10,8 @@ template_vars:
   srid: 2056
   extent: 2489246,1078873,2837119,1296543
   authtkt_secret: io7heoDui8xaikie1rushaeGeiph8Bequei6ohchaequob6viejei0xooWeuvohf
-  tilecloud_chain_session_secret: secret
-  tilecloud_chain_session_salt: secret
+  tilecloud_chain_session_secret: H5Fs5M8CqcmsUBK63VcyQV61mQrFEjFgKBmxWh6RN08i5XDn9HxAXUWsAPsVP3iI
+  tilecloud_chain_session_salt: qSwlASTNDuCNTK9U
 env:
   files:
     - env.default
