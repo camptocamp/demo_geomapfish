@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '30 2 * * *'
 
+<<<<<<< ours
 env:
   PROJECT: demo
   # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
@@ -12,6 +13,8 @@ env:
   HELM_RELEASE_NAMES: prod-2-8.prod-2-9
   DOCKER_BUILDKIT: '1'
 
+=======
+>>>>>>> theirs
 jobs:
   rebuild:
     runs-on: ubuntu-24.04
@@ -34,6 +37,7 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
 
+      # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
       - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
