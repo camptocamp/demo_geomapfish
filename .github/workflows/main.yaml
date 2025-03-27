@@ -4,10 +4,7 @@ on:
   push:
 
 env:
-  PROJECT: demo
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
-  # SENTRY_PROJECT: geomapfish-demo
-  # SENTRY_ENVIRONMENT: prod-2-8
 
 jobs:
   main:
