@@ -3,11 +3,17 @@ name: Continuous integration
 on:
   push:
 
+<<<<<<< ours
 env:
   PROJECT: demo
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
   # SENTRY_PROJECT: geomapfish-demo
   # SENTRY_ENVIRONMENT: prod-2-8
+=======
+# To publish the images to be used on Kubernetes
+# env:
+#   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+>>>>>>> theirs
 
 jobs:
   main:
@@ -23,12 +29,23 @@ jobs:
           ref: master
           path: data
 
+<<<<<<< ours
       - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
           github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
           patterns: docker
         if: env.HAS_SECRETS == 'HAS_SECRETS'
+=======
+      # To publish the images to be used on Kubernetes
+      # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
+      # - uses: camptocamp/initialise-gopass-summon-action@v2
+      #   with:
+      #     ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
+      #     github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
+      #     patterns: docker
+      #   if: env.HAS_SECRETS == 'HAS_SECRETS'
+>>>>>>> theirs
 
       - uses: actions/setup-python@v5
         with:
