@@ -10,7 +10,6 @@ permissions:
   packages: write
 
 env:
-  PROJECT: demo
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
 
 jobs:

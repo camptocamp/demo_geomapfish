@@ -5,13 +5,6 @@ on:
   schedule:
     - cron: '30 2 * * *'
 
-env:
-  PROJECT: geomapfish
-  # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
-  # OPENSHIFT_PROJECT: gs-gmf-geomapfish
-  # The release branches
-  HELM_RELEASE_NAMES: int-2-9,prod-2-9
-
 jobs:
   rebuild:
     runs-on: ubuntu-24.04
@@ -30,6 +23,7 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
 
+      # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
       - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
           ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
