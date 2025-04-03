@@ -1,6 +1,6 @@
 # https://pre-commit.com/hooks.html
 
-exclude: |
+exclude: |-
   (?x)^(
     CONST_.*
     |mapserver/data/lac-leman.osm
@@ -83,7 +83,7 @@ repos:
       - id: trailing-whitespace
       - id: mixed-line-ending
   - repo: https://github.com/sbrunner/hooks
-    rev: 1.0.0
+    rev: 1.4.1
     hooks:
       - id: copyright
         exclude: |-
