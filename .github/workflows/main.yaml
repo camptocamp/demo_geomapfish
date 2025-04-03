@@ -89,7 +89,8 @@ jobs:
       - run: make acceptance-dev
       - run: c2cciutils-docker-logs
 
-      - run: docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml
+      - run:
+          docker compose --file=docker-compose.yaml --file=docker-compose-db.yaml --file=docker-compose.override.sample.yaml
           up -d
       - name: Run the acceptance tests on dev
         run: make acceptance
