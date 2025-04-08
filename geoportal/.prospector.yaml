@@ -3,13 +3,6 @@ inherits:
   - utils:no-design-checks
 
 max-line-length: 110
-
-pycodestyle:
-  options:
-    max-line-length: 110
-  disable:
-    - E203
-
 pylint:
   options:
     max-line-length: 110
@@ -19,12 +12,18 @@ pylint:
     - too-many-branches
     - c-extension-no-member
 
+bandit:
+  run: true
 pyflakes:
   disable:
     - F401
 
+pycodestyle:
+  options:
+    max-line-length: 110
+  disable:
+    - E203
+
 mccabe:
   run: false
 
-bandit:
-  run: true
