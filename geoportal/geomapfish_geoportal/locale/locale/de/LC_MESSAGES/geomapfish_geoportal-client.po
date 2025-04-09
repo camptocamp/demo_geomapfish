@@ -3,53 +3,52 @@ msgstr ""
 "Project-Id-Version: \n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
-"Language: en\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"#-#-#-#-#  demo-js.pot  #-#-#-#-#\n"
-"#-#-#-#-#  demo-db.pot  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "1 A4 portrait"
-msgstr "A4 portrait"
+msgstr "1 A4 Hochformat"
 
 msgid "2 A4 landscape"
-msgstr "A4 landscape"
+msgstr "2 A4 Querformat"
 
 msgid "3 A3 portrait"
-msgstr "A3 portrait"
+msgstr "3 A3 Hochformat"
 
 msgid "4 A3 landscape"
-msgstr "A3 landscape"
+msgstr "4 A3 Querformat"
 
 msgid ""
 "<a href=\"http://www.geo.admin.ch/\">Données publiques de l'infrastructure "
 "fédérale de données géographiques (IFDG)</a>"
 msgstr ""
-"<a href=\"http://www.geo.admin.ch/\">Public Data of the Federal Geographical "
-"Data Infrastructure (IFDG)</a>"
 
 msgid "A0"
 msgstr "A0"
 
 msgid "Add a layer"
-msgstr "Add a Layer"
+msgstr "Eine Ebene hinzufügen"
 
 msgid "Add a sub theme"
-msgstr "Add a sub theme"
+msgstr "Unterthema hinzufügen"
 
 msgid "Add a theme"
-msgstr "Add a theme"
+msgstr "Ein Thema hinzufügen"
 
 msgid "Administration"
 msgstr "Administration"
 
 msgid "Alternative Mobile Application"
-msgstr "Alternative Mobile Application"
+msgstr "Alternative Mobile Applikation"
 
 msgid "Area"
-msgstr "Area"
+msgstr "Fläche"
+
+msgid "Aster copier"
+msgstr ""
 
 msgid "BS Offizieller Stadtplan farbig 1:12'500"
 msgstr ""
@@ -127,242 +126,249 @@ msgid "BS Übersichtskarte farbig 1:40'000"
 msgstr ""
 
 msgid "Back"
-msgstr "Back"
+msgstr "Zurück"
 
 msgid "Background"
-msgstr "Background"
+msgstr "Hintergrund"
 
 msgid "Bavaria WMTS"
 msgstr ""
 
 msgid "Cadastre"
-msgstr "Cadastre"
+msgstr "Kataster"
 
 msgid "Camptocamp"
-msgstr "Camptocmap"
+msgstr "Camptocamp"
 
 msgid "Close"
-msgstr "Close"
+msgstr "Schliessen"
 
 msgid "Coordinate"
-msgstr "Coordinate"
+msgstr "Koordinaten"
 
 msgid "Data"
-msgstr "Data"
+msgstr "Daten"
 
 msgid "Demo"
 msgstr "Demo"
 
 msgid "Desktop Application"
-msgstr "Desktop Application"
+msgstr "Desktop Applikation"
 
 msgid ""
 "Draw a line on the map to display the corresponding elevation profile. Use "
 "double-click to finish the drawing."
 msgstr ""
-"Draw a line on the map to display the corresponding elevation profile. Use "
-"double-click to finish the drawing."
+"Zeichnen Sie eine Linie auf der Karte um das entsprechende Höhenprofil an zu "
+"zeigen. Benutzen Sie Doppelklick um die Linie fertig zu zeichnen."
 
 msgid "Draw and Measure"
-msgstr "Draw and Measure"
+msgstr "Zeichnen und messen"
 
 msgid "Draw profile line"
-msgstr "Draw profile line"
+msgstr "Profillinie zeichnen"
 
 msgid "ESRI no WFS no Geom"
-msgstr ""
+msgstr "ESRI ohne WFS ohne Geom"
 
 msgid "Edit"
-msgstr "Edit"
+msgstr "Editieren"
 
 msgid "Editing"
-msgstr "Editing"
+msgstr "Editieren"
 
 msgid "Editing theme"
-msgstr "Editing theme"
+msgstr "Thema-Editierung"
 
 msgid "Elevation (Aster)"
-msgstr "Elevation (Aster)"
+msgstr "Erhöhung (Aster)"
 
 msgid "Elevation (SRTM)"
-msgstr "Elevation (SRTM)"
+msgstr "Erhöhung (SRTM)"
 
 msgid "Empty group"
-msgstr "Empty group"
+msgstr "Leere Gruppe"
 
 msgid "Enseignement"
-msgstr "Learning"
+msgstr "Bildung"
 
 msgid "Enseignement 2"
-msgstr "Learning"
+msgstr "Bildungsinstitutionen"
 
 msgid "Equipement"
-msgstr "Equipement"
+msgstr "Infrastruktur"
 
 msgid "External"
-msgstr "External"
+msgstr "Extern"
 
 msgid "Filter"
 msgstr "Filter"
 
 msgid "Filters"
-msgstr "Filters"
+msgstr "Einfache Filter"
 
 msgid "Filters mixed"
-msgstr "Filters mixed"
+msgstr "Komplexe Filter"
 
 msgid "Floor slider"
-msgstr ""
+msgstr "Auswahl des Bodens"
 
 msgid "Gestion des eaux"
-msgstr "Water Management"
+msgstr "Wassermanagement"
 
 msgid "Group"
-msgstr "Group"
+msgstr "Gruppe"
 
 msgid "Half query"
-msgstr "Half query"
+msgstr "Halbe Abfrage"
 
 msgid "Iframe API Application"
-msgstr "Iframe API Application"
+msgstr "Iframe API Applikation"
 
 msgid "Import Layer"
-msgstr "Import Layer"
+msgstr "Ebene importieren"
 
 msgid "In order to use the editing tool, you must log in first."
-msgstr "In order to use the editing tool, you must log in first."
+msgstr "Um das Editierwerkzeug zu benutzen, müssen Sie sich zuerst anmelden."
 
 msgid "Layer with very very very very very long name"
-msgstr "Layer with very very very very very long name"
+msgstr "Ebene mit sehr sehr sehr sehr sehr langem Namen"
 
 msgid "Layers"
-msgstr "Layers"
+msgstr "Ebenen"
 
 msgid "Layers-exclusive"
-msgstr ""
+msgstr "Ebenen-exklusiv"
 
 msgid "Learning [merged]"
-msgstr "Learning [merged]"
+msgstr "Lernen [zusammengeführt]."
 
 msgid "Length"
-msgstr "Length"
+msgstr "Länge"
 
 msgid "Loading..."
-msgstr "Loading..."
+msgstr "Applikation wird geladen..."
 
 msgid "Login"
-msgstr "Login"
+msgstr "Anmelden"
 
 msgid "Loisirs"
-msgstr "Hobbies"
+msgstr "Unterhaltung"
 
 msgid "Measure tools"
-msgstr "Measure tools"
+msgstr "Messwerkzeug"
 
 msgid "Mobile Application"
-msgstr "Mobile Application"
+msgstr "Mobile Anwendung"
 
 msgid "Multi-Line pas éditable mais queryable"
-msgstr "Multi-Line queryable, non editable"
+msgstr "Multilinie ist nicht editierbar, aber abfragbar"
 
 msgid "Multi-Point pas éditable mais queryable"
-msgstr "Multi-Point queryable, non editable"
+msgstr "Multipunkt ist nicht editierbar, aber abfragbar"
 
 msgid "Multi-Polygon Query pas éditable mais queryable"
-msgstr "Multi-Polygon queryable, non editable"
+msgstr "Multipolygon Query ist nicht editierbar, aber abfragbar"
 
 msgid "Multi-Polygon Query2 pas éditable mais queryable"
-msgstr "Multi-Polygon2 queryable, non editable"
+msgstr "Multipolygon Query2 ist nicht editierbar, aber abfragbar"
 
 msgid "NPA localite"
-msgstr ""
+msgstr "PLZ"
 
 msgid "NPA localite noWFS"
-msgstr ""
+msgstr "PLZ ohne WFS"
 
 msgid "OSM functions"
-msgstr "OSM functions"
+msgstr "OSM Funktion"
 
 msgid "OSM functions mixed"
-msgstr "OSM functions mixed"
+msgstr "Gemischte OSM Funktionen"
 
+#, fuzzy
 msgid "OSM functions mixed test"
-msgstr "OSM functions mixed test"
+msgstr "Gemischte OSM Funktionen"
 
 msgid "OSM map"
-msgstr "OSM map"
+msgstr "OSM Karte"
 
 msgid "OSM map WMS"
-msgstr "OSM map WMS"
+msgstr "OSM Karte WMS"
 
 msgid "OSM_time_merged"
-msgstr "OSM time (merged)"
+msgstr "OSM Zeit (zusammengeführt)"
 
 msgid "Object Editing"
-msgstr "Object Editing"
+msgstr "Objekt bearbeiten"
 
 msgid "ObjectEditing"
-msgstr "ObjectEditing"
+msgstr "Objekt bearbeiten"
 
 msgid "ObjectEditing - Edit Application"
-msgstr "ObjectEditing - Edit Application"
+msgstr "Objekt bearbeiten - Bearbeitungs-Anwendung"
 
 msgid "Password"
-msgstr "Password"
+msgstr ""
 
 msgid "Patrimoine"
-msgstr "Heritage"
+msgstr "Kulturelles Erbe"
 
 msgid "Paysage"
-msgstr "Landscape"
+msgstr "Landschaft"
 
 msgid "Print"
-msgstr "Print"
+msgstr "Drucken"
 
 msgid "Private group"
-msgstr "Private group"
+msgstr "Privatgruppe"
 
 msgid "Profile"
-msgstr "Profile"
+msgstr "Profil"
 
 msgid "QGIS server"
 msgstr "QGIS server"
 
 msgid "QGIS server no WFS"
-msgstr "QGIS server (no WFS)"
+msgstr "QGIS server ohne WFS"
 
 msgid "Query"
-msgstr "Query"
+msgstr "Abfrage"
 
 msgid "SRTM"
 msgstr ""
 
-msgid "Selection"
+msgid "SRTM copier"
 msgstr ""
 
+msgid "SRTM shadow"
+msgstr ""
+
+msgid "Selection"
+msgstr "Selektion"
+
 msgid "Share this map"
-msgstr "Share this map"
+msgstr "Diese Karte teilen"
 
 msgid "Snapping"
 msgstr "Snapping"
 
 msgid "Snapping no edge"
-msgstr "Snapping no edge"
+msgstr "Kein Ecken-Snapping"
 
 msgid "Snapping no vertex"
-msgstr "Snapping no vertex"
+msgstr "kein Vertex-Snapping"
 
 msgid "Snapping tollerance"
-msgstr "Snapping tolerance"
+msgstr "Snapping-Toleranz"
 
 msgid "Sub group"
-msgstr "Sub group"
+msgstr "Untergruppe"
 
 msgid "Swiss grid (LV03)"
-msgstr "Swiss grid (LV03)"
+msgstr "Swissgrid (LV03)"
 
 msgid "Swiss grid (LV95)"
-msgstr "Swiss grid (LV95)"
+msgstr "Swissgrid (LV03)"
 
 msgid "Test Layer 3"
 msgstr ""
@@ -374,111 +380,115 @@ msgid "Test Layer 6"
 msgstr ""
 
 msgid "Test for a disclaimer to test metadata"
-msgstr "Test for a disclaimer to test metadata"
+msgstr "Test für einen Haftungsausschluss zum Testen von Metadaten"
 
 msgid "Testsearchtheme"
-msgstr "Test search theme"
+msgstr "Test Suchthema"
 
 msgid "Theme:"
-msgstr "Theme:"
+msgstr "Thema:"
 
 msgid "Themes"
-msgstr "Themes"
+msgstr "Themen"
 
 msgid "This is a test disclaimer, to test metadata addition."
-msgstr "This is a test disclaimer, to test metadata addition."
+msgstr ""
+"Dies ist ein Test-Disclaimer, um das Hinzufügen von Metadaten zu testen."
 
 msgid "Tools"
-msgstr "Tools"
+msgstr "Werkzeuge"
 
 msgid "Transport"
 msgstr "Transport"
 
+#, fuzzy
 msgid "Username"
-msgstr "Username"
+msgstr "Name"
 
 msgid "Wgs Coord."
-msgstr "WGS Coord."
+msgstr "Wgs Koord."
 
 msgid "Wgs Coord. DMS"
-msgstr "WGS Coord. DMS"
+msgstr "Wgs. Koord. DMS"
 
 msgid ""
 "You're using the mobile application. Check out the <a "
 "href=\"{{url}}\">standard application</a>."
 msgstr ""
+"Sie verwenden die mobile Anwendung. Hier <a href=\"{{url}}\">erreichen Sie "
+"die Standardanwendung</a>."
 
 msgid "__test__"
 msgstr "Test"
 
 msgid "access"
-msgstr "Access"
+msgstr "Zugang"
 
 msgid "accommodation"
-msgstr "Accommodation"
+msgstr "Unterkunft"
 
 msgid "aerialway"
-msgstr "Aerialway"
+msgstr "Luftwege"
 
 msgid "aeroways10"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "aeroways11"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "aeroways12"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "aeroways13"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "aeroways14"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "aeroways15"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "aeroways16"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "aeroways17"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "aeroways18"
-msgstr "Aeroways"
+msgstr "Flughafenvorfeld"
 
 msgid "alpine_hut"
-msgstr "Alpine hut"
+msgstr ""
 
 msgid "amenity"
-msgstr "Amenity"
+msgstr "Annehmlichkeit"
 
 msgid "asitvd.fond_couleur"
-msgstr "ASIT VD - color background"
+msgstr "ASIT VD Basiskarte farbig"
 
 msgid "asitvd.fond_gris"
-msgstr "ASIT VD - black&white background"
+msgstr "ASIT VD Basiskarte grau"
 
 msgid "asitvd.fond_pourortho"
-msgstr "ASIT VD - background for orthophoto"
+msgstr "ASIT VD Basiskarte Ortho"
 
 msgid "aster"
 msgstr "ASTER"
 
 msgid "autolink_email"
-msgstr "Autolink email"
+msgstr "Automatischer E-Mail-Link"
 
 msgid "autolink_url"
-msgstr "Autolink URL"
+msgstr "Automatische URL"
 
 msgid "background"
-msgstr "Background"
+msgstr "Hintergrund"
 
 msgid "bank"
 msgstr "Bank"
 
 msgid "barrier"
-msgstr "Barrier"
+msgstr "Barriere"
 
 msgid "bavaria"
 msgstr ""
@@ -505,298 +515,303 @@ msgid "bavaria_zoo"
 msgstr ""
 
 msgid "bench"
-msgstr "Bench"
+msgstr "Sitzbank"
 
 msgid "bicycle"
-msgstr "Bicycle"
+msgstr "Velo"
 
 msgid "brand"
-msgstr "Brand"
+msgstr "Marke"
 
 msgid "buffer_stop"
-msgstr "Buffer stop"
+msgstr "Pufferstop"
 
 msgid "building"
-msgstr "Building"
+msgstr "Gebäude"
 
+#, fuzzy
 msgid "buildings"
-msgstr "Buildings"
+msgstr "Gebäude"
 
 msgid "buildings15"
-msgstr "Buildings"
+msgstr "Gebäude"
 
 msgid "buildings16"
-msgstr "Buildings"
+msgstr "Gebäude"
 
 msgid "buildings17"
-msgstr "Buildings"
+msgstr "Gebäude"
 
 msgid "buildings18"
-msgstr "Buildings"
+msgstr "Gebäude"
 
+#, fuzzy
 msgid "buildings_query"
-msgstr "Buildings query"
+msgstr "Gebäude"
 
 msgid "bus_stop"
-msgstr "Bus stop"
+msgstr "Bushaltestelle"
 
 msgid "cafe"
-msgstr "Café"
+msgstr ""
 
 msgid "ch.are.alpenkonvention"
-msgstr "Alpine Convention"
+msgstr "Alpenkonvention"
 
 msgid "ch.astra.hauptstrassennetz"
-msgstr "Main roads network"
+msgstr "Hauptstrassennetz"
 
 msgid "ch.bfe.solarenergie-eignung-daecher"
-msgstr "Solar energy: suitability of roofs"
+msgstr "Solarenergie: Eignung Dächer"
 
 msgid "ch.bfe.solarenergie-eignung-fassaden"
 msgstr "Solarenergie: Eignung Fassaden"
 
 msgid "ch.swisstopo.dreiecksvermaschung"
-msgstr "LV95 Triangular network"
+msgstr "LV95 Dreiecksvermaschung"
 
 msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung"
-msgstr "Classification of rocks"
+msgstr "Gesteinsklassierung"
 
 msgid "ch.swisstopo.geologie-geotechnik-gk500-gesteinsklassierung2"
-msgstr "Classification of rocks"
+msgstr "Gesteinsklassierung"
 
 msgid "ch.swisstopo.geologie-geotechnik-gk500-lithologie_hauptgruppen"
-msgstr "Main lithological groups"
+msgstr "Lithologie-Hauptgruppen"
 
 msgid "ch.swisstopo.geologie-gravimetrischer_atlas"
-msgstr "Gravimetric Atlas 1:100000"
+msgstr "Gravimetrischer Atlas 1:100000"
 
 msgid "ch.swisstopo.swissimage"
 msgstr "SWISSIMAGE"
 
 msgid "check"
-msgstr "Check"
+msgstr "Auswahl"
 
 msgid "cinema"
-msgstr "Cinema"
+msgstr "Kino"
 
 msgid "comments"
-msgstr "Comments"
+msgstr "Kommentare"
 
 msgid "covered"
-msgstr "Covered"
+msgstr "bedeckt"
 
 msgid "crossing"
-msgstr "Crossing"
+msgstr "Kreuzung"
 
 msgid "datasource"
-msgstr "Data source"
+msgstr "Datenquelle"
 
 msgid "date"
-msgstr "Date"
+msgstr "Datum"
 
 msgid "datetime"
-msgstr "Date time"
+msgstr "Datum und Zeit"
 
 msgid "debug"
 msgstr "Debug"
 
+#, fuzzy
 msgid "default"
-msgstr "Default"
+msgstr "OSM Zeit (Standard)"
 
 msgid "denomination"
-msgstr "Information"
+msgstr "Bezeichnung"
 
 msgid "display_name"
-msgstr "Display name"
+msgstr "Anzeigename"
 
 msgid "district"
-msgstr "District"
+msgstr "Bezirk"
 
 msgid "drinking_water"
-msgstr "Drinking water"
+msgstr "Trinkwasser"
 
 msgid "edit"
-msgstr "Edit"
+msgstr ""
 
 msgid "ele"
-msgstr "Elevation"
+msgstr "Höhe"
 
 msgid "email"
-msgstr "Email"
+msgstr "E-Mail"
 
 msgid "entertainment"
-msgstr "Entertainment"
+msgstr "Unterhaltung"
 
 msgid "fid"
 msgstr "ID"
 
 msgid "filter_double"
-msgstr "Filter double"
+msgstr "Doppelfilter"
 
 msgid "filter_double_all"
-msgstr ""
+msgstr "Doppelfilter (alle)"
 
 msgid "filter_group"
-msgstr "Filter Groupe"
+msgstr "Gruppenfilter"
 
 msgid "firestations"
-msgstr "Fire stations"
+msgstr "Feuerwehrstation"
 
 msgid "floor_slider"
-msgstr ""
+msgstr "Auswahl des Bodens"
 
 msgid "foot"
-msgstr "Foot"
+msgstr "Fuss"
 
 msgid "fountain"
-msgstr "Fountain"
+msgstr "Brunnen"
 
 msgid "fuel"
-msgstr "Fuel"
+msgstr "Tankstelle"
 
 msgid "geom_4326"
-msgstr "Geom"
+msgstr ""
 
 msgid "good"
-msgstr "Good"
+msgstr "Gut"
 
 msgid "group"
-msgstr "Group"
+msgstr "Gruppe"
 
 msgid "group no wfs"
-msgstr "Group (no WFS)"
+msgstr "Gruppe ohne WFS"
 
+#, fuzzy
 msgid "half_query"
-msgstr "Half query"
+msgstr "Halbe Abfrage"
 
 msgid "height"
-msgstr "Height"
+msgstr "Höhe"
 
 msgid "highway"
-msgstr "Highway"
+msgstr "Autobahn"
 
 msgid "hospitals"
-msgstr "Hospitals"
+msgstr "Spital"
 
 msgid "hotel"
 msgstr "Hotel"
 
+#, fuzzy
 msgid "hotel_filter"
-msgstr "Hotel filter"
+msgstr "Hotel-Label"
 
 msgid "hotel_label"
-msgstr "Hotel label"
+msgstr "Hotel-Label"
 
 msgid "information"
 msgstr "Information"
 
 msgid "internal_id"
-msgstr "Internal ID"
+msgstr "Interne ID"
 
 msgid "kind"
-msgstr "Kind"
+msgstr "Art"
 
 msgid "landuse"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse no wfs"
-msgstr "Landuse (no WFS)"
+msgstr "Bodennutzung ohne WFS"
 
 msgid "landuse10"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse11"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse12"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse13"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse14"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse15"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse16"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse17"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse18"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse4"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse5"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse6"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse7"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse8"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse9"
-msgstr "Landuse"
+msgstr "Bodennutzung"
 
 msgid "landuse_alias"
-msgstr "Landuse (alias)"
+msgstr "Bodennutzung (alias)"
 
 msgid "landuse_ingrp"
-msgstr "Landuse (group)"
+msgstr "Bodennutzung (Gruppe)"
 
 msgid "layer"
-msgstr "Layer"
+msgstr "Ebene"
 
 msgid "legend"
-msgstr "Legend"
+msgstr "Legende"
 
 msgid "leisure"
-msgstr "Leisure"
+msgstr "Unterhaltung"
 
 msgid "level_crossing"
-msgstr "Level crossing"
+msgstr "Bahnübergang"
 
 msgid "line"
-msgstr "Line"
+msgstr "Linie"
 
 msgid "line snap"
-msgstr "Line snapping"
+msgstr "Linie-Snapping"
 
 msgid "line snap no edge"
-msgstr "Line snapping without edge"
+msgstr "Linien-Snapping ohne Ecken"
 
 msgid "line snap no vertex"
-msgstr "Line snapping without vertex"
+msgstr "Linien-Snapping ohne Vertex"
 
 msgid "line snap tolerance"
-msgstr "Line snapping with tolerance"
+msgstr "Toleranz des Linien-Snappings"
 
 msgid "link"
 msgstr "Link"
 
 msgid "long wms-t layer name name name name name name name"
-msgstr "Long WMS-T layer name name name name name name name"
+msgstr "Lange WMS-T Ebenebezeichnung lang lang lang lang lang"
 
 msgid "man_made"
-msgstr "Man made"
+msgstr "von Hand gemacht"
 
 msgid "many_attributes"
-msgstr "Many attributes"
+msgstr "Viele Eigenschaften"
 
 msgid "map"
-msgstr "Map"
+msgstr "Karte"
 
 msgid "motorcar"
-msgstr "Motorcar"
+msgstr "Auto"
 
 msgid "name"
 msgstr "Name"
@@ -817,334 +832,341 @@ msgid "name6"
 msgstr "Name 6"
 
 msgid "natural"
-msgstr "Natural"
+msgstr "natürlich"
 
 msgid "no_wfs"
-msgstr "No WFS"
+msgstr "Kein WFS"
 
 msgid "northArrow"
-msgstr "North arrow"
+msgstr "Nordpfeil"
 
 msgid "number"
-msgstr "Number"
+msgstr ""
 
 msgid "open"
-msgstr "Open"
+msgstr "offen"
 
 msgid "operator"
-msgstr "Operator"
+msgstr "Betreiber"
 
 msgid "orthophoto"
-msgstr "Orthophoto"
+msgstr "Luftbild"
 
 msgid "osm"
 msgstr "OSM"
 
 msgid "osm dual no wfs"
-msgstr "OSM (dual, no WFS)"
+msgstr "OSM (doppelt, ohne WFS)"
 
 msgid "osm group no wfs"
-msgstr "OSM group (no WFS)"
+msgstr "OSM (Gruppe, ohne WFS)"
 
 msgid "osm_dual"
-msgstr "OSM (dual)"
+msgstr "OSM (doppelt)"
 
 msgid "osm_dual_restricted"
-msgstr "OSM (dual, restricted)"
+msgstr "OSM (doppelt, begrenzt)"
 
 msgid "osm_firestations"
-msgstr "OSM Fire stations"
+msgstr "OSM Feuerwehrstation"
 
 msgid "osm_firestations no wfs"
-msgstr "OSM Fire stations (no WFS)"
+msgstr "OSM Feuerwehrstation (ohne WFS)"
 
 msgid "osm_firestations_dual_restricted"
-msgstr "OSM Fire stations dual restricted"
+msgstr "OSM Feuerwehrstation (doppelt, begrenzt)"
 
 msgid "osm_firestations_ingrp"
-msgstr "OSM Fire stations (group)"
+msgstr "OSM Feuerwehrstation (Gruppe)"
 
 msgid "osm_firestations_restricted"
-msgstr "OSM Fire stations (restricted)"
+msgstr "OSM Feuerwehrstation (begrenzt)"
 
+#, fuzzy
 msgid "osm_firestations_restricted_ingrp"
-msgstr "OSM Fire stations (restricted, ingroup)"
+msgstr "OSM Feuerwehrstation (begrenzt)"
 
 msgid "osm_group"
-msgstr "OSM group"
+msgstr "OSM Gruppe"
 
 msgid "osm_group_restricted"
-msgstr "OSM group (restricted)"
+msgstr "OSM Gruppe (begrenzt)"
 
 msgid "osm_hospitals"
-msgstr "OSM Hospitals"
+msgstr "OSM Spital"
 
 msgid "osm_hospitals no wfs"
-msgstr "OSM Hospitals (no WFS)"
+msgstr "OSM Spital (ohne WFS)"
 
 msgid "osm_hospitals_dual_restricted"
-msgstr "OSM Hospitals (dual, restricted)"
+msgstr "OSM Spital (doppelt, begrenzt)"
 
 msgid "osm_hospitals_ingrp"
-msgstr "OSM Hospitals (group)"
+msgstr "OSM Spital (Gruppe)"
 
 msgid "osm_hospitals_restricted"
-msgstr "OSM Hospitals (restricted)"
+msgstr "OSM Spital (begrenzt)"
 
+#, fuzzy
 msgid "osm_hospitals_restricted_ingrp"
-msgstr "OSM Hospitals (restricted, ingroup)"
+msgstr "OSM Spital (begrenzt)"
 
 msgid "osm_id"
 msgstr "OSM ID"
 
 msgid "osm_open"
-msgstr "OSM open"
+msgstr "OSM Offen"
 
 msgid "osm_scale"
-msgstr "OSM scale"
+msgstr "OSM Skala"
 
 msgid "osm_time"
-msgstr "OSM time"
+msgstr "OSM Zeit"
 
 msgid "osm_time2"
-msgstr "OSM time 2"
+msgstr "OSM Zeit 2"
 
 msgid "osm_time_d_year_mounth"
-msgstr "OSM time (value, year, month)"
+msgstr "OSM Zeit (Wert, Jahr, Monat)"
 
 msgid "osm_time_default"
-msgstr "OSM time (default)"
+msgstr "OSM Zeit (Standard)"
 
 msgid "osm_time_default_slider"
-msgstr "OSM time (default, slider)"
+msgstr "OSM Zeit (Standard, Slider)"
 
 msgid "osm_time_mount_year"
-msgstr "OSM time (month, year)"
+msgstr "OSM Zeit (Monat, Jahr)"
 
 msgid "osm_time_r_dp"
-msgstr "OSM time (range, date picker)"
+msgstr "OSM Zeit (Intervall, Popup)"
 
 msgid "osm_time_r_dp_2"
-msgstr "OSM time (range, selecteur, date picker 2)"
+msgstr "OSM Zeit (Intervall, Popup 2)"
 
 msgid "osm_time_r_dp_default"
-msgstr "OSM time (range, date picker, default)"
+msgstr "OSM Zeit (Intervall, Popup, Standard)"
 
 msgid "osm_time_r_mounth_year"
-msgstr "OSM time (range, month, year)"
+msgstr "OSM Zeit (Intervall, Monat, Jahr)"
 
 msgid "osm_time_r_s"
-msgstr "OSM time (range, slider)"
+msgstr "OSM Zeit (Intervall, Slider)"
 
 msgid "osm_time_r_s_default"
-msgstr "OSM time (range, slider, default)"
+msgstr "OSM Zeit (Intervall, Slider, Standard)"
 
 msgid "osm_time_r_year_mounth"
-msgstr "OSM time (range, year, month)"
+msgstr "OSM Zeit (Intervall, Jahr, Monat)"
 
 msgid "osm_time_v_dp"
-msgstr "OSM time (value, date picker)"
+msgstr "OSM Zeit (Wert, Popup)"
 
 msgid "osm_time_v_dp_default"
-msgstr "OSM time (value, date picker, default)"
+msgstr "OSM Zeit (Wert, Popup, Standard)"
 
 msgid "osm_time_v_mounth_year"
-msgstr "OSM time (value, month, year)"
+msgstr "OSM Zeit (Wert Monat, Jahr)"
 
 msgid "osm_time_v_s"
-msgstr "OSM time (value, slider)"
+msgstr "OSM Zeit (Wert, Slider)"
 
 msgid "osm_time_v_s_default"
-msgstr "OSM time (value, slider, default)"
+msgstr "OSM Zeit (Wert, Slider, Standard)"
 
 msgid "osm_time_year_mounth"
-msgstr "OSM time (year, month)"
+msgstr "OSM Zeit (Jahr, Monat)"
 
 msgid "other"
-msgstr "Other"
+msgstr "Andere"
 
 msgid "parking"
-msgstr "Parking"
+msgstr "Parkplatz"
 
 msgid "picnic_site"
-msgstr "Picnic site"
+msgstr "Picknickplatz"
 
 msgid "place"
-msgstr "Place"
+msgstr "Platz"
 
 msgid "place_of_worship"
-msgstr "Place of worship"
+msgstr "Kultstätte"
 
 msgid "places0"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places1"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places10"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places11"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places12"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places13"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places14"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places15"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places16"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places17"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places18"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places2"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places3"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places4"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places5"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places6"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places7"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places8"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "places9"
-msgstr "Places"
+msgstr "Platz"
 
 msgid "point"
-msgstr "Point"
+msgstr "Punkt"
 
 msgid "point snap"
-msgstr "Point snapping"
+msgstr "Punkt-Snapping"
 
 msgid "point snap tolerance"
-msgstr "Point snapping with tolerance"
+msgstr "Toleranz des Punkt-Snappings"
 
 msgid "points"
-msgstr "Poinst"
+msgstr "Punkte"
 
 msgid "points no wfs"
-msgstr "Points (no WFS)"
+msgstr "Punkte (ohne WFS)"
 
 msgid "points+landuse"
-msgstr "Points & Landuse"
+msgstr "Punkte und Bodennutzung"
 
 msgid "points+landuse no wfs"
-msgstr "Points & Landuse (no WFS)"
+msgstr "Punkte und Bodennutzung (ohne WFS)"
 
 msgid "points_ingrp"
-msgstr "Points in group"
+msgstr "Punkte (in einer Gruppe)"
 
 msgid "pointscopier"
-msgstr "Point copier"
+msgstr "Kopierte Punkte"
 
 msgid "pointslabels"
-msgstr "Points label"
+msgstr "Label-Punkte"
 
 msgid "police"
-msgstr "Police"
+msgstr "Polizei"
 
 msgid "polygon"
 msgstr "Polygon"
 
 msgid "polygon snap"
-msgstr "Polygon snapping"
+msgstr "Polygon-Snapping"
 
 msgid "polygon snap no edge"
-msgstr "Polygon snapping without edge"
+msgstr "Polygon-Snapping ohne Ecken"
 
 msgid "polygon snap no vertex"
-msgstr "Polygon snapping without vertex"
+msgstr "Polygon-Snapping ohne Vertex"
 
 msgid "polygon snap tolerance"
-msgstr "Polygon snapping with tolerance"
+msgstr "Toleranz des Polygonsnappings"
 
 msgid "population"
-msgstr "Population"
+msgstr "Bevölkerung"
 
 msgid "post_box"
-msgstr "Post box"
+msgstr "Postfach"
 
 msgid "post_office"
-msgstr "Post office"
+msgstr "Poststelle"
 
 msgid "power"
-msgstr "Power"
+msgstr "Strom"
 
+#, fuzzy
 msgid "private"
-msgstr "Private"
+msgstr "Privatgruppe"
 
 msgid "railway"
-msgstr "Railway"
+msgstr "Eisenbahn"
 
 msgid "railways"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways no wfs"
-msgstr "Railways (no WFS)"
+msgstr "Eisenbahn (ohne WFS)"
 
 msgid "railways10"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways11"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways12"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways13"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways14"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways15"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways16"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways17"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways18"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways8"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways9"
-msgstr "Railways"
+msgstr "Eisenbahn"
 
 msgid "railways_ingrp"
-msgstr "Railways in group"
+msgstr "Eisenbahn (in einer Gruppe)"
+
+#, fuzzy
+msgid "raster"
+msgstr "ASTER"
 
 msgid "recycling"
-msgstr "Recycling"
+msgstr "Sammelstelle"
 
 msgid "ref"
-msgstr "Ref"
+msgstr "ref"
 
 msgid "religion"
 msgstr "Religion"
@@ -1153,67 +1175,70 @@ msgid "restaurant"
 msgstr "Restaurant"
 
 msgid "restricted"
-msgstr "Restricted"
+msgstr "Bezirk"
+
+msgid "restricted_group"
+msgstr "Begrenzte Gruppe"
 
 msgid "roads10"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads11"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads12"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads13"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads14"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads15"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads16"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads17"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads18"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads5"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads6"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads7"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads8"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "roads9"
-msgstr "Roads"
+msgstr "Straßen"
 
 msgid "scalebar"
-msgstr "Scale bar"
+msgstr "Massstabsbalken"
 
 msgid "shop"
-msgstr "Shop"
+msgstr "Laden"
 
 msgid "short_name"
-msgstr "Short name"
+msgstr "Kurzname"
 
 msgid "short_name2"
-msgstr "Short name 2"
+msgstr "Kurzname2"
 
 msgid "short_name3"
-msgstr "Short name 3"
+msgstr "Kurzname3"
 
 msgid "simple"
-msgstr "Simple"
+msgstr "Einfach"
 
 msgid "sport"
 msgstr "Sport"
@@ -1222,157 +1247,159 @@ msgid "srtm"
 msgstr "SRTM"
 
 msgid "srtm-partial"
-msgstr "SRTM (partial)"
+msgstr "SRTM (partiell)"
 
 msgid "surface"
-msgstr "Surface"
+msgstr "Oberfläche"
 
 msgid "sustenance"
-msgstr "Sustenance"
+msgstr "Unterhalt"
 
 msgid "test, comma"
-msgstr "Test, comma"
+msgstr ""
 
 msgid "time"
-msgstr "Time"
+msgstr "Zeit"
 
 msgid "time range"
-msgstr "Time (range)"
+msgstr "Zeit (Intervall)"
 
 msgid "time_ingrp"
-msgstr "Time (group)"
+msgstr "Zeit (in einer Gruppe)"
 
 msgid "timestamp"
-msgstr "Timestamp"
+msgstr "Zeitstempel"
 
+#, fuzzy
 msgid "timezone"
-msgstr "Timezone"
+msgstr "Zeit"
 
 msgid "tinyows"
 msgstr "TinyOWS"
 
 msgid "title"
-msgstr "Title"
+msgstr "Titel"
 
 msgid "tourism"
-msgstr "Tourism activity"
+msgstr "Tourismus"
 
 msgid "tourism_activity"
-msgstr "Tourism activity"
+msgstr "Touristische Aktivität"
 
 msgid "traffic_signals"
-msgstr "Traffic signals"
+msgstr "Lichtsignal"
 
 msgid "transport (merged)"
-msgstr ""
+msgstr "Transport (zusammengeführt)"
 
 msgid "turning_circle"
-msgstr "Turning circle"
+msgstr "Kreisverkehr"
 
 msgid "two_layers"
-msgstr "Two layer"
+msgstr "zwei Ebenen"
 
 msgid "type"
-msgstr "Type"
+msgstr "Typ"
 
+#, fuzzy
 msgid "username"
-msgstr "Username"
+msgstr "Name"
 
 msgid "vd.npa_localite"
-msgstr ""
+msgstr "PLZ"
 
 msgid "vd.regime_hydrique noWFS"
-msgstr ""
+msgstr "Wasserhaushalt"
 
 msgid "waterarea10"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea11"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea12"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea13"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea14"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea15"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea16"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea17"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea18"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea4"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea5"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea6"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea7"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea8"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterarea9"
-msgstr "Waterarea"
+msgstr "Wasserweg"
 
 msgid "waterway"
-msgstr "Waterway"
+msgstr "Wasserweg"
 
 msgid "waterways10"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways11"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways12"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways13"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways14"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways15"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways16"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways17"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways18"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways6"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways7"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways8"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "waterways9"
-msgstr "Waterways"
+msgstr "Wasserweg"
 
 msgid "wood"
-msgstr "Wood"
+msgstr "Holz"
 
 msgid ""
 "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://"
@@ -1383,96 +1410,37 @@ msgid ""
 "© Les contributeurs d’<a href='http://www.openstreetmap.org/"
 "copyright'>OpenStreetMap</a>"
 msgstr ""
-"© <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> "
-"Contributors"
 
 #~ msgid "Alternative Desktop Application"
-#~ msgstr "Alternative Desktop Application"
+#~ msgstr "Alternative Desktop Applikation"
 
-#~ msgid "Batiment VD"
-#~ msgstr "Building VD"
+#~ msgid "Loading themes, please wait..."
+#~ msgstr "Themen werden geladen, bitte warten..."
 
-#~ msgid "Batiment VD noWFS"
-#~ msgstr "Buildinf VD no WFS"
-
-#~ msgid "Cluster_BaseFID"
-#~ msgstr "Cluster Base FID"
-
-#~ msgid "Cluster_FeatureCount"
-#~ msgstr "Cluster Feature Count"
-
-#~ msgid ""
-#~ "Disclaimer works obviously also on items in subgroups (layer "
-#~ "entertainment)"
-#~ msgstr ""
-#~ "Disclaimer works obviously also on items in subgroups (layer "
-#~ "entertainment)"
-
-#~ msgid "Disclaimer works on items (layer police)"
-#~ msgstr "Disclaimer works on items (layer police)"
-
-#~ msgid "OSM_time (merged)"
-#~ msgstr "OSM time (merged)"
-
-#~ msgid "ObjectEditing - Viewer Application"
-#~ msgstr "ObjectEditing - Viewer Application"
+#~ msgid "OSM"
+#~ msgstr "OSM"
 
 #~ msgid "Routing"
 #~ msgstr "Routing"
 
+#~ msgid "Search…"
+#~ msgstr "Suche..."
+
 #~ msgid "Street View"
 #~ msgstr "Street View"
 
-#~ msgid "Test"
-#~ msgstr "Test"
-
-#~ msgid "Test aus Olten"
-#~ msgstr "Test on Olten"
-
-#~ msgid "Timeout"
-#~ msgstr "Timeout"
-
 #~ msgid "You must change your password"
-#~ msgstr "You must change your password"
-
-#~ msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
-#~ msgstr "Solar energy: suitability of roofs"
-
-#~ msgid "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo"
-#~ msgstr "Solar energy: suitability of roofs"
-
-#~ msgid "ch.bfe.solarenergie-eignung-daecher_overview"
-#~ msgstr "Solar energy: suitability of roofs"
-
-#~ msgid "ch.bfe.solarenergie-eignung-fassaden_fulldetail"
-#~ msgstr "Solarenergie: Eignung Fassaden"
-
-#~ msgid "ch.bfe.solarenergie-eignung-fassaden_getfeatureinfo"
-#~ msgstr "Solarenergie: Eignung Fassaden"
-
-#~ msgid "ch.bfe.solarenergie-eignung-fassaden_overview"
-#~ msgstr "Solarenergie: Eignung Fassaden"
+#~ msgstr "Sie müssen Ihr Passwort ändern"
 
 #~ msgid "last_update_timestamp"
-#~ msgstr "Timestamp"
+#~ msgstr "zuletzt aktualisierter Zeitstempel"
 
 #~ msgid "last_update_user"
-#~ msgstr "User"
+#~ msgstr "zuletzt aktualisierter Nutzer"
 
-#~ msgid "restricted_group"
-#~ msgstr "Restricted group"
-
+#, fuzzy
 #~ msgid "standard application"
-#~ msgstr "Standard version"
+#~ msgstr "Desktop-Applikation"
 
 #~ msgid "test2"
-#~ msgstr "Second test"
-
-#~ msgid "vd.batiment_rcb"
-#~ msgstr "Buildings VD RCB"
-
-#~ msgid "zoo"
-#~ msgstr "Zoo"
-
-#~ msgid "© les contributeurs d’OpenStreetMap"
-#~ msgstr "© OpenStreetMap Contributors"
+#~ msgstr "Test2"
