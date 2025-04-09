@@ -40,7 +40,6 @@ RUN --mount=type=cache,target=/var/cache,sharing=locked \
 RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/tmp \
     python3 -m pip install --disable-pip-version-check --no-deps --requirement=/tmp/requirements.txt \
-    && strip /usr/local/lib/python3.*/dist-packages/*/*.so \
     && python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|.*pydev.*|networkx)/'
 
 # hadolint ignore=DL3059
