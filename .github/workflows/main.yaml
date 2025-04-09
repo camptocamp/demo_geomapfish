@@ -104,7 +104,7 @@ jobs:
         run: ./build --no-pull
 
       - name: Publish
-        run: tag-publish
+        run: c2cciutils-publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: git diff --exit-code --patch > /tmp/dpkg-versions.patch; git diff --color; git reset --hard || true
