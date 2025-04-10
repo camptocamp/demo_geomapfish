@@ -30,7 +30,7 @@ RUN poetry export --output=requirements.txt \
     && poetry export --with=dev --output=requirements-dev.txt
 
 FROM base-all AS base
-LABEL maintainer Camptocamp "info@camptocamp.com"
+LABEL org.opencontainers.image.authors="Camptocamp <info@camptocamp.com>"
 
 # hadolint ignore=SC1091
 RUN --mount=type=cache,target=/var/cache,sharing=locked \
