@@ -806,7 +806,6 @@ vars:
     - arnaud-morvan.github.io
     - julsbreakdown.github.io
     - adube.github.io
-    - demo.geomapfish.dev
     - localhost
     - localhost:8484
     - localhost:3000
@@ -819,6 +818,9 @@ vars:
     - 127.0.0.1:3001
     - 127.0.0.1:3002
     - 127.0.0.1:6006
+    # for geogirafe dev
+    - app.localhost:8080
+    - demo.geomapfish.dev
 
   servers:
     wmts: '{WMTS_URL}'
