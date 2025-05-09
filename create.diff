@@ -1,0 +1,10 @@
+diff --git a/Makefile b/Makefile
+index 5c47f4f..00062b6 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,4 +1,4 @@
+-PROJECT_PUBLIC_URL?=https://example.camptocamp.com/
++PROJECT_PUBLIC_URL?=https://localhost:8484/
+ DUMP_FILE=dump.backup
+ PACKAGE=geomapfish
+ LANGUAGES=en fr de it
