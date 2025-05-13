@@ -43,7 +43,7 @@ acceptance-init:
 	docker compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS pg_trgm'
 	docker compose exec -T tools psql --command='CREATE EXTENSION IF NOT EXISTS hstore'
 	scripts/db-restore --docker-compose-version-2 --docker-compose-file=docker-compose.yaml --docker-compose-file=docker-compose-db.yaml \
-		--arg=--clean --arg=--if-exists --arg=--verbose data/prod-2-7.dump
+		--arg=--clean --arg=--if-exists --arg=--verbose data/prod-2-7.dump || true
 	docker compose restart geoportal alembic
 	docker compose exec -T geoportal wait-db
 
