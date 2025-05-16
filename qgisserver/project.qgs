@@ -17203,9 +17203,21 @@ def my_form_open(dialog, layer, feature):
       <time_762bcf93_4529_466e_ba8a_31ed5f11df15 type="int">1</time_762bcf93_4529_466e_ba8a_31ed5f11df15>
     </WFSLayersPrecision>
     <WFSTLayers>
-      <Delete type="QStringList"></Delete>
-      <Insert type="QStringList"></Insert>
-      <Update type="QStringList"></Update>
+      <Delete type="QStringList">
+        <value>osm_firestations_beafadf3_069e_414e_b3fc_33b9e2322400</value>
+        <value>osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c</value>
+        <value>points_6d11674c_db6d_47ab_8c20_66671ac95b8c</value>
+      </Delete>
+      <Insert type="QStringList">
+        <value>osm_firestations_beafadf3_069e_414e_b3fc_33b9e2322400</value>
+        <value>osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c</value>
+        <value>points_6d11674c_db6d_47ab_8c20_66671ac95b8c</value>
+      </Insert>
+      <Update type="QStringList">
+        <value>osm_firestations_beafadf3_069e_414e_b3fc_33b9e2322400</value>
+        <value>osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c</value>
+        <value>points_6d11674c_db6d_47ab_8c20_66671ac95b8c</value>
+      </Update>
     </WFSTLayers>
     <WFSUrl type="QString"></WFSUrl>
     <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
