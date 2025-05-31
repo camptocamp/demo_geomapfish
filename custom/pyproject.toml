@@ -21,7 +21,7 @@ waitress = "3.0.2"
 alembic = "1.14.1"
 pyramid-retry = "2.1.1"
 pyramid-tm = "2.6"
-sqlalchemy = "2.0.40"
+sqlalchemy = "2.0.41"
 transaction = "5.0"
 "zope.sqlalchemy" = "3.1"
 cornice = "6.1.0"
@@ -43,14 +43,14 @@ geojson = "3.2.0"
 urllib3 = { version = "2.3.0", optional = true }
 certifi = { version = "2024.12.14", optional = true }
 webob = { version = "1.8.9", optional = true }
-cryptography = { version = "44.0.2", optional = true }
+cryptography = { version = "44.0.3", optional = true }
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.13.3", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
 prospector-profile-utils = "1.14.1"
 prospector-profile-duplicated = "1.9.0"
-types-requests = "2.32.0.20250328"
-types-oauthlib = "3.2.0.20250408"
+types-requests = "2.32.0.20250515"
+types-oauthlib = "3.2.0.20250516"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
