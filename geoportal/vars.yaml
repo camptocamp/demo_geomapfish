@@ -800,6 +800,7 @@ vars:
       - 148.196.7.213/24 # VPN c2c
 
   authorized_referers:
+    - app.localhost:8080
     - camptocamp.github.io
     - fredj.github.io
     - ger-benjamin.github.io
@@ -954,6 +955,8 @@ vars:
     print: *auth_header
     fulltextsearch: *auth_header
     mapserver: *auth_header
+    mapserver_ogcapi_mapserver: *auth_header
+    mapserver_ogcapi_qgisserver: *auth_header
     tinyows: *auth_header
     layers: *auth_header
     shortener: *auth_header
@@ -1017,6 +1020,8 @@ update_paths:
   - headers.print.headers
   - headers.fulltextsearch.headers
   - headers.mapserver.headers
+  - headers.mapserver_ogcapi_mapserver.headers
+  - headers.mapserver_ogcapi_qgisserver.headers
   - headers.tinyows.headers
   - headers.layers.headers
   - headers.shortener.headers
