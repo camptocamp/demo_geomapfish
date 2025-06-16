@@ -800,7 +800,6 @@ vars:
       - 148.196.7.213/24 # VPN c2c
 
   authorized_referers:
-    - app.localhost:8080
     - camptocamp.github.io
     - fredj.github.io
     - ger-benjamin.github.io
