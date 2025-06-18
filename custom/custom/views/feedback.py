@@ -17,7 +17,11 @@ feedback = Service(
     description="The feedback service",
     path="/feedback",
     cors_origins=(
-        (f"https://{os.environ['VISIBLE_WEB_HOST']}" if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        (
+            f"https://{os.environ['VISIBLE_WEB_HOST']}"
+            if "VISIBLE_WEB_HOST" in os.environ
+            else "*"
+        ),
         *(
             ["https://localhost:3002"]
             if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
@@ -34,7 +38,10 @@ def feedback_post(request: pyramid.request.Request) -> Any:
         LOG.info(
             requests.get(
                 f"{os.environ['GEOPORTAL_INTERNAL_URL']}/loginuser",
-                headers={"Cookie": request.headers.get("Cookie"), "Referer": request.referrer},
+                headers={
+                    "Cookie": request.headers.get("Cookie"),
+                    "Referer": request.referrer,
+                },
             ).json()
         )
     except Exception:  # pylint: disable=broad-exception-caught
@@ -59,7 +66,9 @@ def feedback_post(request: pyramid.request.Request) -> Any:
     request.dbsession.flush()
 
     mail_list = (
-        [request.registry.settings["admin_email"]] if "admin_email" in request.registry.settings else []
+        [request.registry.settings["admin_email"]]
+        if "admin_email" in request.registry.settings
+        else []
     )
 
     if email_optional is not None and email_optional != "":
