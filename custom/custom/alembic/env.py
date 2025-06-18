@@ -1,4 +1,4 @@
-"""Pyramid bootstrap environment. """
+"""Pyramid bootstrap environment."""
 
 from alembic import context
 from pyramid.paster import get_appsettings, setup_logging  # type: ignore[import-untyped]
