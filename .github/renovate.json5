@@ -10,6 +10,8 @@
     'github>camptocamp/gs-renovate-config-preset:own.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:json-schema.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:shellcheck.json5#0.8.5',
+    'github>camptocamp/gs-renovate-config-preset:python.json5#1.0.1',
+    'github>camptocamp/gs-renovate-config-preset:security.json5#1.0.1',
   ],
   baseBranches: [
     'prod-2-7',
@@ -28,10 +30,10 @@
   customManagers: [
     /** Manage jsdelivr */
     {
-      fileMatch: ['.*\\.html$'],
       matchStrings: ['cdn\\.jsdelivr\\.net/npm/(?<depName>[^@]+)@(?<currentValue>[^/]+)'],
       datasourceTemplate: 'npm',
       customType: 'regex',
+      managerFilePatterns: ['/.*\\.html$/'],
     },
   ],
   packageRules: [
@@ -114,11 +116,6 @@
       versioning: 'loose',
       schedule: 'after 5am',
       minimumReleaseAge: '0',
-    },
-    /** In file `.python-version`, use the `<major>.<minor>` version */
-    {
-      matchFileNames: ['.python-version'],
-      versioning: 'regex:^(?<major>\\d+)\\.(?<minor>\\d+)$',
     },
   ],
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
