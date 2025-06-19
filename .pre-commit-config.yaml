@@ -11,7 +11,6 @@ repos:
     rev: v5.0.0
     hooks:
       - id: detect-private-key
-      - id: end-of-file-fixer
       - id: trailing-whitespace
         args:
           - --markdown-linebreak-ext=.md
@@ -24,8 +23,9 @@ repos:
       - id: prettier
         exclude: |-
           (?x)^(
-            geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*.js
-            |geoportal/webpack.apps.js
+            geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
+            |geoportal/webpack\.apps\.js
+            |ui/package\.json
           )$
   - repo: https://github.com/sbrunner/integrity-updater
     rev: 0.2.0
