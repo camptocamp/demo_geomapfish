@@ -39,9 +39,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Backup the database.")
     parser.add_argument("--verbose", action="store_true", help="Print the command that is executed.")
     parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Only print the command that would be executed.",
+        "--dry-run", action="store_true", help="Only print the command that would be executed."
     )
     parser.add_argument(
         "--env",
