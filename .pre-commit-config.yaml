@@ -12,20 +12,35 @@ repos:
     hooks:
       - id: detect-private-key
       - id: end-of-file-fixer
+        exclude: |-
+          (?x)^(
+            ui/package\.json
+          )$
       - id: trailing-whitespace
         args:
           - --markdown-linebreak-ext=.md
       - id: mixed-line-ending
         args:
           - --fix=lf
+      - id: check-merge-conflict
+      - id: check-ast
+      - id: debug-statements
+      - id: check-toml
+      - id: check-yaml
+      - id: check-json
+        exclude: |-
+          (?x)^(
+            ui/tsconfig\.json
+          )$
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
     hooks:
       - id: prettier
         exclude: |-
           (?x)^(
-            geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*.js
-            |geoportal/webpack.apps.js
+            geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
+            |geoportal/webpack\.apps\.js
+            |ui/package\.json
           )$
   - repo: https://github.com/sbrunner/integrity-updater
     rev: 0.2.0
@@ -39,23 +54,6 @@ repos:
         args:
           - --pre-commit
           - --blacklist=https://maps\.googleapis\.com/
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
-    hooks:
-      - id: detect-private-key
-      - id: check-merge-conflict
-      - id: check-ast
-      - id: debug-statements
-      - id: check-toml
-      - id: check-yaml
-      - id: check-json
-        exclude: |-
-          (?x)^(
-            ui/tsconfig\.json
-          )$
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
-      - id: mixed-line-ending
   - repo: https://github.com/sbrunner/hooks
     rev: 1.4.1
     hooks:
