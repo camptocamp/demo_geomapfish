@@ -2,15 +2,15 @@
   'extends': [
     'github>camptocamp/gs-renovate-config-preset:base.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:group.json5#0.8.5',
-    'github>camptocamp/gs-renovate-config-preset:stabilization-branches.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:ci.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:preset.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:pre-commit.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:docker.json5#0.8.5',
-    'github>camptocamp/gs-renovate-config-preset:own.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:json-schema.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:shellcheck.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:python.json5#1.0.1',
+    'github>camptocamp/gs-renovate-config-preset:stabilization-branches.json5#0.8.5',
+    'github>camptocamp/gs-renovate-config-preset:own.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:security.json5#1.0.1',
   ],
   baseBranches: [
@@ -75,12 +75,6 @@
       matchFileNames: ['custom/pyproject.toml'],
       enabled: false,
       matchDepNames: ['python'],
-    },
-    /** Accept only the patch on stabilization branches */
-    {
-      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
-      matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'lockFileMaintenance', 'rollback', 'bump'],
-      enabled: false,
     },
     {
       matchPackageNames: ['shellcheck-py/shellcheck-py'],
