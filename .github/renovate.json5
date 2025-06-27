@@ -61,7 +61,7 @@
     },
     /** Accept only the patch on the stabilization branches */
     {
-      matchBaseBranches: ['/^prod-^-7.*/', '/^prod-2-8.*/', '/^prod-2-9.*/'],
+      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/', '/^prod-2-9.*/'],
       matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'rollback', 'bump', 'lockFileMaintenance'],
       enabled: false,
     },
