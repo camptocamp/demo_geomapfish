@@ -69,18 +69,33 @@ yaml = ["PyYAML"]
 
 [[package]]
 name = "c2cwsgiutils"
-version = "5.0.4"
+version = "6.1.7"
 description = "Common utilities for Camptocamp WSGI applications"
 optional = false
-python-versions = "*"
+python-versions = ">=3.10"
 files = [
-    {file = "c2cwsgiutils-5.0.4-py3-none-any.whl", hash = "sha256:910c6c5299f89978292dc1336bfb03313808161878916d610db3f998f1b7e5d4"},
+    {file = "c2cwsgiutils-6.1.7-py3-none-any.whl", hash = "sha256:ca141a151a0dd19975f76aba91cac12c4a28aec69fb29cf665d8018d0ace6d61"},
+    {file = "c2cwsgiutils-6.1.7.tar.gz", hash = "sha256:21b43e9b476bc73540279817a2ad4eb69a08216f78c0cdecc4e5c979bf0795e4"},
 ]
 
+[package.dependencies]
+cee_syslog_handler = "*"
+pyyaml = "*"
+requests = "*"
+ujson = "*"
+
 [package.extras]
+alembic = ["alembic"]
+all = ["SQLAlchemy", "SQLAlchemy-Utils", "alembic", "boltons", "cornice", "gunicorn", "lxml", "objgraph", "prometheus-client", "psycopg2", "pyjwt", "pyramid", "pyramid-tm", "pyramid_mako", "redis", "requests-oauthlib", "sentry-sdk", "waitress", "zope.interface", "zope.sqlalchemy"]
 broadcast = ["redis"]
-profiler = ["linesman"]
-standard = ["SQLAlchemy", "SQLAlchemy-Utils", "alembic", "boltons", "cee-syslog-handler", "certifi", "charset-normalizer", "cornice", "deprecated", "graphviz", "greenlet", "gunicorn", "hupper", "idna", "importlib-metadata", "importlib-resources", "lxml", "mako", "markupsafe", "netifaces", "oauthlib", "objgraph", "packaging", "pastedeploy", "pipfile", "plaster", "plaster-pastedeploy", "psycopg2", "pyjwt", "pyparsing", "pyramid", "pyramid-tm", "pyyaml", "requests", "requests-oauthlib", "sentry-sdk", "six", "toml", "transaction", "translationstring", "ujson", "urllib3", "venusian", "waitress", "webob", "wrapt", "zipp", "zope.deprecation", "zope.interface", "zope.sqlalchemy"]
+debug = ["objgraph"]
+dev = ["waitress"]
+oauth2 = ["pyjwt", "requests-oauthlib"]
+sentry = ["sentry-sdk"]
+standard = ["SQLAlchemy", "SQLAlchemy-Utils", "alembic", "cornice", "gunicorn", "prometheus-client", "psycopg2", "pyjwt", "pyramid", "pyramid-tm", "pyramid_mako", "redis", "requests-oauthlib", "sentry-sdk", "zope.interface", "zope.sqlalchemy"]
+test-images = ["scikit-image"]
+tests = ["boltons", "lxml"]
+webserver = ["SQLAlchemy", "SQLAlchemy-Utils", "cornice", "gunicorn", "prometheus-client", "psycopg2", "pyramid", "pyramid-tm", "pyramid_mako", "zope.interface", "zope.sqlalchemy"]
 
 [[package]]
 name = "cee-syslog-handler"
@@ -1747,4 +1762,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.11"
-content-hash = "eef9b712276b2d97f08232227ed0f5470c909fb27f7104c5bd729c8447045ba3"
+content-hash = "fa0ef41830abe2c7c767e33856da9d2ef3d52790ffd0a7b144f4e48e466fa0ba"
