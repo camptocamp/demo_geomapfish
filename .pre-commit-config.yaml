@@ -114,7 +114,7 @@ repos:
           - --builtin-schema
           - github-workflows-require-timeout
   - repo: https://github.com/sirwart/ripsecrets
-    rev: v0.1.9
+    rev: v0.1.11
     hooks:
       - id: ripsecrets
   - repo: https://github.com/sbrunner/jsonschema-validator
