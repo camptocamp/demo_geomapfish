@@ -25,7 +25,7 @@
   minimumReleaseAge: '7 days',
   ignorePaths: ['CONST_create_template/**', 'docker-compose-lib.yaml', 'ci/**'],
   html: {
-    fileMatch: ['\\.html?$', '\\.html?.mako$'],
+    managerFilePatterns: ['/\\.html?$/', '/\\.html?.mako$/'],
   },
   customManagers: [
     /** Manage jsdelivr */
