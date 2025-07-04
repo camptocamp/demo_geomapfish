@@ -103,10 +103,26 @@ RUN NODE_ENV=production npm run build
 
 ###############################################################################
 
+FROM node:20.18.0-slim AS geogirafe-build
+
+WORKDIR /app
+COPY geogirafe/package.json geogirafe/package-lock.json ./
+
+RUN npm install --ignore-scripts
+
+COPY geogirafe/ ./
+ARG VISIBLE_ENTRY_POINT="/"
+RUN NODE_ENV=production npm run build -- --base=${VISIBLE_ENTRY_POINT}static-frontend/geogirafe/
+
+###############################################################################
+
 FROM gmf_config AS config
 
 COPY --from=webcomponent-build /app/dist/ /etc/geomapfish/static/custom/
 
 COPY --from=ui-build /app/dist/* /etc/static-frontend/
 COPY --from=ui-build /app/node_modules/ngeo/dist/fa-* /etc/static-frontend/
+
+COPY --from=geogirafe-build /app/dist/app /etc/static-frontend/geogirafe
+
 VOLUME /etc/static-frontend/
