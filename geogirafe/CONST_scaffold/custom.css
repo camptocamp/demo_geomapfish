@@ -1,0 +1,27 @@
+/**
+ * This file can be user to defined custom CSS, specifically for this project
+ * Please note that the CSS of a component should be defined in the component itself, not here.
+ * This file is only to define central CSS style, like placing the element in the global template
+ * or defining global CSS variables
+ */
+my-first-component {
+  margin-left: auto;
+}
+
+my-extended-component {
+  position: absolute;
+  z-index: 100;
+  background: var(--bkg-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/**
+ * Global CSS variables can be overridden here
+ * For exemple, here the default background color is configured to grey instead of white
+ * Removing the following lines will go back the the default white color defined in the core of GeoGirafe itself.
+ */
+body {
+  --bkg-color: #ddd;
+}
