@@ -182,6 +182,8 @@ vars:
         gmfContextualDataOptions:
           projections: *alternate_projections
           rasterParams: {}
+        gmfPrintOptions:
+          goodnessOfFit: 0.1
 
         # For dev, the corresponding values in static should also be removed.
         # gmfCustomJavascriptUrl:
