@@ -27,7 +27,11 @@ def display_result(name, result, expected):
     if status >= 300 or cache_control != expected["Cache-Control"]:
         print(_colorize("Error", RED))
         print("The status is %i" % status)
-        print("The Cache-Control is {}, expected {}".format(cache_control, expected["Cache-Control"]))
+        print(
+            "The Cache-Control is {}, expected {}".format(
+                cache_control, expected["Cache-Control"]
+            )
+        )
         print("The Content-Type is %s" % content_type)
         print("")
 
@@ -76,7 +80,8 @@ def main():
     instance_id = sys.argv[1]
     check(
         "WMS GetCapabilities",
-        "%s/wsgi/mapserv_proxy?REQUEST=GetCapabilities&SERVICE=WMS&VERSION=1.1.1" % instance_id,
+        "%s/wsgi/mapserv_proxy?REQUEST=GetCapabilities&SERVICE=WMS&VERSION=1.1.1"
+        % instance_id,
         {"Cache-Control": "max-age=864000, public"},
         {"Cache-Control": "max-age=864000, private"},
     )
@@ -110,14 +115,16 @@ def main():
     )
     check(
         "WMS DescribeLayer",
-        "%s/wsgi/mapserv_proxy?REQUEST=DescribeLayer&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo" % instance_id,
+        "%s/wsgi/mapserv_proxy?REQUEST=DescribeLayer&SERVICE=WMS&VERSION=1.1.1&LAYERS=zoo"
+        % instance_id,
         {"Cache-Control": "max-age=864000, public"},
         {"Cache-Control": "max-age=864000, private"},
     )
 
     check(
         "WFS GetCapabilities",
-        "%s/wsgi/mapserv_proxy?REQUEST=GetCapabilities&SERVICE=WFS&VERSION=1.1.0" % instance_id,
+        "%s/wsgi/mapserv_proxy?REQUEST=GetCapabilities&SERVICE=WFS&VERSION=1.1.0"
+        % instance_id,
         {"Cache-Control": "max-age=864000, public"},
         {"Cache-Control": "max-age=864000, private"},
     )
@@ -132,7 +139,8 @@ def main():
     )
     check(
         "WFS DescribeFeatureType",
-        "%s/wsgi/mapserv_proxy?REQUEST=DescribeFeatureType&SERVICE=WFS&VERSION=1.1.0" % instance_id,
+        "%s/wsgi/mapserv_proxy?REQUEST=DescribeFeatureType&SERVICE=WFS&VERSION=1.1.0"
+        % instance_id,
         {"Cache-Control": "max-age=864000, public"},
         {"Cache-Control": "max-age=864000, private"},
     )
@@ -178,7 +186,8 @@ def main():
     )
     check(
         "FullTextSearch callback",
-        "%s/wsgi/fulltextsearch?limit=20&query=paud&callback=stcCallback1003" % instance_id,
+        "%s/wsgi/fulltextsearch?limit=20&query=paud&callback=stcCallback1003"
+        % instance_id,
         {"Cache-Control": "no-cache"},
         {"Cache-Control": "no-cache"},
     )
