@@ -55,7 +55,7 @@ repos:
           - --pre-commit
           - --blacklist=https://maps\.googleapis\.com/
   - repo: https://github.com/sbrunner/hooks
-    rev: 1.4.1
+    rev: 1.6.1
     hooks:
       - id: copyright
         exclude: |-
