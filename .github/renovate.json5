@@ -83,6 +83,11 @@
       enabled: false,
     },
     {
+      matchUpdateTypes: ['major', 'minor'],
+      matchDepNames: ['ngeo'],
+      enabled: false,
+    },
+    {
       matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
       matchUpdateTypes: ['minor'],
       matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml'],
