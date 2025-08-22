@@ -67,7 +67,7 @@
     },
     {
       matchBaseBranches: ['/^prod-2-9.*/'],
-      matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml'],
+      matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml', '.github/renovated.json5'],
       enabled: true,
     },
     {
@@ -89,8 +89,8 @@
     },
     {
       matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
-      matchUpdateTypes: ['minor'],
-      matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml'],
+      matchUpdateTypes: ['patch'],
+      matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml', '.github/renovated.json5'],
       enabled: true,
     },
     {
@@ -103,6 +103,13 @@
         'PyCQA/isort',
         'psf/black',
       ],
+      enabled: false,
+    },
+    /** Should not be added to 2.10 */
+    {
+      matchBaseBranches: ['/^prod-2-9.*/'],
+      matchFileNames: ['ui/**', 'custom/**'],
+      matchUpdateTypes: ['major', 'minor'],
       enabled: false,
     },
     /** Disable upgrading the supported Python version */
