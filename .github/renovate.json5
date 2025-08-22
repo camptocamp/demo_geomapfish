@@ -1,4 +1,5 @@
 {
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   'extends': [
     'github>camptocamp/gs-renovate-config-preset:base.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:group.json5#0.8.5',
@@ -59,15 +60,44 @@
       versioning: 'regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$',
       matchDepNames: ['node'],
     },
-    /** Accept only the patch on the stabilization branches */
+    /** Accept only on project managed files. */
     {
-      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/', '/^prod-2-9.*/'],
-      matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'rollback', 'bump', 'lockFileMaintenance'],
+      matchBaseBranches: ['/^prod-.*/'],
       enabled: false,
     },
     {
-      matchBaseBranches: ['/^prod-2-7.*/'],
-      matchDatasources: ['docker-compose', 'github-actions'],
+      matchBaseBranches: ['/^prod-2-9.*/'],
+      matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml'],
+      enabled: true,
+    },
+    {
+      matchBaseBranches: ['/^prod-2-9.*/'],
+      matchFileNames: ['.pre-commit-config.yaml'],
+      matchDepNames: [
+        'pre-commit/pre-commit-hooks',
+        'pre-commit/mirrors-prettier',
+        'PyCQA/autoflake',
+        'PyCQA/isort',
+        'psf/black',
+      ],
+      enabled: false,
+    },
+    {
+      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
+      matchUpdateTypes: ['minor'],
+      matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml'],
+      enabled: true,
+    },
+    {
+      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
+      matchFileNames: ['.pre-commit-config.yaml'],
+      matchDepNames: [
+        'pre-commit/pre-commit-hooks',
+        'pre-commit/mirrors-prettier',
+        'PyCQA/autoflake',
+        'PyCQA/isort',
+        'psf/black',
+      ],
       enabled: false,
     },
     /** Disable upgrading the supported Python version */
@@ -79,11 +109,6 @@
     {
       matchPackageNames: ['shellcheck-py/shellcheck-py'],
       versioning: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$',
-    },
-    /** Packages published very recently are not pushed to stabilization branches for security reasons */
-    {
-      matchBaseBranches: ['/^prod-[0-9]+-[0-9]+(-advance)?$/'],
-      minimumReleaseAge: '7 days',
     },
     /** Ungroup Gdal dependencies */
     {
@@ -112,5 +137,4 @@
       minimumReleaseAge: '0',
     },
   ],
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
 }
