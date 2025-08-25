@@ -14,7 +14,7 @@
     'github>camptocamp/gs-renovate-config-preset:own.json5#0.8.5',
     'github>camptocamp/gs-renovate-config-preset:security.json5#1.0.1',
   ],
-  baseBranches: [
+  baseBranchPatterns: [
     'prod-2-7',
     'prod-2-7-advance',
     'prod-2-8',
