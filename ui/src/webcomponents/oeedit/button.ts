@@ -1,10 +1,8 @@
-
 import {TemplateResult, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import ToolButtonElement from 'gmfapi/elements/ToolButtonElement';
 import i18next from 'i18next';
 import 'bootstrap/js/src/tooltip';
-
 
 @customElement('gmf-oeedit-button')
 export class ToolButtonOeedit extends ToolButtonElement {
