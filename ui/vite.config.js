@@ -30,6 +30,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         desktop: path.resolve(__dirname, 'desktop.html'),
+        oeedit: path.resolve(__dirname, 'oeedit.html'),
         mobile: path.resolve(__dirname, 'mobile.html'),
         iframe_api: path.resolve(__dirname, 'iframe_api.html'),
       },
