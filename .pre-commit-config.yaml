@@ -46,7 +46,7 @@ repos:
     rev: 1.0.2
     hooks:
       - id: integrity-updater
-        include: |-
+        files: |-
           (?x)^(
             geoportal/geomapfish_geoportal/static/.*
             |ui/.*
