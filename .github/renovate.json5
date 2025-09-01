@@ -21,6 +21,8 @@
     'prod-2-8-advance',
     'prod-2-9',
     'prod-2-9-advance',
+    'prod-2-10',
+    'prod-2-10-advance',
   ],
   /** Packages published very recently are not pushed to stabilization branches for security reasons */
   minimumReleaseAge: '7 days',
@@ -66,12 +68,12 @@
       enabled: false,
     },
     {
-      matchBaseBranches: ['/^prod-2-9.*/'],
+      matchBaseBranches: ['/^prod-2-10.*/'],
       matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml', '.github/renovated.json5'],
       enabled: true,
     },
     {
-      matchBaseBranches: ['/^prod-2-9.*/'],
+      matchBaseBranches: ['/^prod-2-10.*/'],
       matchFileNames: ['.pre-commit-config.yaml'],
       matchDepNames: [
         'pre-commit/pre-commit-hooks',
@@ -88,13 +90,13 @@
       enabled: false,
     },
     {
-      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
+      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/', '/^prod-2-9.*/'],
       matchUpdateTypes: ['patch'],
       matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml', '.github/renovated.json5'],
       enabled: true,
     },
     {
-      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/'],
+      matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/', '/^prod-2-9.*/'],
       matchFileNames: ['.pre-commit-config.yaml'],
       matchDepNames: [
         'pre-commit/pre-commit-hooks',
@@ -103,13 +105,6 @@
         'PyCQA/isort',
         'psf/black',
       ],
-      enabled: false,
-    },
-    /** Should not be added to 2.10 */
-    {
-      matchBaseBranches: ['/^prod-2-9.*/'],
-      matchFileNames: ['ui/**', 'custom/**'],
-      matchUpdateTypes: ['major', 'minor'],
       enabled: false,
     },
     /** Disable upgrading the supported Python version */
