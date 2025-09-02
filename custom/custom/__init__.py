@@ -2,9 +2,10 @@ import c2cwsgiutils.db
 import c2cwsgiutils.health_check
 from papyrus.renderers import GeoJSON  # type: ignore[import-untyped]
 from pyramid.config import Configurator  # type: ignore[import-untyped]
+from typing import Any
 
 
-def main(global_config, **settings):
+def main(global_config: dict[str, Any], **settings: Any) -> Any:
     """Get the Pyramid WSGI application."""
     del global_config  # Unused.
     with Configurator(settings=settings) as config:
