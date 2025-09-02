@@ -67,7 +67,7 @@ services:
       - HAPROXY_LOGGING_OPTIONS
 
   print:
-    image: camptocamp/mapfish_print:3.31
+    image: ghcr.io/camptocamp/mapfish_print:3.31
     user: www-data
     restart: unless-stopped
     environment:
@@ -75,7 +75,7 @@ services:
       - PGOPTIONS
 
   mapserver:
-    image: camptocamp/mapserver:8.2-gdal3.8
+    image: ghcr.io/camptocamp/mapserver:8.4-gdal3.8
     user: www-data
     restart: unless-stopped
     entrypoint: []
@@ -99,7 +99,7 @@ services:
       - GDAL_DISABLE_READDIR_ON_OPEN
 
   qgisserver:
-    image: camptocamp/geomapfish-qgisserver:gmf${GEOMAPFISH_MAIN_VERSION}-qgis${QGIS_VERSION}
+    image: ghcr.io/camptocamp/geomapfish-qgisserver:gmf${GEOMAPFISH_MAIN_VERSION}-qgis${QGIS_VERSION}
     user: www-data
     restart: unless-stopped
     environment:
@@ -145,7 +145,7 @@ services:
       - QGIS_SERVER_OVERRIDE_SYSTEM_LOCALE
 
   tinyows:
-    image: camptocamp/tinyows:master
+    image: ghcr.io/camptocamp/tinyows:master
     user: www-data
     restart: unless-stopped
 
@@ -167,13 +167,13 @@ services:
       - '30'
 
   redis_master:
-    image: bitnami/redis:7.4
+    image: bitnami/redis:7.4.2
     environment:
       - REDIS_REPLICATION_MODE=master
       - ALLOW_EMPTY_PASSWORD=yes
 
   redis_slave:
-    image: bitnami/redis:7.4
+    image: bitnami/redis:7.4.2
     environment:
       - REDIS_REPLICATION_MODE=slave
       - REDIS_MASTER_HOST=redis_master
@@ -182,7 +182,7 @@ services:
       - redis_master
 
   redis_sentinel:
-    image: bitnami/redis-sentinel:7.4
+    image: bitnami/redis-sentinel:7.4.2
     environment:
       - REDIS_MASTER_HOST=redis_master
       - REDIS_MASTER_SET=mymaster
@@ -192,7 +192,7 @@ services:
       - redis_slave
 
   tilecloudchain:
-    image: &tilecloudchain-image camptocamp/tilecloud-chain:1.21
+    image: &tilecloudchain-image ghcr.io/camptocamp/tilecloud-chain:1.22
     user: www-data
     restart: unless-stopped
     environment:
@@ -257,7 +257,7 @@ services:
       - AZURE_STORAGE_ACCOUNT_URL
 
   geoportal:
-    image: camptocamp/geomapfishapp-geoportal:${GEOMAPFISH_MAIN_MINOR_VERSION}
+    image: ghcr.io/camptocamp/geomapfishapp-geoportal:${GEOMAPFISH_MAIN_MINOR_VERSION}
     user: www-data
     restart: unless-stopped
     environment: &geoportal-env
@@ -364,7 +364,7 @@ services:
     environment: *geoportal-env
 
   tools:
-    image: camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION}
+    image: ghcr.io/camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION}
     restart: unless-stopped
     volumes:
       - .:/src
@@ -438,7 +438,7 @@ services:
       - SUFFIX=
 
   alembic: &alembic
-    image: camptocamp/geomapfishapp-geoportal:${GEOMAPFISH_MAIN_VERSION}
+    image: ghcr.io/camptocamp/geomapfishapp-geoportal:${GEOMAPFISH_MAIN_VERSION}
     user: www-data
     entrypoint: []
     command:
@@ -464,7 +464,7 @@ services:
     build: *geoportal-build
 
   front:
-    image: haproxy:2.6
+    image: haproxy:2.6.7
     restart: unless-stopped
     volumes:
       - ${FRONT_LOG_DIRECTORY}:/dev/log:rw
@@ -510,7 +510,7 @@ services:
       - AZURE_STORAGE_SAS_TOKEN
 
   db:
-    image: camptocamp/postgres:${POSTGRES_TAG}
+    image: ghcr.io/camptocamp/postgres:${POSTGRES_TAG}
     environment:
       - POSTGRES_PASSWORD=${PGPASSWORD}
       - POSTGRES_DB=${PGDATABASE}

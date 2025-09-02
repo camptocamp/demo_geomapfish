@@ -771,6 +771,7 @@ vars:
   checker_ogc_server: MapServer
   checker:
     fulltextsearch:
+<<<<<<< ours
       search: pau
     print:
       spec:
@@ -789,6 +790,33 @@ vars:
             longitudeFirst: True
             layers: []
           legend: {}
+=======
+      search: text to search
+    # print:
+    #   spec:
+    #     layout: "1 A4 portrait"
+    #     outputFormat: "pdf"
+    #     attributes:
+    #       title: ""
+    #       comments: ""
+    #       datasource: []
+    #       map:
+    #         projection: "EPSG:{srid}"
+    #         dpi: 254
+    #         rotation: 0
+    #         center: [2600000, 1200000]
+    #         scale: 100000
+    #         longitudeFirst: True
+    #         layers: []
+    #       legend: {}
+    phantomjs:
+      disable: [apihelp]
+
+  check_collector:
+    hosts: []
+    # - display: Child:
+    #   url: {web_protocol}://{host}/child/wsgi
+>>>>>>> theirs
 
   # The dogpile.cache configuration.
   cache:

@@ -1,7 +1,7 @@
 ARG GEOMAPFISH_VERSION
 ARG GEOMAPFISH_MAIN_MINOR_VERSION
 
-FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} AS builder
+FROM ghcr.io/camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} AS builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 COPY requirements.txt /tmp/requirements.txt
@@ -23,7 +23,7 @@ CMD [ "webpack", "serve", "--open", "--mode=development", "--watch", "--no-inlin
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} AS runner
+FROM ghcr.io/camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} AS runner
 
 COPY requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache \
@@ -33,8 +33,8 @@ WORKDIR /app
 COPY . /app
 # Workaround, see:https://github.com/moby/moby/issues/37965
 RUN true
-COPY --from=builder /opt/c2cgeoportal/geoportal/node_modules/ngeo/dist/vendor.* /etc/static-ngeo/
-COPY --from=builder /opt/c2cgeoportal/geoportal/node_modules/ngeo/dist/*_alt.* /etc/static-ngeo/
+COPY --from=builder /opt/c2cgeoportal/geoportal/node_modules/ngeo/dist/* /etc/static-ngeo/
+RUN rm /etc/static-ngeo/*.html
 COPY --from=builder /etc/static-ngeo/* /etc/static-ngeo/
 COPY --from=builder /app/alembic.ini /app/alembic.yaml ./
 RUN chmod go+w /etc/static-ngeo/
