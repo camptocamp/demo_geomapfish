@@ -1,7 +1,9 @@
+from typing import Any
+
 from . import models
 
 
-def setup(env):
+def setup(env: dict[str, Any]) -> None:
     request = env["request"]
 
     # start a transaction

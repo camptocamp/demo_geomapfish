@@ -38,7 +38,7 @@ def feedback_post(request: pyramid.request.Request) -> Any:
                     "Cookie": request.headers.get("Cookie"),
                     "Referer": request.referrer,
                 },
-            ).json()
+            ).json(),
         )
     except Exception:  # pylint: disable=broad-exception-caught
         LOG.exception("Error on get user information")
@@ -78,7 +78,7 @@ def feedback_post(request: pyramid.request.Request) -> Any:
             "Permalink: " + new_feedback.permalink,  # type: ignore[list-item]
             "User email: " + new_feedback.email,  # type: ignore[list-item]
             "User text: " + new_feedback.text,  # type: ignore[list-item]
-        ]
+        ],
     )
     subject = "Feedback - Guichet cartographique"
 
