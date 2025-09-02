@@ -5,11 +5,11 @@ name: Compare simple and advance branch
 on:
   push:
     branches:
-      - prod-2-9-advance
+      - prod-2-10-advance
   pull_request:
 
 env:
-  REF_BRANCH: prod-2-9
+  REF_BRANCH: prod-2-10
 
 jobs:
   main:
