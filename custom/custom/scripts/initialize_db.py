@@ -1,18 +1,21 @@
 import argparse
 import sys
+from typing import Optional, TYPE_CHECKING
 
 from pyramid.paster import bootstrap, setup_logging  # type: ignore[import-untyped]
 from sqlalchemy.exc import OperationalError
-
 from custom.models.meta import Base
 
+if TYPE_CHECKING:
+    from sqlalchemy.orm import Session
 
-def setup_models(dbsession):
+
+def setup_models(dbsession: "Session") -> None:
     """Add or update models / fixtures in the database."""
     del dbsession  # Unused
 
 
-def parse_args(argv):
+def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "config_uri",
@@ -21,7 +24,7 @@ def parse_args(argv):
     return parser.parse_args(argv[1:])
 
 
-def main(argv=None):
+def main(argv: Optional[list[str]] = None) -> None:
     args = parse_args(argv or sys.argv)
     setup_logging(args.config_uri)
     env = bootstrap(args.config_uri)
@@ -43,5 +46,5 @@ might be caused by one of the following things:
 2.  Your database server may not be running.  Check that the
     database server referred to by the "sqlalchemy.url" setting in
     your "development.ini" file is running.
-            """
+            """,
         )

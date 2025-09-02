@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from geojson import Feature, FeatureCollection, Point  # type: ignore[import-untyped]
@@ -33,12 +33,12 @@ class APIUsageExceededError(Exception):
 
 class SwisscomHeatmapApi:
     error: Response = None
-    request_date = datetime.now()
+    request_date = datetime.now(timezone.utc)
     nb_requests = 0
 
     @staticmethod
     def parse_date_time(date_time: str) -> datetime:
-        return datetime.strptime(date_time, "%d.%m.%YT%H:%M")
+        return datetime.strptime(date_time, "%d.%m.%YT%H:%M").replace(tzinfo=timezone.utc)
 
     def get_config(self) -> dict[str, str]:
         return {"minDate": f"{MIN_DATE}", "maxDate": f"{MAX_DATE}"}
@@ -61,7 +61,11 @@ class SwisscomHeatmapApi:
         return [t["tileId"] for t in muni_tiles_json.json()["tiles"]][:MAX_NB_TILES_REQUEST]
 
     def query_api_generic(
-        self, oauth: OAuth2Session, path: str, postal_code: int, date_time: datetime
+        self,
+        oauth: OAuth2Session,
+        path: str,
+        postal_code: int,
+        date_time: datetime,
     ) -> str:
         LOG.info("Querying  with %s, %s, %s", path, postal_code, date_time)
         tile_ids = self.get_tiles_ids(oauth, postal_code)
@@ -109,7 +113,8 @@ class SwisscomHeatmapApi:
             err_txt = response.text
             LOG.warning("External API error (code %s): %s", err_code, err_txt)
             self.error = Response(err_txt, status=err_code)
-            raise ExternalAPIError("External api error")
+            message = "External API error occurred"
+            raise ExternalAPIError(message)
 
     def limit_query(self) -> None:
         """
@@ -117,13 +122,13 @@ class SwisscomHeatmapApi:
 
         [bgerber] It's rude, but we are using my own key !
         """
-        delta = datetime.now() - self.request_date
+        delta = datetime.now(timezone.utc) - self.request_date
         if delta.total_seconds() > 86400:
-            self.request_date = datetime.now()
+            self.request_date = datetime.now(timezone.utc)
             self.nb_requests = 0
         self.nb_requests += 1
         LOG.info("Request today %s", self.nb_requests)
         if self.nb_requests > 500:
-            error = "Too much query today, try again tomorrow"
+            error = "Too many queries today, try again tomorrow"
             self.error = Response(error, status=403)
             raise APIUsageExceededError(error)

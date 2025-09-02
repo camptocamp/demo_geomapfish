@@ -14,9 +14,9 @@ _CLIENT = None
 
 def _get_azure_container_client(container: str) -> ContainerClient:
     """Get the Azure blog storage client."""
-    if "AZURE_STORAGE_CONNECTION_STRING" in os.environ and os.environ["AZURE_STORAGE_CONNECTION_STRING"]:
+    if os.environ.get("AZURE_STORAGE_CONNECTION_STRING"):
         return BlobServiceClient.from_connection_string(
-            os.environ["AZURE_STORAGE_CONNECTION_STRING"]
+            os.environ["AZURE_STORAGE_CONNECTION_STRING"],
         ).get_container_client(container=container)
     if "AZURE_STORAGE_BLOB_CONTAINER_URL" in os.environ:
         return ContainerClient.from_container_url(os.environ["AZURE_STORAGE_BLOB_CONTAINER_URL"])
@@ -44,9 +44,11 @@ def swissalti3d(request: pyramid.request.Request) -> pyramid.response.Response:
     blob = _CLIENT.get_blob_client(blob="swissalti3d_2m_archeo.tif")
     range_header = request.headers.get("Range")
     if range_header is None:
-        raise HTTPBadRequest("Range header is required")
+        message = "Range header is required"
+        raise HTTPBadRequest(message)
     if not range_header.startswith("bytes="):
-        raise HTTPBadRequest("Range header must of type bytes")
+        message = "Range header must of type bytes"
+        raise HTTPBadRequest(message)
     range_header = range_header[6:]
     start_str, end_str = range_header.split("-")
     start = int(start_str)
