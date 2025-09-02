@@ -765,7 +765,7 @@ vars:
       - name: directedFilterAttributes
         type: list
         description: >
-          Comma-separated list of attribute names which should have rules already ready when using the
+          Comma-separated list of attributes names which should have rules already ready when using the
           filter tools.
         relevant_for:
           - layer_wms
@@ -805,7 +805,6 @@ vars:
         relevant_for:
           - layer_wmts
           - layer_cog
-          - layer_wms
       - name: printLayers
         description: >
           Comma-separated list of WMS layers used instead of the WMTS layer for printing.
@@ -860,7 +859,7 @@ vars:
           - role
         description: >
           MapServer variable substitution in mapfile.
-          Documentation: https://camptocamp.github.io/c2cgeoportal/2.9/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
+          Documentation: https://camptocamp.github.io/c2cgeoportal/2.10/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
       - name: filterable_layers
         description: >
           Grant filtering access to specific layers.
@@ -976,6 +975,8 @@ vars:
 
   # The shortener base configuration
   shortener:
+    # The base of created URL
+    base_url: '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}{VISIBLE_ENTRY_POINT}s/'
     length: 4
 
   # Define whether the MapServer proxy should hide the OGC capabilities.
@@ -1191,8 +1192,6 @@ vars:
     print: *auth_header
     fulltextsearch: *auth_header
     mapserver: *auth_header
-    mapserver_ogcapi_mapserver: *auth_header
-    mapserver_ogcapi_qgisserver: *auth_header
     tinyows: *auth_header
     layers:
       <<: *auth_header
@@ -1233,6 +1232,9 @@ vars:
         - name: iframe_api
           params:
             no_redirect: 'true'
+          environment: *phantomjs-env
+          level: 6
+        - name: apihelp
           environment: *phantomjs-env
           level: 6
     routes:
@@ -1436,12 +1438,6 @@ runtime_postprocess:
       - headers.mapserver.access_control_max_age
       - headers.mapserver.cache_control_max_age
       - headers.mapserver.cache_control_max_age_nocache
-      - headers.mapserver_ogcapi_mapserver.access_control_max_age
-      - headers.mapserver_ogcapi_mapserver.cache_control_max_age
-      - headers.mapserver_ogcapi_mapserver.cache_control_max_age_nocache
-      - headers.mapserver_ogcapi_qgisserver.access_control_max_age
-      - headers.mapserver_ogcapi_qgisserver.cache_control_max_age
-      - headers.mapserver_ogcapi_qgisserver.cache_control_max_age_nocache
       - headers.tinyows.access_control_max_age
       - headers.tinyows.cache_control_max_age
       - headers.tinyows.cache_control_max_age_nocache

@@ -1,0 +1,13 @@
+diff --git a/geoportal/vars.yaml b/geoportal/vars.yaml
+index bda0e6b..bf7bd29 100644
+--- a/geoportal/vars.yaml
++++ b/geoportal/vars.yaml
+@@ -290,6 +290,8 @@ vars:
+     #         longitudeFirst: True
+     #         layers: []
+     #       legend: {}
++    phantomjs:
++      disable: [apihelp]
+ 
+   check_collector:
+     hosts: []
