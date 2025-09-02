@@ -14,7 +14,7 @@ from custom import main, models
 from custom.models.meta import Base
 
 
-def pytest_addoption(parser):
+def pytest_addoption(parser) -> None:
     parser.addoption("--ini", action="store", metavar="INI_FILE")
 
 

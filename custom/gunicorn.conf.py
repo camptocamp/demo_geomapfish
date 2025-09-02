@@ -10,8 +10,8 @@ from c2cwsgiutils import get_config_defaults
 bind = ":8080"  # pylint: disable=invalid-name
 
 worker_class = "gthread"  # pylint: disable=invalid-name
-workers = os.environ.get("GUNICORN_WORKERS", 2)
-threads = os.environ.get("GUNICORN_THREADS", 10)
+workers = os.environ.get("GUNICORN_WORKERS", "2")
+threads = os.environ.get("GUNICORN_THREADS", "10")
 
 preload = "true"  # pylint: disable=invalid-name
 
@@ -58,7 +58,7 @@ logconfig_dict = {
             "format": "%(asctime)s [%(process)d] [%(levelname)-5.5s] %(message)s",
             "datefmt": "[%Y-%m-%d %H:%M:%S %z]",
             "class": "logging.Formatter",
-        }
+        },
     },
 }
 

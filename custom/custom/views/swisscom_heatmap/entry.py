@@ -70,7 +70,7 @@ def get_params(request: pyramid.request.Request) -> tuple[int, datetime]:
         postal_code = int(request.params["postal_code"])
         date_time = api.parse_date_time(request.params["date_time"])
     except ValueError as exc:
-        raise pyramid.httpexceptions.HTTPBadRequest() from exc
+        raise pyramid.httpexceptions.HTTPBadRequest from exc
     return postal_code, date_time
 
 
