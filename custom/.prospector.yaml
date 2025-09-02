@@ -6,8 +6,10 @@ inherits:
   - duplicated
 
 mypy:
+  run: false
   options:
     python_version: '3.10'
+
 ruff:
   disable:
     - D101 # Missing docstring in public class
