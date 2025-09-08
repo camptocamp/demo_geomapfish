@@ -20,7 +20,7 @@ RUN mv webpack.apps.js webpack.apps.js.tmpl \
     && ln --symbolic /usr/lib/node_modules/ .
 
 ENTRYPOINT [ "/usr/bin/eval-templates" ]
-CMD [ "webpack", "serve", "--open", "--mode=development", "--watch", "--no-inline" ]
+CMD [ "webpack", "serve", "--open", "--mode=development" ]
 
 ###############################################################################
 
