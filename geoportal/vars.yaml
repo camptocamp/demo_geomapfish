@@ -863,6 +863,14 @@ vars:
             layers: []
           legend: {}
 
+    phantomjs:
+      disable: [apihelp]
+
+  check_collector:
+    hosts: []
+    # - display: Child:
+    #   url: {web_protocol}://{host}/child/wsgi
+
   # The dogpile.cache configuration.
   cache:
     std:

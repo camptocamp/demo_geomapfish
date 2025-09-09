@@ -804,8 +804,8 @@ vars:
           Requires <code>OGCServer</code> metadata with OGC server name.
         relevant_for:
           - layer_wmts
-          - layer_cog
           - layer_wms
+          - layer_cog
       - name: printLayers
         description: >
           Comma-separated list of WMS layers used instead of the WMTS layer for printing.
@@ -860,7 +860,7 @@ vars:
           - role
         description: >
           MapServer variable substitution in mapfile.
-          Documentation: https://camptocamp.github.io/c2cgeoportal/2.9/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
+          Documentation: https://camptocamp.github.io/c2cgeoportal/2.10/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
       - name: filterable_layers
         description: >
           Grant filtering access to specific layers.
@@ -1233,6 +1233,9 @@ vars:
         - name: iframe_api
           params:
             no_redirect: 'true'
+          environment: *phantomjs-env
+          level: 6
+        - name: apihelp
           environment: *phantomjs-env
           level: 6
     routes:

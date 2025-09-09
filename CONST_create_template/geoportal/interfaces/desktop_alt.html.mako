@@ -234,7 +234,7 @@
 
       <!-- Selection -->
       <gmf-select-button slot="tool-button"></gmf-select-button>
-      <div slot="tool-panel-selection"  class="row pointer-events-none">
+      <div slot="tool-panel-selection" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Selection' | translate }}
