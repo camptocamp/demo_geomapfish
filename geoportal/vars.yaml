@@ -883,6 +883,7 @@ vars:
         password: '{REDIS_PASSWORD}'
         connection_kwargs:
           ssl: '{REDIS_SSL}'
+          ssl_check_hostname: false
       # Kubernetes version
       #arguments: &redis-cache-arguments
       #  sentinels:
