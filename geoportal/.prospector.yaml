@@ -1,28 +1,11 @@
 inherits:
   - duplicated
-  - utils:no-design-checks
+  - utils:base-less-strict
 
-max-line-length: 110
-pylint:
+mypy:
   options:
-    max-line-length: 110
-  disable:
-    - too-many-locals
-    - too-many-statements
-    - too-many-branches
-    - c-extension-no-member
+    python-version: '3.10'
 
-bandit:
-  run: true
-pyflakes:
-  disable:
-    - F401
-
-pycodestyle:
+ruff:
   options:
-    max-line-length: 110
-  disable:
-    - E203
-
-mccabe:
-  run: false
+    target-version: py310
