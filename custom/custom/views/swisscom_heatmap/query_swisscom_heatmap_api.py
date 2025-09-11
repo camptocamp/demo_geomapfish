@@ -12,8 +12,12 @@ from custom.views.swisscom_heatmap.tile_id_to_coordinates import tile_id_to_ll
 
 LOG = logging.getLogger(__name__)
 
-CLIENT_ID = os.getenv("SWISSCOM_CLIENT_ID", "")  # customer key in the Swisscom digital marketplace
-CLIENT_SECRET = os.getenv("SWISSCOM_CLIENT_SECRET", "")  # customer secret in the Swisscom digital marketplace
+CLIENT_ID = os.getenv(
+    "SWISSCOM_CLIENT_ID", ""
+)  # customer key in the Swisscom digital marketplace
+CLIENT_SECRET = os.getenv(
+    "SWISSCOM_CLIENT_SECRET", ""
+)  # customer secret in the Swisscom digital marketplace
 MIN_DATE = os.getenv("MIN_DATE", "03.10.2022")
 MAX_DATE = os.getenv("MAX_DATE", "16.10.2022")
 MAX_NB_TILES_REQUEST = int(os.getenv("MAX_NB_TILES_REQUEST", "100"))
@@ -38,7 +42,9 @@ class SwisscomHeatmapApi:
 
     @staticmethod
     def parse_date_time(date_time: str) -> datetime:
-        return datetime.strptime(date_time, "%d.%m.%YT%H:%M").replace(tzinfo=timezone.utc)
+        return datetime.strptime(date_time, "%d.%m.%YT%H:%M").replace(
+            tzinfo=timezone.utc
+        )
 
     def get_config(self) -> dict[str, str]:
         return {"minDate": f"{MIN_DATE}", "maxDate": f"{MAX_DATE}"}
@@ -47,18 +53,24 @@ class SwisscomHeatmapApi:
         # Fetch an access token
         client = BackendApplicationClient(client_id=CLIENT_ID)
         oauth = OAuth2Session(client=client)
-        oauth.fetch_token(token_url=TKN_URL, client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
+        oauth.fetch_token(
+            token_url=TKN_URL, client_id=CLIENT_ID, client_secret=CLIENT_SECRET
+        )
         return oauth
 
     def get_tiles_ids(self, oauth: OAuth2Session, postal_code: int) -> list[int]:
         # For muni/district id, see https://www.atlas.bfs.admin.ch/maps/13/fr/17804_229_228_227/27579.html
         # Municipalities and Districts doesn't work well probably because of the free plan
         # Get all the first MAX_NB_TILES_REQUEST tile ids associated with the postal code of interest
-        muni_tiles_json = oauth.get(BASE_URL + f"/grids/postal-code-areas/{postal_code}", headers=HEADERS)
+        muni_tiles_json = oauth.get(
+            BASE_URL + f"/grids/postal-code-areas/{postal_code}", headers=HEADERS
+        )
         self.check_api_error(muni_tiles_json)
         tiles = muni_tiles_json.json()["tiles"]
         LOG.info("Nb tiles received: %s", len(tiles))
-        return [t["tileId"] for t in muni_tiles_json.json()["tiles"]][:MAX_NB_TILES_REQUEST]
+        return [t["tileId"] for t in muni_tiles_json.json()["tiles"]][
+            :MAX_NB_TILES_REQUEST
+        ]
 
     def query_api_generic(
         self,
@@ -83,24 +95,32 @@ class SwisscomHeatmapApi:
             features.append(Feature(geometry=Point(coordinate), properties=element))
         return FeatureCollection(features)
 
-    def get_dwell_density(self, postal_code: int, date_time: datetime) -> FeatureCollection | Response:
+    def get_dwell_density(
+        self, postal_code: int, date_time: datetime
+    ) -> FeatureCollection | Response:
         self.error = None
         try:
             self.limit_query()
             oauth = self.auth()
-            api_request = self.query_api_generic(oauth, "/dwell-density/hourly", postal_code, date_time)
+            api_request = self.query_api_generic(
+                oauth, "/dwell-density/hourly", postal_code, date_time
+            )
             response = oauth.get(api_request, headers=HEADERS)
             self.check_api_error(response)
         except (ExternalAPIError, APIUsageExceededError):
             return self.error
         return self.response_to_geojson_result(response.json())
 
-    def get_dwell_demographics(self, postal_code: int, date_time: datetime) -> FeatureCollection | Response:
+    def get_dwell_demographics(
+        self, postal_code: int, date_time: datetime
+    ) -> FeatureCollection | Response:
         self.error = None
         try:
             self.limit_query()
             oauth = self.auth()
-            api_request = self.query_api_generic(oauth, "/dwell-demographics/hourly", postal_code, date_time)
+            api_request = self.query_api_generic(
+                oauth, "/dwell-demographics/hourly", postal_code, date_time
+            )
             response = oauth.get(api_request, headers=HEADERS)
             self.check_api_error(response)
         except (ExternalAPIError, APIUsageExceededError):
