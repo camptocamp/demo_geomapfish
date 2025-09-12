@@ -69,7 +69,14 @@
     },
     {
       matchBaseBranches: ['/^prod-2-10.*/'],
-      matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml', '.github/renovated.json5'],
+      matchFileNames: [
+        'ui/**',
+        'custom/**',
+        '.pre-commit-config.yaml',
+        '.github/renovated.json5',
+        'package.json',
+        'geogirafe/**',
+      ],
       enabled: true,
     },
     {
@@ -92,7 +99,14 @@
     {
       matchBaseBranches: ['/^prod-2-7.*/', '/^prod-2-8.*/', '/^prod-2-9.*/'],
       matchUpdateTypes: ['patch'],
-      matchFileNames: ['ui/**', 'custom/**', '.pre-commit-config.yaml', '.github/renovated.json5'],
+      matchFileNames: [
+        'ui/**',
+        'custom/**',
+        '.pre-commit-config.yaml',
+        '.github/renovated.json5',
+        'package.json',
+        'geogirafe/**',
+      ],
       enabled: true,
     },
     {
