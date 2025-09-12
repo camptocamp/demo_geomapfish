@@ -1,0 +1,42 @@
+{
+  "general": {
+    "locale": "en-US"
+  },
+  "languages": {
+    "translations": {
+      "en": ["i18n/en.json"],
+      "fr": ["i18n/fr.json"],
+      "de": ["i18n/de.json"],
+      "it": ["i18n/it.json"]
+    },
+    "defaultLanguage": "en"
+  },
+  "themes": {
+    "url": "mock/themes.json",
+    "defaultTheme": ""
+  },
+  "basemaps": {
+    "defaultBasemap": "OpenStreetMap",
+    "OSM": true
+  },
+  "projections": {
+    "EPSG:3857": "WebMercator"
+  },
+  "map": {
+    "srid": "EPSG:3857",
+    "scales": [70000000, 35000000, 15000000, 10000000, 4000000, 2000000, 1000000, 500000, 250000, 150000, 70000, 35000, 15000, 8000, 4000, 2000, 1000, 500],
+    "startPosition": "844100,6033454",
+    "startZoom": "0"
+  },
+  "map3d": {
+    "tilesetsUrls": []
+  },
+  "contextmenu": {
+    "crs": [
+      { "code": "EPSG:2056", "translation": "EPSG:2056", "format": "decimal", "precision": 1 },
+      { "code": "EPSG:4326", "translation": "EPSG:4326", "format": "decimal", "precision": 7 },
+      { "code": "EPSG:4326", "translation": "EPSG:4326-DMS", "format": "dms", "precision": 2 }
+    ]
+  },
+  "crs": []
+}
