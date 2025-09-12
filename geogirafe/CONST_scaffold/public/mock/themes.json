@@ -1,0 +1,40 @@
+{
+  "themes": [
+    {
+      "id": 1,
+      "name": "Worldwide data",
+      "icon": "/images/world.webp",
+      "children": [
+        {
+          "id": 11,
+          "name": "Example XYZ Layer",
+          "children": [
+            {
+              "id": 112,
+              "name": "OpenTopoMap",
+              "type": "XYZ",
+              "url": "https://a.tile.opentopomap.org/{z}/{x}/{y}.png",
+              "metadata": {
+                "disclaimer": "source: OpenTopoMap (opentopomap.org)"
+              }
+            }
+          ],
+          "metadata": {
+            "isExpanded": true
+          }
+        }
+      ]
+    }
+  ],
+  "background_layers": [
+    {
+      "id": 9000,
+      "name": "ArcGIS Imagery",
+      "type": "XYZ",
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      "metadata": {
+        "disclaimer": "source: ESRI (arcgisonline.com)"
+      }
+    }
+  ]
+}
