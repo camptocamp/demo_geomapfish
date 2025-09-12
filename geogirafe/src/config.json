@@ -1,0 +1,101 @@
+{
+  "general": {
+    "locale": "de-CH"
+  },
+  "gmfauth": {
+    "url": "https://geomapfish-demo-2-8.camptocamp.com",
+    "audience": ["geomapfish-demo-2-8.camptocamp.com"],
+    "audienceExcludedPaths": ["^/tiles/", "^/pytree/"]
+  },
+  "languages": {
+    "translations": {
+      "en": ["i18n/en.json"],
+      "fr": ["i18n/fr.json"],
+      "de": ["i18n/de.json"],
+      "it": ["i18n/it.json"]
+    },
+    "defaultLanguage": "en"
+  },
+  "themes": {
+    "url": "/themes?background=background&interface=desktop",
+    "defaultTheme": "Demo"
+  },
+  "selection": {
+    "maxFeature": 200
+  },
+  "basemaps": {
+    "show": true,
+    "defaultBasemap": "OSM map",
+    "OSM": true,
+    "SwissTopoVectorTiles": true
+  },
+  "search": {
+    "url": "/search?limit=30&partitionlimit=5&interface=desktop&query=###SEARCHTERM###&lang=###SEARCHLANG###",
+    "objectPreview": true,
+    "layerPreview": true
+  },
+  "print": {
+    "url": "/printproxy/",
+    "formats": ["png", "pdf", "jpg", "jpeg", "notvalid"],
+    "defaultFormat": "pdf",
+    "defaultLayout": "1 A4 portrait",
+    "scales": [500000, 100000, 50000, 25000, 10000, 5000, 2500, 500, 250, 100],
+    "attributeNames": ["legend", "title", "comments"],
+    "printLegend": {
+      "showGroupsTitle": true
+    }
+  },
+  "share": {
+    "service": "lstu",
+    "createUrl": "https://lstu.fr/a"
+  },
+  "projections": {
+    "EPSG:3857": "W-M",
+    "EPSG:4326": "WGS84",
+    "EPSG:2056": "LV95"
+  },
+  "map": {
+    "srid": "EPSG:2056",
+    "scales": [1000000, 500000, 200000, 100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 200],
+    "startPosition": "2628597,1186378",
+    "startZoom": "3",
+    "maxExtent": "2200000,1040000,3000000,1310000"
+  },
+  "map3d": {
+    "terrainUrl": "https://3d.geo.admin.ch/ch.swisstopo.terrain.3d/v1/",
+    "terrainImagery": {
+      "url": "https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.swissimage-product/default/current/4326/{z}/{x}/{y}.jpeg",
+      "minLoD": 8,
+      "maxLoD": 17,
+      "coverageArea": [5.013926957923385, 45.35600133779394, 11.477436312994008, 48.27502358353741]
+    },
+    "tilesetsUrls": [
+      "https://vectortiles100.geo.admin.ch/3d-tiles/ch.swisstopo.swisstlm3d.3d/20201020/tileset.json"
+    ],
+    "maximumZoomDistance": 25000
+  },
+  "lidar": {
+    "url": "https://sitn.ne.ch/pytree"
+  },
+  "csv": {
+    "separator": ";",
+    "quote": "\""
+  },
+  "contextmenu": {
+    "crs": [
+      {"code": "EPSG:2056", "translation": "EPSG:2056", "format": "decimal", "precision": 1},
+      {"code": "EPSG:4326", "translation": "EPSG:4326", "format": "decimal", "precision": 7},
+      {"code": "EPSG:4326", "translation": "EPSG:4326-DMS", "format": "dms", "precision": 2}
+    ]
+  },
+  "crs": [
+    {
+      "code": "EPSG:2056",
+      "definition": "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs +type=crs"
+    },
+    {
+      "code": "EPSG:21781",
+      "definition": "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=660.077,13.551,369.344,2.484,1.783,2.939,5.66 +units=m +no_defs"
+    }
+  ]
+}

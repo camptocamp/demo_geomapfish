@@ -43,6 +43,16 @@ vars:
       layout: desktop
     - name: mobile_alt
     - name: oeedit
+    # GeoGirafe interfaces
+    - name: desktop_geogirafe
+      type: custom
+      html_filename: geogirafe/index.html
+    - name: mobile_geogirafe
+      type: custom
+      html_filename: geogirafe/mobile.html
+    - name: iframe_geogirafe
+      type: custom
+      html_filename: geogirafe/iframe.html
 
   interfaces_config:
     default:
@@ -901,6 +911,16 @@ vars:
           img-src {content_security_policy_main_img_src};
           connect-src {content_security_policy_main_connect_src};
           frame-ancestors {content_security_policy_iframe_api_frame_ancestors};"
+    - pattern: '^/[a-z]+_geogirafe(/theme/.*)?$'
+      headers:
+        Content-Security-Policy: "default-src 'self';
+          script-src-elem 'self' 'unsafe-inline';
+          script-src-attr 'self' 'unsafe-inline';
+          script-src 'self' 'wasm-unsafe-eval';
+          style-src-elem 'self' 'unsafe-inline' data:;
+          style-src-attr 'self' 'unsafe-inline';
+          img-src 'self' data: https://cdn-icons-png.flaticon.com/ https://geomapfish-demo-2-9.camptocamp.com/;
+          connect-src 'self' data: https://geomapfish-demo-2-9.camptocamp.com/ https://www.ogc.vd.ch/;"
 
 update_paths:
   - authentication.openid_connect
