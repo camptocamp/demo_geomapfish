@@ -25,3 +25,15 @@ geoportal/geomapfish_geoportal/locale/*.pot
 ui/dist/
 ui/node_modules/
 ui/static/fa-*
+
+# GeoGirafe
+!geogirafe/custom.css
+!geogirafe/iframe.html
+!geogirafe/index.html
+!geogirafe/mobile.html
+!geogirafe/package.json
+!geogirafe/package-lock.json
+!geogirafe/public/
+!geogirafe/src/
+!geogirafe/tsconfig.json
+!geogirafe/vite.config.js
