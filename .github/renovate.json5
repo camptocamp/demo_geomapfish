@@ -131,7 +131,7 @@
     },
     /** Don't update major version on package.json */
     {
-      matchFileNames: ['package.json'],
+      matchFileNames: ['^package.json'],
       matchUpdateTypes: ['major'],
       enabled: false,
     },
@@ -149,6 +149,11 @@
       groupName: 'GeoGirafe daily',
       schedule: 'after 5am',
       minimumReleaseAge: '0',
+    },
+    /** Ignore geogirafe/CONST_scaffold/* files */
+    {
+      matchPaths: ['geogirafe/CONST_scaffold/**'],
+      enabled: false,
     },
   ],
 }
