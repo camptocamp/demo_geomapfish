@@ -138,8 +138,15 @@
     /** Make ngeo as loose, daily updates */
     {
       matchDepNames: ['ngeo'],
-      groupName: 'Ngeo',
+      groupName: 'Ngeo daily',
       versioning: 'loose',
+      schedule: 'after 5am',
+      minimumReleaseAge: '0',
+    },
+    /** Make GeoGirafe, daily updates */
+    {
+      matchDepNames: ['@geogirafe/.*', '@geoblocks/.*'],
+      groupName: 'GeoGirafe daily',
       schedule: 'after 5am',
       minimumReleaseAge: '0',
     },
