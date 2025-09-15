@@ -1,5 +1,5 @@
-import {html, TemplateResult, CSSResult, css, unsafeCSS} from 'lit';
-import {customElement, state, property} from 'lit/decorators.js';
+import {html, CSSResult, css, unsafeCSS} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
 import {Subscription} from 'rxjs';
 import moment from 'moment';
 import epsg21781 from '@geoblocks/proj/src/EPSG_21781.js';
@@ -11,7 +11,7 @@ import View from 'ol/View.js';
 import {Heatmap as HeatmapLayer} from 'ol/layer.js';
 import {GeoJSON} from 'ol/format.js';
 import {transform} from 'ol/proj.js';
-import {Point} from 'ol/geom.js';
+import {Geometry, Point} from 'ol/geom.js';
 import Feature from 'ol/Feature.js';
 import {extend, Extent, createEmpty, isEmpty, buffer} from 'ol/extent.js';
 
@@ -35,7 +35,6 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   @state() private queryType = QUERY_TYPE.dwellDensity;
   @state() private meaning = '';
   @state() private date = new Date();
-  @state() private dateLabel = this.getDateLabel(this.date);
   @state() private time = 0;
   @state() private postalCode = 1003;
   private subscriptions: Subscription[] = [];
@@ -45,11 +44,11 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   private view?: View;
   private isInitialRecenterDone: boolean;
   private geoJsonFormat = new GeoJSON({});
-  private vectorSource = new VectorSource({
+  private vectorSource: VectorSource<Feature<Geometry>> = new VectorSource({
     features: [],
   });
   private heatmapLayer = new HeatmapLayer({
-    source: this.vectorSource as VectorSource<Point>,
+    source: this.vectorSource,
     blur: this.blur,
     radius: this.radius,
     opacity: 0.8,
@@ -199,7 +198,6 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
 
   private setDate(date: Date) {
     this.date = date;
-    this.dateLabel = this.getDateLabel(date);
   }
 
   private postalCodeOnChange(event: Event) {
