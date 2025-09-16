@@ -1009,8 +1009,8 @@ vars:
           script-src 'self' 'wasm-unsafe-eval';
           style-src-elem 'self' 'unsafe-inline' data:;
           style-src-attr 'self' 'unsafe-inline';
-          img-src 'self' data: https://cdn-icons-png.flaticon.com/ https://geomapfish-demo-2-9.camptocamp.com/;
-          connect-src 'self' data: https://geomapfish-demo-2-9.camptocamp.com/ https://www.ogc.vd.ch/;"
+          img-src 'self' data: https://cdn-icons-png.flaticon.com/ https://geomapfish-demo-2-10.camptocamp.com/;
+          connect-src 'self' data: https://geomapfish-demo-2-10.camptocamp.com/ https://www.ogc.vd.ch/;"
 
 update_paths:
   - authentication.openid_connect
@@ -1119,7 +1119,7 @@ runtime_environment:
   - name: AWS_S3_ENDPOINT
     default: xxx
   - name: WMTS_URL
-    default: https://geomapfish-demo-2-9.camptocamp.com/tiles/1.0.0/WMTSCapabilities.xml
+    default: https://geomapfish-demo-2-10.camptocamp.com/tiles/1.0.0/WMTSCapabilities.xml
   - name: REDIS_PASSWORD
     default: ''
   - name: REDIS_SSL

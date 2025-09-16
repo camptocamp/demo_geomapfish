@@ -19,7 +19,9 @@ jobs:
           - branch: prod-2-8
             base_url: https://geomapfish-demo-2-8.camptocamp.com/
           - branch: prod-2-9
-            base_url: https://geomapfish-demo-2-8.camptocamp.com/
+            base_url: https://geomapfish-demo-2-9.camptocamp.com/
+          - branch: prod-2-10
+            base_url: https://geomapfish-demo-2-10.camptocamp.com/
 
     steps:
       - uses: actions/checkout@v4
