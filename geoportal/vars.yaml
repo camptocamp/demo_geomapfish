@@ -979,7 +979,7 @@ vars:
           connect-src {content_security_policy_main_connect_src};
           frame-ancestors {content_security_policy_iframe_api_frame_ancestors};
           worker-src 'self' blob:;"
-    - pattern: '^/[a-z]+_geogirafe(/theme/.*)?$'
+    - pattern: '^/[a-z_]+_geogirafe(/theme/.*)?$'
       headers:
         Content-Security-Policy: "default-src 'self';
           script-src-elem 'self' 'unsafe-inline';
@@ -987,8 +987,8 @@ vars:
           script-src 'self' 'wasm-unsafe-eval';
           style-src-elem 'self' 'unsafe-inline' data:;
           style-src-attr 'self' 'unsafe-inline';
-          img-src 'self' data: https://cdn-icons-png.flaticon.com/ https://geomapfish-demo-2-10.camptocamp.com/;
-          connect-src 'self' data: https://geomapfish-demo-2-10.camptocamp.com/ https://www.ogc.vd.ch/;"
+          img-src 'self' data: https://geomapfish-demo-2-10.camptocamp.com/ https://cdn-icons-png.flaticon.com/ https://www.gravatar.com/avatar/;
+          connect-src 'self' data: https://geomapfish-demo-2-10.camptocamp.com/ https://www.ogc.vd.ch/ https://sitn.ne.ch/pytree/;"
 
 update_paths:
   - authentication.openid_connect
