@@ -19,7 +19,6 @@ managed_files:
   - \.dockerignore
   - \.prettierignore
   - Dockerfile
-  - geoportal/interfaces/desktop_alt\.html\.mako
   - tests/test_app.py
   - .editorconfig
   - .pre-commit-config\.yaml

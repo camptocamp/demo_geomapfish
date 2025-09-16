@@ -45,13 +45,9 @@ vars:
     - name: iframe_api_renovated
       type: custom
       html_filename: iframe_api.html
-    - name: desktop_alt
-      type: canvas
-      layout: desktop
     - name: desktop_renovated
       type: custom
       html_filename: desktop.html
-    - name: mobile_alt
     - name: mobile_renovated
       type: custom
       html_filename: mobile.html
@@ -215,15 +211,15 @@ vars:
         gmfBase:
           name: base
 
-    desktop_alt:
+    desktop_renovated:
       extends: desktop
-      redirect_interface: mobile_alt
+      redirect_interface: mobile_renovated
       constants:
         sentryOptions:
           <<: *sentryOptions
           tags:
             service: js
-            interface: desktop_alt
+            interface: desktop_renovated
         gmfOptions:
           <<: *gmfOptions
           map:
@@ -379,22 +375,17 @@ vars:
             height: 20
         gmfShareOptions:
           enableEmail: False
+        # Those two lines should be commented in dev mode.
+        gmfCustomJavascriptUrl: ''
+        gmfCustomStylesheetUrl: ''
+        sitnFeedbackPath: custom/feedback
+        swisscomHeatmapPath: custom/swisscom-heatmap
 
       routes:
         ngeoPermalinkOgcserverUrl:
           name: mapserverproxy
           params:
             ogcserver: QGIS_Server
-
-    desktop_renovated:
-      extends: desktop_alt
-      redirect_interface: mobile_renovated
-      constants:
-        # Those two lines should be commented in dev mode.
-        gmfCustomJavascriptUrl: ''
-        gmfCustomStylesheetUrl: ''
-        sitnFeedbackPath: custom/feedback
-        swisscomHeatmapPath: custom/swisscom-heatmap
 
     mobile:
       constants:
@@ -415,15 +406,15 @@ vars:
             - name: srtm
               unit: m
 
-    mobile_alt:
+    mobile_renovated:
       extends: mobile
-      redirect_interface: desktop_alt
+      redirect_interface: desktop_renovated
       constants:
         sentryOptions:
           <<: *sentryOptions
           tags:
             service: js
-            interface: mobile_alt
+            interface: mobile_renovated
         gmfOptions:
           <<: *gmfOptions
           map:
@@ -509,10 +500,6 @@ vars:
           zoom: 8
           autoRotate: True
           atLoadingTime: True
-
-    mobile_renovated:
-      extends: mobile_alt
-      redirect_interface: mobile_renovated
 
     iframe_api:
       constants:
@@ -983,15 +970,6 @@ vars:
     login: *auth_header
 
   global_headers:
-    - pattern: '^/desktop_alt(/.*|\?.*)?$'
-      headers:
-        Content-Security-Policy: "default-src {content_security_policy_main_default_src};
-          script-src 'unsafe-eval' {content_security_policy_main_script_src};
-          style-src {content_security_policy_main_style_src};
-          img-src {content_security_policy_main_img_src};
-          connect-src {content_security_policy_main_connect_src};
-          frame-ancestors {content_security_policy_iframe_api_frame_ancestors};
-          worker-src 'self' blob:;"
     - pattern: '^/desktop_renovated(/.*|\?.*)?$'
       headers:
         Content-Security-Policy: "default-src {content_security_policy_main_default_src};
@@ -1089,7 +1067,7 @@ no_interpreted:
   - reset_password.email_body
   - shortener.email_body
   - welcome_email.email_body
-  - interfaces_config.mobile_alt.constants.gmfMobileMeasurePointOptions.format
+  - interfaces_config.mobile_renovated.constants.gmfMobileMeasurePointOptions.format
 
 runtime_environment:
   - name: SMTP_USER
