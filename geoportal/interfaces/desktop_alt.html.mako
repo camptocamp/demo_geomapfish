@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{mainCtrl.lang}}" ng-controller="DesktopController as mainCtrl" ng-strict-di>
+<html lang="{{mainCtrl.lang}}" ng-controller="AlternativeDesktopController as mainCtrl" ng-strict-di>
   <head>
     <title translate>Alternative Desktop Application</title>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
         width: 1em;
       }
     </style>
-    <meta name="appName" content="Appdesktop">
+    <meta name="appName" content="Appdesktop_alt">
     ${header |n}
   </head>
   <body ng-keydown="mainCtrl.onKeydown($event)" tabindex="0">
@@ -71,14 +71,6 @@
           aria-describedby="password-constraints"
           placeholder="{{'Password'|translate}}"
         /></gmf-auth-panel>
-
-      <!-- custom Swisscom heatmap -->
-      <swisscom-heatmap-button slot="tool-button"></swisscom-heatmap-button>
-      <swisscom-heatmap slot="tool-panel-swisscom-heatmap"></swisscom-heatmap>
-
-      <!-- custom feedback -->
-      <gmf-tool-button slot="tool-button" iconClasses="fas fa-file-signature" panelName="feedback"></gmf-tool-button>
-      <proj-feedback slot="tool-panel-feedback"></proj-feedback>
 
       <!-- Print -->
       <gmf-print-button slot="tool-button"></gmf-print-button>
@@ -242,7 +234,7 @@
 
       <!-- Selection -->
       <gmf-select-button slot="tool-button"></gmf-select-button>
-      <div slot="tool-panel-selection"  class="row pointer-events-none">
+      <div slot="tool-panel-selection" class="row pointer-events-none">
         <div class="col-sm-12">
           <div class="gmf-app-tools-content-heading">
             {{ 'Selection' | translate }}
@@ -303,6 +295,7 @@
         url="mainCtrl.displaywindowUrl"
         width="mainCtrl.displaywindowWidth"
       ></ngeo-displaywindow>
+      <!--  -->
       <button
         slot="map"
         ngeo-geolocation=""
@@ -313,6 +306,7 @@
       </button>
       <div slot="map" class="gmf-app-map-bottom-controls">
         <div class="gmf-backgroundlayerbutton btn-group dropup">
+          <!--  -->
           <button
               class="btn btn-default dropdown-toggle"
               data-toggle="dropdown">
@@ -392,7 +386,6 @@ Votre navigateur n'est pas supporté, veuillez utiliser une version récente de 
 Ihr Browser wird nicht unterstützt, bitte verwenden Sie eine aktuelle Version von Firefox, Chrome oder Edge.`
       );
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyA3NVIy-HOYT0a0CkChA6nFwqEFqHYWBVk"></script>
     ${footer |n}
   </body>
 </html>
