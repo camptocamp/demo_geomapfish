@@ -42,15 +42,15 @@ vars:
       default: True
     - name: mobile
     - name: iframe_api
-    - name: iframe_api_renovated
-      type: custom
-      html_filename: iframe_api.html
     - name: desktop_renovated
       type: custom
       html_filename: desktop.html
     - name: mobile_renovated
       type: custom
       html_filename: mobile.html
+    - name: iframe_api_renovated
+      type: custom
+      html_filename: iframe_api.html
     - name: oeedit
     # GeoGirafe interfaces
     - name: desktop_geogirafe
@@ -59,7 +59,7 @@ vars:
     - name: mobile_geogirafe
       type: custom
       html_filename: geogirafe/mobile.html
-    - name: iframe_geogirafe
+    - name: iframe_api_geogirafe
       type: custom
       html_filename: geogirafe/iframe.html
 
