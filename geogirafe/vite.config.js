@@ -83,6 +83,8 @@ export default defineConfig(({command}) => {
           {src: `${geogirafeSource}/styles/*.css`, dest: 'styles/'},
           {src: `${geogirafeSource}/assets/*`, dest: ''},
           {src: 'node_modules/ol/ol.css', dest: 'lib/ol/'},
+          {src: 'node_modules/tippy.js/dist/*.css', dest: 'lib/tippy.js/'},
+          {src: 'node_modules/vanilla-picker/dist/*.css', dest: 'lib/vanilla-picker/'},
         ],
       }),
       InlineTemplatesPlugin(),
