@@ -37,7 +37,7 @@ geojson = "3.2.0"
 urllib3 = "2.5.0"
 certifi = { version = "2025.8.3", optional = true }
 webob = { version = "1.8.9", optional = true }
-cryptography = { version = "45.0.7", optional = true }
+cryptography = { version = "46.0.1", optional = true }
 
 [tool.poetry.group.dev.dependencies]
 prospector = { version = "1.17.3", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
