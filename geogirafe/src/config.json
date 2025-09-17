@@ -19,36 +19,11 @@
   "themes": {
     "defaultTheme": "Demo"
   },
-  "selection": {
-    "maxFeature": 200
-  },
   "basemaps": {
-    "show": true,
-    "defaultBasemap": "OSM map",
-    "OSM": true,
-    "SwissTopoVectorTiles": true
-  },
-  "search": {
-    "objectPreview": true,
-    "layerPreview": true
-  },
-  "print": {
-    "url": "/printproxy/",
-    "formats": ["png", "pdf", "jpg", "jpeg", "notvalid"],
-    "defaultFormat": "pdf",
-    "defaultLayout": "1 A4 portrait",
-    "scales": [500000, 100000, 50000, 25000, 10000, 5000, 2500, 500, 250, 100],
-    "attributeNames": ["legend", "title", "comments"],
-    "printLegend": {
-      "showGroupsTitle": true
-    }
-  },
-  "share": {
-    "service": "lstu",
-    "createUrl": "https://lstu.fr/a"
+    "defaultBasemap": "OSM map"
   },
   "projections": {
-    "EPSG:3857": "W-M",
+    "EPSG:3857": "WebMercator",
     "EPSG:4326": "WGS84",
     "EPSG:2056": "LV95"
   },
@@ -60,24 +35,10 @@
     "maxExtent": "2200000,1040000,3000000,1310000"
   },
   "map3d": {
-    "terrainUrl": "https://3d.geo.admin.ch/ch.swisstopo.terrain.3d/v1/",
-    "terrainImagery": {
-      "url": "https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.swissimage-product/default/current/4326/{z}/{x}/{y}.jpeg",
-      "minLoD": 8,
-      "maxLoD": 17,
-      "coverageArea": [5.013926957923385, 45.35600133779394, 11.477436312994008, 48.27502358353741]
-    },
-    "tilesetsUrls": [
-      "https://vectortiles100.geo.admin.ch/3d-tiles/ch.swisstopo.swisstlm3d.3d/20201020/tileset.json"
-    ],
-    "maximumZoomDistance": 25000
+    "tilesetsUrls": []
   },
   "lidar": {
     "url": "https://sitn.ne.ch/pytree"
-  },
-  "csv": {
-    "separator": ";",
-    "quote": "\""
   },
   "contextmenu": {
     "crs": [
