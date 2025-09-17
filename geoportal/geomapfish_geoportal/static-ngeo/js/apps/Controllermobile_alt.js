@@ -51,4 +51,5 @@ const geomapfishModule = angular.module('Appmobile_alt', [
 
 geomapfishModule.controller('AlternativeMobileController', Controller);
 
-export default geomapfishModule;
+const geomapfishRenovatedModule = angular.module('Appmobile_renovated', [geomapfishModule.name]);
+export default geomapfishRenovatedModule;
