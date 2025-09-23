@@ -36,9 +36,9 @@ prospector: ## Runs the Prospector checks
 
 .PHONY: eslint
 eslint: ## Runs the eslint checks
-	docker compose run --entrypoint= --no-deps --rm --volume=$(CURDIR)/geoportal:/app geoportal \
+	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
 		eslint $(find geomapfish -type f -name '*.js' -print 2> /dev/null)
-	docker compose run --entrypoint= --no-deps --rm --volume=$(CURDIR)/geoportal:/app geoportal \
+	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
 		eslint $(find geomapfish -type f -name '*.ts' -print 2> /dev/null)
 
 .PHONY: build
