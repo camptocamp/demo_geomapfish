@@ -166,8 +166,8 @@
     },
     /** Ignore geogirafe/CONST_scaffold/* files */
     {
-      matchPaths: ['geogirafe/CONST_scaffold/**'],
       enabled: false,
+      matchFileNames: ['geogirafe/CONST_scaffold/**'],
     },
   ],
 }
