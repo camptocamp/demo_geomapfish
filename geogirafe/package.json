@@ -11,16 +11,16 @@
     "generate-dev-certs": "bash -C './node_modules/@geogirafe/lib-geoportal/buildtools/generate-dev-certs.sh' certs"
   },
   "devDependencies": {
-    "@geoblocks/mapfishprint": "0.2.20",
+    "@geoblocks/mapfishprint": "0.2.22",
     "@geoblocks/print": "0.7.9",
-    "cesium": "1.133.0",
+    "cesium": "1.133.1",
     "magic-string": "0.30.19",
     "minify": "14.1.0",
     "ol": "10.6.1",
     "olcs": "2.22.1",
     "proj4": "2.19.10",
     "typescript": "5.9.2",
-    "vite": "7.1.5",
+    "vite": "7.1.7",
     "vite-plugin-static-copy": "3.1.2"
   },
   "dependencies": {
