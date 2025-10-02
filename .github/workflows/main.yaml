@@ -13,12 +13,16 @@ jobs:
     timeout-minutes: 20
 
     steps:
+<<<<<<< ours
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
           repository: camptocamp/demo_geomapfish_data
           ref: master
           path: data
+=======
+      - uses: actions/checkout@v5
+>>>>>>> theirs
 
       - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
@@ -27,7 +31,7 @@ jobs:
           patterns: docker
         if: env.HAS_SECRETS == 'HAS_SECRETS'
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
       - run: python3 -m pip install --requirement=ci/requirements.txt
