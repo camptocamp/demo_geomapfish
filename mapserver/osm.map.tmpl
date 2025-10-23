@@ -2305,6 +2305,56 @@ LAYER
     END
 END
 
+LAYER
+    NAME "osm_vevey"
+    EXTENT 2420000 1040500 2839000 1306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "host=${OSM_PGHOST_SLAVE} port=${OSM_PGPORT_SLAVE} user=${OSM_PGUSER} password=${OSM_PGPASSWORD} dbname=${OSM_PGDATABASE}"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",datetime,date,geom FROM swiss_points WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'osm_vevey'), geom)) AS foo USING unique osm_id USING srid=2056"
+
+    LABELITEM "name"
+    EXTENT 2473743 1074095 2839000 1306400
+    PROJECTION
+        "init=epsg:2056"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    VALIDATION
+        "default_role_ids" "-1"
+        "role_ids" "^-?[0-9,]*$"
+    END
+
+    CLASS
+        NAME "OSM"
+        STYLE
+            SYMBOL "circle"
+            SIZE 6
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+            COLOR 230 0 0
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "OSM Open"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
+        "gml_geometries" "geom"
+        "wfs_enable_request" "*"
+    END
+END
 
 LAYER
     NAME "cinema"

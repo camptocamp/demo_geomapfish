@@ -728,6 +728,7 @@ vars:
       - demo.geomapfish.dev
       - localhost
       - localhost:8484
+      - auth.localhost:8484
       - localhost:3000
       - localhost:3001
       - localhost:3002
@@ -809,6 +810,7 @@ vars:
     - adube.github.io
     - localhost
     - localhost:8484
+    - auth.localhost:8484
     - localhost:3000
     - localhost:3001
     - localhost:3002
@@ -829,6 +831,7 @@ vars:
   allowed_hosts:
     # TODO: Add the allowed hosts for the application (themes and dynamic.json)
     - localhost:8484
+    - auth.localhost:8484
     - localhost:3000
     - localhost:3001
     - localhost:3002
