@@ -11,8 +11,7 @@ LAYER
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_hospitals WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'hospitals'), geom)) AS foo USING unique osm_id USING srid=2056"
     VALIDATION
         "default_role_ids" "-1"
-"role_ids" "^-?[0-9,]*$"
-
+        "role_ids" "^-?[0-9,]*$"
     END
     LABELITEM "name"
     PROJECTION
@@ -62,8 +61,7 @@ LAYER
     DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_firestations WHERE ARRAY[%role_ids%] && ARRAY(${MAPSERVER_DATA_NOAREA_SUBSELECT} 'firestations')) AS foo USING unique osm_id USING srid=2056"
     VALIDATION
         "default_role_ids" "-1"
-"role_ids" "^-?[0-9,]*$"
-
+        "role_ids" "^-?[0-9,]*$"
     END
     LABELITEM "name"
     PROJECTION
@@ -107,6 +105,55 @@ LAYER
         "gml_types" "auto"
         "gml_featureid" "osm_id"
         "gml_geom_type" "polygon"
+        "gml_geometries" "geom"
+    END
+END
+
+LAYER
+    NAME "hospitals_vevey"
+    EXTENT 2420000 1040500 2839000 1306400
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "host=${PGHOST} port=${PGPORT} user=${PGUSER} password=${PGPASSWORD} dbname=${PGDATABASE}"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name, * FROM geodata.osm_hospitals WHERE ST_Contains((${MAPSERVER_DATA_SUBSELECT} 'hospitals_vevey'), geom)) AS foo USING unique osm_id USING srid=2056"
+    VALIDATION
+        "default_role_ids" "-1"
+        "role_ids" "^-?[0-9,]*$"
+    END
+    LABELITEM "name"
+    PROJECTION
+      "init=epsg:2056"
+    END
+    TOLERANCE 10
+    TOLERANCEUNITS pixels
+    CLASS
+        NAME "Hôpital"
+        KEYIMAGE "symbols/hospital-2.png"
+        STYLE
+            SYMBOL "hospital"
+            SIZE 30
+            WIDTH 1
+            OUTLINECOLOR 30 0 0
+            COLOR 230 0 0
+        END
+        LABEL
+            SIZE 10
+            COLOR 56 117 215
+            OUTLINECOLOR 255 255 255
+            OFFSET 0 10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "Hospitals"
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_geom_type" "point"
         "gml_geometries" "geom"
     END
 END
