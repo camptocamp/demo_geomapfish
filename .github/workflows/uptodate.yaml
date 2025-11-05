@@ -32,7 +32,7 @@ jobs:
 
       - run: cd ..; diff --unified --recursive --new-file demo_geomapfish ref
         if: always()
-      - run: cd ..; diff --unified --recursive --new-file demo_geomapfish ref  > /tmp/base.patch || true
+      - run: cd ..; diff --unified --recursive --new-file --binary demo_geomapfish ref  > /tmp/base.patch || true
         if: failure()
       - uses: actions/upload-artifact@v4
         with:
