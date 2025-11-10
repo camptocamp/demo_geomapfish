@@ -1,6 +1,6 @@
 import argparse
 import sys
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from pyramid.paster import bootstrap, setup_logging  # type: ignore[import-untyped]
 from sqlalchemy.exc import OperationalError
@@ -24,7 +24,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     return parser.parse_args(argv[1:])
 
 
-def main(argv: Optional[list[str]] = None) -> None:
+def main(argv: list[str] | None = None) -> None:
     args = parse_args(argv or sys.argv)
     setup_logging(args.config_uri)
     env = bootstrap(args.config_uri)
