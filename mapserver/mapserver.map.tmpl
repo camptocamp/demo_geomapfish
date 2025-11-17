@@ -64,6 +64,13 @@ MAP
         FORMATOPTION "QUANTIZE_FORCE=ON"
         FORMATOPTION "QUANTIZE_COLORS=256"
     END
+    OUTPUTFORMAT
+        NAME "webp"
+        DRIVER "GDAL/WEBP"
+        MIMETYPE "image/webp"
+        IMAGEMODE RGBA
+        EXTENSION "webp"
+    END
     PROJECTION
         "init=epsg:2056"
     END
