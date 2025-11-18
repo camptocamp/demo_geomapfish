@@ -27,7 +27,7 @@ MAP
 
     # MAXSIZE shouldn't be less than 5000 for MF print on A3
     MAXSIZE 5000
-    IMAGECOLOR 255 255 255
+    # IMAGECOLOR 255 255 255
     STATUS ON
 
     FONTSET "fonts.conf"
@@ -63,6 +63,13 @@ MAP
         FORMATOPTION "QUANTIZE_DITHER=OFF"
         FORMATOPTION "QUANTIZE_FORCE=ON"
         FORMATOPTION "QUANTIZE_COLORS=256"
+    END
+    OUTPUTFORMAT
+        NAME "webp"
+        DRIVER "GDAL/WEBP"
+        MIMETYPE "image/webp"
+        IMAGEMODE RGBA
+        EXTENSION "webp"
     END
     PROJECTION
         "init=epsg:2056"

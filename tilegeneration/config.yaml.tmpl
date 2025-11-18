@@ -88,12 +88,12 @@ defaults:
     empty_tile_detection:
         size: 116
         hash: 9b1f93c807ba92a48f8e484ea839e21ce90bf278
-    post_process: optipng
 
 layers:
   map:
     <<: *layer
     layers: default
+    post_process: optipng
   map_jpeg:
     <<: *layer
     layers: default
@@ -106,6 +106,13 @@ layers:
       size: 1651
       hash: 2892fea0a474228f5d66a534b0b5231d923696da
     post_process: jpegoptim
+  map_webp:
+    <<: *layer
+    layers: default
+    extension: webp
+    mime_type: image/webp
+    params:
+      TRANSPARENT: 'TRUE'
 
 generation:
   default_cache: azure
