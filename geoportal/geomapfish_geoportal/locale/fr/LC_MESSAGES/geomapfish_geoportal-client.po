@@ -49,9 +49,6 @@ msgstr "Application mobile alternative"
 msgid "Area"
 msgstr "Aire"
 
-msgid "Aster copier"
-msgstr "Aster copie"
-
 msgid "BS Offizieller Stadtplan farbig 1:12'500"
 msgstr ""
 
@@ -136,6 +133,9 @@ msgstr "Fond de carte"
 msgid "Bavaria WMTS"
 msgstr ""
 
+msgid "COG"
+msgstr ""
+
 msgid "Cadastre"
 msgstr "Cadastre"
 
@@ -218,6 +218,9 @@ msgstr "Choix d'étage"
 msgid "Gestion des eaux"
 msgstr "Gestion des eaux"
 
+msgid "Graubünden WMS Amtliche Vermessung grau"
+msgstr ""
+
 msgid "Group"
 msgstr "Groupe"
 
@@ -241,9 +244,6 @@ msgstr "Couches"
 
 msgid "Layers-exclusive"
 msgstr "Couches exclusif"
-
-msgid "Learning [merged]"
-msgstr "Apprentissage [fusionné]"
 
 msgid "Length"
 msgstr "Longueur"
@@ -296,6 +296,10 @@ msgstr "Carte OSM"
 msgid "OSM map WMS"
 msgstr "Carte OSM WMS"
 
+#, fuzzy
+msgid "OSM map WebP"
+msgstr "Carte OSM WMS"
+
 msgid "OSM_time_merged"
 msgstr "OSM temps (fusionné)"
 
@@ -337,12 +341,6 @@ msgstr "Interrogation"
 
 msgid "SRTM"
 msgstr "SRTM"
-
-msgid "SRTM copier"
-msgstr "SRTM copie"
-
-msgid "SRTM shadow"
-msgstr "SRTM ombre"
 
 msgid "Selection"
 msgstr "Sélection"
@@ -1149,9 +1147,6 @@ msgstr "Voies ferrées"
 msgid "railways_ingrp"
 msgstr "Voies ferrées dans groupe"
 
-msgid "raster"
-msgstr "matriciel"
-
 msgid "recycling"
 msgstr "Recyclage"
 
@@ -1166,9 +1161,6 @@ msgstr "Restaurants"
 
 msgid "restricted"
 msgstr "Restrain"
-
-msgid "restricted_group"
-msgstr "Restrain dans groupe"
 
 msgid "roads10"
 msgstr "Routes"
@@ -1245,6 +1237,9 @@ msgstr "Surface"
 msgid "sustenance"
 msgstr "Nouriture"
 
+msgid "swissalti3d"
+msgstr ""
+
 msgid "test, comma"
 msgstr "Teste, virgule"
 
@@ -1292,9 +1287,6 @@ msgstr "Type"
 
 msgid "username"
 msgstr "Nom d'utilisateur"
-
-msgid "vd.npa_localite"
-msgstr "N° postal"
 
 msgid "vd.regime_hydrique noWFS"
 msgstr "Régime hydrique sans WFS"
@@ -1402,6 +1394,9 @@ msgstr ""
 #~ msgid "Alternative Desktop Application"
 #~ msgstr "Application bureau alternative"
 
+#~ msgid "Aster copier"
+#~ msgstr "Aster copie"
+
 #~ msgid "Batiment VD"
 #~ msgstr "Bâtiment VD"
 
@@ -1424,6 +1419,9 @@ msgstr ""
 #~ msgid "Disclaimer works on items (layer police)"
 #~ msgstr "Déni de responsabilité fonctionne sur les articles (couche police)"
 
+#~ msgid "Learning [merged]"
+#~ msgstr "Apprentissage [fusionné]"
+
 #~ msgid "Loading themes, please wait..."
 #~ msgstr "Thèmes en cours de chargement, merci de patienter..."
 
@@ -1435,6 +1433,12 @@ msgstr ""
 
 #~ msgid "Routing"
 #~ msgstr "Itinéraire"
+
+#~ msgid "SRTM copier"
+#~ msgstr "SRTM copie"
+
+#~ msgid "SRTM shadow"
+#~ msgstr "SRTM ombre"
 
 #~ msgid "Search…"
 #~ msgstr "Recherche…"
@@ -1484,6 +1488,12 @@ msgstr ""
 #~ msgid "last_update_user"
 #~ msgstr "User"
 
+#~ msgid "raster"
+#~ msgstr "matriciel"
+
+#~ msgid "restricted_group"
+#~ msgstr "Restrain dans groupe"
+
 #~ msgid "standard application"
 #~ msgstr "Application bureau"
 
@@ -1495,6 +1505,9 @@ msgstr ""
 
 #~ msgid "vd.batiment_rcb"
 #~ msgstr "Bâtiment VD RCB"
+
+#~ msgid "vd.npa_localite"
+#~ msgstr "N° postal"
 
 #~ msgid "vd.regime_hydrique"
 #~ msgstr "Régime hydrique"
