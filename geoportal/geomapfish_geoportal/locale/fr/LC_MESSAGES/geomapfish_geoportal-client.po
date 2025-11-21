@@ -49,83 +49,80 @@ msgstr "Application mobile alternative"
 msgid "Area"
 msgstr "Aire"
 
-msgid "Aster copier"
-msgstr "Aster copie"
-
 msgid "BS Offizieller Stadtplan farbig 1:12'500"
-msgstr ""
+msgstr "BS Plan de ville officiel couleur 1:12'500"
 
 msgid "BS Orthofoto 1933"
-msgstr ""
+msgstr "BS Orthophoto 1933"
 
 msgid "BS Orthofoto 1979"
-msgstr ""
+msgstr "BS Orthophoto 1979"
 
 msgid "BS Orthofoto 1985 Juli"
-msgstr ""
+msgstr "BS Orthophoto 1985 juillet"
 
 msgid "BS Orthofoto 1990"
-msgstr ""
+msgstr "BS Orthophoto 1990"
 
 msgid "BS Orthofoto 1995 März"
-msgstr ""
+msgstr "BS Orthophoto 1995 mars"
 
 msgid "BS Orthofoto 1999 März"
-msgstr ""
+msgstr "BS Orthophoto 1999 mars"
 
 msgid "BS Orthofoto 2001 Juli"
-msgstr ""
+msgstr "BS Orthophoto 2001 juillet"
 
 msgid "BS Orthofoto 2002 März"
-msgstr ""
+msgstr "BS Orthophoto 2002 mars"
 
 msgid "BS Orthofoto 2005 April"
-msgstr ""
+msgstr "BS Orthophoto 2005 avril"
 
 msgid "BS Orthofoto 2008 April"
-msgstr ""
+msgstr "BS Orthophoto 2008 avril"
 
 msgid "BS Orthofoto 2010 April"
-msgstr ""
+msgstr "BS Orthophoto 2010 avril"
 
 msgid "BS Orthofoto 2012 Juli"
-msgstr ""
+msgstr "BS Orthophoto 2012 juillet"
 
 msgid "BS Orthofoto 2012 März"
-msgstr ""
+msgstr "BS Orthophoto 2012 mars"
 
 msgid "BS Orthofoto 2015 April"
-msgstr ""
+msgstr "BS Orthophoto 2015 avril"
 
 msgid "BS Orthofoto 2017 März"
-msgstr ""
+msgstr "BS Orthophoto 2017 mars"
 
 msgid "BS Orthofoto 2020 März"
-msgstr ""
+msgstr "BS Orthophoto 2020 mars"
 
 msgid "BS Orthofoto Aktuell"
-msgstr ""
+msgstr "BS Orthophoto actuel"
 
 msgid "BS Parzellenplan farbig"
-msgstr ""
+msgstr "BS Plan de parcelles couleur"
 
 msgid "BS Parzellenplan grau"
-msgstr ""
+msgstr "BS Plan de parcelles gris"
 
 msgid "BS Parzellenplan schwarz-weiss"
-msgstr ""
+msgstr "BS Plan de parcelles noir-blanc"
 
 msgid "BS True Orthofoto 2017 März"
-msgstr ""
+msgstr "BS True Orthophoto 2017 mars"
 
 msgid "BS True Orthofoto 2020 März"
-msgstr ""
+msgstr "BS True Orthophoto 2020 mars"
 
 msgid "BS WMTS"
-msgstr ""
+msgstr "BS WMTS"
 
 msgid "BS Übersichtskarte farbig 1:40'000"
-msgstr ""
+msgstr "BS Carte de vue d'ensemble couleur 1:40'000"
 
 msgid "Back"
 msgstr "Retour"
@@ -134,7 +131,10 @@ msgid "Background"
 msgstr "Fond de carte"
 
 msgid "Bavaria WMTS"
-msgstr ""
+msgstr "Bavière WMTS"
+
+msgid "COG"
+msgstr "COG"
 
 msgid "Cadastre"
 msgstr "Cadastre"
@@ -218,6 +218,9 @@ msgstr "Choix d'étage"
 msgid "Gestion des eaux"
 msgstr "Gestion des eaux"
 
+msgid "Graubünden WMS Amtliche Vermessung grau"
+msgstr "Grisons WMS Mensuration officielle gris"
+
 msgid "Group"
 msgstr "Groupe"
 
@@ -241,9 +244,6 @@ msgstr "Couches"
 
 msgid "Layers-exclusive"
 msgstr "Couches exclusif"
-
-msgid "Learning [merged]"
-msgstr "Apprentissage [fusionné]"
 
 msgid "Length"
 msgstr "Longueur"
@@ -296,6 +296,9 @@ msgstr "Carte OSM"
 msgid "OSM map WMS"
 msgstr "Carte OSM WMS"
 
+msgid "OSM map WebP"
+msgstr "Carte OSM WebP"
+
 msgid "OSM_time_merged"
 msgstr "OSM temps (fusionné)"
 
@@ -337,12 +340,6 @@ msgstr "Interrogation"
 
 msgid "SRTM"
 msgstr "SRTM"
-
-msgid "SRTM copier"
-msgstr "SRTM copie"
-
-msgid "SRTM shadow"
-msgstr "SRTM ombre"
 
 msgid "Selection"
 msgstr "Sélection"
@@ -490,28 +487,28 @@ msgid "barrier"
 msgstr "Barière"
 
 msgid "bavaria"
-msgstr ""
+msgstr "Bavière"
 
 msgid "bavaria_amuseent_park"
-msgstr ""
+msgstr "Bavière parc d'attractions"
 
 msgid "bavaria_ice_skating"
-msgstr ""
+msgstr "Bavière patinoires"
 
 msgid "bavaria_leisure_themes"
-msgstr ""
+msgstr "Bavière thèmes de loisirs"
 
 msgid "bavaria_open_air_museums"
-msgstr ""
+msgstr "Bavière musées en plein air"
 
 msgid "bavaria_state"
-msgstr ""
+msgstr "État de Bavière"
 
 msgid "bavaria_swimming_pool"
-msgstr ""
+msgstr "Bavière piscines"
 
 msgid "bavaria_zoo"
-msgstr ""
+msgstr "Bavière zoos"
 
 msgid "bench"
 msgstr "Banc"
@@ -1149,9 +1146,6 @@ msgstr "Voies ferrées"
 msgid "railways_ingrp"
 msgstr "Voies ferrées dans groupe"
 
-msgid "raster"
-msgstr "matriciel"
-
 msgid "recycling"
 msgstr "Recyclage"
 
@@ -1166,9 +1160,6 @@ msgstr "Restaurants"
 
 msgid "restricted"
 msgstr "Restrain"
-
-msgid "restricted_group"
-msgstr "Restrain dans groupe"
 
 msgid "roads10"
 msgstr "Routes"
@@ -1245,6 +1236,9 @@ msgstr "Surface"
 msgid "sustenance"
 msgstr "Nouriture"
 
+msgid "swissalti3d"
+msgstr "SwissALTI3D"
+
 msgid "test, comma"
 msgstr "Teste, virgule"
 
@@ -1292,9 +1286,6 @@ msgstr "Type"
 
 msgid "username"
 msgstr "Nom d'utilisateur"
-
-msgid "vd.npa_localite"
-msgstr "N° postal"
 
 msgid "vd.regime_hydrique noWFS"
 msgstr "Régime hydrique sans WFS"
@@ -1402,6 +1393,9 @@ msgstr ""
 #~ msgid "Alternative Desktop Application"
 #~ msgstr "Application bureau alternative"
 
+#~ msgid "Aster copier"
+#~ msgstr "Aster copie"
+
 #~ msgid "Batiment VD"
 #~ msgstr "Bâtiment VD"
 
@@ -1424,6 +1418,9 @@ msgstr ""
 #~ msgid "Disclaimer works on items (layer police)"
 #~ msgstr "Déni de responsabilité fonctionne sur les articles (couche police)"
 
+#~ msgid "Learning [merged]"
+#~ msgstr "Apprentissage [fusionné]"
+
 #~ msgid "Loading themes, please wait..."
 #~ msgstr "Thèmes en cours de chargement, merci de patienter..."
 
@@ -1435,6 +1432,12 @@ msgstr ""
 
 #~ msgid "Routing"
 #~ msgstr "Itinéraire"
+
+#~ msgid "SRTM copier"
+#~ msgstr "SRTM copie"
+
+#~ msgid "SRTM shadow"
+#~ msgstr "SRTM ombre"
 
 #~ msgid "Search…"
 #~ msgstr "Recherche…"
@@ -1484,6 +1487,12 @@ msgstr ""
 #~ msgid "last_update_user"
 #~ msgstr "User"
 
+#~ msgid "raster"
+#~ msgstr "matriciel"
+
+#~ msgid "restricted_group"
+#~ msgstr "Restrain dans groupe"
+
 #~ msgid "standard application"
 #~ msgstr "Application bureau"
 
@@ -1495,6 +1504,9 @@ msgstr ""
 
 #~ msgid "vd.batiment_rcb"
 #~ msgstr "Bâtiment VD RCB"
+
+#~ msgid "vd.npa_localite"
+#~ msgstr "N° postal"
 
 #~ msgid "vd.regime_hydrique"
 #~ msgstr "Régime hydrique"
