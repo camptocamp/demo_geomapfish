@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2025-11-25T14:03:27" saveUser="sbrunner" saveUserFull="Stéphane Brunner" version="3.44.4-Solothurn">
+<qgis projectname="" saveDateTime="2025-11-25T14:29:52" saveUser="sbrunner" saveUserFull="Stéphane Brunner" version="3.44.4-Solothurn">
   <homePath path=""></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -20502,8 +20502,10 @@ def my_form_open(dialog, layer, feature):
       <value>osm_firestations_e959231c_b187_4fc6_87e3_719e7b753925</value>
       <value>osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a</value>
       <value>osm_firestations_ingrp_f5a21449_2f45_4ddd_8b83_0c4b46714170</value>
+      <value>osm_hospitals_2468427c_2671_4bbb_a22d_3f9ba0597530</value>
       <value>osm_hospitals_5a51f681_47cb_41cb_bd38_996a7609a7b5</value>
       <value>osm_hospitals_cbf1ede7_5be7_43e2_9417_df7acb124d2c</value>
+      <value>osm_hospitals_date_2c12e017_c0cb_490f_9ee2_d2cb66d64814</value>
       <value>osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c</value>
       <value>osm_hospitals_f6e2ed71_c4f5_4e66_94d3_b9268679b2cc</value>
       <value>osm_hospitals_restricted_0e16aa67_bad1_428e_b579_200e777612ab</value>
@@ -20530,8 +20532,10 @@ def my_form_open(dialog, layer, feature):
       <osm_firestations_e959231c_b187_4fc6_87e3_719e7b753925 type="int">1</osm_firestations_e959231c_b187_4fc6_87e3_719e7b753925>
       <osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a type="int">1</osm_firestations_f6e99e02_3a6f_4efb_8687_1d1ce742854a>
       <osm_firestations_ingrp_f5a21449_2f45_4ddd_8b83_0c4b46714170 type="int">1</osm_firestations_ingrp_f5a21449_2f45_4ddd_8b83_0c4b46714170>
+      <osm_hospitals_2468427c_2671_4bbb_a22d_3f9ba0597530 type="int">8</osm_hospitals_2468427c_2671_4bbb_a22d_3f9ba0597530>
       <osm_hospitals_5a51f681_47cb_41cb_bd38_996a7609a7b5 type="int">1</osm_hospitals_5a51f681_47cb_41cb_bd38_996a7609a7b5>
       <osm_hospitals_cbf1ede7_5be7_43e2_9417_df7acb124d2c type="int">1</osm_hospitals_cbf1ede7_5be7_43e2_9417_df7acb124d2c>
+      <osm_hospitals_date_2c12e017_c0cb_490f_9ee2_d2cb66d64814 type="int">8</osm_hospitals_date_2c12e017_c0cb_490f_9ee2_d2cb66d64814>
       <osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c type="int">1</osm_hospitals_e409c49f_1ecf_4ee2_8fc2_32af0c08fb8c>
       <osm_hospitals_f6e2ed71_c4f5_4e66_94d3_b9268679b2cc type="int">1</osm_hospitals_f6e2ed71_c4f5_4e66_94d3_b9268679b2cc>
       <osm_hospitals_restricted_0e16aa67_bad1_428e_b579_200e777612ab type="int">1</osm_hospitals_restricted_0e16aa67_bad1_428e_b579_200e777612ab>
@@ -20685,7 +20689,7 @@ def my_form_open(dialog, layer, feature):
   <ProjectTimeSettings cumulativeTemporalRange="0" frameRate="1" timeStep="1" timeStepUnit="h" totalMovieFrames="100">
     <TemporalRange>
       <start>2006-06-16T00:50:02Z</start>
-      <end>2013-12-12T01:59:59Z</end>
+      <end>2025-06-15T22:00:00Z</end>
     </TemporalRange>
   </ProjectTimeSettings>
   <ElevationProperties FilterInvertSlider="0">
