@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2025-11-25T14:29:52" saveUser="sbrunner" saveUserFull="Stéphane Brunner" version="3.44.4-Solothurn">
+<qgis projectname="" saveDateTime="2025-11-25T15:32:11" saveUser="sbrunner" saveUserFull="Stéphane Brunner" version="3.44.4-Solothurn">
   <homePath path=""></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -8257,7 +8257,7 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal accumulate="0" durationField="" durationUnit="min" enabled="1" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="1" startExpression="" startField="date">
+      <temporal accumulate="0" durationField="" durationUnit="min" enabled="1" endExpression="" endField="" fixedDuration="0" limitMode="1" mode="1" startExpression="" startField="date">
         <fixedRange>
           <start></start>
           <end></end>
@@ -10450,7 +10450,7 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal accumulate="0" durationField="" durationUnit="min" enabled="1" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="1" startExpression="" startField="datetime">
+      <temporal accumulate="0" durationField="" durationUnit="min" enabled="1" endExpression="" endField="" fixedDuration="0" limitMode="1" mode="1" startExpression="" startField="datetime">
         <fixedRange>
           <start></start>
           <end></end>
@@ -12651,9 +12651,6 @@ def my_form_open(dialog, layer, feature):
           </temporal>
         </extent>
       </resourceMetadata>
-      <wmsDimensions>
-        <dimension defaultDisplayType="1" endFieldName="timestamp2" fieldName="timestamp1" name="time" referenceValue="" unitSymbol="" units="ISO8601"></dimension>
-      </wmsDimensions>
       <provider encoding="">postgres</provider>
       <vectorjoins></vectorjoins>
       <layerDependencies></layerDependencies>
@@ -12669,7 +12666,7 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal accumulate="0" durationField="fid" durationUnit="min" enabled="1" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="2" startExpression="" startField="">
+      <temporal accumulate="0" durationField="fid" durationUnit="min" enabled="1" endExpression="" endField="timestamp2" fixedDuration="0" limitMode="0" mode="2" startExpression="" startField="timestamp1">
         <fixedRange>
           <start></start>
           <end></end>
@@ -12906,8 +12903,8 @@ def my_form_open(dialog, layer, feature):
       <customproperties>
         <Option type="Map">
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -13170,9 +13167,6 @@ def my_form_open(dialog, layer, feature):
           </temporal>
         </extent>
       </resourceMetadata>
-      <wmsDimensions>
-        <dimension defaultDisplayType="3" endFieldName="fid" fieldName="timestamp" name="time" referenceValue="" unitSymbol="" units="ISO8601"></dimension>
-      </wmsDimensions>
       <provider encoding="">postgres</provider>
       <vectorjoins></vectorjoins>
       <layerDependencies></layerDependencies>
@@ -13188,7 +13182,7 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal accumulate="0" durationField="fid" durationUnit="h" enabled="1" endExpression="" endField="" fixedDuration="1" limitMode="0" mode="1" startExpression="" startField="timestamp1">
+      <temporal accumulate="0" durationField="fid" durationUnit="min" enabled="1" endExpression="" endField="" fixedDuration="0" limitMode="1" mode="1" startExpression="" startField="timestamp1">
         <fixedRange>
           <start></start>
           <end></end>
@@ -13425,8 +13419,8 @@ def my_form_open(dialog, layer, feature):
       <customproperties>
         <Option type="Map">
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -20739,7 +20733,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="osm_hospitals_date_2c12e017_c0cb_490f_9ee2_d2cb66d64814" destinationLayerName="osm_hospitals_datetime" destinationLayerProvider="postgres" destinationLayerSource="service='demo' sslmode=require key='osm_id' srid=2056 type=Point checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_hospitals&quot; (geom)">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="osm_points_time_geom_bd788874_226e_4336_a8f4_ed05e1df57f5" destinationLayerName="osm_points_time" destinationLayerProvider="postgres" destinationLayerSource="service='demo' key='tid' srid=2056 type=Point checkPrimaryKeyUnicity='1' table=&quot;geodata&quot;.&quot;osm_points_time&quot; (geom)">
     <timeStampFields></timeStampFields>
   </ProjectGpsSettings>
 </qgis>
