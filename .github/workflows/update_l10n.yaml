@@ -24,7 +24,7 @@ jobs:
             base_url: https://geomapfish-demo-2-10.camptocamp.com/
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           ref: ${{ matrix.branch }}
           token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
