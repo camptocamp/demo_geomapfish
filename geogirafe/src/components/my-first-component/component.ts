@@ -32,6 +32,7 @@ class MyFirstComponent extends GirafeHTMLElement {
      * https://gitlab.com/geogirafe/gg-viewer/-/blob/main/src/tools/state/state.ts?ref_type=heads#L75
      * And rerender the component when this property changes
      */
+    // @ts-ignore
     this.stateManager.subscribe('mouseCoordinates', (_oldCoordinates: number[], newCoordinates: number[]) =>
       this.onChangeCoordinates(newCoordinates),
     );
@@ -46,6 +47,7 @@ class MyFirstComponent extends GirafeHTMLElement {
   }
 
   connectedCallback() {
+    // @ts-ignore
     this.loadConfig().then(() => {
       /* Render the component */
       super.render();
