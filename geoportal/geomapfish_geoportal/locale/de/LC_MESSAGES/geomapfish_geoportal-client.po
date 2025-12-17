@@ -294,9 +294,6 @@ msgstr "OSM Karte"
 msgid "OSM map WMS"
 msgstr "OSM Karte WMS"
 
-msgid "OSM map WebP"
-msgstr "OSM Karte WMS"
-
 msgid "OSM_time_merged"
 msgstr "OSM Zeit (zusammengeführt)"
 
@@ -683,6 +680,10 @@ msgstr "Autobahn"
 msgid "hospitals"
 msgstr "Spital"
 
+#, fuzzy
+msgid "hospitals_vevey"
+msgstr "Spital"
+
 msgid "hotel"
 msgstr "Hotel"
 
@@ -887,6 +888,14 @@ msgstr "OSM Spital"
 msgid "osm_hospitals no wfs"
 msgstr "OSM Spital (ohne WFS)"
 
+#, fuzzy
+msgid "osm_hospitals_date"
+msgstr "OSM Spital"
+
+#, fuzzy
+msgid "osm_hospitals_datetime"
+msgstr "OSM Spital (doppelt, begrenzt)"
+
 msgid "osm_hospitals_dual_restricted"
 msgstr "OSM Spital (doppelt, begrenzt)"
 
@@ -904,6 +913,14 @@ msgstr "OSM ID"
 
 msgid "osm_open"
 msgstr "OSM Offen"
+
+#, fuzzy
+msgid "osm_points_range"
+msgstr "Punkte (in einer Gruppe)"
+
+#, fuzzy
+msgid "osm_points_time"
+msgstr "OSM Zeit"
 
 msgid "osm_scale"
 msgstr "OSM Skala"
@@ -1060,6 +1077,10 @@ msgstr "Punkte und Bodennutzung (ohne WFS)"
 
 msgid "points_ingrp"
 msgstr "Punkte (in einer Gruppe)"
+
+#, fuzzy
+msgid "points_vevey"
+msgstr "Punkte"
 
 msgid "pointscopier"
 msgstr "Kopierte Punkte"
@@ -1253,6 +1274,14 @@ msgstr "Zeit (in einer Gruppe)"
 msgid "timestamp"
 msgstr "Zeitstempel"
 
+#, fuzzy
+msgid "timestamp1"
+msgstr "Zeitstempel"
+
+#, fuzzy
+msgid "timestamp2"
+msgstr "Zeitstempel"
+
 msgid "timezone"
 msgstr "Zeitzone"
 
@@ -1400,6 +1429,9 @@ msgstr ""
 
 #~ msgid "OSM"
 #~ msgstr "OSM"
+
+#~ msgid "OSM map WebP"
+#~ msgstr "OSM Karte WMS"
 
 #~ msgid "Routing"
 #~ msgstr "Routing"

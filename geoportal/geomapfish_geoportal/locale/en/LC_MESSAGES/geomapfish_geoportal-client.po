@@ -298,9 +298,6 @@ msgstr "OSM map"
 msgid "OSM map WMS"
 msgstr "OSM map WMS"
 
-msgid "OSM map WebP"
-msgstr "OSM map WebP"
-
 msgid "OSM_time_merged"
 msgstr "OSM time (merged)"
 
@@ -686,6 +683,10 @@ msgstr "Highway"
 msgid "hospitals"
 msgstr "Hospitals"
 
+#, fuzzy
+msgid "hospitals_vevey"
+msgstr "Hospitals"
+
 msgid "hotel"
 msgstr "Hotel"
 
@@ -890,6 +891,14 @@ msgstr "OSM Hospitals"
 msgid "osm_hospitals no wfs"
 msgstr "OSM Hospitals (no WFS)"
 
+#, fuzzy
+msgid "osm_hospitals_date"
+msgstr "OSM Hospitals"
+
+#, fuzzy
+msgid "osm_hospitals_datetime"
+msgstr "OSM Hospitals (dual, restricted)"
+
 msgid "osm_hospitals_dual_restricted"
 msgstr "OSM Hospitals (dual, restricted)"
 
@@ -907,6 +916,14 @@ msgstr "OSM ID"
 
 msgid "osm_open"
 msgstr "OSM open"
+
+#, fuzzy
+msgid "osm_points_range"
+msgstr "Points in group"
+
+#, fuzzy
+msgid "osm_points_time"
+msgstr "OSM time"
 
 msgid "osm_scale"
 msgstr "OSM scale"
@@ -1063,6 +1080,10 @@ msgstr "Points & Landuse (no WFS)"
 
 msgid "points_ingrp"
 msgstr "Points in group"
+
+#, fuzzy
+msgid "points_vevey"
+msgstr "Poinst"
 
 msgid "pointscopier"
 msgstr "Point copier"
@@ -1256,6 +1277,14 @@ msgstr "Time (group)"
 msgid "timestamp"
 msgstr "Timestamp"
 
+#, fuzzy
+msgid "timestamp1"
+msgstr "Timestamp"
+
+#, fuzzy
+msgid "timestamp2"
+msgstr "Timestamp"
+
 msgid "timezone"
 msgstr "Timezone"
 
@@ -1386,8 +1415,8 @@ msgid ""
 "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://"
 "www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 msgstr ""
-"© <a href='http://asitvd.ch'>ASIT VD</a>, <a href='http://"
-"www.openstreetmap.org/copyright'>OpenStreetMap</a> Contributors"
+"© <a href='http://asitvd.ch'>ASIT VD</a>, <a href='http://www.openstreetmap."
+"org/copyright'>OpenStreetMap</a> Contributors"
 
 msgid ""
 "© Les contributeurs d’<a href='http://www.openstreetmap.org/"
@@ -1426,6 +1455,9 @@ msgstr ""
 
 #~ msgid "Learning [merged]"
 #~ msgstr "Learning [merged]"
+
+#~ msgid "OSM map WebP"
+#~ msgstr "OSM map WebP"
 
 #~ msgid "OSM_time (merged)"
 #~ msgstr "OSM time (merged)"
