@@ -240,7 +240,8 @@ msgid "Import Layer"
 msgstr "Importa layer"
 
 msgid "In order to use the editing tool, you must log in first."
-msgstr "Per utilizzare lo strumento di modifica, devi prima effettuare l'accesso."
+msgstr ""
+"Per utilizzare lo strumento di modifica, devi prima effettuare l'accesso."
 
 msgid "Layer with very very very very very long name"
 msgstr "Layer con nome molto molto molto molto molto lungo"
@@ -301,9 +302,6 @@ msgstr "Mappa OSM"
 
 msgid "OSM map WMS"
 msgstr "Mappa OSM WMS"
-
-msgid "OSM map WebP"
-msgstr "Mappa OSM WebP"
 
 msgid "OSM_time_merged"
 msgstr "OSM tempo (unito)"
@@ -690,6 +688,9 @@ msgstr "Strada"
 msgid "hospitals"
 msgstr "Ospedali"
 
+msgid "hospitals_vevey"
+msgstr "Ospedali (Vevey)"
+
 msgid "hotel"
 msgstr "Hotel"
 
@@ -894,6 +895,12 @@ msgstr "Ospedali OSM"
 msgid "osm_hospitals no wfs"
 msgstr "Ospedali OSM (senza WFS)"
 
+msgid "osm_hospitals_date"
+msgstr "Ospedali OSM (data)"
+
+msgid "osm_hospitals_datetime"
+msgstr "Ospedali OSM (data e ora)"
+
 msgid "osm_hospitals_dual_restricted"
 msgstr "Ospedali OSM doppio (riservato)"
 
@@ -911,6 +918,12 @@ msgstr "ID OSM"
 
 msgid "osm_open"
 msgstr "OSM aperto"
+
+msgid "osm_points_range"
+msgstr "OSM Punti (intervallo)"
+
+msgid "osm_points_time"
+msgstr "Tempo OSM (tempo)"
 
 msgid "osm_scale"
 msgstr "Scala OSM"
@@ -1067,6 +1080,9 @@ msgstr "Punti + uso del suolo (senza WFS)"
 
 msgid "points_ingrp"
 msgstr "Punti (nel gruppo)"
+
+msgid "points_vevey"
+msgstr "Punti (Vevey)"
 
 msgid "pointscopier"
 msgstr "Copia punti"
@@ -1260,6 +1276,12 @@ msgstr "Tempo (gruppo)"
 msgid "timestamp"
 msgstr "Timestamp"
 
+msgid "timestamp1"
+msgstr "Timestamp 1"
+
+msgid "timestamp2"
+msgstr "Timestamp 2"
+
 msgid "timezone"
 msgstr "Fuso orario"
 
@@ -1387,15 +1409,18 @@ msgid "wood"
 msgstr "Bosco"
 
 msgid ""
-"© <a href='http://asitvd.ch'>ASIT VD</a>, Contributori di <a href='http://"
+"© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://"
 "www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 msgstr ""
 "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributori di <a href='http://"
 "www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 
 msgid ""
-"© Les contributeurs d'<a href='http://www.openstreetmap.org/"
+"© Les contributeurs d’<a href='http://www.openstreetmap.org/"
 "copyright'>OpenStreetMap</a>"
 msgstr ""
 "© I contributori di <a href='http://www.openstreetmap.org/"
 "copyright'>OpenStreetMap</a>"
+
+#~ msgid "OSM map WebP"
+#~ msgstr "Mappa OSM WebP"

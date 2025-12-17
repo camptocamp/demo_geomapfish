@@ -294,9 +294,6 @@ msgstr "OSM Karte"
 msgid "OSM map WMS"
 msgstr "OSM Karte WMS"
 
-msgid "OSM map WebP"
-msgstr "OSM Karte WMS"
-
 msgid "OSM_time_merged"
 msgstr "OSM Zeit (zusammengeführt)"
 
@@ -683,6 +680,9 @@ msgstr "Autobahn"
 msgid "hospitals"
 msgstr "Spital"
 
+msgid "hospitals_vevey"
+msgstr "Spital (Vevey)"
+
 msgid "hotel"
 msgstr "Hotel"
 
@@ -887,6 +887,12 @@ msgstr "OSM Spital"
 msgid "osm_hospitals no wfs"
 msgstr "OSM Spital (ohne WFS)"
 
+msgid "osm_hospitals_date"
+msgstr "OSM Spital (datum)"
+
+msgid "osm_hospitals_datetime"
+msgstr "OSM Spital (datum zeit)"
+
 msgid "osm_hospitals_dual_restricted"
 msgstr "OSM Spital (doppelt, begrenzt)"
 
@@ -904,6 +910,12 @@ msgstr "OSM ID"
 
 msgid "osm_open"
 msgstr "OSM Offen"
+
+msgid "osm_points_range"
+msgstr "OSM Punkte (intervall)"
+
+msgid "osm_points_time"
+msgstr "OSM Punkte (zeit)"
 
 msgid "osm_scale"
 msgstr "OSM Skala"
@@ -1060,6 +1072,9 @@ msgstr "Punkte und Bodennutzung (ohne WFS)"
 
 msgid "points_ingrp"
 msgstr "Punkte (in einer Gruppe)"
+
+msgid "points_vevey"
+msgstr "Punkte (Vevey)"
 
 msgid "pointscopier"
 msgstr "Kopierte Punkte"
@@ -1253,6 +1268,12 @@ msgstr "Zeit (in einer Gruppe)"
 msgid "timestamp"
 msgstr "Zeitstempel"
 
+msgid "timestamp1"
+msgstr "Zeitstempel 1"
+
+msgid "timestamp2"
+msgstr "Zeitstempel 2"
+
 msgid "timezone"
 msgstr "Zeitzone"
 
@@ -1400,6 +1421,9 @@ msgstr ""
 
 #~ msgid "OSM"
 #~ msgstr "OSM"
+
+#~ msgid "OSM map WebP"
+#~ msgstr "OSM Karte WMS"
 
 #~ msgid "Routing"
 #~ msgstr "Routing"
