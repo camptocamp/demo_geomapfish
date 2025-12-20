@@ -298,9 +298,6 @@ msgstr "OSM map"
 msgid "OSM map WMS"
 msgstr "OSM map WMS"
 
-msgid "OSM map WebP"
-msgstr "OSM map WebP"
-
 msgid "OSM_time_merged"
 msgstr "OSM time (merged)"
 
@@ -686,6 +683,9 @@ msgstr "Highway"
 msgid "hospitals"
 msgstr "Hospitals"
 
+msgid "hospitals_vevey"
+msgstr "Hospitals (Vevey)"
+
 msgid "hotel"
 msgstr "Hotel"
 
@@ -890,6 +890,12 @@ msgstr "OSM Hospitals"
 msgid "osm_hospitals no wfs"
 msgstr "OSM Hospitals (no WFS)"
 
+msgid "osm_hospitals_date"
+msgstr "OSM Hospitals (date)"
+
+msgid "osm_hospitals_datetime"
+msgstr "OSM Hospitals (date time)"
+
 msgid "osm_hospitals_dual_restricted"
 msgstr "OSM Hospitals (dual, restricted)"
 
@@ -907,6 +913,12 @@ msgstr "OSM ID"
 
 msgid "osm_open"
 msgstr "OSM open"
+
+msgid "osm_points_range"
+msgstr "OSM points (range)"
+
+msgid "osm_points_time"
+msgstr "OSM points (time)"
 
 msgid "osm_scale"
 msgstr "OSM scale"
@@ -1063,6 +1075,9 @@ msgstr "Points & Landuse (no WFS)"
 
 msgid "points_ingrp"
 msgstr "Points in group"
+
+msgid "points_vevey"
+msgstr "Points (Vevey)"
 
 msgid "pointscopier"
 msgstr "Point copier"
@@ -1256,6 +1271,12 @@ msgstr "Time (group)"
 msgid "timestamp"
 msgstr "Timestamp"
 
+msgid "timestamp1"
+msgstr "Timestamp 1"
+
+msgid "timestamp2"
+msgstr "Timestamp 2"
+
 msgid "timezone"
 msgstr "Timezone"
 
@@ -1386,8 +1407,8 @@ msgid ""
 "© <a href='http://asitvd.ch'>ASIT VD</a>, Contributeurs d’<a href='http://"
 "www.openstreetmap.org/copyright'>OpenStreetMap</a>"
 msgstr ""
-"© <a href='http://asitvd.ch'>ASIT VD</a>, <a href='http://"
-"www.openstreetmap.org/copyright'>OpenStreetMap</a> Contributors"
+"© <a href='http://asitvd.ch'>ASIT VD</a>, <a href='http://www.openstreetmap."
+"org/copyright'>OpenStreetMap</a> Contributors"
 
 msgid ""
 "© Les contributeurs d’<a href='http://www.openstreetmap.org/"
@@ -1426,6 +1447,9 @@ msgstr ""
 
 #~ msgid "Learning [merged]"
 #~ msgstr "Learning [merged]"
+
+#~ msgid "OSM map WebP"
+#~ msgstr "OSM map WebP"
 
 #~ msgid "OSM_time (merged)"
 #~ msgstr "OSM time (merged)"
