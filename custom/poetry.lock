@@ -133,13 +133,13 @@ virtualenv = ["virtualenv (>=20.11)", "virtualenv (>=20.17)", "virtualenv (>=20.
 
 [[package]]
 name = "c2cwsgiutils"
-version = "6.1.8"
+version = "6.1.9"
 description = "Common utilities for Camptocamp WSGI applications"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "c2cwsgiutils-6.1.8-py3-none-any.whl", hash = "sha256:c70b5ee20bc22f9279bdb2a263b0cadc2bd8b307cc6109964de43adcd0e87b5e"},
-    {file = "c2cwsgiutils-6.1.8.tar.gz", hash = "sha256:3652aec8ae6a967107a10e0f9869f222b89aa6bce1c12c04a6f7ae744539bf31"},
+    {file = "c2cwsgiutils-6.1.9-py3-none-any.whl", hash = "sha256:a9b82c76a9fe0729915f13c433bdb59df9b7861946ae5c01e593a2e7e18ff7ee"},
+    {file = "c2cwsgiutils-6.1.9.tar.gz", hash = "sha256:8322a1390f91c2dfb3502ae9f72ae128925c712054807fa1773b5c5ff293531d"},
 ]
 
 [package.dependencies]
@@ -2584,4 +2584,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.14"
-content-hash = "e481c81df15de293569d1901db665e3008154e27cd41a760d872166b03a904e8"
+content-hash = "1c3960db95995c74123c09242a49277a84610cc4ba29fc647d02039be8e31118"
