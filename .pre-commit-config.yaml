@@ -67,13 +67,14 @@ repos:
             |scripts/db-backup
             |scripts/db-restore
           )$
-      - id: poetry-lock
+      - id: poetry2-lock
         additional_dependencies:
           - poetry==2.2.1 # pypi
         exclude: |-
           (?x)^(
             pyproject\.toml
           )$
+        language_version: '3.13'
       - id: npm-lock
       - id: canonicalize
   - repo: https://github.com/codespell-project/codespell
