@@ -1,8 +1,14 @@
-[tool.poetry]
+[project]
 name = 'demo-geomapfish-custom'
 version = '0.0.0'
 description = 'Not used'
 authors = []
+
+[project.scripts]
+custom-initialize-db = "custom.scripts.initialize_db:main"
+
+[project.entry-points."paste.app_factory"]
+main = "custom:main"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
