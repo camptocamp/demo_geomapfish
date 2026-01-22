@@ -1,0 +1,11 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="gmf16_A0" language="java" pageWidth="2384" pageHeight="3370" columnWidth="2344" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1e8b2d8-1673-4f81-8130-ef61354c8696">
+	<parameter name="mapSubReport" class="java.lang.String"/>
+	<detail>
+		<band height="3329" splitType="Stretch">
+			<element kind="subreport" uuid="664320f3-ac18-4b3c-a962-02450f866528" mode="Transparent" x="0" y="0" width="2340" height="3327">
+				<expression><![CDATA[$P{mapSubReport}]]></expression>
+			</element>
+		</band>
+	</detail>
+</jasperReport>
