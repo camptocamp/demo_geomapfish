@@ -1,0 +1,18 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="gmf16_A4_portrait" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="664cae9c-9a88-442a-b36c-a5add8a50936">
+	<field name="title" class="java.lang.String"/>
+	<field name="tableDataSource" class="net.sf.jasperreports.engine.data.JRMapCollectionDataSource"/>
+	<field name="tableSubReport" class="java.lang.String"/>
+	<detail>
+		<band height="65">
+			<element kind="textField" uuid="bfc1a313-4605-4a05-88bd-20c83f354e1a" x="0" y="0" width="460" height="20" forecolor="#424242" fontSize="16.0" bold="true">
+				<expression><![CDATA["RÉSULTATS - " + $F{title}]]></expression>
+			</element>
+			<element kind="subreport" uuid="185c8bff-cab3-4b72-95a6-f1e1db43b083" x="0" y="23" width="255" height="42">
+				<dataSourceExpression><![CDATA[$F{tableDataSource}]]></dataSourceExpression>
+				<expression><![CDATA[$F{tableSubReport}]]></expression>
+			</element>
+			<element kind="break" uuid="cc02c255-a8cd-44e8-88f4-b5d46287e9ce" x="0" y="64" width="100" height="1"/>
+		</band>
+	</detail>
+</jasperReport>
