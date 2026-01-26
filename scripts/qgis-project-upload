@@ -23,15 +23,9 @@ Example usage:
         """,
         formatter_class=argparse.RawTextHelpFormatter,
     )
-    parser.add_argument(
-        "filename", default="qgisserver/project.qgz", help="Source file name"
-    )
-    parser.add_argument(
-        "schema", default="qgis", help="Destination PostgreSQL schema name"
-    )
-    parser.add_argument(
-        "project", default="project.qgz", help="Destination QGIS project name"
-    )
+    parser.add_argument("filename", default="qgisserver/project.qgz", help="Source file name")
+    parser.add_argument("schema", default="qgis", help="Destination PostgreSQL schema name")
+    parser.add_argument("project", default="project.qgz", help="Destination QGIS project name")
     args = parser.parse_args()
 
     # Connect to a DB, e.g., the test DB on your localhost, and get a cursor
@@ -57,9 +51,7 @@ Example usage:
                 },
             )
 
-    print(
-        f"Project {args.filename} uploaded in schema {args.schema} with name {args.project}"
-    )
+    print(f"Project {args.filename} uploaded in schema {args.schema} with name {args.project}")
 
 
 if __name__ == "__main__":
