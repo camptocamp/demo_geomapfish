@@ -43,7 +43,7 @@ geojson = "3.2.0"
 urllib3 = "2.6.3"
 certifi = { version = "2026.1.4", optional = true }
 webob = { version = "1.8.9", optional = true }
-cryptography = { version = "46.0.3", optional = true }
+cryptography = { version = "46.0.4", optional = true }
 azure-core = "1.38.0"
 
 [tool.poetry.group.dev.dependencies]
