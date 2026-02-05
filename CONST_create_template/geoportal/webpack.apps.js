@@ -23,7 +23,7 @@ for (const filename of ls(
       chunks: [name],
       vars: {
         entry_point: '${VISIBLE_ENTRY_POINT}',
-        version: '2.9.0.392',
+        version: '2.9.0.393',
         cache_version: '${CACHE_VERSION}',
       },
     })
