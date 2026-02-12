@@ -33,6 +33,7 @@ ujson = "5.10.0"
 urllib3 = "2.6.3"
 webob = { version = "1.8.9", optional = true }
 papyrus = "2.6.2"
+pillow = "12.1.1"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
