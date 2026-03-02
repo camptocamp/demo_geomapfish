@@ -3,8 +3,10 @@
 exclude: |-
   (?x)^(
     CONST_.*
-    |mapserver/data/lac-leman.osm
+    |mapserver/data/lac-leman\.osm
     |geogirafe/CONST_scaffold/.*
+    |geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
+    |geoportal/gunicorn\.conf\.py
   )$
 
 repos:
