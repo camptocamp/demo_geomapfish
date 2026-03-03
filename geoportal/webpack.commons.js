@@ -12,7 +12,9 @@ const config = commons({
 config.module.rules = config.module.rules.filter(
   (rule) =>
     !Array.isArray(rule.use) ||
-    !rule.use.some((use) => use && typeof use.loader === 'string' && use.loader.includes('magic-comments-loader')),
+    !rule.use.some(
+      (use) => use && typeof use.loader === 'string' && use.loader.includes('magic-comments-loader'),
+    ),
 );
 
 module.exports = () => config;
