@@ -3,7 +3,7 @@
 exclude: |-
   (?x)^(
     CONST_.*
-    |mapserver/data/lac-leman.osm
+    |mapserver/data/lac-leman\.osm
     |geogirafe/CONST_scaffold/.*
   )$
 
