@@ -5,8 +5,15 @@ exclude: |-
     CONST_.*
     |mapserver/data/lac-leman\.osm
     |geogirafe/CONST_scaffold/.*
-    |geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
-    |geoportal/gunicorn\.conf\.py
+    |(CONST_create_template/|)geoportal/gunicorn\.conf\.py
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/sass/.*
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/image/.*
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/api/api\.css
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/api/index\.js
+    |(CONST_create_template/|)print/print-apps/demo/.*\.jrxml
+    |(CONST_create_template/|)scripts/(db-backup|db-restore|multi-tenant-update-po|qgis-project-download|qgis-project-upload)
   )$
 
 repos:
@@ -40,7 +47,6 @@ repos:
     rev: v3.1.0
     hooks:
       - id: prettier
-<<<<<<< ours
         exclude: |-
           (?x)^(
             geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
@@ -136,14 +142,6 @@ repos:
       - id: renovate-config-validator
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.2
-=======
-  - repo: https://github.com/PyCQA/autoflake
-    rev: v2.3.3
-    hooks:
-      - id: autoflake
-  - repo: https://github.com/PyCQA/isort
-    rev: 8.0.1
->>>>>>> theirs
     hooks:
       - id: ruff-format
   - repo: https://github.com/sbrunner/python-versions-hook
