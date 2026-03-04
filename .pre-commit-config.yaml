@@ -5,6 +5,14 @@ exclude: |-
     CONST_.*
     |mapserver/data/lac-leman\.osm
     |geogirafe/CONST_scaffold/.*
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/sass/.*
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/image/.*
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/api/api\.css
+    |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/api/index\.js
+    |(CONST_create_template/|)print/print-apps/demo/.*\.jrxml
+    |(CONST_create_template/|)scripts/(db-backup|db-restore|multi-tenant-update-po|qgis-project-download|qgis-project-upload)
   )$
 
 repos:
