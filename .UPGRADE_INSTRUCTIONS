@@ -1,5 +1,4 @@
-The upgrade is nearly done, now you should:
-- Build your application with `./upgrade --finalize [build arguments]`
-- Test your application on 'https://localhost:8484/'.
+Here is the output of 'git status'. Please make sure to commit all your changes before going further. All uncommitted changes will be lost.
+Note that for debugging purpose it is possible to pass directly to step 2 e.-g.: ./upgrade --debug=../c2cgeoportal 2.10 2
 To continue, type:
-./upgrade 2.10 12
+./upgrade 2.10 1
