@@ -46,6 +46,7 @@ webob = { version = "1.8.9", optional = true }
 cryptography = "46.0.6"
 azure-core = "1.38.2"
 setuptools = "80.10.2"
+pygments = "2.20.0"
 
 [tool.poetry.group.dev.dependencies]
 prospector = { version = "1.18.0", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
