@@ -2,8 +2,6 @@ name: Continuous integration
 
 on:
   push:
-  pull_request_target:
-    types: [labeled]
 
 permissions:
   contents: write
@@ -50,8 +48,8 @@ jobs:
           path: ~/.cache/pre-commit
           key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
           restore-keys: "pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}\npre-commit-"
-      - run: pre-commit run --all-files --color=always
-      - run: git diff --exit-code --patch > /tmp/pre-commit.patch; git diff --color; git reset --hard || true
+      - run: pre-commit run --all-files --config=.pre-commit-config.yaml
+      - run: git diff --exit-code --patch > /tmp/pre-commit.patch || true
         if: failure()
       - uses: actions/upload-artifact@v7
         with:
@@ -102,7 +100,7 @@ jobs:
       - run: c2cciutils-docker-logs
         if: always()
 
-        # Rebuild the image with the right schema
+      # Rebuild the image with the right schema
       - run: rm env.secrets
       - run: touch env.secrets
       - name: Build
