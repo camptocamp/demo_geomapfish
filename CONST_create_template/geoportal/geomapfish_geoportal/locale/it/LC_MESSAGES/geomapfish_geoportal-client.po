@@ -1,10 +1,11 @@
 # Translators:
 # Stéphane Brunner <stephane.brunner@camptocamp.com>, 2023
+# Centro competenza geoinformazione, 2026
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Last-Translator: Stéphane Brunner <stephane.brunner@camptocamp.com>, 2023\n"
+"Last-Translator: Centro competenza geoinformazione, 2026\n"
 "Language-Team: Italian (https://app.transifex.com/camptocamp/teams/36764/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,7 +49,7 @@ msgstr "Sfondo"
 #: contribs/gmf/apps/mobile_alt.html:90
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:90
 msgid "Close"
-msgstr "Chiudere"
+msgstr "Chiudi"
 
 #: contribs/gmf/apps/mobile.html:161
 #: contribs/gmf/apps/mobile/index.html.ejs:161
@@ -74,8 +75,8 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                    Use double-click to finish the drawing."
 msgstr ""
-"Tracciare una linea sulla mappa per visualizzare il profilo altimetrico corrispondente.\n"
-"Usare il doppio clic per terminare il disegno."
+"Traccia una linea sulla mappa per visualizzare il profilo altimetrico "
+"corrispondente. Doppio clic per terminare la linea."
 
 #: contribs/gmf/apps/desktop_alt.html:179
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:179
@@ -83,6 +84,8 @@ msgid ""
 "Draw a line on the map to display the corresponding elevation profile.\n"
 "                Use double-click to finish the drawing."
 msgstr ""
+"Traccia una linea sulla mappa per visualizzare il profilo altimetrico "
+"corrispondente. Doppio clic per terminare la linea."
 
 #: contribs/gmf/apps/desktop.html:149 contribs/gmf/apps/desktop.html:66
 #: contribs/gmf/apps/desktop/index.html.ejs:149
@@ -90,14 +93,14 @@ msgstr ""
 #: contribs/gmf/apps/desktop_alt.html:105
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:105
 msgid "Draw and Measure"
-msgstr "Disegnare e misurare"
+msgstr "Disegna e misura"
 
 #: contribs/gmf/apps/desktop.html:203
 #: contribs/gmf/apps/desktop/index.html.ejs:203
 #: contribs/gmf/apps/desktop_alt.html:172
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:172
 msgid "Draw profile line"
-msgstr "Disegnare la linea di profilo"
+msgstr "Traccia linea di profilo"
 
 #: contribs/gmf/apps/desktop.html:176 contribs/gmf/apps/desktop.html:76
 #: contribs/gmf/apps/desktop/index.html.ejs:176
@@ -105,7 +108,7 @@ msgstr "Disegnare la linea di profilo"
 #: contribs/gmf/apps/desktop_alt.html:144
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:144
 msgid "Editing"
-msgstr "Modificare"
+msgstr "Modifica"
 
 #: contribs/gmf/apps/desktop/contextualdata.html:23
 #: contribs/gmf/apps/iframe_api/contextualdata.html:23
@@ -185,7 +188,7 @@ msgstr "Caricamento....."
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:143
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:172
 msgid "Login"
-msgstr "Accedi"
+msgstr "Login"
 
 #: contribs/gmf/apps/desktop_alt.html:224
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:224
@@ -209,7 +212,7 @@ msgstr "Applicazione mobile"
 #: contribs/gmf/apps/oeedit/index.html.ejs:54
 #: contribs/gmf/apps/oeedit/index.html.ejs:72
 msgid "Object Editing"
-msgstr "Modifica dell'oggetto"
+msgstr "Modifica oggetto"
 
 #: contribs/gmf/apps/oeedit.html:4 contribs/gmf/apps/oeedit/index.html.ejs:4
 msgid "ObjectEditing - Edit Application"
@@ -224,7 +227,7 @@ msgstr "ObjectEditing - Modifica applicazione"
 #: contribs/gmf/apps/mobile_alt.html:189
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:189
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: contribs/gmf/apps/desktop.html:137 contribs/gmf/apps/desktop.html:62
 #: contribs/gmf/apps/desktop/index.html.ejs:137
@@ -238,7 +241,7 @@ msgstr "Stampa"
 #: contribs/gmf/apps/desktop/index.html.ejs:195
 #: contribs/gmf/apps/desktop/index.html.ejs:81
 msgid "Profile"
-msgstr "Profilo"
+msgstr "Profilo altimetrico"
 
 #: contribs/gmf/apps/oeedit.html:50 contribs/gmf/apps/oeedit.html:63
 #: contribs/gmf/apps/oeedit/index.html.ejs:50
@@ -270,7 +273,7 @@ msgstr "Condividi questa mappa"
 #: contribs/gmf/apps/iframe_api/contextualdata.html:7
 #: contribs/gmf/apps/oeedit/contextualdata.html:7
 msgid "Swiss grid (LV03)"
-msgstr "Quadro di riferimento svizzero (MN03)"
+msgstr "Swiss grid (MN03)"
 
 #: contribs/gmf/apps/desktop/contextualdata.html:3
 #: contribs/gmf/apps/iframe_api/contextualdata.html:3
@@ -284,7 +287,7 @@ msgstr "Swiss grid (MN95)"
 #: contribs/gmf/apps/desktop_alt/index.html.ejs:35
 #: contribs/gmf/apps/oeedit.html:25 contribs/gmf/apps/oeedit/index.html.ejs:25
 msgid "Theme:"
-msgstr "Categorie:"
+msgstr "Geocategoria:"
 
 #: contribs/gmf/apps/desktop.html:38
 #: contribs/gmf/apps/desktop/index.html.ejs:38
@@ -298,7 +301,7 @@ msgstr "Categorie:"
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:127
 #: contribs/gmf/apps/oeedit.html:30 contribs/gmf/apps/oeedit/index.html.ejs:30
 msgid "Themes"
-msgstr "Temi"
+msgstr "Geocategorie"
 
 #: contribs/gmf/apps/mobile.html:142
 #: contribs/gmf/apps/mobile/index.html.ejs:142
@@ -316,7 +319,7 @@ msgstr "Strumenti"
 #: contribs/gmf/apps/mobile_alt.html:181
 #: contribs/gmf/apps/mobile_alt/index.html.ejs:181
 msgid "Username"
-msgstr ""
+msgstr "Nome utente"
 
 #: contribs/gmf/apps/desktop/contextualdata.html:11
 #: contribs/gmf/apps/iframe_api/contextualdata.html:11
@@ -337,7 +340,7 @@ msgid ""
 "You're using the mobile application. Check out the <a "
 "href=\"{{url}}\">standard application</a>."
 msgstr ""
-"Stai usando l'applicazione mobile. Controlla che <a href=\"{{url}}\"> "
+"Stai usando l'applicazione mobile. Controlla<a href=\"{{url}}\"> "
 "applicazione standard</a>."
 
 #: contribs/gmf/apps/desktop_alt.html:92
