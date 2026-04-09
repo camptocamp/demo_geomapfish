@@ -1,0 +1,32 @@
+diff --git a/.github/workflows/main.yaml b/.github/workflows/main.yaml
+index 25fc183..21e4fbc 100644
+--- a/.github/workflows/main.yaml
++++ b/.github/workflows/main.yaml
+@@ -38,7 +38,7 @@ jobs:
+           path: ~/.cache/pre-commit
+           key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
+           restore-keys: "pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}\npre-commit-"
+-      - run: pre-commit run --all-files
++      - run: pre-commit run --all-files --config=.pre-commit-config.yaml
+       - run: git diff --exit-code --patch > /tmp/pre-commit.patch || true
+         if: failure()
+       - uses: actions/upload-artifact@v7
+diff --git a/README.rst b/README.rst
+index 299c001..472bcd7 100644
+--- a/README.rst
++++ b/README.rst
+@@ -26,4 +26,14 @@ Run
+ 
+    docker compose up -d
+ 
++Contributing
++------------
++
++Install the pre-commit hooks:
++
++.. code-block:: bash
++
++   pip install pre-commit
++   pre-commit install --allow-missing-config --config=.pre-commit-config.yaml
++
+ .. Feel free to add project-specific things.
