@@ -55,3 +55,15 @@ Backup database
   scripts/db-backup --arg=--schema='geodata21781' geodata21781.backup
   scripts/db-backup --arg=--schema='main_2_7' main_2_7.backup
   scripts/db-backup --arg=--schema='static_2_7' static_2_7.backup
+
+Contributing
+------------
+
+Install the pre-commit hooks:
+
+.. code-block:: bash
+
+   pip install pre-commit
+   pre-commit install --allow-missing-config --config=.pre-commit-config.yaml
+
+.. Feel free to add project-specific things.
