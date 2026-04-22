@@ -2,6 +2,8 @@ PROJECT_PUBLIC_URL?=https://geomapfish-demo-2-9.camptocamp.com/
 DUMP_FILE=data/prod-2-7.dump
 PACKAGE=geomapfish
 LANGUAGES=en fr de it
+ESLINT_JS_FILES=$(shell find geoportal/geomapfish_geoportal -type f -name '*.js' ! -name '*.min.js' -print 2> /dev/null | sed 's|^geoportal/||')
+ESLINT_TS_FILES=$(shell find geoportal/geomapfish_geoportal -type f -name '*.ts' -print 2> /dev/null | sed 's|^geoportal/||')
 
 .PHONY: help
 help: ## Display this help message
@@ -27,17 +29,21 @@ checks: prospector eslint ## Runs the checks
 
 .PHONY: prospector
 prospector: ## Runs the Prospector checks
-	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
+	docker compose run --workdir=/app/geoportal --rm --volume=$(CURDIR)/geoportal:/app/geoportal tools \
 		prospector --output-format=pylint --die-on-tool-error
 	docker build --tag=custom-checks --target=checks custom
 	docker run --rm custom-checks prospector --output-format=pylint --die-on-tool-error
 
 .PHONY: eslint
 eslint: ## Runs the eslint checks
-	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
-		eslint $(find geomapfish -type f -name '*.js' -print 2> /dev/null)
-	docker compose run --entrypoint= --rm --volume=$(CURDIR)/geoportal:/app geoportal \
-		eslint $(find geomapfish -type f -name '*.ts' -print 2> /dev/null)
+	if [ -n "$(strip $(ESLINT_JS_FILES))" ]; then \
+		docker compose run --workdir=/app/geoportal --rm --volume=$(CURDIR)/geoportal:/app/geoportal tools \
+			eslint $(ESLINT_JS_FILES); \
+	fi
+	if [ -n "$(strip $(ESLINT_TS_FILES))" ]; then \
+		docker compose run --workdir=/app/geoportal --rm --volume=$(CURDIR)/geoportal:/app/geoportal tools \
+			eslint $(ESLINT_TS_FILES); \
+	fi
 
 .PHONY: build
 build:
