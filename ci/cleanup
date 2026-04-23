@@ -21,7 +21,7 @@ rm "$1/.github/dependabot.yaml" "$1/.github/renovate.json5" \
 rm "$1/ci/config.yaml" "$1/project.yaml"
 rm "$1/geoportal/.prospector.yaml" "$1/geoportal/alembic.ini" "$1/geoportal/alembic.yaml" \
     "$1/geoportal/Dockerfile" "$1/geoportal/.dockerignore" \
-    "$1/geoportal/.eslintrc.yaml" "$1/geoportal/Makefile" "$1/geoportal/eval_templates.sh" \
+    "$1/geoportal/eslint.config.js" "$1/geoportal/Makefile" "$1/geoportal/eval_templates.sh" \
     "$1/geoportal/development.ini" "$1/geoportal/production.ini" \
     "$1"/geoportal/geomapfish_geoportal/*.py \
     "$1/geoportal/geomapfish_geoportal/static/apihelp/index.html.tmpl" \
