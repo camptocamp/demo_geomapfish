@@ -1,4 +1,3 @@
-/* eslint-disable */
 import Map from 'api/Map.js';
 import {dynamicUrl} from 'api/constants.js';
 
