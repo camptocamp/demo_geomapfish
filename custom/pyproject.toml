@@ -45,7 +45,7 @@ azure-identity = "1.19.0"
 papyrus = "2.6.2"
 geojson = "3.2.0"
 # To fix CVE
-urllib3 = "2.6.3"
+urllib3 = "2.7.0"
 certifi = { version = "2025.8.3", optional = true }
 webob = { version = "1.8.9", optional = true }
 cryptography = "46.0.7"
