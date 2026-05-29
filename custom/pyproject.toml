@@ -29,7 +29,7 @@ requests = "2.33.1"
 psycopg2 = "2.9.12"
 c2cwsgiutils = { version = "6.1.9", extras = ["webserver"] }
 cee-syslog-handler = "0.6.0"
-PyJWT = "2.12.1"
+PyJWT = "2.13.0"
 redis = "7.4.0"
 PyYAML = "6.0.3"
 sentry-sdk = "2.58.0"
