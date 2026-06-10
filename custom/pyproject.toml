@@ -1,15 +1,3 @@
-[project]
-name = 'demo-geomapfish-custom'
-version = '0.0.0'
-description = 'Not used'
-authors = []
-
-[project.scripts]
-custom-initialize-db = "custom.scripts.initialize_db:main"
-
-[project.entry-points."paste.app_factory"]
-main = "custom:main"
-
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
 gunicorn = "26.0.0"
@@ -55,3 +43,15 @@ prospector-profile-utils = "1.27.0"
 prospector-profile-duplicated = "1.12.0"
 types-requests = "2.33.0.20260518"
 types-oauthlib = "3.3.0.20260518"
+
+[project]
+name = 'demo-geomapfish-custom'
+version = '0.0.0'
+description = 'Not used'
+authors = []
+
+[project.scripts]
+custom-initialize-db = "custom.scripts.initialize_db:main"
+
+[project.entry-points."paste.app_factory"]
+main = "custom:main"
