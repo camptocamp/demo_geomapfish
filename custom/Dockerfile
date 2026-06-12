@@ -8,11 +8,14 @@ SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
-    apt-get update
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    apt-get update \
+    && apt-get --assume-yes upgrade
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache,sharing=locked \
-    apt-get install --assume-yes --no-install-recommends python3-pip python3-dev python3-venv \
+    apt-get update \
+    && apt-get install --assume-yes --no-install-recommends python3-pip python3-dev python3-venv \
     && python3 -m venv /venv
 
 ENV PATH=/venv/bin:$PATH
@@ -33,7 +36,8 @@ FROM base-all AS base
 LABEL org.opencontainers.image.authors="Camptocamp <info@camptocamp.com>"
 
 # hadolint ignore=SC1091
-RUN --mount=type=cache,target=/var/cache,sharing=locked \
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=cache,target=/var/cache,sharing=locked \
     --mount=type=cache,target=/root/.cache \
     apt-get update \
     && apt-get install --assume-yes --no-install-recommends \
