@@ -37,6 +37,7 @@ import gmfImportModule from 'gmf/import/module';
 import gmfFloorModule from 'gmf/floor/module';
 import ngeoStreetviewModule from 'ngeo/streetview/module';
 import ngeoRoutingModule from 'ngeo/routing/module';
+import ngeoMiscToolActivate from 'ngeo/misc/ToolActivate';
 import ngeoStatemanagerWfsPermalink from 'ngeo/statemanager/WfsPermalink';
 
 /**
@@ -64,7 +65,7 @@ class Controller extends AbstractDesktopController {
     this.ngeoToolActivateMgr.registerTool('mapTools', drawLidarprofilePanelActive, false);
     const $timeout = $injector.get('$timeout');
 
-    panels.getActiveToolPanel().subscribe({
+    window.gmfapi.store.panels.getActiveToolPanel().subscribe({
       next: (panel) => {
         this.drawLidarprofilePanelActive = panel === 'lidar';
 
