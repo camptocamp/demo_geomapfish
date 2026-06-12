@@ -8,7 +8,7 @@ index 5d8f21c..69e9859 100644
      shortener: *auth_header
 +    settings: *auth_header
      login: {}
- 
+
  update_paths:
 @@ -390,6 +391,7 @@ update_paths:
    - headers.tinyows.headers
