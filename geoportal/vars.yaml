@@ -902,7 +902,11 @@ vars:
     tinyows: *auth_header
     layers: *auth_header
     shortener: *auth_header
-    login: *auth_header
+    user_settings: *auth_header
+    login:
+      <<: *auth_header
+      access_control_allow_origin:
+        - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
 
   global_headers:
     - pattern: '^/desktop_alt(/.*|\?.*)?$'
@@ -967,6 +971,7 @@ update_paths:
   - headers.tinyows.headers
   - headers.layers.headers
   - headers.shortener.headers
+  - headers.user_settings.headers
   - headers.login.headers
   - interfaces_config.default.constants.ngeoWfsPermalinkOptions
   - interfaces_config.default.constants.gmfOptions.view
