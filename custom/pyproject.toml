@@ -36,7 +36,7 @@ oauthlib = "3.2.2"
 pygments = "2.20.0"
 urllib3 = "2.7.0"
 zipp = { version = "3.19.3", optional = true }
-webob = { version = "1.8.9", optional = true }
+webob = "1.8.10"
 
 
 [tool.poetry.dev-dependencies]
