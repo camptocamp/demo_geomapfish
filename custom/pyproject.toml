@@ -31,7 +31,7 @@ sentry-sdk = "2.15.0"
 requests-oauthlib = "2.0.0"
 ujson = "5.13.0"
 urllib3 = "2.7.0"
-webob = { version = "1.8.9", optional = true }
+webob = "1.8.10"
 papyrus = "2.6.2"
 pillow = "12.2.0"
 pygments = "2.20.0"
