@@ -1656,18 +1656,18 @@ testing = ["coverage (>=7.6.0)", "pytest", "pytest-cov"]
 
 [[package]]
 name = "webob"
-version = "1.8.9"
+version = "1.8.10"
 description = "WSGI request and response object"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 groups = ["main"]
 files = [
-    {file = "WebOb-1.8.9-py2.py3-none-any.whl", hash = "sha256:45e34c58ed0c7e2ecd238ffd34432487ff13d9ad459ddfd77895e67abba7c1f9"},
-    {file = "webob-1.8.9.tar.gz", hash = "sha256:ad6078e2edb6766d1334ec3dee072ac6a7f95b1e32ce10def8ff7f0f02d56589"},
+    {file = "webob-1.8.10-py2.py3-none-any.whl", hash = "sha256:e68ad87fda378191081965ab02a185391c26e4e926adec855c3b0286a8369d49"},
+    {file = "webob-1.8.10.tar.gz", hash = "sha256:1c963a11f307bc3f624fbab9dde737701eae255f32981b7a5486a88db1767c2b"},
 ]
 
 [package.extras]
-docs = ["Sphinx (>=1.7.5)", "pylons-sphinx-themes"]
+docs = ["Sphinx (>=1.7.5)", "pylons-sphinx-themes", "setuptools"]
 testing = ["coverage", "pytest (>=3.1.0)", "pytest-cov", "pytest-xdist"]
 
 [[package]]
@@ -1882,4 +1882,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.11"
-content-hash = "3ca0f014d10ac8eacc7bb89289e72ed114a91ec1df6cad11b0feb20b7208d86d"
+content-hash = "21d3b08e87462e8562f47bedb5e99551d7f1292417728de60f73b0c97efb1fba"
