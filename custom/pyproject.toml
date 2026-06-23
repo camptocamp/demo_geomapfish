@@ -36,7 +36,7 @@ geojson = "3.2.0"
 # To fix CVE
 urllib3 = "2.7.0"
 certifi = { version = "2025.8.3", optional = true }
-webob = { version = "1.8.9", optional = true }
+webob = "1.8.10"
 cryptography = "48.0.1"
 azure-core = "1.38.0"
 pygments = "2.20.0"
