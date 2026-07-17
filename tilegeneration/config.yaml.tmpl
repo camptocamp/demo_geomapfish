@@ -106,6 +106,9 @@ layers:
       size: 1651
       hash: 2892fea0a474228f5d66a534b0b5231d923696da
     post_process: jpegoptim
+  osm:
+    <<: *layer
+    layers: sustenance,entertainment,post_office
 
 generation:
   default_cache: azure
