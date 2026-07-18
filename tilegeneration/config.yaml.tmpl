@@ -106,9 +106,19 @@ layers:
       size: 1651
       hash: 2892fea0a474228f5d66a534b0b5231d923696da
     post_process: jpegoptim
+  map_webp:
+    <<: *layer
+    layers: default
+    extension: webp
+    mime_type: image/webp
+    params:
+      TRANSPARENT: 'TRUE'
   osm:
     <<: *layer
     layers: sustenance,entertainment,post_office
+    query_layers: sustenance,entertainment,post_office
+    params:
+      TRANSPARENT: 'TRUE'
 
 generation:
   default_cache: azure
