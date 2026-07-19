@@ -11,6 +11,23 @@ grids:
     bbox: [2420000, 1030000, 2900000, 1350000]
     # srs [required]
     srs: EPSG:2056
+  epsg21781_005:
+    # resolutions [required]
+    # Resolutions from eCH-0056 - WMTS-07
+    # https://www.ech.ch/dokument/473ea824-bbcd-43fa-ad0a-c7c84edfa1b8
+    resolutions: [4000, 2000, 1000, 500, 250, 100, 50, 20, 10, 5, 2.5, 1, 0.5, 0.25, 0.1, 0.05]
+    # bbox [required]
+    bbox: [420000, 30000, 900000, 350000]
+    # srs [required]
+    srs: EPSG:21781
+  epsg3857:
+    # resolutions [required]
+    # Resolutions from OSM
+    resolutions: [156543.0339, 78271.51695, 39135.758475, 19567.8792375, 9783.93961875, 4891.969809375, 2445.9849046875, 1222.99245234375, 611.496226171875, 305.7481130859375, 152.87405654296876, 76.43702827148438, 38.21851413574219, 19.109257067871095, 9.554628533935547, 4.777314266967774, 2.388657133483887, 1.1943285667419434, 0.5971642833709717, 0.29858214168548586, 0.14929107084274293, 0.07464553542137146, 0.03732276771068573]
+    # bbox [required]
+    bbox: [-20037508.342789244, -20037508.342789244, 20037508.342789244, 20037508.342789244]
+    # srs [required]
+    srs: EPSG:3857
 
 caches:
 ${DISABLE_LOCAL}  local:
@@ -119,6 +136,10 @@ layers:
     query_layers: sustenance,entertainment,post_office
     params:
       TRANSPARENT: 'TRUE'
+    grids:
+      - epsg2056_005
+      - epsg21781_005
+      - epsg3857
     post_process: optipng
 
 generation:
