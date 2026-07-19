@@ -88,12 +88,12 @@ defaults:
     empty_tile_detection:
         size: 116
         hash: 9b1f93c807ba92a48f8e484ea839e21ce90bf278
-    post_process: optipng
 
 layers:
   map:
     <<: *layer
     layers: default
+    post_process: optipng
   map_jpeg:
     <<: *layer
     layers: default
@@ -119,6 +119,7 @@ layers:
     query_layers: sustenance,entertainment,post_office
     params:
       TRANSPARENT: 'TRUE'
+    post_process: optipng
 
 generation:
   default_cache: azure
