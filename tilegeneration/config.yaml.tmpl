@@ -141,6 +141,16 @@ layers:
       - epsg21781_005
       - epsg3857
     post_process: optipng
+    min_resolution_seed: 10
+    # The WMTS dimensions definition [default is []]
+    dimensions:
+      - name: DAVERSIONTE
+        # The default value for the WMTS capabilities
+        default: '2'
+        # The generated values
+        generate: ['1', '2']
+        # All the available values in the WMTS capabilities
+        values: ['1', '2']
 
 generation:
   default_cache: azure
