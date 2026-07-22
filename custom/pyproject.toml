@@ -29,7 +29,7 @@ papyrus = "2.6.2"
 geojson = "3.3.0"
 # To fix CVE
 urllib3 = "2.7.0"
-certifi = { version = "2026.6.17", optional = true }
+certifi = { version = "2026.7.22", optional = true }
 webob = "1.8.10"
 cryptography = "49.0.0"
 azure-core = "1.41.0"
