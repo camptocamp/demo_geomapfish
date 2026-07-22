@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/tilecloud-chain/master/tilecloud_chain/schema.json
+# yaml-language-server: =https://raw.githubusercontent.com/camptocamp/tilecloud-chain/master/tilecloud_chain/schema.json
 
 grids:
   # grid name, I just recommends to add the min resolution because it's common to not generate all the layers at the same resolution.
@@ -23,32 +23,44 @@ grids:
   epsg3857:
     # resolutions [required]
     # Resolutions from OSM
-    resolutions: [156543.0339, 78271.51695, 39135.758475, 19567.8792375, 9783.93961875, 4891.969809375, 2445.9849046875, 1222.99245234375, 611.496226171875, 305.7481130859375, 152.87405654296876, 76.43702827148438, 38.21851413574219, 19.109257067871095, 9.554628533935547, 4.777314266967774, 2.388657133483887, 1.1943285667419434, 0.5971642833709717, 0.29858214168548586, 0.14929107084274293, 0.07464553542137146, 0.03732276771068573]
+    resolutions:
+      [
+        156543.0339,
+        78271.51695,
+        39135.758475,
+        19567.8792375,
+        9783.93961875,
+        4891.969809375,
+        2445.9849046875,
+        1222.99245234375,
+        611.496226171875,
+        305.7481130859375,
+        152.87405654296876,
+        76.43702827148438,
+        38.21851413574219,
+        19.109257067871095,
+        9.554628533935547,
+        4.777314266967774,
+        2.388657133483887,
+        1.1943285667419434,
+        0.5971642833709717,
+        0.29858214168548586,
+        0.14929107084274293,
+        0.07464553542137146,
+        0.03732276771068573,
+      ]
     # bbox [required]
     bbox: [-20037508.342789244, -20037508.342789244, 20037508.342789244, 20037508.342789244]
     # srs [required]
     srs: EPSG:3857
 
 caches:
-${DISABLE_LOCAL}  local:
-${DISABLE_LOCAL}    type: filesystem
-${DISABLE_LOCAL}    folder: /var/sig/tiles
-${DISABLE_LOCAL}    # for GetCapabilities
-${DISABLE_LOCAL}    http_url: ${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}
-${DISABLE_LOCAL}  s3:
-${DISABLE_LOCAL}    type: s3
-${DISABLE_LOCAL}    bucket: ${TILEGENERATION_S3_BUCKET}
-${DISABLE_LOCAL}    folder: ''
-${DISABLE_LOCAL}    # for GetCapabilities
-${DISABLE_LOCAL}    http_url: ${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}
-${DISABLE_LOCAL}    cache_control: 'public, max-age=14400'
-${DISABLE_LOCAL}    host: ${AWS_S3_ENDPOINT}
   azure:
     type: azure
-    container: ${TILEGENERATION_AZURE_CONTAINER}
+    container: tiles-gmf-demo
     folder: ''
     # for GetCapabilities
-    http_url: ${VISIBLE_WEB_PROTOCOL}://${VISIBLE_WEB_HOST}${VISIBLE_ENTRY_POINT}
+    http_url: https://geomapfish-demo-2-10.camptocamp.com/
     cache_control: 'public, max-age=14400'
 
 # this defines some defaults values for all the layers
@@ -59,7 +71,7 @@ defaults:
     # The minimum resolution to seed, useful to use with mapcache, optional.
     min_resolution_seed: 5
     # the URL of the WMS server to used
-    url: ${MAPSERVER_URL}
+    url: https://2-10-geomapfish-demo-prod.apps.gs-ch-prod.camptocamp.com/mapserv_proxy
     params:
       ogcserver: MapServer
     # Set the headers to get the right virtual host, and don't get any cached result
@@ -79,15 +91,6 @@ defaults:
     # mime type used for the WMS request and the WMTS legend image generation
     legend_mime: image/png
     wmts_style: default
-    # the WMTS dimensions definition [default is []]
-    #dimensions:
-    #    -   name: DATE
-    #        # the default value for the WMTS capabilities
-    #        default: '2012'
-    #        # the generated values
-    #        generate: ['2012']
-    #        # all the available values in the WMTS capabilities
-    #        values: ['2012']
     # the meta tiles definition [default is false]
     meta: true
     # the meta tiles size [default is 8]
@@ -101,11 +104,11 @@ defaults:
     #        -   sql: <column> AS geom FROM <table>
     # size and hash used to detect empty tiles and metatiles [optional, default is None]
     empty_metatile_detection:
-        size: 394
-        hash: ad8ba7a37e97f64fefd25baaf962625c2ee7e707
+      size: 394
+      hash: ad8ba7a37e97f64fefd25baaf962625c2ee7e707
     empty_tile_detection:
-        size: 116
-        hash: 9b1f93c807ba92a48f8e484ea839e21ce90bf278
+      size: 116
+      hash: 9b1f93c807ba92a48f8e484ea839e21ce90bf278
 
 layers:
   map:
@@ -159,21 +162,7 @@ generation:
   # maximum allowed consecutive errors, after it exit [default to 10]
   maxconsecutive_errors: 10
 
-${DISABLE_LOCAL}redis:
-${DISABLE_LOCAL}  socket_timeout: ${REDIS_TIMEOUT}
-${DISABLE_LOCAL}  # For standalone version
-${DISABLE_LOCAL}  url: 'redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}'
-${DISABLE_LOCAL}  # For OpenShift version
-${DISABLE_LOCAL}  #sentinels:
-${DISABLE_LOCAL}  #  - - ${REDIS_HOST}
-${DISABLE_LOCAL}  #    - ${REDIS_PORT}
-${DISABLE_LOCAL}  service_name: ${REDIS_SERVICENAME}
-${DISABLE_LOCAL}  db: ${REDIS_DB}
-
 server:
-${DISABLE_LOCAL}  wmts_path: tiles
-${DISABLE_LOCAL}  static_path: tiles/static
-${DISABLE_LOCAL}  admin_path: tiles/admin
   expires: 8 # 8 hours
   predefined_commands:
     - name: Generation all layers
@@ -243,6 +232,6 @@ provider:
         country: Switzerland
         email: info@camptocamp.com
 
-${DISABLE_MUTUALIZE}authentication:
-${DISABLE_MUTUALIZE}  github_repository: camptocamp/demo_geomapfish
-${DISABLE_MUTUALIZE}  github_access_type: admin
+authentication:
+  github_repository: camptocamp/demo_geomapfish
+  github_access_type: admin
