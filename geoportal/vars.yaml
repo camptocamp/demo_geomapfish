@@ -1079,6 +1079,7 @@ no_interpreted:
   - shortener.email_body
   - welcome_email.email_body
   - interfaces_config.mobile_alt.constants.gmfMobileMeasurePointOptions.format
+  - authentication.openid_connect.user_info_fields.display_name
 
 runtime_environment:
   - name: SMTP_USER
