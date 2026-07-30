@@ -29,7 +29,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
       (window as any).gmfapi.store.config.getConfig().subscribe({
         next: (configuration) => {
           if (configuration) {
-            this.url_ = new URL(configuration.sitnFeedbackPath, configuration.gmfBase).href;
+            this.url_ = configuration.sitnFeedbackUrl;
           }
         },
       }),
@@ -120,11 +120,10 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
     }
     this.show_send = true;
 
-    let url = new URL(this.url_);
-    let params = new URLSearchParams(url.search.slice(1));
     let formdata = new FormData();
     formdata.set('permalink', this.permalink.toString());
-    formdata.set('ua', navigator.userAgent);
+    formdata.set('user_agent', navigator.userAgent);
+    formdata.set('application', 'demo_geomapfish');
     formdata.set('email', this.email);
     formdata.set('email_optional', this.email_optional);
     formdata.set('feedback', this.feedback_text);
