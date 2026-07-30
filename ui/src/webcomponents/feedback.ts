@@ -31,7 +31,7 @@ export class ProjFeedback extends ToolPanelElement {
       configModel.getConfig().subscribe({
         next: (configuration?: any) => {
           if (configuration) {
-            this.url_ = new URL(configuration.sitnFeedbackPath, configuration.gmfBase).href;
+            this.url_ = configuration.sitnFeedbackUrl;
           }
         },
       }),
@@ -122,10 +122,10 @@ export class ProjFeedback extends ToolPanelElement {
     }
     this.show_send = true;
 
-    let url = new URL(this.url_);
     let formdata = new FormData();
     formdata.set('permalink', this.permalink.toString());
-    formdata.set('ua', navigator.userAgent);
+    formdata.set('user_agent', navigator.userAgent);
+    formdata.set('application', 'demo_geomapfish');
     formdata.set('email', this.email);
     formdata.set('email_optional', this.email_optional);
     formdata.set('feedback', this.feedback_text);

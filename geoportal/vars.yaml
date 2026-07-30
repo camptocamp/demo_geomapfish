@@ -176,7 +176,7 @@ vars:
         #   - https://localhost:3001/@vite/client
         #   - https://localhost:3001/webcomponents/index.ts
 
-        sitnFeedbackPath: custom/feedback
+        swisscomHeatmapPath: custom/swisscom-heatmap
         pytreeLidarprofileJsonUrl: https://sitn.ne.ch/pytree
 
       static:
@@ -358,6 +358,16 @@ vars:
             height: 20
         gmfShareOptions:
           enableEmail: False
+        # Those two lines should be commented in dev mode.
+        gmfCustomJavascriptUrl: ''
+        gmfCustomStylesheetUrl: ''
+        swisscomHeatmapPath: custom/swisscom-heatmap
+
+      routes:
+        ngeoPermalinkOgcserverUrl:
+          name: mapserverproxy
+          params:
+            ogcserver: QGIS_Server
 
     mobile:
       constants:
