@@ -892,7 +892,7 @@ vars:
     raster: *header
     vector_tiles: *header
     error: *header
-<<<<<<< ours
+    feedback: *header
     themes: &auth_header
       access_control_allow_origin:
         - '{VISIBLE_WEB_PROTOCOL}://{VISIBLE_WEB_HOST}'
@@ -923,10 +923,6 @@ vars:
         # GeoGirafe
         - https://app.localhost:8080
         - https://demo.geomapfish.dev
-=======
-    feedback: *header
-    themes: &auth_header {}
->>>>>>> theirs
     config: *auth_header
     print: *auth_header
     fulltextsearch: *auth_header
