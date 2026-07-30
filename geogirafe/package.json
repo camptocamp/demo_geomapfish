@@ -11,7 +11,7 @@
     "generate-dev-certs": "bash -C './node_modules/@geogirafe/lib-geoportal/buildtools/generate-dev-certs.sh' certs"
   },
   "devDependencies": {
-    "@geoblocks/mapfishprint": "0.3.0",
+    "@geoblocks/mapfishprint": "0.2.22",
     "@geoblocks/print": "0.7.9",
     "cesium": "1.143.0",
     "fs-extra": "11.3.6",
