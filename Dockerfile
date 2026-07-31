@@ -78,7 +78,7 @@ VOLUME /etc/geomapfish \
 
 ###############################################################################
 
-FROM node:20.18.0-slim AS webcomponent-build
+FROM node:22-slim AS webcomponent-build
 
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -91,7 +91,7 @@ RUN NODE_ENV=production npm run build
 
 ###############################################################################
 
-FROM node:20.18.0-slim AS ui-build
+FROM node:22-slim AS ui-build
 
 WORKDIR /app
 COPY ui/package.json ui/package-lock.json ./
@@ -103,7 +103,7 @@ RUN NODE_ENV=production npm run build
 
 ###############################################################################
 
-FROM node:20.18.0-slim AS geogirafe-build
+FROM node:22-slim AS geogirafe-build
 
 WORKDIR /app
 COPY geogirafe/package.json geogirafe/package-lock.json ./
