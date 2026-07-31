@@ -7,12 +7,13 @@ export interface ConfigType {
 }
 
 export default class SwisscomHeatmapService {
-  private lastError: string;
-  private data: BehaviorSubject<Record<string, unknown> | null> = new BehaviorSubject<
-    Record<string, unknown>
-  >(null);
+  private lastError = '';
+  private data: BehaviorSubject<Record<string, unknown> | null> = new BehaviorSubject<Record<
+    string,
+    unknown
+  > | null>(null);
   private config: BehaviorSubject<ConfigType | null> = new BehaviorSubject<ConfigType | null>(null);
-  private baseUrl: string;
+  private baseUrl = '';
 
   setBaseUrl(baseUrl: string) {
     this.baseUrl = baseUrl;

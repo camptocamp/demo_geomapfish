@@ -11,8 +11,8 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
   private email: string = '';
   private email_optional: string = '';
   private feedback_text: string = '';
-  private url_: string;
-  private subscriptions_ = [];
+  private url_ = '';
+  private subscriptions_: Array<any> = [];
 
   static styles = [
     ...(window as any).gmfapi.elements.ToolPanelElement.styles,
@@ -27,7 +27,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
     super.connectedCallback();
     this.subscriptions_.push(
       (window as any).gmfapi.store.config.getConfig().subscribe({
-        next: (configuration) => {
+        next: (configuration: any) => {
           if (configuration) {
             this.url_ = configuration.sitnFeedbackUrl;
           }
@@ -48,7 +48,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
         class="form-control"
         id="email"
         .value="${this.email}"
-        @input=${(e) => {
+        @input=${(e: any) => {
           this.email = e.target.value;
         }}
       />
@@ -61,7 +61,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
         class="form-control"
         id="email_optional"
         .value="${this.email_optional}"
-        @input=${(e) => {
+        @input=${(e: any) => {
           this.email_optional = e.target.value;
         }}
       />
@@ -73,7 +73,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
         class="form-control"
         id="feedback_text"
         .value="${this.feedback_text}"
-        @input=${(e) => {
+        @input=${(e: any) => {
           this.feedback_text = e.target.value;
         }}
         maxlength="1000"
