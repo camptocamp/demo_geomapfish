@@ -2,7 +2,10 @@ import {html, CSSResult, css, unsafeCSS} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
 import {Subscription} from 'rxjs';
 import moment from 'moment';
+
+// @ts-expect-error TS7016 - no declaration file for these modules
 import epsg21781 from '@geoblocks/proj/src/EPSG_21781.js';
+// @ts-expect-error TS7016 - no declaration file for these modules
 import epsg2056 from '@geoblocks/proj/src/EPSG_2056.js';
 
 import Map from 'ol/Map.js';
@@ -42,7 +45,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   private config?: ConfigType;
   private map?: Map;
   private view?: View;
-  private isInitialRecenterDone: boolean;
+  private isInitialRecenterDone = false;
   private geoJsonFormat = new GeoJSON({});
   private vectorSource: VectorSource<Feature<Geometry>> = new VectorSource({
     features: [],
@@ -58,7 +61,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   connectedCallback(): void {
     super.connectedCallback();
     (window as any).gmfapi.store.panels.getActiveToolPanel().subscribe({
-      next: (activePanel) => {
+      next: (activePanel: any) => {
         if (activePanel === 'swisscom-heatmap') {
           this.addObservers();
           this.showComponent();
@@ -72,7 +75,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
   private addObservers() {
     this.subscriptions.push(
       (window as any).gmfapi.store.config.getConfig().subscribe({
-        next: (configuration) => {
+        next: (configuration: any) => {
           if (configuration) {
             const baseUrl = new URL(configuration.swisscomHeatmapPath, configuration.gmfBase).href;
             this.swisscomHeatmapService.setBaseUrl(baseUrl);
@@ -235,7 +238,7 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
 
   private zoomToFeatures() {
     const extent = this.getFeaturesExtent(this.vectorSource.getFeatures());
-    this.view.fit(buffer(extent, 200));
+    this.view?.fit(buffer(extent!, 200));
     this.isInitialRecenterDone = true;
   }
 
@@ -377,9 +380,9 @@ export default class SwisscomHeatmap extends (window as any).gmfapi.elements.Too
           <input
             id="date"
             type="date"
-            min="${this.getDateLabel(this.config.minDate)}"
-            max="${this.getDateLabel(this.config.maxDate)}"
-            value="${this.getDateLabel(this.config.minDate)}"
+            min="${this.getDateLabel(this.config!.minDate)}"
+            max="${this.getDateLabel(this.config!.maxDate)}"
+            value="${this.getDateLabel(this.config!.minDate)}"
             @input=${this.dateOnChange}
           />
         </div>
