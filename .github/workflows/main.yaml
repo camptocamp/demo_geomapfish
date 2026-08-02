@@ -17,6 +17,7 @@ jobs:
     timeout-minutes: 20
 
     steps:
+<<<<<<< ours
       - run: df -h
       - name: Clean all docker images
         run: docker system prune --all --force
@@ -30,6 +31,9 @@ jobs:
           repository: camptocamp/demo_geomapfish_data
           ref: master
           path: data
+=======
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+>>>>>>> theirs
 
       - uses: camptocamp/initialise-gopass-summon-action@v2
         with:
