@@ -79,7 +79,7 @@ export default defineConfig(({command}) => {
     plugins: [
       viteStaticCopy({
         targets: [
-          {src: `${geogirafeSource}/service-worker.js`, dest: ''},
+          {src: `${geogirafeSource}/tools/sw/service-worker.js`, dest: ''},
           {src: `${geogirafeSource}/styles/*.css`, dest: 'styles/'},
           {src: `${geogirafeSource}/assets`, dest: ''},
           {src: 'node_modules/ol/ol.css', dest: 'lib/ol/'},
