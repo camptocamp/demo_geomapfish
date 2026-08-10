@@ -49,3 +49,4 @@ rm "$1/.UPGRADE_INSTRUCTIONS" || true
 rm "$1/.upgrade.yaml" || true
 rm "$1/*.diff" || true
 rm "$1/upgrade" || true
+rm "$1/env.default"
