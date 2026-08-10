@@ -17,7 +17,6 @@ import {GirafeHTMLElement} from '@geogirafe/lib-geoportal/base';
 class MyFirstComponent extends GirafeHTMLElement {
   templateUrl = './template.html';
   styleUrl = './style.css';
-  styleUrls = ['./style.css'];
 
   east: string = '';
   north: string = '';
