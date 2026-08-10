@@ -15,7 +15,7 @@ transaction = "5.1"
 cornice = "6.1.0"
 requests = "2.34.2"
 psycopg2 = "2.9.12"
-c2cwsgiutils = { version = "6.1.9", extras = ["webserver"] }
+c2cwsgiutils = { version = "6.1.10", extras = ["webserver"] }
 cee-syslog-handler = "0.6.0"
 PyJWT = "2.13.0"
 redis = "8.0.1"
