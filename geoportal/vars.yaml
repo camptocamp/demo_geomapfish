@@ -1070,6 +1070,7 @@ no_interpreted:
   - reset_password.email_body
   - shortener.email_body
   - welcome_email.email_body
+  - authentication.openid_connect.user_info_fields.display_name
   - interfaces_config.mobile_renovated.constants.gmfMobileMeasurePointOptions.format
 
 runtime_environment:
