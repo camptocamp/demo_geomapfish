@@ -12,6 +12,7 @@ mypy:
 
 ruff:
   disable:
+    - CPY001 # Missing copyright notice
     - D101 # Missing docstring in public class
     - D102 # Missing docstring in public method
     - D103 # Missing docstring in public function
