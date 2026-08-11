@@ -11,4 +11,5 @@ publish:
   pypi: false
   docker:
     dispatch: {}
+    latest: false
     images: []
