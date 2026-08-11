@@ -11,4 +11,7 @@ publish:
   pypi: false
   docker:
     dispatch: {}
-    images: []
+    latest: false
+    images:
+      - name: camptocamp/geomapfish-config
+      - name: camptocamp/geomapfish-geoportal
