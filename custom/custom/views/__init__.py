@@ -1,3 +1,5 @@
+# Copyright (c) 2019-2026, Camptocamp SA
+
 import os
 
 import pyramid.request  # type: ignore[import-untyped]
