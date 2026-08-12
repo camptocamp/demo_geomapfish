@@ -137,7 +137,7 @@ repos:
             |ci/config\.yaml
           )$
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 43.288.0
+    rev: 44.11.8
     hooks:
       - id: renovate-config-validator
   - repo: https://github.com/astral-sh/ruff-pre-commit
