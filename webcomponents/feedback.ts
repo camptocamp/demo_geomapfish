@@ -29,7 +29,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
       (window as any).gmfapi.store.config.getConfig().subscribe({
         next: (configuration: any) => {
           if (configuration) {
-            this.url_ = configuration.sitnFeedbackUrl;
+            this.url_ = configuration.feedbackUrl;
           }
         },
       }),
@@ -110,7 +110,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
     }
 
     if (!this.feedback_text) {
-      alert('Veuillez saisir une descritption du problème.');
+      alert('Veuillez saisir une description du problème.');
       return;
     }
 
