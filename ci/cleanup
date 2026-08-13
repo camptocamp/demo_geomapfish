@@ -38,6 +38,7 @@ rm -rf "$1/geoportal/geomapfish_geoportal/static-ngeo" "$1/geoportal/tools" || t
 rm -rf "$1/print4" || true
 rm "$1/README.rst"
 rm "$1/SECURITY.md" || true
+rm "$1/env.default"
 # Files with version
 rm "$1/package.json"
 rm "$1/package-lock.json"
