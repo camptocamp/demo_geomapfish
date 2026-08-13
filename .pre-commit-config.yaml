@@ -99,8 +99,6 @@ repos:
             |qgisserver/.*\.qg[sz]
             |geoportal/geomapfish_geoportal/static/story-map\.html
             |tilegeneration/config\.yaml\.tmpl
-            |webcomponents/feedback\.ts
-            |ui/src/webcomponents/feedback\.ts
           )$
         args:
           - --ignore-words=.github/spell-ignore-words.txt

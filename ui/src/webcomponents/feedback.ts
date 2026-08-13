@@ -31,7 +31,7 @@ export class ProjFeedback extends ToolPanelElement {
       configModel.getConfig().subscribe({
         next: (configuration?: any) => {
           if (configuration) {
-            this.url_ = configuration.sitnFeedbackUrl;
+            this.url_ = configuration.feedbackUrl;
           }
         },
       }),
@@ -112,7 +112,7 @@ export class ProjFeedback extends ToolPanelElement {
     }
 
     if (!this.feedback_text) {
-      alert('Veuillez saisir une descritption du problème.');
+      alert('Veuillez saisir une description du problème.');
       return;
     }
 
