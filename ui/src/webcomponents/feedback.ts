@@ -4,6 +4,8 @@ import ToolPanelElement from 'gmfapi/elements/ToolPanelElement';
 import configModel from 'gmfapi/store/config';
 import panelsModel from 'gmfapi/store/panels';
 
+import 'altcha';
+
 @customElement('proj-feedback')
 export class ProjFeedback extends ToolPanelElement {
   @state()
@@ -14,6 +16,7 @@ export class ProjFeedback extends ToolPanelElement {
   private email_optional: string = '';
   private feedback_text: string = '';
   private url_: string = '';
+  private altcha_payload: string | null = null;
   private subscriptions_ = [];
 
   static styles = [
@@ -39,6 +42,10 @@ export class ProjFeedback extends ToolPanelElement {
     window.addEventListener('popstate', () => {
       this.permalink = window.location.href;
     });
+  }
+
+  private onAltchaVerified(e: CustomEvent): void {
+    this.altcha_payload = e.detail.payload;
   }
 
   render() {
@@ -93,6 +100,12 @@ export class ProjFeedback extends ToolPanelElement {
         readonly
       />
       <br />
+      <altcha-widget
+        challenge="/altcha/challenge"
+        name="altcha"
+        @verified=${this.onAltchaVerified}
+      ></altcha-widget>
+      <br />
       <button type="submit" class="btn prime" @click="${this.feedbackSubmit}">Envoyer</button>
       ${this.show_send
         ? html`
@@ -129,6 +142,9 @@ export class ProjFeedback extends ToolPanelElement {
     formdata.set('email', this.email);
     formdata.set('email_optional', this.email_optional);
     formdata.set('feedback', this.feedback_text);
+    if (this.altcha_payload) {
+      formdata.set('altcha', this.altcha_payload);
+    }
 
     fetch(this.url_, {
       method: 'POST',

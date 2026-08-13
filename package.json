@@ -5,7 +5,9 @@
     "dev": "vite",
     "build": "tsc && vite build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "altcha": "3.2.1"
+  },
   "devDependencies": {
     "@geoblocks/proj": "0.4.10",
     "@types/arcgis-rest-api": "10.4.8",

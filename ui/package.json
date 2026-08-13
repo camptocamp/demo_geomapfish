@@ -21,8 +21,9 @@
     "vite": "8.2.0"
   },
   "dependencies": {
+    "altcha": "3.2.1",
     "ngeo": "2.10.0-latest.20260802T022714Z.6543a34ce",
-    "ol": "10.9.0"
+    "ol": "10.10.0"
   },
   "alias": {
     "ngeo/": "ngeo/distlib/src/",

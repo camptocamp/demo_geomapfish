@@ -824,6 +824,7 @@ vars:
 
   feedback:
     # Used to send a feedback notification email
+    altcha: true
     email_from: info@camptocamp.com
     email_subject: Feedback - Map viewer
     # Email template, can contain:
