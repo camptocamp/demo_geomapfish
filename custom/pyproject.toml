@@ -44,6 +44,8 @@ prospector-profile-utils = "1.27.0"
 prospector-profile-duplicated = "1.12.0"
 types-requests = "2.33.0.20260712"
 types-oauthlib = "3.3.0.20260724"
+ruff = "0.15.20"
+pylint = "4.0.6"
 
 [project]
 name = 'custom'
