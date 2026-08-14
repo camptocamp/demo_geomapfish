@@ -10,6 +10,9 @@ permissions:
 env:
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
 
+permissions:
+  contents: read
+
 jobs:
   main:
     name: Continuous integration
