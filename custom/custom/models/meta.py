@@ -1,3 +1,5 @@
+# Copyright (c) 2019-2026, Camptocamp SA
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.schema import MetaData
 

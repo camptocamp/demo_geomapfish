@@ -1,3 +1,5 @@
+# Copyright (c) 2019-2026, Camptocamp SA
+
 import math
 
 TILE_W = 100

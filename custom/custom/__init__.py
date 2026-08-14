@@ -1,3 +1,5 @@
+# Copyright (c) 2019-2026, Camptocamp SA
+
 import c2cwsgiutils.db
 import c2cwsgiutils.health_check
 from papyrus.renderers import GeoJSON  # type: ignore[import-untyped]

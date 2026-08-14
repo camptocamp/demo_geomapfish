@@ -1,4 +1,4 @@
-# noqa: INP001
+# Copyright (c) 2019-2026, Camptocamp SA
 """Pyramid bootstrap environment."""
 
 from alembic import context  # pylint: disable=no-member
