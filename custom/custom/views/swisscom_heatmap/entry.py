@@ -1,3 +1,5 @@
+# Copyright (c) 2019-2026, Camptocamp SA
+
 import logging
 import os
 from datetime import datetime

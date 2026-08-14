@@ -1,3 +1,5 @@
+# Copyright (c) 2019-2026, Camptocamp SA
+
 import argparse
 import sys
 from typing import TYPE_CHECKING
