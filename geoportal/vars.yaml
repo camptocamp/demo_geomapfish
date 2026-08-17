@@ -1054,6 +1054,7 @@ update_paths:
   - headers.vector_tiles.headers
   - headers.error.headers
   - headers.feedback.headers
+  - headers.altcha.headers
   - headers.themes.headers
   - headers.config.headers
   - headers.print.headers
@@ -1091,6 +1092,7 @@ update_paths:
   - sqlalchemy_slave
   - tinyowsproxy
   - authentication
+  - altcha
 
 no_interpreted:
   - getitfixed.admin_new_issue_email.email_body
