@@ -5,6 +5,9 @@ on:
     types:
       - geomapfish_2.10_updated
 
+permissions:
+  contents: write
+
 jobs:
   upgrade:
     runs-on: ubuntu-24.04
