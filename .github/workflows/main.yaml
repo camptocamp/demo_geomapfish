@@ -3,8 +3,10 @@ name: Continuous integration
 on:
   push:
 
-env:
-  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+permissions:
+  contents: write
+  packages: write
+  id-token: write
 
 jobs:
   main:
@@ -20,21 +22,14 @@ jobs:
       - run: sudo rm -rf /usr/local/lib/android /usr/share/dotnet "$AGENT_TOOLSDIRECTORY"
       - run: df -h
 
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: camptocamp/demo_geomapfish_data
           ref: master
           path: data
 
-      - uses: camptocamp/initialise-gopass-summon-action@v2
-        with:
-          ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
-          github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
-          patterns: docker
-        if: env.HAS_SECRETS == 'HAS_SECRETS'
-
-      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
       - run: python3 -m pip install --requirement=ci/requirements.txt
       - name: Environment information
         run: c2cciutils-env
@@ -103,7 +98,9 @@ jobs:
         run: ./build --no-pull
 
       - name: Publish
-        run: c2cciutils-publish
+        run: tag-publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Create Sentry release
       #   uses: getsentry/action-release@v1
