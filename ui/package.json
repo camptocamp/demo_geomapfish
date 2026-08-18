@@ -14,15 +14,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "altcha": "3.2.1",
+    "ngeo": "2.10.0-latest.20260817T095528Z.fb3bf0891",
+    "ol": "10.9.0",
     "@rollup/plugin-inject": "5.0.5",
     "@vitejs/plugin-basic-ssl": "2.3.0",
     "sass-embedded": "1.100.0",
     "typescript": "7.0.2",
     "vite": "8.2.0"
-  },
-  "dependencies": {
-    "ngeo": "2.10.0-latest.20260817T095528Z.fb3bf0891",
-    "ol": "10.9.0"
   },
   "alias": {
     "ngeo/": "ngeo/distlib/src/",
