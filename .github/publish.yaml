@@ -1,10 +1,6 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/tag-publish/0.13.3/tag_publish/schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/tag-publish/1.2.2/tag_publish/schema.json
 
 docker:
   latest: false
   images:
-    - name: camptocamp/geomapfishdemo-config
-    - name: camptocamp/geomapfishdemo-custom
-
-dispatch:
-  - {}
+    - name: camptocamp/geomapfish-config
