@@ -101,3 +101,15 @@ services:
   #   extends:
   #     file: docker-compose-lib.yaml
   #     service: webpack_dev_server
+
+  custom:
+    command:
+      - /venv/bin/uvicorn
+      - --reload
+      - custom:app
+      - --host=0.0.0.0
+      - --port=8080
+    volumes:
+      - ./custom/custom:/app/custom
+    environment:
+      DEV: 'true'
