@@ -3,19 +3,19 @@
 import logging
 import os
 
-import pyramid.request  # type: ignore[import-untyped]
-import pyramid.response  # type: ignore[import-untyped]
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient, ContainerClient
-from cornice import Service  # type: ignore[import-untyped]
-from pyramid.httpexceptions import HTTPBadRequest  # type: ignore[import-untyped]
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import Response
 
-_LOGGING = logging.getLogger(__name__)
+_LOG = logging.getLogger(__name__)
 _CLIENT = None
+
+router = APIRouter()
 
 
 def _get_azure_container_client(container: str) -> ContainerClient:
-    """Get the Azure blog storage client."""
+    """Get the Azure blob storage client."""
     if os.environ.get("AZURE_STORAGE_CONNECTION_STRING"):
         return BlobServiceClient.from_connection_string(
             os.environ["AZURE_STORAGE_CONNECTION_STRING"],
@@ -29,40 +29,36 @@ def _get_azure_container_client(container: str) -> ContainerClient:
     ).get_container_client(container=container)
 
 
-feedback = Service(
-    name="cog_swissalti3d",
-    description="Serve swissalti3d COG",
-    path="/cog/swissalti3d",
-    cors_origins="*",
-)
-
-
-@feedback.get()
-def swissalti3d(request: pyramid.request.Request) -> pyramid.response.Response:
-    # Just to demonstrate that we can fet the user information
+@router.get("/cog/swissalti3d")
+async def swissalti3d(request: Request) -> Response:
+    """Serve swissalti3d COG with range requests."""
     global _CLIENT  # pylint: disable=global-statement
     if _CLIENT is None:
         _CLIENT = _get_azure_container_client(os.environ["AZURE_CONTAINER_NAME"])
     blob = _CLIENT.get_blob_client(blob="swissalti3d_2m_archeo.tif")
+
     range_header = request.headers.get("Range")
     if range_header is None:
-        message = "Range header is required"
-        raise HTTPBadRequest(message)
+        raise HTTPException(status_code=400, detail="Range header is required")
     if not range_header.startswith("bytes="):
-        message = "Range header must of type bytes"
-        raise HTTPBadRequest(message)
+        raise HTTPException(status_code=400, detail="Range header must be of type bytes")
+
     range_header = range_header[6:]
     start_str, end_str = range_header.split("-")
     start = int(start_str)
     end = int(end_str)
 
     blob_properties = blob.get_blob_properties()
-    _LOGGING.debug(blob_properties)
-    request.response.headers["Content-Range"] = f"bytes {start}-{end}/{blob_properties.size}"
-    request.response.headers["Accept-Ranges"] = "bytes"
-    request.response.headers["Content-Type"] = blob_properties.content_settings.content_type
+    _LOG.debug("Blob properties: %s", blob_properties)
 
     blob_data = blob.download_blob(offset=start, length=end - start + 1)
-    request.response.body = blob_data.readall()
-    request.response.status_code = 206
-    return request.response
+
+    return Response(
+        content=blob_data.readall(),
+        status_code=206,
+        headers={
+            "Content-Range": f"bytes {start}-{end}/{blob_properties.size}",
+            "Accept-Ranges": "bytes",
+            "Content-Type": blob_properties.content_settings.content_type,
+        },
+    )

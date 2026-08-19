@@ -1,52 +1,35 @@
-# Copyright (c) 2019-2026, Camptocamp SA
-
-import argparse
+import os
 import sys
-from typing import TYPE_CHECKING
 
-from pyramid.paster import bootstrap, setup_logging  # type: ignore[import-untyped]
+from sqlalchemy import Engine, create_engine
 from sqlalchemy.exc import OperationalError
+
 from custom.models.meta import Base
 
-if TYPE_CHECKING:
-    from sqlalchemy.orm import Session
 
-
-def setup_models(dbsession: "Session") -> None:
+def setup_models(engine: Engine) -> None:
     """Add or update models / fixtures in the database."""
-    del dbsession  # Unused
-
-
-def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "config_uri",
-        help="Configuration file, e.g., development.ini",
-    )
-    return parser.parse_args(argv[1:])
+    Base.metadata.create_all(engine)
 
 
 def main(argv: list[str] | None = None) -> None:
-    args = parse_args(argv or sys.argv)
-    setup_logging(args.config_uri)
-    env = bootstrap(args.config_uri)
+    del argv
+    url = os.environ.get("CUSTOM__SQLALCHEMY_URL", os.environ.get("SQLALCHEMY_URL", ""))
+    if not url:
+        print("Error: SQLALCHEMY_URL or CUSTOM__SQLALCHEMY_URL environment variable is required")
+        sys.exit(1)
 
     try:
-        with env["request"].tm:
-            dbsession = env["request"].dbsession
-            Base.metadata.create_all(dbsession.get_bind())
-            setup_models(dbsession)
+        engine = create_engine(url)
+        setup_models(engine)
     except OperationalError:
         print(
             """
-Pyramid is having a problem using your SQL database.  The problem
-might be caused by one of the following things:
+Error connecting to the database. Check that:
 
-1.  You may need to initialize your database tables with `alembic`.
-    Check your README.txt for description and try to run it.
-
-2.  Your database server may not be running.  Check that the
-    database server referred to by the "sqlalchemy.url" setting in
-    your "development.ini" file is running.
+1. The database server is running.
+2. The SQLALCHEMY_URL environment variable is correct.
+3. Database tables have been initialized with alembic.
             """,
         )
+        sys.exit(1)

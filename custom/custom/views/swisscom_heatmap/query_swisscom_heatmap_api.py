@@ -7,8 +7,8 @@ from typing import Any
 
 from geojson import Feature, FeatureCollection, Point  # type: ignore[import-untyped]
 from oauthlib.oauth2 import BackendApplicationClient
-from pyramid.response import Response  # type: ignore[import-untyped]
 from requests_oauthlib import OAuth2Session  # type: ignore[import-untyped]
+from starlette.responses import PlainTextResponse, Response
 
 from custom.views.swisscom_heatmap.tile_id_to_coordinates import tile_id_to_ll
 
@@ -34,7 +34,7 @@ class APIUsageExceededError(Exception):
 
 
 class SwisscomHeatmapApi:
-    error: Response = None
+    error: Response | None = None
     request_date = datetime.now(timezone.utc)
     nb_requests = 0
 
@@ -69,7 +69,7 @@ class SwisscomHeatmapApi:
         postal_code: int,
         date_time: datetime,
     ) -> str:
-        LOG.info("Querying  with %s, %s, %s", path, postal_code, date_time)
+        LOG.info("Querying with %s, %s, %s", path, postal_code, date_time)
         tile_ids = self.get_tiles_ids(oauth, postal_code)
         return (
             BASE_URL
@@ -109,12 +109,12 @@ class SwisscomHeatmapApi:
             return self.error
         return self.response_to_geojson_result(response.json())
 
-    def check_api_error(self, response: Response) -> None:
+    def check_api_error(self, response: Any) -> None:
         if response.status_code != 200:
             err_code = response.status_code
             err_txt = response.text
             LOG.warning("External API error (code %s): %s", err_code, err_txt)
-            self.error = Response(err_txt, status=err_code)
+            self.error = PlainTextResponse(err_txt, status_code=err_code)
             message = "External API error occurred"
             raise ExternalAPIError(message)
 
@@ -132,5 +132,5 @@ class SwisscomHeatmapApi:
         LOG.info("Request today %s", self.nb_requests)
         if self.nb_requests > 500:
             error = "Too many queries today, try again tomorrow"
-            self.error = Response(error, status=403)
+            self.error = PlainTextResponse(error, status_code=403)
             raise APIUsageExceededError(error)
