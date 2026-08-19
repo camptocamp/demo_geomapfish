@@ -12,6 +12,7 @@ export class ProjFeedback extends (window as any).gmfapi.elements.ToolPanelEleme
   private email_optional: string = '';
   private feedback_text: string = '';
   private url_ = '';
+
   private subscriptions_: Array<any> = [];
 
   static styles = [
