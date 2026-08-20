@@ -963,7 +963,7 @@ vars:
         Content-Security-Policy: "default-src 'self';
           script-src-elem 'self' 'unsafe-inline';
           script-src-attr 'self' 'unsafe-inline';
-          script-src 'self' 'wasm-unsafe-eval';
+          script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';
           style-src-elem 'self' 'unsafe-inline' data:;
           style-src-attr 'self' 'unsafe-inline';
           img-src 'self' data: https://cdn-icons-png.flaticon.com/ https://geomapfish-demo-2-10.camptocamp.com/;

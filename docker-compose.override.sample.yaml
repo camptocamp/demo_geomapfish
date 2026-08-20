@@ -111,5 +111,3 @@ services:
       - --port=8080
     volumes:
       - ./custom/custom:/app/custom
-    environment:
-      DEV: 'true'
