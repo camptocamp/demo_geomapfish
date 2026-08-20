@@ -5,13 +5,13 @@ import os
 
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient, ContainerClient
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import Response
 
 _LOG = logging.getLogger(__name__)
 _CLIENT = None
 
-router = APIRouter()
+app = FastAPI()
 
 
 def _get_azure_container_client(container: str) -> ContainerClient:
@@ -29,7 +29,7 @@ def _get_azure_container_client(container: str) -> ContainerClient:
     ).get_container_client(container=container)
 
 
-@router.get("/cog/swissalti3d")
+@app.get("/swissalti3d")
 async def swissalti3d(request: Request) -> Response:
     """Serve swissalti3d COG with range requests."""
     global _CLIENT  # pylint: disable=global-statement
