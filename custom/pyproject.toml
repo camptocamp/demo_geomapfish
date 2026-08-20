@@ -46,6 +46,9 @@ types-oauthlib = "3.3.0.20260724"
 ruff = "0.15.20"
 pylint = "4.0.6"
 
+[tool.pylint]
+disable = ["import-error"]
+
 [project]
 name = 'demo-geomapfish-custom'
 version = '0.0.0'
