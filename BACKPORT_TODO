@@ -1,0 +1,20 @@
+Backport of #2766 to prod-2-10-advance
+
+Error on cherry-picking: 497c284ea1f9fb9ac61cd0e3d4edefa48461c197
+
+To continue do:
+```bash
+git fetch && \
+  git checkout ghci/backport/2766-to-prod-2-10-advance && \
+  git reset --hard HEAD^ && \
+  git cherry-pick 497c284ea1f9fb9ac61cd0e3d4edefa48461c197
+```
+Resolve the conflict, then:
+```bash
+git add <file> && \
+  git cherry-pick --continue
+```
+When all the conflicts are resolved, push the branch:
+```bash
+git push origin ghci/backport/2766-to-prod-2-10-advance --force
+```
