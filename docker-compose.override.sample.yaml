@@ -103,9 +103,11 @@ services:
 
   custom:
     command:
-      - /venv/bin/pserve
+      - /venv/bin/uvicorn
       - --reload
-      - c2c://development.ini
+      - custom:app
+      - --host=0.0.0.0
+      - --port=8080
     volumes:
       - ./custom/custom:/app/custom
     environment:
