@@ -16,8 +16,8 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from prometheus_client import start_http_server
 from prometheus_fastapi_instrumentator import Instrumentator
 
-from custom.views.cog import router as cog_router
-from custom.views.swisscom_heatmap.entry import router as swisscom_heatmap_router
+from custom.views import cog
+from custom.views.swisscom_heatmap import entry as swisscom_heatmap
 
 _LOG = logging.getLogger(__name__)
 
@@ -50,9 +50,7 @@ async def _lifespan(main_app: FastAPI) -> AsyncIterator[None]:
     _LOG.info("Application stopped")
 
 
-app = FastAPI(
-    title="Custom", lifespan=_lifespan, root_path=os.environ.get("VISIBLE_ENTRY_POINT", "/").rstrip("/")
-)
+app = FastAPI(title="Custom", lifespan=_lifespan)
 
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=["*"])
 app.add_middleware(GZipMiddleware, minimum_size=1000)
@@ -78,15 +76,10 @@ if c2casgiutils.config.settings.proxy_headers.type != "none":
         headers_type=c2casgiutils.config.settings.proxy_headers.type,
     )
 
-app.mount("/c2c", c2casgiutils.app)
+app.mount(f"{c2casgiutils.config.settings.route_prefix}c2c", c2casgiutils.app)
 
 instrumentator = Instrumentator(should_instrument_requests_inprogress=True)
 instrumentator.instrument(app)
 
-app.include_router(cog_router)
-app.include_router(swisscom_heatmap_router)
-
-
-@app.get("/")
-async def index() -> dict[str, str]:
-    return {}
+app.mount(f"{c2casgiutils.config.settings.route_prefix}cog", cog.app)
+app.mount(f"{c2casgiutils.config.settings.route_prefix}swisscom-heatmap", swisscom_heatmap.app)
