@@ -170,5 +170,12 @@
       matchCurrentVersion: '<82.0.0',
       allowedVersions: '<81.0.0',
     },
+    /** Disable jquery major update on ui */
+    {
+      matchPackageNames: ['jquery'],
+      matchUpdateTypes: ['major'],
+      matchFileNames: ['/^ui\\/.*$/'],
+      enabled: false,
+    },
   ],
 }
