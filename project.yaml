@@ -13,7 +13,7 @@ managed_files:
   - docker-compose-db\.yaml
   - geoportal/Dockerfile
   - geoportal/requirements\.txt
-  - ci/config\.yaml
+  - .github/publish\.yaml
   - \.github/workflows/rebuild\.yaml
   - \.github/workflows/update_l10n\.yaml
   - \.dockerignore
