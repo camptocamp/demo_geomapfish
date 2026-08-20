@@ -1,12 +1,43 @@
 ## Upgrade
 
 ```
-rm -rf CONST_scaffold
-npm init @geogirafe/template@latest CONST_scaffold
+# Have a clear repository
+git reset --hard
 
-git diff --relative=CONST_scaffold --staged -- CONST_scaffold > upgrade.patch
+# Have a clear scaffold (current version)
+rm --recursive --force geogirafe/CONST_scaffold
+npm init @geogirafe/template@latest geogirafe/CONST_scaffold
+rm --recursive --force geogirafe/CONST_scaffold/public/mock
+rm --recursive --force geogirafe/CONST_scaffold/node_modules
+rm geogirafe/CONST_scaffold/package-lock.json
+mv geogirafe/CONST_scaffold/public/config.json geogirafe/CONST_scaffold/src/
+mv geogirafe/CONST_scaffold/public/config.mobile.json geogirafe/CONST_scaffold/src/
+mkdir --parent geogirafe/CONST_scaffold/src/images/logo/
+mv geogirafe/CONST_scaffold/public/favicon.ico geogirafe/CONST_scaffold/src/images/
+mv geogirafe/CONST_scaffold/public/images/logo/apple-touch-icon-*.png geogirafe/CONST_scaffold/src/images/logo/
+mv geogirafe/CONST_scaffold/public/images/logo/favicon-*.png geogirafe/CONST_scaffold/src/images/logo/
+mv geogirafe/CONST_scaffold/public/images/logo/*.svg geogirafe/CONST_scaffold/src/images/logo/
+mv geogirafe/CONST_scaffold/public/images/world.webp geogirafe/CONST_scaffold/src/images/
+git add --all geogirafe/CONST_scaffold
 
-git apply --3way upgrade.patch
+# Create a patch
+git diff --relative=geogirafe/CONST_scaffold --cached HEAD -- geogirafe/CONST_scaffold \
+  ':(exclude)geogirafe/CONST_scaffold/**/*.png' \
+  ':(exclude)geogirafe/CONST_scaffold/**/*.ico' \
+  ':(exclude)geogirafe/CONST_scaffold/**/*.webp' \
+  > upgrade.patch
+
+# Copy binary files
+rsync --archive --verbose \
+  --include='*/' \
+  --include='*.png' --include='*.ico' --include='*.webp' \
+  --exclude='*' \
+  geogirafe/CONST_scaffold/ geogirafe/
+
+# Apply the patch
+git apply  --directory=geogirafe --reject upgrade.patch
+# Apply the *.rej files
+rm upgrade.patch
 ```
 
 Then fix the conflicts and remove the upgrade.patch file.
