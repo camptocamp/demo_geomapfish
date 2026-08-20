@@ -2,8 +2,11 @@ inherits:
   - utils:base
   - utils:fix
   - utils:no-design-checks
-  - utils:c2cwsgiutils
   - duplicated
+
+pylint:
+  disable:
+    - import-error # Runtime dependencies not available in linting container
 
 mypy:
   run: false
