@@ -1,23 +1,18 @@
-/**
- * The next line imports all components and standard configuration from GeoGirafe.
- * You will be able to use all the standard components just by adding them in your html file like this for example:
- *
- * <girafe-about></girafe-about>
- *
- * If you prefer to be more specific and have more control on which component you want to integrate in your application
- * You can remove this line, integrate them individually, and define the name of the custom element
- * For example:
- *
- * import AboutComponent from './components/about/component';
- * customElements.define('girafe-about', AboutComponent);
- *
- * You will also have to do some others things manually, like:
- * - initialize the managers
- * - define the configuration of tippy, proj4, and cesium
- * - extend the standard Document and Window interfaces
- *
- * You can look here for an example: https://gitlab.com/geogirafe/gg-viewer/-/blob/main/src/main.ts
- *
- **/
+import {initializeGeoGirafeCustomStyles, SplashScreen} from '@geogirafe/lib-geoportal/tools';
+import {GeoGirafeApp} from '@geogirafe/lib-geoportal/core';
 
-import '@geogirafe/lib-geoportal/iframe';
+// Display the splash-screen
+const splash = new SplashScreen();
+splash.begin();
+
+// Manage custom css overrides for core components (if any)
+initializeGeoGirafeCustomStyles();
+
+// Create the new GeoGirafe Application
+const girafeApp = new GeoGirafeApp();
+
+// Wait until the application is ready
+girafeApp.isReady().then(() => {
+  // Remove the splash-screen
+  splash.end();
+});

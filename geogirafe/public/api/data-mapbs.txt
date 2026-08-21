@@ -1,0 +1,6 @@
+id	point	title	description	icon	iconSize	iconOffset
+1	2611778,1266865	Popups konfigurieren	<br>Popups können via der Text-Datei beliebig mit Inhalt gefüllt werden!<br/>Die anderen zwei Beispiel-Popups zeigen weitere Beispiele.<br><img src="/static/api/apihelp/img/geoportal-bs.jpg" width="300px">	api/marker-blue.png	21,25	-10.5,-25
+2	2611542,1267266	Klänge der Basler Fasnacht	<br/><br/>Audio-Dateien in ein Popup einbinden:<br/><br/><audio controls><source src="/static/api/apihelp/BS_N19_Fasnacht_v1.mp3" type="audio/mp3">Your browser does not support the audio element.</audio> 	api/marker-gold.png	21,25	-10.5,-25
+3	2613089,1267566	FILM AB! Für den GEO-Beruf	<br>IFrames in ein Popup einbinden: <br/><br/><iframe width="312" height="175" src="https://www.youtube.com/embed/-Mw277Rgcyc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>	api/parking.png	21,25	-10.5,-25
+4	2611738,1267123	Test for Offset/Size	Test for Offset/Size	api/marker-huge.png	24,38	-162,-512
+5	2611638,1267183	Test for Translation	This Text should be translated	api/marker-green.png	24,38	-12,-38
