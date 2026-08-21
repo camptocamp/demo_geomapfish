@@ -34,9 +34,9 @@ httpx = "0.28.1"
 pytest-asyncio = "1.3.0"
 
 [project]
-name = 'demo-geomapfish-custom'
+name = 'custom'
 version = '0.0.0'
-description = 'Not used'
+description = 'Custom package for GeoMapFish demo'
 authors = []
 
 [project.scripts]
