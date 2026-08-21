@@ -16,7 +16,6 @@ import {GirafeHTMLElement} from '@geogirafe/lib-geoportal/base';
  */
 class MyFirstComponent extends GirafeHTMLElement {
   templateUrl = './template.html';
-  styleUrl = './style.css';
   styleUrls = ['./style.css'];
 
   east: string = '';
@@ -34,8 +33,9 @@ class MyFirstComponent extends GirafeHTMLElement {
      * And rerender the component when this property changes
      */
     // @ts-ignore
-    this.stateManager.subscribe('mouseCoordinates', (_oldCoordinates: number[], newCoordinates: number[]) =>
-      this.onChangeCoordinates(newCoordinates),
+    this.context.stateManager.subscribe(
+      'mouseCoordinates',
+      (_oldCoordinates: number[], newCoordinates: number[]) => this.onChangeCoordinates(newCoordinates),
     );
   }
 
@@ -47,16 +47,13 @@ class MyFirstComponent extends GirafeHTMLElement {
     super.render();
   }
 
-  connectedCallback() {
-    // @ts-ignore
-    this.loadConfig().then(() => {
-      /* Render the component */
-      super.render();
-      /* Apply translations */
-      super.girafeTranslate();
-      /* Listen to state changes */
-      this.registerEvents();
-    });
+  override connectedCallback() {
+    /* Render the component */
+    super.render();
+    /* Apply translations */
+    super.girafeTranslate();
+    /* Listen to state changes */
+    this.registerEvents();
   }
 }
 

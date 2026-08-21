@@ -43,18 +43,41 @@
   "contextmenu": {
     "crs": [
       {"code": "EPSG:2056", "translation": "EPSG:2056", "format": "decimal", "precision": 1},
+      {"code": "EPSG:3857", "translation": "EPSG:3857", "format": "decimal", "precision": 2},
       {"code": "EPSG:4326", "translation": "EPSG:4326", "format": "decimal", "precision": 7},
       {"code": "EPSG:4326", "translation": "EPSG:4326-DMS", "format": "dms", "precision": 2}
+    ],
+    "links": [
+      {
+        "translation": "Google Street View",
+        "crs": "EPSG:4326",
+        "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=###MAPY###,###MAPX###"
+      }
     ]
   },
-  "crs": [
-    {
-      "code": "EPSG:2056",
-      "definition": "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs +type=crs"
-    },
-    {
-      "code": "EPSG:21781",
-      "definition": "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=660.077,13.551,369.344,2.484,1.783,2.939,5.66 +units=m +no_defs"
-    }
-  ]
+  "crs": [],
+  "onboarding": {
+    "steps": [
+      {
+        "element": "[data-tour='theme-selection']",
+        "title": "onboarding-theme-selection-title",
+        "description": "onboarding-theme-selection-description"
+      },
+      {
+        "element": "[data-tour='basemap-selection']",
+        "title": "onboarding-basemap-selection-title",
+        "description": "onboarding-basemap-selection-description"
+      },
+      {
+        "component": "treeviewroot",
+        "element": "[data-tour='treeview-filter']",
+        "title": "onboarding-treeview-filter-selection-title",
+        "description": "onboarding-treeview-filter-selection-description"
+      }
+    ]
+  },
+  "news": {
+    "urls": ["https://geogirafe.org/feed/atom/"],
+    "autoDisplay": false
+  }
 }

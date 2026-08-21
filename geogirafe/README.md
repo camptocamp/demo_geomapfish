@@ -3,6 +3,7 @@
 ```
 # Have a clear repository
 git reset --hard
+git clean --interactive
 
 # Have a clear scaffold (current version)
 rm --recursive --force geogirafe/CONST_scaffold
@@ -19,6 +20,8 @@ mv geogirafe/CONST_scaffold/public/images/logo/favicon-*.png geogirafe/CONST_sca
 mv geogirafe/CONST_scaffold/public/images/logo/*.svg geogirafe/CONST_scaffold/src/images/logo/
 mv geogirafe/CONST_scaffold/public/images/world.webp geogirafe/CONST_scaffold/src/images/
 git add --all geogirafe/CONST_scaffold
+prek run --config=.pre-commit-config.yaml --all-files end-of-file-fixer trailing-whitespace prettier
+git add geogirafe/CONST_scaffold
 
 # Create a patch
 git diff --relative=geogirafe/CONST_scaffold --cached HEAD -- geogirafe/CONST_scaffold \

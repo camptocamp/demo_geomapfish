@@ -13,10 +13,10 @@ import {AboutComponent} from '@geogirafe/lib-geoportal/components';
  */
 class MyExtendedComponent extends AboutComponent {
   /* This overrides the default template of AboutComponent */
-  templateUrl = './extended.html';
+  override templateUrl = './extended.html';
 
   /* This overrides the default method of AboutComponent */
-  async loadVersionInfos() {
+  override async loadVersionInfos() {
     this.version = 'My-Extended-Version 1.0';
     this.build = 'My-Extended-Build 2.5';
     this.date = new Date().toISOString();

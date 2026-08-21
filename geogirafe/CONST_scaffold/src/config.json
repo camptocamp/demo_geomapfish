@@ -20,11 +20,15 @@
     "OSM": true
   },
   "projections": {
-    "EPSG:3857": "WebMercator"
+    "EPSG:3857": "WebMercator",
+    "EPSG:4326": "WGS84"
   },
   "map": {
     "srid": "EPSG:3857",
-    "scales": [70000000, 35000000, 15000000, 10000000, 4000000, 2000000, 1000000, 500000, 250000, 150000, 70000, 35000, 15000, 8000, 4000, 2000, 1000, 500],
+    "scales": [
+      70000000, 35000000, 15000000, 10000000, 4000000, 2000000, 1000000, 500000, 250000, 150000, 70000, 35000,
+      15000, 8000, 4000, 2000, 1000, 500
+    ],
     "startPosition": "844100,6033454",
     "startZoom": "0"
   },
@@ -33,10 +37,41 @@
   },
   "contextmenu": {
     "crs": [
-      { "code": "EPSG:2056", "translation": "EPSG:2056", "format": "decimal", "precision": 1 },
-      { "code": "EPSG:4326", "translation": "EPSG:4326", "format": "decimal", "precision": 7 },
-      { "code": "EPSG:4326", "translation": "EPSG:4326-DMS", "format": "dms", "precision": 2 }
+      {"code": "EPSG:3857", "translation": "EPSG:3857", "format": "decimal", "precision": 2},
+      {"code": "EPSG:4326", "translation": "EPSG:4326", "format": "decimal", "precision": 7},
+      {"code": "EPSG:4326", "translation": "EPSG:4326-DMS", "format": "dms", "precision": 2}
+    ],
+    "links": [
+      {
+        "translation": "Google Street View",
+        "crs": "EPSG:4326",
+        "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=###MAPY###,###MAPX###"
+      }
     ]
   },
-  "crs": []
+  "crs": [],
+  "onboarding": {
+    "steps": [
+      {
+        "element": "[data-tour='theme-selection']",
+        "title": "onboarding-theme-selection-title",
+        "description": "onboarding-theme-selection-description"
+      },
+      {
+        "element": "[data-tour='basemap-selection']",
+        "title": "onboarding-basemap-selection-title",
+        "description": "onboarding-basemap-selection-description"
+      },
+      {
+        "component": "treeviewroot",
+        "element": "[data-tour='treeview-filter']",
+        "title": "onboarding-treeview-filter-selection-title",
+        "description": "onboarding-treeview-filter-selection-description"
+      }
+    ]
+  },
+  "news": {
+    "urls": ["https://geogirafe.org/feed/atom/"],
+    "autoDisplay": false
+  }
 }
