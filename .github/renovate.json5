@@ -179,14 +179,14 @@
     },
     /** In the geogirafe repository updates only some packages */
     {
-      'matchPackageNames': ['*'],
-      'matchPaths': ['geogirafe'],
-      'enabled': false,
+      matchPackageNames: ['*'],
+      matchPaths: ['geogirafe'],
+      enabled: false,
     },
     {
-      'matchPackageNames': ['@geogirafe/lib-geoportal', 'fs-extra'],
-      'matchPaths': ['geogirafe'],
-      'enabled': true,
+      matchPackageNames: ['@geogirafe/lib-geoportal', 'fs-extra'],
+      matchPaths: ['geogirafe'],
+      enabled: true,
     },
   ],
 }
