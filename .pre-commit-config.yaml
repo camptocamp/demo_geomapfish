@@ -4,7 +4,6 @@ exclude: |-
   (?x)^(
     CONST_.*
     |mapserver/data/lac-leman\.osm
-    |geogirafe/CONST_scaffold/.*
     |(CONST_create_template/|)geoportal/gunicorn\.conf\.py
     |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
     |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
@@ -42,6 +41,7 @@ repos:
           (?x)^(
             ui/tsconfig\.json
             |geogirafe/tsconfig\.json
+            |geogirafe/CONST_scaffold/tsconfig\.json
           )$
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
@@ -85,6 +85,10 @@ repos:
           )$
         language_version: '3.13'
       - id: npm-lock
+        exclude: |-
+          (?x)^(
+            geogirafe/CONST_scaffold/package\.json
+          )$
       - id: canonicalize
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3
@@ -99,6 +103,7 @@ repos:
             |qgisserver/.*\.qg[sz]
             |geoportal/geomapfish_geoportal/static/story-map\.html
             |tilegeneration/config\.yaml\.tmpl
+            |geogirafe/.*
           )$
         args:
           - --ignore-words=.github/spell-ignore-words.txt

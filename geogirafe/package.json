@@ -11,22 +11,16 @@
     "generate-dev-certs": "bash -C './node_modules/@geogirafe/lib-geoportal/buildtools/generate-dev-certs.sh' certs"
   },
   "devDependencies": {
-    "@geoblocks/mapfishprint": "0.3.0",
-    "@geoblocks/print": "0.7.9",
-    "cesium": "1.143.0",
-    "fast-glob": "3.3.3",
     "fs-extra": "11.4.0",
-    "magic-string": "1.1.0",
-    "minify": "15.3.1",
-    "ol": "10.10.0",
-    "olcs": "2.23.0",
-    "proj4": "2.21.0",
-    "typescript": "7.0.2",
-    "vite": "8.2.0",
-    "vite-plugin-static-copy": "4.1.1"
+    "@types/node": "25.8.0",
+    "magic-string": "0.30.21",
+    "minify": "14.1.0",
+    "typescript": "6.0.2",
+    "vite": "8.0.7",
+    "vite-plugin-html": "3.2.2",
+    "vite-plugin-static-copy": "3.4.0"
   },
   "dependencies": {
-    "@geogirafe/lib-geoportal": "1.1.1",
-    "@zip.js/zip.js": "2.8.34"
+    "@geogirafe/lib-geoportal": "1.1.1"
   }
 }

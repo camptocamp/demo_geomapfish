@@ -67,31 +67,17 @@ RUN --mount=type=cache,target=/root/.cache \
 FROM base AS runtime
 
 WORKDIR /app
-COPY . ./
+COPY pyproject.toml poetry.lock logging.yaml ./
+COPY custom/ ./custom/
+COPY tests/ ./tests/
+COPY pytest.ini ./
+
 RUN --mount=type=cache,target=/root/.cache \
     python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
     && python3 -m compileall -q /app/custom
 
-CMD [ "/venv/bin/gunicorn", "--paste=production.ini" ]
+CMD [ "/venv/bin/uvicorn", "custom:app", "--host=0.0.0.0", "--port=8080", "--log-config=/app/logging.yaml" ]
 
 ARG GIT_HASH
-ENV GIT_HASH=${GIT_HASH}
-
-RUN c2cwsgiutils-genversion ${GIT_HASH}
-
-# Default values for the environment variables
-ENV \
-    DEVELOPMENT=0 \
-    SQLALCHEMY_POOL_RECYCLE=30 \
-    SQLALCHEMY_POOL_SIZE=5 \
-    SQLALCHEMY_MAX_OVERFLOW=25 \
-    SQLALCHEMY_SLAVE_POOL_RECYCLE=30 \
-    SQLALCHEMY_SLAVE_POOL_SIZE=5 \
-    SQLALCHEMY_SLAVE_MAX_OVERFLOW=25 \
-    LOG_TYPE=console \
-    OTHER_LOG_LEVEL=WARNING \
-    GUNICORN_LOG_LEVEL=WARNING \
-    GUNICORN_ACCESS_LOG_LEVEL=INFO \
-    SQL_LOG_LEVEL=WARNING \
-    C2CWSGIUTILS_LOG_LEVEL=WARNING \
-    LOG_LEVEL=INFO
+ENV GIT_HASH=${GIT_HASH} \
+    C2C__TOOLS__LOGGING__APPLICATION_MODULE=custom

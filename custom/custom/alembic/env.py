@@ -1,18 +1,20 @@
-# Copyright (c) 2019-2026, Camptocamp SA
-"""Pyramid bootstrap environment."""
+"""Alembic environment configuration using environment variables."""
+
+import os
 
 from alembic import context  # pylint: disable=no-member
-from pyramid.paster import get_appsettings, setup_logging  # type: ignore[import-untyped]
-from sqlalchemy import engine_from_config
+from sqlalchemy import create_engine
 
 from custom.models.meta import Base
 
 config = context.config  # pylint: disable=no-member
 
-setup_logging(config.config_file_name)
-
-settings = get_appsettings(config.config_file_name)
 target_metadata = Base.metadata
+
+
+def get_database_url() -> str:
+    """Get database URL from environment variables."""
+    return os.environ.get("CUSTOM__SQLALCHEMY_URL", os.environ.get("SQLALCHEMY_URL", ""))
 
 
 def run_migrations_offline() -> None:
@@ -26,9 +28,9 @@ def run_migrations_offline() -> None:
 
     Calls to context.execute() here emit the given string to the
     script output.
-
     """
-    context.configure(url=settings["sqlalchemy.url"])  # pylint: disable=no-member
+    url = get_database_url()
+    context.configure(url=url, target_metadata=target_metadata)  # pylint: disable=no-member
     with context.begin_transaction():  # pylint: disable=no-member
         context.run_migrations()  # pylint: disable=no-member
 
@@ -39,10 +41,9 @@ def run_migrations_online() -> None:
 
     In this scenario we need to create an Engine
     and associate a connection with the context.
-
     """
-    engine = engine_from_config(settings, prefix="sqlalchemy.")
-
+    url = get_database_url()
+    engine = create_engine(url)
     connection = engine.connect()
     context.configure(connection=connection, target_metadata=target_metadata)  # pylint: disable=no-member
 

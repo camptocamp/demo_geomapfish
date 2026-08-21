@@ -1,0 +1,480 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
+    />
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="api.css" />
+    <script type="module" src="src/main.api.ts"></script>
+
+    <title>GeoGirafe API</title>
+    <style>
+      body {
+        font-family: Arial, Verdana, Tahoma, sans-serif;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      ::-webkit-scrollbar {
+        width: 3px;
+        z-index: 0;
+        height: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        z-index: 0;
+        background: #888;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        z-index: 0;
+      }
+
+      pre {
+        border: 1px solid gray;
+        background-color: black;
+        color: white;
+        padding: 8px;
+        border-radius: 6px;
+        font-size: 14px;
+        overflow: auto;
+        box-sizing: border-box;
+        width: 100%;
+        resize: vertical;
+        margin: 0;
+      }
+
+      section {
+        width: 100%;
+        padding: 8px;
+        max-width: 1440px;
+        height: 20rem;
+      }
+
+      .row {
+        display: flex;
+        align-items: start;
+        gap: 8px;
+        height: 100%;
+      }
+
+      .left {
+        width: 50%;
+        height: 100%;
+        position: relative;
+      }
+
+      .right {
+        width: 50%;
+        height: 100%;
+      }
+
+      :not(.left.default) > geogirafe-map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      ::-webkit-resizer {
+        border-top: 20px solid transparent;
+        border-right: 20px solid gray;
+      }
+
+      #resultOnChange {
+        height: 150px;
+      }
+
+      .main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 8px;
+        border: solid 1px #aaa;
+        max-width: 1440px;
+        margin: auto;
+        margin-top: 5rem;
+      }
+      h2 {
+        border-bottom: solid 1px #aaa;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0;
+        width: 100%;
+      }
+      .descr {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 1rem;
+      }
+      ul {
+        width: 100%;
+        margin: 0;
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const apiOrigin = `${window.location.origin}${window.location.pathname.substring(
+          0,
+          window.location.pathname.lastIndexOf('/'),
+        )}`;
+        const elem = document.getElementById('include-code');
+
+        elem.textContent = elem.textContent.replaceAll(
+          /(src|href)="\/([^"]+)"/g,
+          (match, attr, path) => `${attr}="${apiOrigin}/${path}"`,
+        );
+
+        const sections = document.querySelectorAll('section');
+        for (const section of sections) {
+          const leftDiv = section.querySelector('.left');
+          const rightDiv = section.querySelector('.right');
+          if (leftDiv && rightDiv) {
+            const ggMap = leftDiv.querySelector('geogirafe-map');
+            if (ggMap) {
+              ggMap.addEventListener('geogirafe-api-ready', () => {
+                let content = leftDiv.innerHTML;
+                content = content
+                  .replaceAll(/\s+/g, ' ')
+                  .replaceAll(/>\s+/g, '>')
+                  .replaceAll(/\s+</g, '<')
+                  .replaceAll('=""', '')
+                  .replaceAll(' style="display: block;"', '')
+                  .replaceAll('><', '>\n<')
+                  .trim();
+                const pre = document.createElement('pre');
+                pre.textContent = content;
+                rightDiv.appendChild(pre);
+              });
+            }
+          }
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="main">
+      <h1>GeoGirafe-API</h1>
+
+      <section>
+        <p>
+          This page describes how to use the GeoGirafe API. The API provides a modern web component that
+          enables easy integration into websites. <br />
+          Technically, the API is a lightweight GeoGirafe application that already includes predefined
+          components and services.
+          <br /><br />
+          Examples are provided below.
+        </p>
+
+        <h2>Basics</h2>
+
+        <p>To use the API, simply add the following code on your website:</p>
+
+        <pre id="include-code">
+&lt;head&gt;
+  &lt;script type="module" crossorigin src="/geogirafe-api.js"&gt;&lt;/script&gt;
+  &lt;link rel="stylesheet" href="/geogirafe-api.css" /&gt;
+&lt;/head&gt;</pre
+        >
+      </section>
+
+      <h2>Add a simple map view</h2>
+      <p class="descr">Add a simple map to the page, with its default configuration and size.</p>
+      <section>
+        <div class="row">
+          <div class="left default">
+            <geogirafe-map />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <h2>Add a simple map view with a custom size</h2>
+      <p class="descr">Add a simple map to the page, with a custom size.</p>
+      <section>
+        <div class="row">
+          <div class="left default">
+            <style>
+              .custom-size {
+                width: 100%;
+                height: 100%;
+              }
+            </style>
+            <geogirafe-map class="custom-size" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- With center -->
+      <h2>Add a map with center coordinates</h2>
+      <p class="descr">Set the default center point.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map center="api.demo.center" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Custom zoom level -->
+      <h2>Add a map with a custom zoomlevel</h2>
+      <p class="descr">Set the default zoom level.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map zoom="api.demo.zoom" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Custom basemap -->
+      <h2>Add a map with a custom basemap</h2>
+      <p class="descr">Set the default basemap.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map basemap="api.demo.basemap" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Basemap selector -->
+      <h2>Add a map with a basemap selector</h2>
+      <p class="descr">Activate the basemap selector, allowing the user to select a different basemap.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map basemapselector />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Crosshair -->
+      <h2>Add a crosshair somewhere on the map</h2>
+      <p class="descr">Add a cross at the defined coordinates.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map crosshair="api.demo.crosshair" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Tooltip -->
+      <h2>Add a toolip somewhere on the map</h2>
+      <p class="descr">Add a tooltip with custom text and optional title at the defined coordinates.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map tooltip="api.demo.tooltip" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Markers -->
+      <h2>Add a marker somewhere on the map</h2>
+      <p class="descr">Add a marker at the defined coordinates.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map markers="api.demo.marker" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Multiple markers -->
+      <h2>Add multiple markers on the map</h2>
+      <p class="descr">Add multiple markers at the defined coordinates.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map markers="api.demo.markers" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Multiple markers with size and/or offset -->
+      <h2>Add multiple markers with size and/or offset on the map</h2>
+      <p class="descr">
+        Add multiple markers at the defined coordinates. <br />
+        You can specify size and offset.<br />
+        If you only specify three parameters, the third parameter can be the size if you
+        <strong>don't</strong> include a sign (e.g. <code>24,24</code>) or the offset if you
+        <strong>do</strong> include a sign (e.g. <code>+2,-6</code>).
+      </p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map markers="api.demo.markersWithSizeAndOrOffset" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Multiple markers with size and/or offset -->
+      <h2>Add multiple markers on the map by providing a File/URL</h2>
+      <p class="descr">
+        You can provide a URL to a TXT file containing markers.<br />
+        Each line represents a marker with TAB-separated values.<br />
+        The file must contain the column names as header.
+      </p>
+      <p class="descr">Allowed column names:</p>
+      <ul>
+        <li><strong>point</strong>: coordinates where the marker should be added.</li>
+        <li><strong>title</strong> (optional): the title for the popup shown when clicking on the marker.</li>
+        <li>
+          <strong>description</strong> (optional): the description (content) of the popup shown when clicking
+          on the marker.
+        </li>
+        <li><strong>icon</strong>: url to the marker image</li>
+        <li><strong>iconSize</strong> (optional): size if the marker should be resized</li>
+        <li><strong>iconOffset</strong> (optional): offset if the marker should be shifted</li>
+      </ul>
+      <p class="descr">
+        Other columns will be ignored.<br />
+        Compatibility with the format used in the old GeoMapFish API will be managed if the URL to fo file
+        contains the keyword <code>legacy</code>.<br />
+        Coordinates can be given in both way (North,East) or (East,North) only if the SRID
+        <code>CH:2056</code> is used.
+      </p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map markersfile="api.demo.markersFile" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Layers -->
+      <h2>Add a layer to the map</h2>
+      <p class="descr">Add a layer to the map. The layer name must be defined in the themes.json file.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map layers="api.demo.layers" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Multiple layers -->
+      <h2>Add multiple layers to the map</h2>
+      <p class="descr">
+        Add multiple layers to the map. The layer names must be defined in the themes.json file.
+      </p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map layers="api.demo.multiLayers" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Layers with config -->
+      <h2>Add a layer to the map, including default opacity and filter</h2>
+      <p class="descr">
+        Add a layer to the map. The layer name must be defined in the themes.json file. The layer options
+        follow the format defined in the
+        <a
+          target="_blank"
+          href="https://doc.geogirafe.org/docs/functionalities and concepts/permalink#layers-configuration"
+          >documentation</a
+        >.
+      </p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map center="api.demo.layersWithConfigCenter" layers="api.demo.layersWithConfig" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Search bar -->
+      <h2>Add a map with a search bar</h2>
+      <p class="descr">Activate the searchbar, allowing the user to search for objects and layers.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map searchbar />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Selection box -->
+      <h2>Add a map and allow selection</h2>
+      <p class="descr">
+        Activate the selection window, allowing the user to select objects and display their properties.
+      </p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <geogirafe-map layers="api.demo.layers" selectionbox />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+
+      <!-- Set values with javascript -->
+      <h2>Set map values with javascript</h2>
+      <p class="descr">This example shows how to use javascript to set attributes after the map creation.</p>
+      <section>
+        <div class="row">
+          <div class="left">
+            <button onclick="document.getElementById('my-map').setAttribute('center', 'api.demo.center')">
+              Recenter
+            </button>
+            <button onclick="document.getElementById('my-map').setAttribute('zoom', 'api.demo.zoom')">
+              Zoom
+            </button>
+            <button onclick="document.getElementById('my-map').setAttribute('basemap', 'api.demo.basemap')">
+              Set Basemap
+            </button>
+            <button onclick="document.getElementById('my-map').setAttribute('basemapselector', '')">
+              Enable basemap selector
+            </button>
+            <button onclick="document.getElementById('my-map').setAttribute('markers', 'api.demo.marker')">
+              Add Marker
+            </button>
+            <button onclick="document.getElementById('my-map').setAttribute('layers', 'api.demo.layers')">
+              Add Layer
+            </button>
+            <geogirafe-map id="my-map" />
+          </div>
+          <div class="right"></div>
+        </div>
+      </section>
+    </div>
+
+    <!--
+      Still missing:
+       - searchfor: centerto search result
+       - center to bounding box
+       - projection: configure map projection
+       - legend:
+       - embeded: deactivate mouse scroll
+     -->
+  </body>
+</html>

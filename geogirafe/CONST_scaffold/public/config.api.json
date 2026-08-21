@@ -1,0 +1,17 @@
+{
+  "api": {
+    "demo": {
+      "center": "15393875, 4325968",
+      "zoom": "11",
+      "basemap": "ArcGIS Imagery",
+      "crosshair": "1631989, 5067094",
+      "tooltip": "1631989, 5067094 | GeoGirafe API | Hello from the GeoGirafe API!",
+      "layers": "OpenTopoMap",
+      "multiLayers": "GL_AbschnittsStoergrade, SW_Jugendlichenanteil, KJ_Jugendangebot",
+      "layersWithConfig": "GR_Grundwasserschutzzonen|o;0.4|f;gr_gz_kantypbez;eq;S1",
+      "layersWithConfigCenter": "2613521, 1269262",
+      "marker": "1631989, 5067094|api/parking.png",
+      "markers": "1631989, 5067094|api/parking.png ; -886940, 7327529|api/marker-blue.png ; 854084, 5974974|api/marker-green.png"
+    }
+  }
+}
