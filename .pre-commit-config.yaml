@@ -4,7 +4,6 @@ exclude: |-
   (?x)^(
     CONST_.*
     |mapserver/data/lac-leman\.osm
-    |geogirafe/CONST_scaffold/.*
     |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
     |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
     |(CONST_create_template/|)geoportal/geomapfish_geoportal/static-ngeo/js/apps/sass/.*
