@@ -9,3 +9,4 @@ mypy:
 ruff:
   options:
     target-version: py312
+    per-file-ignores: 'geomapfish_geoportal/dev.py=T100,geomapfish_geoportal/resources.py=RUF012'
