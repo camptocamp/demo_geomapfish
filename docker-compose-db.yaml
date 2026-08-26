@@ -21,6 +21,7 @@ services:
       file: docker-compose-lib.yaml
       service: db
     volumes:
+<<<<<<< ours
       - postgresql_data:/var/lib/postgresql/data
 
   alembic-main:
@@ -37,3 +38,6 @@ services:
       - PGHOST_SLAVE=db
       - PGSSLMODE=prefer
       - PGSCHEMA
+=======
+      - postgresql_data:/var/lib/postgresql
+>>>>>>> theirs

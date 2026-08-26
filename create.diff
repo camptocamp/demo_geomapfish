@@ -1,0 +1,53 @@
+diff --git a/docker-compose-db.yaml b/docker-compose-db.yaml
+index 800dc87..b82eb6b 100644
+--- a/docker-compose-db.yaml
++++ b/docker-compose-db.yaml
+@@ -21,4 +21,4 @@ services:
+       file: docker-compose-lib.yaml
+       service: db
+     volumes:
+-      - postgresql_data:/var/lib/postgresql/data
++      - postgresql_data:/var/lib/postgresql
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+index 748dd40..537200f 100644
+--- a/docker-compose.yaml
++++ b/docker-compose.yaml
+@@ -118,4 +118,4 @@ services:
+   #     file: docker-compose-lib.yaml
+   #     service: db
+   #   volumes:
+-  #     - postgresql_data:/var/lib/postgresql/data
++  #     - postgresql_data:/var/lib/postgresql
+diff --git a/project.yaml b/project.yaml
+index 911cfb5..1e48d6d 100644
+--- a/project.yaml
++++ b/project.yaml
+@@ -10,8 +10,6 @@ template_vars:
+   srid: 2056
+   extent: 2489246,1078873,2837119,1296543
+   authtkt_secret: io7heoDui8xaikie1rushaeGeiph8Bequei6ohchaequob6viejei0xooWeuvohf
+-  tilecloud_chain_session_secret: H5Fs5M8CqcmsUBK63VcyQV61mQrFEjFgKBmxWh6RN08i5XDn9HxAXUWsAPsVP3iI
+-  tilecloud_chain_session_salt: qSwlASTNDuCNTK9U
+ env:
+   files:
+     - env.default
+diff --git a/tilegeneration/config.yaml.tmpl b/tilegeneration/config.yaml.tmpl
+index a64d766..5cf2840 100644
+--- a/tilegeneration/config.yaml.tmpl
++++ b/tilegeneration/config.yaml.tmpl
+@@ -1,4 +1,4 @@
+-# yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/tilecloud-chain/master/tilecloud_chain/schema.json
++# yaml-language-server: $schema=https://raw.githubusercontent.com/camptocamp/tilecloud-chain/2.0/tilecloud_chain/schema.json
+ 
+ grids:
+   # grid name, I just recommends to add the min resolution because it's common to not generate all the layers at the same resolution.
+@@ -38,7 +38,8 @@ ${DISABLE_LOCAL}    host: ${AWS_S3_ENDPOINT}
+ defaults:
+   layer: &layer
+     type: wms
+-    grid: swissgrid_05
++    grids:
++    - swissgrid_05
+     # the minimum resolution to seed, useful to use with mapcache, optional.
+     # min_resolution_seed: 1
+     # the URL of the WMS server to used
