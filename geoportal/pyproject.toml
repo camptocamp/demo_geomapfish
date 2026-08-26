@@ -1,6 +1,0 @@
-[tool.ruff]
-target-version = "py312"
-line-length = 110
-
-[tool.ruff.lint]
-per-file-ignores = {"geomapfish_geoportal/dev.py" = ["T100"], "geomapfish_geoportal/resources.py" = ["RUF012"]}
