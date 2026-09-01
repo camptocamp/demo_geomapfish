@@ -180,12 +180,12 @@
     /** In the geogirafe repository updates only some packages */
     {
       matchPackageNames: ['*'],
-      matchPaths: ['geogirafe'],
+      matchFileNames: ['geogirafe'],
       enabled: false,
     },
     {
       matchPackageNames: ['@geogirafe/lib-geoportal', 'fs-extra'],
-      matchPaths: ['geogirafe'],
+      matchFileNames: ['geogirafe'],
       enabled: true,
     },
   ],
