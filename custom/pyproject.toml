@@ -38,6 +38,7 @@ name = 'custom'
 version = '0.0.0'
 description = 'Custom package for GeoMapFish demo'
 authors = []
+requires-python = ">=3.12"
 
 [project.scripts]
 custom-initialize-db = "custom.scripts.initialize_db:main"
