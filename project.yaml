@@ -23,7 +23,6 @@ managed_files:
   - .editorconfig
   - .pre-commit-config\.yaml
   - tsconfig\.json
-  - pyproject\.toml
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
@@ -34,6 +33,7 @@ unmanaged_files:
   - geoportal/geomapfish_geoportal/static/apihelp/.*
   - geoportal/interfaces/.*
   - print/print-apps/demo/.*\.jrxml
+  - pyproject\.toml
 template_vars:
   package: geomapfish
   srid: 2056
