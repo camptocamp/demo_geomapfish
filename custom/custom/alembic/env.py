@@ -1,3 +1,5 @@
+# Copyright (c) 2024-2026, Camptocamp SA
+
 """Alembic environment configuration using environment variables."""
 
 import os
