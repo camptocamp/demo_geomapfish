@@ -1,3 +1,5 @@
+# Copyright (c) 2024-2026, Camptocamp SA
+
 """FastAPI application entry point."""
 
 import logging
