@@ -1,7 +1,7 @@
 # Copyright (c) 2019-2026, Camptocamp SA
 
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from geojson import Feature, FeatureCollection, Point  # type: ignore[import-untyped]
@@ -35,12 +35,12 @@ class APIUsageExceededError(Exception):
 
 class SwisscomHeatmapApi:
     error: Response | None = None
-    request_date = datetime.now(timezone.utc)
+    request_date = datetime.now(UTC)
     nb_requests = 0
 
     @staticmethod
     def parse_date_time(date_time: str) -> datetime:
-        return datetime.strptime(date_time, "%d.%m.%YT%H:%M").replace(tzinfo=timezone.utc)
+        return datetime.strptime(date_time, "%d.%m.%YT%H:%M").replace(tzinfo=UTC)
 
     def get_config(self) -> dict[str, str]:
         return {"minDate": f"{_MIN_DATE}", "maxDate": f"{_MAX_DATE}"}
@@ -125,9 +125,9 @@ class SwisscomHeatmapApi:
 
         [bgerber] It's rude, but we are using my own key !
         """
-        delta = datetime.now(timezone.utc) - self.request_date
+        delta = datetime.now(UTC) - self.request_date
         if delta.total_seconds() > 86400:
-            self.request_date = datetime.now(timezone.utc)
+            self.request_date = datetime.now(UTC)
             self.nb_requests = 0
         self.nb_requests += 1
         _LOG.info("Request today %s", self.nb_requests)
