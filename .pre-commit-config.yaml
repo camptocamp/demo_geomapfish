@@ -140,11 +140,11 @@ repos:
             |ci/config\.yaml
           )$
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 44.46.5
+    rev: 44.48.0
     hooks:
       - id: renovate-config-validator
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.4
+    rev: v0.16.5
     hooks:
       - id: ruff-format
   - repo: https://github.com/sbrunner/python-versions-hook
