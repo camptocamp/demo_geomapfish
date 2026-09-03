@@ -82,7 +82,7 @@ repos:
           (?x)^(
             pyproject\.toml
           )$
-        language_version: '3.13'
+        language_version: '3.14'
       - id: npm-lock
         exclude: |-
           (?x)^(
@@ -146,7 +146,7 @@ repos:
     rev: v0.16.4
     hooks:
       - id: ruff-format
-  - repo: https://github.com/sbrunner/python-versions-hook
-    rev: 1.4.1
-    hooks:
-      - id: python-versions
+#  - repo: https://github.com/sbrunner/python-versions-hook
+#    rev: 1.4.1
+#    hooks:
+#      - id: python-versions
