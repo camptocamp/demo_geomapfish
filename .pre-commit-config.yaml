@@ -83,7 +83,7 @@ repos:
           (?x)^(
             pyproject\.toml
           )$
-        language_version: '3.13'
+        language_version: '3.14'
       - id: npm-lock
         exclude: |-
           (?x)^(
