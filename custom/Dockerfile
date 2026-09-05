@@ -1,4 +1,4 @@
-FROM ghcr.io/osgeo/gdal:ubuntu-small-3.11.4 AS base-all
+FROM ghcr.io/osgeo/gdal:ubuntu-small-3.13.3 AS base-all
 
 # Fail on error on pipe, see: https://github.com/hadolint/hadolint/wiki/DL4006.
 # Treat unset variables as an error when substituting.
@@ -30,7 +30,7 @@ RUN --mount=type=cache,target=/root/.cache \
 
 COPY poetry.lock pyproject.toml ./
 RUN poetry export --output=requirements.txt \
-    && poetry export --with=dev --output=requirements-dev.txt
+    && poetry export --all-groups --all-extras --output=requirements-dev.txt
 
 FROM base-all AS base
 LABEL org.opencontainers.image.authors="Camptocamp <info@camptocamp.com>"
