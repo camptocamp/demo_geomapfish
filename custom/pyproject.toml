@@ -1,5 +1,5 @@
 [tool.poetry.dependencies]
-python = ">=3.12,<3.14"
+python = ">=3.14,<3.15"
 fastapi = "0.141.1"
 uvicorn = { version = "0.52.4", extras = ["standard"] }
 c2casgiutils = { version = "0.14.0", extras = ["alembic", "sqlalchemy"] }
