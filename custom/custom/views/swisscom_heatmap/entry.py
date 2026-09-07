@@ -1,14 +1,16 @@
 # Copyright (c) 2019-2026, Camptocamp SA
 
 import logging
-from datetime import datetime
-from typing import Annotated
+from typing import Annotated, TYPE_CHECKING
 
 from fastapi import FastAPI, HTTPException, Query
-from geojson import FeatureCollection  # type: ignore[import-untyped]
 from starlette.responses import JSONResponse, Response
 
 from custom.views.swisscom_heatmap.query_swisscom_heatmap_api import SwisscomHeatmapApi
+
+if TYPE_CHECKING:
+    from geojson import FeatureCollection
+    from datetime import datetime
 
 LOG = logging.getLogger(__name__)
 
