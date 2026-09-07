@@ -4,7 +4,6 @@
 
 import logging
 import os
-from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 import c2casgiutils
@@ -20,6 +19,10 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 from custom.views import cog
 from custom.views.swisscom_heatmap import entry as swisscom_heatmap
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import AsyncIterator
 
 _LOG = logging.getLogger(__name__)
 

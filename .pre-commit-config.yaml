@@ -14,6 +14,9 @@ exclude: |-
     |(CONST_create_template/|)scripts/(db-backup|db-restore|multi-tenant-update-po|qgis-project-download|qgis-project-upload)
   )$
 
+default_language_version:
+  python: '3.14'
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -82,7 +85,6 @@ repos:
           (?x)^(
             pyproject\.toml
           )$
-        language_version: '3.14'
       - id: npm-lock
         exclude: |-
           (?x)^(
@@ -146,7 +148,7 @@ repos:
     rev: v0.16.5
     hooks:
       - id: ruff-format
-#  - repo: https://github.com/sbrunner/python-versions-hook
-#    rev: 1.4.1
-#    hooks:
-#      - id: python-versions
+  - repo: https://github.com/sbrunner/python-versions-hook
+    rev: 1.4.1
+    hooks:
+      - id: python-versions
