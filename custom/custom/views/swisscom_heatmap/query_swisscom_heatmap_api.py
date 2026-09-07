@@ -94,7 +94,7 @@ class SwisscomHeatmapApi:
             api_request = self.query_api_generic(oauth, "/dwell-density/hourly", postal_code, date_time)
             response = oauth.get(api_request, headers=_HEADERS)
             self.check_api_error(response)
-        except (ExternalAPIError, APIUsageExceededError):
+        except ExternalAPIError, APIUsageExceededError:
             return self.error
         return self.response_to_geojson_result(response.json())
 
@@ -106,7 +106,7 @@ class SwisscomHeatmapApi:
             api_request = self.query_api_generic(oauth, "/dwell-demographics/hourly", postal_code, date_time)
             response = oauth.get(api_request, headers=_HEADERS)
             self.check_api_error(response)
-        except (ExternalAPIError, APIUsageExceededError):
+        except ExternalAPIError, APIUsageExceededError:
             return self.error
         return self.response_to_geojson_result(response.json())
 
