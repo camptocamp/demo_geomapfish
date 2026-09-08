@@ -20,7 +20,11 @@ swisscom_heatmap_get_config = Service(
     description="The swisscom-heatmap get config service",
     path="/swisscom-heatmap/get-config.json",
     cors_origins=(
-        (f"https://{os.environ['VISIBLE_WEB_HOST']}" if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        (
+            f"https://{os.environ['VISIBLE_WEB_HOST']}"
+            if "VISIBLE_WEB_HOST" in os.environ
+            else "*"
+        ),
         *(
             ["https://localhost:3002"]
             if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
@@ -35,7 +39,11 @@ swisscom_heatmap_dwell_density = Service(
     description="The swisscom-heatmap dwell density service",
     path="/swisscom-heatmap/dwell-density.json",
     cors_origins=(
-        (f"https://{os.environ['VISIBLE_WEB_HOST']}" if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        (
+            f"https://{os.environ['VISIBLE_WEB_HOST']}"
+            if "VISIBLE_WEB_HOST" in os.environ
+            else "*"
+        ),
         *(
             ["https://localhost:3002"]
             if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
@@ -50,7 +58,11 @@ swisscom_heatmap_dwell_demographics = Service(
     description="The swisscom-heatmap dwell demographics service",
     path="/swisscom-heatmap/dwell-demographics.json",
     cors_origins=(
-        (f"https://{os.environ['VISIBLE_WEB_HOST']}" if "VISIBLE_WEB_HOST" in os.environ else "*"),
+        (
+            f"https://{os.environ['VISIBLE_WEB_HOST']}"
+            if "VISIBLE_WEB_HOST" in os.environ
+            else "*"
+        ),
         *(
             ["https://localhost:3002"]
             if os.environ.get("DEV", "false").lower() in ("1", "true", "yes")
