@@ -14,12 +14,17 @@ _CLIENT = None
 
 def _get_azure_container_client(container: str) -> ContainerClient:
     """Get the Azure blog storage client."""
-    if "AZURE_STORAGE_CONNECTION_STRING" in os.environ and os.environ["AZURE_STORAGE_CONNECTION_STRING"]:
+    if (
+        "AZURE_STORAGE_CONNECTION_STRING" in os.environ
+        and os.environ["AZURE_STORAGE_CONNECTION_STRING"]
+    ):
         return BlobServiceClient.from_connection_string(
             os.environ["AZURE_STORAGE_CONNECTION_STRING"]
         ).get_container_client(container=container)
     if "AZURE_STORAGE_BLOB_CONTAINER_URL" in os.environ:
-        return ContainerClient.from_container_url(os.environ["AZURE_STORAGE_BLOB_CONTAINER_URL"])
+        return ContainerClient.from_container_url(
+            os.environ["AZURE_STORAGE_BLOB_CONTAINER_URL"]
+        )
 
     return BlobServiceClient(
         account_url=os.environ["AZURE_STORAGE_ACCOUNT_URL"],
@@ -54,9 +59,13 @@ def swissalti3d(request: pyramid.request.Request) -> pyramid.response.Response:
 
     blob_properties = blob.get_blob_properties()
     _LOGGING.debug(blob_properties)
-    request.response.headers["Content-Range"] = f"bytes {start}-{end}/{blob_properties.size}"
+    request.response.headers["Content-Range"] = (
+        f"bytes {start}-{end}/{blob_properties.size}"
+    )
     request.response.headers["Accept-Ranges"] = "bytes"
-    request.response.headers["Content-Type"] = blob_properties.content_settings.content_type
+    request.response.headers["Content-Type"] = (
+        blob_properties.content_settings.content_type
+    )
 
     blob_data = blob.download_blob(offset=start, length=end - start + 1)
     request.response.body = blob_data.readall()
