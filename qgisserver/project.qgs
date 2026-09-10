@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2025-11-25T15:46:09" saveUser="sbrunner" saveUserFull="Stéphane Brunner" version="3.44.4-Solothurn">
+<qgis projectname="" saveDateTime="2026-09-10T16:15:31" saveUser="sbrunner" saveUserFull="Stéphane Brunner" version="3.44.7-Solothurn">
   <homePath path=""></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -20590,7 +20590,7 @@ def my_form_open(dialog, layer, feature):
       <value></value>
     </WMSKeywordList>
     <WMSMaxAtlasFeatures type="int">1</WMSMaxAtlasFeatures>
-    <WMSOnlineResource type="QString"></WMSOnlineResource>
+    <WMSOnlineResource type="QString">https://geomapfish-demo-2-10.camptocamp.com/mapserv_proxy/qgis/ogcapi/</WMSOnlineResource>
     <WMSPrecision type="QString">8</WMSPrecision>
     <WMSRequestDefinedDataSources type="bool">false</WMSRequestDefinedDataSources>
     <WMSRootName type="QString"></WMSRootName>
