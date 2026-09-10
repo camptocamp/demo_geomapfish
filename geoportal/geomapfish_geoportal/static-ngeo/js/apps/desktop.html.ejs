@@ -12,7 +12,7 @@
     <% } %>
     <link href="<%= htmlWebpackPlugin.options.vars.entry_point %>static/<%= htmlWebpackPlugin.options.vars.cache_version %>/css/desktop.css" rel="stylesheet" crossorigin="anonymous">
   </head>
-  <body ng-class="{'gmf-profile-chart-active': !!profileChartActive, 'gmf-query-grid-active': !!mainCtrl.queryGridActive}" ng-keydown="mainCtrl.onKeydown($event)" tabindex="0">
+  <body ng-class="{'gmf-profile-chart-active': !!profileChartActive, 'gmf-lidarprofile-chart-active': !!mainCtrl.lidarProfileFooterActive, 'gmf-query-grid-active': !!mainCtrl.queryGridActive}" ng-keydown="mainCtrl.onKeydown($event)" tabindex="0">
     <div ng-show="mainCtrl.loading" class="loading-mask">
       <i class="fa custom-spinner-loading fa-spin spinner-loading-mask">
         <%=require('gmf/icons/spinner.svg?viewbox&height=1em')%>
@@ -81,6 +81,10 @@
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.drawProfilePanelActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Profile'|translate}}">
               <span class="fa fa-chart-area"></span>
+            </button>
+            <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.drawLidarprofilePanelActive"
+              data-toggle="tooltip" data-placement="left" data-original-title="{{'LIDAR'|translate}}">
+              <span class="fa fa-chart-line"></span>
             </button>
             <button ngeo-btn class="btn btn-default" ng-model="mainCtrl.queryPanelActive"
               data-toggle="tooltip" data-placement="left" data-original-title="{{'Selection'|translate}}">
@@ -235,6 +239,12 @@
               </gmf-importdatasource>
             </div>
           </div>
+          <div ng-show="mainCtrl.drawLidarprofilePanelActive" class="row">
+              <div class="col-sm-12">
+              <a class="btn close gmf-close" ng-click="mainCtrl.drawLidarprofilePanelActive = false">&times;</a>
+              <gmf-lidar-panel></gmf-lidar-panel>
+              </div>
+          </div>
         </div>
       </div>
       <div class="gmf-app-map-container" ng-class="{'gmf-app-infobar-active': mainCtrl.options.showInfobar}">
@@ -332,6 +342,7 @@
       </ngeo-modal>
     </main>
     <footer>
+      <gmf-lidar-footer id="lidar-footer"></gmf-lidar-footer>
       <gmf-profile
         gmf-profile-active="profileChartActive"
         gmf-profile-line="mainCtrl.profileLine"
