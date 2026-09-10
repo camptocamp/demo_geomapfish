@@ -20,8 +20,9 @@ managed_files:
   - \.prettierignore
   - Dockerfile
   - tests/test_app.py
-  - .editorconfig
-  - .pre-commit-config\.yaml
+  - \.editorconfig
+  - \.pre-commit-config\.yaml
+  - pyproject\.toml
 unmanaged_files:
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
   - geoportal/geomapfish_geoportal/static-ngeo/js/apps/.*\.html\.ejs
