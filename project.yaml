@@ -20,8 +20,8 @@ managed_files:
   - \.prettierignore
   - Dockerfile
   - tests/test_app.py
-  - .editorconfig
-  - .pre-commit-config\.yaml
+  - \.editorconfig
+  - \.pre-commit-config\.yaml
   - tsconfig\.json
   - pyproject\.toml
 unmanaged_files:
