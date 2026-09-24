@@ -35,12 +35,12 @@
     <customproperties>
       <Option/>
     </customproperties>
-    <layer-tree-layer checked="Qt::Checked" expanded="1" id="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" legend_exp="" legend_split_behavior="0" name="giraffe_amenities" patch_size="-1,-1" providerKey="postgres" source="service='demo' key='fid' srid=2056 type=MultiPolygon table=&quot;public&quot;.&quot;giraffe_amenities&quot; (geom)">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" legend_exp="" legend_split_behavior="0" name="giraffe_amenities" patch_size="-1,-1" providerKey="postgres" source="service='demo' key='fid' srid=2056 type=MultiPolygon table=&quot;edit_qgis&quot;.&quot;giraffe_amenities&quot; (geom)">
       <customproperties>
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" expanded="1" id="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe" legend_exp="" legend_split_behavior="0" name="giraffe_areas" patch_size="-1,-1" providerKey="postgres" source="service='demo' key='fid' srid=2056 type=Polygon table=&quot;public&quot;.&quot;giraffe_areas&quot; (geom)">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe" legend_exp="" legend_split_behavior="0" name="giraffe_areas" patch_size="-1,-1" providerKey="postgres" source="service='demo' key='fid' srid=2056 type=Polygon table=&quot;edit_qgis&quot;.&quot;giraffe_areas&quot; (geom)">
       <customproperties>
         <Option/>
       </customproperties>
@@ -173,7 +173,7 @@
         <ymax>46.53903248040123231</ymax>
       </wgs84extent>
       <id>giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816</id>
-      <datasource>service='demo' key='fid' srid=2056 type=MultiPolygon table="public"."giraffe_amenities" (geom)</datasource>
+      <datasource>service='demo' key='fid' srid=2056 type=MultiPolygon table="edit_qgis"."giraffe_amenities" (geom)</datasource>
       <layername>giraffe_amenities</layername>
       <srs>
         <spatialrefsys nativeFormat="Wkt">
@@ -494,7 +494,7 @@
       </geometryOptions>
       <legend showLabelLegend="0" type="default-vector"/>
       <referencedLayers>
-        <relation dataSource="service='demo' key='fid' srid=2056 type=Polygon table=&quot;public&quot;.&quot;giraffe_areas&quot; (geom)" id="giraffe_am_area_fk_giraffe_ar_fid" layerId="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe" layerName="giraffe_areas" name="amenities_area" providerKey="postgres" referencedLayer="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe" referencingLayer="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" strength="Association">
+        <relation dataSource="service='demo' key='fid' srid=2056 type=Polygon table=&quot;edit_qgis&quot;.&quot;giraffe_areas&quot; (geom)" id="giraffe_am_area_fk_giraffe_ar_fid" layerId="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe" layerName="giraffe_areas" name="amenities_area" providerKey="postgres" referencedLayer="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe" referencingLayer="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" strength="Association">
           <fieldRef referencedField="fid" referencingField="area_fk"/>
         </relation>
       </referencedLayers>
@@ -565,7 +565,7 @@
                 <Option name="OrderDescending" type="bool" value="false"/>
                 <Option name="OrderExpression" type="invalid"/>
                 <Option name="ReadOnly" type="bool" value="false"/>
-                <Option name="ReferencedLayerDataSource" type="QString" value="service='demo' key='fid' srid=2056 type=Polygon table=&quot;public&quot;.&quot;giraffe_areas&quot; (geom)"/>
+                <Option name="ReferencedLayerDataSource" type="QString" value="service='demo' key='fid' srid=2056 type=Polygon table=&quot;edit_qgis&quot;.&quot;giraffe_areas&quot; (geom)"/>
                 <Option name="ReferencedLayerId" type="QString" value="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe"/>
                 <Option name="ReferencedLayerName" type="QString" value="giraffe_areas"/>
                 <Option name="ReferencedLayerProviderKey" type="QString" value="postgres"/>
@@ -717,7 +717,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>46.53916733014300178</ymax>
       </wgs84extent>
       <id>giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe</id>
-      <datasource>service='demo' key='fid' srid=2056 type=Polygon table="public"."giraffe_areas" (geom)</datasource>
+      <datasource>service='demo' key='fid' srid=2056 type=Polygon table="edit_qgis"."giraffe_areas" (geom)</datasource>
       <layername>giraffe_areas</layername>
       <srs>
         <spatialrefsys nativeFormat="Wkt">
@@ -1050,7 +1050,7 @@ def my_form_open(dialog, layer, feature):
       <legend showLabelLegend="0" type="default-vector"/>
       <referencedLayers/>
       <referencingLayers>
-        <relation dataSource="service='demo' key='fid' srid=2056 type=MultiPolygon table=&quot;public&quot;.&quot;giraffe_amenities&quot; (geom)" id="giraffe_am_area_fk_giraffe_ar_fid" layerId="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" layerName="giraffe_amenities" name="amenities_area" providerKey="postgres" referencedLayer="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe" referencingLayer="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" strength="Association">
+        <relation dataSource="service='demo' key='fid' srid=2056 type=MultiPolygon table=&quot;edit_qgis&quot;.&quot;giraffe_amenities&quot; (geom)" id="giraffe_am_area_fk_giraffe_ar_fid" layerId="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" layerName="giraffe_amenities" name="amenities_area" providerKey="postgres" referencedLayer="giraffe_areas_686a3c7a_d04e_4a07_a2be_013d838b24fe" referencingLayer="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" strength="Association">
           <fieldRef referencedField="fid" referencingField="area_fk"/>
         </relation>
       </referencingLayers>
@@ -1385,7 +1385,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" destinationLayerName="giraffe_amenities" destinationLayerProvider="postgres" destinationLayerSource="service='demo' key='fid' srid=2056 type=MultiPolygon table=&quot;public&quot;.&quot;giraffe_amenities&quot; (geom)">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="giraffe_amenities_cf573049_6d1e_4d0f_a792_e891cee1d816" destinationLayerName="giraffe_amenities" destinationLayerProvider="postgres" destinationLayerSource="service='demo' key='fid' srid=2056 type=MultiPolygon table=&quot;edit_qgis&quot;.&quot;giraffe_amenities&quot; (geom)">
     <timeStampFields/>
   </ProjectGpsSettings>
 </qgis>
