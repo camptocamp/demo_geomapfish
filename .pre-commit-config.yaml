@@ -17,7 +17,7 @@ exclude: |-
 
 default_language_version:
   python: '3.14'
-  node: '22'
+  node: '22.23.2'
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
