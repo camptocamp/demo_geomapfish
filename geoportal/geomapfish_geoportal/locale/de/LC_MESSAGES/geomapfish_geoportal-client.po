@@ -174,6 +174,10 @@ msgstr "ESRI ohne WFS ohne Geom"
 msgid "Edit"
 msgstr "Editieren"
 
+#, fuzzy
+msgid "Edit QGIS"
+msgstr "Editieren"
+
 msgid "Editing"
 msgstr "Editieren"
 
@@ -458,6 +462,17 @@ msgstr ""
 msgid "amenity"
 msgstr "Annehmlichkeit"
 
+#, fuzzy
+msgid "amenity_type"
+msgstr "Annehmlichkeit"
+
+msgid "area_fk"
+msgstr ""
+
+#, fuzzy
+msgid "area_name"
+msgstr "Kurzname"
+
 msgid "asitvd.fond_couleur"
 msgstr "ASIT VD Basiskarte farbig"
 
@@ -590,6 +605,9 @@ msgstr "Kommentare"
 msgid "covered"
 msgstr "bedeckt"
 
+msgid "created_when"
+msgstr ""
+
 msgid "crossing"
 msgstr "Kreuzung"
 
@@ -662,6 +680,12 @@ msgstr "Tankstelle"
 msgid "geom_4326"
 msgstr "Geometrie 4326"
 
+msgid "giraffe_amenities"
+msgstr ""
+
+msgid "giraffe_areas"
+msgstr ""
+
 msgid "good"
 msgstr "Gut"
 
@@ -703,6 +727,10 @@ msgstr "Interne ID"
 
 msgid "kind"
 msgstr "Art"
+
+#, fuzzy
+msgid "label"
+msgstr "Hotel-Label"
 
 msgid "landuse"
 msgstr "Bodennutzung"
