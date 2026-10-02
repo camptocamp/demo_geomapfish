@@ -247,7 +247,7 @@
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal accumulate="0" durationField="id" durationUnit="min" enabled="0" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="0" startExpression="" startField="created_when">
+      <temporal accumulate="0" durationField="" durationUnit="min" enabled="0" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="0" startExpression="" startField="created_when">
         <fixedRange>
           <start></start>
           <end></end>
@@ -500,13 +500,6 @@
       </referencedLayers>
       <referencingLayers/>
       <fieldConfiguration>
-        <field configurationFlags="0" name="id">
-          <editWidget type="TextEdit">
-            <config>
-              <Option/>
-            </config>
-          </editWidget>
-        </field>
         <field configurationFlags="0" name="amenity_type">
           <editWidget type="ValueMap">
             <config>
@@ -578,28 +571,24 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias field="id" index="0" name=""/>
         <alias field="amenity_type" index="1" name=""/>
         <alias field="label" index="2" name=""/>
         <alias field="created_when" index="3" name=""/>
         <alias field="area_fk" index="4" name=""/>
       </aliases>
       <defaults>
-        <default applyOnUpdate="0" expression="" field="id"/>
         <default applyOnUpdate="0" expression="" field="amenity_type"/>
         <default applyOnUpdate="0" expression="" field="label"/>
         <default applyOnUpdate="0" expression=" now() " field="created_when"/>
         <default applyOnUpdate="0" expression="" field="area_fk"/>
       </defaults>
       <constraints>
-        <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"/>
         <constraint constraints="1" exp_strength="0" field="amenity_type" notnull_strength="1" unique_strength="0"/>
         <constraint constraints="0" exp_strength="0" field="label" notnull_strength="0" unique_strength="0"/>
         <constraint constraints="1" exp_strength="0" field="created_when" notnull_strength="1" unique_strength="0"/>
         <constraint constraints="0" exp_strength="0" field="area_fk" notnull_strength="0" unique_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint desc="" exp="" field="id"/>
         <constraint desc="" exp="" field="amenity_type"/>
         <constraint desc="" exp="" field="label"/>
         <constraint desc="" exp="" field="created_when"/>
@@ -611,7 +600,6 @@
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
-          <column hidden="0" name="id" type="field" width="-1"/>
           <column hidden="0" name="amenity_type" type="field" width="-1"/>
           <column hidden="0" name="label" type="field" width="-1"/>
           <column hidden="0" name="created_when" type="field" width="-1"/>
@@ -651,11 +639,6 @@ def my_form_open(dialog, layer, feature):
         <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
           <labelFont bold="0" description="Segoe UI,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0" italic="0" strikethrough="0" style="" underline="0"/>
         </labelStyle>
-        <attributeEditorField horizontalStretch="0" index="0" name="id" showLabel="1" verticalStretch="0">
-          <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="Segoe UI,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0" italic="0" strikethrough="0" style="" underline="0"/>
-          </labelStyle>
-        </attributeEditorField>
         <attributeEditorField horizontalStretch="0" index="2" name="label" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
             <labelFont bold="0" description="Segoe UI,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0" italic="0" strikethrough="0" style="" underline="0"/>
@@ -681,21 +664,18 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="amenity_type"/>
         <field editable="1" name="area_fk"/>
         <field editable="0" name="created_when"/>
-        <field editable="1" name="id"/>
         <field editable="1" name="label"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="amenity_type"/>
         <field labelOnTop="0" name="area_fk"/>
         <field labelOnTop="0" name="created_when"/>
-        <field labelOnTop="0" name="id"/>
         <field labelOnTop="0" name="label"/>
       </labelOnTop>
       <reuseLastValuePolicy>
         <field name="amenity_type" reuseLastValuePolicy="NotAllowed"/>
         <field name="area_fk" reuseLastValuePolicy="NotAllowed"/>
         <field name="created_when" reuseLastValuePolicy="NotAllowed"/>
-        <field name="id" reuseLastValuePolicy="NotAllowed"/>
         <field name="label" reuseLastValuePolicy="NotAllowed"/>
       </reuseLastValuePolicy>
       <dataDefinedFieldProperties/>

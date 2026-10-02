@@ -48,6 +48,10 @@ if [[ $(git status --porcelain) == "" ]]; then
     echo Nothing to commit
     exit 0
 fi
+
+pip install prek
+prek run --config=.pre-commit-config.yaml --all-files
+
 git add --all
 git commit --message="Upgrade to $1"
 git push "$2"
