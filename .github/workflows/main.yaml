@@ -3,6 +3,11 @@ name: Continuous integration
 on:
   push:
 
+permissions:
+  contents: write
+  id-token: write
+  packages: write
+
 env:
   PROJECT: demo
   HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
@@ -22,13 +27,6 @@ jobs:
           repository: camptocamp/demo_geomapfish_data
           ref: master
           path: data
-
-      - uses: camptocamp/initialise-gopass-summon-action@v2
-        with:
-          ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
-          github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
-          patterns: docker
-        if: env.HAS_SECRETS == 'HAS_SECRETS'
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
       - run: python3 -m pip install --user --requirement=ci/requirements.txt
@@ -72,8 +70,18 @@ jobs:
       - name: Build
         run: ./build --docker-compose-version-2 --no-pull
 
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        id: tag-publish-python
+        with:
+          python-version: '3.11'
+          update-environment: false
+      - run: ${{ steps.tag-publish-python.outputs.python-path }} -m venv ${HOME}/.tag-publish
+      - run: ${HOME}/.tag-publish/bin/pip install tag-publish==1.2.6
+      - run: echo "${HOME}/.tag-publish/bin" >> ${GITHUB_PATH}
       - name: Publish
-        run: c2cciutils-publish
+        run: ${HOME}/.tag-publish/bin/tag-publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Create Sentry release
       #   uses: getsentry/action-release@v1
