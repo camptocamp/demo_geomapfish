@@ -22,6 +22,8 @@ cryptography = "50.0.2"
 azure-core = "1.41.0"
 idna = "3.20"
 oauthlib = "4.0.0"
+mako = "1.4.2"
+multidict = "6.9.1"
 
 [tool.poetry.group.dev.dependencies]
 prospector = { version = "1.19.1", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
