@@ -9,17 +9,3 @@ checks:
   black:
     ignore_patterns_re:
       - custom/custom/alembic/script\.py\.mako
-
-version:
-  branch_to_version_re:
-    - from: (prod-[0-9]+-[0-9]+)
-      to: \1
-    - from: (int-[0-9]+-[0-9]+)
-      to: \1
-
-publish:
-  pypi: false
-  docker:
-    images:
-      - name: camptocamp/geomapfishdemo-config
-      - name: camptocamp/geomapfishdemo-custom
