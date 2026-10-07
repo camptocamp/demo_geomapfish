@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   upgrade:
@@ -15,10 +16,9 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: 'prod-2-5'
-          token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
 
       - name: Update the demo
         run: scripts/upgrade ${{ github.event.client_payload.version }} origin
@@ -42,9 +42,10 @@ jobs:
               },
               headers={
                   "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}",
+                  "Authorization": "Bearer ${{ secrets.GITHUB_TOKEN }}",
                   "Content-Type": "application/json",
               },
           )
-          assert response.status_code < 300, response.text'
+          # 422 is the return code when the pull request already exists
+          assert response.status_code < 300 or response.status_code == 422, response.text'
         if: failure()
