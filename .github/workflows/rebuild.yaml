@@ -44,7 +44,10 @@ jobs:
       - name: Build
         run: ./build ${{ matrix.build_options }}
 
+      - run: python3 -m venv ${HOME}/.tag-publish
+      - run: ${HOME}/.tag-publish/bin/pip install tag-publish==1.2.6
+      - run: echo "${HOME}/.tag-publish/bin" >> ${GITHUB_PATH}
       - name: Publish
-        run: tag-publish --branch=${{ matrix.branch }} --type=rebuild
+        run: tag-publish --type=rebuild --version=${{ matrix.branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
