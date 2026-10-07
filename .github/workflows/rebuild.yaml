@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '30 2 * * *'
 
+permissions:
+  contents: write
+  id-token: write
+  packages: write
+
 jobs:
   rebuild:
     runs-on: ubuntu-24.04
@@ -27,12 +32,6 @@ jobs:
           ref: ${{ matrix.branch }}
 
       # Requires CI_GPG_PRIVATE_KEY and GOPASS_CI_GITHUB_TOKEN secrets.
-      - uses: camptocamp/initialise-gopass-summon-action@17703c87720ba3766abc90da60b437783b530d93 # v2.0.1
-        with:
-          ci-gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }}
-          github-gopass-ci-token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
-          patterns: docker
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -46,5 +45,10 @@ jobs:
       - name: Build
         run: ./build ${{ matrix.build_options }}
 
+      - run: python3 -m venv ${HOME}/.tag-publish
+      - run: ${HOME}/.tag-publish/bin/pip install tag-publish==1.2.6
+      - run: echo "${HOME}/.tag-publish/bin" >> ${GITHUB_PATH}
       - name: Publish
-        run: c2cciutils-publish --branch=${{ matrix.branch }} --type=rebuild
+        run: tag-publish --type=rebuild --version=${{ matrix.branch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
