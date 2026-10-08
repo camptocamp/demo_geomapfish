@@ -51,3 +51,11 @@ jobs:
         run: tag-publish --type=rebuild --version=${{ matrix.branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: git diff --exit-code --patch > /tmp/dpkg-versions.patch; git diff --color; git reset --hard || true
+        if: failure()
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: Update dpkg versions list ${{ matrix.branch }}.patch
+          path: /tmp/dpkg-versions.patch
+          retention-days: 1
+        if: failure()
