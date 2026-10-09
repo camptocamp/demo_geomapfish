@@ -19,11 +19,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - branch: prod-2-7
-            build_options: --docker-compose-version-2
           - branch: prod-2-8
             build_options: --docker-compose-version-2
           - branch: prod-2-9
+            build_options: ''
+          - branch: prod-2-10
+            build_options: ''
+          - branch: prod-2-11
             build_options: ''
 
     steps:
@@ -45,6 +47,6 @@ jobs:
         run: ./build ${{ matrix.build_options }}
 
       - name: Publish
-        run: tag-publish --branch=${{ matrix.branch }} --type=rebuild
+        run: tag-publish --type=rebuild --version=${{ matrix.branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
