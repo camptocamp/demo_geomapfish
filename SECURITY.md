@@ -10,3 +10,5 @@
 | prod-2-9-advance  | Best effort     |
 | prod-2-10         | Best effort     |
 | prod-2-10-advance | Best effort     |
+| prod-2-11         | Best effort     |
+| prod-2-11-advance | Best effort     |
