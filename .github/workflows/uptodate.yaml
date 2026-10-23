@@ -5,7 +5,7 @@ name: Compare simple and advance branch
 on:
   push:
     branches:
-      - prod-2-10-advance
+      - prod-2-11-advance
   pull_request:
 
 env:
