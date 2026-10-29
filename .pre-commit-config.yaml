@@ -91,6 +91,10 @@ repos:
           (?x)^(
             geogirafe/CONST_scaffold/package\.json
           )$
+      - id: uv-lock
+        additional_dependencies:
+          - uv==0.13.4 # pypi
+        files: ^\.github/publish/pyproject\.toml$
       - id: canonicalize
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3
