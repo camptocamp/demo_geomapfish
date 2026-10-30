@@ -8,9 +8,6 @@ permissions:
   id-token: write
   packages: write
 
-env:
-  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
-
 jobs:
   main:
     runs-on: ubuntu-24.04
@@ -25,21 +22,21 @@ jobs:
       - run: sudo rm -rf /usr/local/lib/android /usr/share/dotnet "$AGENT_TOOLSDIRECTORY"
       - run: df -h
 
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: camptocamp/demo_geomapfish_data
           ref: master
           path: data
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.11'
       - run: python3 -m pip install --requirement=ci/requirements.txt
       - name: Environment information
         run: c2cciutils-env
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ~/.cache/pre-commit
           key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
@@ -47,7 +44,7 @@ jobs:
       - run: pre-commit run --all-files
       - run: git diff --exit-code --patch > /tmp/pre-commit.patch || true
         if: failure()
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: Apply pre-commit fix.patch
           path: /tmp/pre-commit.patch
@@ -103,7 +100,7 @@ jobs:
         run: ./build --no-pull
 
       - name: Publish
-        run: tag-publish
+        run: uv run --locked --isolated --project=.github/publish tag-publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
