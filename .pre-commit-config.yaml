@@ -154,4 +154,15 @@ repos:
   - repo: https://github.com/sbrunner/python-versions-hook
     rev: 1.4.1
     hooks:
+<<<<<<< ours
       - id: python-versions
+=======
+      - id: black
+  - repo: https://github.com/sbrunner/hooks
+    rev: 1.9.0
+    hooks:
+      - id: uv-lock
+        additional_dependencies:
+          - uv==0.13.4 # pypi
+        files: ^\.github/publish/pyproject\.toml$
+>>>>>>> theirs
