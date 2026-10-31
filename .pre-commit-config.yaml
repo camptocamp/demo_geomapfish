@@ -146,12 +146,29 @@ repos:
   - repo: https://github.com/renovatebot/pre-commit-hooks
     rev: 44.113.0
     hooks:
+<<<<<<< ours
       - id: renovate-config-validator
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.16.8
+=======
+      - id: autoflake
+  - repo: https://github.com/PyCQA/isort
+    rev: 9.0.1
+>>>>>>> theirs
     hooks:
       - id: ruff-format
   - repo: https://github.com/sbrunner/python-versions-hook
     rev: 1.4.1
     hooks:
+<<<<<<< ours
       - id: python-versions
+=======
+      - id: black
+  - repo: https://github.com/sbrunner/hooks
+    rev: 1.9.0
+    hooks:
+      - id: uv-lock
+        additional_dependencies:
+          - uv==0.13.4 # pypi
+        files: ^\.github/publish/pyproject\.toml$
+>>>>>>> theirs
