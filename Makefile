@@ -47,6 +47,7 @@ eslint: ## Runs the eslint checks
 			eslint $(ESLINT_TS_FILES); \
 	fi
 
+<<<<<<< ours
 .PHONY: build
 build:
 	./build
@@ -56,6 +57,9 @@ qgis: ## Run QGIS desktop
 	docker compose -f docker-compose.yaml -f docker-compose-qgis.yaml run --rm qgis
 
 secrets.tar.bz2.gpg: env.secrets secrets.md ## Encrypt the secrets for committing changes
+=======
+secrets.tar.bz2.gpg: env.secrets ## Encrypt the secrets for committing changes
+>>>>>>> theirs
 	tar -jcf secrets.tar.bz2 $^
 	rm -f $@
 	gpg --symmetric --cipher-algo AES256 --batch \
