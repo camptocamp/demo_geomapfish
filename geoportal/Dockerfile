@@ -1,7 +1,7 @@
 ARG GEOMAPFISH_VERSION
 ARG GEOMAPFISH_MAIN_MINOR_VERSION
 
-FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
+FROM ghcr.io/camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} as builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 COPY requirements.txt /tmp/requirements.txt
