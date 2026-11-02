@@ -50,6 +50,7 @@ repos:
     rev: v3.1.0
     hooks:
       - id: prettier
+<<<<<<< ours
         exclude: |-
           (?x)^(
             geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
@@ -58,6 +59,14 @@ repos:
           )$
   - repo: https://github.com/sbrunner/integrity-updater
     rev: 1.0.2
+=======
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.4.0
+    hooks:
+      - id: autoflake
+  - repo: https://github.com/PyCQA/isort
+    rev: 9.0.2
+>>>>>>> theirs
     hooks:
       - id: integrity-updater
         files: |-
