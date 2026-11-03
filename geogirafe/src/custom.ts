@@ -11,7 +11,7 @@ import {GeoGirafeApp} from '@geogirafe/lib-geoportal/core';
 import {
   BasemapComponent,
   CoordinateComponent,
-  MapComponent,
+  Map2dComponent,
   MenuButtonComponent,
   ScaleComponent,
   SearchComponent,
@@ -36,7 +36,7 @@ export default class MyCustomGeoGirafeApp extends GeoGirafeApp {
      */
     customElements.define('girafe-basemap', BasemapComponent);
     customElements.define('girafe-coordinate', CoordinateComponent);
-    customElements.define('girafe-map', MapComponent);
+    customElements.define('girafe-map', Map2dComponent);
     customElements.define('girafe-menu-button', MenuButtonComponent);
     customElements.define('girafe-scale', ScaleComponent);
     customElements.define('girafe-search', SearchComponent);
