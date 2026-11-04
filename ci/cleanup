@@ -50,6 +50,10 @@ rm "$1/ui/package.json"
 rm "$1/ui/package-lock.json"
 rm "$1/geogirafe/package.json"
 rm "$1/geogirafe/package-lock.json"
+# Files that legitimately differ while lib-geoportal moves from 1.x (MapComponent) to 1.2 (Map2dComponent)
+rm -f "$1/geogirafe/src/custom.ts"
+rm -f "$1/geogirafe/CONST_scaffold/src/custom.ts"
+rm -f "$1/geogirafe/package.json.rej"
 # Upgrade files
 rm "$1/.UPGRADE_INSTRUCTIONS" || true
 rm "$1/.upgrade.yaml" || true
