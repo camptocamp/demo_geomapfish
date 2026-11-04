@@ -74,6 +74,25 @@
       ],
       enabled: true,
     },
+    /** Major updates are done on the prod-2-11 branches */
+    {
+      matchBaseBranches: ['/^prod-2-10.*/'],
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
+    {
+      matchBaseBranches: ['/^prod-2-11.*/'],
+      matchUpdateTypes: ['major'],
+      matchFileNames: [
+        'ui/**',
+        'custom/**',
+        '.pre-commit-config.yaml',
+        '.github/renovated.json5',
+        'package.json',
+        'geogirafe/**',
+      ],
+      enabled: true,
+    },
     {
       matchBaseBranches: ['/^prod-2-10.*/'],
       matchFileNames: ['.pre-commit-config.yaml'],
