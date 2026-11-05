@@ -3,4 +3,5 @@
 docker:
   latest: false
   images:
-    - name: camptocamp/geomapfish-config
+    - name: camptocamp/geomapfishdemo-config
+    - name: camptocamp/geomapfishdemo-custom
