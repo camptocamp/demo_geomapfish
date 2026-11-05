@@ -69,7 +69,7 @@ repos:
           - --pre-commit
           - --blacklist=https://maps\.googleapis\.com/
   - repo: https://github.com/sbrunner/hooks
-    rev: 1.8.0
+    rev: 1.9.0
     hooks:
       - id: copyright
         exclude: |-
@@ -92,6 +92,10 @@ repos:
             geogirafe/CONST_scaffold/package\.json
           )$
       - id: canonicalize
+      - id: uv-lock
+        additional_dependencies:
+          - uv==0.13.4 # pypi
+        files: ^\.github/publish/pyproject\.toml$
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3
     hooks:
