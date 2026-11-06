@@ -99,6 +99,14 @@ jobs:
       - name: Build
         run: ./build --no-pull
 
+      # `tag-publish` comes from the `.github/publish` uv project of the checked out branch, with
+      # its dependencies fully locked, instead of the `ci/requirements.txt` of that branch.
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: latest-known
+          cache-python: true
+          python-version: '3.12'
+
       - name: Publish
         run: uv run --locked --isolated --project=.github/publish tag-publish
         env:
