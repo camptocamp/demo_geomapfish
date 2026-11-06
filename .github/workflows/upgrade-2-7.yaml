@@ -5,6 +5,10 @@ on:
     types:
       - geomapfish_2.7_updated
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   upgrade:
     runs-on: ubuntu-22.04
@@ -22,7 +26,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
-          token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
 
       - name: Update the demo
         run: >
@@ -48,7 +51,7 @@ jobs:
               },
               headers={
                   "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}",
+                  "Authorization": "Bearer ${{ secrets.GITHUB_TOKEN }}",
                   "Content-Type": "application/json",
               },
           )
