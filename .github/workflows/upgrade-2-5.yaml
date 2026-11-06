@@ -5,6 +5,10 @@ on:
     types:
       - geomapfish_25_updated
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   upgrade:
     runs-on: ubuntu-24.04
@@ -15,7 +19,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: 'prod-2-5'
-          token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
 
       - name: Update the demo
         run: scripts/upgrade ${{ github.event.client_payload.version }} origin
@@ -39,7 +42,7 @@ jobs:
               },
               headers={
                   "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}",
+                  "Authorization": "Bearer ${{ secrets.GITHUB_TOKEN }}",
                   "Content-Type": "application/json",
               },
           )
