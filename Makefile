@@ -1,6 +1,7 @@
 PROJECT_PUBLIC_URL?=https://geomapfish-demo-2-10.camptocamp.com/
 DUMP_FILE=data/prod-2-7.dump
 PACKAGE=geomapfish
+LARGE_SECRET_PASSPHRASE?=gs/ci/large-secret-passphrase
 LANGUAGES=en fr de it rm
 ESLINT_JS_FILES=$(shell find geoportal/geomapfish_geoportal -type f -name '*.js' ! -name '*.min.js' -print 2> /dev/null | sed 's|^geoportal/||')
 ESLINT_TS_FILES=$(shell find geoportal/geomapfish_geoportal -type f -name '*.ts' -print 2> /dev/null | sed 's|^geoportal/||')
@@ -47,24 +48,16 @@ eslint: ## Runs the eslint checks
 			eslint $(ESLINT_TS_FILES); \
 	fi
 
-.PHONY: build
-build:
-	./build
-
-.PHONY: qgis
-qgis: ## Run QGIS desktop
-	docker compose -f docker-compose.yaml -f docker-compose-qgis.yaml run --rm qgis
-
-secrets.tar.bz2.gpg: env.secrets secrets.md ## Encrypt the secrets for committing changes
+secrets.tar.bz2.gpg: env.secrets ## Encrypt the secrets for committing changes
 	tar -jcf secrets.tar.bz2 $^
 	rm -f $@
 	gpg --symmetric --cipher-algo AES256 --batch \
-		--passphrase=$(shell gopass show gs/ci/large-secret-passphrase) secrets.tar.bz2
+		--passphrase=$(shell gopass show $(LARGE_SECRET_PASSPHRASE)) secrets.tar.bz2
 	rm secrets.tar.bz2
 
 .PHONY: secrets
 secrets: ## Decrypt the secrets.tar.bz2.gpg file
-	gpg --quiet --batch --yes --decrypt --passphrase=$(shell gopass show gs/ci/large-secret-passphrase) \
+	gpg --quiet --batch --yes --decrypt --passphrase=$(shell gopass show $(LARGE_SECRET_PASSPHRASE)) \
 		--output secrets.tar.bz2 secrets.tar.bz2.gpg
 	tar --touch -jxf secrets.tar.bz2
 	rm secrets.tar.bz2

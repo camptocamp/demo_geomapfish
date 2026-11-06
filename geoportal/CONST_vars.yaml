@@ -875,7 +875,7 @@ vars:
           - role
         description: >
           MapServer variable substitution in mapfile.
-          Documentation: https://camptocamp.github.io/c2cgeoportal/2.10/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
+          Documentation: https://camptocamp.github.io/c2cgeoportal/2.11/administrator/mapfile.html?highlight=mapserver_substitution#variable-substitution
       - name: filterable_layers
         description: >
           Grant filtering access to specific layers.
