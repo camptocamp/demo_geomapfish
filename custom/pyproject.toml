@@ -28,7 +28,7 @@ aiohttp = "3.14.4"
 certifi = "2026.10.23"
 
 [tool.poetry.group.dev.dependencies]
-prospector = { version = "1.19.1", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
+prospector = { version = "1.20.0", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
 prospector-profile-utils = "1.27.0"
 prospector-profile-duplicated = "1.12.0"
 types-requests = "2.33.0.20260906"
