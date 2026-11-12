@@ -6,8 +6,8 @@ on:
       - geomapfish_2.11_updated
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  actions: write
 
 jobs:
   upgrade:
@@ -23,43 +23,43 @@ jobs:
           - prod-2-11-advance
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ matrix.branch }}
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/pre-commit
-          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
-          restore-keys: "pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}\npre-commit-"
+          key: pre-commit-${{ matrix.branch }}-${{ hashFiles('.pre-commit-config.yaml') }}
+          restore-keys: |
+            pre-commit-${{ matrix.branch }}-${{ hashFiles('.pre-commit-config.yaml') }}
+            pre-commit-${{ matrix.branch }}-
 
       - name: Update the demo
         run: >
-          scripts/upgrade ${{ github.event.client_payload.version }} origin
-      - name: Push interrupted Upgrade
+          scripts/upgrade ${{ github.event.client_payload.version }}
+
+      - name: Create the upgrade patch
+        if: always()
         run: |
+          touch /tmp/upgrade.patch
           sudo chown -R $(id -u) .
-          ls -als .UPGRADE*
+          ls -als .UPGRADE* || true
           git add --all || true
           git add --force .UPGRADE_INSTRUCTIONS upgrade .upgrade.yaml || true
           git status
-          git commit -m "Interrupted upgrade to ${{ github.event.client_payload.version }}"
-          git push --force origin HEAD:interrupted-upgrade-${{ matrix.branch }}-${{ github.event.client_payload.version }}
-          python3 -c 'import requests
-          response = requests.post(
-              "https://api.github.com/repos/camptocamp/demo_geomapfish/pulls",
-              json={
-                "title": "Upgrade failed",
-                "body": "See https://github.com/camptocamp/demo_geomapfish/actions?query=workflow%3A%22Upgrade+2.11%22",
-                "head": "interrupted-upgrade-${{ matrix.branch }}-${{ github.event.client_payload.version }}",
-                "base": "${{ matrix.branch }}",
-                "maintainer_can_modify": True
-              },
-              headers={
-                  "Accept": "application/vnd.github.v3+json",
-                  "Authorization": "Bearer ${{ secrets.GITHUB_TOKEN }}",
-                  "Content-Type": "application/json",
-              },
-          )
-          assert response.status_code < 300, response.text'
+          git diff --staged --patch > /tmp/upgrade.patch || true
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: Interrupted upgrade to ${{ github.event.client_payload.version }} [${{ matrix.branch }}].patch
+          path: /tmp/upgrade.patch
+          retention-days: 1
         if: failure()
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: Upgrade to ${{ github.event.client_payload.version }} [${{ matrix.branch }}].patch
+          path: /tmp/upgrade.patch
+          retention-days: 1
+        if: success()
