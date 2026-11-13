@@ -51,6 +51,7 @@ repos:
     rev: v3.1.0
     hooks:
       - id: prettier
+<<<<<<< ours
         exclude: |-
           (?x)^(
             geoportal/geomapfish_geoportal/static-ngeo/js/apps/Controller.*\.js
@@ -69,6 +70,20 @@ repos:
         args:
           - --pre-commit
           - --blacklist=https://maps\.googleapis\.com/
+=======
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.4.0
+    hooks:
+      - id: autoflake
+  - repo: https://github.com/PyCQA/isort
+    rev: 9.0.2
+    hooks:
+      - id: isort
+  - repo: https://github.com/psf/black
+    rev: 26.10.1
+    hooks:
+      - id: black
+>>>>>>> theirs
   - repo: https://github.com/sbrunner/hooks
     rev: 1.9.0
     hooks:
