@@ -49,9 +49,7 @@ if [[ $(git status --porcelain) == "" ]]; then
     exit 0
 fi
 
-pip install prek
-prek run --config=.pre-commit-config.yaml --all-files
-
-git add --all
-git commit --message="Upgrade to $1"
-git push "$2"
+pip install --quiet --break-system-packages prek
+# The files are formatted, the workflow then creates the patch artifact applied by GHCI,
+# a non-zero exit code only means that some files were modified by the hooks
+prek run --config=.pre-commit-config.yaml --all-files || true
