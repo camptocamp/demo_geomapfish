@@ -1,0 +1,162 @@
+diff --git a/.github/workflows/main.yaml b/.github/workflows/main.yaml
+index 8166e68..fef26d7 100644
+--- a/.github/workflows/main.yaml
++++ b/.github/workflows/main.yaml
+@@ -62,6 +62,13 @@ jobs:
+         run: make checks
+ 
+       # To publish the images to be used on Kubernetes
++      # `tag-publish` comes from the `.github/publish` uv project of the checked out branch, with
++      # its dependencies fully locked, instead of the `ci/requirements.txt` of that branch.
++      # - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
++      #   with:
++      #     version: latest-known
++      #     cache-python: true
++      #     python-version: '3.11'
+       # - name: Publish
+       #   run: uv run --locked --isolated --project=.github/publish tag-publish
+       #  env:
+diff --git a/.github/workflows/update_l10n.yaml b/.github/workflows/update_l10n.yaml
+index 1e0e99c..eaf9f6b 100644
+--- a/.github/workflows/update_l10n.yaml
++++ b/.github/workflows/update_l10n.yaml
+@@ -5,6 +5,9 @@ on:
+   schedule:
+     - cron: '0 3 * * *'
+ 
++permissions:
++  contents: read
++
+ jobs:
+   l10n:
+     runs-on: ubuntu-24.04
+@@ -24,43 +27,22 @@ jobs:
+       - uses: actions/checkout@v4
+         with:
+           ref: ${{ matrix.branch }}
+-          token: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
+ 
+       - run: ./build --env
+       - run: PROJECT_PUBLIC_URL=${{ matrix.base_url }} make -e update-po-from-url
+ 
+-      - name: Init Git
+-        run: |
+-          git config --global user.email "geospatial-bot@camptocamp.com"
+-          git config --global user.name CI
+-
+-      - id: status
+-        run: echo "status=$(git diff --exit-code --quiet && echo 'unchanged' || echo 'changed')" >> $GITHUB_OUTPUT
+-
+-      - name: Push l10n branch and create pull request
+-        run: |
+-          sudo chown -R $(id -u) .
+-          git add --all || true
+-          git status
+-          git commit -m "Update the l10n files"
+-          git push --force origin HEAD:l10n-${{ matrix.branch }}
+-          python3 -c "import requests
+-          response = requests.post(
+-              'https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls',
+-              json={
+-                'title': 'Update the l10n files on ${{ matrix.branch }}',
+-                'body': '',
+-                'head': 'l10n-${{ matrix.branch }}',
+-                'base': '${{ matrix.branch }}',
+-                'maintainer_can_modify': True
+-              },
+-              headers={
+-                  'Accept': 'application/vnd.github.v3+json',
+-                  'Authorization': 'Bearer ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}',
+-                  'Content-Type': 'application/json',
+-              },
+-              timeout=120,
+-          )
+-          # 422 is the return code when the pull request already exists
+-          assert response.status_code < 300 or response.status_code == 422, f'{response.status_code} - {response.text}'"
+-        if: steps.status.outputs.status != 'unchanged'
++      # The job fails when the translations changed. The `patch` module of ghci picks the artifact up,
++      # applies it on the branch carried by its name and opens the pull request, so no personal access
++      # token is needed here anymore.
++      - run: sudo chown -R $(id -u) .
++      - run: git add --all
++      - run: git diff --staged --exit-code
++        id: diff
++      - run: git diff --staged --patch > /tmp/Update-the-l10n-files.patch
++        if: failure() && steps.diff.outcome == 'failure'
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
++        with:
++          name: Update the l10n files on ${{ matrix.branch }} [${{ matrix.branch }}].patch
++          path: /tmp/Update-the-l10n-files.patch
++          retention-days: 1
++        if: failure() && steps.diff.outcome == 'failure'
+diff --git a/Dockerfile b/Dockerfile
+index 8aa1bba..6c61206 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -1,7 +1,7 @@
+ ARG GEOMAPFISH_VERSION
+ ARG GEOMAPFISH_MAIN_MINOR_VERSION
+ 
+-FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} AS builder
++FROM ghcr.io/camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} AS builder
+ 
+ ENV VARS_FILE=vars.yaml
+ ENV CONFIG_VARS sqlalchemy.url sqlalchemy.pool_recycle sqlalchemy.pool_size sqlalchemy.max_overflow \
+@@ -39,7 +39,7 @@ RUN \
+ 
+ ###############################################################################
+ 
+-FROM camptocamp/geomapfish-config:${GEOMAPFISH_MAIN_MINOR_VERSION} AS gmf_config
++FROM ghcr.io/camptocamp/geomapfish-config:${GEOMAPFISH_MAIN_MINOR_VERSION} AS gmf_config
+ 
+ ARG PGSCHEMA
+ ENV PGSCHEMA=$PGSCHEMA
+diff --git a/Makefile b/Makefile
+index d00e7c5..f36483b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,6 +1,7 @@
+ PROJECT_PUBLIC_URL?=https://localhost:8484/
+ DUMP_FILE=dump.backup
+ PACKAGE=geomapfish
++LARGE_SECRET_PASSPHRASE?=gs/projects/large-secret-passphrase
+ LANGUAGES=en fr de it
+ ESLINT_JS_FILES=$(shell find geoportal/geomapfish_geoportal -type f -name '*.js' ! -name '*.min.js' -print 2> /dev/null | sed 's|^geoportal/||')
+ ESLINT_TS_FILES=$(shell find geoportal/geomapfish_geoportal -type f -name '*.ts' -print 2> /dev/null | sed 's|^geoportal/||')
+@@ -52,12 +53,12 @@ secrets.tar.bz2.gpg: env.secrets ## Encrypt the secrets for committing changes
+ 	tar -jcf secrets.tar.bz2 $^
+ 	rm -f $@
+ 	gpg --symmetric --cipher-algo AES256 --batch \
+-		--passphrase=$(shell gopass show gs/ci/large-secret-passphrase) secrets.tar.bz2
++		--passphrase=$(shell gopass show $(LARGE_SECRET_PASSPHRASE)) secrets.tar.bz2
+ 	rm secrets.tar.bz2
+ 
+ .PHONY: secrets
+ secrets: ## Decrypt the secrets.tar.bz2.gpg file
+-	gpg --quiet --batch --yes --decrypt --passphrase=$(shell gopass show gs/ci/large-secret-passphrase) \
++	gpg --quiet --batch --yes --decrypt --passphrase=$(shell gopass show $(LARGE_SECRET_PASSPHRASE)) \
+ 		--output secrets.tar.bz2 secrets.tar.bz2.gpg
+ 	tar --touch -jxf secrets.tar.bz2
+ 	rm secrets.tar.bz2
+diff --git a/geoportal/Dockerfile b/geoportal/Dockerfile
+index 18cc7f6..73ce85b 100644
+--- a/geoportal/Dockerfile
++++ b/geoportal/Dockerfile
+@@ -1,7 +1,7 @@
+ ARG GEOMAPFISH_VERSION
+ ARG GEOMAPFISH_MAIN_MINOR_VERSION
+ 
+-FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} AS builder
++FROM ghcr.io/camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} AS builder
+ LABEL maintainer Camptocamp "info@camptocamp.com"
+ 
+ COPY requirements.txt /tmp/requirements.txt
+@@ -23,7 +23,7 @@ CMD [ "webpack", "serve", "--open", "--mode=development" ]
+ 
+ ###############################################################################
+ 
+-FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} AS runner
++FROM ghcr.io/camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} AS runner
+ 
+ COPY requirements.txt /tmp/requirements.txt
+ RUN --mount=type=cache,target=/root/.cache \

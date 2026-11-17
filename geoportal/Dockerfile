@@ -24,7 +24,7 @@ CMD [ "webpack", "serve", "--open", "--mode=development" ]
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} AS runner
+FROM ghcr.io/camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} AS runner
 
 #RUN apt update
 #RUN apt install --yes gcc python3.7-dev
