@@ -2251,14 +2251,14 @@ files = [
 
 [[package]]
 name = "prospector"
-version = "1.20.0"
+version = "1.20.1"
 description = "Prospector is a tool to analyse Python code by aggregating the result of other tools."
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "prospector-1.20.0-py3-none-any.whl", hash = "sha256:a0b4fac07f2c5c29b265f3194ccea40508f293437f035b11e9979504ba9db158"},
-    {file = "prospector-1.20.0.tar.gz", hash = "sha256:c5afea89d859a0a1d6fcecb31128775eb563bfd73c18e9c76477d520a849c747"},
+    {file = "prospector-1.20.1-py3-none-any.whl", hash = "sha256:1dc9c8eeab1f70aa4ff4e7747d31376226303495c2cc27727d5cdfb950c0cca9"},
+    {file = "prospector-1.20.1.tar.gz", hash = "sha256:7b6af1e6715962483adc0e4887a0a08ae23dd40727eb0f4fad4214dee804e0ff"},
 ]
 
 [package.dependencies]
@@ -2271,7 +2271,7 @@ pep8-naming = ">=0.3.3,<=0.10.0"
 pycodestyle = ">=2.9.0"
 pydocstyle = ">=2.0.0"
 pyflakes = ">=2.2.0"
-pylint = ">=4.0"
+pylint = ">=4.0.9"
 pylint-celery = "0.3"
 pylint-django = ">=2.6.1"
 pyroma = {version = "*", optional = true, markers = "extra == \"with-pyroma\""}
@@ -3951,4 +3951,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14,<3.15"
-content-hash = "669cba0ec707f3a53f112122192cd969618b27eaa24d8861428f333a6c14f6e8"
+content-hash = "02e6ba0e9075f45f3132ce6aacbcab4c808ac1a2c4f33a276dc0158d8d01c968"
