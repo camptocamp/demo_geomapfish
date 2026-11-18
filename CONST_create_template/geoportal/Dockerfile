@@ -1,7 +1,7 @@
 ARG GEOMAPFISH_VERSION
 ARG GEOMAPFISH_MAIN_MINOR_VERSION
 
-FROM camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} AS builder
+FROM ghcr.io/camptocamp/geomapfish-tools:${GEOMAPFISH_VERSION} AS builder
 LABEL maintainer Camptocamp "info@camptocamp.com"
 
 COPY requirements.txt /tmp/requirements.txt
@@ -23,7 +23,7 @@ CMD [ "webpack", "serve", "--open", "--mode=development" ]
 
 ###############################################################################
 
-FROM camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} AS runner
+FROM ghcr.io/camptocamp/geomapfish:${GEOMAPFISH_MAIN_MINOR_VERSION} AS runner
 
 COPY requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache \

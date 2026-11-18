@@ -99,6 +99,7 @@ jobs:
       - name: Build
         run: ./build --no-pull
 
+      # To publish the images to be used on Kubernetes
       # `tag-publish` comes from the `.github/publish` uv project of the checked out branch, with
       # its dependencies fully locked, instead of the `ci/requirements.txt` of that branch.
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
