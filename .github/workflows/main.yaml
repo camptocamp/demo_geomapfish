@@ -43,8 +43,10 @@ jobs:
       - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ~/.cache/pre-commit
-          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
-          restore-keys: "pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}\npre-commit-"
+          key: pre-commit-prod-2-9-${{ hashFiles('.pre-commit-config.yaml') }}
+          restore-keys: |
+            pre-commit-prod-2-9-${{ hashFiles('.pre-commit-config.yaml') }}
+            pre-commit-prod-2-9-
       - run: pre-commit run --all-files --color=always
       - run: git diff --exit-code --patch > /tmp/pre-commit.patch; git diff --color; git reset --hard || true
         if: failure()
