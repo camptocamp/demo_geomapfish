@@ -48,5 +48,6 @@ if [[ $(git status --porcelain) == "" ]]; then
     echo Nothing to commit
     exit 0
 fi
-
-# The changes are kept uncommitted, the workflow then creates the patch artifact applied by GHCI
+git add --all
+git commit --message="Upgrade to $1"
+git push "$2"
