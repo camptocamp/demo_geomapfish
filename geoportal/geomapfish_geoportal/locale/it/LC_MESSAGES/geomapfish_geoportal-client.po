@@ -469,6 +469,15 @@ msgstr "Rifugio alpino"
 msgid "amenity"
 msgstr "Servizio"
 
+msgid "amenity_type"
+msgstr "Tipo di servizio"
+
+msgid "area_fk"
+msgstr "Zona"
+
+msgid "area_name"
+msgstr "Nome della zona"
+
 msgid "asitvd.fond_couleur"
 msgstr "ASIT VD - sfondo a colori"
 
@@ -601,6 +610,9 @@ msgstr "Commenti"
 msgid "covered"
 msgstr "Coperto"
 
+msgid "created_when"
+msgstr "Data di creazione"
+
 msgid "crossing"
 msgstr "Attraversamento"
 
@@ -643,6 +655,9 @@ msgstr "Email"
 msgid "entertainment"
 msgstr "Intrattenimento"
 
+msgid "fid"
+msgstr "ID elemento"
+
 msgid "filter_double"
 msgstr "Filtro doppio"
 
@@ -666,6 +681,9 @@ msgstr "Fontana"
 
 msgid "fuel"
 msgstr "Carburante"
+
+msgid "geom_4326"
+msgstr "Geometria 4326"
 
 msgid "giraffe_amenities"
 msgstr "Servizi (Giraffa)"
@@ -714,6 +732,9 @@ msgstr "ID interno"
 
 msgid "kind"
 msgstr "Tipo"
+
+msgid "label"
+msgstr "Etichetta"
 
 msgid "landuse"
 msgstr "Uso del suolo"
@@ -768,6 +789,9 @@ msgstr "Uso del suolo"
 
 msgid "landuse_alias"
 msgstr "Alias uso del suolo"
+
+msgid "landuse_ingrp"
+msgstr "Uso del suolo (nel gruppo)"
 
 msgid "layer"
 msgstr "Layer"
@@ -877,8 +901,14 @@ msgstr "Stazioni pompieri OSM (senza WFS)"
 msgid "osm_firestations_dual_restricted"
 msgstr "Stazioni pompieri OSM doppio (riservato)"
 
+msgid "osm_firestations_ingrp"
+msgstr "Stazioni pompieri OSM (nel gruppo)"
+
 msgid "osm_firestations_restricted"
 msgstr "Stazioni pompieri OSM (riservato)"
+
+msgid "osm_firestations_restricted_ingrp"
+msgstr "Stazioni pompieri OSM riservato (nel gruppo)"
 
 msgid "osm_group"
 msgstr "Gruppo OSM"
@@ -901,8 +931,14 @@ msgstr "Ospedali OSM (data e ora)"
 msgid "osm_hospitals_dual_restricted"
 msgstr "Ospedali OSM doppio (riservato)"
 
+msgid "osm_hospitals_ingrp"
+msgstr "Ospedali OSM (nel gruppo)"
+
 msgid "osm_hospitals_restricted"
 msgstr "Ospedali OSM (riservato)"
+
+msgid "osm_hospitals_restricted_ingrp"
+msgstr "Ospedali OSM riservato (nel gruppo)"
 
 msgid "osm_id"
 msgstr "ID OSM"
@@ -1069,8 +1105,17 @@ msgstr "Punti + uso del suolo"
 msgid "points+landuse no wfs"
 msgstr "Punti + uso del suolo (senza WFS)"
 
+msgid "points_ingrp"
+msgstr "Punti (nel gruppo)"
+
 msgid "points_vevey"
 msgstr "Punti (Vevey)"
+
+msgid "pointscopier"
+msgstr "Copia punti"
+
+msgid "pointslabels"
+msgstr "Etichette punti"
 
 msgid "police"
 msgstr "Polizia"
@@ -1147,6 +1192,9 @@ msgstr "Ferrovie"
 msgid "railways9"
 msgstr "Ferrovie"
 
+msgid "railways_ingrp"
+msgstr "Ferrovie (nel gruppo)"
+
 msgid "recycling"
 msgstr "Riciclaggio"
 
@@ -1160,10 +1208,6 @@ msgid "restaurant"
 msgstr "Ristorante"
 
 msgid "restricted"
-msgstr "Riservato"
-
-#, fuzzy
-msgid "restricted_group"
 msgstr "Riservato"
 
 msgid "roads10"
@@ -1253,8 +1297,17 @@ msgstr "Tempo"
 msgid "time range"
 msgstr "Intervallo temporale"
 
+msgid "time_ingrp"
+msgstr "Tempo (gruppo)"
+
 msgid "timestamp"
 msgstr "Timestamp"
+
+msgid "timestamp1"
+msgstr "Timestamp 1"
+
+msgid "timestamp2"
+msgstr "Timestamp 2"
 
 msgid "timezone"
 msgstr "Fuso orario"
@@ -1399,59 +1452,6 @@ msgstr ""
 #~ msgid "OSM map WebP"
 #~ msgstr "Mappa OSM WebP"
 
-#~ msgid "amenity_type"
-#~ msgstr "Tipo di servizio"
-
-#~ msgid "area_fk"
-#~ msgstr "Zona"
-
-#~ msgid "area_name"
-#~ msgstr "Nome della zona"
-
-#~ msgid "created_when"
-#~ msgstr "Data di creazione"
-
-#~ msgid "fid"
-#~ msgstr "ID elemento"
-
-#~ msgid "geom_4326"
-#~ msgstr "Geometria 4326"
-
-#~ msgid "label"
-#~ msgstr "Etichetta"
-
-#~ msgid "landuse_ingrp"
-#~ msgstr "Uso del suolo (nel gruppo)"
-
-#~ msgid "osm_firestations_ingrp"
-#~ msgstr "Stazioni pompieri OSM (nel gruppo)"
-
-#~ msgid "osm_firestations_restricted_ingrp"
-#~ msgstr "Stazioni pompieri OSM riservato (nel gruppo)"
-
-#~ msgid "osm_hospitals_ingrp"
-#~ msgstr "Ospedali OSM (nel gruppo)"
-
-#~ msgid "osm_hospitals_restricted_ingrp"
-#~ msgstr "Ospedali OSM riservato (nel gruppo)"
-
-#~ msgid "points_ingrp"
-#~ msgstr "Punti (nel gruppo)"
-
-#~ msgid "pointscopier"
-#~ msgstr "Copia punti"
-
-#~ msgid "pointslabels"
-#~ msgstr "Etichette punti"
-
-#~ msgid "railways_ingrp"
-#~ msgstr "Ferrovie (nel gruppo)"
-
-#~ msgid "time_ingrp"
-#~ msgstr "Tempo (gruppo)"
-
-#~ msgid "timestamp1"
-#~ msgstr "Timestamp 1"
-
-#~ msgid "timestamp2"
-#~ msgstr "Timestamp 2"
+#, fuzzy
+#~ msgid "restricted_group"
+#~ msgstr "Riservato"

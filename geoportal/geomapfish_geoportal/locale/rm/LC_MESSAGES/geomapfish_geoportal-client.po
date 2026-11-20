@@ -463,6 +463,15 @@ msgstr "Cabana alpina"
 msgid "amenity"
 msgstr "Equipaments"
 
+msgid "amenity_type"
+msgstr "Tip d'equipament"
+
+msgid "area_fk"
+msgstr "Zona"
+
+msgid "area_name"
+msgstr "Num da la zona"
+
 msgid "asitvd.fond_couleur"
 msgstr "ASIT VD - Fund a colurs"
 
@@ -595,6 +604,9 @@ msgstr "Commentaris"
 msgid "covered"
 msgstr "Covert"
 
+msgid "created_when"
+msgstr "Data da creaziun"
+
 msgid "crossing"
 msgstr "Intersecziun"
 
@@ -637,6 +649,9 @@ msgstr "E-mail"
 msgid "entertainment"
 msgstr "Divertiment"
 
+msgid "fid"
+msgstr "ID"
+
 msgid "filter_double"
 msgstr "Filter dubel"
 
@@ -660,6 +675,9 @@ msgstr "Funtaunas"
 
 msgid "fuel"
 msgstr "Staziun da benzina"
+
+msgid "geom_4326"
+msgstr "Geometria"
 
 msgid "giraffe_amenities"
 msgstr "Equipaments (Giraffa)"
@@ -708,6 +726,9 @@ msgstr "Identificatur intern"
 
 msgid "kind"
 msgstr "Tip"
+
+msgid "label"
+msgstr "Label"
 
 msgid "landuse"
 msgstr "Utilisaziun dal terren"
@@ -762,6 +783,9 @@ msgstr "Utilisaziun dal terren"
 
 msgid "landuse_alias"
 msgstr "Utilisaziun dal terren (alias)"
+
+msgid "landuse_ingrp"
+msgstr "Utilisaziun dal terren (gruppa)"
 
 msgid "layer"
 msgstr "Strats"
@@ -871,8 +895,14 @@ msgstr "Casernas da pumpers OSM (senza WFS)"
 msgid "osm_firestations_dual_restricted"
 msgstr "Casernas da pumpers OSM (dubel, limità)"
 
+msgid "osm_firestations_ingrp"
+msgstr "Casernas da pumpers OSM (gruppa)"
+
 msgid "osm_firestations_restricted"
 msgstr "Casernas da pumpers OSM (limità)"
+
+msgid "osm_firestations_restricted_ingrp"
+msgstr "Casernas da pumpers OSM (gruppa, limità)"
 
 msgid "osm_group"
 msgstr "OSM gruppa"
@@ -895,8 +925,14 @@ msgstr "Ospitals OSM (data temp)"
 msgid "osm_hospitals_dual_restricted"
 msgstr "Ospitals OSM (dubel, limità)"
 
+msgid "osm_hospitals_ingrp"
+msgstr "Ospitals OSM (gruppa)"
+
 msgid "osm_hospitals_restricted"
 msgstr "Ospitals OSM (limità)"
+
+msgid "osm_hospitals_restricted_ingrp"
+msgstr "Ospitals OSM (gruppa, limità)"
 
 msgid "osm_id"
 msgstr "ID OSM"
@@ -1063,8 +1099,17 @@ msgstr "Puncts & Utilisaziun dal terren"
 msgid "points+landuse no wfs"
 msgstr "Puncts & Utilisaziun dal terren (senza WFS)"
 
+msgid "points_ingrp"
+msgstr "Puncts en gruppa"
+
 msgid "points_vevey"
 msgstr "Puncts (Vevey)"
+
+msgid "pointscopier"
+msgstr "Puncts copia"
+
+msgid "pointslabels"
+msgstr "Puncts labels"
 
 msgid "police"
 msgstr "Polizia"
@@ -1141,6 +1186,9 @@ msgstr "Viafiers"
 msgid "railways9"
 msgstr "Viafiers"
 
+msgid "railways_ingrp"
+msgstr "Viafiers en gruppa"
+
 msgid "recycling"
 msgstr "Reciclar"
 
@@ -1154,10 +1202,6 @@ msgid "restaurant"
 msgstr "Restaurants"
 
 msgid "restricted"
-msgstr "Limità"
-
-#, fuzzy
-msgid "restricted_group"
 msgstr "Limità"
 
 msgid "roads10"
@@ -1247,8 +1291,17 @@ msgstr "Temp"
 msgid "time range"
 msgstr "Temp (interval)"
 
+msgid "time_ingrp"
+msgstr "Temp (gruppa)"
+
 msgid "timestamp"
 msgstr "Datatimber"
+
+msgid "timestamp1"
+msgstr "Datatimber 1"
+
+msgid "timestamp2"
+msgstr "Datatimber 2"
 
 msgid "timezone"
 msgstr "Zona d'urari"
@@ -1413,59 +1466,6 @@ msgstr ""
 #~ msgid "Routing"
 #~ msgstr "Planisaziun d'itinerari"
 
-#~ msgid "amenity_type"
-#~ msgstr "Tip d'equipament"
-
-#~ msgid "area_fk"
-#~ msgstr "Zona"
-
-#~ msgid "area_name"
-#~ msgstr "Num da la zona"
-
-#~ msgid "created_when"
-#~ msgstr "Data da creaziun"
-
-#~ msgid "fid"
-#~ msgstr "ID"
-
-#~ msgid "geom_4326"
-#~ msgstr "Geometria"
-
-#~ msgid "label"
-#~ msgstr "Label"
-
-#~ msgid "landuse_ingrp"
-#~ msgstr "Utilisaziun dal terren (gruppa)"
-
-#~ msgid "osm_firestations_ingrp"
-#~ msgstr "Casernas da pumpers OSM (gruppa)"
-
-#~ msgid "osm_firestations_restricted_ingrp"
-#~ msgstr "Casernas da pumpers OSM (gruppa, limità)"
-
-#~ msgid "osm_hospitals_ingrp"
-#~ msgstr "Ospitals OSM (gruppa)"
-
-#~ msgid "osm_hospitals_restricted_ingrp"
-#~ msgstr "Ospitals OSM (gruppa, limità)"
-
-#~ msgid "points_ingrp"
-#~ msgstr "Puncts en gruppa"
-
-#~ msgid "pointscopier"
-#~ msgstr "Puncts copia"
-
-#~ msgid "pointslabels"
-#~ msgstr "Puncts labels"
-
-#~ msgid "railways_ingrp"
-#~ msgstr "Viafiers en gruppa"
-
-#~ msgid "time_ingrp"
-#~ msgstr "Temp (gruppa)"
-
-#~ msgid "timestamp1"
-#~ msgstr "Datatimber 1"
-
-#~ msgid "timestamp2"
-#~ msgstr "Datatimber 2"
+#, fuzzy
+#~ msgid "restricted_group"
+#~ msgstr "Limità"
