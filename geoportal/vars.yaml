@@ -50,7 +50,7 @@ vars:
     - name: mobile_geogirafe
       type: custom
       html_filename: geogirafe/mobile.html
-    - name: iframe_geogirafe
+    - name: iframe_api_geogirafe
       type: custom
       html_filename: geogirafe/iframe.html
 
@@ -958,7 +958,7 @@ vars:
           img-src {content_security_policy_main_img_src};
           connect-src {content_security_policy_main_connect_src};
           frame-ancestors {content_security_policy_iframe_api_frame_ancestors};"
-    - pattern: '^/[a-z]+_geogirafe(/theme/.*)?$'
+    - pattern: '^/[a-z_]+_geogirafe(/theme/.*)?$'
       headers:
         Content-Security-Policy: "default-src 'self';
           script-src-elem 'self' 'unsafe-inline';
