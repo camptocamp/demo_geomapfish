@@ -16,7 +16,6 @@ import {GeoGirafeApp} from '@geogirafe/lib-geoportal/core';
  * MyFirstComponent is an example of how to define a custom component in GeoGirafe.
  */
 import MyFirstComponent from './components/my-first-component/component';
-
 /**
  * MyExtendedComponent is an example of how to extend an existing component in GeoGirafe.
  */

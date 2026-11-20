@@ -74,31 +74,49 @@ export default defineConfig(({command, mode}) => {
           api: resolve(__dirname, 'api.html'),
         },
         output: {
-          manualChunks: (id) => {
-            // lazy loading for not priritary libraries
-            const lazyDependencies = [
-              '@geoblocks/mapfishprint',
-              '@geoblocks/print',
-              'buffer',
-              'd3',
-              'error-stack-parser',
-              'file-saver',
-              'tabulator-tables',
-              'lz-string',
-              'qr-code-styling',
-              'source-map-js',
-              'tippy.js',
-              'vanilla-picker',
-              'driver.js',
-            ];
-            if (lazyDependencies.some((dep) => id.includes(`node_modules/${dep}`))) {
-              return 'lazy';
-            }
-            // lazy loading for cesium dependencies
-            const cesiumDependencies = ['cesium', 'olcs/OLCesium'];
-            if (cesiumDependencies.some((dep) => id.includes(`node_modules/${dep}`))) {
-              return 'cesium';
-            }
+          codeSplitting: {
+            groups: [
+              // Dependencies that the application needs on startup and on which Cesium also depends
+              // (OpenLayers and dompurify). They need their own chunk, otherwise they end up in the
+              // (huge) cesium chunk, which would then have to be loaded on startup and would defeat
+              // the lazy loading of Cesium below.
+              // minSize: 0 prevents the group from being merged back into another chunk.
+              {
+                name: 'shared',
+                test: (id) => ['dompurify', 'ol'].some((dep) => id.includes(`node_modules/${dep}/`)),
+                priority: 30,
+                minSize: 0,
+              },
+              // lazy loading for cesium dependencies
+              {
+                name: 'cesium',
+                test: (id) => ['cesium', 'olcs/OLCesium'].some((dep) => id.includes(`node_modules/${dep}`)),
+                priority: 20,
+                minSize: 0,
+              },
+              // lazy loading for not priritary libraries
+              {
+                name: 'lazy',
+                test: (id) =>
+                  [
+                    '@geoblocks/mapfishprint',
+                    '@geoblocks/print',
+                    'buffer',
+                    'd3',
+                    'error-stack-parser',
+                    'file-saver',
+                    'tabulator-tables',
+                    'lz-string',
+                    'qr-code-styling',
+                    'source-map-js',
+                    'tippy.js',
+                    'vanilla-picker',
+                    'driver.js',
+                  ].some((dep) => id.includes(`node_modules/${dep}`)),
+                priority: 10,
+                minSize: 0,
+              },
+            ],
           },
           entryFileNames: (chunkInfo) => {
             if (chunkInfo.name === 'api') {
@@ -124,9 +142,6 @@ export default defineConfig(({command, mode}) => {
           {src: `${geogirafeSource}/styles/*.css`, dest: 'styles/'},
           {src: `${geogirafeSource}/assets/*`, dest: ''},
           {src: `${geogirafeSource}/tools/auth/silentlogincallback.html`, dest: ''},
-          {src: 'node_modules/tabulator-tables/dist/css/tabulator.min.css', dest: 'lib/tabulator-tables/'},
-          {src: 'node_modules/tippy.js/dist/*.css', dest: 'lib/tippy.js/'},
-          {src: 'node_modules/vanilla-picker/dist/*.css', dest: 'lib/vanilla-picker/'},
         ],
       }),
       // This second usage of viteStaticCopy is dedicated to the library.
