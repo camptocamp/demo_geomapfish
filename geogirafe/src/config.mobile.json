@@ -6,7 +6,12 @@
     "url": "/themes?background=background&interface=mobile_geogirafe"
   },
   "search": {
-    "url": "/search?limit=30&partitionlimit=5&interface=mobile_geogirafe&query=###SEARCHTERM###&lang=###SEARCHLANG###"
+    "providers": [
+      {
+        "type": "geomapfish",
+        "url": "https://geomapfish-demo-2-10.camptocamp.com/search?limit=30&partitionlimit=5&interface=mobile_geogirafe&query=###SEARCHTERM###&lang=###SEARCHLANG###"
+      }
+    ]
   },
   "offline": {
     "downloadStartZoom": 11,

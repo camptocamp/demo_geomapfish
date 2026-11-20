@@ -4,11 +4,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite serve",
+    "start": "tsc && vite serve",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "generate-dev-certs-win": "node_modules\\@geogirafe\\lib-geoportal\\buildtools\\generate-dev-certs.cmd certs",
-    "generate-dev-certs": "bash -C './node_modules/@geogirafe/lib-geoportal/buildtools/generate-dev-certs.sh' certs"
+    "generate-dev-certs-nix": "bash -C './node_modules/@geogirafe/lib-geoportal/buildtools/generate-dev-certs.sh' certs"
   },
   "devDependencies": {
     "@types/node": "25.8.0",
@@ -21,5 +21,11 @@
   },
   "dependencies": {
     "@geogirafe/lib-geoportal": "*"
+  },
+  "allowScripts": {
+    "@swc/core": true,
+    "esbuild": true,
+    "odiff-bin": true,
+    "protobufjs": true
   }
 }
