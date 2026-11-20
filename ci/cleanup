@@ -50,6 +50,10 @@ rm "$1/ui/package.json"
 rm "$1/ui/package-lock.json"
 rm "$1/geogirafe/package.json"
 rm "$1/geogirafe/package-lock.json"
+rm "$1/.github/publish/pyproject.toml"
+rm "$1/.github/publish/uv.lock"
+rm "$1/scripts/db-backup"
+rm "$1/scripts/db-restore"
 # Upgrade files
 rm "$1/.UPGRADE_INSTRUCTIONS" || true
 rm "$1/.upgrade.yaml" || true
