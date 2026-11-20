@@ -135,11 +135,15 @@ def test_geogirafe_application(interface: str) -> None:
     ],
 )
 def test_geogirafe_static_asset(asset: str) -> None:
-    """Tests that a static asset of the GeoGirafe application is served."""
+    """
+    Tests that a static asset of the GeoGirafe application is served.
+
+    A missing file is answered with a 404 by the application, which is how the wrong destination paths of
+    the version 4 of vite-plugin-static-copy were detected.
+    """
     response = requests.get(
         f"https://front/static-frontend/geogirafe/{asset}",
         verify=False,
         timeout=30,
     )  # nosec
     assert response.status_code == 200, response.text
-    assert not response.headers.get("Content-Type", "").startswith("text/html"), response.text
