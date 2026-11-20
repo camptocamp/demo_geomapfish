@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="GeoGirafe is an flexible application to build online geoportals." />
+    <meta name="description" content="GeoGirafe is a flexible application to build online geoportals." />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
@@ -95,6 +95,7 @@
       <span lang="en">Loading...</span>
     </div>
     <girafe-app>
+      <girafe-header></girafe-header>
       <div class="bottom-button-container-mobile">
         <girafe-align-north-button-mobile></girafe-align-north-button-mobile>
 
@@ -107,7 +108,12 @@
       <girafe-search></girafe-search>
       <girafe-modals></girafe-modals>
       <div id="content">
-        <girafe-map></girafe-map>
+        <girafe-map-grid>
+          <girafe-map-2d></girafe-map-2d>
+          <girafe-map-3d></girafe-map-3d>
+          <girafe-streetview-google></girafe-streetview-google>
+          <girafe-streetview-mapillary></girafe-streetview-mapillary>
+        </girafe-map-grid>
         <girafe-infobox></girafe-infobox>
       </div>
       <girafe-swipe-up-panel>
