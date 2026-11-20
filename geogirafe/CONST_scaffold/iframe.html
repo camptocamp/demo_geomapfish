@@ -4,10 +4,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="GeoGirafe is an flexible application to build online geoportals." />
+    <meta name="description" content="GeoGirafe is a flexible application to build online geoportals." />
 
-    <meta name="configs" content="main" />
+    <meta name="configs" content="main,iframe" />
     <link rel="config-main-url" href="config.json" />
+    <link rel="config-iframe-url" href="config.iframe.json" />
 
     <link
       rel="apple-touch-icon"
@@ -30,48 +31,10 @@
     <link rel="stylesheet" href="styles/common.css" />
     <link rel="stylesheet" href="styles/iframe.css" />
 
-    <link
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-      href="lib/tippy.js/tippy.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-      href="lib/tippy.js/backdrop.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-      href="lib/tippy.js/border.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-      href="lib/tippy.js/svg-arrow.css"
-    />
-    <noscript>
-      <link rel="stylesheet" href="lib/tippy.js/tippy.css" />
-      <link rel="stylesheet" href="lib/tippy.js/backdrop.css" />
-      <link rel="stylesheet" href="lib/tippy.js/border.css" />
-      <link rel="stylesheet" href="lib/tippy.js/svg-arrow.css" />
-    </noscript>
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/tippy.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/backdrop.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/border.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/svg-arrow.css" />
 
     <script type="module" src="src/main.iframe.ts"></script>
     <title>GeoGirafe iFrame</title>
@@ -125,11 +88,16 @@
       <span lang="en">Loading...</span>
     </div>
     <girafe-app>
-      <img class="logo" alt="geogirafe-logo" src="images/logo/horizontal_black.svg" />
+      <girafe-header></girafe-header>
 
       <div id="content">
         <div id="main">
-          <girafe-map></girafe-map>
+          <girafe-map-grid>
+            <girafe-map-2d></girafe-map-2d>
+            <girafe-map-3d></girafe-map-3d>
+            <girafe-streetview-google></girafe-streetview-google>
+            <girafe-streetview-mapillary></girafe-streetview-mapillary>
+          </girafe-map-grid>
           <girafe-basemap></girafe-basemap>
           <girafe-search id="search"></girafe-search>
         </div>
