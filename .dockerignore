@@ -27,7 +27,10 @@ ui/node_modules/
 ui/static/fa-*
 
 # GeoGirafe
+!geogirafe/api.css
+!geogirafe/api.html
 !geogirafe/custom.css
+!geogirafe/custom.html
 !geogirafe/iframe.html
 !geogirafe/index.html
 !geogirafe/mobile.html
