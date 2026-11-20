@@ -1,9 +1,9 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-    <meta name="description" content="GeoGirafe is an flexible application to build online geoportals." />
+    <meta name="description" content="GeoGirafe is a flexible application to build online geoportals." />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
@@ -11,6 +11,13 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
+    <!--
+      The interface is chosen by the GeoMapFish application (desktop_geogirafe, mobile_geogirafe and
+      iframe_api_geogirafe interfaces), so no redirect-url meta tag and the demo specific configuration
+      files are used instead of the mock ones.
+      The base tag is needed because the application is served below /static-frontend/geogirafe/ while the
+      page URL is /mobile_geogirafe.
+    -->
     <meta name="configs" content="main,mobile" />
     <link rel="config-main-url" href="src/config.json" />
     <link rel="config-mobile-url" href="src/config.mobile.json" />
@@ -19,28 +26,30 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="src/images/logo/apple-touch-icon-black.png"
+      href="images/logo/apple-touch-icon-black.png"
       media="(prefers-color-scheme: light)"
     />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="src/images/logo/apple-touch-icon-white.png"
+      href="images/logo/apple-touch-icon-white.png"
       media="(prefers-color-scheme: dark)"
     />
-    <link href="src/images/logo/favicon_black.svg" rel="icon" media="(prefers-color-scheme: light)" />
-    <link href="src/images/logo/favicon_white.svg" rel="icon" media="(prefers-color-scheme: dark)" />
+    <link href="images/logo/favicon_black.svg" rel="icon" media="(prefers-color-scheme: light)" />
+    <link href="images/logo/favicon_white.svg" rel="icon" media="(prefers-color-scheme: dark)" />
     <link rel="manifest" href="site.webmanifest" />
 
     <link rel="stylesheet" media="screen" href="styles/splash.css" />
-    <link rel="stylesheet" media="screen" href="styles/mobile.css" />
-    <link rel="stylesheet" media="screen" href="styles/common.mobile.css" />
+    <link rel="stylesheet" href="styles/variables.css" />
+    <link rel="stylesheet" href="styles/common.mobile.css" />
+    <link rel="stylesheet" href="styles/mobile.css" />
 
     <script type="module" src="src/main.mobile.ts"></script>
     <title>GeoGirafe Mobile Application</title>
   </head>
 
   <body>
+    <div id="color-picker-container"></div>
     <div id="splash-screen">
       <svg
         id="Logo_Geogirafe_vertical_black"
@@ -87,29 +96,45 @@
       <div class="loader"></div>
       <span lang="en">Loading...</span>
     </div>
+    <girafe-app>
+      <girafe-header></girafe-header>
+      <div class="bottom-button-container-mobile">
+        <girafe-align-north-button-mobile></girafe-align-north-button-mobile>
 
-    <div class="bottom-button-container-mobile">
-      <button
-        class="switch3d girafe-button-big"
-        onclick="document.geogirafe.state.globe.display = document.geogirafe.state.globe.display==='3D'?'2D':'3D'"
-      >
-        <img alt="switch-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/globe.svg" />
-      </button>
-      <girafe-align-north-button-mobile></girafe-align-north-button-mobile>
+        <!-- <girafe-offline></girafe-offline> -->
+        <girafe-geolocation-mobile></girafe-geolocation-mobile>
+        <girafe-display-selector-button-mobile></girafe-display-selector-button-mobile>
+        <girafe-display-menu-button-mobile></girafe-display-menu-button-mobile>
+      </div>
 
-      <!-- <girafe-offline></girafe-offline> -->
-      <girafe-geolocation-mobile></girafe-geolocation-mobile>
-      <girafe-display-selector-button-mobile></girafe-display-selector-button-mobile>
-    </div>
+      <girafe-search></girafe-search>
+      <girafe-modals></girafe-modals>
+      <div id="content">
+        <girafe-map-grid>
+          <girafe-map-2d></girafe-map-2d>
+          <girafe-map-3d></girafe-map-3d>
+          <girafe-streetview-google></girafe-streetview-google>
+          <girafe-streetview-mapillary></girafe-streetview-mapillary>
+        </girafe-map-grid>
+        <girafe-infobox></girafe-infobox>
+      </div>
+      <girafe-swipe-up-panel>
+        <girafe-theme-select slot="main"></girafe-theme-select>
+        <girafe-selection-panel-mobile slot="main"></girafe-selection-panel-mobile>
+        <girafe-drawing-container-mobile slot="main"></girafe-drawing-container-mobile>
 
-    <girafe-search></girafe-search>
-    <div id="content">
-      <girafe-map></girafe-map>
-      <girafe-infobox></girafe-infobox>
-    </div>
-    <girafe-swipe-up-panel>
-      <girafe-basemap-theme-layer-selector-mobile slot="main"></girafe-basemap-theme-layer-selector-mobile>
-      <girafe-selection-panel-mobile slot="main"></girafe-selection-panel-mobile>
-    </girafe-swipe-up-panel>
+        <!-- Mobile menu and its content -->
+        <girafe-menu-mobile slot="main">
+          <girafe-menu-mobile-3d-button slot="mobile-menu-content"></girafe-menu-mobile-3d-button>
+          <girafe-menu-mobile-offline-button slot="mobile-menu-content"></girafe-menu-mobile-offline-button>
+          <girafe-menu-mobile-drawing-button slot="mobile-menu-content"></girafe-menu-mobile-drawing-button>
+          <girafe-oauth-mobile slot="mobile-menu-content"></girafe-oauth-mobile>
+          <girafe-menu-mobile-share-button slot="mobile-menu-content"></girafe-menu-mobile-share-button>
+        </girafe-menu-mobile>
+
+        <girafe-offline slot="main"></girafe-offline>
+        <girafe-share-mobile slot="main"></girafe-share-mobile>
+      </girafe-swipe-up-panel>
+    </girafe-app>
   </body>
 </html>
