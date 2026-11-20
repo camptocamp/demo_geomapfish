@@ -96,6 +96,11 @@ worker one if you serve it over HTTP.
 `test_geogirafe_static_asset` in `tests/test_app.py`, they fail with a bad `<girafe-app>` component or bad
 static asset paths.
 
+The files of this directory are copied into the Docker image by an allow list in `.dockerignore`, so a new file
+at the root of `geogirafe/`, or a new entry of `build.rollupOptions.input` in `vite.config.js`, has to be added
+there too, else the image build fails with `Cannot resolve entry module <file>.html` while the local build
+succeeds. Check that part with `podman build --target=geogirafe-build .` before pushing.
+
 ## Start the development server
 
 ```

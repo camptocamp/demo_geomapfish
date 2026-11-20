@@ -42,6 +42,10 @@ Traps already met (all of them broke the demo silently):
   `geogirafe/package.json`, they are needed for the 3D map and for a reproducible build.
 - The library is published with a `latest` tag pointing to development versions: pin an explicit stable
   version, and use the `@geogirafe/create-template` version published at the same date.
+- `geogirafe/` reaches the Docker image through the allow list of `.dockerignore` (`*` then `!geogirafe/...`
+  lines): every file added at the root of `geogirafe/`, and every new Vite input of `vite.config.js`, must be
+  whitelisted there, else the Docker build dies with
+  `[UNRESOLVED_ENTRY] Cannot resolve entry module custom.html` while the local build passes.
 
 To verify a change without building the whole Docker stack:
 
@@ -53,3 +57,10 @@ npm run build -- --base=/static-frontend/geogirafe/
 
 then serve `dist/app` below the `/static-frontend/geogirafe/` prefix and load it in a browser: the console must
 be empty, except the service worker error when the page is served over HTTP.
+
+To verify the Docker part only (the `.dockerignore` allow list and the image layout), in about two minutes:
+
+```shell
+podman build --target=geogirafe-build .
+podman run --rm --entrypoint=ls <image id> /app/dist/app
+```
