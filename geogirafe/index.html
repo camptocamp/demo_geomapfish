@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="GeoGirafe is a flexible application to build online geoportals." />
 
+    <!--
+      The interface is chosen by the GeoMapFish application (desktop_geogirafe, mobile_geogirafe and
+      iframe_api_geogirafe interfaces), so no redirect-url meta tag and the demo specific configuration
+      files are used instead of the mock ones.
+      The base tag is needed because the application is served below /static-frontend/geogirafe/ while the
+      page URL is /desktop_geogirafe.
+    -->
     <meta name="configs" content="main,desktop" />
     <link rel="config-main-url" href="src/config.json" />
     <link rel="config-desktop-url" href="src/config.desktop.json" />
@@ -13,54 +21,28 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="src/images/logo/apple-touch-icon-black.png"
+      href="images/logo/apple-touch-icon-black.png"
       media="(prefers-color-scheme: light)"
     />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="src/images/logo/apple-touch-icon-white.png"
+      href="images/logo/apple-touch-icon-white.png"
       media="(prefers-color-scheme: dark)"
     />
-    <link href="src/images/logo/favicon_black.svg" rel="icon" media="(prefers-color-scheme: light)" />
-    <link href="src/images/logo/favicon_white.svg" rel="icon" media="(prefers-color-scheme: dark)" />
+    <link href="images/logo/favicon_black.svg" rel="icon" media="(prefers-color-scheme: light)" />
+    <link href="images/logo/favicon_white.svg" rel="icon" media="(prefers-color-scheme: dark)" />
     <link rel="manifest" href="site.webmanifest" />
 
-    <link rel="stylesheet" media="screen" href="node_modules/@geogirafe/lib-geoportal/styles/variables.css" />
-    <link rel="stylesheet" media="screen" href="node_modules/@geogirafe/lib-geoportal/styles/splash.css" />
-    <link rel="stylesheet" media="screen" href="node_modules/@geogirafe/lib-geoportal/styles/index.css" />
-    <link rel="stylesheet" media="screen" href="node_modules/@geogirafe/lib-geoportal/styles/common.css" />
+    <link rel="stylesheet" media="screen" href="styles/splash.css" />
+    <link rel="stylesheet" href="styles/variables.css" />
+    <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/index.css" />
 
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="node_modules/tippy.js/dist/tippy.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="node_modules/tippy.js/dist/backdrop.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="node_modules/tippy.js/dist/border.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="node_modules/tippy.js/dist/svg-arrow.css"
-    />
-    <noscript>
-      <link rel="stylesheet" href="node_modules/tippy.js/dist/tippy.css" />
-      <link rel="stylesheet" href="node_modules/tippy.js/dist/backdrop.css" />
-      <link rel="stylesheet" href="node_modules/tippy.js/dist/border.css" />
-      <link rel="stylesheet" href="node_modules/tippy.js/dist/svg-arrow.css" />
-    </noscript>
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/tippy.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/backdrop.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/border.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/svg-arrow.css" />
 
     <script type="module" src="src/main.ts"></script>
     <title>GeoGirafe Desktop Application</title>
@@ -113,209 +95,258 @@
       <div class="loader"></div>
       <span lang="en">Loading...</span>
     </div>
-    <header>
-      <girafe-theme-select></girafe-theme-select>
-      <img class="logo" alt="geogirafe-logo" src="src/images/logo/horizontal_black.svg" />
-      <girafe-search id="search"></girafe-search>
-      <girafe-oauth></girafe-oauth>
-      <girafe-nav-history></girafe-nav-history>
-      <girafe-video-record></girafe-video-record>
-    </header>
-
-    <girafe-help></girafe-help>
-    <girafe-modals></girafe-modals>
-    <girafe-default-context-menu></girafe-default-context-menu>
-    <girafe-custom-context-menu></girafe-custom-context-menu>
-
-    <div id="content">
-      <div id="main">
-        <girafe-lr-panel class="panel-left" dock="left">
-          <girafe-tree-view slot="main"></girafe-tree-view>
-        </girafe-lr-panel>
-        <div id="content-map">
-          <girafe-map></girafe-map>
-          <div class="info-area">
-            <girafe-basemap></girafe-basemap>
-            <girafe-infobox></girafe-infobox>
-          </div>
-          <girafe-prototype-banner></girafe-prototype-banner>
-          <footer>
-            <girafe-scale></girafe-scale>
-            <girafe-coordinate></girafe-coordinate>
-            <span class="copyright">
-              <span i18n="Information without public faith">Information without public faith</span>
-              <span>
-                ©
-                <a href="https://doc.geomapfish.dev" target="_blank">GeoGirafe</a>,
-                <a href="https://www.swisstopo.admin.ch/en/legal-basis" target="_blank">swisstopo</a>,
-                <a href="http://www.openstreetmap.org/copyright" target="_blank">OSM</a>
-              </span>
-            </span>
-          </footer>
+    <girafe-app>
+      <header>
+        <girafe-theme-select data-tour="theme-selection"></girafe-theme-select>
+        <girafe-header></girafe-header>
+        <div class="header-center-align">
+          <girafe-search id="search" plugin="config:search">
+            <!-- <div slot="search-tooltip">
+              <p i18n="tooltip-translation-key">
+                Create a custom tooltip
+              </p>
+            </div> -->
+          </girafe-search>
         </div>
-        <girafe-lr-panel class="panel-right" dock="right">
-          <girafe-drawing
-            slot="main"
-            data-toggle-path="interface.drawingPanelVisible"
-            data-title="drawing-panel"
-          ></girafe-drawing>
-          <girafe-print
-            slot="main"
-            data-toggle-path="interface.printPanelVisible"
-            data-title="print-panel"
-          ></girafe-print>
-          <girafe-ext-layer
-            slot="main"
-            data-toggle-path="interface.extLayerPanelVisible"
-            data-title="ext-layer-panel"
-          ></girafe-ext-layer>
-          <girafe-cross-section-settings
-            slot="main"
-            data-toggle-path="interface.crossSectionPanelVisible"
-            data-title="cross-section-settings"
-          ></girafe-cross-section-settings>
-          <girafe-edit
-            slot="main"
-            data-toggle-path="interface.editPanelVisible"
-            data-title="edit-panel"
-          ></girafe-edit>
-          <girafe-layout
-            slot="main"
-            data-toggle-path="interface.layoutPanelVisible"
-            data-title="layout-panel"
-          ></girafe-layout>
-          <girafe-about
-            slot="main"
-            data-toggle-path="interface.aboutPanelVisible"
-            data-title="about-panel"
-          ></girafe-about>
-          <girafe-user-preferences
-            slot="main"
-            data-toggle-path="interface.userPreferencesPanelVisible"
-            data-title="user-preferences-panel"
-          ></girafe-user-preferences>
-          <girafe-share
-            slot="main"
-            data-toggle-path="interface.sharePanelVisible"
-            data-title="share-panel"
-          ></girafe-share>
-          <girafe-contact
-            slot="main"
-            data-toggle-path="interface.contactPanelVisible"
-            data-title="contact-panel"
-          ></girafe-contact>
-        </girafe-lr-panel>
+        <girafe-news-button plugin="config:news"></girafe-news-button>
+        <girafe-oauth></girafe-oauth>
+        <girafe-add-bookmark></girafe-add-bookmark>
+      </header>
 
-        <girafe-info-window></girafe-info-window>
-        <girafe-selection-window></girafe-selection-window>
+      <girafe-help></girafe-help>
+      <girafe-modals></girafe-modals>
+      <girafe-default-context-menu></girafe-default-context-menu>
+      <girafe-custom-context-menu></girafe-custom-context-menu>
+
+      <div id="content">
+        <div id="main">
+          <girafe-lr-panel class="panel-left" dock="left">
+            <girafe-tree-view slot="main"></girafe-tree-view>
+          </girafe-lr-panel>
+          <div id="content-map">
+            <girafe-map-grid>
+              <girafe-map-2d></girafe-map-2d>
+              <girafe-map-3d></girafe-map-3d>
+              <girafe-streetview-google></girafe-streetview-google>
+              <girafe-streetview-mapillary></girafe-streetview-mapillary>
+            </girafe-map-grid>
+            <div class="info-area">
+              <girafe-basemap data-tour="basemap-selection"></girafe-basemap>
+              <girafe-infobox></girafe-infobox>
+            </div>
+            <girafe-prototype-banner></girafe-prototype-banner>
+            <footer>
+              <girafe-scale></girafe-scale>
+              <girafe-coordinate></girafe-coordinate>
+              <span class="copyright">
+                <span i18n="Information without public faith">Information without public faith</span>
+                <span>
+                  ©
+                  <a href="https://doc.geogirafe.org" target="_blank">GeoGirafe</a>,
+                  <a href="https://www.swisstopo.admin.ch/en/legal-basis" target="_blank">swisstopo</a>,
+                  <a href="http://www.openstreetmap.org/copyright" target="_blank">OSM</a>
+                </span>
+              </span>
+            </footer>
+          </div>
+          <girafe-lr-panel class="panel-right" dock="right">
+            <girafe-drawing slot="main"></girafe-drawing>
+            <girafe-selection-tool slot="main"></girafe-selection-tool>
+            <girafe-print slot="main"></girafe-print>
+            <girafe-ext-layer slot="main"></girafe-ext-layer>
+            <girafe-cross-section-settings slot="main"></girafe-cross-section-settings>
+            <girafe-advanced-filter slot="main"></girafe-advanced-filter>
+            <girafe-news slot="main"></girafe-news>
+            <girafe-edit slot="main"></girafe-edit>
+            <girafe-layout slot="main"></girafe-layout>
+            <girafe-about slot="main"></girafe-about>
+            <girafe-user-preferences slot="main"></girafe-user-preferences>
+            <girafe-share slot="main"></girafe-share>
+            <girafe-contact slot="main"></girafe-contact>
+          </girafe-lr-panel>
+
+          <girafe-info-window></girafe-info-window>
+          <girafe-selection-window></girafe-selection-window>
+        </div>
+        <div id="content-bottom">
+          <girafe-selection-grid dock="bottom"></girafe-selection-grid>
+          <girafe-cross-section-view id="cross-section-footer" dock="bottom"></girafe-cross-section-view>
+        </div>
       </div>
-      <div id="content-bottom">
-        <girafe-selection-grid dock="bottom"></girafe-selection-grid>
-        <girafe-cross-section-view id="cross-section-footer" dock="bottom"></girafe-cross-section-view>
+
+      <div id="buttonbar">
+        <button
+          id="buttonbar-toggle"
+          class="gg-icon-button gg-big"
+          type="button"
+          tip="open-buttonbar-menu"
+          aria-expanded="false"
+          onclick="this.parentNode.classList.toggle('open')"
+        >
+          <img alt="" src="icons/menu.svg" />
+        </button>
+
+        <div
+          id="buttonbar-grid"
+          role="menubar"
+          tabindex="0"
+          onclick="this.parentNode.classList.toggle('open')"
+          onkeyup="this.parentNode.classList.toggle('open')"
+        >
+          <girafe-video-record></girafe-video-record>
+          <button
+            tip="drawing-panel"
+            slot="menu-content"
+            class="gg-icon-button gg-big"
+            onclick="
+              document.geogirafe.state.interface.drawingPanelVisible =
+                !document.geogirafe.state.interface.drawingPanelVisible
+            "
+          >
+            <img alt="draw-icon" src="icons/draw.svg" />
+          </button>
+          <button
+            tip="selection-tool-panel"
+            slot="menu-content"
+            class="gg-icon-button gg-big"
+            onclick="
+              document.geogirafe.state.interface.selectionToolPanelVisible =
+                !document.geogirafe.state.interface.selectionToolPanelVisible
+            "
+          >
+            <img alt="draw-icon" src="icons/select.svg" />
+          </button>
+          <button
+            tip="external-entry"
+            slot="menu-content"
+            class="gg-icon-button gg-big"
+            onclick="
+              document.geogirafe.state.interface.extLayerPanelVisible =
+                !document.geogirafe.state.interface.extLayerPanelVisible
+            "
+          >
+            <img alt="ext-icon" src="icons/external-entry.svg" />
+          </button>
+          <button
+            tip="print-panel"
+            slot="menu-content"
+            class="gg-icon-button gg-big"
+            plugin="config:print"
+            onclick="
+              document.geogirafe.state.interface.printPanelVisible =
+                !document.geogirafe.state.interface.printPanelVisible
+            "
+          >
+            <img alt="print-icon" src="icons/print.svg" />
+          </button>
+          <button
+            tip="lidar-panel"
+            slot="menu-content"
+            class="gg-icon-button gg-big"
+            plugin="config:lidar"
+            onclick="
+              document.geogirafe.state.interface.crossSectionPanelVisible =
+                !document.geogirafe.state.interface.crossSectionPanelVisible
+            "
+          >
+            <img alt="cross-section-icon" src="icons/cross-section.svg" />
+          </button>
+          <button
+            tip="advanced-filter-panel"
+            slot="menu-content"
+            class="gg-icon-button gg-big"
+            onclick="
+              document.geogirafe.state.interface.advancedFilterPanelVisible =
+                !document.geogirafe.state.interface.advancedFilterPanelVisible
+            "
+          >
+            <img alt="advanced-filter-icon" src="icons/advanced-filter.svg" />
+          </button>
+          <button
+            tip="edit-panel"
+            slot="menu-content"
+            data-visibility-control="edit"
+            class="gg-icon-button gg-big"
+            onclick="
+              document.geogirafe.state.interface.editPanelVisible = !document.geogirafe.state.interface.editPanelVisible
+            "
+          >
+            <img alt="edit-icon" src="icons/edit.svg" />
+          </button>
+          <button
+            tip="share-panel"
+            slot="menu-content"
+            class="gg-icon-button gg-big"
+            plugin="config:share"
+            onclick="
+              document.geogirafe.state.interface.sharePanelVisible =
+                !document.geogirafe.state.interface.sharePanelVisible
+            "
+          >
+            <img alt="share-icon" src="icons/share.svg" />
+          </button>
+          <button
+            tip="layout-panel"
+            class="gg-icon-button gg-big"
+            plugin="config:map3d"
+            onclick="
+              document.geogirafe.state.interface.layoutPanelVisible =
+                !document.geogirafe.state.interface.layoutPanelVisible
+            "
+          >
+            <img alt="layout-icon" src="icons/layout.svg" />
+          </button>
+          <button
+            tip="contact-panel"
+            class="gg-icon-button gg-big"
+            plugin="config:contact"
+            onclick="
+              document.geogirafe.state.interface.contactPanelVisible =
+                !document.geogirafe.state.interface.contactPanelVisible
+            "
+          >
+            <img alt="layout-icon" src="icons/mail.svg" />
+          </button>
+          <button
+            tip="infra3d"
+            class="gg-icon-button gg-big"
+            plugin="plugin_infra3d"
+            onclick="alert('infra3d')"
+          >
+            <img alt="help-icon" src="icons/infra3d.svg" />
+          </button>
+
+          <div class="filler"></div>
+
+          <button
+            tip="help"
+            class="gg-icon-button gg-big"
+            onclick="document.geogirafe.state.interface.helpVisible = true"
+          >
+            <img alt="help-icon" src="icons/help.svg" />
+          </button>
+          <button
+            tip="about-panel"
+            class="gg-icon-button gg-big"
+            onclick="
+              document.geogirafe.state.interface.aboutPanelVisible =
+                !document.geogirafe.state.interface.aboutPanelVisible
+            "
+          >
+            <img alt="info-icon" src="icons/info.svg" />
+          </button>
+          <button
+            tip="user-preferences-panel"
+            class="gg-icon-button gg-big"
+            onclick="
+              document.geogirafe.state.interface.userPreferencesPanelVisible =
+                !document.geogirafe.state.interface.userPreferencesPanelVisible
+            "
+          >
+            <img alt="user-preferences-icon" src="icons/config.svg" />
+          </button>
+        </div>
       </div>
-    </div>
-
-    <div id="buttonbar">
-      <button
-        tip="drawing-panel"
-        slot="menu-content"
-        class="gg-icon-button gg-big"
-        onclick="document.geogirafe.state.interface.drawingPanelVisible = !document.geogirafe.state.interface.drawingPanelVisible"
-      >
-        <img alt="draw-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/draw.svg" />
-      </button>
-      <button
-        tip="external-entry"
-        slot="menu-content"
-        class="gg-icon-button gg-big"
-        onclick="document.geogirafe.state.interface.extLayerPanelVisible = !document.geogirafe.state.interface.extLayerPanelVisible"
-      >
-        <img alt="ext-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/external-entry.svg" />
-      </button>
-      <button
-        tip="print-panel"
-        slot="menu-content"
-        class="gg-icon-button gg-big"
-        plugin="config:print"
-        onclick="document.geogirafe.state.interface.printPanelVisible = !document.geogirafe.state.interface.printPanelVisible"
-      >
-        <img alt="print-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/print.svg" />
-      </button>
-      <button
-        tip="lidar-panel"
-        slot="menu-content"
-        class="gg-icon-button gg-big"
-        plugin="config:lidar"
-        onclick="document.geogirafe.state.interface.crossSectionPanelVisible = !document.geogirafe.state.interface.crossSectionPanelVisible"
-      >
-        <img
-          alt="cross-section-icon"
-          src="node_modules/@geogirafe/lib-geoportal/assets/icons/cross-section.svg"
-        />
-      </button>
-      <button
-        tip="edit-panel"
-        slot="menu-content"
-        class="gg-icon-button gg-big"
-        onclick="document.geogirafe.state.interface.editPanelVisible = !document.geogirafe.state.interface.editPanelVisible"
-      >
-        <img alt="edit-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/edit.svg" />
-      </button>
-      <button
-        tip="share-panel"
-        slot="menu-content"
-        class="gg-icon-button gg-big"
-        plugin="config:share"
-        onclick="document.geogirafe.state.interface.sharePanelVisible = !document.geogirafe.state.interface.sharePanelVisible"
-      >
-        <img alt="share-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/share.svg" />
-      </button>
-      <button
-        tip="layout-panel"
-        class="gg-icon-button gg-big"
-        plugin="config:map3d"
-        onclick="document.geogirafe.state.interface.layoutPanelVisible = !document.geogirafe.state.interface.layoutPanelVisible"
-      >
-        <img alt="layout-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/layout.svg" />
-      </button>
-      <button
-        tip="contact-panel"
-        class="gg-icon-button gg-big"
-        plugin="config:contact"
-        onclick="document.geogirafe.state.interface.contactPanelVisible = !document.geogirafe.state.interface.contactPanelVisible"
-      >
-        <img alt="layout-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/mail.svg" />
-      </button>
-      <button tip="infra3d" class="gg-icon-button gg-big" plugin="plugin_infra3d" onclick="alert('infra3d')">
-        <img alt="help-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/infra3d.svg" />
-      </button>
-
-      <div class="filler"></div>
-
-      <button
-        tip="help"
-        class="gg-icon-button gg-big"
-        onclick="document.geogirafe.state.interface.helpVisible = true"
-      >
-        <img alt="help-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/help.svg" />
-      </button>
-      <button
-        tip="about-panel"
-        class="gg-icon-button gg-big"
-        onclick="document.geogirafe.state.interface.aboutPanelVisible = !document.geogirafe.state.interface.aboutPanelVisible"
-      >
-        <img alt="info-icon" src="node_modules/@geogirafe/lib-geoportal/assets/icons/info.svg" />
-      </button>
-      <button
-        tip="user-preferences-panel"
-        class="gg-icon-button gg-big"
-        onclick="document.geogirafe.state.interface.userPreferencesPanelVisible = !document.geogirafe.state.interface.userPreferencesPanelVisible"
-      >
-        <img
-          alt="user-preferences-icon"
-          src="node_modules/@geogirafe/lib-geoportal/assets/icons/config.svg"
-        />
-      </button>
-    </div>
+    </girafe-app>
   </body>
 </html>
