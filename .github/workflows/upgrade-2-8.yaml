@@ -30,10 +30,10 @@ jobs:
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/pre-commit
-          key: pre-commit-${{ matrix.branch }}-${{ hashFiles('.pre-commit-config.yaml') }}
+          key: pre-commit-prod-2-8-${{ matrix.branch }}-${{ hashFiles('.pre-commit-config.yaml') }}
           restore-keys: |
-            pre-commit-${{ matrix.branch }}-${{ hashFiles('.pre-commit-config.yaml') }}
-            pre-commit-${{ matrix.branch }}-
+            pre-commit-prod-2-8-${{ matrix.branch }}-${{ hashFiles('.pre-commit-config.yaml') }}
+            pre-commit-prod-2-8-${{ matrix.branch }}-
 
       - name: Update the demo
         run: >
