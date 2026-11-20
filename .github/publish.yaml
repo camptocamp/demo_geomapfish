@@ -3,5 +3,6 @@
 docker:
   latest: false
   images:
-    - name: camptocamp/geomapfish-config
-    - name: camptocamp/geomapfish-geoportal
+    - name: camptocamp/geomapfishdemo-config
+    - name: camptocamp/geomapfishdemo-geoportal
+    - name: camptocamp/geomapfishdemo-custom
