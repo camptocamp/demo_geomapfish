@@ -1,0 +1,20 @@
+Backport of #3240 to prod-2-8
+
+Error on cherry-picking: ba3ddfa0f823f135be036dfc213a362be3f5f2ed
+
+To continue do:
+```bash
+git fetch && \
+  git checkout ghci/backport/3240-to-prod-2-8 && \
+  git reset --hard HEAD^ && \
+  git cherry-pick ba3ddfa0f823f135be036dfc213a362be3f5f2ed
+```
+Resolve the conflict, then:
+```bash
+git add <file> && \
+  git cherry-pick --continue
+```
+When all the conflicts are resolved, push the branch:
+```bash
+git push origin HEAD:refs/heads/ghci/backport/3240-to-prod-2-8 --force-with-lease
+```
