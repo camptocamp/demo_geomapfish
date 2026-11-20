@@ -2,81 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Entry points</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
-      integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
   </head>
   <body>
-    <script>
-      (() => {
-        'use strict';
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.setAttribute('data-bs-theme', 'dark');
-        }
-      })();
-    </script>
-    <div class="container-fluid">
-      <h1>Entry points</h1>
-      <div class="row">
-        <div class="col-lg-3">
-          <h2>Standard interfaces</h2>
-        </div>
-        <div class="col-lg">
-          <a href="/">Desktop</a><br />
-          <a href="/mobile">Mobile</a><br />
-          <a href="/iframe_api">Iframe</a><br />
-        </div>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="col-lg-3">
-          <h2>Renovated interfaces, built with Vite</h2>
-        </div>
-        <div class="col-lg">
-          <a href="/desktop_renovated">Desktop</a><br />
-          <a href="/mobile_renovated">Mobile</a><br />
-          <a href="/iframe_api_renovated">Iframe</a><br />
-        </div>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="col-lg-3">
-          <h2>Geogirafe, the next generation of UI (experimental)</h2>
-        </div>
-        <div class="col-lg">
-          <a href="/desktop_geogirafe">Desktop</a><br />
-          <a href="/mobile_geogirafe">Mobile</a><br />
-          <a href="/iframe_api_geogirafe">Iframe</a><br />
-        </div>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="col-lg-3">
-          <h2>Other pages</h2>
-        </div>
-        <div class="col-lg">
-          <a href="/oeedit">Object editing</a><br />
-          <a href="story-map.html">Story map</a><br />
-          <a href="cog.html">COG</a><br />
-          <a href="/apihelp.html">API help page</a><br />
-        </div>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="col-lg-3">
-          <h2>OGC API</h2>
-        </div>
-        <div class="col-lg">
-          <a href="/mapserv_proxy/MapServer/ogcapi">MapServer</a><br />
-          <a href="/mapserv_proxy/qgis_edit/ogcapi">QGIS Server</a><br />
-        </div>
-      </div>
-    </div>
+    <h1>Entry points</h1>
+    <h2>Standard interfaces</h2>
+    <p><a href="/">Desktop</a>, <a href="/mobile">Mobile</a>, <a href="/iframe_api">Iframe</a></p>
+
+    <h2>Renovated interfaces, built with Vite</h2>
+    <p>
+      <a href="/desktop_renovated">Desktop</a>, <a href="/mobile_renovated">Mobile</a>,
+      <a href="/iframe_api_renovated">Iframe</a>
+    </p>
+
+    <h2>Geogirafe, the next generation of UI (experimental)</h2>
+    <p>
+      <a href="/desktop_geogirafe">Desktop</a>, <a href="/mobile_geogirafe">Mobile</a>,
+      <a href="/iframe_api_geogirafe">Iframe</a>
+    </p>
+
+    <h2>Other pages</h2>
+    <p><a href="/oeedit">Object editing</a></p>
+    <p><a href="story-map.html">Story map</a></p>
+    <p><a href="cog.html">COG</a></p>
+    <p><a href="/apihelp.html">API help page</a></p>
+
+    <h2>OGC API</h2>
+    <p><a href="/mapserv_proxy/MapServer/ogcapi">MapServer</a></p>
+    <p><a href="/mapserv_proxy/qgis_edit/ogcapi">QGIS Server</a></p>
   </body>
 </html>
