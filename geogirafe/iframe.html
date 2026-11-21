@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="GeoGirafe is a flexible application to build online geoportals." />
 
+    <!--
+      The interface is chosen by the GeoMapFish application (desktop_geogirafe, mobile_geogirafe and
+      iframe_api_geogirafe interfaces), so the demo specific configuration files are used instead of the
+      mock ones.
+      The base tag is needed because the application is served below /static-frontend/geogirafe/ while the
+      page URL is /iframe_api_geogirafe.
+    -->
     <meta name="configs" content="main,iframe" />
     <link rel="config-main-url" href="src/config.json" />
     <link rel="config-iframe-url" href="src/config.iframe.json" />
@@ -13,54 +21,28 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="src/images/logo/apple-touch-icon-black.png"
+      href="images/logo/apple-touch-icon-black.png"
       media="(prefers-color-scheme: light)"
     />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="src/images/logo/apple-touch-icon-white.png"
+      href="images/logo/apple-touch-icon-white.png"
       media="(prefers-color-scheme: dark)"
     />
-    <link href="src/images/logo/favicon_black.svg" rel="icon" media="(prefers-color-scheme: light)" />
-    <link href="src/images/logo/favicon_white.svg" rel="icon" media="(prefers-color-scheme: dark)" />
-    <link rel="manifest" href="public/site.webmanifest" />
+    <link href="images/logo/favicon_black.svg" rel="icon" media="(prefers-color-scheme: light)" />
+    <link href="images/logo/favicon_white.svg" rel="icon" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="site.webmanifest" />
 
-    <link rel="stylesheet" media="screen" href="node_modules/@geogirafe/lib-geoportal/styles/variables.css" />
-    <link rel="stylesheet" media="screen" href="node_modules/@geogirafe/lib-geoportal/styles/splash.css" />
-    <link rel="stylesheet" media="screen" href="node_modules/@geogirafe/lib-geoportal/styles/common.css" />
-    <link rel="stylesheet" media="screen" href="node_modules/@geogirafe/lib-geoportal/styles/iframe.css" />
+    <link rel="stylesheet" media="screen" href="styles/splash.css" />
+    <link rel="stylesheet" href="styles/variables.css" />
+    <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/iframe.css" />
 
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="node_modules/tippy.js/dist/tippy.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="node_modules/tippy.js/dist/backdrop.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="node_modules/tippy.js/dist/border.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="node_modules/tippy.js/dist/svg-arrow.css"
-    />
-    <noscript>
-      <link rel="stylesheet" href="node_modules/tippy.js/dist/tippy.css" />
-      <link rel="stylesheet" href="node_modules/tippy.js/dist/backdrop.css" />
-      <link rel="stylesheet" href="node_modules/tippy.js/dist/border.css" />
-      <link rel="stylesheet" href="node_modules/tippy.js/dist/svg-arrow.css" />
-    </noscript>
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/tippy.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/backdrop.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/border.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/svg-arrow.css" />
 
     <script type="module" src="src/main.iframe.ts"></script>
     <title>GeoGirafe Iframe API Application</title>
@@ -113,14 +95,21 @@
       <div class="loader"></div>
       <span lang="en">Loading...</span>
     </div>
+    <girafe-app>
+      <girafe-header></girafe-header>
 
-    <img class="logo" alt="geogirafe-logo" src="src/images/logo/horizontal_black.svg" />
-
-    <div id="content">
-      <div id="main">
-        <girafe-map></girafe-map>
-        <girafe-basemap></girafe-basemap>
+      <div id="content">
+        <div id="main">
+          <girafe-map-grid>
+            <girafe-map-2d></girafe-map-2d>
+            <girafe-map-3d></girafe-map-3d>
+            <girafe-streetview-google></girafe-streetview-google>
+            <girafe-streetview-mapillary></girafe-streetview-mapillary>
+          </girafe-map-grid>
+          <girafe-basemap></girafe-basemap>
+          <girafe-search id="search"></girafe-search>
+        </div>
       </div>
-    </div>
+    </girafe-app>
   </body>
 </html>

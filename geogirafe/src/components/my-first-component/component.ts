@@ -1,11 +1,11 @@
 import {GirafeHTMLElement} from '@geogirafe/lib-geoportal/base';
 
 /**
- * This is an example how to define a web component based on GeoGirafe
+ * This is an exemple how to define a web component based on GeoGirafe
  * Note that you do not have to extend GirafeHTMLElement here.
  * It makes the job easier, because everything will be ready for the integration in a GeoGirafe application
- * Like for example access to the state, translations, templating, styling, ...
- * But you don't have to. If you prefer, you can extend the standard HTMLElement.
+ * Like for exemple access to the state, translations, templating, styling, ...
+ * But you don't have to. If you prefer, you can extent the standard HTMLElement.
  * In this case, you will just have a bit more work to integrate it in the GeoGirafe world.
  */
 
@@ -32,7 +32,6 @@ class MyFirstComponent extends GirafeHTMLElement {
      * https://gitlab.com/geogirafe/gg-viewer/-/blob/main/src/tools/state/state.ts?ref_type=heads#L75
      * And rerender the component when this property changes
      */
-    // @ts-ignore
     this.context.stateManager.subscribe(
       'mouseCoordinates',
       (_oldCoordinates: number[], newCoordinates: number[]) => this.onChangeCoordinates(newCoordinates),
