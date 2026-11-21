@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="GeoGirafe is an flexible application to build online geoportals." />
+    <meta name="description" content="GeoGirafe is a flexible application to build online geoportals." />
 
     <!--
       If redirect-url meta tag is present, a redirect will happen when the detected device is an iPhone or Android.
@@ -35,48 +35,10 @@
     <link rel="stylesheet" href="styles/common.css" />
     <link rel="stylesheet" href="styles/index.css" />
 
-    <link
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-      href="lib/tippy.js/tippy.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-      href="lib/tippy.js/backdrop.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-      href="lib/tippy.js/border.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-      href="lib/tippy.js/svg-arrow.css"
-    />
-    <noscript>
-      <link rel="stylesheet" href="lib/tippy.js/tippy.css" />
-      <link rel="stylesheet" href="lib/tippy.js/backdrop.css" />
-      <link rel="stylesheet" href="lib/tippy.js/border.css" />
-      <link rel="stylesheet" href="lib/tippy.js/svg-arrow.css" />
-    </noscript>
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/tippy.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/backdrop.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/border.css" />
+    <link rel="stylesheet" href="node_modules/tippy.js/dist/svg-arrow.css" />
 
     <script type="module" src="src/main.ts"></script>
     <title>GeoGirafe</title>
@@ -132,9 +94,15 @@
     <girafe-app>
       <header>
         <girafe-theme-select data-tour="theme-selection"></girafe-theme-select>
-        <img class="logo" alt="geogirafe-logo" src="images/logo/horizontal_black.svg" />
+        <girafe-header></girafe-header>
         <div class="header-center-align">
-          <girafe-search id="search" plugin="config:search"></girafe-search>
+          <girafe-search id="search" plugin="config:search">
+            <!-- <div slot="search-tooltip">
+              <p i18n="tooltip-translation-key">
+                Create a custom tooltip
+              </p>
+            </div> -->
+          </girafe-search>
         </div>
         <girafe-news-button plugin="config:news"></girafe-news-button>
         <girafe-oauth></girafe-oauth>
@@ -152,7 +120,12 @@
             <girafe-tree-view slot="main"></girafe-tree-view>
           </girafe-lr-panel>
           <div id="content-map">
-            <girafe-map></girafe-map>
+            <girafe-map-grid>
+              <girafe-map-2d></girafe-map-2d>
+              <girafe-map-3d></girafe-map-3d>
+              <girafe-streetview-google></girafe-streetview-google>
+              <girafe-streetview-mapillary></girafe-streetview-mapillary>
+            </girafe-map-grid>
             <div class="info-area">
               <girafe-basemap data-tour="basemap-selection"></girafe-basemap>
               <girafe-infobox></girafe-infobox>
@@ -288,6 +261,7 @@
           <button
             tip="edit-panel"
             slot="menu-content"
+            data-visibility-control="edit"
             class="gg-icon-button gg-big"
             onclick="
               document.geogirafe.state.interface.editPanelVisible = !document.geogirafe.state.interface.editPanelVisible
