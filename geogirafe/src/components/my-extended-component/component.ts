@@ -1,7 +1,7 @@
 import {AboutComponent} from '@geogirafe/lib-geoportal/components';
 
 /**
- * This is an example how to override a web component defined in the core of GeoGirafe
+ * This is an exemple how to override a web component defined in the core of GeoGirafe
  * The technical documentation of AboutComponent can be found here:
  * https://doc.geomapfish.dev/code/classes/components_about_component.AboutComponent.html
  */

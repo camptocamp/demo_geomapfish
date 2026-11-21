@@ -6,11 +6,13 @@
     <meta name="description" content="GeoGirafe is an flexible application to build online geoportals." />
 
     <!--
-      If redirect-url meta tag is present, a redirect will happen when the detected device is an iPhone or Android.
-      The value of content should be a relative URL to the desired endpoint or page.
+      This page is not mapped to a GeoMapFish interface, it is reached directly as
+      /static-frontend/geogirafe/custom.html, so the base tag is needed and the demo specific configuration
+      file is used instead of the mock one.
     -->
     <meta name="configs" content="main" />
-    <link rel="config-main-url" href="config.json" />
+    <link rel="config-main-url" href="src/config.json" />
+    <base href="%BASE_URL%" />
 
     <link
       rel="apple-touch-icon"
