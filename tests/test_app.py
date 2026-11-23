@@ -95,3 +95,55 @@ def test_url(url: str, params: dict[str, str], timeout: int) -> None:
             continue
         break
     assert response.status_code == 200, response.text
+
+
+@pytest.mark.parametrize(
+    "interface",
+    [
+        "desktop_geogirafe",
+        "mobile_geogirafe",
+        "iframe_api_geogirafe",
+    ],
+)
+def test_geogirafe_application(interface: str) -> None:
+    """
+    Tests that the GeoGirafe application pages are served and that the main component is present.
+
+    Since the version 1.1.0 of @geogirafe/lib-geoportal, the application content must be wrapped in a
+    <girafe-app> component, otherwise the application does not start at all (an empty splash screen is
+    displayed), and that is not detectable with a simple HTTP status code.
+    """
+    response = requests.get(f"https://front/{interface}", verify=False, timeout=30)  # nosec
+    assert response.status_code == 200, response.text
+    assert "<girafe-app>" in response.text, response.text
+
+
+@pytest.mark.parametrize(
+    "asset",
+    [
+        # Copied from @geogirafe/lib-geoportal by vite-plugin-static-copy, which changed the way it
+        # calculates the destination path in its version 4.
+        "styles/common.css",
+        "icons/info.svg",
+        "i18n/en.json",
+        "service-worker.js",
+        "silentlogincallback.html",
+        # Coming from the build, needed by the 3D map.
+        "lib/cesium/Widgets/widgets.css",
+        # Coming from the public folder of the GeoGirafe application.
+        "images/logo/horizontal_black.svg",
+    ],
+)
+def test_geogirafe_static_asset(asset: str) -> None:
+    """
+    Tests that a static asset of the GeoGirafe application is served.
+
+    A missing file is answered with a 404 by the application, which is how the wrong destination paths of
+    the version 4 of vite-plugin-static-copy were detected.
+    """
+    response = requests.get(
+        f"https://front/static-frontend/geogirafe/{asset}",
+        verify=False,
+        timeout=30,
+    )  # nosec
+    assert response.status_code == 200, response.text
