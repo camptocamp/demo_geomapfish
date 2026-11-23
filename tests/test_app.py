@@ -172,8 +172,17 @@ def test_geogirafe_content_security_policy() -> None:
 
     The news component fetches https://geogirafe.org/feed/atom/ (news.urls of the GeoGirafe
     configuration), a blocked fetch makes the application report an error with an unreadable stack trace.
+    The connect-src directive is parsed into its source tokens and checked with exact equality, instead
+    of an arbitrary substring match of the whole header.
     """
     response = requests.get("https://front/desktop_geogirafe", verify=False, timeout=30)  # nosec
     assert response.status_code == 200, response.text
     csp = response.headers.get("Content-Security-Policy", "")
-    assert "https://geogirafe.org/" in csp, csp
+    connect_src = [
+        source
+        for directive in csp.split(";")
+        for tokens in [directive.split()]
+        for source in tokens[1:]
+        if tokens[:1] == ["connect-src"]
+    ]
+    assert any(source == "https://geogirafe.org/" for source in connect_src), csp
