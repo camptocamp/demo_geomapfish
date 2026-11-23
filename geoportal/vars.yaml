@@ -967,7 +967,13 @@ vars:
           style-src-elem 'self' 'unsafe-inline' data:;
           style-src-attr 'self' 'unsafe-inline';
           img-src 'self' data: https://cdn-icons-png.flaticon.com/ https://geomapfish-demo-2-10.camptocamp.com/;
-          connect-src 'self' data: https://geomapfish-demo-2-10.camptocamp.com/ https://www.ogc.vd.ch/;"
+          connect-src 'self' data: https://geomapfish-demo-2-10.camptocamp.com/ https://geogirafe.org/ https://www.ogc.vd.ch/;"
+    # The GeoGirafe service worker is served below /static-frontend/geogirafe/ but the interfaces are
+    # served at the root of the site, so it is registered with the '/' scope, which the browser only
+    # allows with this header on the service worker script.
+    - pattern: '^/static-frontend/geogirafe/service-worker\.js$'
+      headers:
+        Service-Worker-Allowed: /
 
 update_paths:
   - authentication.openid_connect
