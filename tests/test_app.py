@@ -147,3 +147,33 @@ def test_geogirafe_static_asset(asset: str) -> None:
         timeout=30,
     )  # nosec
     assert response.status_code == 200, response.text
+
+
+def test_geogirafe_service_worker_header() -> None:
+    """
+    Tests that the GeoGirafe service worker script is served with the Service-Worker-Allowed header.
+
+    The interfaces are served at the root of the site but the service worker is served below
+    /static-frontend/geogirafe/, so it is registered with the '/' scope, which the browser only
+    allows if the script response has this header.
+    """
+    response = requests.get(
+        "https://front/static-frontend/geogirafe/service-worker.js",
+        verify=False,
+        timeout=30,
+    )  # nosec
+    assert response.status_code == 200, response.text
+    assert response.headers.get("Service-Worker-Allowed") == "/"
+
+
+def test_geogirafe_content_security_policy() -> None:
+    """
+    Tests that the Content-Security-Policy of the GeoGirafe interfaces allows the GeoGirafe news feed.
+
+    The news component fetches https://geogirafe.org/feed/atom/ (news.urls of the GeoGirafe
+    configuration), a blocked fetch makes the application report an error with an unreadable stack trace.
+    """
+    response = requests.get("https://front/desktop_geogirafe", verify=False, timeout=30)  # nosec
+    assert response.status_code == 200, response.text
+    csp = response.headers.get("Content-Security-Policy", "")
+    assert "https://geogirafe.org/" in csp, csp
