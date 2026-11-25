@@ -462,6 +462,15 @@ msgstr "Cabanne Alpine"
 msgid "amenity"
 msgstr "Equipements"
 
+msgid "amenity_type"
+msgstr "Type d'équipement"
+
+msgid "area_fk"
+msgstr "Zone"
+
+msgid "area_name"
+msgstr "Nom de la zone"
+
 msgid "asitvd.fond_couleur"
 msgstr "ASIT VD - Fond couleur"
 
@@ -594,6 +603,9 @@ msgstr "Commentaires"
 msgid "covered"
 msgstr "Couvert"
 
+msgid "created_when"
+msgstr "Date de création"
+
 msgid "crossing"
 msgstr "Intersection"
 
@@ -636,6 +648,9 @@ msgstr "Courriel"
 msgid "entertainment"
 msgstr "Divertissement"
 
+msgid "fid"
+msgstr "ID"
+
 msgid "filter_double"
 msgstr "Filtre double"
 
@@ -659,6 +674,9 @@ msgstr "Fontaines"
 
 msgid "fuel"
 msgstr "Station d'essence"
+
+msgid "geom_4326"
+msgstr "Geométrie"
 
 msgid "giraffe_amenities"
 msgstr "Equipements (Girafe)"
@@ -707,6 +725,9 @@ msgstr "Identifiant interne"
 
 msgid "kind"
 msgstr "Type"
+
+msgid "label"
+msgstr "Libellé"
 
 msgid "landuse"
 msgstr "Utilisation du sol"
@@ -761,6 +782,9 @@ msgstr "Utilisation du sol"
 
 msgid "landuse_alias"
 msgstr "Utilisation du sol (alias)"
+
+msgid "landuse_ingrp"
+msgstr "Utilisation du sol (groupe)"
 
 msgid "layer"
 msgstr "Couches"
@@ -870,8 +894,14 @@ msgstr "Caserne de pompiers OSM (sans WFS)"
 msgid "osm_firestations_dual_restricted"
 msgstr "Caserne de pompiers OSM (double, restrain)"
 
+msgid "osm_firestations_ingrp"
+msgstr "Caserne de pompiers OSM (groupe)"
+
 msgid "osm_firestations_restricted"
 msgstr "Caserne de pompiers OSM (restrain)"
+
+msgid "osm_firestations_restricted_ingrp"
+msgstr "Caserne de pompiers OSM (groupe, restrain)"
 
 msgid "osm_group"
 msgstr "OSM groupe"
@@ -894,8 +924,14 @@ msgstr "Hôpitaux OSM (date heure)"
 msgid "osm_hospitals_dual_restricted"
 msgstr "Hôpitaux OSM (double, restrain)"
 
+msgid "osm_hospitals_ingrp"
+msgstr "Hôpitaux OSM (groupe)"
+
 msgid "osm_hospitals_restricted"
 msgstr "Hôpitaux OSM (restrain)"
+
+msgid "osm_hospitals_restricted_ingrp"
+msgstr "Hôpitaux OSM (groupe, restrain)"
 
 msgid "osm_id"
 msgstr "ID OSM"
@@ -1062,8 +1098,17 @@ msgstr "Points & Utilisation du sol"
 msgid "points+landuse no wfs"
 msgstr "Points & Utilisation du sol (sans WFS)"
 
+msgid "points_ingrp"
+msgstr "Points dans groupe"
+
 msgid "points_vevey"
 msgstr "Points (Vevey)"
+
+msgid "pointscopier"
+msgstr "Points copie"
+
+msgid "pointslabels"
+msgstr "Points labels"
 
 msgid "police"
 msgstr "Police"
@@ -1140,6 +1185,9 @@ msgstr "Voies ferrées"
 msgid "railways9"
 msgstr "Voies ferrées"
 
+msgid "railways_ingrp"
+msgstr "Voies ferrées dans groupe"
+
 msgid "recycling"
 msgstr "Recyclage"
 
@@ -1154,9 +1202,6 @@ msgstr "Restaurants"
 
 msgid "restricted"
 msgstr "Restrain"
-
-msgid "restricted_group"
-msgstr "Restrain dans groupe"
 
 msgid "roads10"
 msgstr "Routes"
@@ -1245,8 +1290,17 @@ msgstr "Temps"
 msgid "time range"
 msgstr "Temps (intervalle)"
 
+msgid "time_ingrp"
+msgstr "Temps (groupe)"
+
 msgid "timestamp"
 msgstr "Datation"
+
+msgid "timestamp1"
+msgstr "Datation 1"
+
+msgid "timestamp2"
+msgstr "Datation 2"
 
 msgid "timezone"
 msgstr "Fuseau horaire"
@@ -1451,15 +1505,6 @@ msgstr ""
 #~ msgid "You must change your password"
 #~ msgstr "Vous devez changer votre mot de passe"
 
-#~ msgid "amenity_type"
-#~ msgstr "Type d'équipement"
-
-#~ msgid "area_fk"
-#~ msgstr "Zone"
-
-#~ msgid "area_name"
-#~ msgstr "Nom de la zone"
-
 #~ msgid "ch.bfe.solarenergie-eignung-daecher_fulldetail"
 #~ msgstr "Solaire: aptitude des toitures"
 
@@ -1484,23 +1529,8 @@ msgstr ""
 #~ msgid "ch.swisstopo.swissnames3d_feature_poly"
 #~ msgstr "Noms géographiques swissNAMES3D"
 
-#~ msgid "created_when"
-#~ msgstr "Date de création"
-
-#~ msgid "fid"
-#~ msgstr "ID"
-
 #~ msgid "geom21781"
 #~ msgstr "Géometrie 21781"
-
-#~ msgid "geom_4326"
-#~ msgstr "Geométrie"
-
-#~ msgid "label"
-#~ msgstr "Libellé"
-
-#~ msgid "landuse_ingrp"
-#~ msgstr "Utilisation du sol (groupe)"
 
 #~ msgid "last_update_timestamp"
 #~ msgstr "Data de mise à jours"
@@ -1508,32 +1538,11 @@ msgstr ""
 #~ msgid "last_update_user"
 #~ msgstr "User"
 
-#~ msgid "osm_firestations_ingrp"
-#~ msgstr "Caserne de pompiers OSM (groupe)"
-
-#~ msgid "osm_firestations_restricted_ingrp"
-#~ msgstr "Caserne de pompiers OSM (groupe, restrain)"
-
-#~ msgid "osm_hospitals_ingrp"
-#~ msgstr "Hôpitaux OSM (groupe)"
-
-#~ msgid "osm_hospitals_restricted_ingrp"
-#~ msgstr "Hôpitaux OSM (groupe, restrain)"
-
-#~ msgid "points_ingrp"
-#~ msgstr "Points dans groupe"
-
-#~ msgid "pointscopier"
-#~ msgstr "Points copie"
-
-#~ msgid "pointslabels"
-#~ msgstr "Points labels"
-
-#~ msgid "railways_ingrp"
-#~ msgstr "Voies ferrées dans groupe"
-
 #~ msgid "raster"
 #~ msgstr "matriciel"
+
+#~ msgid "restricted_group"
+#~ msgstr "Restrain dans groupe"
 
 #~ msgid "standard application"
 #~ msgstr "Application bureau"
@@ -1543,15 +1552,6 @@ msgstr ""
 
 #~ msgid "test2"
 #~ msgstr "Deuxième test"
-
-#~ msgid "time_ingrp"
-#~ msgstr "Temps (groupe)"
-
-#~ msgid "timestamp1"
-#~ msgstr "Datation 1"
-
-#~ msgid "timestamp2"
-#~ msgstr "Datation 2"
 
 #~ msgid "vd.batiment_rcb"
 #~ msgstr "Bâtiment VD RCB"
