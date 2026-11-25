@@ -1,4 +1,9 @@
+import base64
+import json
+import re
 import time
+from typing import Any
+from urllib.parse import urlparse
 
 import pytest
 import requests
@@ -166,6 +171,15 @@ def test_geogirafe_service_worker_header() -> None:
     assert response.headers.get("Service-Worker-Allowed") == "/"
 
 
+def _csp_sources(content_security_policy: str, directive: str) -> list[str]:
+    """Get the sources allowed by one directive of a Content-Security-Policy header."""
+    for part in content_security_policy.split(";"):
+        tokens = part.split()
+        if tokens and tokens[0] == directive:
+            return tokens[1:]
+    return []
+
+
 def test_geogirafe_content_security_policy() -> None:
     """
     Tests that the Content-Security-Policy of the GeoGirafe interfaces allows the GeoGirafe news feed.
@@ -177,3 +191,36 @@ def test_geogirafe_content_security_policy() -> None:
     assert response.status_code == 200, response.text
     csp = response.headers.get("Content-Security-Policy", "")
     assert "https://geogirafe.org/" in csp, csp
+
+
+def test_geogirafe_map3d_content_security_policy() -> None:
+    """
+    Tests that the GeoGirafe 3D map has a content and that its hosts are allowed by the policy.
+
+    Two failures of the 3D map are silent: an empty map3d configuration (no terrainUrl, no
+    terrainImagery and no tilesetsUrls) displays a blank white globe, and a host of these URLs missing
+    from the img-src / connect-src of the Content-Security-Policy displays the same blank globe, both
+    without any error in the user interface. The configuration is inlined in the served page, and no
+    browser runs the GeoGirafe application in the CI, which makes this test the only guard.
+    """
+    response = requests.get("https://front/desktop_geogirafe", verify=False, timeout=30)  # nosec
+    assert response.status_code == 200, response.text
+
+    link = re.search(r"<link[^>]*config-main-url[^>]*>", response.text)
+    assert link is not None, response.text
+    encoded = re.search(r'href="data:application/json;base64,([^"]+)"', link.group())
+    assert encoded is not None, link.group()
+    config: dict[str, Any] = json.loads(base64.b64decode(encoded.group(1)))
+
+    map3d: dict[str, Any] = config["map3d"]
+    assert map3d["terrainUrl"], map3d
+    assert map3d["terrainImagery"]["url"], map3d
+    assert map3d["tilesetsUrls"], map3d
+
+    urls = [map3d["terrainUrl"], map3d["terrainImagery"]["url"], *map3d["tilesetsUrls"]]
+    csp = response.headers.get("Content-Security-Policy", "")
+    for directive in ("img-src", "connect-src"):
+        sources = _csp_sources(csp, directive)
+        for url in urls:
+            host = urlparse(url).netloc
+            assert f"https://{host}/" in sources, (directive, url, csp)

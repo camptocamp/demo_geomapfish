@@ -960,14 +960,17 @@ vars:
           frame-ancestors {content_security_policy_iframe_api_frame_ancestors};"
     - pattern: '^/[a-z_]+_geogirafe(/theme/.*)?$'
       headers:
+        # The swisstopo hosts are the terrain, imagery and 3D tilesets of the GeoGirafe 3D map
+        # (map3d in geogirafe/src/config.json), they must be allowed both as images and as XHR,
+        # see the test_geogirafe_map3d_content_security_policy test.
         Content-Security-Policy: "default-src 'self';
           script-src-elem 'self' 'unsafe-inline';
           script-src-attr 'self' 'unsafe-inline';
           script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';
           style-src-elem 'self' 'unsafe-inline' data:;
           style-src-attr 'self' 'unsafe-inline';
-          img-src 'self' data: https://cdn-icons-png.flaticon.com/ https://geomapfish-demo-2-10.camptocamp.com/;
-          connect-src 'self' data: https://geomapfish-demo-2-10.camptocamp.com/ https://geogirafe.org/ https://www.ogc.vd.ch/;"
+          img-src 'self' data: https://cdn-icons-png.flaticon.com/ https://geomapfish-demo-2-10.camptocamp.com/ https://3d.geo.admin.ch/ https://wmts.geo.admin.ch/ https://vectortiles100.geo.admin.ch/;
+          connect-src 'self' data: https://geomapfish-demo-2-10.camptocamp.com/ https://geogirafe.org/ https://www.ogc.vd.ch/ https://3d.geo.admin.ch/ https://wmts.geo.admin.ch/ https://vectortiles100.geo.admin.ch/;"
     # The GeoGirafe service worker is served below /static-frontend/geogirafe/ but the interfaces are
     # served at the root of the site, so it is registered with the '/' scope, which the browser only
     # allows with this header on the service worker script.
