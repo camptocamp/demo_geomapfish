@@ -35,18 +35,7 @@
     "maxExtent": "2200000,1040000,3000000,1310000"
   },
   "map3d": {
-    "terrainUrl": "https://3d.geo.admin.ch/ch.swisstopo.terrain.3d/v1",
-    "terrainImagery": {
-      "url": "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg",
-      "srid": 3857,
-      "minLoD": 4,
-      "maxLoD": 18,
-      "coverageArea": [5.013926957923385, 45.35600133779394, 11.477436312994008, 48.27502358353741]
-    },
-    "tilesetsUrls": [
-      "https://vectortiles100.geo.admin.ch/3d-tiles/ch.swisstopo.swisstlm3d.3d/20201020/tileset.json"
-    ],
-    "maximumZoomDistance": 30000
+    "tilesetsUrls": []
   },
   "lidar": {
     "url": "https://sitn.ne.ch/pytree"

@@ -92,10 +92,9 @@ the build and open it in a browser (a small static server with the `/static-fron
 URL, some demo backend URLs are relative), and check that there is no error in the console, except the service
 worker one if you serve it over HTTP.
 
-`make build` + `make acceptance` also verify the pages, with the tests `test_geogirafe_application`,
-`test_geogirafe_static_asset`, `test_geogirafe_service_worker_header`, `test_geogirafe_content_security_policy`
-and `test_geogirafe_map3d_content_security_policy` in `tests/test_app.py`, they fail with a bad
-`<girafe-app>` component, bad static asset paths, a missing header or a 3D map without content.
+`make build` + `make acceptance` also verify the pages, with the tests `test_geogirafe_application` and
+`test_geogirafe_static_asset` in `tests/test_app.py`, they fail with a bad `<girafe-app>` component or bad
+static asset paths.
 
 The files of this directory are copied into the Docker image by an allow list in `.dockerignore`, so a new file
 at the root of `geogirafe/`, or a new entry of `build.rollupOptions.input` in `vite.config.js`, has to be added
@@ -122,18 +121,6 @@ See https://doc.geogirafe.org/docs/configuration for more configuration options.
 The themes come from the GeoMapFish backend, see the `themes.url` of the interface configuration files. They are
 built with QGIS from the `qgisserver` and `mapserver` directories of this repository, and the corresponding
 interfaces are declared in the `interfaces` section of `geoportal/vars.yaml`.
-
-### 3D map
-
-The `map3d` section of `src/config.json` gives the content of the Cesium globe: `terrainUrl` (quantized-mesh
-terrain), `terrainImagery` (imagery draped on the terrain) and `tilesetsUrls` (3D tiles). With an empty section
-the 3D map is displayed but blank, a white globe without any error in the console, because the GeoMapFish
-background layers are WMTS and only the WMS layers are draped on the globe.
-
-Every host of these URLs must also be allowed by the `img-src` **and** the `connect-src` of the
-Content-Security-Policy of the `*_geogirafe` interfaces in `geoportal/vars.yaml`, Cesium requests the terrain,
-the imagery and the 3D tiles with XHR: a host that is missing there breaks the 3D map in exactly the same
-silent way. The test `test_geogirafe_map3d_content_security_policy` checks both together.
 
 ### Main interface
 

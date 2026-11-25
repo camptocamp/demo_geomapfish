@@ -37,9 +37,6 @@ Traps already met (all of them broke the demo silently):
   `@geogirafe/lib-geoportal` 1.2, and the URL must be absolute (the library builds it with `new URL(url)`).
 - The `interface=` parameter of the `themes` and `search` URLs must be exactly the interface name declared in
   `geoportal/vars.yaml`, a wrong name returns an empty theme list without any error.
-- The 3D map shows a blank white globe, without any error, when `map3d` of `geogirafe/src/config.json` has no
-  terrain/imagery/tileset, or when the hosts of these URLs are missing from the `img-src` and the `connect-src`
-  of the Content-Security-Policy of the `*_geogirafe` interfaces in `geoportal/vars.yaml`.
 - `cesium`, `ol`, `olcs`, `ol-ext`, `ol-mapbox-style`, `proj4`, `@geoblocks/print` and
   `@geoblocks/mapfishprint` are peer dependencies of the library: keep them pinned in
   `geogirafe/package.json`, they are needed for the 3D map and for a reproducible build.
